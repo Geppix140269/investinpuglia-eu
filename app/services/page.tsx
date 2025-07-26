@@ -1,0 +1,196 @@
+// app/services/page.tsx
+// A beautiful services page for InvestiScope - COMPLETE FILE
+
+export default function ServicesPage() {
+  const services = [
+    {
+      title: "EU Grant Advisory",
+      icon: "💶",
+      price: "Success-based fee",
+      description: "Expert guidance through Mini PIA Turismo grants up to €2.25M",
+      features: [
+        "Complete application preparation",
+        "Business plan development",
+        "Technical documentation",
+        "Post-approval support"
+      ],
+      highlight: true
+    },
+    {
+      title: "Property Investment Analysis",
+      icon: "📊",
+      price: "€499",
+      description: "Comprehensive investment evaluation and ROI projections",
+      features: [
+        "Market analysis report",
+        "Renovation cost estimates",
+        "Revenue projections",
+        "Risk assessment"
+      ]
+    },
+    {
+      title: "Technical Property Surveys",
+      icon: "🏗️",
+      price: "From €899",
+      description: "Professional architectural and structural assessments",
+      features: [
+        "Structural evaluation",
+        "Planning permissions check",
+        "Renovation feasibility",
+        "Cost estimation"
+      ]
+    },
+    {
+      title: "Fiscal Code Service",
+      icon: "🆔",
+      price: "€99",
+      description: "Fast-track Italian fiscal code for international buyers",
+      features: [
+        "2-3 day processing",
+        "Official documentation",
+        "Remote application",
+        "Full support included"
+      ]
+    },
+    {
+      title: "Property Search & Negotiation",
+      icon: "🔍",
+      price: "2% of purchase",
+      description: "Exclusive access to off-market properties in Puglia",
+      features: [
+        "Curated property selection",
+        "Price negotiation",
+        "Legal verification",
+        "Purchase support"
+      ]
+    },
+    {
+      title: "Renovation Management",
+      icon: "🔨",
+      price: "10% of project",
+      description: "Full project management for property renovations",
+      features: [
+        "Contractor sourcing",
+        "Project supervision",
+        "Quality control",
+        "Timeline management"
+      ]
+    }
+  ]
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
+      {/* Hero Section */}
+      <section className="relative overflow-hidden bg-gradient-to-br from-emerald-600 via-teal-600 to-cyan-600 text-white">
+        <div className="absolute inset-0 bg-black opacity-10"></div>
+        <div className="relative max-w-7xl mx-auto px-4 py-24 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6">
+              Our Services
+            </h1>
+            <p className="text-xl md:text-2xl text-emerald-100 max-w-3xl mx-auto">
+              Comprehensive support for your Italian property investment journey
+            </p>
+          </div>
+        </div>
+        
+        {/* Decorative wave */}
+        <div className="absolute bottom-0 left-0 right-0">
+          <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 120L60 105C120 90 240 60 360 45C480 30 600 30 720 37.5C840 45 960 60 1080 67.5C1200 75 1320 75 1380 75L1440 75V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="white"/>
+          </svg>
+        </div>
+      </section>
+
+      {/* Services Grid */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {services.map((service, index) => (
+              <div
+                key={index}
+                className={`relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 ${
+                  service.highlight ? 'ring-2 ring-emerald-500' : ''
+                }`}
+              >
+                {service.highlight && (
+                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                    <span className="bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-4 py-1 rounded-full text-sm font-semibold">
+                      Most Popular
+                    </span>
+                  </div>
+                )}
+                
+                <div className="p-8">
+                  <div className="text-5xl mb-4">{service.icon}</div>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-2">{service.title}</h3>
+                  <p className="text-emerald-600 font-semibold text-lg mb-4">{service.price}</p>
+                  <p className="text-gray-600 mb-6">{service.description}</p>
+                  
+                  <ul className="space-y-3 mb-8">
+                    {service.features.map((feature, idx) => (
+                      <li key={idx} className="flex items-start">
+                        <svg className="w-5 h-5 text-emerald-500 mr-2 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span className="text-gray-700">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  
+                  <button className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 text-white py-3 px-6 rounded-lg font-semibold hover:shadow-lg transition-all duration-300 transform hover:scale-105">
+                    Get Started
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="bg-gradient-to-r from-emerald-600 to-teal-600 py-20">
+        <div className="max-w-4xl mx-auto text-center px-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+            Ready to Start Your Italian Investment Journey?
+          </h2>
+          <p className="text-xl text-emerald-100 mb-8">
+            Book a free consultation with our expert team today
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <button className="bg-white text-emerald-600 py-4 px-8 rounded-lg font-semibold hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+              Schedule Consultation
+            </button>
+            <button className="bg-emerald-700 text-white py-4 px-8 rounded-lg font-semibold hover:bg-emerald-800 transition-all duration-300">
+              Download Service Guide
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Trust Section */}
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div>
+              <div className="text-4xl font-bold text-emerald-600">250+</div>
+              <div className="text-gray-600 mt-2">Properties Analyzed</div>
+            </div>
+            <div>
+              <div className="text-4xl font-bold text-emerald-600">€18M+</div>
+              <div className="text-gray-600 mt-2">Grants Secured</div>
+            </div>
+            <div>
+              <div className="text-4xl font-bold text-emerald-600">47</div>
+              <div className="text-gray-600 mt-2">Happy Investors</div>
+            </div>
+            <div>
+              <div className="text-4xl font-bold text-emerald-600">100%</div>
+              <div className="text-gray-600 mt-2">Success Rate</div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  )
+}

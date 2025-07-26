@@ -1,0 +1,622 @@
+'use client'
+
+import { useState, useEffect } from 'react'
+import { createClient } from '@supabase/supabase-js'
+
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+const supabase = createClient(supabaseUrl, supabaseAnonKey)
+
+// In production, this should be stored as an environment variable
+const ADMIN_PASSWORD = 'InvestiScope2025!' // Change this to your desired password
+
+interface Application {
+  id: string
+  request_type: string
+  applicant_type: string
+  surname: string
+  name: string
+  sex: string
+  birth_date: string
+  birth_municipality: string
+  birth_province: string | null
+  residence_type: string | null
+  residence_address: string | null
+  residence_number: string | null
+  residence_municipality: string | null
+  residence_province: string | null
+  residence_cap: string | null
+  residence_fraction: string | null
+  foreign_country: string
+  foreign_state: string | null
+  foreign_city: string | null
+  foreign_address: string
+  foreign_postal_code: string | null
+  other_fiscal_code_1: string | null
+  other_fiscal_code_2: string | null
+  delegator_name: string
+  delegator_email: string
+  delegator_phone: string
+  status: string
+  submitted_at: string
+  has_signature: boolean
+  pdf_uploaded: boolean
+  pdf_url: string | null
+  created_at: string
+  updated_at: string
+}
+
+export default function AdminFiscalCodeDashboard() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const [password, setPassword] = useState('')
+  const [authError, setAuthError] = useState('')
+  const [applications, setApplications] = useState<Application[]>([])
+  const [loading, setLoading] = useState(false)
+  const [selectedApplication, setSelectedApplication] = useState<Application | null>(null)
+  const [searchTerm, setSearchTerm] = useState('')
+  const [filterStatus, setFilterStatus] = useState('all')
+  const [sortBy, setSortBy] = useState<'date' | 'name'>('date')
+  const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc')
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      fetchApplications()
+    }
+  }, [isAuthenticated])
+
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault()
+    setAuthError('')
+    
+    if (password === ADMIN_PASSWORD) {
+      setIsAuthenticated(true)
+      setPassword('') // Clear password from memory
+    } else {
+      setAuthError('Invalid password. Please try again.')
+    }
+  }
+
+  const handleLogout = () => {
+    setIsAuthenticated(false)
+    setApplications([])
+    setSelectedApplication(null)
+  }
+
+  const fetchApplications = async () => {
+    setLoading(true)
+    try {
+      const { data, error } = await supabase
+        .from('fiscal_code_applications')
+        .select('*')
+        .order('submitted_at', { ascending: false })
+
+      if (error) throw error
+      setApplications(data || [])
+    } catch (error) {
+      console.error('Error fetching applications:', error)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const updateApplicationStatus = async (id: string, newStatus: string) => {
+    try {
+      const { error } = await supabase
+        .from('fiscal_code_applications')
+        .update({ status: newStatus, updated_at: new Date().toISOString() })
+        .eq('id', id)
+
+      if (error) throw error
+
+      // Update local state
+      setApplications(prev => 
+        prev.map(app => 
+          app.id === id ? { ...app, status: newStatus } : app
+        )
+      )
+      
+      if (selectedApplication?.id === id) {
+        setSelectedApplication({ ...selectedApplication, status: newStatus })
+      }
+    } catch (error) {
+      console.error('Error updating status:', error)
+    }
+  }
+
+  const getRequestTypeLabel = (type: string) => {
+    const types: Record<string, string> = {
+      '1': 'First Time Application',
+      '2': 'Data Update',
+      '3': 'Death Notification',
+      '4': 'Certificate Request',
+      '5': 'Duplicate Request'
+    }
+    return types[type] || type
+  }
+
+  const getStatusBadge = (status: string) => {
+    const styles: Record<string, string> = {
+      pending: 'bg-yellow-100 text-yellow-800',
+      processing: 'bg-blue-100 text-blue-800',
+      completed: 'bg-green-100 text-green-800',
+      rejected: 'bg-red-100 text-red-800'
+    }
+    return (
+      <span className={`px-2 py-1 rounded-full text-xs font-medium ${styles[status] || 'bg-gray-100 text-gray-800'}`}>
+        {status.charAt(0).toUpperCase() + status.slice(1)}
+      </span>
+    )
+  }
+
+  // Filter and sort applications
+  const filteredApplications = applications
+    .filter(app => {
+      const matchesSearch = 
+        app.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        app.surname.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        app.delegator_email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        app.id.includes(searchTerm)
+      
+      const matchesStatus = filterStatus === 'all' || app.status === filterStatus
+      
+      return matchesSearch && matchesStatus
+    })
+    .sort((a, b) => {
+      if (sortBy === 'date') {
+        const dateA = new Date(a.submitted_at).getTime()
+        const dateB = new Date(b.submitted_at).getTime()
+        return sortOrder === 'asc' ? dateA - dateB : dateB - dateA
+      } else {
+        const nameA = `${a.surname} ${a.name}`.toLowerCase()
+        const nameB = `${b.surname} ${b.name}`.toLowerCase()
+        return sortOrder === 'asc' 
+          ? nameA.localeCompare(nameB)
+          : nameB.localeCompare(nameA)
+      }
+    })
+
+  // Login Screen
+  if (!isAuthenticated) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-teal-50 flex items-center justify-center p-4">
+        <div className="bg-white rounded-2xl shadow-xl p-8 w-full max-w-md">
+          <div className="text-center mb-8">
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-emerald-600 to-teal-600 text-white rounded-full mb-4">
+              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+              </svg>
+            </div>
+            <h1 className="text-2xl font-bold text-gray-900">Admin Access</h1>
+            <p className="text-gray-600 mt-2">Fiscal Code Applications Dashboard</p>
+          </div>
+
+          <form onSubmit={handleLogin} className="space-y-6">
+            <div>
+              <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
+                Admin Password
+              </label>
+              <input
+                type="password"
+                id="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
+                placeholder="Enter admin password"
+                autoFocus
+              />
+              {authError && (
+                <p className="mt-2 text-sm text-red-600">{authError}</p>
+              )}
+            </div>
+
+            <button
+              type="submit"
+              className="w-full py-3 px-4 bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-medium rounded-lg hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200"
+            >
+              Access Dashboard
+            </button>
+          </form>
+
+          <div className="mt-6 text-center">
+            <a
+              href="/"
+              className="text-sm text-gray-600 hover:text-emerald-600 transition-colors"
+            >
+              ← Back to Main Site
+            </a>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-emerald-600 mx-auto"></div>
+          <p className="mt-4 text-gray-600">Loading applications...</p>
+        </div>
+      </div>
+    )
+  }
+
+  return (
+    <div className="min-h-screen bg-gray-50">
+      {/* Header */}
+      <header className="bg-white shadow-sm border-b">
+        <div className="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center">
+            <div>
+              <h1 className="text-2xl font-bold text-gray-900">Fiscal Code Applications</h1>
+              <p className="text-sm text-gray-600 mt-1">Manage and review submitted applications</p>
+            </div>
+            <div className="flex items-center gap-4">
+              <span className="text-sm text-gray-600">
+                Total: <strong>{applications.length}</strong> applications
+              </span>
+              <button
+                onClick={fetchApplications}
+                className="px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors"
+              >
+                Refresh
+              </button>
+              <button
+                onClick={handleLogout}
+                className="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors"
+              >
+                Logout
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div className="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
+        {/* Filters and Search */}
+        <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div className="md:col-span-2">
+              <label className="block text-sm font-medium text-gray-700 mb-2">Search</label>
+              <input
+                type="text"
+                placeholder="Search by name, email, or ID..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Status</label>
+              <select
+                value={filterStatus}
+                onChange={(e) => setFilterStatus(e.target.value)}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
+              >
+                <option value="all">All Status</option>
+                <option value="pending">Pending</option>
+                <option value="processing">Processing</option>
+                <option value="completed">Completed</option>
+                <option value="rejected">Rejected</option>
+              </select>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Sort By</label>
+              <select
+                value={`${sortBy}-${sortOrder}`}
+                onChange={(e) => {
+                  const [by, order] = e.target.value.split('-') as ['date' | 'name', 'asc' | 'desc']
+                  setSortBy(by)
+                  setSortOrder(order)
+                }}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
+              >
+                <option value="date-desc">Date (Newest First)</option>
+                <option value="date-asc">Date (Oldest First)</option>
+                <option value="name-asc">Name (A-Z)</option>
+                <option value="name-desc">Name (Z-A)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        {/* Applications Table */}
+        <div className="bg-white rounded-lg shadow-sm overflow-hidden">
+          <div className="overflow-x-auto">
+            <table className="min-w-full divide-y divide-gray-200">
+              <thead className="bg-gray-50">
+                <tr>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Date
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Applicant
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Type
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Country
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Status
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Actions
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="bg-white divide-y divide-gray-200">
+                {filteredApplications.length === 0 ? (
+                  <tr>
+                    <td colSpan={6} className="px-6 py-4 text-center text-gray-500">
+                      No applications found
+                    </td>
+                  </tr>
+                ) : (
+                  filteredApplications.map((app) => (
+                    <tr key={app.id} className="hover:bg-gray-50">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                        {new Date(app.submitted_at).toLocaleDateString()}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        <div>
+                          <div className="text-sm font-medium text-gray-900">
+                            {app.surname} {app.name}
+                          </div>
+                          <div className="text-sm text-gray-500">{app.delegator_email}</div>
+                        </div>
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                        {getRequestTypeLabel(app.request_type)}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                        {app.foreign_country}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        {getStatusBadge(app.status)}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                        <button
+                          onClick={() => setSelectedApplication(app)}
+                          className="text-emerald-600 hover:text-emerald-700 font-medium"
+                        >
+                          View Details
+                        </button>
+                      </td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        {/* Quick Stats */}
+        <div className="mt-8 grid grid-cols-1 md:grid-cols-4 gap-4">
+          <div className="bg-white rounded-lg shadow-sm p-6">
+            <h3 className="text-sm font-medium text-gray-500">Pending</h3>
+            <p className="text-2xl font-bold text-yellow-600 mt-2">
+              {applications.filter(a => a.status === 'pending').length}
+            </p>
+          </div>
+          <div className="bg-white rounded-lg shadow-sm p-6">
+            <h3 className="text-sm font-medium text-gray-500">Processing</h3>
+            <p className="text-2xl font-bold text-blue-600 mt-2">
+              {applications.filter(a => a.status === 'processing').length}
+            </p>
+          </div>
+          <div className="bg-white rounded-lg shadow-sm p-6">
+            <h3 className="text-sm font-medium text-gray-500">Completed</h3>
+            <p className="text-2xl font-bold text-green-600 mt-2">
+              {applications.filter(a => a.status === 'completed').length}
+            </p>
+          </div>
+          <div className="bg-white rounded-lg shadow-sm p-6">
+            <h3 className="text-sm font-medium text-gray-500">Rejected</h3>
+            <p className="text-2xl font-bold text-red-600 mt-2">
+              {applications.filter(a => a.status === 'rejected').length}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Detail Modal */}
+      {selectedApplication && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+          <div className="bg-white rounded-xl shadow-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="sticky top-0 bg-white border-b px-6 py-4 flex justify-between items-center">
+              <h2 className="text-xl font-bold text-gray-900">Application Details</h2>
+              <button
+                onClick={() => setSelectedApplication(null)}
+                className="text-gray-400 hover:text-gray-600"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+
+            <div className="p-6 space-y-6">
+              {/* Application Info */}
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">Application Information</h3>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <p className="text-sm text-gray-500">Application ID</p>
+                    <p className="font-mono text-sm">{selectedApplication.id}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500">Submitted</p>
+                    <p className="text-sm">{new Date(selectedApplication.submitted_at).toLocaleString()}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500">Request Type</p>
+                    <p className="text-sm">{getRequestTypeLabel(selectedApplication.request_type)}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500">Status</p>
+                    <div className="mt-1">{getStatusBadge(selectedApplication.status)}</div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Personal Data */}
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">Personal Data</h3>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <p className="text-sm text-gray-500">Full Name</p>
+                    <p className="font-medium">{selectedApplication.surname} {selectedApplication.name}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500">Sex</p>
+                    <p>{selectedApplication.sex === 'M' ? 'Male' : 'Female'}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500">Date of Birth</p>
+                    <p>{new Date(selectedApplication.birth_date).toLocaleDateString()}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500">Place of Birth</p>
+                    <p>{selectedApplication.birth_municipality}</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Foreign Residence */}
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">Foreign Residence</h3>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <p className="text-sm text-gray-500">Country</p>
+                    <p className="font-medium">{selectedApplication.foreign_country}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500">State/Province</p>
+                    <p>{selectedApplication.foreign_state || 'N/A'}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500">City</p>
+                    <p>{selectedApplication.foreign_city || 'N/A'}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500">Postal Code</p>
+                    <p>{selectedApplication.foreign_postal_code || 'N/A'}</p>
+                  </div>
+                  <div className="col-span-2">
+                    <p className="text-sm text-gray-500">Address</p>
+                    <p>{selectedApplication.foreign_address}</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Italian Residence (if any) */}
+              {selectedApplication.residence_address && (
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Italian Residence</h3>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="col-span-2">
+                      <p className="text-sm text-gray-500">Address</p>
+                      <p>
+                        {selectedApplication.residence_type} {selectedApplication.residence_address} {selectedApplication.residence_number}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-sm text-gray-500">Municipality</p>
+                      <p>{selectedApplication.residence_municipality}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm text-gray-500">Province</p>
+                      <p>{selectedApplication.residence_province}</p>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Contact Information */}
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">Contact Information</h3>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <p className="text-sm text-gray-500">Applicant Name</p>
+                    <p className="font-medium">{selectedApplication.delegator_name}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500">Email</p>
+                    <p className="text-blue-600">{selectedApplication.delegator_email}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500">Phone</p>
+                    <p>{selectedApplication.delegator_phone}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500">Signature</p>
+                    <p>{selectedApplication.has_signature ? '✅ Provided' : '❌ Missing'}</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Other Fiscal Codes */}
+              {(selectedApplication.other_fiscal_code_1 || selectedApplication.other_fiscal_code_2) && (
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Other Fiscal Codes</h3>
+                  <div className="space-y-2">
+                    {selectedApplication.other_fiscal_code_1 && (
+                      <p className="font-mono bg-gray-100 px-3 py-2 rounded">
+                        {selectedApplication.other_fiscal_code_1}
+                      </p>
+                    )}
+                    {selectedApplication.other_fiscal_code_2 && (
+                      <p className="font-mono bg-gray-100 px-3 py-2 rounded">
+                        {selectedApplication.other_fiscal_code_2}
+                      </p>
+                    )}
+                  </div>
+                </div>
+              )}
+
+              {/* Actions */}
+              <div className="border-t pt-6">
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">Update Status</h3>
+                <div className="flex gap-3">
+                  <button
+                    onClick={() => updateApplicationStatus(selectedApplication.id, 'processing')}
+                    className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                    disabled={selectedApplication.status === 'processing'}
+                  >
+                    Mark as Processing
+                  </button>
+                  <button
+                    onClick={() => updateApplicationStatus(selectedApplication.id, 'completed')}
+                    className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+                    disabled={selectedApplication.status === 'completed'}
+                  >
+                    Mark as Completed
+                  </button>
+                  <button
+                    onClick={() => updateApplicationStatus(selectedApplication.id, 'rejected')}
+                    className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
+                    disabled={selectedApplication.status === 'rejected'}
+                  >
+                    Mark as Rejected
+                  </button>
+                  {selectedApplication.pdf_url && (
+                    <a
+                      href={selectedApplication.pdf_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors"
+                    >
+                      View PDF
+                    </a>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}
