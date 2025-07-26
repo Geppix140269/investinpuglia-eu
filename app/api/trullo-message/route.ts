@@ -64,24 +64,72 @@ export async function POST(request: NextRequest) {
       </p>
     `;
 
-    // Send email using Resend
-    const { data, error } = await resend.emails.send({
-      from: 'Trullo Assistant <trullo@investinpuglia.eu>', // Update with your verified domain
-      to: ['info@investinpuglia.eu'], // Update with Giuseppe's email
-      replyTo: email,
-      subject: `New Message from Trullo Chat - ${name} (${languageNames[language] || language.toUpperCase()})`,
-      html: htmlContent,
-    });
+    // Create customer confirmation email
+    const customerHtmlContent = `
+      <h2>Thank you for contacting Invest in Puglia!</h2>
+      
+      <p>Dear ${name},</p>
+      
+      <p>We've received your message and Giuseppe will personally review it within 24 hours.</p>
+      
+      <div style="background: #f3f4f6; padding: 20px; border-radius: 8px; margin: 20px 0;">
+        <h3 style="color: #7c3aed; margin-top: 0;">Your Message:</h3>
+        <p style="white-space: pre-wrap; margin-bottom: 0;">${message}</p>
+      </div>
+      
+      <p>In the meantime, you can:</p>
+      <ul>
+        <li>Book a direct consultation: <a href="https://calendly.com/investinpuglia/30min">Schedule a call</a></li>
+        <li>Visit our website: <a href="https://investinpuglia.eu">investinpuglia.eu</a></li>
+        <li>Learn about PIA Turismo grants (up to 50% funding)</li>
+      </ul>
+      
+      <p>We look forward to helping you with your investment in Puglia!</p>
+      
+      <p>Best regards,<br>
+      The Invest in Puglia Team</p>
+      
+      <hr style="margin: 30px 0; border: 1px solid #e5e7eb;">
+      
+      <p style="color: #6b7280; font-size: 12px;">
+        This is an automated confirmation. Giuseppe will respond personally to your inquiry.
+      </p>
+    `;
 
-    if (error) {
-      console.error('Resend error:', error);
+    // Send both emails using Resend
+    const [mainEmail, customerEmail] = await Promise.all([
+      // Email to Giuseppe
+      resend.emails.send({
+        from: 'Trullo Assistant <trullo@investinpuglia.eu>', // Update with your verified domain
+        to: ['info@investinpuglia.eu'], // Update with Giuseppe's email
+        cc: [email], // CC the customer
+        replyTo: email,
+        subject: `New Message from Trullo Chat - ${name} (${languageNames[language] || language.toUpperCase()})`,
+        html: htmlContent,
+      }),
+      // Confirmation email to customer
+      resend.emails.send({
+        from: 'Invest in Puglia <noreply@investinpuglia.eu>', // Update with your verified domain
+        to: [email],
+        replyTo: 'info@investinpuglia.eu',
+        subject: 'Message Received - Invest in Puglia',
+        html: customerHtmlContent,
+      })
+    ]);
+
+    if (mainEmail.error || customerEmail.error) {
+      console.error('Resend error:', mainEmail.error || customerEmail.error);
       return NextResponse.json(
         { error: 'Failed to send message' },
         { status: 500 }
       );
     }
 
-    return NextResponse.json({ success: true, id: data?.id });
+    return NextResponse.json({ 
+      success: true, 
+      mainEmailId: mainEmail.data?.id,
+      customerEmailId: customerEmail.data?.id 
+    });
   } catch (error) {
     console.error('API error:', error);
     return NextResponse.json(
