@@ -100,8 +100,8 @@ export async function POST(request: NextRequest) {
     const [mainEmail, customerEmail] = await Promise.all([
       // Email to Giuseppe
       resend.emails.send({
-        from: 'Trullo Assistant <trullo@investinpuglia.eu>', // Update with your verified domain
-        to: ['info@investinpuglia.eu'], // Update with Giuseppe's email
+        from: 'Trullo Assistant <trullo@investinpuglia.eu>',
+        to: ['info@investinpuglia.eu'],
         cc: [email], // CC the customer
         replyTo: email,
         subject: `New Message from Trullo Chat - ${name} (${languageNames[language] || language.toUpperCase()})`,
@@ -109,7 +109,7 @@ export async function POST(request: NextRequest) {
       }),
       // Confirmation email to customer
       resend.emails.send({
-        from: 'Invest in Puglia <noreply@investinpuglia.eu>', // Update with your verified domain
+        from: 'Invest in Puglia <noreply@investinpuglia.eu>',
         to: [email],
         replyTo: 'info@investinpuglia.eu',
         subject: 'Message Received - Invest in Puglia',
