@@ -3,6 +3,64 @@
 import React, { useState, useEffect } from 'react'
 import { ChevronRight, ChevronLeft, CheckCircle, Send, Download, X } from 'lucide-react'
 
+// Type definitions
+interface User {
+  id: string
+  email?: string
+}
+
+interface FormData {
+  fullName: string
+  email: string
+  phone: string
+  nationality: string
+  residency: string
+  investmentPurpose: string
+  propertyType: string
+  budget: string
+  timeline: string
+  location: string[]
+  propertySize: string
+  bedrooms: string
+  amenities: string[]
+  financingMethod: string
+  downPaymentPercentage: string
+  preApproved: string
+  monthlyBudget: string
+  previousInvestments: string
+  italianPropertyExperience: string
+  languageSkills: string
+  needsAssistance: string[]
+  taxId: string
+  needsTaxId: string
+  legalRepresentation: string
+  powerOfAttorney: string
+  propertyManagement: string
+  rentalStrategy: string
+  maintenanceBudget: string
+  localContacts: string
+  propertyInspection: string
+  legalReview: string
+  surveyRequired: string
+  insuranceNeeds: string[]
+  businessPlan: string
+  employmentCreation: string
+  sustainabilityFeatures: string[]
+  grantInterest: string
+  additionalServices: string[]
+  urgency: string
+  specialRequests: string
+  howHeard: string
+}
+
+// Extend window type for global objects
+declare global {
+  interface Window {
+    supabase?: any
+    emailjs?: any
+  }
+}
+
 // Google Login Button Component
 const GoogleLoginButton = () => {
   const handleGoogleLogin = async () => {
@@ -35,7 +93,7 @@ const GoogleLoginButton = () => {
 
 const BuyerProfilePage = () => {
   // Auth state
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState<User | null>(null)
   const [authLoading, setAuthLoading] = useState(true)
   
   // Form state
@@ -57,11 +115,11 @@ const BuyerProfilePage = () => {
     },
     custom: {
       label: 'Custom Recipients',
-      emails: []
+      emails: [] as string[]
     }
   }
   
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     fullName: '',
     email: '',
     phone: '',
@@ -149,16 +207,18 @@ const BuyerProfilePage = () => {
 
   const totalSteps = 10
 
-  const updateFormData = (field: string, value: any) => {
+  const updateFormData = <K extends keyof FormData>(field: K, value: FormData[K]) => {
     setFormData(prev => ({ ...prev, [field]: value }))
   }
 
-  const handleCheckboxChange = (field, value, checked) => {
-    const currentValues = formData[field]
-    if (checked) {
-      updateFormData(field, [...currentValues, value])
-    } else {
-      updateFormData(field, currentValues.filter(item => item !== value))
+  const handleCheckboxChange = (field: keyof FormData, value: string, checked: boolean) => {
+    const fieldValue = formData[field]
+    if (Array.isArray(fieldValue)) {
+      if (checked) {
+        updateFormData(field, [...fieldValue, value] as FormData[keyof FormData])
+      } else {
+        updateFormData(field, fieldValue.filter(item => item !== value) as FormData[keyof FormData])
+      }
     }
   }
 
@@ -176,7 +236,7 @@ const BuyerProfilePage = () => {
     }
   }
 
-  const formatValue = (value) => {
+  const formatValue = (value: string): string => {
     if (!value) return 'Not specified'
     return value.split('-').map(word => 
       word.charAt(0).toUpperCase() + word.slice(1)
@@ -199,11 +259,11 @@ const BuyerProfilePage = () => {
       }
 
       // Determine recipients
-      let recipients = []
+      let recipients: string[] = []
       if (recipientType === 'custom') {
         recipients = customRecipients.split(',').map(email => email.trim()).filter(email => email.includes('@'))
       } else {
-        recipients = recipientOptions[recipientType].emails
+        recipients = recipientOptions[recipientType as keyof typeof recipientOptions].emails
       }
 
       if (recipients.length === 0) {
@@ -283,7 +343,7 @@ Monthly Budget: ${formData.monthlyBudget || 'Not specified'}`
         return (
           <div className="space-y-6">
             <h2 className="text-3xl font-bold text-blue-900">Personal Information</h2>
-            <p className="text-gray-600">Let's start with some basic information about you.</p>
+            <p className="text-gray-600">Let&apos;s start with some basic information about you.</p>
             
             <div className="space-y-4">
               <div>
