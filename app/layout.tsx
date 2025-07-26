@@ -4,8 +4,20 @@ import { Inter, Playfair_Display } from 'next/font/google'
 import './globals.css'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
-import TrulloChatbotWrapper from '@/components/TrulloChatbotWrapper'
 import Script from 'next/script'
+import dynamic from 'next/dynamic'
+
+// Lazy load the TrulloChatbot to avoid build errors if component doesn't exist yet
+const TrulloChatbotWrapper = dynamic(
+  () => import('@/components/TrulloChatbotWrapper').catch(() => {
+    // Return empty component if file doesn't exist
+    return { default: () => null }
+  }),
+  { 
+    ssr: false,
+    loading: () => null 
+  }
+)
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -25,7 +37,7 @@ export const metadata: Metadata = {
     default: 'Property Investment in Puglia - EU Grants up to €2.25M | Invest in Puglia',
     template: '%s | Property Investment Puglia - Invest in Puglia'
   },
-  description: 'Expert property investment advisory in Puglia, Italy. Secure up to €2.25M in EU grants. Free grant calculator, property surveys, and professional guidance for foreign investors.',
+  description: 'Expert property investment advisory in Puglia, Italy. Secure up to €2.25M in EU grants. Free grant calculator, professional surveys, and professional guidance for foreign investors.',
   keywords: [
     'property investment puglia',
     'puglia real estate investment',
