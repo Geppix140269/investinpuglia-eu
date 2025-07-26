@@ -898,4 +898,4 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
   );
 }
 
-export { SYSTEM_PROMPT };
+export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
