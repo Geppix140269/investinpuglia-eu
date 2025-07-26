@@ -1,10 +1,10 @@
-// app/layout.tsx - SEO-optimized metadata with Google Analytics and EmailJS
-
+// PATH: app/layout.tsx
 import type { Metadata } from 'next'
 import { Inter, Playfair_Display } from 'next/font/google'
 import './globals.css'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
+import TrulloChatbot from '@/components/TrulloChatbot'
 import Script from 'next/script'
 
 const inter = Inter({ 
@@ -179,6 +179,7 @@ export default function RootLayout({
         <Navbar />
         <main className="pt-16">{children}</main>
         <Footer />
+        <TrulloChatbot language="en" />
       </body>
     </html>
   )
