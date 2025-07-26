@@ -103,7 +103,7 @@ export async function POST(request: NextRequest) {
         from: 'Trullo Assistant <trullo@investinpuglia.eu>',
         to: ['info@investinpuglia.eu'],
         cc: [email], // CC the customer
-        replyTo: email,
+        reply_to: email, // Changed from replyTo to reply_to
         subject: `New Message from Trullo Chat - ${name} (${languageNames[language] || language.toUpperCase()})`,
         html: htmlContent,
       }),
@@ -111,7 +111,7 @@ export async function POST(request: NextRequest) {
       resend.emails.send({
         from: 'Invest in Puglia <noreply@investinpuglia.eu>',
         to: [email],
-        replyTo: 'info@investinpuglia.eu',
+        reply_to: 'info@investinpuglia.eu', // Changed from replyTo to reply_to
         subject: 'Message Received - Invest in Puglia',
         html: customerHtmlContent,
       })
