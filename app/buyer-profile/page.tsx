@@ -53,14 +53,6 @@ interface FormData {
   howHeard: string
 }
 
-// Extend window type for global objects
-declare global {
-  interface Window {
-    supabase?: any
-    emailjs?: any
-  }
-}
-
 // Google Login Button Component
 const GoogleLoginButton = () => {
   const handleGoogleLogin = async () => {
