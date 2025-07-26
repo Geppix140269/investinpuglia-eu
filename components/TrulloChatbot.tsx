@@ -471,6 +471,8 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
     message: ''
   });
   const [isSendingMessage, setIsSendingMessage] = useState(false);
+  const [sessionId, setSessionId] = useState<string>('');
+  const [conversationId, setConversationId] = useState<string>('');
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
@@ -481,15 +483,67 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
     scrollToBottom();
   }, [messages]);
 
-  // Update greeting when language changes
+  // Initialize session when chat opens
   useEffect(() => {
-    setMessages([{
-      id: '1',
-      role: 'assistant',
-      content: translations[currentLang].greeting,
-      timestamp: new Date()
-    }]);
-  }, [currentLang]);
+    if (isOpen && !sessionId) {
+      const newSessionId = `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+      setSessionId(newSessionId);
+      
+      // Start conversation logging
+      fetch('/api/trullo-log', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          action: 'startConversation',
+          sessionId: newSessionId,
+          language: currentLang,
+          userAgent: navigator.userAgent
+        })
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.conversationId) {
+          setConversationId(data.conversationId);
+        }
+      })
+      .catch(err => console.error('Failed to start conversation logging:', err));
+    }
+  }, [isOpen, sessionId, currentLang]);
+
+  // Log messages to Supabase
+  const logMessage = async (role: 'user' | 'assistant', content: string) => {
+    if (!conversationId) return;
+    
+    try {
+      await fetch('/api/trullo-log', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          action: 'logMessage',
+          conversationId,
+          role,
+          content
+        })
+      });
+    } catch (err) {
+      console.error('Failed to log message:', err);
+    }
+  };
+
+  // End conversation when chat closes
+  const handleCloseChat = () => {
+    if (conversationId) {
+      fetch('/api/trullo-log', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          action: 'endConversation',
+          conversationId
+        })
+      }).catch(err => console.error('Failed to end conversation:', err));
+    }
+    setIsOpen(false);
+  };
 
   const handleSend = async () => {
     if (!input.trim() || isTyping) return;
@@ -504,6 +558,9 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
     setMessages(prev => [...prev, userMessage]);
     setInput('');
     setIsTyping(true);
+    
+    // Log user message
+    logMessage('user', input);
 
     try {
       // Call our API route
@@ -536,6 +593,9 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
       };
 
       setMessages(prev => [...prev, assistantMessage]);
+      
+      // Log assistant message
+      logMessage('assistant', data.message);
     } catch (error) {
       console.error('Chat error:', error);
       
@@ -569,6 +629,23 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
       const conversationHistory = messages.map(m => 
         `${m.role === 'user' ? 'User' : 'Trullo'}: ${m.content}`
       ).join('\n\n');
+
+      // Save to Supabase
+      if (conversationId) {
+        await fetch('/api/trullo-log', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            action: 'saveContactRequest',
+            conversationId,
+            name: messageForm.name,
+            email: messageForm.email,
+            phone: messageForm.phone || '',
+            message: messageForm.message,
+            language: currentLang
+          })
+        });
+      }
 
       // Send message via API route (using Resend)
       const response = await fetch('/api/trullo-message', {
@@ -614,7 +691,13 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
     <>
       {/* Chat Button */}
       <button
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={() => {
+          if (isOpen) {
+            handleCloseChat();
+          } else {
+            setIsOpen(true);
+          }
+        }}
         className={`fixed bottom-8 right-8 z-50 p-4 rounded-full shadow-xl transition-all duration-300 ${
           isOpen 
             ? 'bg-gray-600 hover:bg-gray-700' 
