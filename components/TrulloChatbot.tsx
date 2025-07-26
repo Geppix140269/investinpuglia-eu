@@ -897,5 +897,3 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
     </>
   );
 }
-
-export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
