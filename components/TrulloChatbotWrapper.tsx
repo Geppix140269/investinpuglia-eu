@@ -5,13 +5,13 @@ import dynamic from 'next/dynamic';
 
 // Lazy load TrulloChatbot to avoid SSR issues
 const TrulloChatbot = dynamic(
-  () => import('./TrulloChatbot'),
+  () => import('./trullo/TrulloChatbot'),
   { ssr: false }
 );
 
 type Language = 'en' | 'it' | 'fr' | 'de' | 'ar' | 'zh' | 'es';
 
-// Language detection based on browser, URL, or IP location
+// Language detection based on browser, URL, or IP locationT
 function detectUserLanguage(): Language {
   // Check URL subdomain first (en., it., fr., etc.)
   if (typeof window !== 'undefined') {
