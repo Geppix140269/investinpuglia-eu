@@ -206,7 +206,3 @@ United Kingdom <br />
     </div>
   )
 }
-
-
-Company Registration: 
-VAT Number: 
