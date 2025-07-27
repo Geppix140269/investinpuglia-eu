@@ -174,10 +174,7 @@ export default function TrulloMonitor() {
           ? `User: ${newMessage.content.substring(0, 100)}...` 
           : 'Trullo responded',
         icon: '/Trullo.png',
-        badge: '/Trullo.png',
-        tag: 'trullo-message',
-        renotify: true,
-        vibrate: [200, 100, 200]
+        tag: 'trullo-message'
       });
 
       notification.onclick = () => {
@@ -214,11 +211,8 @@ export default function TrulloMonitor() {
         const notification = new Notification('🎯 New Contact Request!', {
           body: `${newContact.name} - ${newContact.email}`,
           icon: '/Trullo.png',
-          badge: '/Trullo.png',
           tag: 'trullo-contact',
-          renotify: true,
-          requireInteraction: true,
-          vibrate: [300, 200, 300]
+          requireInteraction: true
         });
 
         notification.onclick = () => {
