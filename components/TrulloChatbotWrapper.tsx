@@ -9,7 +9,7 @@ const TrulloChatbot = dynamic(
   { ssr: false }
 );
 
-type Language = 'en' | 'it' | 'fr' | 'de' | 'ar' | 'zh';
+type Language = 'en' | 'it' | 'fr' | 'de' | 'ar' | 'zh' | 'es';
 
 // Language detection based on browser, URL, or IP location
 function detectUserLanguage(): Language {
@@ -21,6 +21,7 @@ function detectUserLanguage(): Language {
     const subdomainMap: Record<string, Language> = {
       'en': 'en',
       'it': 'it',
+      'es': 'es',
       'fr': 'fr',
       'de': 'de',
       'ar': 'ar',
@@ -36,6 +37,7 @@ function detectUserLanguage(): Language {
     
     // Map browser languages to our supported languages
     if (browserLang.startsWith('it')) return 'it';
+    if (browserLang.startsWith('es')) return 'es';
     if (browserLang.startsWith('fr')) return 'fr';
     if (browserLang.startsWith('de')) return 'de';
     if (browserLang.startsWith('ar')) return 'ar';
@@ -47,6 +49,10 @@ function detectUserLanguage(): Language {
       'en-gb': 'en',
       'en-ca': 'en',
       'en-au': 'en',
+      'es-es': 'es',
+      'es-mx': 'es',
+      'es-ar': 'es',
+      'es-co': 'es',
       'fr-fr': 'fr',
       'fr-ca': 'fr',
       'de-de': 'de',
@@ -83,7 +89,7 @@ export default function TrulloChatbotWrapper() {
     
     // Optional: Save preference to localStorage
     const savedLang = localStorage.getItem('trullo-language') as Language;
-    if (savedLang && ['en', 'it', 'fr', 'de', 'ar', 'zh'].includes(savedLang)) {
+    if (savedLang && ['en', 'it', 'es', 'fr', 'de', 'ar', 'zh'].includes(savedLang)) {
       setLanguage(savedLang);
     } else {
       localStorage.setItem('trullo-language', detectedLang);
