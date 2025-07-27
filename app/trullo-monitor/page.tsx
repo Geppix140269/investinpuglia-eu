@@ -45,6 +45,8 @@ export default function TrulloMonitor() {
   const [isLoading, setIsLoading] = useState(true);
   const [soundEnabled, setSoundEnabled] = useState(true);
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const previousConversationsRef = useRef<Conversation[]>([]);
+  const previousContactsRef = useRef<ContactRequest[]>([]);
 
   // Initialize audio
   useEffect(() => {
@@ -69,38 +71,14 @@ export default function TrulloMonitor() {
     loadConversations();
     loadContactRequests();
 
-    // Subscribe to real-time updates
-    const messagesSubscription = supabase
-      .channel('trullo-messages')
-      .on('postgres_changes', {
-        event: 'INSERT',
-        schema: 'public',
-        table: 'trullo_messages'
-      }, handleNewMessage)
-      .subscribe();
-
-    const conversationsSubscription = supabase
-      .channel('trullo-conversations')
-      .on('postgres_changes', {
-        event: 'INSERT',
-        schema: 'public',
-        table: 'trullo_conversations'
-      }, handleNewConversation)
-      .subscribe();
-
-    const contactsSubscription = supabase
-      .channel('trullo-contacts')
-      .on('postgres_changes', {
-        event: '*',
-        schema: 'public',
-        table: 'trullo_contact_requests'
-      }, handleContactUpdate)
-      .subscribe();
+    // Poll for updates instead of WebSocket subscriptions
+    const pollInterval = setInterval(() => {
+      loadConversations();
+      loadContactRequests();
+    }, 3000); // Poll every 3 seconds for near real-time feel
 
     return () => {
-      messagesSubscription.unsubscribe();
-      conversationsSubscription.unsubscribe();
-      contactsSubscription.unsubscribe();
+      clearInterval(pollInterval);
     };
   }, []);
 
@@ -129,6 +107,26 @@ export default function TrulloMonitor() {
         })
       );
 
+      // Check for new conversations
+      if (previousConversationsRef.current.length > 0 && conversationsWithMessages.length > previousConversationsRef.current.length) {
+        const newConvo = conversationsWithMessages.find(c => !previousConversationsRef.current.find(pc => pc.id === c.id));
+        if (newConvo) {
+          handleNewConversation({ new: newConvo });
+        }
+      }
+
+      // Check for new messages in existing conversations
+      conversationsWithMessages.forEach(conv => {
+        const prevConv = previousConversationsRef.current.find(pc => pc.id === conv.id);
+        if (prevConv && conv.messages && prevConv.messages) {
+          const newMessages = conv.messages.filter(m => !prevConv.messages?.find(pm => pm.id === m.id));
+          newMessages.forEach(msg => {
+            handleNewMessage({ new: msg });
+          });
+        }
+      });
+
+      previousConversationsRef.current = conversationsWithMessages;
       setConversations(conversationsWithMessages);
       setIsLoading(false);
     } catch (error) {
@@ -146,6 +144,16 @@ export default function TrulloMonitor() {
         .limit(50);
 
       if (error) throw error;
+
+      // Check for new contact requests
+      if (previousContactsRef.current.length > 0 && data && data.length > 0) {
+        const newContacts = data.filter(c => !previousContactsRef.current.find(pc => pc.id === c.id));
+        newContacts.forEach(contact => {
+          handleContactUpdate({ eventType: 'INSERT', new: contact });
+        });
+      }
+
+      previousContactsRef.current = data || [];
       setContactRequests(data || []);
     } catch (error) {
       console.error('Error loading contact requests:', error);
