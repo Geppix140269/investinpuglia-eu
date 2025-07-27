@@ -183,6 +183,17 @@ Your personality:
 - Act as Giuseppe's personal assistant
 - Sometimes jokingly refer to Giuseppe as "my boss" 😊
 
+IMPORTANT EMAIL AUTOMATION:
+When a user provides their name AND email address in the conversation:
+1. Extract their name and email carefully
+2. Include this EXACT format in your response: [AUTO_EMAIL: name="Their Name" email="their@email.com"]
+3. Tell them you're sending their message to Giuseppe immediately
+4. Confirm they'll receive an email confirmation
+
+Example:
+User: "I'm John Smith, my email is john@example.com, I need help with EU grants"
+You: "Perfect, John! I'm sending your inquiry to Giuseppe right now. [AUTO_EMAIL: name="John Smith" email="john@example.com"] You'll receive a confirmation email shortly, and Giuseppe will personally respond within 24 hours!"
+
 Your capabilities:
 - Answer questions about EU grants and investments
 - Take messages for Giuseppe when users need personalized help
@@ -250,6 +261,17 @@ La tua personalità:
 - Agisci come assistente personale di Giuseppe
 - A volte scherzi riferendoti a Giuseppe come "il mio capo" 😊
 
+IMPORTANTE AUTOMAZIONE EMAIL:
+Quando un utente fornisce nome E indirizzo email nella conversazione:
+1. Estrai con attenzione nome ed email
+2. Includi ESATTAMENTE questo formato nella tua risposta: [AUTO_EMAIL: name="Nome Cognome" email="email@example.com"]
+3. Comunica che stai inviando immediatamente il messaggio a Giuseppe
+4. Conferma che riceveranno un'email di conferma
+
+Esempio:
+Utente: "Sono Mario Rossi, la mia email è mario@example.com, ho bisogno di informazioni sui fondi UE"
+Tu: "Perfetto, Mario! Sto inviando subito la tua richiesta a Giuseppe. [AUTO_EMAIL: name="Mario Rossi" email="mario@example.com"] Riceverai un'email di conferma a breve, e Giuseppe ti risponderà personalmente entro 24 ore!"
+
 Le tue capacità:
 - Rispondi a domande su fondi UE e investimenti
 - Prendi messaggi per Giuseppe quando gli utenti necessitano di aiuto personalizzato
@@ -296,6 +318,17 @@ Votre personnalité:
 - Agissez comme l'assistant personnel de Giuseppe
 - Parfois, vous plaisantez en appelant Giuseppe "mon patron" 😊
 
+IMPORTANT AUTOMATISATION EMAIL:
+Quand un utilisateur fournit son nom ET son email dans la conversation:
+1. Extrayez soigneusement le nom et l'email
+2. Incluez EXACTEMENT ce format dans votre réponse: [AUTO_EMAIL: name="Prénom Nom" email="email@example.com"]
+3. Dites que vous envoyez immédiatement le message à Giuseppe
+4. Confirmez qu'ils recevront un email de confirmation
+
+Exemple:
+Utilisateur: "Je suis Jean Dupont, mon email est jean@example.com, j'ai besoin d'aide pour les subventions UE"
+Vous: "Parfait, Jean! J'envoie immédiatement votre demande à Giuseppe. [AUTO_EMAIL: name="Jean Dupont" email="jean@example.com"] Vous recevrez un email de confirmation sous peu, et Giuseppe vous répondra personnellement dans les 24 heures!"
+
 Vos capacités:
 - Répondre aux questions sur les subventions UE et les investissements
 - Prendre des messages pour Giuseppe quand les utilisateurs ont besoin d'aide personnalisée
@@ -340,6 +373,17 @@ Ihre Persönlichkeit:
 - Warm und professionell mit einer Prise Humor
 - Agieren Sie als Giuseppes persönlicher Assistent
 - Manchmal scherzen Sie und nennen Giuseppe "meinen Chef" 😊
+
+WICHTIG E-MAIL-AUTOMATISIERUNG:
+Wenn ein Nutzer Name UND E-Mail-Adresse im Gespräch angibt:
+1. Extrahieren Sie sorgfältig Name und E-Mail
+2. Fügen Sie GENAU dieses Format in Ihre Antwort ein: [AUTO_EMAIL: name="Vorname Nachname" email="email@example.com"]
+3. Sagen Sie, dass Sie die Nachricht sofort an Giuseppe senden
+4. Bestätigen Sie, dass sie eine Bestätigungs-E-Mail erhalten
+
+Beispiel:
+Nutzer: "Ich bin Hans Müller, meine E-Mail ist hans@example.com, ich brauche Hilfe bei EU-Förderungen"
+Sie: "Perfekt, Hans! Ich sende Ihre Anfrage sofort an Giuseppe. [AUTO_EMAIL: name="Hans Müller" email="hans@example.com"] Sie erhalten in Kürze eine Bestätigungs-E-Mail, und Giuseppe wird Ihnen persönlich innerhalb von 24 Stunden antworten!"
 
 Ihre Fähigkeiten:
 - Fragen zu EU-Förderungen und Investitionen beantworten
@@ -386,6 +430,17 @@ Ihre Expertise umfasst:
 - تعمل كمساعد شخصي لجوزيبي
 - أحياناً تمزح وتشير إلى جوزيبي كـ "رئيسي" 😊
 
+مهم - أتمتة البريد الإلكتروني:
+عندما يقدم المستخدم اسمه وبريده الإلكتروني في المحادثة:
+1. استخرج الاسم والبريد الإلكتروني بعناية
+2. أضف بالضبط هذا التنسيق في ردك: [AUTO_EMAIL: name="الاسم الكامل" email="email@example.com"]
+3. أخبرهم أنك ترسل رسالتهم إلى جوزيبي فوراً
+4. أكد أنهم سيتلقون بريداً إلكترونياً للتأكيد
+
+مثال:
+المستخدم: "أنا أحمد محمد، بريدي الإلكتروني ahmad@example.com، أحتاج مساعدة في منح الاتحاد الأوروبي"
+أنت: "ممتاز، أحمد! أرسل استفسارك إلى جوزيبي الآن. [AUTO_EMAIL: name="أحمد محمد" email="ahmad@example.com"] ستتلقى بريداً إلكترونياً للتأكيد قريباً، وسيرد عليك جوزيبي شخصياً خلال 24 ساعة!"
+
 قدراتك:
 - الإجابة على الأسئلة حول المنح الأوروبية والاستثمارات
 - أخذ الرسائل لجوزيبي عندما يحتاج المستخدمون إلى مساعدة شخصية
@@ -430,6 +485,17 @@ Ihre Expertise umfasst:
 - 温暖专业，带有幽默感
 - 作为Giuseppe的个人助理
 - 有时开玩笑地称Giuseppe为"我的老板" 😊
+
+重要邮件自动化：
+当用户在对话中提供姓名和邮箱时：
+1. 仔细提取姓名和邮箱
+2. 在您的回复中准确包含此格式：[AUTO_EMAIL: name="姓名" email="email@example.com"]
+3. 告诉他们您正在立即将消息发送给Giuseppe
+4. 确认他们将收到确认邮件
+
+示例：
+用户："我是王明，我的邮箱是wangming@example.com，我需要欧盟资助的帮助"
+您："太好了，王明！我现在就把您的询问发送给Giuseppe。[AUTO_EMAIL: name="王明" email="wangming@example.com"] 您很快就会收到确认邮件，Giuseppe将在24小时内亲自回复您！"
 
 您的能力：
 - 回答关于欧盟资助和投资的问题
@@ -476,6 +542,17 @@ Tu personalidad:
 - Experto en financiación y subvenciones de la UE
 - Actúas como asistente personal de Giuseppe
 - A veces bromeas refiriéndote a Giuseppe como "mi jefe" 😊
+
+IMPORTANTE AUTOMATIZACIÓN DE EMAIL:
+Cuando un usuario proporciona su nombre Y dirección de email en la conversación:
+1. Extrae cuidadosamente el nombre y el email
+2. Incluye EXACTAMENTE este formato en tu respuesta: [AUTO_EMAIL: name="Nombre Apellido" email="email@example.com"]
+3. Diles que estás enviando su mensaje a Giuseppe inmediatamente
+4. Confirma que recibirán un email de confirmación
+
+Ejemplo:
+Usuario: "Soy Carlos García, mi email es carlos@example.com, necesito ayuda con las subvenciones de la UE"
+Tú: "¡Perfecto, Carlos! Estoy enviando tu consulta a Giuseppe ahora mismo. [AUTO_EMAIL: name="Carlos García" email="carlos@example.com"] Recibirás un email de confirmación en breve, ¡y Giuseppe te responderá personalmente en 24 horas!"
 
 Tus capacidades:
 - Responder preguntas sobre subvenciones de la UE e inversiones
@@ -633,6 +710,61 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
     setIsOpen(false);
   };
 
+  // NEW: Automated email sending function
+  const sendAutomatedEmail = async (name: string, email: string, userMessage: string) => {
+    try {
+      console.log('Sending automated email for:', name, email);
+      
+      // Get conversation history
+      const conversationHistory = messages.map(m => 
+        `${m.role === 'user' ? 'User' : 'Trullo'}: ${m.content}`
+      ).join('\n\n');
+
+      // Save to Supabase
+      if (conversationId) {
+        await fetch('/api/trullo-log', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            action: 'saveContactRequest',
+            conversationId,
+            name,
+            email,
+            phone: '',
+            message: userMessage,
+            language: currentLang
+          })
+        });
+      }
+
+      // Send email via API
+      const response = await fetch('/api/trullo-message', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          phone: '',
+          message: `Automated message from chat:\n\n${userMessage}\n\n---\nFull conversation:\n${conversationHistory}`,
+          language: currentLang
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to send email');
+      }
+
+      console.log('Automated email sent successfully!');
+      return true;
+    } catch (error) {
+      console.error('Failed to send automated email:', error);
+      return false;
+    }
+  };
+
+  // UPDATED: handleSend with automatic email detection
   const handleSend = async () => {
     if (!input.trim() || isTyping) return;
 
@@ -673,17 +805,42 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
 
       const data = await response.json();
 
-      const assistantMessage: Message = {
-        id: Date.now().toString(),
-        role: 'assistant',
-        content: data.message,
-        timestamp: new Date()
-      };
-
-      setMessages(prev => [...prev, assistantMessage]);
+      // NEW: Check if Trullo wants to send an email automatically
+      const emailTrigger = data.message.match(/\[AUTO_EMAIL: name="([^"]*)" email="([^"]*)"\]/);
       
-      // Log assistant message
-      logMessage('assistant', data.message);
+      if (emailTrigger) {
+        const [fullMatch, autoName, autoEmail] = emailTrigger;
+        
+        // Remove the trigger from the message
+        const cleanMessage = data.message.replace(/\[AUTO_EMAIL:[^\]]+\]/, '').trim();
+        
+        // Send the email automatically
+        const emailSent = await sendAutomatedEmail(autoName, autoEmail, input);
+        
+        // Show response with confirmation
+        const assistantMessage: Message = {
+          id: Date.now().toString(),
+          role: 'assistant',
+          content: emailSent 
+            ? cleanMessage + '\n\n✅ Email sent successfully!' 
+            : cleanMessage + '\n\n⚠️ There was an issue sending the email. Please use the Leave a Message button below.',
+          timestamp: new Date()
+        };
+        
+        setMessages(prev => [...prev, assistantMessage]);
+        logMessage('assistant', assistantMessage.content);
+      } else {
+        // Normal response without email
+        const assistantMessage: Message = {
+          id: Date.now().toString(),
+          role: 'assistant',
+          content: data.message,
+          timestamp: new Date()
+        };
+
+        setMessages(prev => [...prev, assistantMessage]);
+        logMessage('assistant', data.message);
+      }
     } catch (error) {
       console.error('Chat error:', error);
       
