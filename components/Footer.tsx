@@ -1,33 +1,116 @@
-// components/Footer.tsx
+// Path: components/Footer.tsx
+import Icon from '@/lib/iconMappings'
+
 export default function Footer() {
   return (
-    <footer className="bg-gray-900 text-white py-12">
-      <div className="max-w-7xl mx-auto px-5 text-center">
-        <div className="flex justify-center items-center gap-3 mb-4">
-          <img 
-            src="/Logo_InvestInPuglia_White.svg" 
-            alt="Invest in Puglia Logo" 
-            className="h-12 w-auto"
-          />
+    <footer className="bg-gray-900 text-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          {/* Company Info */}
+          <div className="col-span-1 md:col-span-2">
+            <img 
+              src="/Logo_InvestInPuglia_Morph.png" 
+              alt="Invest in Puglia" 
+              className="h-12 w-auto mb-4 opacity-90"
+            />
+            <p className="text-gray-400 mb-4">
+                       EU PROPERTY GRANTS • INVESTMENT ADVISORY • PUGLIA EXPERTISE
+            </p>
+            <div className="flex gap-4">
+              <a href="https://facebook.com" className="text-gray-400 hover:text-white transition-colors">
+                <Icon name="facebook" size={24} />
+              </a>
+              <a href="https://twitter.com" className="text-gray-400 hover:text-white transition-colors">
+                <Icon name="twitter" size={24} />
+              </a>
+              <a href="https://linkedin.com" className="text-gray-400 hover:text-white transition-colors">
+                <Icon name="linkedin" size={24} />
+              </a>
+              <a href="https://instagram.com" className="text-gray-400 hover:text-white transition-colors">
+                <Icon name="instagram" size={24} />
+              </a>
+            </div>
+          </div>
+
+          {/* Quick Links */}
+          <div>
+            <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
+            <ul className="space-y-2">
+              <li>
+                <a href="/about" className="text-gray-400 hover:text-white transition-colors">
+                  About Us
+                </a>
+              </li>
+              <li>
+                <a href="/how-it-works" className="text-gray-400 hover:text-white transition-colors">
+                  How It Works
+                </a>
+              </li>
+              <li>
+                <a href="/calculator" className="text-gray-400 hover:text-white transition-colors">
+                  Grant Calculator
+                </a>
+              </li>
+              <li>
+                <a href="/faq" className="text-gray-400 hover:text-white transition-colors">
+                  FAQ
+                </a>
+              </li>
+              <li>
+                <a href="/contact" className="text-gray-400 hover:text-white transition-colors">
+                  Contact Us
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Legal */}
+          <div>
+            <h3 className="text-lg font-semibold mb-4">Legal</h3>
+            <ul className="space-y-2">
+              <li>
+                <a href="/privacy" className="text-gray-400 hover:text-white transition-colors">
+                  Privacy Policy
+                </a>
+              </li>
+              <li>
+                <a href="/terms" className="text-gray-400 hover:text-white transition-colors">
+                  Terms of Service
+                </a>
+              </li>
+              <li>
+                <a href="/cookies" className="text-gray-400 hover:text-white transition-colors">
+                  Cookie Policy
+                </a>
+              </li>
+              <li>
+                <a href="/legal-notice" className="text-gray-400 hover:text-white transition-colors">
+                  Legal Notice
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
-        <p className="text-gray-400 text-sm tracking-wider mb-8" style={{ fontFamily: "'Inter', sans-serif", letterSpacing: '0.15em' }}>
-          EU PROPERTY GRANTS • INVESTMENT ADVISORY • PUGLIA EXPERTISE
-        </p>
-        
-        <div className="flex justify-center gap-8 mb-8">
-          <a href="/" className="hover:text-green-400 transition-colors">Home</a>
-          <a href="/calculator" className="hover:text-green-400 transition-colors">Calculators</a>
-          <a href="/buyer-profile" className="hover:text-green-400 transition-colors">Buyer Profile</a>
-          <a href="/contact" className="hover:text-green-400 transition-colors">Contact</a>
-          <a href="/blog" className="hover:text-green-400 transition-colors">Blog</a>
+
+        {/* Bottom Bar */}
+        <div className="mt-8 pt-8 border-t border-gray-800">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <p className="text-gray-400 text-sm">
+              © 2025 Invest in Puglia™. All rights reserved.
+            </p>
+            <div className="mt-4 md:mt-0 flex items-center gap-4 text-sm text-gray-400">
+              <a href="tel:+393514001402" className="hover:text-white transition-colors flex items-center gap-2">
+                <Icon name="phone" size={16} />
+                +39 351 400 1402
+              </a>
+              <span>•</span>
+              <a href="mailto:info@investinpuglia.eu" className="hover:text-white transition-colors flex items-center gap-2">
+                <Icon name="mail" size={16} />
+                info@investinpuglia.eu
+              </a>
+            </div>
+          </div>
         </div>
-        
-        <div className="text-gray-400">
-          <p>📧 info@investinpuglia.eu</p>
-          <p>📱 +39 351 400 1402</p>
-        </div>
-        
-        <p className="text-gray-500 mt-8">© 2025 Invest in Puglia. All rights reserved.</p>
       </div>
     </footer>
   )
