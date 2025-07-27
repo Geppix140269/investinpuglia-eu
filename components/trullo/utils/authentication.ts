@@ -2,7 +2,7 @@
 import { Language } from '../types';
 
 // Giuseppe's secret phrase - CHANGE THIS TO YOUR ACTUAL SECRET!
-const GIUSEPPE_SECRET = 'trullo knows best';
+const GIUSEPPE_SECRET = '250milionieuro';
 
 // Fun responses for wrong attempts
 const wrongPasswordResponses: Record<Language, string[]> = {
