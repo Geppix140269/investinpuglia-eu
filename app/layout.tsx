@@ -90,6 +90,10 @@ export const metadata: Metadata = {
     canonical: 'https://investinpuglia.eu',
     languages: {
       'en-US': 'https://en.investinpuglia.eu',
+      'it-IT': 'https://it.investinpuglia.eu',
+      'es-ES': 'https://es.investinpuglia.eu',
+      'fr-FR': 'https://fr.investinpuglia.eu',
+      'de-DE': 'https://de.investinpuglia.eu',
       'ar': 'https://ar.investinpuglia.eu',
       'zh': 'https://zh.investinpuglia.eu',
     }
