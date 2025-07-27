@@ -1,7 +1,6 @@
 // PATH: components/TrulloChatbot.tsx
 'use client'
 import React, { useState, useRef, useEffect } from 'react';
-// Removed emailjs import - using Resend API instead
 
 interface Message {
   id: string;
@@ -709,11 +708,17 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
   };
 
   const handleSendMessage = async () => {
-    if (!messageForm.name || !messageForm.email || !messageForm.message) return;
+    if (!messageForm.name || !messageForm.email || !messageForm.message) {
+      alert('Please fill in all required fields');
+      return;
+    }
     
     setIsSendingMessage(true);
 
     try {
+      // Debug log
+      console.log('Submitting message form:', messageForm);
+
       // Get conversation history
       const conversationHistory = messages.map(m => 
         `${m.role === 'user' ? 'User' : 'Trullo'}: ${m.content}`
@@ -747,14 +752,16 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
           email: messageForm.email,
           phone: messageForm.phone || '',
           message: messageForm.message,
-          conversationHistory,
-          language: currentLang,
-          timestamp: new Date().toLocaleString()
+          language: currentLang
         }),
       });
 
+      console.log('Response status:', response.status);
+      const data = await response.json();
+      console.log('Response data:', data);
+
       if (!response.ok) {
-        throw new Error('Failed to send message');
+        throw new Error(data.error || 'Failed to send message');
       }
 
       // Success message
@@ -770,7 +777,7 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
       setMessageForm({ name: '', email: '', phone: '', message: '' });
     } catch (error) {
       console.error('Failed to send message:', error);
-      alert(translations[currentLang].messageForm.error);
+      alert(translations[currentLang].messageForm.error + ': ' + (error instanceof Error ? error.message : 'Unknown error'));
     } finally {
       setIsSendingMessage(false);
     }
@@ -804,6 +811,15 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
               src="/Trullo.png" 
               alt="Chat with Trullo"
               className="w-8 h-8 object-contain"
+              onError={(e) => {
+                // Fallback if image doesn't load
+                e.currentTarget.style.display = 'none';
+                e.currentTarget.parentElement!.innerHTML = `
+                  <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+                  </svg>
+                `;
+              }}
             />
             <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
           </div>
@@ -822,6 +838,10 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
                     src="/Trullo.png" 
                     alt="Trullo"
                     className="w-full h-full object-contain"
+                    onError={(e) => {
+                      e.currentTarget.style.display = 'none';
+                      e.currentTarget.parentElement!.innerHTML = '🤖';
+                    }}
                   />
                 </div>
                 <div>
