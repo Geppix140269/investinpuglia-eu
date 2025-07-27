@@ -1,5 +1,6 @@
 ﻿// PATH: app/privacy/page.tsx
 import { Metadata } from 'next'
+import Icon from '@/lib/iconMappings'
 
 export const metadata: Metadata = {
   title: 'Privacy Policy | InvestInPuglia - Data Protection & GDPR Compliance',
@@ -305,4 +306,5 @@ export default function PrivacyPolicyPage() {
     </div>
   )
 }
+
 

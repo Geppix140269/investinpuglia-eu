@@ -1,5 +1,6 @@
 ﻿// PATH: app/faq/page.tsx
 import { Metadata } from 'next'
+import Icon from '@/lib/iconMappings'
 import FAQClient from '@/components/FAQClient'
 
 export const metadata: Metadata = {
@@ -31,4 +32,5 @@ export const metadata: Metadata = {
 export default function FAQPage() {
   return <FAQClient />
 }
+
 

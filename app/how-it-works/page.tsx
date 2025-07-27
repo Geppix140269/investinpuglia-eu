@@ -1,4 +1,5 @@
 ﻿import type { Metadata } from 'next'
+import Icon from '@/lib/iconMappings'
 import { Building2, FileSearch, HandshakeIcon, Home, Percent, Users, ChevronRight, CheckCircle2, TrendingUp } from 'lucide-react'
 
 export const metadata: Metadata = {
@@ -293,3 +294,4 @@ export default function HowItWorksPage() {
     </div>
   )
 }
+

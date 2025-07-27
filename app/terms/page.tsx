@@ -1,5 +1,6 @@
 ﻿// PATH: app/terms/page.tsx
 import { Metadata } from 'next'
+import Icon from '@/lib/iconMappings'
 
 export const metadata: Metadata = {
   title: 'Terms of Service | InvestInPuglia - Investment Advisory Agreement',
@@ -362,4 +363,5 @@ export default function TermsOfServicePage() {
     </div>
   )
 }
+
 

@@ -1,5 +1,6 @@
 ﻿// PATH: app/cookies/page.tsx
 import { Metadata } from 'next'
+import Icon from '@/lib/iconMappings'
 
 export const metadata: Metadata = {
   title: 'Cookie Policy | InvestInPuglia',
@@ -67,4 +68,5 @@ export default function CookiePolicyPage() {
     </div>
   )
 }
+
 

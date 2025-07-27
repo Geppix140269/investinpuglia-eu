@@ -1,5 +1,6 @@
 ﻿// PATH: app/legal-notice/page.tsx
 import { Metadata } from 'next'
+import Icon from '@/lib/iconMappings'
 
 export const metadata: Metadata = {
   title: 'Legal Notice & Disclaimer | InvestInPuglia - Important Legal Information',
@@ -266,4 +267,5 @@ export default function LegalNoticePage() {
     </div>
   )
 }
+
 
