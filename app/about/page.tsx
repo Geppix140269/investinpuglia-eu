@@ -191,9 +191,11 @@ export default function AboutPage() {
             <div className="prose prose-stone max-w-none text-sm">
               <p className="text-stone-600">
                 <strong>Company:</strong> 1402 Celsius Ltd<br />
-                <strong>Registration:</strong> [Your Registration Number]<br />
-                <strong>VAT:</strong> [Your VAT Number]<br />
-                <strong>Address:</strong> [Your Business Address]<br />
+                <strong>Registration:</strong> 124 75013 <br />
+                <strong>VAT:</strong> GB 343 1702 32 <br />
+                <strong>Address:</strong> 20-22 Wenlock Road
+N1 7GU, London
+United Kingdom <br />
                 <strong>Email:</strong> info@investinpuglia.eu<br />
                 <strong>Phone:</strong> +39 351 400 1402
               </p>
@@ -206,3 +208,5 @@ export default function AboutPage() {
 }
 
 
+Company Registration: 
+VAT Number: 
