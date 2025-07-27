@@ -7,6 +7,31 @@ interface ChatMessagesProps {
   isTyping: boolean;
 }
 
+// Function to convert URLs in text to clickable links
+function linkifyText(text: string): React.ReactNode {
+  // Regular expression to match URLs
+  const urlRegex = /(https?:\/\/[^\s]+)/g;
+  const parts = text.split(urlRegex);
+  
+  return parts.map((part, index) => {
+    if (part.match(urlRegex)) {
+      return (
+        <a
+          key={index}
+          href={part}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-blue-600 underline hover:text-blue-800 break-all"
+          onClick={(e) => e.stopPropagation()} // Prevent any parent click handlers
+        >
+          {part}
+        </a>
+      );
+    }
+    return <span key={index}>{part}</span>;
+  });
+}
+
 export default function ChatMessages({ messages, isTyping }: ChatMessagesProps) {
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
@@ -32,7 +57,19 @@ export default function ChatMessages({ messages, isTyping }: ChatMessagesProps) 
                 : 'bg-white text-gray-800 shadow-sm border border-gray-100'
             }`}
           >
-            <p className="text-sm whitespace-pre-wrap">{message.content}</p>
+            <div className="text-sm whitespace-pre-wrap">
+              {message.role === 'user' ? (
+                message.content
+              ) : (
+                // For assistant messages, convert URLs to clickable links
+                message.content.split('\n').map((line, lineIndex) => (
+                  <React.Fragment key={lineIndex}>
+                    {lineIndex > 0 && <br />}
+                    {linkifyText(line)}
+                  </React.Fragment>
+                ))
+              )}
+            </div>
             <p className={`text-xs mt-1 ${
               message.role === 'user' ? 'text-purple-200' : 'text-gray-500'
             }`}>
