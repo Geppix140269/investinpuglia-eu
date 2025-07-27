@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     description: 'Discover how InvestInPuglia helps international investors navigate property and business opportunities in Puglia with expert local knowledge and comprehensive advisory services.',
     type: 'website',
     locale: 'en_US',
-    url: 'https://investinpuglia.com/about',
+    url: 'https://investinpuglia.eu/about',
     siteName: 'InvestInPuglia',
   },
   twitter: {
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     description: 'Expert investment advisory services for property and business opportunities in Puglia, Italy.',
   },
   alternates: {
-    canonical: 'https://investinpuglia.com/about'
+    canonical: 'https://investinpuglia.eu/about'
   },
   robots: {
     index: true,
@@ -204,3 +204,5 @@ export default function AboutPage() {
     </div>
   )
 }
+
+

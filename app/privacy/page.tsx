@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     siteName: 'InvestInPuglia',
   },
   alternates: {
-    canonical: 'https://investinpuglia.com/privacy'
+    canonical: 'https://investinpuglia.eu/privacy'
   },
   robots: {
     index: true,
@@ -63,7 +63,7 @@ export default function PrivacyPolicyPage() {
                       United Kingdom<br/>
                       Registration Number: 124 75013<br/>
                       VAT Number: GB 343 1702 32<br/>
-                      Email: privacy@investinpuglia.com
+                      Email: privacy@investinpuglia.eu
                     </p>
                   </div>
                 </section>
@@ -200,7 +200,7 @@ export default function PrivacyPolicyPage() {
                     <li><strong>Right to Withdraw Consent:</strong> Withdraw consent at any time</li>
                   </ul>
                   <p className="text-stone-700 mb-4">
-                    To exercise these rights, contact us at <a href="mailto:privacy@investinpuglia.com" className="text-terracotta hover:text-terracotta-dark">privacy@investinpuglia.com</a>
+                    To exercise these rights, contact us at <a href="mailto:privacy@investinpuglia.eu" className="text-terracotta hover:text-terracotta-dark">privacy@investinpuglia.eu</a>
                   </p>
                 </section>
 
@@ -277,7 +277,7 @@ export default function PrivacyPolicyPage() {
                   <div className="bg-stone-50 rounded-lg p-4">
                     <p className="text-stone-700">
                       <strong>Data Protection Officer:</strong><br/>
-                      Email: <a href="mailto:privacy@investinpuglia.com" className="text-terracotta hover:text-terracotta-dark">privacy@investinpuglia.com</a><br/>
+                      Email: <a href="mailto:privacy@investinpuglia.eu" className="text-terracotta hover:text-terracotta-dark">privacy@investinpuglia.eu</a><br/>
                       Phone: +44 20 7946 0958<br/>
                       Mail: 1402 Celsius Ltd, 20-22 Wenlock Road, N1 7GU, London, UK<br/><br/>
                       <strong>Supervisory Authority:</strong><br/>
@@ -306,5 +306,7 @@ export default function PrivacyPolicyPage() {
     </div>
   )
 }
+
+
 
 

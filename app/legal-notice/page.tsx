@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     siteName: 'InvestInPuglia',
   },
   alternates: {
-    canonical: 'https://investinpuglia.com/legal-notice'
+    canonical: 'https://investinpuglia.eu/legal-notice'
   },
   robots: {
     index: true,
@@ -59,7 +59,7 @@ export default function LegalNoticePage() {
                   <strong>Registered Address:</strong> 20-22 Wenlock Road, N1 7GU, London, United Kingdom<br/>
                   <strong>Company Registration Number:</strong> 124 75013<br/>
                   <strong>VAT Number:</strong> GB 343 1702 32<br/>
-                  <strong>Email:</strong> <a href="mailto:info@investinpuglia.com" className="text-terracotta hover:text-terracotta-dark">info@investinpuglia.com</a><br/>
+                  <strong>Email:</strong> <a href="mailto:info@investinpuglia.eu" className="text-terracotta hover:text-terracotta-dark">info@investinpuglia.eu</a><br/>
                   <strong>Phone:</strong> +44 20 7946 0958
                 </p>
               </div>
@@ -217,7 +217,7 @@ export default function LegalNoticePage() {
               </p>
               <div className="bg-stone-50 rounded-lg p-4 mb-4">
                 <p className="text-stone-700">
-                  <strong>Email:</strong> <a href="mailto:complaints@investinpuglia.com" className="text-terracotta hover:text-terracotta-dark">complaints@investinpuglia.com</a><br/>
+                  <strong>Email:</strong> <a href="mailto:complaints@investinpuglia.eu" className="text-terracotta hover:text-terracotta-dark">complaints@investinpuglia.eu</a><br/>
                   <strong>Mail:</strong> Complaints Department, 1402 Celsius Ltd, 20-22 Wenlock Road, N1 7GU, London, UK
                 </p>
               </div>
@@ -240,8 +240,8 @@ export default function LegalNoticePage() {
               </p>
               <div className="bg-stone-50 rounded-lg p-4">
                 <p className="text-stone-700">
-                  <strong>General Inquiries:</strong> <a href="mailto:info@investinpuglia.com" className="text-terracotta hover:text-terracotta-dark">info@investinpuglia.com</a><br/>
-                  <strong>Legal Department:</strong> <a href="mailto:legal@investinpuglia.com" className="text-terracotta hover:text-terracotta-dark">legal@investinpuglia.com</a><br/>
+                  <strong>General Inquiries:</strong> <a href="mailto:info@investinpuglia.eu" className="text-terracotta hover:text-terracotta-dark">info@investinpuglia.eu</a><br/>
+                  <strong>Legal Department:</strong> <a href="mailto:legal@investinpuglia.eu" className="text-terracotta hover:text-terracotta-dark">legal@investinpuglia.eu</a><br/>
                   <strong>Phone:</strong> +44 20 7946 0958<br/>
                   <strong>Business Hours:</strong> Monday-Friday, 9:00 AM - 6:00 PM GMT
                 </p>
@@ -267,5 +267,7 @@ export default function LegalNoticePage() {
     </div>
   )
 }
+
+
 
 

@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     siteName: 'InvestInPuglia',
   },
   alternates: {
-    canonical: 'https://investinpuglia.com/terms'
+    canonical: 'https://investinpuglia.eu/terms'
   },
   robots: {
     index: true,
@@ -336,7 +336,7 @@ export default function TermsOfServicePage() {
               </p>
               <div className="bg-stone-50 rounded-lg p-4">
                 <p className="text-stone-700">
-                  <strong>Email:</strong> <a href="mailto:legal@investinpuglia.com" className="text-terracotta hover:text-terracotta-dark">legal@investinpuglia.com</a><br/>
+                  <strong>Email:</strong> <a href="mailto:legal@investinpuglia.eu" className="text-terracotta hover:text-terracotta-dark">legal@investinpuglia.eu</a><br/>
                   <strong>Phone:</strong> +44 20 7946 0958<br/>
                   <strong>Mail:</strong> 1402 Celsius Ltd, 20-22 Wenlock Road, N1 7GU, London, United Kingdom<br/>
                   <strong>Business Hours:</strong> Monday-Friday, 9:00 AM - 6:00 PM GMT
@@ -363,5 +363,7 @@ export default function TermsOfServicePage() {
     </div>
   )
 }
+
+
 
 

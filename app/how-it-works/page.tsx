@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     description: 'Simple, transparent process for investing in Puglia properties and businesses.',
     type: 'website',
     locale: 'en_US',
-    url: 'https://investinpuglia.com/how-it-works',
+    url: 'https://investinpuglia.eu/how-it-works',
     siteName: 'InvestInPuglia',
   },
   twitter: {
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     description: 'Your journey to successful investment in Puglia starts here.',
   },
   alternates: {
-    canonical: 'https://investinpuglia.com/how-it-works'
+    canonical: 'https://investinpuglia.eu/how-it-works'
   },
   robots: {
     index: true,
@@ -294,5 +294,8 @@ export default function HowItWorksPage() {
     </div>
   )
 }
+
+
+
 
 

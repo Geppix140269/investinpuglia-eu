@@ -51,7 +51,7 @@ export default function CookiePolicyPage() {
               Contact Us
             </h2>
             <p className="text-stone-700">
-              If you have questions about our use of cookies, please contact us at privacy@investinpuglia.com
+              If you have questions about our use of cookies, please contact us at privacy@investinpuglia.eu
             </p>
           </div>
         </div>
@@ -68,5 +68,7 @@ export default function CookiePolicyPage() {
     </div>
   )
 }
+
+
 
 

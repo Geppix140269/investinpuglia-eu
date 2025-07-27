@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     siteName: 'InvestInPuglia',
   },
   alternates: {
-    canonical: 'https://investinpuglia.com/faq'
+    canonical: 'https://investinpuglia.eu/faq'
   },
   robots: {
     index: true,
@@ -32,5 +32,7 @@ export const metadata: Metadata = {
 export default function FAQPage() {
   return <FAQClient />
 }
+
+
 
 
