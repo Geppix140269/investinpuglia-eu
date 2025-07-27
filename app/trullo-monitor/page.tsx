@@ -5,8 +5,8 @@ import { createClient } from '@supabase/supabase-js';
 
 // Initialize Supabase client
 const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  'https://kjyobkrjcmiuusijvrme.supabase.co',  // Get from Supabase dashboard
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtqeW9ia3JqY21pdXVzaWp2cm1lIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTA5NDM5NzMsImV4cCI6MjA2NjUxOTk3M30.2GxAUtXPal7ufxg7KgWMO7h15RXJOolBWt0-NPygj2I'  // Get from Supabase dashboard (starts with eyJ...)
 );
 
 interface Message {
