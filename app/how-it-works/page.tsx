@@ -1,6 +1,6 @@
-﻿import type { Metadata } from 'next'
+// Path: app/how-it-works/page.tsx
+import type { Metadata } from 'next'
 import Icon from '@/lib/iconMappings'
-import { Building2, FileSearch, Handshake, Home, Percent, Users, ChevronRight, CheckCircle2, TrendingUp } from 'lucide-react'
 
 export const metadata: Metadata = {
   title: 'How It Works - Investment Process | InvestInPuglia',
@@ -50,25 +50,25 @@ export default function HowItWorksPage() {
             <div className="relative z-10">
               <div className="flex items-start gap-6">
                 <div className="bg-blue-100 p-4 rounded-lg">
-                  <Users className="w-8 h-8 text-blue-600" />
+                  <Icon name="users" className="w-8 h-8 text-blue-600" />
                 </div>
                 <div className="flex-1">
                   <h2 className="text-2xl font-bold text-gray-900 mb-3">Initial Consultation</h2>
                   <p className="text-gray-600 mb-4">
-                    Schedule a free consultation with our investment advisors. We'll discuss your goals, 
+                    Schedule a free consultation with our investment advisors. We&apos;ll discuss your goals, 
                     budget, and investment preferences to understand your unique requirements.
                   </p>
                   <ul className="space-y-2">
                     <li className="flex items-center gap-2 text-gray-700">
-                      <CheckCircle2 className="w-5 h-5 text-green-500" />
+                      <Icon name="check" className="w-5 h-5 text-green-500" />
                       <span>Personalized investment strategy</span>
                     </li>
                     <li className="flex items-center gap-2 text-gray-700">
-                      <CheckCircle2 className="w-5 h-5 text-green-500" />
+                      <Icon name="check" className="w-5 h-5 text-green-500" />
                       <span>Market analysis and opportunities</span>
                     </li>
                     <li className="flex items-center gap-2 text-gray-700">
-                      <CheckCircle2 className="w-5 h-5 text-green-500" />
+                      <Icon name="check" className="w-5 h-5 text-green-500" />
                       <span>Risk assessment and mitigation</span>
                     </li>
                   </ul>
@@ -83,7 +83,7 @@ export default function HowItWorksPage() {
             <div className="relative z-10">
               <div className="flex items-start gap-6">
                 <div className="bg-purple-100 p-4 rounded-lg">
-                  <FileSearch className="w-8 h-8 text-purple-600" />
+                  <Icon name="search" className="w-8 h-8 text-purple-600" />
                 </div>
                 <div className="flex-1">
                   <h2 className="text-2xl font-bold text-gray-900 mb-3">Opportunity Identification</h2>
@@ -93,15 +93,15 @@ export default function HowItWorksPage() {
                   </p>
                   <ul className="space-y-2">
                     <li className="flex items-center gap-2 text-gray-700">
-                      <CheckCircle2 className="w-5 h-5 text-green-500" />
+                      <Icon name="check" className="w-5 h-5 text-green-500" />
                       <span>Curated property and business listings</span>
                     </li>
                     <li className="flex items-center gap-2 text-gray-700">
-                      <CheckCircle2 className="w-5 h-5 text-green-500" />
+                      <Icon name="check" className="w-5 h-5 text-green-500" />
                       <span>Off-market opportunities</span>
                     </li>
                     <li className="flex items-center gap-2 text-gray-700">
-                      <CheckCircle2 className="w-5 h-5 text-green-500" />
+                      <Icon name="check" className="w-5 h-5 text-green-500" />
                       <span>Detailed investment analysis</span>
                     </li>
                   </ul>
@@ -116,7 +116,7 @@ export default function HowItWorksPage() {
             <div className="relative z-10">
               <div className="flex items-start gap-6">
                 <div className="bg-green-100 p-4 rounded-lg">
-                  <Building2 className="w-8 h-8 text-green-600" />
+                  <Icon name="building" className="w-8 h-8 text-green-600" />
                 </div>
                 <div className="flex-1">
                   <h2 className="text-2xl font-bold text-gray-900 mb-3">Due Diligence</h2>
@@ -126,15 +126,15 @@ export default function HowItWorksPage() {
                   </p>
                   <ul className="space-y-2">
                     <li className="flex items-center gap-2 text-gray-700">
-                      <CheckCircle2 className="w-5 h-5 text-green-500" />
+                      <Icon name="check" className="w-5 h-5 text-green-500" />
                       <span>Property inspections and valuations</span>
                     </li>
                     <li className="flex items-center gap-2 text-gray-700">
-                      <CheckCircle2 className="w-5 h-5 text-green-500" />
+                      <Icon name="check" className="w-5 h-5 text-green-500" />
                       <span>Legal documentation review</span>
                     </li>
                     <li className="flex items-center gap-2 text-gray-700">
-                      <CheckCircle2 className="w-5 h-5 text-green-500" />
+                      <Icon name="check" className="w-5 h-5 text-green-500" />
                       <span>Financial projections and ROI analysis</span>
                     </li>
                   </ul>
@@ -149,7 +149,7 @@ export default function HowItWorksPage() {
             <div className="relative z-10">
               <div className="flex items-start gap-6">
                 <div className="bg-orange-100 p-4 rounded-lg">
-                  <Percent className="w-8 h-8 text-orange-600" />
+                  <Icon name="percent" className="w-8 h-8 text-orange-600" />
                 </div>
                 <div className="flex-1">
                   <h2 className="text-2xl font-bold text-gray-900 mb-3">Financing & Incentives</h2>
@@ -159,15 +159,15 @@ export default function HowItWorksPage() {
                   </p>
                   <ul className="space-y-2">
                     <li className="flex items-center gap-2 text-gray-700">
-                      <CheckCircle2 className="w-5 h-5 text-green-500" />
+                      <Icon name="check" className="w-5 h-5 text-green-500" />
                       <span>Bank financing arrangements</span>
                     </li>
                     <li className="flex items-center gap-2 text-gray-700">
-                      <CheckCircle2 className="w-5 h-5 text-green-500" />
+                      <Icon name="check" className="w-5 h-5 text-green-500" />
                       <span>EU grant applications (up to €50M+)</span>
                     </li>
                     <li className="flex items-center gap-2 text-gray-700">
-                      <CheckCircle2 className="w-5 h-5 text-green-500" />
+                      <Icon name="check" className="w-5 h-5 text-green-500" />
                       <span>Tax optimization strategies</span>
                     </li>
                   </ul>
@@ -182,7 +182,7 @@ export default function HowItWorksPage() {
             <div className="relative z-10">
               <div className="flex items-start gap-6">
                 <div className="bg-red-100 p-4 rounded-lg">
-                  <Handshake className="w-8 h-8 text-red-600" />
+                  <Icon name="handshake" className="w-8 h-8 text-red-600" />
                 </div>
                 <div className="flex-1">
                   <h2 className="text-2xl font-bold text-gray-900 mb-3">Transaction Execution</h2>
@@ -192,15 +192,15 @@ export default function HowItWorksPage() {
                   </p>
                   <ul className="space-y-2">
                     <li className="flex items-center gap-2 text-gray-700">
-                      <CheckCircle2 className="w-5 h-5 text-green-500" />
+                      <Icon name="check" className="w-5 h-5 text-green-500" />
                       <span>Contract negotiation and finalization</span>
                     </li>
                     <li className="flex items-center gap-2 text-gray-700">
-                      <CheckCircle2 className="w-5 h-5 text-green-500" />
+                      <Icon name="check" className="w-5 h-5 text-green-500" />
                       <span>Legal registration and compliance</span>
                     </li>
                     <li className="flex items-center gap-2 text-gray-700">
-                      <CheckCircle2 className="w-5 h-5 text-green-500" />
+                      <Icon name="check" className="w-5 h-5 text-green-500" />
                       <span>Ownership transfer coordination</span>
                     </li>
                   </ul>
@@ -215,7 +215,7 @@ export default function HowItWorksPage() {
             <div className="relative z-10">
               <div className="flex items-start gap-6">
                 <div className="bg-indigo-100 p-4 rounded-lg">
-                  <TrendingUp className="w-8 h-8 text-indigo-600" />
+                  <Icon name="trending-up" className="w-8 h-8 text-indigo-600" />
                 </div>
                 <div className="flex-1">
                   <h2 className="text-2xl font-bold text-gray-900 mb-3">Ongoing Management</h2>
@@ -225,15 +225,15 @@ export default function HowItWorksPage() {
                   </p>
                   <ul className="space-y-2">
                     <li className="flex items-center gap-2 text-gray-700">
-                      <CheckCircle2 className="w-5 h-5 text-green-500" />
+                      <Icon name="check" className="w-5 h-5 text-green-500" />
                       <span>Property management services</span>
                     </li>
                     <li className="flex items-center gap-2 text-gray-700">
-                      <CheckCircle2 className="w-5 h-5 text-green-500" />
+                      <Icon name="check" className="w-5 h-5 text-green-500" />
                       <span>Renovation and development support</span>
                     </li>
                     <li className="flex items-center gap-2 text-gray-700">
-                      <CheckCircle2 className="w-5 h-5 text-green-500" />
+                      <Icon name="check" className="w-5 h-5 text-green-500" />
                       <span>Regular performance reporting</span>
                     </li>
                   </ul>
@@ -255,7 +255,7 @@ export default function HowItWorksPage() {
               className="inline-flex items-center justify-center px-8 py-4 bg-white text-blue-600 font-semibold rounded-lg hover:bg-gray-100 transition-colors"
             >
               Schedule Consultation
-              <ChevronRight className="ml-2 w-5 h-5" />
+              <Icon name="chevron-right" className="ml-2 w-5 h-5" />
             </a>
             <a 
               href="/about" 
@@ -270,21 +270,21 @@ export default function HowItWorksPage() {
         <div className="mt-16 grid md:grid-cols-3 gap-8">
           <div className="text-center">
             <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Home className="w-8 h-8 text-blue-600" />
+              <Icon name="home" className="w-8 h-8 text-blue-600" />
             </div>
             <h3 className="text-xl font-semibold mb-2">No Hidden Fees</h3>
             <p className="text-gray-600">Transparent pricing with no surprises. All costs clearly outlined upfront.</p>
           </div>
           <div className="text-center">
             <div className="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Users className="w-8 h-8 text-green-600" />
+              <Icon name="users" className="w-8 h-8 text-green-600" />
             </div>
             <h3 className="text-xl font-semibold mb-2">Local Expertise</h3>
-            <p className="text-gray-600">Deep knowledge of Puglia''s market and established local connections.</p>
+            <p className="text-gray-600">Deep knowledge of Puglia&apos;s market and established local connections.</p>
           </div>
           <div className="text-center">
             <div className="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-              <TrendingUp className="w-8 h-8 text-purple-600" />
+              <Icon name="trending-up" className="w-8 h-8 text-purple-600" />
             </div>
             <h3 className="text-xl font-semibold mb-2">Proven Results</h3>
             <p className="text-gray-600">Track record of successful investments with strong ROI for our clients.</p>
@@ -294,8 +294,3 @@ export default function HowItWorksPage() {
     </div>
   )
 }
-
-
-
-
-
