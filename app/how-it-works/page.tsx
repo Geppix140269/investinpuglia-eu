@@ -1,6 +1,6 @@
 ﻿import type { Metadata } from 'next'
 import Icon from '@/lib/iconMappings'
-import { Building2, FileSearch, HandshakeIcon, Home, Percent, Users, ChevronRight, CheckCircle2, TrendingUp } from 'lucide-react'
+import { Building2, FileSearch, Handshake, Home, Percent, Users, ChevronRight, CheckCircle2, TrendingUp } from 'lucide-react'
 
 export const metadata: Metadata = {
   title: 'How It Works - Investment Process | InvestInPuglia',
@@ -182,7 +182,7 @@ export default function HowItWorksPage() {
             <div className="relative z-10">
               <div className="flex items-start gap-6">
                 <div className="bg-red-100 p-4 rounded-lg">
-                  <HandshakeIcon className="w-8 h-8 text-red-600" />
+                  <Handshake className="w-8 h-8 text-red-600" />
                 </div>
                 <div className="flex-1">
                   <h2 className="text-2xl font-bold text-gray-900 mb-3">Transaction Execution</h2>
@@ -294,4 +294,5 @@ export default function HowItWorksPage() {
     </div>
   )
 }
+
 
