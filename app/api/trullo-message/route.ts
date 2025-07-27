@@ -28,6 +28,7 @@ export async function POST(request: NextRequest) {
     const languageNames: Record<string, string> = {
       en: 'English',
       it: 'Italian',
+      es: 'Spanish',
       fr: 'French',
       de: 'German',
       ar: 'Arabic',
