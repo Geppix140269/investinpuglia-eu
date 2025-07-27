@@ -96,7 +96,7 @@ export default function TrulloMonitor() {
       if (error) throw error;
 
       const conversationsWithMessages = await Promise.all(
-        (convos || []).map(async (conv) => {
+        (convos || []).map(async (conv: Conversation) => {
           const { data: messages } = await supabase
             .from('trullo_messages')
             .select('*')
@@ -109,18 +109,18 @@ export default function TrulloMonitor() {
 
       // Check for new conversations
       if (previousConversationsRef.current.length > 0 && conversationsWithMessages.length > previousConversationsRef.current.length) {
-        const newConvo = conversationsWithMessages.find(c => !previousConversationsRef.current.find(pc => pc.id === c.id));
+        const newConvo = conversationsWithMessages.find((c: Conversation) => !previousConversationsRef.current.find((pc: Conversation) => pc.id === c.id));
         if (newConvo) {
           handleNewConversation({ new: newConvo });
         }
       }
 
       // Check for new messages in existing conversations
-      conversationsWithMessages.forEach(conv => {
+      conversationsWithMessages.forEach((conv: Conversation) => {
         const prevConv = previousConversationsRef.current.find(pc => pc.id === conv.id);
         if (prevConv && conv.messages && prevConv.messages) {
-          const newMessages = conv.messages.filter(m => !prevConv.messages?.find(pm => pm.id === m.id));
-          newMessages.forEach(msg => {
+          const newMessages = conv.messages.filter((m: Message) => !prevConv.messages?.find((pm: Message) => pm.id === m.id));
+          newMessages.forEach((msg: Message) => {
             handleNewMessage({ new: msg });
           });
         }
@@ -147,8 +147,8 @@ export default function TrulloMonitor() {
 
       // Check for new contact requests
       if (previousContactsRef.current.length > 0 && data && data.length > 0) {
-        const newContacts = data.filter(c => !previousContactsRef.current.find(pc => pc.id === c.id));
-        newContacts.forEach(contact => {
+        const newContacts = data.filter((c: ContactRequest) => !previousContactsRef.current.find((pc: ContactRequest) => pc.id === c.id));
+        newContacts.forEach((contact: ContactRequest) => {
           handleContactUpdate({ eventType: 'INSERT', new: contact });
         });
       }
@@ -322,7 +322,7 @@ export default function TrulloMonitor() {
               {conversations.length === 0 ? (
                 <p className="text-gray-500">No conversations yet</p>
               ) : (
-                conversations.map(conv => (
+                conversations.map((conv: Conversation) => (
                   <div
                     key={conv.id}
                     onClick={() => setSelectedConversation(conv.id)}
@@ -358,7 +358,7 @@ export default function TrulloMonitor() {
                   <div className="space-y-4 max-h-[600px] overflow-y-auto">
                     {conversations
                       .find(c => c.id === selectedConversation)
-                      ?.messages?.map(msg => (
+                      ?.messages?.map((msg: Message) => (
                         <div
                           key={msg.id}
                           className={`p-3 rounded-lg ${
@@ -391,7 +391,7 @@ export default function TrulloMonitor() {
             {contactRequests.length === 0 ? (
               <p className="text-gray-500">No contact requests yet</p>
             ) : (
-              contactRequests.map(contact => (
+              contactRequests.map((contact: ContactRequest) => (
                 <div key={contact.id} className="bg-white rounded-lg shadow p-6">
                   <div className="flex justify-between items-start">
                     <div className="flex-1">
