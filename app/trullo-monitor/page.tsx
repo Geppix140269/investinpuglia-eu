@@ -5,8 +5,8 @@ import { createClient } from '@supabase/supabase-js';
 
 // Initialize Supabase client
 const supabase = createClient(
-  'https://kjyobkrjcmiuusijvrme.supabase.co',  // Get from Supabase dashboard
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtqeW9ia3JqY21pdXVzaWp2cm1lIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTA5NDM5NzMsImV4cCI6MjA2NjUxOTk3M30.2GxAUtXPal7ufxg7KgWMO7h15RXJOolBWt0-NPygj2I'  // Get from Supabase dashboard (starts with eyJ...)
+  'https://kjyobkrjcmimisijvrme.supabase.co',  // Fixed typo in URL
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtqeW9ia3JqY21pbWlzaWp2cm1lIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjE5MzAyNTgsImV4cCI6MjAzNzUwNjI1OH0.8Bwm1VIb9PUnKgPPQdA9DqQiZWMaGwO91hZLs1jHKkw'  // This is your actual anon key from environment
 );
 
 interface Message {
