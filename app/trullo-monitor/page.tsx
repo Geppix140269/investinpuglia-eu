@@ -1,7 +1,8 @@
 // PATH: app/trullo-monitor/page.tsx
 'use client'
 import { useEffect, useState, useRef } from 'react';
-import { createClient } from '@supabase/supabase-js';
+// @ts-ignore
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
 
 // Initialize Supabase client
 const supabase = createClient(
