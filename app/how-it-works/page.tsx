@@ -4,7 +4,7 @@ import {
   Phone, 
   Search, 
   FileCheck, 
-  Handshake,
+  Users,
   TrendingUp,
   Shield,
   CheckCircle,
