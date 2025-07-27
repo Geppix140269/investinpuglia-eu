@@ -1,4 +1,4 @@
-// PATH: app/terms/page.tsx
+﻿// PATH: app/terms/page.tsx
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -14,11 +14,7 @@ export const metadata: Metadata = {
     siteName: 'InvestInPuglia',
   },
   alternates: {
-    canonical: 'https://investinpuglia.com/terms',
-    languages: {
-      'en': 'https://investinpuglia.com/en/terms',
-      'it': 'https://investinpuglia.com/it/terms',
-    }
+    canonical: 'https://investinpuglia.com/terms'
   },
   robots: {
     index: true,
@@ -159,7 +155,7 @@ export default function TermsOfServicePage() {
                 Our fees are structured based on the services provided:
               </p>
               <ul className="list-disc list-inside text-stone-700 mb-4 space-y-2">
-                <li><strong>Hourly Consultancy:</strong> €250-500 per hour depending on complexity</li>
+                <li><strong>Hourly Consultancy:</strong> â‚¬250-500 per hour depending on complexity</li>
                 <li><strong>Project-Based Fees:</strong> Fixed fees for defined projects</li>
                 <li><strong>Success Fees:</strong> Performance-based fees for completed transactions</li>
                 <li><strong>Retainer Services:</strong> Monthly retainers for ongoing advisory</li>
@@ -366,3 +362,4 @@ export default function TermsOfServicePage() {
     </div>
   )
 }
+

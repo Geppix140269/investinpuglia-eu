@@ -1,4 +1,4 @@
-// PATH: app/faq/page.tsx
+﻿// PATH: app/faq/page.tsx
 import { Metadata } from 'next'
 import FAQClient from '@/components/FAQClient'
 
@@ -15,11 +15,7 @@ export const metadata: Metadata = {
     siteName: 'InvestInPuglia',
   },
   alternates: {
-    canonical: 'https://investinpuglia.com/faq',
-    languages: {
-      'en': 'https://investinpuglia.com/en/faq',
-      'it': 'https://investinpuglia.com/it/faq',
-    }
+    canonical: 'https://investinpuglia.com/faq'
   },
   robots: {
     index: true,
@@ -35,3 +31,4 @@ export const metadata: Metadata = {
 export default function FAQPage() {
   return <FAQClient />
 }
+

@@ -1,4 +1,4 @@
-// PATH: app/cookies/page.tsx
+﻿// PATH: app/cookies/page.tsx
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -67,3 +67,4 @@ export default function CookiePolicyPage() {
     </div>
   )
 }
+

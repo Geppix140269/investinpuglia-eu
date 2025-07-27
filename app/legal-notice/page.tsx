@@ -1,4 +1,4 @@
-// PATH: app/legal-notice/page.tsx
+﻿// PATH: app/legal-notice/page.tsx
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -14,11 +14,7 @@ export const metadata: Metadata = {
     siteName: 'InvestInPuglia',
   },
   alternates: {
-    canonical: 'https://investinpuglia.com/legal-notice',
-    languages: {
-      'en': 'https://investinpuglia.com/en/legal-notice',
-      'it': 'https://investinpuglia.com/it/legal-notice',
-    }
+    canonical: 'https://investinpuglia.com/legal-notice'
   },
   robots: {
     index: true,
@@ -270,3 +266,4 @@ export default function LegalNoticePage() {
     </div>
   )
 }
+

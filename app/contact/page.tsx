@@ -1,4 +1,4 @@
-// app/contact/page.tsx
+﻿// app/contact/page.tsx
 'use client'
 
 export default function ContactPage() {
@@ -32,7 +32,7 @@ export default function ContactPage() {
             {/* Glass morphism box */}
             <div className="inline-block bg-gradient-to-r from-emerald-400/20 to-green-500/10 backdrop-blur-md border border-emerald-400/30 px-8 py-5 rounded-full mb-10 animate-fadeIn animation-delay-300">
               <p className="text-white text-lg font-semibold">
-                📞 Average response time: Within 24 hours
+                ðŸ“ž Average response time: Within 24 hours
               </p>
             </div>
             
@@ -45,7 +45,7 @@ export default function ContactPage() {
                 rel="noopener noreferrer"
               >
                 Book Strategy Call
-                <span className="text-2xl">→</span>
+                <span className="text-2xl">â†’</span>
               </a>
               <a 
                 href="mailto:info@investinpuglia.eu" 
@@ -105,7 +105,7 @@ export default function ContactPage() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Book Strategy Call →
+                Book Strategy Call â†’
               </a>
               
               <p className="text-sm text-gray-600 mt-4">
@@ -118,3 +118,4 @@ export default function ContactPage() {
     </>
   )
 }
+

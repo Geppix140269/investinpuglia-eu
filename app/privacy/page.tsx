@@ -1,4 +1,4 @@
-// PATH: app/privacy/page.tsx
+﻿// PATH: app/privacy/page.tsx
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -14,11 +14,7 @@ export const metadata: Metadata = {
     siteName: 'InvestInPuglia',
   },
   alternates: {
-    canonical: 'https://investinpuglia.com/privacy',
-    languages: {
-      'en': 'https://investinpuglia.com/en/privacy',
-      'it': 'https://investinpuglia.com/it/privacy',
-    }
+    canonical: 'https://investinpuglia.com/privacy'
   },
   robots: {
     index: true,
@@ -309,3 +305,4 @@ export default function PrivacyPolicyPage() {
     </div>
   )
 }
+

@@ -1,4 +1,4 @@
-// PATH: app/about/page.tsx
+﻿// PATH: app/about/page.tsx
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -28,11 +28,7 @@ export const metadata: Metadata = {
     images: ['/og-about.jpg'],
   },
   alternates: {
-    canonical: 'https://investinpuglia.com/about',
-    languages: {
-      'en': 'https://investinpuglia.com/en/about',
-      'it': 'https://investinpuglia.com/it/about',
-    }
+    canonical: 'https://investinpuglia.com/about'
   },
   robots: {
     index: true,
@@ -69,7 +65,7 @@ export default function AboutPage() {
             <h2 className="font-playfair text-3xl font-bold text-stone-800 mb-6">Our Story</h2>
             <div className="prose prose-stone max-w-none">
               <p className="text-stone-700 mb-4">
-                InvestInPuglia emerged from a deep understanding of the untapped potential in Southern Italy&apos;s most dynamic region. Founded in 2024 by 1402 Celsius Ltd, we recognized that while Puglia offers exceptional investment opportunities – from historic properties to innovative business ventures – international investors often struggle to navigate the local landscape.
+                InvestInPuglia emerged from a deep understanding of the untapped potential in Southern Italy&apos;s most dynamic region. Founded in 2024 by 1402 Celsius Ltd, we recognized that while Puglia offers exceptional investment opportunities â€“ from historic properties to innovative business ventures â€“ international investors often struggle to navigate the local landscape.
               </p>
               <p className="text-stone-700 mb-4">
                 Our founders, combining decades of experience in international real estate, business consultancy, and Italian market expertise, created InvestInPuglia to bridge this gap. We provide comprehensive investment advisory services that go beyond traditional property consultancy, encompassing business development, project management, and strategic partnerships.
@@ -88,7 +84,7 @@ export default function AboutPage() {
             <div className="grid md:grid-cols-2 gap-8">
               <div>
                 <h3 className="font-semibold text-stone-800 mb-3 flex items-center">
-                  <span className="text-2xl mr-3">🌍</span>
+                  <span className="text-2xl mr-3">ðŸŒ</span>
                   For International Investors
                 </h3>
                 <p className="text-stone-700 mb-4">
@@ -97,7 +93,7 @@ export default function AboutPage() {
               </div>
               <div>
                 <h3 className="font-semibold text-stone-800 mb-3 flex items-center">
-                  <span className="text-2xl mr-3">🚀</span>
+                  <span className="text-2xl mr-3">ðŸš€</span>
                   For Business Development
                 </h3>
                 <p className="text-stone-700 mb-4">
@@ -148,7 +144,7 @@ export default function AboutPage() {
             <div className="grid md:grid-cols-3 gap-6">
               <div className="text-center">
                 <div className="bg-terracotta/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl">🎯</span>
+                  <span className="text-2xl">ðŸŽ¯</span>
                 </div>
                 <h3 className="font-semibold text-stone-800 mb-2">Strategic Excellence</h3>
                 <p className="text-stone-600 text-sm">
@@ -157,7 +153,7 @@ export default function AboutPage() {
               </div>
               <div className="text-center">
                 <div className="bg-sea/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl">🤝</span>
+                  <span className="text-2xl">ðŸ¤</span>
                 </div>
                 <h3 className="font-semibold text-stone-800 mb-2">Trust &amp; Integrity</h3>
                 <p className="text-stone-600 text-sm">
@@ -166,7 +162,7 @@ export default function AboutPage() {
               </div>
               <div className="text-center">
                 <div className="bg-olive/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl">🌱</span>
+                  <span className="text-2xl">ðŸŒ±</span>
                 </div>
                 <h3 className="font-semibold text-stone-800 mb-2">Sustainable Growth</h3>
                 <p className="text-stone-600 text-sm">
@@ -207,3 +203,4 @@ export default function AboutPage() {
     </div>
   )
 }
+
