@@ -63,9 +63,14 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
       }
     };
 
-    window.addEventListener('trullo-auto-email', handleAutoEmail as EventListener);
+    // Properly typed event listener wrapper
+    const eventListener = (event: Event) => {
+      handleAutoEmail(event as CustomEvent);
+    };
+
+    window.addEventListener('trullo-auto-email', eventListener);
     return () => {
-      window.removeEventListener('trullo-auto-email', handleAutoEmail as EventListener);
+      window.removeEventListener('trullo-auto-email', eventListener);
     };
   }, [conversationId, currentLang, messages]);
 
