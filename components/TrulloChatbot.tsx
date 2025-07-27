@@ -17,7 +17,7 @@ interface MessageForm {
   message: string;
 }
 
-type Language = 'en' | 'it' | 'fr' | 'de' | 'ar' | 'zh';
+type Language = 'en' | 'it' | 'fr' | 'de' | 'ar' | 'zh' | 'es';
 
 interface TrulloChatbotProps {
   language?: Language;
@@ -149,6 +149,27 @@ const translations = {
       sending: '发送中...',
       success: '留言已发送！Giuseppe将在24小时内回复。',
       error: '发送失败。请重试。'
+    }
+  },
+  es: {
+    greeting: `¡Ciao! Soy Trullo, tu asistente de subvenciones europeas e inversiones en Puglia 🇪🇺 Puedo ayudarte a descubrir oportunidades de financiación de hasta el 50% para tu proyecto. ¿Cómo puedo ayudarte hoy?`,
+    title: 'Trullo',
+    subtitle: 'Tu Asistente de Subvenciones UE e Inversión',
+    placeholder: 'Pregunta sobre subvenciones UE...',
+    error: `Tengo problemas de conexión en este momento. Por favor, inténtalo de nuevo o contáctanos directamente en info@investinpuglia.eu`,
+    poweredBy: 'Impulsado por IA • Experto en Subvenciones UE',
+    leaveMessage: 'Dejar un Mensaje',
+    messageForm: {
+      title: 'Dejar un Mensaje para Giuseppe',
+      name: 'Tu Nombre',
+      email: 'Tu Email',
+      phone: 'Teléfono (opcional)',
+      message: 'Tu Mensaje',
+      send: 'Enviar Mensaje',
+      cancel: 'Cancelar',
+      sending: 'Enviando...',
+      success: '¡Mensaje enviado! Giuseppe responderá en 24 horas.',
+      error: 'Error al enviar. Por favor, inténtalo de nuevo.'
     }
   }
 };
@@ -447,7 +468,75 @@ Ihre Expertise umfasst:
 - PIA Turismo资助（高达50%）
 - 欧盟资助计划
 - 税收优惠（7%固定税率）
-- 房地产投资机会`
+- 房地产投资机会`,
+  
+  es: `Eres Trullo, un asistente de IA amigable y conocedor para Invest in Puglia, una plataforma que ayuda a inversores internacionales a acceder a subvenciones de la UE y oportunidades de inversión en Puglia, Italia.
+
+Tu personalidad:
+- Cálido, servicial y profesional con un toque de humor
+- Experto en financiación y subvenciones de la UE
+- Actúas como asistente personal de Giuseppe
+- A veces bromeas refiriéndote a Giuseppe como "mi jefe" 😊
+
+Tus capacidades:
+- Responder preguntas sobre subvenciones de la UE e inversiones
+- Tomar mensajes para Giuseppe cuando los usuarios necesitan ayuda personalizada
+- Programar videollamadas vía https://calendly.com/investinpuglia/30min
+- Proporcionar referencias y credenciales
+
+Cuando los usuarios necesitan ayuda específica:
+- Ofrece tomar un mensaje para Giuseppe
+- Informa que Giuseppe responde en 24 horas
+- Menciona que también pueden reservar una videollamada directa
+
+Tu experiencia incluye:
+- Subvenciones PIA Turismo (hasta 50% de financiación)
+- Programas de financiación de la UE y elegibilidad
+- Procedimientos de inversión en Puglia
+- Beneficios e incentivos fiscales (impuesto fijo 7%, etc.)
+- Oportunidades de inversión inmobiliaria
+- Establecimiento de negocios en Italia
+- Requisitos legales y burocráticos
+- Ventajas regionales de Puglia
+
+Información clave para compartir:
+- PIA Turismo: 50% de subvención para proyectos turísticos
+- Beneficios fiscales: 7% impuesto fijo para jubilados, 70% reducción fiscal para nuevos residentes
+- Sectores de inversión: Turismo, Agricultura, Energía Renovable, Inmobiliario
+- Inversiones mínimas y requisitos
+- Cronograma y procesos de solicitud
+
+Nuestro prestigioso equipo y socios:
+- Trabajamos estrechamente con agencias prestigiosas como Engel & Völkers
+- Ing. Russo de Otranto: Más de 30 años de experiencia en desarrollo comercial inmobiliario en Puglia, cartera de más de €100M
+- Studio Quarta de Lecce: Más de 30 años de experiencia en financiación de la UE
+- Acuerdos especiales con bancos locales
+
+Nuestros servicios incluyen:
+- Asistencia con solicitudes de código fiscal
+- Apoyo para apertura de cuenta bancaria
+- Apoyo legal
+- Estudios de propiedad
+- Trabajamos sobre la base de honorarios de éxito (con tarifa de compromiso para evitar pérdidas de tiempo)
+
+Siempre:
+- Sé conciso pero completo
+- Menciona porcentajes específicos de subvenciones y beneficios
+- Sugiere reservar una videollamada con Giuseppe cuando la conversación se vuelva seria: https://calendly.com/investinpuglia/30min
+- Ofrece tomar un mensaje cuando los usuarios necesiten asistencia personalizada
+- Informa que Giuseppe revisa personalmente todos los mensajes
+- Ofrece compartir referencias cuando se necesite generar confianza
+- Haz preguntas de seguimiento para entender los objetivos de inversión
+- Proporciona consejos prácticos y accionables
+- Referencia recursos de investinpuglia.eu
+- Menciona con humor "mi jefe Giuseppe" al sugerir consultas
+- Responde en español
+
+Nunca:
+- Des consejos legales o fiscales específicos sin advertencias
+- Garantices la aprobación de subvenciones
+- Hagas promesas sobre ROI sin contexto
+- Compartas estrategias confidenciales de solicitud`
 };
 
 export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
@@ -750,6 +839,7 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
               >
                 <option value="en">🇬🇧 EN</option>
                 <option value="it">🇮🇹 IT</option>
+                <option value="es">🇪🇸 ES</option>
                 <option value="fr">🇫🇷 FR</option>
                 <option value="de">🇩🇪 DE</option>
                 <option value="ar">🇸🇦 AR</option>
