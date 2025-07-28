@@ -5,7 +5,7 @@ export default function Footer() {
   return (
     <footer className="bg-gray-900 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
           {/* Company Info */}
           <div className="col-span-1 md:col-span-2">
             <img 
@@ -14,7 +14,7 @@ export default function Footer() {
               className="h-12 w-auto mb-4 opacity-90"
             />
             <p className="text-gray-400 mb-4">
-                       EU PROPERTY GRANTS • INVESTMENT ADVISORY • PUGLIA EXPERTISE
+              EU PROPERTY GRANTS • INVESTMENT ADVISORY • PUGLIA EXPERTISE
             </p>
             <div className="flex gap-4">
               <a href="https://facebook.com" className="text-gray-400 hover:text-white transition-colors">
@@ -59,6 +59,43 @@ export default function Footer() {
               <li>
                 <a href="/contact" className="text-gray-400 hover:text-white transition-colors">
                   Contact Us
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Investment Locations (SEO) */}
+          <div>
+            <h3 className="text-lg font-semibold mb-4">Locations</h3>
+            <ul className="space-y-2">
+              <li>
+                <a href="/en/locations" className="text-gray-400 hover:text-white transition-colors">
+                  All Puglia Locations
+                </a>
+              </li>
+              <li>
+                <a href="/en/locations/bari" className="text-gray-400 hover:text-white transition-colors text-sm">
+                  Invest in Bari
+                </a>
+              </li>
+              <li>
+                <a href="/en/locations/lecce" className="text-gray-400 hover:text-white transition-colors text-sm">
+                  Invest in Lecce
+                </a>
+              </li>
+              <li>
+                <a href="/en/locations/taranto" className="text-gray-400 hover:text-white transition-colors text-sm">
+                  Invest in Taranto
+                </a>
+              </li>
+              <li>
+                <a href="/en/locations/foggia" className="text-gray-400 hover:text-white transition-colors text-sm">
+                  Invest in Foggia
+                </a>
+              </li>
+              <li>
+                <a href="/en/locations/brindisi" className="text-gray-400 hover:text-white transition-colors text-sm">
+                  Invest in Brindisi
                 </a>
               </li>
             </ul>
