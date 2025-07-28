@@ -1,5 +1,3 @@
-// PATH: lib/sanity/client.ts
-
 import { createClient } from '@sanity/client'
 
 export const client = createClient({
