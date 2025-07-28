@@ -1,5 +1,6 @@
 // schemas/locationPage.ts
 import { Rule } from '@sanity/types'
+
 export default {
   name: 'locationPage',
   title: 'Location Page',
@@ -9,23 +10,23 @@ export default {
       name: 'city',
       title: 'City',
       type: 'string',
-      validation: Rule => Rule.required(),
+      validation: (Rule: any) => Rule.required(),
     },
     {
       name: 'province',
       title: 'Province',
       type: 'string',
-      validation: Rule => Rule.required(),
+      validation: (Rule: any) => Rule.required(),
     },
     {
       name: 'slug',
       title: 'Slug',
       type: 'slug',
       options: {
-        source: (doc) => `invest-in-${doc.city}-${doc.province}`.toLowerCase(),
+        source: (doc: any) => `invest-in-${doc.city}-${doc.province}`.toLowerCase(),
         maxLength: 96,
       },
-      validation: Rule => Rule.required(),
+      validation: (Rule: any) => Rule.required(),
     },
     {
       name: 'seo',
@@ -136,7 +137,7 @@ export default {
       title: 'city',
       subtitle: 'province',
     },
-    prepare({ title, subtitle }) {
+    prepare({ title, subtitle }: any) {
       return {
         title: `${title}, ${subtitle}`,
         subtitle: 'Location Page',
