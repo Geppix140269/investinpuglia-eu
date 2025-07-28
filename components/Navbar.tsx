@@ -62,6 +62,11 @@ export default function Navbar() {
               </div>
             </div>
 
+            {/* NEW: Locations link */}
+            <a href="/en/locations" className="text-gray-700 hover:text-gray-900 transition-colors font-medium">
+              Locations
+            </a>
+
             {/* Tools dropdown with calculators */}
             <div className="relative group">
               <a href="/tools" className="text-gray-700 hover:text-gray-900 transition-colors font-medium flex items-center gap-1">
@@ -137,6 +142,11 @@ export default function Navbar() {
                   </a>
                 </div>
               </div>
+
+              {/* NEW: Locations link for mobile */}
+              <a href="/en/locations" className="text-gray-700 hover:text-gray-900 transition-colors font-medium py-2">
+                Locations
+              </a>
 
               {/* Tools section with sub-items */}
               <div>
