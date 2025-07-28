@@ -76,27 +76,27 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href="/en/locations/bari" className="text-gray-400 hover:text-white transition-colors text-sm">
+                <a href="/en/locations/invest-in-bari-bari" className="text-gray-400 hover:text-white transition-colors text-sm">
                   Invest in Bari
                 </a>
               </li>
               <li>
-                <a href="/en/locations/lecce" className="text-gray-400 hover:text-white transition-colors text-sm">
+                <a href="/en/locations/invest-in-lecce-lecce" className="text-gray-400 hover:text-white transition-colors text-sm">
                   Invest in Lecce
                 </a>
               </li>
               <li>
-                <a href="/en/locations/taranto" className="text-gray-400 hover:text-white transition-colors text-sm">
+                <a href="/en/locations/invest-in-taranto-taranto" className="text-gray-400 hover:text-white transition-colors text-sm">
                   Invest in Taranto
                 </a>
               </li>
               <li>
-                <a href="/en/locations/foggia" className="text-gray-400 hover:text-white transition-colors text-sm">
+                <a href="/en/locations/invest-in-foggia-foggia" className="text-gray-400 hover:text-white transition-colors text-sm">
                   Invest in Foggia
                 </a>
               </li>
               <li>
-                <a href="/en/locations/brindisi" className="text-gray-400 hover:text-white transition-colors text-sm">
+                <a href="/en/locations/invest-in-brindisi-brindisi" className="text-gray-400 hover:text-white transition-colors text-sm">
                   Invest in Brindisi
                 </a>
               </li>
