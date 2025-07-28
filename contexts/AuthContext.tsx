@@ -1,11 +1,9 @@
 // app/contexts/AuthContext.tsx
 'use client'
-
 import React, { createContext, useContext, useEffect, useState } from 'react'
 import { useRouter, usePathname } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import type { User } from '@supabase/supabase-js'
-
 interface AuthContextType {
   user: User | null
   loading: boolean
@@ -13,20 +11,16 @@ interface AuthContextType {
   signOut: () => Promise<void>
   error: string | null
 }
-
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
-
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const router = useRouter()
   const pathname = usePathname()
-
   useEffect(() => {
     // Check active session
     checkUser()
-
     // Listen for auth changes
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       async (event, session) => {
@@ -49,12 +43,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         }
       }
     )
-
     return () => {
       subscription.unsubscribe()
     }
   }, [router])
-
   async function checkUser() {
     try {
       const { data: { session } } = await supabase.auth.getSession()
@@ -66,7 +58,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       setLoading(false)
     }
   }
-
   const signInWithGoogle = async () => {
     try {
       setError(null)
@@ -79,7 +70,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       const { error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
-          redirectTo: `${window.location.origin}/auth/callback`,
+          redirectTo: 'https://investinpuglia.eu/auth/callback',
         },
       })
       
@@ -89,7 +80,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       setError(error.message || 'Failed to sign in')
     }
   }
-
   const signOut = async () => {
     try {
       setError(null)
@@ -100,14 +90,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       setError(error.message || 'Failed to sign out')
     }
   }
-
   return (
     <AuthContext.Provider value={{ user, loading, signInWithGoogle, signOut, error }}>
       {children}
     </AuthContext.Provider>
   )
 }
-
 export const useAuth = () => {
   const context = useContext(AuthContext)
   if (context === undefined) {
