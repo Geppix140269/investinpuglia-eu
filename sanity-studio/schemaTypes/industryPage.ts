@@ -1,7 +1,7 @@
 // sanity-studio/schemaTypes/industryPage.ts
 import { defineType, defineField } from 'sanity'
 
-export default defineType({
+export const industryPageType = defineType({
   name: 'industryPage',
   title: 'Industry Investment Pages',
   type: 'document',
