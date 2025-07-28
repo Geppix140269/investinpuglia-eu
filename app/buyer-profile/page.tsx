@@ -1,7 +1,10 @@
+// app/buyer-profile/page.tsx
 'use client'
 
 import React, { useState, useEffect } from 'react'
 import { ChevronRight, ChevronLeft, CheckCircle, Send, Download, X } from 'lucide-react'
+import { createClient } from '@/lib/supabase'
+import emailjs from '@emailjs/browser'
 
 // Type definitions
 interface User {
@@ -55,15 +58,23 @@ interface FormData {
 
 // Google Login Button Component
 const GoogleLoginButton = () => {
+  const supabase = createClient()
+  
   const handleGoogleLogin = async () => {
-    if (typeof window !== 'undefined' && window.supabase) {
-      const { error } = await window.supabase.auth.signInWithOAuth({
+    try {
+      const { error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
           redirectTo: `${window.location.origin}/auth/callback`,
         },
       })
-      if (error) console.error('Error:', error)
+      if (error) {
+        console.error('Error during Google login:', error)
+        alert('Failed to sign in with Google. Please try again.')
+      }
+    } catch (err) {
+      console.error('Unexpected error:', err)
+      alert('An unexpected error occurred. Please try again.')
     }
   }
 
@@ -84,6 +95,9 @@ const GoogleLoginButton = () => {
 }
 
 const BuyerProfilePage = () => {
+  // Create Supabase client
+  const supabase = createClient()
+  
   // Auth state
   const [user, setUser] = useState<User | null>(null)
   const [authLoading, setAuthLoading] = useState(true)
@@ -157,21 +171,41 @@ const BuyerProfilePage = () => {
 
   // Initialize EmailJS and check auth
   useEffect(() => {
-    if (typeof window !== 'undefined' && window.emailjs) {
-      window.emailjs.init('wKn1_xMCtZssdZzpb')
-    }
+    // Initialize EmailJS
+    emailjs.init('wKn1_xMCtZssdZzpb')
+    
+    // Check authentication
     checkUser()
-  }, [])
+    
+    // Set up auth state listener
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user || null)
+      if (session?.user) {
+        setFormData(prev => ({ ...prev, email: session.user.email || '' }))
+      }
+    })
+    
+    return () => subscription.unsubscribe()
+  }, [supabase])
 
   async function checkUser() {
-    if (typeof window !== 'undefined' && window.supabase) {
-      const { data: { user } } = await window.supabase.auth.getUser()
+    try {
+      const { data: { user } } = await supabase.auth.getUser()
       setUser(user)
       if (user) {
         setFormData(prev => ({ ...prev, email: user.email || '' }))
       }
+    } catch (error) {
+      console.error('Error checking user:', error)
+    } finally {
+      setAuthLoading(false)
     }
-    setAuthLoading(false)
+  }
+
+  const handleSignOut = async () => {
+    await supabase.auth.signOut()
+    setUser(null)
+    setFormData(prev => ({ ...prev, email: '' }))
   }
 
   // Show login if not authenticated
@@ -239,8 +273,8 @@ const BuyerProfilePage = () => {
     setIsProcessing(true)
     try {
       // Save to database if user is logged in
-      if (user && window.supabase) {
-        await window.supabase
+      if (user) {
+        const { error } = await supabase
           .from('buyer_profiles')
           .upsert({
             user_id: user.id,
@@ -248,6 +282,10 @@ const BuyerProfilePage = () => {
             profile_completed: true,
             updated_at: new Date().toISOString(),
           })
+        
+        if (error) {
+          console.error('Error saving profile:', error)
+        }
       }
 
       // Determine recipients
@@ -265,22 +303,20 @@ const BuyerProfilePage = () => {
       }
 
       // Send email
-      if (window.emailjs) {
-        const templateParams = {
-          to_email: recipients[0],
-          cc_email: recipients.slice(1).join(','),
-          reply_to: formData.email,
-          buyer_name: formData.fullName,
-          buyer_email: formData.email,
-          buyer_phone: formData.phone,
-          property_type: formData.propertyType,
-          budget: formData.budget,
-          timeline: formData.timeline,
-          locations: formData.location.join(', ')
-        }
-        
-        await window.emailjs.send('service_w6tghqr', 'template_buyer_profile', templateParams)
+      const templateParams = {
+        to_email: recipients[0],
+        cc_email: recipients.slice(1).join(','),
+        reply_to: formData.email,
+        buyer_name: formData.fullName,
+        buyer_email: formData.email,
+        buyer_phone: formData.phone,
+        property_type: formData.propertyType,
+        budget: formData.budget,
+        timeline: formData.timeline,
+        locations: formData.location.join(', ')
       }
+      
+      await emailjs.send('service_w6tghqr', 'template_buyer_profile', templateParams)
       
       setEmailSent(true)
     } catch (error) {
@@ -498,7 +534,7 @@ Monthly Budget: ${formData.monthlyBudget || 'Not specified'}`
               <p className="text-gray-500 text-sm">{user?.email}</p>
               {user && (
                 <button
-                  onClick={() => window.supabase?.auth.signOut()}
+                  onClick={handleSignOut}
                   className="text-sm text-red-600 hover:underline"
                 >
                   Sign Out
