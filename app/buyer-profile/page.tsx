@@ -579,9 +579,5 @@ Monthly Budget: ${formData.monthlyBudget || 'Not specified'}`
 }
 
 export default function BuyerProfilePage() {
-  return (
-    <AuthGuard>
-      <BuyerProfileForm />
-    </AuthGuard>
-  )
+  return <BuyerProfileForm />
 }
