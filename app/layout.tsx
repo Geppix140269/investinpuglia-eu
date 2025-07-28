@@ -6,6 +6,7 @@ import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import Script from 'next/script'
 import dynamic from 'next/dynamic'
+import { AuthProvider } from '@/contexts/AuthContext'
 
 // Lazy load the TrulloChatbot to avoid build errors if component doesn't exist yet
 const TrulloChatbotWrapper = dynamic(
@@ -192,10 +193,12 @@ export default function RootLayout({
         />
       </head>
       <body className={`${inter.className} font-sans antialiased`}>
-        <Navbar />
-        <main className="pt-16">{children}</main>
-        <Footer />
-        <TrulloChatbotWrapper />
+        <AuthProvider>
+          <Navbar />
+          <main className="pt-16">{children}</main>
+          <Footer />
+          <TrulloChatbotWrapper />
+        </AuthProvider>
       </body>
     </html>
   )
