@@ -6,8 +6,8 @@ import OpenAI from 'openai';
 config({ path: '.env.local' });
 
 const sanityClient = createClient({
-  projectId: process.env.SANITY_PROJECT_ID,
-  dataset: process.env.SANITY_DATASET || 'production',
+  projectId: process.env.SANITY_PROJECT_ID || process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'trdbxmjo',
+  dataset: process.env.SANITY_DATASET || process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
   token: process.env.SANITY_API_WRITE_TOKEN,
   apiVersion: '2024-01-01',
   useCdn: false,
@@ -67,7 +67,11 @@ Format as JSON.`;
     max_tokens: 2000,
   });
 
-  return JSON.parse(response.choices[0].message.content);
+  // Clean up the response - remove markdown code blocks if present
+  let content = response.choices[0].message.content;
+  content = content.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
+  
+  return JSON.parse(content);
 }
 
 async function createIndustryPage(industry) {
@@ -105,7 +109,9 @@ async function createIndustryPage(industry) {
     console.log(`✅ Created industry page: ${industry.name}`);
     return result;
   } catch (error) {
-    console.error(`❌ Error creating ${industry.name}:`, error);
+    console.error(`❌ Error creating ${industry.name}:`, error.message);
+    // Continue with next industry instead of stopping
+    return null;
   }
 }
 
