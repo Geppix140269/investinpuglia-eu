@@ -1,0 +1,51 @@
+city,province,population,gdpPerCapita,mainIndustries,businessCount,unemploymentRate,averageRent,skillsAvailability,nearestAirport,airportDistance,nearestPort,portDistance,latitude,longitude
+Bari,Bari,315284,28500,"Logistics,ICT,Manufacturing,Tourism",45000,8.2,85,High,Bari Karol Wojtyła Airport,0 km,Port of Bari,0 km,41.1171,16.8719
+Taranto,Taranto,189171,24000,"Steel Industry,Naval,Agriculture,Tourism",22000,12.5,65,Medium,Taranto-Grottaglie Airport,20 km,Port of Taranto,0 km,40.4764,17.2292
+Foggia,Foggia,147036,22000,"Agriculture,Food Processing,Logistics,Energy",18000,14.2,55,Medium,Foggia Gino Lisa Airport,3 km,Port of Manfredonia,35 km,41.4322,15.5350
+Lecce,Lecce,94773,23500,"Tourism,Agriculture,Manufacturing,Services",15000,11.8,60,High,Brindisi Airport,40 km,Port of Brindisi,40 km,40.3515,18.1750
+Brindisi,Brindisi,83192,25000,"Chemical,Energy,Aerospace,Tourism",12000,10.5,70,High,Brindisi Airport,0 km,Port of Brindisi,0 km,40.6327,17.9418
+Andria,Barletta-Andria-Trani,94898,21500,"Agriculture,Textiles,Food Processing,Stone",11000,13.2,50,Medium,Bari Airport,55 km,Port of Barletta,25 km,41.2316,16.2905
+Barletta,Barletta-Andria-Trani,92117,22500,"Footwear,Textiles,Agriculture,Commerce",10500,12.8,55,Medium,Bari Airport,65 km,Port of Barletta,0 km,41.3195,16.2814
+Trani,Barletta-Andria-Trani,53902,24000,"Stone Processing,Tourism,Fishing,Wine",8500,11.5,65,Medium,Bari Airport,45 km,Port of Trani,0 km,41.2773,16.4181
+Altamura,Bari,69426,20500,"Bread Production,Agriculture,Manufacturing",9000,10.8,48,Medium,Bari Airport,45 km,Port of Bari,50 km,40.8266,16.5524
+Molfetta,Bari,58519,23000,"Fishing,Commerce,Manufacturing,Tourism",8000,9.5,60,Medium,Bari Airport,30 km,Port of Molfetta,0 km,41.2003,16.5979
+Manfredonia,Foggia,54968,21000,"Tourism,Fishing,Agriculture,Industry",7500,15.2,45,Low,Foggia Airport,40 km,Port of Manfredonia,0 km,41.6227,15.9187
+Cerignola,Foggia,56472,19500,"Agriculture,Wine,Renewable Energy",7000,16.5,40,Low,Foggia Airport,35 km,Port of Manfredonia,65 km,41.2601,15.8939
+Bitonto,Bari,53779,22000,"Olive Oil,Agriculture,Commerce,Services",7200,9.8,55,Medium,Bari Airport,20 km,Port of Bari,25 km,41.1077,16.7646
+Monopoli,Bari,47330,26000,"Tourism,Agriculture,Fishing,Services",7800,8.5,75,High,Bari Airport,45 km,Port of Monopoli,0 km,40.9520,17.2970
+San Severo,Foggia,49843,19000,"Agriculture,Wine,Food Processing",6500,17.2,38,Low,Foggia Airport,35 km,Port of Manfredonia,75 km,41.6853,15.3806
+Corato,Bari,46883,21000,"Stone Processing,Agriculture,Textiles",6800,11.2,48,Medium,Bari Airport,45 km,Port of Bari,50 km,41.1530,16.4161
+Martina Franca,Taranto,47180,23500,"Tourism,Agriculture,Food,Manufacturing",6500,10.5,55,Medium,Brindisi Airport,55 km,Port of Taranto,35 km,40.7051,17.3374
+Gravina in Puglia,Bari,42614,20000,"Agriculture,Manufacturing,Tourism",5500,12.5,45,Low,Bari Airport,60 km,Port of Bari,65 km,40.8120,16.4202
+Modugno,Bari,36802,24500,"Logistics,Manufacturing,Services",6000,8.8,70,High,Bari Airport,10 km,Port of Bari,15 km,41.0984,16.7819
+Francavilla Fontana,Brindisi,34584,21500,"Agriculture,Commerce,Services",4500,13.5,50,Medium,Brindisi Airport,25 km,Port of Brindisi,30 km,40.5313,17.5843
+Fasano,Brindisi,38062,25500,"Tourism,Agriculture,Services",5800,9.2,70,High,Brindisi Airport,35 km,Port of Brindisi,40 km,40.8358,17.3613
+Triggiano,Bari,26051,23000,"Commerce,Services,Manufacturing",3800,9.5,65,Medium,Bari Airport,15 km,Port of Bari,10 km,41.0688,16.9252
+Galatina,Lecce,25844,20500,"Manufacturing,Agriculture,Services",3500,14.2,48,Medium,Lecce-Galatina Airport,5 km,Port of Brindisi,55 km,40.1755,18.1711
+Lucera,Foggia,32076,19500,"Agriculture,Tourism,Services",4000,15.8,42,Low,Foggia Airport,20 km,Port of Manfredonia,55 km,41.5052,15.3351
+Mola di Bari,Bari,24439,22500,"Fishing,Tourism,Agriculture",3600,10.2,62,Medium,Bari Airport,25 km,Port of Mola,0 km,41.0601,17.0851
+Manduria,Taranto,28972,21000,"Wine,Agriculture,Tourism",3800,13.8,48,Medium,Taranto Airport,40 km,Port of Taranto,35 km,40.4012,17.6352
+Ruvo di Puglia,Bari,24741,21500,"Agriculture,Commerce,Tourism",3400,11.5,52,Medium,Bari Airport,35 km,Port of Bari,40 km,41.1176,16.4842
+Putignano,Bari,25936,22000,"Manufacturing,Tourism,Services",3500,10.8,55,Medium,Bari Airport,45 km,Port of Bari,50 km,40.8494,17.1217
+Ostuni,Brindisi,30122,24500,"Tourism,Agriculture,Olive Oil",4500,9.8,68,High,Brindisi Airport,30 km,Port of Brindisi,35 km,40.7304,17.5777
+Noci,Bari,18351,21000,"Agriculture,Food,Tourism",2500,11.2,48,Medium,Bari Airport,50 km,Port of Bari,55 km,40.7932,17.1270
+Giovinazzo,Bari,19714,22500,"Fishing,Tourism,Commerce",2800,9.2,62,Medium,Bari Airport,20 km,Port of Giovinazzo,0 km,41.1871,16.6675
+Bisceglie,Barletta-Andria-Trani,54214,23000,"Fishing,Tourism,Agriculture",7000,11.8,58,Medium,Bari Airport,40 km,Port of Bisceglie,0 km,41.2407,16.5025
+Canosa di Puglia,Barletta-Andria-Trani,28933,20000,"Agriculture,Tourism,Services",3600,14.5,45,Low,Foggia Airport,55 km,Port of Barletta,20 km,41.2236,16.0654
+Nardò,Lecce,30741,20500,"Tourism,Agriculture,Services",3800,13.2,50,Medium,Lecce-Galatina Airport,25 km,Port of Gallipoli,15 km,40.1806,18.0339
+Grottaglie,Taranto,30521,21500,"Ceramics,Aerospace,Tourism",4000,12.5,52,Medium,Taranto-Grottaglie Airport,0 km,Port of Taranto,20 km,40.5378,17.4370
+Polignano a Mare,Bari,17127,27000,"Tourism,Services,Agriculture",3000,7.5,85,High,Bari Airport,40 km,Port of Monopoli,8 km,40.9973,17.2201
+Gallipoli,Lecce,19724,23500,"Tourism,Fishing,Services",3200,10.5,65,High,Lecce-Galatina Airport,35 km,Port of Gallipoli,0 km,40.0559,17.9925
+Locorotondo,Bari,13901,22500,"Wine,Tourism,Agriculture",2200,9.8,58,Medium,Brindisi Airport,50 km,Port of Brindisi,55 km,40.7523,17.3274
+Conversano,Bari,25330,23000,"Agriculture,Tourism,Services",3400,10.2,60,Medium,Bari Airport,30 km,Port of Bari,35 km,40.9683,17.1134
+Alberobello,Bari,10237,25000,"Tourism,Agriculture,Services",2500,8.2,70,High,Bari Airport,55 km,Port of Bari,60 km,40.7841,17.2368
+Vieste,Foggia,13434,24000,"Tourism,Fishing,Services",2800,9.5,72,High,Foggia Airport,95 km,Port of Vieste,0 km,41.8813,16.1761
+San Giovanni Rotondo,Foggia,26442,22000,"Tourism,Healthcare,Services",3500,11.2,55,Medium,Foggia Airport,35 km,Port of Manfredonia,25 km,41.7065,15.7280
+Mesagne,Brindisi,25814,20500,"Agriculture,Services,Commerce",3200,13.5,48,Low,Brindisi Airport,15 km,Port of Brindisi,20 km,40.5581,17.8089
+Massafra,Taranto,31522,20000,"Agriculture,Manufacturing,Tourism",3800,14.2,45,Low,Taranto Airport,20 km,Port of Taranto,25 km,40.5903,17.1117
+Maglie,Lecce,13692,21000,"Commerce,Services,Manufacturing",2200,12.8,50,Medium,Lecce-Galatina Airport,20 km,Port of Otranto,20 km,40.1171,18.2995
+Peschici,Foggia,4207,23000,"Tourism,Fishing,Agriculture",1200,8.8,68,High,Foggia Airport,115 km,Port of Peschici,0 km,41.9476,16.0129
+Cisternino,Brindisi,11254,22500,"Tourism,Agriculture,Services",1800,9.2,62,Medium,Brindisi Airport,45 km,Port of Brindisi,50 km,40.7427,17.4262
+Castro,Lecce,2388,25500,"Tourism,Fishing,Services",800,7.8,75,High,Lecce-Galatina Airport,45 km,Port of Castro,0 km,40.0011,18.4201
+Porto Cesareo,Lecce,6284,24500,"Tourism,Fishing,Services",1500,8.5,70,High,Lecce-Galatina Airport,30 km,Port of Porto Cesareo,0 km,40.2549,17.8925
+Otranto,Lecce,5799,26000,"Tourism,Services,Fishing",1400,7.2,78,High,Lecce-Galatina Airport,40 km,Port of Otranto,0 km,40.1447,18.4921
