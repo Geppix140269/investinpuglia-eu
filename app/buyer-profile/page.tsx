@@ -3,7 +3,7 @@
 
 import React, { useState, useEffect } from 'react'
 import { ChevronRight, ChevronLeft, CheckCircle, Send, Download, X } from 'lucide-react'
-import { createClient } from '@/lib/supabase'
+import { supabase } from '@/lib/supabase'
 import emailjs from '@emailjs/browser'
 import { useRouter } from 'next/navigation'
 
@@ -59,7 +59,6 @@ interface FormData {
 
 // Google Login Button Component
 const GoogleLoginButton = () => {
-  const supabase = createClient()
   const [isLoading, setIsLoading] = useState(false)
   
   const handleGoogleLogin = async () => {
@@ -110,8 +109,6 @@ const GoogleLoginButton = () => {
 }
 
 const BuyerProfilePage = () => {
-  // Create Supabase client
-  const supabase = createClient()
   const router = useRouter()
   
   // Auth state
