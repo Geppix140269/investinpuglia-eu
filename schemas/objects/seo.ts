@@ -1,3 +1,4 @@
+// Updated: Fixed multiple exports issue
 // schemas/objects/seo.ts
 // Reusable SEO object that can be added to any document type
 
