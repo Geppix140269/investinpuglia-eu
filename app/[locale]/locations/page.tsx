@@ -1,6 +1,6 @@
 // PATH: app/[locale]/locations/page.tsx
 
-import { client } from '@/lib/sanity/client';
+import { client } from '@/sanity/lib/client';
 import Link from 'next/link';
 import { Metadata } from 'next';
 
