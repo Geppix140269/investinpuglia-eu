@@ -1,5 +1,5 @@
 // schemas/locationPage.ts
-
+import { Rule } from '@sanity/types'
 export default {
   name: 'locationPage',
   title: 'Location Page',
