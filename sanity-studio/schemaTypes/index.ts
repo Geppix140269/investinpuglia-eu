@@ -1,3 +1,4 @@
+// sanity-studio/schemaTypes/index.ts
 import { calculatorConfigType } from './calculatorConfig'
 import { calculationResultType } from './calculationResult'
 import blockContent from './blockContent'
@@ -6,6 +7,7 @@ import post from './post'
 import author from './author'
 import { locationPageType } from './locationPage'
 import { seoType } from './objects/seo'
+import { industryPageType } from './industryPage'
 
 export const schemaTypes = [
   post,
@@ -15,5 +17,6 @@ export const schemaTypes = [
   calculatorConfigType,
   calculationResultType,
   locationPageType,
-  seoType
+  seoType,
+  industryPageType
 ]
