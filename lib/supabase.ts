@@ -2,19 +2,31 @@
 import { createClient as createSupabaseClient } from '@supabase/supabase-js'
 
 // Supabase configuration
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.Supabase_URL || ''
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || process.env.Supabase_API || ''
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || ''
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''
 
 if (!supabaseUrl || !supabaseAnonKey) {
   console.warn('Missing Supabase environment variables')
 }
 
-// Export the createClient function
+// Create a singleton instance
+let supabaseInstance: ReturnType<typeof createSupabaseClient> | null = null
+
+// Export the createClient function that returns the singleton
 export function createClient() {
-  return createSupabaseClient(supabaseUrl, supabaseAnonKey)
+  if (!supabaseInstance) {
+    supabaseInstance = createSupabaseClient(supabaseUrl, supabaseAnonKey, {
+      auth: {
+        autoRefreshToken: true,
+        persistSession: true,
+        detectSessionInUrl: true
+      }
+    })
+  }
+  return supabaseInstance
 }
 
-// Export a singleton instance for convenience
+// Export the singleton instance
 export const supabase = createClient()
 
 // Database helper functions
