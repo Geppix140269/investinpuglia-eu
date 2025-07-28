@@ -2,9 +2,10 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import { ChevronRight, ChevronLeft, CheckCircle, Send, Download, X, AlertCircle } from 'lucide-react'
+import { ChevronRight, ChevronLeft, CheckCircle, Send, Download, X } from 'lucide-react'
 import { createClient } from '@/lib/supabase'
 import emailjs from '@emailjs/browser'
+import { useRouter } from 'next/navigation'
 
 // Type definitions
 interface User {
@@ -56,30 +57,6 @@ interface FormData {
   howHeard: string
 }
 
-// Debug Component
-const DebugInfo = ({ user, authLoading }: { user: User | null, authLoading: boolean }) => {
-  const [session, setSession] = useState<any>(null)
-  const supabase = createClient()
-
-  useEffect(() => {
-    supabase.auth.getSession().then(({ data }) => {
-      setSession(data.session)
-    })
-  }, [supabase])
-
-  if (process.env.NODE_ENV === 'production') return null
-
-  return (
-    <div className="fixed bottom-4 right-4 bg-black/80 text-white p-4 rounded-lg text-xs max-w-sm">
-      <h3 className="font-bold mb-2">Debug Info:</h3>
-      <p>Auth Loading: {authLoading ? 'Yes' : 'No'}</p>
-      <p>User: {user ? user.email : 'null'}</p>
-      <p>Session: {session ? 'Active' : 'null'}</p>
-      <p>Session Email: {session?.user?.email || 'none'}</p>
-    </div>
-  )
-}
-
 // Google Login Button Component
 const GoogleLoginButton = () => {
   const supabase = createClient()
@@ -88,24 +65,24 @@ const GoogleLoginButton = () => {
   const handleGoogleLogin = async () => {
     try {
       setIsLoading(true)
-      console.log('Starting Google OAuth...')
+      
+      // IMPORTANT: Use the production URL explicitly
+      const baseUrl = 'https://investinpuglia.eu'
+      const redirectUrl = `${baseUrl}/auth/callback`
+      
+      console.log('Starting OAuth with redirect to:', redirectUrl)
       
       const { data, error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
-          redirectTo: `${window.location.origin}/auth/callback?next=/buyer-profile`,
-          queryParams: {
-            access_type: 'offline',
-            prompt: 'consent',
-          }
+          redirectTo: redirectUrl,
+          skipBrowserRedirect: false
         },
       })
       
       if (error) {
-        console.error('Error during Google login:', error)
-        alert(`Failed to sign in with Google: ${error.message}`)
-      } else {
-        console.log('OAuth initiated successfully', data)
+        console.error('OAuth error:', error)
+        alert(`Authentication error: ${error.message}`)
       }
     } catch (err) {
       console.error('Unexpected error:', err)
@@ -135,11 +112,11 @@ const GoogleLoginButton = () => {
 const BuyerProfilePage = () => {
   // Create Supabase client
   const supabase = createClient()
+  const router = useRouter()
   
   // Auth state
   const [user, setUser] = useState<User | null>(null)
   const [authLoading, setAuthLoading] = useState(true)
-  const [authError, setAuthError] = useState<string | null>(null)
   
   // Form state
   const [currentStep, setCurrentStep] = useState(1)
@@ -208,19 +185,24 @@ const BuyerProfilePage = () => {
     howHeard: ''
   })
 
-  // Initialize EmailJS and check auth
+  // Initialize and check auth
   useEffect(() => {
     // Initialize EmailJS
     emailjs.init('wKn1_xMCtZssdZzpb')
     
-    // Check authentication
-    checkUser()
+    // Check for hash fragments (implicit flow)
+    if (typeof window !== 'undefined' && window.location.hash) {
+      console.log('Hash fragment detected, handling implicit flow...')
+      handleImplicitFlow()
+    } else {
+      checkUser()
+    }
     
     // Set up auth state listener
     const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
-      console.log('Auth state changed:', event, session?.user?.email)
+      console.log('Auth state changed:', event)
       
-      if (event === 'SIGNED_IN' && session) {
+      if (session?.user) {
         setUser(session.user)
         setFormData(prev => ({ ...prev, email: session.user.email || '' }))
         setAuthLoading(false)
@@ -231,43 +213,42 @@ const BuyerProfilePage = () => {
     })
     
     return () => subscription.unsubscribe()
-  }, [supabase])
+  }, [])
+
+  async function handleImplicitFlow() {
+    try {
+      const { data, error } = await supabase.auth.getSession()
+      
+      if (error) {
+        console.error('Error handling implicit flow:', error)
+      }
+      
+      if (data?.session) {
+        console.log('Session found from implicit flow')
+        setUser(data.session.user)
+        setFormData(prev => ({ ...prev, email: data.session.user.email || '' }))
+        
+        // Clean up the URL
+        window.history.replaceState({}, document.title, window.location.pathname)
+      }
+    } catch (err) {
+      console.error('Error in implicit flow:', err)
+    } finally {
+      setAuthLoading(false)
+    }
+  }
 
   async function checkUser() {
     try {
-      console.log('Checking user session...')
-      
-      // First try to get the session
-      const { data: { session }, error: sessionError } = await supabase.auth.getSession()
-      
-      if (sessionError) {
-        console.error('Session error:', sessionError)
-        setAuthError(sessionError.message)
-      }
+      const { data: { session } } = await supabase.auth.getSession()
       
       if (session?.user) {
-        console.log('Session found:', session.user.email)
+        console.log('Existing session found')
         setUser(session.user)
         setFormData(prev => ({ ...prev, email: session.user.email || '' }))
-      } else {
-        console.log('No session found')
-        
-        // Try to get user as backup
-        const { data: { user }, error: userError } = await supabase.auth.getUser()
-        
-        if (userError) {
-          console.error('User error:', userError)
-        }
-        
-        if (user) {
-          console.log('User found:', user.email)
-          setUser(user)
-          setFormData(prev => ({ ...prev, email: user.email || '' }))
-        }
       }
     } catch (error) {
       console.error('Error checking user:', error)
-      setAuthError('Failed to check authentication status')
     } finally {
       setAuthLoading(false)
     }
@@ -277,13 +258,7 @@ const BuyerProfilePage = () => {
     await supabase.auth.signOut()
     setUser(null)
     setFormData(prev => ({ ...prev, email: '' }))
-    // Force page refresh to clear any cached state
-    window.location.reload()
-  }
-
-  // Manual refresh button for debugging
-  const handleRefresh = () => {
-    window.location.reload()
+    router.refresh()
   }
 
   // Show login if not authenticated
@@ -295,27 +270,13 @@ const BuyerProfilePage = () => {
             <h1 className="text-3xl font-bold text-gray-900 mb-2">Sign In Required</h1>
             <p className="text-gray-600">Please sign in to create your buyer profile</p>
           </div>
-          
-          {authError && (
-            <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg flex items-center gap-2">
-              <AlertCircle className="w-5 h-5 text-red-600" />
-              <p className="text-sm text-red-700">{authError}</p>
-            </div>
-          )}
-          
           <GoogleLoginButton />
           
-          <div className="mt-4 text-center">
-            <button
-              onClick={handleRefresh}
-              className="text-sm text-blue-600 hover:underline"
-            >
-              Having issues? Click here to refresh
-            </button>
+          <div className="mt-6 text-center text-sm text-gray-500">
+            <p>Having trouble signing in?</p>
+            <p>Make sure cookies are enabled in your browser.</p>
           </div>
         </div>
-        
-        <DebugInfo user={user} authLoading={authLoading} />
       </div>
     )
   }
@@ -325,7 +286,7 @@ const BuyerProfilePage = () => {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-          <p className="mt-4 text-gray-600">Checking authentication...</p>
+          <p className="mt-4 text-gray-600">Loading...</p>
         </div>
       </div>
     )
@@ -784,8 +745,6 @@ Monthly Budget: ${formData.monthlyBudget || 'Not specified'}`
           </div>
         </div>
       )}
-      
-      <DebugInfo user={user} authLoading={authLoading} />
     </div>
   )
 }
