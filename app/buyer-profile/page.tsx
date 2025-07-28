@@ -2,7 +2,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import { ChevronRight, ChevronLeft, CheckCircle, Send, Download, X } from 'lucide-react'
+import { ChevronRight, ChevronLeft, CheckCircle, Send, Download, X, AlertCircle } from 'lucide-react'
 import { createClient } from '@/lib/supabase'
 import emailjs from '@emailjs/browser'
 
@@ -56,32 +56,70 @@ interface FormData {
   howHeard: string
 }
 
+// Debug Component
+const DebugInfo = ({ user, authLoading }: { user: User | null, authLoading: boolean }) => {
+  const [session, setSession] = useState<any>(null)
+  const supabase = createClient()
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data }) => {
+      setSession(data.session)
+    })
+  }, [supabase])
+
+  if (process.env.NODE_ENV === 'production') return null
+
+  return (
+    <div className="fixed bottom-4 right-4 bg-black/80 text-white p-4 rounded-lg text-xs max-w-sm">
+      <h3 className="font-bold mb-2">Debug Info:</h3>
+      <p>Auth Loading: {authLoading ? 'Yes' : 'No'}</p>
+      <p>User: {user ? user.email : 'null'}</p>
+      <p>Session: {session ? 'Active' : 'null'}</p>
+      <p>Session Email: {session?.user?.email || 'none'}</p>
+    </div>
+  )
+}
+
 // Google Login Button Component
 const GoogleLoginButton = () => {
   const supabase = createClient()
+  const [isLoading, setIsLoading] = useState(false)
   
   const handleGoogleLogin = async () => {
     try {
-      const { error } = await supabase.auth.signInWithOAuth({
+      setIsLoading(true)
+      console.log('Starting Google OAuth...')
+      
+      const { data, error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
-          redirectTo: `${window.location.origin}/auth/callback`,
+          redirectTo: `${window.location.origin}/auth/callback?next=/buyer-profile`,
+          queryParams: {
+            access_type: 'offline',
+            prompt: 'consent',
+          }
         },
       })
+      
       if (error) {
         console.error('Error during Google login:', error)
-        alert('Failed to sign in with Google. Please try again.')
+        alert(`Failed to sign in with Google: ${error.message}`)
+      } else {
+        console.log('OAuth initiated successfully', data)
       }
     } catch (err) {
       console.error('Unexpected error:', err)
       alert('An unexpected error occurred. Please try again.')
+    } finally {
+      setIsLoading(false)
     }
   }
 
   return (
     <button
       onClick={handleGoogleLogin}
-      className="w-full flex items-center justify-center gap-3 px-4 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+      disabled={isLoading}
+      className="w-full flex items-center justify-center gap-3 px-4 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors disabled:opacity-50"
     >
       <svg className="w-5 h-5" viewBox="0 0 24 24">
         <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
@@ -89,7 +127,7 @@ const GoogleLoginButton = () => {
         <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
         <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
       </svg>
-      Continue with Google
+      {isLoading ? 'Signing in...' : 'Continue with Google'}
     </button>
   )
 }
@@ -101,6 +139,7 @@ const BuyerProfilePage = () => {
   // Auth state
   const [user, setUser] = useState<User | null>(null)
   const [authLoading, setAuthLoading] = useState(true)
+  const [authError, setAuthError] = useState<string | null>(null)
   
   // Form state
   const [currentStep, setCurrentStep] = useState(1)
@@ -178,10 +217,16 @@ const BuyerProfilePage = () => {
     checkUser()
     
     // Set up auth state listener
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      setUser(session?.user || null)
-      if (session?.user) {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      console.log('Auth state changed:', event, session?.user?.email)
+      
+      if (event === 'SIGNED_IN' && session) {
+        setUser(session.user)
         setFormData(prev => ({ ...prev, email: session.user.email || '' }))
+        setAuthLoading(false)
+      } else if (event === 'SIGNED_OUT') {
+        setUser(null)
+        setFormData(prev => ({ ...prev, email: '' }))
       }
     })
     
@@ -190,13 +235,39 @@ const BuyerProfilePage = () => {
 
   async function checkUser() {
     try {
-      const { data: { user } } = await supabase.auth.getUser()
-      setUser(user)
-      if (user) {
-        setFormData(prev => ({ ...prev, email: user.email || '' }))
+      console.log('Checking user session...')
+      
+      // First try to get the session
+      const { data: { session }, error: sessionError } = await supabase.auth.getSession()
+      
+      if (sessionError) {
+        console.error('Session error:', sessionError)
+        setAuthError(sessionError.message)
+      }
+      
+      if (session?.user) {
+        console.log('Session found:', session.user.email)
+        setUser(session.user)
+        setFormData(prev => ({ ...prev, email: session.user.email || '' }))
+      } else {
+        console.log('No session found')
+        
+        // Try to get user as backup
+        const { data: { user }, error: userError } = await supabase.auth.getUser()
+        
+        if (userError) {
+          console.error('User error:', userError)
+        }
+        
+        if (user) {
+          console.log('User found:', user.email)
+          setUser(user)
+          setFormData(prev => ({ ...prev, email: user.email || '' }))
+        }
       }
     } catch (error) {
       console.error('Error checking user:', error)
+      setAuthError('Failed to check authentication status')
     } finally {
       setAuthLoading(false)
     }
@@ -206,6 +277,13 @@ const BuyerProfilePage = () => {
     await supabase.auth.signOut()
     setUser(null)
     setFormData(prev => ({ ...prev, email: '' }))
+    // Force page refresh to clear any cached state
+    window.location.reload()
+  }
+
+  // Manual refresh button for debugging
+  const handleRefresh = () => {
+    window.location.reload()
   }
 
   // Show login if not authenticated
@@ -217,8 +295,27 @@ const BuyerProfilePage = () => {
             <h1 className="text-3xl font-bold text-gray-900 mb-2">Sign In Required</h1>
             <p className="text-gray-600">Please sign in to create your buyer profile</p>
           </div>
+          
+          {authError && (
+            <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg flex items-center gap-2">
+              <AlertCircle className="w-5 h-5 text-red-600" />
+              <p className="text-sm text-red-700">{authError}</p>
+            </div>
+          )}
+          
           <GoogleLoginButton />
+          
+          <div className="mt-4 text-center">
+            <button
+              onClick={handleRefresh}
+              className="text-sm text-blue-600 hover:underline"
+            >
+              Having issues? Click here to refresh
+            </button>
+          </div>
         </div>
+        
+        <DebugInfo user={user} authLoading={authLoading} />
       </div>
     )
   }
@@ -226,7 +323,10 @@ const BuyerProfilePage = () => {
   if (authLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+          <p className="mt-4 text-gray-600">Checking authentication...</p>
+        </div>
       </div>
     )
   }
@@ -684,6 +784,8 @@ Monthly Budget: ${formData.monthlyBudget || 'Not specified'}`
           </div>
         </div>
       )}
+      
+      <DebugInfo user={user} authLoading={authLoading} />
     </div>
   )
 }
