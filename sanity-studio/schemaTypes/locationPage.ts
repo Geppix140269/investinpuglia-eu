@@ -155,7 +155,8 @@ export const locationPageType = {
       title: 'city',
       subtitle: 'province',
     },
-    prepare({title, subtitle}: {title: string, subtitle: string}) {
+    prepare(selection: any) {
+  const { title, subtitle } = selection
       return {
         title: `${title}, ${subtitle}`,
         subtitle: 'Location Page',
