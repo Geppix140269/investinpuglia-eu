@@ -1,0 +1,41 @@
+# .github/workflows/import-industries.yml
+name: Import Industry Pages to Sanity
+
+on:
+  workflow_dispatch: # Allows manual triggering from GitHub UI
+  push:
+    paths:
+      - 'scripts/import-puglia-industries.js'
+
+jobs:
+  import-industries:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      
+      - name: Install dependencies
+        run: |
+          npm install @sanity/client
+          npm install openai
+          npm install dotenv
+      
+      - name: Run Industry Import Script
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          SANITY_API_WRITE_TOKEN: ${{ secrets.SANITY_API_WRITE_TOKEN }}
+          SANITY_PROJECT_ID: 'trdbxmjo'
+          SANITY_DATASET: 'production'
+        run: |
+          echo "Starting industry import..."
+          node scripts/import-puglia-industries.js
+          echo "Import completed!"
+      
+      - name: Verify Import
+        run: echo "✅ Industry pages have been imported to Sanity"
