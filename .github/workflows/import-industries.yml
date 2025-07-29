@@ -2,10 +2,7 @@
 name: Import Industry Pages to Sanity
 
 on:
-  workflow_dispatch: # Allows manual triggering from GitHub UI
-  push:
-    paths:
-      - 'scripts/import-puglia-industries.js'
+  workflow_dispatch: # Manual trigger button
 
 jobs:
   import-industries:
@@ -36,6 +33,3 @@ jobs:
           echo "Starting industry import..."
           node scripts/import-puglia-industries.js
           echo "Import completed!"
-      
-      - name: Verify Import
-        run: echo "✅ Industry pages have been imported to Sanity"
