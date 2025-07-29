@@ -1,10 +1,18 @@
 // app/industries/page.tsx
-// Simple version without i18n complications - single language (English)
+// Fixed version using createClient directly
 
 import { Metadata } from 'next'
 import Link from 'next/link'
-import { sanityFetch } from '@/sanity/lib/client'
+import { createClient } from '@sanity/client'
 import { groq } from 'next-sanity'
+
+// Create Sanity client
+const client = createClient({
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'trdbxmjo',
+  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
+  apiVersion: '2024-01-01',
+  useCdn: true,
+})
 
 // Industry type
 type Industry = {
@@ -39,9 +47,7 @@ export const metadata: Metadata = {
 }
 
 export default async function IndustriesPage() {
-  const industries = await sanityFetch<Industry[]>({
-    query: industriesQuery,
-  })
+  const industries = await client.fetch<Industry[]>(industriesQuery)
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
