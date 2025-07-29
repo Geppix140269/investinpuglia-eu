@@ -1,10 +1,21 @@
+// ========================================
 // app/industries/[slug]/page.tsx
+// Fixed version using createClient directly
+// ========================================
 
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import { sanityFetch } from '@/sanity/lib/client'
+import { createClient } from '@sanity/client'
 import { groq } from 'next-sanity'
+
+// Create Sanity client
+const client = createClient({
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'trdbxmjo',
+  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
+  apiVersion: '2024-01-01',
+  useCdn: true,
+})
 
 type Props = {
   params: { slug: string }
@@ -60,10 +71,7 @@ const industryQuery = groq`*[_type == "industryPage" && slug.current == $slug][0
 }`
 
 export async function generateMetadata({ params: { slug } }: Props): Promise<Metadata> {
-  const industry = await sanityFetch<Industry>({
-    query: industryQuery,
-    params: { slug },
-  })
+  const industry = await client.fetch<Industry>(industryQuery, { slug })
 
   if (!industry) {
     return { title: 'Industry Not Found' }
@@ -76,9 +84,9 @@ export async function generateMetadata({ params: { slug } }: Props): Promise<Met
 }
 
 export async function generateStaticParams() {
-  const industries = await sanityFetch<{ slug: { current: string } }[]>({
-    query: groq`*[_type == "industryPage"] { slug }`,
-  })
+  const industries = await client.fetch<{ slug: { current: string } }[]>(
+    groq`*[_type == "industryPage"] { slug }`
+  )
 
   return industries.map((industry) => ({
     slug: industry.slug.current,
@@ -86,10 +94,7 @@ export async function generateStaticParams() {
 }
 
 export default async function IndustryPage({ params: { slug } }: Props) {
-  const industry = await sanityFetch<Industry>({
-    query: industryQuery,
-    params: { slug },
-  })
+  const industry = await client.fetch<Industry>(industryQuery, { slug })
 
   if (!industry) {
     notFound()
@@ -131,7 +136,7 @@ export default async function IndustryPage({ params: { slug } }: Props) {
         </div>
       </section>
 
-      {/* Content */}
+      {/* Content sections remain the same... */}
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-4xl mx-auto space-y-12">
           
