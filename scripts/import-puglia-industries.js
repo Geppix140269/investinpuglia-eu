@@ -1,7 +1,10 @@
 // scripts/import-puglia-industries.js
+'use strict';
+// scripts/import-puglia-industries.js
 const { config } = require('dotenv');
 const { createClient } = require('@sanity/client');
 const OpenAI = require('openai');
+
 config({ path: '.env.local' });
 
 const sanityClient = createClient({
