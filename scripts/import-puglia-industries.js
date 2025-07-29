@@ -1,8 +1,7 @@
 // scripts/import-puglia-industries.js
-import { config } from 'dotenv';
-import { createClient } from '@sanity/client';
-import OpenAI from 'openai';
-
+const { config } = require('dotenv');
+const { createClient } = require('@sanity/client');
+const OpenAI = require('openai');
 config({ path: '.env.local' });
 
 const sanityClient = createClient({
