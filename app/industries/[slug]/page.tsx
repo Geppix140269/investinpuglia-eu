@@ -9,6 +9,31 @@ import Link from 'next/link'
 import { createClient } from '@sanity/client'
 import { groq } from 'next-sanity'
 
+// At the top of app/industries/[slug]/page.tsx
+// Add this after your imports:
+
+export const metadata: Metadata = {
+  title: 'Industry Investment Opportunities in Puglia | EU Grants Available',
+  description: 'Explore investment opportunities in Puglia\'s key industries. Access EU grants up to 70%, market insights, and growth opportunities in aerospace, tourism, renewable energy, and more.',
+  openGraph: {
+    title: 'Industry Investment Opportunities in Puglia',
+    description: 'Discover growing industries in Puglia with EU grants up to 70%. From tourism to technology, find your investment opportunity.',
+    images: [{
+      url: 'https://investinpuglia.eu/Logo_InvestInPuglia_Morph.png',
+      width: 1200,
+      height: 630,
+      alt: 'Invest in Puglia'
+    }],
+    type: 'website',
+    siteName: 'Invest in Puglia',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Industry Investment Opportunities in Puglia',
+    description: 'EU grants up to 70% for key industries',
+    images: ['https://investinpuglia.eu/Logo_InvestInPuglia_Morph.png'],
+  }
+}
 // Create Sanity client
 const client = createClient({
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'trdbxmjo',
