@@ -1,8 +1,7 @@
-# .github/workflows/import-industries.yml
 name: Import Industry Pages to Sanity
 
 on:
-  workflow_dispatch: # Manual trigger button
+  workflow_dispatch:
 
 jobs:
   import-industries:
@@ -17,12 +16,6 @@ jobs:
         with:
           node-version: '18'
       
-      - name: Install dependencies
-        run: |
-          npm install @sanity/client
-          npm install openai
-          npm install dotenv
-      
       - name: Run Industry Import Script
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
@@ -31,5 +24,5 @@ jobs:
           SANITY_DATASET: 'production'
         run: |
           echo "Starting industry import..."
-          node scripts/import-puglia-industries.js
+          node scripts/import-industries-to-sanity.js
           echo "Import completed!"
