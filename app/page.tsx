@@ -11,13 +11,25 @@ import ExitIntentPopup from '@/components/ExitIntentPopup'
 export default function HomePage() {
   const [videoLoaded, setVideoLoaded] = useState(false)
 
+  // Auto-open Trullo after 2 seconds
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      const trulloButton = document.querySelector('button[aria-label="Open chat"]') as HTMLButtonElement
+      if (trulloButton) {
+        trulloButton.click()
+      }
+    }, 2000)
+    
+    return () => clearTimeout(timer)
+  }, [])
+
   return (
     <>
       {/* Exit Intent Popup */}
       {/* Only show exit intent on desktop */}
-<div className="hidden md:block">
-  <ExitIntentPopup />
-</div>
+      <div className="hidden md:block">
+        <ExitIntentPopup />
+      </div>
 
       {/* Hero Section with Video + Glass Morphism */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -63,8 +75,8 @@ export default function HomePage() {
         
         {/* Content with Glass Morphism */}
         <div className="relative z-10 max-w-7xl mx-auto px-5 text-center">
-          {/* Glass Badge */}
-          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 text-white px-6 py-3 rounded-full text-sm font-semibold mb-8 animate-fadeIn shadow-xl">
+          {/* Glass Badge - Hidden on mobile */}
+          <div className="hidden md:inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 text-white px-6 py-3 rounded-full text-sm font-semibold mb-8 animate-fadeIn shadow-xl">
             <span className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></span>
             TRUSTED ADVISORY • VERIFIED LOCAL EXPERTS • PUGLIA
           </div>
@@ -89,8 +101,8 @@ export default function HomePage() {
             </div>
           </div>
           
-          {/* Glass Benefits Cards */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12 animate-fadeIn animation-delay-300">
+          {/* Glass Benefits Cards - Hidden on mobile */}
+          <div className="hidden md:grid grid-cols-2 md:grid-cols-4 gap-4 mb-12 animate-fadeIn animation-delay-300">
             <div className="bg-white/10 backdrop-blur-md border border-white/20 px-4 py-3 rounded-2xl text-white font-medium text-sm hover:bg-white/20 transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1">
               <Icon name="Check" size={20} className="inline-block mr-2" />
               Verified local professionals
@@ -128,8 +140,8 @@ export default function HomePage() {
             />
           </div>
           
-          {/* Glass Contact Card */}
-          <div className="mt-16 animate-fadeIn animation-delay-500">
+          {/* Glass Contact Card - Hidden on mobile */}
+          <div className="mt-16 animate-fadeIn animation-delay-500 hidden md:block">
             <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-3xl p-6 inline-block shadow-xl">
               <p className="text-white font-medium text-lg mb-3">Avoid costly mistakes. Talk to trusted experts first.</p>
               <div className="flex flex-wrap justify-center items-center gap-6 text-white">
