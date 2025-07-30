@@ -71,7 +71,7 @@ export const metadata: Metadata = {
     siteName: 'Invest in Puglia - EU Property Grants & Investment',
     images: [
       {
-        url: '/images/puglia-property-investment.jpg',
+        url: '/images/og-image.png',
         width: 1200,
         height: 630,
         alt: 'Property Investment Opportunities in Puglia, Italy',
