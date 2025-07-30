@@ -14,7 +14,10 @@ export default function HomePage() {
   return (
     <>
       {/* Exit Intent Popup */}
-      <ExitIntentPopup />
+      {/* Only show exit intent on desktop */}
+<div className="hidden md:block">
+  <ExitIntentPopup />
+</div>
 
       {/* Hero Section with Video + Glass Morphism */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
