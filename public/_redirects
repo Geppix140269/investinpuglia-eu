@@ -1,0 +1,7 @@
+# public/_redirects
+https://inpuglia.eu/* https://investinpuglia.eu/:splat 301!
+https://www.inpuglia.eu/* https://investinpuglia.eu/:splat 301!
+https://in-puglia.com/* https://investinpuglia.eu/:splat 301!
+https://www.in-puglia.com/* https://investinpuglia.eu/:splat 301!
+https://investiscope.net/* https://investinpuglia.eu/:splat 301!
+https://www.investiscope.net/* https://investinpuglia.eu/:splat 301!
