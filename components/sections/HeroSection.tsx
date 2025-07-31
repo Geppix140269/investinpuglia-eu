@@ -17,7 +17,7 @@ export default function HeroSection() {
         <div className="inline-flex items-center gap-2 text-gray-500 text-sm font-light mb-12">
           <span>Established 2024</span>
           <span className="mx-2">•</span>
-          <span>Bari, Italy</span>
+          <span>Puglia, Italy</span>
         </div>
 
         {/* Main Title - Clean and Professional */}
