@@ -67,15 +67,6 @@ export default function HeroSection() {
             <span className="font-medium">Verified Local Experts</span>
           </div>
         </div>
-        
-        {/* Optional: Add logos of institutions */}
-        <div className="mt-16 pt-8 border-t border-gray-100">
-          <p className="text-sm text-gray-500 mb-4">Approved by</p>
-          <div className="flex flex-wrap justify-center items-center gap-8 opacity-60 grayscale">
-            <img src="/LOGO-REGIONE-PUGLIA-PNG.webp" alt="Regione Puglia" className="h-12 object-contain" />
-            <img src="/EN_co_fundedvertical_RGB_POS.png" alt="EU Funded" className="h-12 object-contain" />
-          </div>
-        </div>
       </div>
       
       {/* Subtle pattern overlay for texture */}
