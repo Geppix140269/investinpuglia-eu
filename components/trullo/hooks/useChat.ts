@@ -1,4 +1,4 @@
-﻿// PATH: components/trullo/hooks/useChat.ts
+// PATH: components/trullo/hooks/useChat.ts
 import { useState, useEffect, useCallback } from 'react';
 import { Message, Language, AuthState } from '../types';
 import { translations } from '../constants/translations';
@@ -7,6 +7,19 @@ import { authMessages } from '../constants/authMessages';
 import { authPrompts, checkIfClaimsToBeGiuseppe, verifyGiuseppePassword, getWrongPasswordResponse, isPasswordAttempt } from '../utils/authentication';
 import { sendChatMessage, startConversation, logMessage, endConversation } from '../utils/api';
 import { createClient } from '@supabase/supabase-js';
+
+// Extend Window interface for our temporary state
+declare global {
+  interface Window {
+    trulloRestoredState?: {
+      messages: Message[];
+      sessionId: string;
+      conversationId: string;
+      language: Language;
+      timestamp: number;
+    };
+  }
+}
 
 // Initialize Supabase client
 const supabase = createClient(
@@ -25,17 +38,22 @@ interface UseChatReturn {
 }
 
 export function useChat(isOpen: boolean, language: Language): UseChatReturn {
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      id: '1',
-      role: 'assistant',
-      content: translations[language].greeting,
-      timestamp: new Date()
-    }
-  ]);
+  // Check for restored state
+  const restoredState = typeof window !== 'undefined' ? window.trulloRestoredState : null;
+  
+  const [messages, setMessages] = useState<Message[]>(
+    restoredState?.messages || [
+      {
+        id: '1',
+        role: 'assistant',
+        content: translations[language].greeting,
+        timestamp: new Date()
+      }
+    ]
+  );
   const [isTyping, setIsTyping] = useState(false);
-  const [sessionId, setSessionId] = useState<string>('');
-  const [conversationId, setConversationId] = useState<string>('');
+  const [sessionId, setSessionId] = useState<string>(restoredState?.sessionId || '');
+  const [conversationId, setConversationId] = useState<string>(restoredState?.conversationId || '');
   const [authState, setAuthState] = useState<AuthState>({
     isAuthenticated: false,
     isGiuseppe: false,
@@ -46,6 +64,13 @@ export function useChat(isOpen: boolean, language: Language): UseChatReturn {
     userId: undefined
   });
 
+  // Clean up restored state after using it
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.trulloRestoredState) {
+      delete window.trulloRestoredState;
+    }
+  }, []);
+
   // Check authentication status on mount
   useEffect(() => {
     const checkAuth = async () => {
@@ -55,8 +80,21 @@ export function useChat(isOpen: boolean, language: Language): UseChatReturn {
           ...prev,
           isAuthenticated: true,
           userEmail: user.email,
-          userId: user.id
+          userId: user.id,
+          requiresAuth: false // Important: clear the auth requirement
         }));
+        
+        // If messages were at the auth limit, add a welcome back message
+        const nonGreetingMessages = messages.filter(m => m.id !== '1');
+        if (nonGreetingMessages.length >= 2) {
+          const welcomeBackMessage: Message = {
+            id: Date.now().toString(),
+            role: 'assistant',
+            content: authMessages[language].welcomeBack || `Welcome back ${user.email}! Let's continue our conversation about joining the professional network.`,
+            timestamp: new Date()
+          };
+          setMessages(prev => [...prev, welcomeBackMessage]);
+        }
       }
     };
     checkAuth();
@@ -68,7 +106,8 @@ export function useChat(isOpen: boolean, language: Language): UseChatReturn {
           ...prev,
           isAuthenticated: true,
           userEmail: session.user.email,
-          userId: session.user.id
+          userId: session.user.id,
+          requiresAuth: false
         }));
       } else {
         setAuthState(prev => ({
@@ -83,7 +122,7 @@ export function useChat(isOpen: boolean, language: Language): UseChatReturn {
     return () => {
       authListener?.subscription.unsubscribe();
     };
-  }, []);
+  }, [language, messages]);
 
   // Initialize session when chat opens
   useEffect(() => {
@@ -114,8 +153,11 @@ export function useChat(isOpen: boolean, language: Language): UseChatReturn {
   const sendMessage = useCallback(async (input: string) => {
     if (!input.trim() || isTyping) return;
 
+    // Count actual messages (not including greeting)
+    const userMessageCount = messages.filter(m => m.role === 'user').length;
+
     // Check if user needs to authenticate (after 2 messages)
-    if (!authState.isAuthenticated && authState.messageCount >= 2) {
+    if (!authState.isAuthenticated && userMessageCount >= 2) {
       const authRequiredMessage: Message = {
         id: Date.now().toString(),
         role: 'assistant',
