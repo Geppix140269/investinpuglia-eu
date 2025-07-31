@@ -53,40 +53,72 @@ export default function OurCommitment() {
           </div>
         </div>
         
-        {/* Founder message - builds trust through transparency */}
-        <div className="mt-16 max-w-4xl mx-auto">
-          <div className="bg-white/10 backdrop-blur-lg rounded-3xl p-8 md:p-12 border border-white/20 text-center">
-            <img 
-              src="/Giuseppe Funaro 062025.jpg" 
-              alt="Giuseppe Funaro"
-              className="w-24 h-24 rounded-full mx-auto mb-6 border-4 border-white/20"
-            />
-            <p className="text-lg md:text-xl text-white/90 italic mb-6">
-              "Having worked internationally for years, I understand the challenges 
-              of investing abroad. That's why I founded InvestInPuglia - to be the 
-              trusted local partner I wish I'd had when making my own investments."
-            </p>
-            <p className="font-semibold text-lg">Giuseppe Funaro</p>
-            <p className="text-white/70">Founder & CEO</p>
-          </div>
-        </div>
-        
         {/* Professional Network - Real credibility */}
-        <div className="mt-12 text-center">
-          <p className="text-sm text-white/70 mb-4">Working in partnership with:</p>
-          <div className="flex flex-wrap justify-center gap-6 md:gap-12">
-            <div className="text-white/60">
-              <p className="font-semibold">Studio Notarile</p>
-              <p className="text-sm">Legal Services</p>
+        <div className="mt-12">
+          <h3 className="text-2xl font-bold text-center mb-8">Our Trusted Partners</h3>
+          
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {/* Partner 1 - Ing. Russo */}
+            <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20 flex items-center gap-6">
+              <img 
+                src="/russo-photo.jpg" 
+                alt="Ing. Arch. Cataldo Russo"
+                className="w-20 h-20 rounded-full object-cover border-2 border-white/20"
+              />
+              <div className="flex-1">
+                <h4 className="font-bold text-lg">Ing. Arch. Cataldo Russo</h4>
+                <p className="text-white/80 text-sm">Engineering & Architecture</p>
+                <p className="text-white/60 text-xs mt-1">Property Development Expert</p>
+              </div>
             </div>
-            <div className="text-white/60">
-              <p className="font-semibold">Ing. Russo & Associates</p>
-              <p className="text-sm">Engineering</p>
+            
+            {/* Partner 2 - Dott. Quarta */}
+            <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20 flex items-center gap-6">
+              <img 
+                src="/quarta-photo.jpg" 
+                alt="Dott. Antonio Quarta"
+                className="w-20 h-20 rounded-full object-cover border-2 border-white/20"
+              />
+              <div className="flex-1">
+                <h4 className="font-bold text-lg">Dott. Antonio Quarta</h4>
+                <p className="text-white/80 text-sm">Studio Quarta - Chartered Accountant</p>
+                <p className="text-white/60 text-xs mt-1">Subsidized Finance Specialist</p>
+              </div>
             </div>
-            <div className="text-white/60">
-              <p className="font-semibold">Studio Quarta</p>
-              <p className="text-sm">EU Funding</p>
+          </div>
+          
+          {/* Additional Services */}
+          <div className="mt-8 bg-white/5 rounded-2xl p-8 border border-white/10">
+            <h4 className="text-lg font-bold mb-4 text-center">Complete Administrative Support</h4>
+            <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 text-sm">
+              <div className="flex items-start gap-2">
+                <Icon name="Check" size={16} className="text-emerald-400 mt-0.5" />
+                <span className="text-white/80">Italian Fiscal Code Attribution</span>
+              </div>
+              <div className="flex items-start gap-2">
+                <Icon name="Check" size={16} className="text-emerald-400 mt-0.5" />
+                <span className="text-white/80">Bank Account Opening</span>
+              </div>
+              <div className="flex items-start gap-2">
+                <Icon name="Check" size={16} className="text-emerald-400 mt-0.5" />
+                <span className="text-white/80">Limited Company Formation</span>
+              </div>
+              <div className="flex items-start gap-2">
+                <Icon name="Check" size={16} className="text-emerald-400 mt-0.5" />
+                <span className="text-white/80">Power of Attorney Services</span>
+              </div>
+              <div className="flex items-start gap-2">
+                <Icon name="Check" size={16} className="text-emerald-400 mt-0.5" />
+                <span className="text-white/80">Legal Representation</span>
+              </div>
+              <div className="flex items-start gap-2">
+                <Icon name="Check" size={16} className="text-emerald-400 mt-0.5" />
+                <span className="text-white/80">Contract Negotiation</span>
+              </div>
             </div>
+            <p className="text-center text-white/60 text-sm mt-6">
+              Working with all major notary offices across Puglia
+            </p>
           </div>
         </div>
       </div>
