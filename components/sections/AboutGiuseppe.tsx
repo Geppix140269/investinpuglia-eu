@@ -25,7 +25,7 @@ export default function AboutGiuseppe() {
           <div className="relative">
             <div className="absolute inset-0 bg-gradient-to-br from-purple-600 to-emerald-600 rounded-3xl transform rotate-3"></div>
             <img 
-              src="/Giuseppe Funaro 062025.jpg" 
+              src="/Giuseppe Funaro 062025.png" 
               alt="Giuseppe Funaro - Property Investment Advisor Puglia" 
               className="relative rounded-3xl shadow-2xl w-full transform -rotate-3 hover:rotate-0 transition-transform duration-300"
             />

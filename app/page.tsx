@@ -9,7 +9,6 @@ import HeroSection from '@/components/sections/HeroSection'
 import GrantInstitutions from '@/components/sections/GrantInstitutions'
 import OpportunitySection from '@/components/sections/OpportunitySection'
 import HowItWorks from '@/components/sections/HowItWorks'
-import BuyerProfile from '@/components/sections/BuyerProfile'
 import AboutGiuseppe from '@/components/sections/AboutGiuseppe'
 import Services from '@/components/sections/Services'
 import SuccessStories from '@/components/sections/SuccessStories'
@@ -27,7 +26,6 @@ export default function HomePage() {
       <GrantInstitutions />
       <OpportunitySection />
       <HowItWorks />
-      <BuyerProfile />
       <AboutGiuseppe />
       <Services />
       <SuccessStories />

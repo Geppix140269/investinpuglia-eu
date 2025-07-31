@@ -85,12 +85,6 @@ export default function Navbar() {
                 <a href="https://investiscope-easy.netlify.app/" target="_blank" rel="noopener noreferrer" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 transition-colors">
                   Quick Calculator
                 </a>
-                <div className="px-4 py-2 text-xs font-semibold text-gray-500 uppercase tracking-wide border-b border-gray-100 mt-2">
-                  Analysis
-                </div>
-                <a href="/buyer-profile" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 transition-colors">
-                  Buyer Profile
-                </a>
               </div>
             </div>
 
@@ -159,12 +153,6 @@ export default function Navbar() {
                   </a>
                   <a href="https://investiscope-easy.netlify.app/" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-gray-900 transition-colors text-sm block py-1">
                     → Quick Calculator
-                  </a>
-                  <div className="text-xs font-semibold text-gray-500 uppercase tracking-wide py-1 mt-2">
-                    Analysis
-                  </div>
-                  <a href="/buyer-profile" className="text-gray-600 hover:text-gray-900 transition-colors text-sm block py-1">
-                    → Buyer Profile
                   </a>
                 </div>
               </div>

@@ -3179,20 +3179,20 @@ export async function GET() {
           `*[_type == "industry" && slug.current == $slug][0]`,
           { slug: industry.slug }
         )
-
         if (existing) {
           await sanityClient.patch(existing._id).set(sanityDoc).commit()
         } else {
           await sanityClient.create(sanityDoc)
         }
-
         successCount++
       } catch (error) {
         errorCount++
-        errors.push({ industry: industry.industry, error: error.message })
+        errors.push({ 
+          industry: industry.industry, 
+          error: error instanceof Error ? error.message : 'Unknown error' 
+        })
       }
     }
-
     return NextResponse.json({
       success: true,
       message: `Upload complete! Success: ${successCount}, Errors: ${errorCount}`,
@@ -3200,7 +3200,10 @@ export async function GET() {
     })
   } catch (error) {
     return NextResponse.json(
-      { success: false, error: error.message },
+      { 
+        success: false, 
+        error: error instanceof Error ? error.message : 'Unknown error' 
+      },
       { status: 500 }
     )
   }
