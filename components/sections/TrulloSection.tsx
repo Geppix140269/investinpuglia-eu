@@ -128,7 +128,7 @@ export default function TrulloSection() {
             <div className="text-sm text-white/70">Always Available</div>
           </div>
           <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 text-center border border-white/20">
-            <div className="text-3xl font-bold mb-2">< 3s</div>
+            <div className="text-3xl font-bold mb-2">&lt; 3s</div>
             <div className="text-sm text-white/70">Response Time</div>
           </div>
         </div>
