@@ -29,6 +29,7 @@ export default function HomePage() {
       <HowItWorks />
       <AboutGiuseppe />
       <Services />
+      <TrulloSection />
       <SuccessStories />
       <FAQ />
       <CTASection />
