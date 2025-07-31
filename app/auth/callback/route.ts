@@ -1,4 +1,4 @@
-// app/auth/callback/route.ts
+// PATH: app/auth/callback/route.ts
 import { createClient } from '@/lib/supabase'
 import { NextResponse } from 'next/server'
 import { type NextRequest } from 'next/server'
@@ -9,7 +9,8 @@ export async function GET(request: NextRequest) {
   const code = requestUrl.searchParams.get('code')
   const error = requestUrl.searchParams.get('error')
   const error_description = requestUrl.searchParams.get('error_description')
-  const next = requestUrl.searchParams.get('next') || '/buyer-profile'
+  // IMPORTANT: Default to home page, not buyer-profile
+  const next = requestUrl.searchParams.get('next') || '/'
 
   // Handle errors from OAuth provider
   if (error) {
@@ -38,9 +39,12 @@ export async function GET(request: NextRequest) {
         console.log('Session created successfully for:', data.session.user.email)
       }
 
-      // Successful authentication - redirect back to buyer profile
-      // Add a small delay to ensure session is properly set
-      const response = NextResponse.redirect(new URL(next, requestUrl.origin))
+      // Successful authentication - redirect back to the original page
+      // Add query parameter to signal chat should reopen
+      const redirectUrl = new URL(next, requestUrl.origin)
+      redirectUrl.searchParams.set('trullo_auth', 'success')
+      
+      const response = NextResponse.redirect(redirectUrl)
       
       // Set cookie manually to ensure it's properly set
       if (data?.session) {
@@ -61,7 +65,7 @@ export async function GET(request: NextRequest) {
     }
   }
 
-  // No code present, redirect to buyer profile with error
+  // No code present, redirect to home with error
   return NextResponse.redirect(
     new URL(`${next}?error=No authorization code received`, requestUrl.origin)
   )
