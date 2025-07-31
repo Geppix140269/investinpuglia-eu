@@ -10,7 +10,7 @@ import ContactForm from './ContactForm';
 import { sendEmailMessage, saveContactRequest } from './utils/api';
 
 export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true); // CHANGED: Open by default
   const [currentLang, setCurrentLang] = useState<Language>(language);
   const [showMessageForm, setShowMessageForm] = useState(false);
   
@@ -93,27 +93,13 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
 
   return (
     <>
-      {/* Chat Button */}
-      <button
-        onClick={() => {
-          if (isOpen) {
-            handleCloseChat();
-          } else {
-            setIsOpen(true);
-          }
-        }}
-        className={`fixed bottom-8 right-8 z-50 p-4 rounded-full shadow-xl transition-all duration-300 ${
-          isOpen 
-            ? 'bg-gray-600 hover:bg-gray-700' 
-            : 'bg-gradient-to-r from-purple-600 to-emerald-600 hover:shadow-2xl hover:scale-110'
-        }`}
-        aria-label={isOpen ? 'Close chat' : 'Open chat'}
-      >
-        {isOpen ? (
-          <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        ) : (
+      {/* Chat Button - Only show when closed */}
+      {!isOpen && (
+        <button
+          onClick={() => setIsOpen(true)}
+          className="fixed bottom-8 right-8 z-50 p-4 rounded-full shadow-xl transition-all duration-300 bg-gradient-to-r from-purple-600 to-emerald-600 hover:shadow-2xl hover:scale-110"
+          aria-label="Open chat"
+        >
           <div className="relative">
             <img 
               src="/Trullo.png" 
@@ -131,12 +117,12 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
             />
             <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
           </div>
-        )}
-      </button>
+        </button>
+      )}
 
-      {/* Chat Window */}
+      {/* Chat Window - Positioned at center-bottom */}
       {isOpen && (
-        <div className={`fixed bottom-28 right-8 z-50 w-96 h-[600px] bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-in slide-in-from-bottom-5 duration-300 ${currentLang === 'ar' ? 'rtl' : 'ltr'}`}>
+        <div className={`fixed bottom-4 left-1/2 transform -translate-x-1/2 z-50 w-96 h-[500px] bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-in slide-in-from-bottom-5 duration-300 ${currentLang === 'ar' ? 'rtl' : 'ltr'}`}>
           {/* Header */}
           <div className="bg-gradient-to-r from-purple-600 to-emerald-600 p-6 text-white">
             <div className="flex items-center justify-between">
@@ -164,20 +150,32 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
                   </p>
                 </div>
               </div>
-              {/* Language Selector */}
-              <select
-                value={currentLang}
-                onChange={(e) => setCurrentLang(e.target.value as Language)}
-                className="bg-white/20 text-white border border-white/30 rounded px-2 py-1 text-sm"
-              >
-                <option value="en">🇬🇧 EN</option>
-                <option value="it">🇮🇹 IT</option>
-                <option value="es">🇪🇸 ES</option>
-                <option value="fr">🇫🇷 FR</option>
-                <option value="de">🇩🇪 DE</option>
-                <option value="ar">🇸🇦 AR</option>
-                <option value="zh">🇨🇳 ZH</option>
-              </select>
+              <div className="flex items-center gap-2">
+                {/* Minimize Button */}
+                <button
+                  onClick={() => setIsOpen(false)}
+                  className="bg-white/20 hover:bg-white/30 rounded-full p-1 transition-colors"
+                  aria-label="Minimize chat"
+                >
+                  <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+                {/* Language Selector */}
+                <select
+                  value={currentLang}
+                  onChange={(e) => setCurrentLang(e.target.value as Language)}
+                  className="bg-white/20 text-white border border-white/30 rounded px-2 py-1 text-sm"
+                >
+                  <option value="en">🇬🇧 EN</option>
+                  <option value="it">🇮🇹 IT</option>
+                  <option value="es">🇪🇸 ES</option>
+                  <option value="fr">🇫🇷 FR</option>
+                  <option value="de">🇩🇪 DE</option>
+                  <option value="ar">🇸🇦 AR</option>
+                  <option value="zh">🇨🇳 ZH</option>
+                </select>
+              </div>
             </div>
           </div>
 
