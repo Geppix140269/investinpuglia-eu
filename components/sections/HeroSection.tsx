@@ -15,7 +15,7 @@ export default function HeroSection() {
       <div className="relative z-10 max-w-7xl mx-auto px-5 text-center">
         {/* Small established badge */}
         <div className="inline-flex items-center gap-2 text-gray-500 text-sm font-light mb-12">
-          <span>Established 2018</span>
+          <span>Established 2024</span>
           <span className="mx-2">•</span>
           <span>Bari, Italy</span>
         </div>
