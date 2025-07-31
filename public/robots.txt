@@ -1,3 +1,13 @@
+
+# robots.txt for investinpuglia.eu
 User-agent: *
 Allow: /
-Sitemap: https://investiscope.net/sitemap.xml
+
+# Sitemap location
+Sitemap: https://investinpuglia.eu/sitemap.xml
+
+# Allow search engines to crawl everything
+Disallow: /api/
+Disallow: /admin/
+Disallow: /_next/
+Disallow: /studio/
