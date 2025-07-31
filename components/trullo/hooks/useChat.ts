@@ -153,27 +153,8 @@ export function useChat(isOpen: boolean, language: Language): UseChatReturn {
   const sendMessage = useCallback(async (input: string) => {
     if (!input.trim() || isTyping) return;
 
-    // Count actual messages (not including greeting)
-    const userMessageCount = messages.filter(m => m.role === 'user').length;
-
-    // Check if user needs to authenticate (after 2 messages)
-    if (!authState.isAuthenticated && userMessageCount >= 2) {
-      const authRequiredMessage: Message = {
-        id: Date.now().toString(),
-        role: 'assistant',
-        content: authMessages[language].requireAuth,
-        timestamp: new Date(),
-        metadata: { requiresAuth: true }
-      };
-      setMessages(prev => [...prev, authRequiredMessage]);
-      setAuthState(prev => ({ ...prev, requiresAuth: true }));
-      
-      if (conversationId) {
-        logMessage(conversationId, 'assistant', authRequiredMessage.content);
-      }
-      
-      return;
-    }
+    // REMOVED: Authentication requirement
+    // Users can now chat unlimited without login
 
     const userMessage: Message = {
       id: Date.now().toString(),
@@ -184,11 +165,6 @@ export function useChat(isOpen: boolean, language: Language): UseChatReturn {
 
     setMessages(prev => [...prev, userMessage]);
     setIsTyping(true);
-
-    // Increment message count for unauthenticated users
-    if (!authState.isAuthenticated) {
-      setAuthState(prev => ({ ...prev, messageCount: prev.messageCount + 1 }));
-    }
 
     // Log user message
     if (conversationId) {
