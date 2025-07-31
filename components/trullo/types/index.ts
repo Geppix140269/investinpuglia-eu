@@ -1,10 +1,14 @@
-// PATH: components/trullo/types/index.ts
+﻿// PATH: components/trullo/types/index.ts
 
 export interface Message {
   id: string;
   role: 'user' | 'assistant';
   content: string;
   timestamp: Date;
+  metadata?: {
+    requiresAuth?: boolean;
+    actionType?: string;
+  };
 }
 
 export interface MessageForm {
@@ -24,4 +28,16 @@ export interface AuthState {
   isAuthenticated: boolean;
   isGiuseppe: boolean;
   awaitingPassword: boolean;
+  userEmail?: string;
+  userId?: string;
+  messageCount: number;
+  requiresAuth: boolean;
+}
+
+export interface UserProfile {
+  id: string;
+  email: string;
+  name?: string;
+  emailVerified: boolean;
+  createdAt: Date;
 }
