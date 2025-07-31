@@ -79,7 +79,7 @@ export default function Navbar() {
                 <a href="/calculator" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 transition-colors">
                   Grant Calculator
                 </a>
-                <a href="/classic" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 transition-colors">
+                <a href="https://classic.investinpuglia.eu" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 transition-colors">
                   Classic Calculator
                 </a>
                 <a href="https://investiscope-easy.netlify.app/" target="_blank" rel="noopener noreferrer" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 transition-colors">
@@ -148,7 +148,7 @@ export default function Navbar() {
                   <a href="/calculator" className="text-gray-600 hover:text-gray-900 transition-colors text-sm block py-1">
                     → Grant Calculator
                   </a>
-                  <a href="/classic" className="text-gray-600 hover:text-gray-900 transition-colors text-sm block py-1">
+                  <a href="https://classic.investinpuglia.eu" className="text-gray-600 hover:text-gray-900 transition-colors text-sm block py-1">
                     → Classic Calculator
                   </a>
                   <a href="https://investiscope-easy.netlify.app/" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-gray-900 transition-colors text-sm block py-1">
