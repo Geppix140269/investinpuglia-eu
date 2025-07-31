@@ -33,18 +33,48 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
   useEffect(() => {
     // Check if we're in the browser
     if (typeof window !== 'undefined') {
-      // Check if user has manually closed before
-      const hasUserClosed = localStorage.getItem('trullo-user-closed') === 'true';
-      const savedState = localStorage.getItem('trullo-chat-state');
-
-      if (!hasUserClosed) {
-        // Auto-open after 3 seconds if user hasn't manually closed before
-        setTimeout(() => {
-          setIsOpen(true);
-        }, 3000);
-      } else if (savedState === 'open') {
-        // Respect saved state if user has interacted before
+      // Check if returning from auth
+      const urlParams = new URLSearchParams(window.location.search);
+      const authSuccess = urlParams.get('trullo_auth') === 'success';
+      
+      if (authSuccess) {
+        // Remove the query parameter
+        urlParams.delete('trullo_auth');
+        const newUrl = window.location.pathname + (urlParams.toString() ? '?' + urlParams.toString() : '');
+        window.history.replaceState({}, '', newUrl);
+        
+        // Always open chat after successful auth
         setIsOpen(true);
+        
+        // Check for saved chat state
+        const savedChatState = localStorage.getItem('trullo-chat-state-temp');
+        if (savedChatState) {
+          try {
+            const chatState = JSON.parse(savedChatState);
+            // Check if state is recent (within 10 minutes)
+            if (Date.now() - chatState.timestamp < 600000) {
+              // We'll pass this to useChat hook
+              window.trulloRestoredState = chatState;
+            }
+            localStorage.removeItem('trullo-chat-state-temp');
+          } catch (e) {
+            console.error('Failed to restore chat state:', e);
+          }
+        }
+      } else {
+        // Normal flow - check if user has manually closed before
+        const hasUserClosed = localStorage.getItem('trullo-user-closed') === 'true';
+        const savedState = localStorage.getItem('trullo-chat-state');
+
+        if (!hasUserClosed) {
+          // Auto-open after 3 seconds if user hasn't manually closed before
+          setTimeout(() => {
+            setIsOpen(true);
+          }, 3000);
+        } else if (savedState === 'open') {
+          // Respect saved state if user has interacted before
+          setIsOpen(true);
+        }
       }
 
       // Show button with animation after a short delay
