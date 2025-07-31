@@ -108,7 +108,7 @@ export default function CalculatorPage() {
                   
                   {/* CTA section with gradient background */}
                   <div className="p-8 pt-0 relative z-10">
-                    <a href="/classic" className="block w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white text-center py-4 rounded-2xl font-bold text-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 shadow-lg">
+                    <a href="https://classic.investinpuglia.eu" className="block w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white text-center py-4 rounded-2xl font-bold text-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 shadow-lg">
                       Open Classic Calculator
                       <Icon name="ArrowRight" size={20} className="inline-block ml-2" />
                     </a>
