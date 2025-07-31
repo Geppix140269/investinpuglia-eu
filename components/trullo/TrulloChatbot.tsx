@@ -164,10 +164,25 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
 
   // Handle Google login
   const handleGoogleLogin = async () => {
+    // Save current chat state to localStorage before redirecting
+    if (typeof window !== 'undefined') {
+      const chatState = {
+        messages: messages,
+        sessionId: sessionId,
+        conversationId: conversationId,
+        language: currentLang,
+        timestamp: Date.now()
+      };
+      localStorage.setItem('trullo-chat-state-temp', JSON.stringify(chatState));
+    }
+
+    // Include current page URL as the redirect destination
+    const currentUrl = window.location.pathname + window.location.search;
+    
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {
-        redirectTo: `${window.location.origin}/auth/callback`,
+        redirectTo: `${window.location.origin}/auth/callback?next=${encodeURIComponent(currentUrl)}`,
       },
     });
 
