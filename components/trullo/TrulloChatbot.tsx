@@ -1,4 +1,4 @@
-﻿// PATH: components/trullo/TrulloChatbot.tsx
+// PATH: components/trullo/TrulloChatbot.tsx
 'use client'
 import React, { useState, useEffect, useRef } from 'react';
 import { Language, TrulloChatbotProps, Message } from './types';
@@ -27,6 +27,7 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
   // Swipe handling refs
   const chatRef = useRef<HTMLDivElement>(null);
   const touchStartY = useRef<number>(0);
+  const touchStartTime = useRef<number>(0);
 
   // Load user preference and auto-open on mount
   useEffect(() => {
@@ -72,46 +73,74 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // Handle swipe to close on mobile
+  // Handle swipe to close on mobile - FIXED VERSION
   useEffect(() => {
     if (!isMobile || !isOpen || !chatRef.current) return;
 
     const element = chatRef.current;
     let startY = 0;
     let currentY = 0;
+    let startedInHeader = false;
 
     const handleTouchStart = (e: TouchEvent) => {
-      startY = e.touches[0].clientY;
-      touchStartY.current = startY;
-      setIsDragging(true);
+      const touch = e.touches[0];
+      const target = e.target as HTMLElement;
+      
+      // Get the touch position relative to the chat window
+      const rect = element.getBoundingClientRect();
+      const relativeY = touch.clientY - rect.top;
+      
+      // Only start swipe if touch begins in the header area (top 80px)
+      // This includes the handle and header
+      if (relativeY <= 80) {
+        startedInHeader = true;
+        startY = touch.clientY;
+        touchStartY.current = startY;
+        touchStartTime.current = Date.now();
+        setIsDragging(true);
+      } else {
+        startedInHeader = false;
+      }
     };
 
     const handleTouchMove = (e: TouchEvent) => {
-      if (!isDragging) return;
+      if (!isDragging || !startedInHeader) return;
 
       currentY = e.touches[0].clientY;
       const deltaY = currentY - startY;
 
       // Only allow downward swipe
       if (deltaY > 0) {
-        setDragOffset(deltaY);
+        // Apply some resistance to make it feel more natural
+        const resistance = 0.8;
+        setDragOffset(deltaY * resistance);
       }
     };
 
     const handleTouchEnd = () => {
+      if (!startedInHeader) {
+        setIsDragging(false);
+        return;
+      }
+
       setIsDragging(false);
 
-      // Close if swiped down more than 100px
-      if (dragOffset > 100) {
+      // Calculate swipe velocity
+      const swipeDuration = Date.now() - touchStartTime.current;
+      const swipeVelocity = dragOffset / swipeDuration;
+
+      // Close if swiped down more than 150px OR if it was a fast downward swipe
+      if (dragOffset > 150 || (dragOffset > 50 && swipeVelocity > 0.5)) {
         handleUserClose();
       }
 
       setDragOffset(0);
+      startedInHeader = false;
     };
 
-    element.addEventListener('touchstart', handleTouchStart);
-    element.addEventListener('touchmove', handleTouchMove);
-    element.addEventListener('touchend', handleTouchEnd);
+    element.addEventListener('touchstart', handleTouchStart, { passive: true });
+    element.addEventListener('touchmove', handleTouchMove, { passive: true });
+    element.addEventListener('touchend', handleTouchEnd, { passive: true });
 
     return () => {
       element.removeEventListener('touchstart', handleTouchStart);
@@ -219,6 +248,14 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
     }
   };
 
+  // Calculate opacity based on drag offset for visual feedback
+  const getWindowOpacity = () => {
+    if (!isDragging || dragOffset <= 0) return 1;
+    // Start fading after 50px, fully transparent at 200px
+    const opacity = Math.max(0, 1 - (dragOffset - 50) / 150);
+    return opacity;
+  };
+
   return (
     <>
       {/* Chat Button - Only show when closed */}
@@ -281,12 +318,15 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
             transform: isMobile
               ? `translateY(${dragOffset}px)`
               : 'translateX(-50%)',
+            opacity: getWindowOpacity(),
             transition: isDragging ? 'none' : 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
           }}
         >
-          {/* Swipe Indicator for Mobile */}
+          {/* Swipe Indicator for Mobile - More prominent */}
           {isMobile && (
-            <div className="absolute top-2 left-1/2 transform -translate-x-1/2 w-12 h-1 bg-gray-300 rounded-full" />
+            <div className="absolute top-0 left-0 right-0 h-8 flex items-center justify-center bg-gradient-to-b from-gray-100 to-transparent pointer-events-none">
+              <div className="w-16 h-1.5 bg-gray-400 rounded-full shadow-sm" />
+            </div>
           )}
 
           {/* Header */}
