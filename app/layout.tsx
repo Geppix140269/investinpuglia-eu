@@ -100,7 +100,7 @@ export const metadata: Metadata = {
     }
   },
   verification: {
-    google: 'G-LPJCZYGWWG', // Your existing Google verification
+    google: 'G-2369HHR8PF', // Your existing Google verification
   },
   robots: {
     index: true,
@@ -125,7 +125,7 @@ export default function RootLayout({
       <head>
         {/* Google Analytics */}
         <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-LPJCZYGWWG"
+          src="https://www.googletagmanager.com/gtag/js?id=G-2369HHR8PF"
           strategy="afterInteractive"
         />
         <Script id="google-analytics" strategy="afterInteractive">
@@ -133,7 +133,7 @@ export default function RootLayout({
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-LPJCZYGWWG');
+            gtag('config', 'G-2369HHR8PF');
           `}
         </Script>
 
