@@ -19,58 +19,70 @@ export default function HeroSection() {
           ESTABLISHED 2024 • PUGLIA, ITALY
         </div>
 
-        {/* Main Title - Professional but matching style */}
-        <h1 className="text-5xl md:text-7xl lg:text-8xl font-light text-gray-900 mb-8 leading-tight">
+        {/* Main Title - Mobile optimized */}
+        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light text-gray-900 mb-6 md:mb-8 leading-tight">
           Puglia Investment 
           <span className="block font-bold bg-gradient-to-r from-purple-600 to-emerald-600 bg-clip-text text-transparent">
             Advisors
           </span>
         </h1>
 
-        {/* Service Categories with consistent styling */}
-        <div className="flex flex-wrap justify-center gap-4 md:gap-6 text-gray-600 mb-10 text-lg md:text-xl">
-          <span className="bg-white/70 backdrop-blur-sm px-4 py-2 rounded-lg border border-white/50 shadow-md">Real Estate</span>
-          <span className="bg-white/70 backdrop-blur-sm px-4 py-2 rounded-lg border border-white/50 shadow-md">M&A</span>
-          <span className="bg-white/70 backdrop-blur-sm px-4 py-2 rounded-lg border border-white/50 shadow-md">Corporate Development</span>
-          <span className="bg-white/70 backdrop-blur-sm px-4 py-2 rounded-lg border border-white/50 shadow-md">EU Funding</span>
+        {/* Service Categories - Better mobile spacing */}
+        <div className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 text-gray-600 mb-8 md:mb-10 text-sm sm:text-base md:text-lg">
+          <span className="bg-white/70 backdrop-blur-sm px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg border border-white/50 shadow-md">Real Estate</span>
+          <span className="bg-white/70 backdrop-blur-sm px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg border border-white/50 shadow-md">M&A</span>
+          <span className="bg-white/70 backdrop-blur-sm px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg border border-white/50 shadow-md">Corporate Development</span>
+          <span className="bg-white/70 backdrop-blur-sm px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg border border-white/50 shadow-md">EU Funding</span>
         </div>
 
-        {/* Subtitle */}
-        <p className="text-xl md:text-2xl text-gray-600 font-light max-w-3xl mx-auto mb-12">
+        {/* Subtitle - Better mobile sizing */}
+        <p className="text-lg sm:text-xl md:text-2xl text-gray-600 font-light max-w-3xl mx-auto mb-8 md:mb-12 px-4 sm:px-0">
           Strategic advisory services for international investors
           seeking opportunities in Southern Italy
         </p>
 
-        {/* CTA Buttons matching other sections' style */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+        {/* CTA Buttons - Mobile optimized */}
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-12 md:mb-16 px-4 sm:px-0">
           <CTAButton
             variant="custom"
             href="/contact"
             text="Schedule Consultation"
             location="hero"
-            className="bg-gradient-to-r from-purple-600 to-emerald-600 text-white px-8 py-4 rounded-full font-semibold hover:shadow-xl transition-all text-lg hover:scale-105"
+            className="bg-gradient-to-r from-purple-600 to-emerald-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold hover:shadow-xl transition-all text-base sm:text-lg hover:scale-105 w-full sm:w-auto"
           />
           <a
             href="/calculator"
-            className="bg-white/70 backdrop-blur-sm text-gray-900 border border-white/50 px-8 py-4 rounded-full font-semibold hover:shadow-lg transition-all text-lg hover:scale-105"
+            className="bg-white/70 backdrop-blur-sm text-gray-900 border border-white/50 px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold hover:shadow-lg transition-all text-base sm:text-lg hover:scale-105 w-full sm:w-auto text-center"
           >
             EU Grant Analysis →
           </a>
         </div>
 
-        {/* Trust indicators matching the style */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-          <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-white/50">
-            <div className="text-3xl font-light text-gray-900 mb-2">€127M+</div>
-            <div className="text-sm text-gray-600">Facilitated Investments</div>
+        {/* Trust indicators - Mobile optimized */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 max-w-4xl mx-auto px-4 sm:px-0">
+          <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-4 sm:p-6 shadow-lg border border-white/50">
+            <Icon name="MapPin" size={32} className="mx-auto mb-2 sm:mb-3 text-purple-600" />
+            <div className="text-lg sm:text-xl font-semibold text-gray-900 mb-1 sm:mb-2">Local Expertise</div>
+            <div className="text-xs sm:text-sm text-gray-600 leading-relaxed">
+              On-ground team<span className="hidden sm:inline"><br /></span>
+              <span className="inline sm:hidden"> </span>in Puglia
+            </div>
           </div>
-          <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-white/50">
-            <div className="text-3xl font-light text-gray-900 mb-2">500+</div>
-            <div className="text-sm text-gray-600">Client Engagements</div>
+          <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-4 sm:p-6 shadow-lg border border-white/50">
+            <Icon name="Euro" size={32} className="mx-auto mb-2 sm:mb-3 text-emerald-600" />
+            <div className="text-lg sm:text-xl font-semibold text-gray-900 mb-1 sm:mb-2">Grant Specialists</div>
+            <div className="text-xs sm:text-sm text-gray-600 leading-relaxed">
+              Mini PIA & EU funds<span className="hidden sm:inline"><br /></span>
+              <span className="inline sm:hidden"> </span>up to €2.25M
+            </div>
           </div>
-          <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-white/50">
-            <div className="text-3xl font-light text-gray-900 mb-2">100%</div>
-            <div className="text-sm text-gray-600">Success Rate</div>
+          <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-4 sm:p-6 shadow-lg border border-white/50">
+            <Icon name="Shield" size={32} className="mx-auto mb-2 sm:mb-3 text-purple-600" />
+            <div className="text-lg sm:text-xl font-semibold text-gray-900 mb-1 sm:mb-2">Trusted Network</div>
+            <div className="text-xs sm:text-sm text-gray-600 leading-relaxed">
+              Regional partnerships<span className="hidden sm:inline"><br /></span>
+              <span className="inline sm:hidden"> </span>& institutions
+            </div>
           </div>
         </div>
       </div>
