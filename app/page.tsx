@@ -11,7 +11,7 @@ import OpportunitySection from '@/components/sections/OpportunitySection'
 import HowItWorks from '@/components/sections/HowItWorks'
 import AboutGiuseppe from '@/components/sections/AboutGiuseppe'
 import Services from '@/components/sections/Services'
-import SuccessStories from '@/components/sections/SuccessStories'
+import SuccessStories from '@/components/sections/OurCommitment'
 import FAQ from '@/components/sections/FAQ'
 import CTASection from '@/components/sections/CTASection'
 
