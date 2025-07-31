@@ -344,7 +344,7 @@ export default function Footer() {
         <div className="mt-8 pt-8 border-t border-gray-800">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-400 text-sm">
-              © 2025 Invest in Puglia™. All rights reserved. | M&T International Advisory
+              © 2025 Invest in Puglia™. All rights reserved. | 1402 Celsius Ltd International Advisory, Consultancy and Procurment Specialists
             </p>
             <div className="mt-4 md:mt-0 flex items-center gap-4 text-sm text-gray-400">
               <a href="tel:+393514001402" className="hover:text-white transition-colors flex items-center gap-2">
