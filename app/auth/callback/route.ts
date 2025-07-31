@@ -4,15 +4,12 @@ import { NextResponse } from 'next/server'
 import { type NextRequest } from 'next/server'
 
 export async function GET(request: NextRequest) {
-  // Get the code from the URL
   const requestUrl = new URL(request.url)
   const code = requestUrl.searchParams.get('code')
   const error = requestUrl.searchParams.get('error')
   const error_description = requestUrl.searchParams.get('error_description')
-  // IMPORTANT: Default to home page, not buyer-profile
   const next = requestUrl.searchParams.get('next') || '/'
 
-  // Handle errors from OAuth provider
   if (error) {
     console.error('OAuth error:', error, error_description)
     return NextResponse.redirect(
@@ -20,12 +17,9 @@ export async function GET(request: NextRequest) {
     )
   }
 
-  // If we have a code, exchange it for a session
   if (code) {
     try {
       const supabase = createClient()
-      
-      // Exchange the code for a session
       const { data, error: exchangeError } = await supabase.auth.exchangeCodeForSession(code)
       
       if (exchangeError) {
@@ -39,20 +33,17 @@ export async function GET(request: NextRequest) {
         console.log('Session created successfully for:', data.session.user.email)
       }
 
-      // Successful authentication - redirect back to the original page
-      // Add query parameter to signal chat should reopen
       const redirectUrl = new URL(next, requestUrl.origin)
       redirectUrl.searchParams.set('trullo_auth', 'success')
       
       const response = NextResponse.redirect(redirectUrl)
       
-      // Set cookie manually to ensure it's properly set
       if (data?.session) {
         response.cookies.set('supabase-auth-token', data.session.access_token, {
           httpOnly: true,
           secure: process.env.NODE_ENV === 'production',
           sameSite: 'lax',
-          maxAge: 60 * 60 * 24 * 7 // 7 days
+          maxAge: 60 * 60 * 24 * 7
         })
       }
       
@@ -65,7 +56,6 @@ export async function GET(request: NextRequest) {
     }
   }
 
-  // No code present, redirect to home with error
   return NextResponse.redirect(
     new URL(`${next}?error=No authorization code received`, requestUrl.origin)
   )
