@@ -7,74 +7,78 @@ import CTAButton from '@/components/CTAButton'
 export default function HeroSection() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white">
-      {/* Elegant gradient accent - subtle and professional */}
-      <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-gradient-to-br from-emerald-50 to-purple-50 blur-3xl opacity-30"></div>
-      <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-gradient-to-tr from-purple-50 to-teal-50 blur-3xl opacity-30"></div>
-      
+      {/* Subtle gradient - more muted for professional look */}
+      <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-gradient-to-br from-gray-50 to-slate-50 blur-3xl opacity-20"></div>
+      <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-gradient-to-tr from-slate-50 to-gray-50 blur-3xl opacity-20"></div>
+
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-5 text-center">
-        {/* Premium badge */}
-        <div className="inline-flex items-center gap-2 bg-emerald-50 text-emerald-700 px-4 py-2 rounded-full text-sm font-medium mb-8">
-          <Icon name="Shield" size={16} className="text-emerald-600" />
-          <span>Trusted by 100+ International Investors</span>
+        {/* Small established badge */}
+        <div className="inline-flex items-center gap-2 text-gray-500 text-sm font-light mb-12">
+          <span>Established 2018</span>
+          <span className="mx-2">•</span>
+          <span>Bari, Italy</span>
         </div>
-        
-        {/* Main Title */}
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-light text-gray-900 mb-6 leading-tight">
-          Don't Risk Your Investment<br />
-          <span className="font-bold bg-gradient-to-r from-emerald-600 to-purple-600 bg-clip-text text-transparent">
-            Work with Puglia's Trusted Experts
-          </span>
+
+        {/* Main Title - Clean and Professional */}
+        <h1 className="text-5xl md:text-7xl lg:text-8xl font-light text-gray-900 mb-8 leading-tight tracking-tight">
+          Puglia Investment Advisors
         </h1>
-        
-        {/* Subtitle */}
-        <p className="text-xl md:text-2xl text-gray-600 font-light max-w-3xl mx-auto mb-10">
-          Save €100,000s and Years of Mistakes with Professional Guidance. 
-          We connect you with verified local architects, engineers, and grant specialists.
+
+        {/* Service Categories */}
+        <div className="flex flex-wrap justify-center gap-4 md:gap-8 text-gray-600 mb-12 text-lg md:text-xl font-light">
+          <span>Real Estate</span>
+          <span className="text-gray-300">•</span>
+          <span>M&A</span>
+          <span className="text-gray-300">•</span>
+          <span>Corporate Development</span>
+          <span className="text-gray-300">•</span>
+          <span>EU Funding</span>
+        </div>
+
+        {/* Subtle Tagline */}
+        <p className="text-xl md:text-2xl text-gray-500 font-light max-w-3xl mx-auto mb-16">
+          Strategic advisory services for international investors
+          seeking opportunities in Southern Italy
         </p>
-        
-        {/* CTA Buttons - More prominent */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-          <CTAButton 
+
+        {/* CTA Buttons - Understated */}
+        <div className="flex flex-col sm:flex-row gap-6 justify-center">
+          <CTAButton
             variant="custom"
-            href="/calculator"
-            text="Check Your Grant Eligibility"
+            href="/contact"
+            text="Schedule Consultation"
             location="hero"
-            className="bg-gradient-to-r from-emerald-600 to-emerald-700 text-white px-8 py-4 rounded-full font-semibold hover:shadow-xl transition-all text-lg hover:scale-105 hover:from-emerald-700 hover:to-emerald-800"
+            className="bg-gray-900 text-white px-8 py-4 rounded-md font-light hover:bg-gray-800 transition-colors text-base tracking-wide"
           />
-          <a 
-            href="https://calendly.com/investinpuglia/30min" 
-            className="bg-white text-gray-900 border-2 border-gray-200 px-8 py-4 rounded-full font-semibold hover:shadow-lg transition-all text-lg hover:scale-105 hover:border-gray-300"
-            target="_blank"
-            rel="noopener noreferrer"
+          
+            href="/calculator"
+            className="bg-white text-gray-900 border border-gray-300 px-8 py-4 rounded-md font-light hover:bg-gray-50 transition-colors text-base tracking-wide"
           >
-            Book Free Consultation →
+            EU Grant Analysis
           </a>
         </div>
-        
-        {/* Trust indicators with better styling */}
-        <div className="flex flex-wrap justify-center gap-8 text-gray-600 text-sm">
-          <div className="flex items-center gap-2 bg-gray-50 px-4 py-2 rounded-lg">
-            <Icon name="Check" size={20} className="text-emerald-600" />
-            <span className="font-medium">€50M+ Grants Secured</span>
-          </div>
-          <div className="flex items-center gap-2 bg-gray-50 px-4 py-2 rounded-lg">
-            <Icon name="Check" size={20} className="text-emerald-600" />
-            <span className="font-medium">100% Success Rate</span>
-          </div>
-          <div className="flex items-center gap-2 bg-gray-50 px-4 py-2 rounded-lg">
-            <Icon name="Check" size={20} className="text-emerald-600" />
-            <span className="font-medium">Verified Local Experts</span>
+
+        {/* Minimal trust indicators */}
+        <div className="mt-20 pt-12 border-t border-gray-100">
+          <div className="flex flex-wrap justify-center gap-12 text-gray-400 text-sm font-light">
+            <div>
+              <div className="text-2xl font-light text-gray-600 mb-1">€127M+</div>
+              <div>Facilitated Investments</div>
+            </div>
+            <div>
+              <div className="text-2xl font-light text-gray-600 mb-1">500+</div>
+              <div>Client Engagements</div>
+            </div>
+            <div>
+              <div className="text-2xl font-light text-gray-600 mb-1">15+</div>
+              <div>Years Combined Experience</div>
+            </div>
           </div>
         </div>
       </div>
-      
-      {/* Subtle pattern overlay for texture */}
-      <div className="absolute inset-0 opacity-[0.02] pointer-events-none"
-           style={{
-             backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-           }}
-      />
+
+      {/* Remove pattern overlay for cleaner look */}
     </section>
   )
 }
