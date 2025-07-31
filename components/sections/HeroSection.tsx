@@ -16,7 +16,7 @@ export default function HeroSection() {
         {/* Premium badge matching other sections */}
         <div className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-600 to-emerald-600 text-white px-5 py-2 rounded-full text-sm font-semibold mb-8 shadow-lg">
           <Icon name="Shield" size={20} />
-          ESTABLISHED 2018 • BARI, ITALY
+          ESTABLISHED 2024 • PUGLIA, ITALY
         </div>
 
         {/* Main Title - Professional but matching style */}
