@@ -12,9 +12,9 @@ export default function HeroSection() {
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-emerald-200/30 rounded-full blur-3xl"></div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-5 text-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-5 pt-20 sm:pt-24 md:pt-28 text-center">
         {/* Premium badge matching other sections */}
-        <div className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-600 to-emerald-600 text-white px-5 py-2 rounded-full text-sm font-semibold mb-8 shadow-lg">
+        <div className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-600 to-emerald-600 text-white px-5 py-2 rounded-full text-sm font-semibold mb-6 sm:mb-8 shadow-lg">
           <Icon name="Shield" size={20} />
           ESTABLISHED 2024 • PUGLIA, ITALY
         </div>
