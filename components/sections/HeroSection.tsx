@@ -51,7 +51,7 @@ export default function HeroSection() {
             location="hero"
             className="bg-gray-900 text-white px-8 py-4 rounded-md font-light hover:bg-gray-800 transition-colors text-base tracking-wide"
           />
-          
+          <a
             href="/calculator"
             className="bg-white text-gray-900 border border-gray-300 px-8 py-4 rounded-md font-light hover:bg-gray-50 transition-colors text-base tracking-wide"
           >
