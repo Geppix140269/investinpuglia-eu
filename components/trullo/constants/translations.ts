@@ -3,14 +3,14 @@ import { Language } from '../types';
 
 export const translations: Record<Language, any> = {
   en: {
-    greeting: `Ciao! I'm Trullo, your EU grants and investment assistant for Puglia 🇪🇺 I can help you discover funding opportunities up to 50% for your project. How can I assist you today?`,
+    greeting: `Welcome to InvestInPuglia! I'm Trullo, your gateway to Puglia's investment ecosystem. Whether you're an investor looking for opportunities or a professional wanting to join our revolutionary directory, I'm here to help! 🚀`,
     title: 'Trullo',
-    subtitle: 'Your EU Grants & Investment Assistant',
-    placeholder: 'Ask about EU grants...',
+    subtitle: 'Your Investment Ecosystem Connector',
+    placeholder: 'Ask about investments or joining our directory...',
     send: 'Send',
     authRequired: 'Please sign in to continue',
     error: `I'm having trouble connecting right now. Please try again in a moment, or contact us directly at info@investinpuglia.eu`,
-    poweredBy: 'Powered by AI • Expert in EU Grants',
+    poweredBy: 'Powered by AI • Connecting Investors & Professionals',
     leaveMessage: 'Leave a Message',
     messageForm: {
       title: 'Leave a Message for Giuseppe',
@@ -26,14 +26,14 @@ export const translations: Record<Language, any> = {
     }
   },
   it: {
-    greeting: `Ciao! Sono Trullo, il tuo assistente per fondi UE e investimenti in Puglia 🇪🇺 Posso aiutarti a scoprire opportunità di finanziamento fino al 50% per il tuo progetto. Come posso assisterti?`,
+    greeting: `Benvenuto su InvestInPuglia! Sono Trullo, il tuo accesso all'ecosistema di investimento della Puglia. Che tu sia un investitore in cerca di opportunità o un professionista che vuole unirsi alla nostra directory rivoluzionaria, sono qui per aiutarti! 🚀`,
     title: 'Trullo',
-    subtitle: 'Il tuo assistente per fondi UE',
-    placeholder: 'Chiedi sui fondi UE...',
+    subtitle: 'Il tuo Connettore dell\'Ecosistema di Investimento',
+    placeholder: 'Chiedi su investimenti o unirsi alla directory...',
     send: 'Invia',
     authRequired: 'Accedi per continuare',
     error: `Ho problemi di connessione al momento. Riprova tra poco o contattaci direttamente a info@investinpuglia.eu`,
-    poweredBy: 'Powered by AI • Esperto in fondi UE',
+    poweredBy: 'Powered by AI • Connette Investitori e Professionisti',
     leaveMessage: 'Lascia un Messaggio',
     messageForm: {
       title: 'Lascia un Messaggio per Giuseppe',
@@ -49,14 +49,14 @@ export const translations: Record<Language, any> = {
     }
   },
   fr: {
-    greeting: `Ciao! Je suis Trullo, votre assistant pour les subventions européennes et l'investissement dans les Pouilles 🇪🇺 Je peux vous aider à découvrir des opportunités de financement jusqu'à 50% pour votre projet. Comment puis-je vous aider?`,
+    greeting: `Bienvenue sur InvestInPuglia ! Je suis Trullo, votre passerelle vers l'écosystème d'investissement des Pouilles. Que vous soyez un investisseur à la recherche d'opportunités ou un professionnel souhaitant rejoindre notre annuaire révolutionnaire, je suis là pour vous aider ! 🚀`,
     title: 'Trullo',
-    subtitle: 'Assistant Subventions UE & Investissement',
-    placeholder: 'Questions sur les subventions UE...',
+    subtitle: 'Votre Connecteur d\'Écosystème d\'Investissement',
+    placeholder: 'Questions sur investissements ou rejoindre l\'annuaire...',
     send: 'Envoyer',
     authRequired: 'Veuillez vous connecter pour continuer',
     error: `J'ai des difficultés de connexion. Veuillez réessayer ou contactez-nous à info@investinpuglia.eu`,
-    poweredBy: 'Propulsé par IA • Expert en subventions UE',
+    poweredBy: 'Propulsé par IA • Connecte Investisseurs et Professionnels',
     leaveMessage: 'Laisser un Message',
     messageForm: {
       title: 'Laisser un Message pour Giuseppe',
@@ -72,14 +72,14 @@ export const translations: Record<Language, any> = {
     }
   },
   de: {
-    greeting: `Ciao! Ich bin Trullo, Ihr Assistent für EU-Förderungen und Investitionen in Apulien 🇪🇺 Ich kann Ihnen helfen, Fördermöglichkeiten von bis zu 50% für Ihr Projekt zu entdecken. Wie kann ich Ihnen helfen?`,
+    greeting: `Willkommen bei InvestInPuglia! Ich bin Trullo, Ihr Tor zum Investitionsökosystem Apuliens. Ob Sie ein Investor auf der Suche nach Möglichkeiten oder ein Fachmann sind, der unserem revolutionären Verzeichnis beitreten möchte, ich bin hier um zu helfen! 🚀`,
     title: 'Trullo',
-    subtitle: 'Ihr EU-Förderungs & Investment Assistent',
-    placeholder: 'Fragen zu EU-Förderungen...',
+    subtitle: 'Ihr Investment-Ökosystem-Verbinder',
+    placeholder: 'Fragen zu Investitionen oder Verzeichnisbeitritt...',
     send: 'Senden',
     authRequired: 'Bitte anmelden um fortzufahren',
     error: `Verbindungsprobleme. Bitte versuchen Sie es später erneut oder kontaktieren Sie uns unter info@investinpuglia.eu`,
-    poweredBy: 'KI-gestützt • Experte für EU-Förderungen',
+    poweredBy: 'KI-gestützt • Verbindet Investoren und Fachleute',
     leaveMessage: 'Nachricht hinterlassen',
     messageForm: {
       title: 'Nachricht für Giuseppe hinterlassen',
@@ -95,14 +95,14 @@ export const translations: Record<Language, any> = {
     }
   },
   ar: {
-    greeting: `تشاو! أنا ترولو، مساعدك للمنح الأوروبية والاستثمار في بوليا 🇪🇺 يمكنني مساعدتك في اكتشاف فرص التمويل حتى 50% لمشروعك. كيف يمكنني مساعدتك؟`,
+    greeting: `مرحباً بك في InvestInPuglia! أنا ترولو، بوابتك إلى النظام البيئي الاستثماري في بوليا. سواء كنت مستثمراً تبحث عن فرص أو محترفاً يريد الانضمام إلى دليلنا الثوري، أنا هنا للمساعدة! 🚀`,
     title: 'ترولو',
-    subtitle: 'مساعد المنح الأوروبية والاستثمار',
-    placeholder: 'اسأل عن المنح الأوروبية...',
+    subtitle: 'موصل النظام البيئي الاستثماري الخاص بك',
+    placeholder: 'اسأل عن الاستثمارات أو الانضمام لدليلنا...',
     send: 'إرسال',
     authRequired: 'يرجى تسجيل الدخول للمتابعة',
     error: `أواجه مشكلة في الاتصال. يرجى المحاولة مرة أخرى أو التواصل معنا على info@investinpuglia.eu`,
-    poweredBy: 'مدعوم بالذكاء الاصطناعي • خبير في المنح الأوروبية',
+    poweredBy: 'مدعوم بالذكاء الاصطناعي • يربط المستثمرين والمحترفين',
     leaveMessage: 'اترك رسالة',
     messageForm: {
       title: 'اترك رسالة لجوزيبي',
@@ -118,14 +118,14 @@ export const translations: Record<Language, any> = {
     }
   },
   zh: {
-    greeting: `你好！我是Trullo，您的普利亚欧盟资助和投资助手 🇪🇺 我可以帮助您发现高达50%的项目资助机会。我今天能为您做什么？`,
+    greeting: `欢迎来到InvestInPuglia！我是Trullo，您通往普利亚投资生态系统的门户。无论您是寻找机会的投资者，还是想加入我们革命性目录的专业人士，我都在这里帮助您！🚀`,
     title: 'Trullo',
-    subtitle: '欧盟资助与投资助手',
-    placeholder: '询问欧盟资助...',
+    subtitle: '您的投资生态系统连接器',
+    placeholder: '询问投资或加入我们的目录...',
     send: '发送',
     authRequired: '请登录以继续',
     error: `连接出现问题。请稍后再试或直接联系我们：info@investinpuglia.eu`,
-    poweredBy: 'AI驱动 • 欧盟资助专家',
+    poweredBy: 'AI驱动 • 连接投资者与专业人士',
     leaveMessage: '留言',
     messageForm: {
       title: '给Giuseppe留言',
@@ -141,14 +141,14 @@ export const translations: Record<Language, any> = {
     }
   },
   es: {
-    greeting: `¡Ciao! Soy Trullo, tu asistente de subvenciones europeas e inversiones en Puglia 🇪🇺 Puedo ayudarte a descubrir oportunidades de financiación de hasta el 50% para tu proyecto. ¿Cómo puedo ayudarte hoy?`,
+    greeting: `¡Bienvenido a InvestInPuglia! Soy Trullo, tu puerta de entrada al ecosistema de inversión de Puglia. Ya seas un inversor buscando oportunidades o un profesional que quiere unirse a nuestro directorio revolucionario, ¡estoy aquí para ayudarte! 🚀`,
     title: 'Trullo',
-    subtitle: 'Tu Asistente de Subvenciones UE e Inversión',
-    placeholder: 'Pregunta sobre subvenciones UE...',
+    subtitle: 'Tu Conector del Ecosistema de Inversión',
+    placeholder: 'Pregunta sobre inversiones o unirte al directorio...',
     send: 'Enviar',
     authRequired: 'Por favor inicia sesión para continuar',
     error: `Tengo problemas de conexión en este momento. Por favor, inténtalo de nuevo o contáctanos directamente en info@investinpuglia.eu`,
-    poweredBy: 'Impulsado por IA • Experto en Subvenciones UE',
+    poweredBy: 'Impulsado por IA • Conecta Inversores y Profesionales',
     leaveMessage: 'Dejar un Mensaje',
     messageForm: {
       title: 'Dejar un Mensaje para Giuseppe',
