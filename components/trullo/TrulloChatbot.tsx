@@ -23,12 +23,21 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
   const chatRef = useRef<HTMLDivElement>(null);
   const touchStartY = useRef<number>(0);
   
-  // Load user preference on mount
+  // Load user preference and auto-open on mount
   useEffect(() => {
     // Check if we're in the browser
     if (typeof window !== 'undefined') {
+      // Check if user has manually closed before
+      const hasUserClosed = localStorage.getItem('trullo-user-closed') === 'true';
       const savedState = localStorage.getItem('trullo-chat-state');
-      if (savedState === 'open') {
+      
+      if (!hasUserClosed) {
+        // Auto-open after 3 seconds if user hasn't manually closed before
+        setTimeout(() => {
+          setIsOpen(true);
+        }, 3000);
+      } else if (savedState === 'open') {
+        // Respect saved state if user has interacted before
         setIsOpen(true);
       }
       
@@ -89,7 +98,7 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
       
       // Close if swiped down more than 100px
       if (dragOffset > 100) {
-        setIsOpen(false);
+        handleUserClose();
       }
       
       setDragOffset(0);
@@ -181,6 +190,15 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
     
     // Add success message to chat (this will trigger re-render with updated messages)
     setShowMessageForm(false);
+  };
+
+  // Handle user manually closing the chat
+  const handleUserClose = () => {
+    setIsOpen(false);
+    // Remember that user has manually closed the chat
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('trullo-user-closed', 'true');
+    }
   };
 
   return (
@@ -283,7 +301,7 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
               <div className="flex items-center gap-2">
                 {/* Close/Minimize Button - Larger on mobile */}
                 <button
-                  onClick={() => setIsOpen(false)}
+                  onClick={handleUserClose}
                   className={`
                     bg-white/20 hover:bg-white/30 rounded-full transition-colors
                     ${isMobile ? 'p-2' : 'p-1'}
