@@ -1,84 +1,117 @@
-// Force rebuild: 07/28/2025 15:10:27
 // app/sitemap.ts
 import { MetadataRoute } from 'next'
-import { sanityClient } from '@/lib/sanity/client'
+import { client } from '@/sanity/lib/client'
+import { groq } from 'next-sanity'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://investinpuglia.eu'
   
-  // Fetch all locations
-  const locations = await sanityClient.fetch(`
-    *[_type == "locationPage"] {
-      slug
-    }
-  `)
+  // Fetch ALL locations from Sanity
+  const locations = await client.fetch<{ slug: { current: string } }[]>(
+    groq`*[_type == "locationPage"] { slug }`
+  )
   
-  // Fetch all industries
-  const industries = await sanityClient.fetch(`
-    *[_type == "industryPage"] {
-      slug
-    }
-  `)
+  // Fetch ALL industries from Sanity
+  const industries = await client.fetch<{ slug: { current: string } }[]>(
+    groq`*[_type == "industry"] { slug }`
+  )
   
   // Static pages
   const staticPages = [
-    '',
-    '/about',
-    '/how-it-works',
-    '/calculator',
-    '/contact',
-    '/faq',
-    '/blog',
+    {
+      url: baseUrl,
+      lastModified: new Date(),
+      changeFrequency: 'daily' as const,
+      priority: 1,
+    },
+    {
+      url: `${baseUrl}/en`,
+      lastModified: new Date(),
+      priority: 1,
+    },
+    {
+      url: `${baseUrl}/en/about`,
+      lastModified: new Date(),
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/en/calculator`,
+      lastModified: new Date(),
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/en/contact`,
+      lastModified: new Date(),
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/en/how-it-works`,
+      lastModified: new Date(),
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/en/faq`,
+      lastModified: new Date(),
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/en/services`,
+      lastModified: new Date(),
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/en/blog`,
+      lastModified: new Date(),
+      priority: 0.7,
+    },
   ]
   
-  // Languages
-  const languages = ['en', 'it', 'de', 'fr', 'ar', 'zh']
-  
-  // Generate URLs for all static pages in all languages
-  const staticUrls = languages.flatMap(lang =>
-    staticPages.map(page => ({
-      url: `${baseUrl}/${lang}${page}`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
-      priority: page === '' ? 1 : 0.8,
-    }))
-  )
-  
-  // Generate URLs for all location pages
-  const locationUrls = languages.flatMap(lang =>
-    locations.map((location: any) => ({
-      url: `${baseUrl}/${lang}/locations/${location.slug.current}`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
-      priority: 0.7,
-    }))
-  )
-  
-  // Generate URLs for all industry pages
-  const industryUrls = languages.flatMap(lang =>
-    industries.map((industry: any) => ({
-      url: `${baseUrl}/${lang}/industries/${industry.slug.current}`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
-      priority: 0.7,
-    }))
-  )
-  
-  // Add index pages for locations and industries
-  const indexUrls = languages.flatMap(lang => [
+  // Location index page
+  const locationPages = [
     {
-      url: `${baseUrl}/${lang}/locations`,
+      url: `${baseUrl}/en/locations`,
+      lastModified: new Date(),
+      priority: 0.9,
+    },
+    // Generate URLs for ALL locations
+    ...locations.map((location) => ({
+      url: `${baseUrl}/en/locations/${location.slug.current}`,
       lastModified: new Date(),
       changeFrequency: 'weekly' as const,
       priority: 0.8,
-    },
+    })),
+  ]
+  
+  // Industry index page
+  const industryPages = [
     {
-      url: `${baseUrl}/${lang}/industries`,
+      url: `${baseUrl}/en/industries`,
+      lastModified: new Date(),
+      priority: 0.9,
+    },
+    // Generate URLs for ALL industries
+    ...industries.map((industry) => ({
+      url: `${baseUrl}/en/industries/${industry.slug.current}`,
       lastModified: new Date(),
       changeFrequency: 'weekly' as const,
       priority: 0.8,
-    },
-  ])
+    })),
+  ]
   
-  return [...staticUrls, ...locationUrls, ...industryUrls, ...indexUrls]
+  // Also add non-localized URLs if they exist
+  const nonLocalizedPages = [
+    {
+      url: `${baseUrl}/industries`,
+      lastModified: new Date(),
+      priority: 0.9,
+    },
+    ...industries.map((industry) => ({
+      url: `${baseUrl}/industries/${industry.slug.current}`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly' as const,
+      priority: 0.8,
+    })),
+  ]
+  
+  return [...staticPages, ...locationPages, ...industryPages, ...nonLocalizedPages]
 }

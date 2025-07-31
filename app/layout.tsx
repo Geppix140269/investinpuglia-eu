@@ -71,7 +71,7 @@ export const metadata: Metadata = {
     siteName: 'Invest in Puglia - EU Property Grants & Investment',
     images: [
       {
-        url: '/images/puglia-property-investment.jpg',
+        url: '/og-image.png',
         width: 1200,
         height: 630,
         alt: 'Property Investment Opportunities in Puglia, Italy',
@@ -84,7 +84,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Property Investment in Puglia - EU Grants Available',
     description: 'Secure up to €2.25M in grants for your Puglia property investment. Expert advisory services.',
-    images: ['/images/puglia-property-investment.jpg'],
+    images: ['/og-image.png'],
     creator: '@investinpuglia'
   },
   alternates: {
@@ -100,7 +100,7 @@ export const metadata: Metadata = {
     }
   },
   verification: {
-    google: 'G-LPJCZYGWWG', // Your existing Google verification
+    google: 'G-2369HHR8PF', // Your existing Google verification
   },
   robots: {
     index: true,
@@ -125,7 +125,7 @@ export default function RootLayout({
       <head>
         {/* Google Analytics */}
         <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-LPJCZYGWWG"
+          src="https://www.googletagmanager.com/gtag/js?id=G-2369HHR8PF"
           strategy="afterInteractive"
         />
         <Script id="google-analytics" strategy="afterInteractive">
@@ -133,7 +133,7 @@ export default function RootLayout({
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-LPJCZYGWWG');
+            gtag('config', 'G-2369HHR8PF');
           `}
         </Script>
 

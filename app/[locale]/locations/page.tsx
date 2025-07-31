@@ -7,12 +7,63 @@ import { Metadata } from 'next';
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: 'Investment Locations in Puglia - Cities & Business Opportunities',
-  description: 'Explore 50+ investment locations across Puglia. Discover business opportunities, incentives, and strategic advantages in Bari, Lecce, Taranto, and more.',
+  title: 'Investment Locations in Puglia | 50+ Cities with EU Grants up to €2.25M',
+  description: 'Explore 50+ prime investment locations across Puglia. From Bari\'s €27,000 GDP/capita to Lecce\'s tourism boom. Each city offers unique grants, incentives & opportunities.',
+  keywords: ['puglia investment locations', 'bari investment', 'lecce business opportunities', 'taranto incentives', 'puglia cities', 'italian investment zones'],
+  openGraph: {
+    title: '50+ Investment Locations in Puglia | EU Grants Available',
+    description: 'Discover the best cities for investment in Puglia. Compare opportunities in Bari, Lecce, Taranto & more. Up to €2.25M in EU grants available.',
+    url: 'https://investinpuglia.eu/en/locations',
+    siteName: 'Invest in Puglia',
+    images: [
+      {
+        url: 'https://investinpuglia.eu/Logo_InvestInPuglia_Morph.png',
+        width: 1200,
+        height: 630,
+        alt: 'Investment Map of Puglia - 50+ Cities & Towns',
+      }
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: '50+ Investment Locations in Puglia',
+    description: 'Find your perfect investment location in Puglia. Compare cities, incentives, and opportunities.',
+    images: ['https://investinpuglia.eu/Logo_InvestInPuglia_Morph.png'],
+  },
+  alternates: {
+    canonical: 'https://investinpuglia.eu/en/locations',
+    languages: {
+      'en': 'https://investinpuglia.eu/en/locations',
+      'it': 'https://investinpuglia.eu/it/locations',
+    }
+  }
 };
 
-export default async function LocationsIndex({ params }: { params: { locale: string } }) {
-  const locations = await client.fetch(`
+// Define the params type
+type PageProps = {
+  params: {
+    locale: string;
+  };
+};
+
+// Define location type
+type Location = {
+  _id: string;
+  city: string;
+  province: string;
+  slug: {
+    current: string;
+  };
+  population?: number;
+  mainIndustries?: string[];
+  gdpPerCapita?: number;
+  keyStatistics?: any;
+};
+
+export default async function LocationsIndex({ params }: PageProps) {
+  const locations = await client.fetch<Location[]>(`
     *[_type == "locationPage"] | order(population desc) {
       _id,
       city,
@@ -26,7 +77,7 @@ export default async function LocationsIndex({ params }: { params: { locale: str
   `);
 
   // Group locations by province
-  const locationsByProvince = locations.reduce((acc: any, location: any) => {
+  const locationsByProvince = locations.reduce((acc: Record<string, Location[]>, location) => {
     if (!acc[location.province]) {
       acc[location.province] = [];
     }
@@ -52,7 +103,7 @@ export default async function LocationsIndex({ params }: { params: { locale: str
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold mb-8">Featured Investment Destinations</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {locations.slice(0, 4).map((location: any) => (
+            {locations.slice(0, 4).map((location) => (
               <Link
                 key={location._id}
                 href={`/${params.locale}/locations/${location.slug.current}`}
@@ -84,11 +135,11 @@ export default async function LocationsIndex({ params }: { params: { locale: str
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold mb-8">All Investment Locations by Province</h2>
           
-          {Object.entries(locationsByProvince).map(([province, provinceCities]: [string, any]) => (
+          {Object.entries(locationsByProvince).map(([province, provinceCities]) => (
             <div key={province} className="mb-12">
               <h3 className="text-2xl font-semibold mb-6 text-blue-800">{province} Province</h3>
               <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                {provinceCities.map((location: any) => (
+                {provinceCities.map((location) => (
                   <Link
                     key={location._id}
                     href={`/${params.locale}/locations/${location.slug.current}`}

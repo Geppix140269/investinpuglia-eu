@@ -1,13 +1,45 @@
 // Path: components/Footer.tsx
 'use client'
 
+import { useState, useEffect } from 'react'
 import Icon from '@/lib/iconMappings'
 
+// Define the industry type
+interface Industry {
+  _id: string
+  name: string
+  slug: {
+    current: string
+  }
+}
+
 export default function Footer() {
+  const [industries, setIndustries] = useState<Industry[]>([])
+  const [showAllIndustries, setShowAllIndustries] = useState(false)
+
+  // Fetch industries from Sanity
+  useEffect(() => {
+    async function fetchIndustries() {
+      try {
+        const response = await fetch('/api/get-industries')
+        if (response.ok) {
+          const data = await response.json()
+          setIndustries(data)
+        }
+      } catch (error) {
+        console.error('Error fetching industries:', error)
+      }
+    }
+    fetchIndustries()
+  }, [])
+
+  // Show only first 10 industries by default
+  const displayedIndustries = showAllIndustries ? industries : industries.slice(0, 10)
+
   return (
     <footer className="bg-gray-900 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-6 gap-8">
           {/* Company Info */}
           <div className="col-span-1 md:col-span-2">
             <img 
@@ -66,68 +98,86 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Investment Locations (SEO) */}
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Locations</h3>
+          {/* Industries */}
+          <div className="col-span-1 md:col-span-2">
+            <h3 className="text-lg font-semibold mb-4">Industries</h3>
             <ul className="space-y-2">
               <li>
-                <a href="/en/locations" className="text-gray-400 hover:text-white transition-colors">
-                  All Puglia Locations
+                <a href="/industries" className="text-gray-400 hover:text-white transition-colors font-medium">
+                  All Industries →
                 </a>
               </li>
-              <li>
-                <a href="/en/locations/invest-in-bari-bari" className="text-gray-400 hover:text-white transition-colors text-sm">
-                  Invest in Bari
-                </a>
-              </li>
-              <li>
-                <a href="/en/locations/invest-in-lecce-lecce" className="text-gray-400 hover:text-white transition-colors text-sm">
-                  Invest in Lecce
-                </a>
-              </li>
-              <li>
-                <a href="/en/locations/invest-in-taranto-taranto" className="text-gray-400 hover:text-white transition-colors text-sm">
-                  Invest in Taranto
-                </a>
-              </li>
-              <li>
-                <a href="/en/locations/invest-in-foggia-foggia" className="text-gray-400 hover:text-white transition-colors text-sm">
-                  Invest in Foggia
-                </a>
-              </li>
-              <li>
-                <a href="/en/locations/invest-in-brindisi-brindisi" className="text-gray-400 hover:text-white transition-colors text-sm">
-                  Invest in Brindisi
-                </a>
-              </li>
+              {displayedIndustries.map((industry) => (
+                <li key={industry._id}>
+                  <a 
+                    href={`/industries/${industry.slug.current}`} 
+                    className="text-gray-400 hover:text-white transition-colors text-sm"
+                  >
+                    {industry.name}
+                  </a>
+                </li>
+              ))}
+              {industries.length > 10 && (
+                <li>
+                  <button
+                    onClick={() => setShowAllIndustries(!showAllIndustries)}
+                    className="text-blue-400 hover:text-blue-300 transition-colors text-sm font-medium"
+                  >
+                    {showAllIndustries ? '← Show Less' : `View All ${industries.length} Industries →`}
+                  </button>
+                </li>
+              )}
             </ul>
           </div>
 
-          {/* Legal */}
+          {/* Locations & Legal */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Legal</h3>
-            <ul className="space-y-2">
-              <li>
-                <a href="/privacy" className="text-gray-400 hover:text-white transition-colors">
-                  Privacy Policy
-                </a>
-              </li>
-              <li>
-                <a href="/terms" className="text-gray-400 hover:text-white transition-colors">
-                  Terms of Service
-                </a>
-              </li>
-              <li>
-                <a href="/cookies" className="text-gray-400 hover:text-white transition-colors">
-                  Cookie Policy
-                </a>
-              </li>
-              <li>
-                <a href="/legal-notice" className="text-gray-400 hover:text-white transition-colors">
-                  Legal Notice
-                </a>
-              </li>
-            </ul>
+            <div className="mb-8">
+              <h3 className="text-lg font-semibold mb-4">Top Locations</h3>
+              <ul className="space-y-2">
+                <li>
+                  <a href="/en/locations" className="text-gray-400 hover:text-white transition-colors">
+                    All Locations
+                  </a>
+                </li>
+                <li>
+                  <a href="/en/locations/invest-in-bari-bari" className="text-gray-400 hover:text-white transition-colors text-sm">
+                    Bari
+                  </a>
+                </li>
+                <li>
+                  <a href="/en/locations/invest-in-lecce-lecce" className="text-gray-400 hover:text-white transition-colors text-sm">
+                    Lecce
+                  </a>
+                </li>
+                <li>
+                  <a href="/en/locations/invest-in-taranto-taranto" className="text-gray-400 hover:text-white transition-colors text-sm">
+                    Taranto
+                  </a>
+                </li>
+              </ul>
+            </div>
+            
+            <div>
+              <h3 className="text-lg font-semibold mb-4">Legal</h3>
+              <ul className="space-y-2">
+                <li>
+                  <a href="/privacy" className="text-gray-400 hover:text-white transition-colors text-sm">
+                    Privacy Policy
+                  </a>
+                </li>
+                <li>
+                  <a href="/terms" className="text-gray-400 hover:text-white transition-colors text-sm">
+                    Terms of Service
+                  </a>
+                </li>
+                <li>
+                  <a href="/cookies" className="text-gray-400 hover:text-white transition-colors text-sm">
+                    Cookie Policy
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
 
