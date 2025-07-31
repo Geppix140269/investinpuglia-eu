@@ -1,4 +1,4 @@
-// PATH: components/trullo/constants/translations.ts
+﻿// PATH: components/trullo/constants/translations.ts
 import { Language } from '../types';
 
 export const translations: Record<Language, any> = {
@@ -7,6 +7,8 @@ export const translations: Record<Language, any> = {
     title: 'Trullo',
     subtitle: 'Your EU Grants & Investment Assistant',
     placeholder: 'Ask about EU grants...',
+    send: 'Send',
+    authRequired: 'Please sign in to continue',
     error: `I'm having trouble connecting right now. Please try again in a moment, or contact us directly at info@investinpuglia.eu`,
     poweredBy: 'Powered by AI • Expert in EU Grants',
     leaveMessage: 'Leave a Message',
@@ -28,6 +30,8 @@ export const translations: Record<Language, any> = {
     title: 'Trullo',
     subtitle: 'Il tuo assistente per fondi UE',
     placeholder: 'Chiedi sui fondi UE...',
+    send: 'Invia',
+    authRequired: 'Accedi per continuare',
     error: `Ho problemi di connessione al momento. Riprova tra poco o contattaci direttamente a info@investinpuglia.eu`,
     poweredBy: 'Powered by AI • Esperto in fondi UE',
     leaveMessage: 'Lascia un Messaggio',
@@ -49,6 +53,8 @@ export const translations: Record<Language, any> = {
     title: 'Trullo',
     subtitle: 'Assistant Subventions UE & Investissement',
     placeholder: 'Questions sur les subventions UE...',
+    send: 'Envoyer',
+    authRequired: 'Veuillez vous connecter pour continuer',
     error: `J'ai des difficultés de connexion. Veuillez réessayer ou contactez-nous à info@investinpuglia.eu`,
     poweredBy: 'Propulsé par IA • Expert en subventions UE',
     leaveMessage: 'Laisser un Message',
@@ -70,6 +76,8 @@ export const translations: Record<Language, any> = {
     title: 'Trullo',
     subtitle: 'Ihr EU-Förderungs & Investment Assistent',
     placeholder: 'Fragen zu EU-Förderungen...',
+    send: 'Senden',
+    authRequired: 'Bitte anmelden um fortzufahren',
     error: `Verbindungsprobleme. Bitte versuchen Sie es später erneut oder kontaktieren Sie uns unter info@investinpuglia.eu`,
     poweredBy: 'KI-gestützt • Experte für EU-Förderungen',
     leaveMessage: 'Nachricht hinterlassen',
@@ -91,6 +99,8 @@ export const translations: Record<Language, any> = {
     title: 'ترولو',
     subtitle: 'مساعد المنح الأوروبية والاستثمار',
     placeholder: 'اسأل عن المنح الأوروبية...',
+    send: 'إرسال',
+    authRequired: 'يرجى تسجيل الدخول للمتابعة',
     error: `أواجه مشكلة في الاتصال. يرجى المحاولة مرة أخرى أو التواصل معنا على info@investinpuglia.eu`,
     poweredBy: 'مدعوم بالذكاء الاصطناعي • خبير في المنح الأوروبية',
     leaveMessage: 'اترك رسالة',
@@ -112,6 +122,8 @@ export const translations: Record<Language, any> = {
     title: 'Trullo',
     subtitle: '欧盟资助与投资助手',
     placeholder: '询问欧盟资助...',
+    send: '发送',
+    authRequired: '请登录以继续',
     error: `连接出现问题。请稍后再试或直接联系我们：info@investinpuglia.eu`,
     poweredBy: 'AI驱动 • 欧盟资助专家',
     leaveMessage: '留言',
@@ -133,6 +145,8 @@ export const translations: Record<Language, any> = {
     title: 'Trullo',
     subtitle: 'Tu Asistente de Subvenciones UE e Inversión',
     placeholder: 'Pregunta sobre subvenciones UE...',
+    send: 'Enviar',
+    authRequired: 'Por favor inicia sesión para continuar',
     error: `Tengo problemas de conexión en este momento. Por favor, inténtalo de nuevo o contáctanos directamente en info@investinpuglia.eu`,
     poweredBy: 'Impulsado por IA • Experto en Subvenciones UE',
     leaveMessage: 'Dejar un Mensaje',

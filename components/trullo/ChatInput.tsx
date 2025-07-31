@@ -1,4 +1,4 @@
-// PATH: components/trullo/ChatInput.tsx
+﻿// PATH: components/trullo/ChatInput.tsx
 import React, { useState } from 'react';
 import { Language } from './types';
 import { translations } from './constants/translations';
@@ -8,14 +8,15 @@ interface ChatInputProps {
   isTyping: boolean;
   onSend: (message: string) => void;
   onLeaveMessage: () => void;
+  disabled?: boolean;
 }
 
-export default function ChatInput({ language, isTyping, onSend, onLeaveMessage }: ChatInputProps) {
+export default function ChatInput({ language, isTyping, onSend, onLeaveMessage, disabled = false }: ChatInputProps) {
   const [input, setInput] = useState('');
   const t = translations[language];
 
   const handleSend = () => {
-    if (input.trim() && !isTyping) {
+    if (input.trim() && !isTyping && !disabled) {
       onSend(input);
       setInput('');
     }
@@ -29,43 +30,55 @@ export default function ChatInput({ language, isTyping, onSend, onLeaveMessage }
   };
 
   return (
-    <div className="border-t border-gray-200 p-4 bg-white">
-      <div className="flex items-center space-x-2 mb-2">
-        <button
-          onClick={onLeaveMessage}
-          className="px-4 py-2 text-sm bg-purple-100 text-purple-700 rounded-full hover:bg-purple-200 transition-all"
-        >
-          📝 {t.leaveMessage}
-        </button>
-      </div>
-      <div className="flex items-center space-x-2">
-        <input
-          type="text"
+    <div className="p-4 border-t">
+      <div className="flex gap-2">
+        <textarea
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyPress={handleKeyPress}
-          placeholder={t.placeholder}
-          className="flex-1 px-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:border-purple-600 focus:ring-2 focus:ring-purple-100"
-          disabled={isTyping}
-          dir={language === 'ar' ? 'rtl' : 'ltr'}
+          placeholder={disabled ? t.authRequired || "Please sign in to continue" : t.placeholder}
+          disabled={isTyping || disabled}
+          className={`
+            flex-1 p-2 border rounded-lg resize-none
+            focus:outline-none focus:ring-2 focus:ring-purple-500
+            ${disabled ? 'bg-gray-100 cursor-not-allowed' : ''}
+          `}
+          rows={1}
+          style={{
+            minHeight: '40px',
+            maxHeight: '120px'
+          }}
         />
         <button
           onClick={handleSend}
-          disabled={!input.trim() || isTyping}
-          className={`p-2 rounded-full transition-all duration-200 ${
-            input.trim() && !isTyping
-              ? 'bg-gradient-to-r from-purple-600 to-emerald-600 text-white hover:shadow-lg hover:scale-105'
-              : 'bg-gray-200 text-gray-400 cursor-not-allowed'
-          }`}
+          disabled={isTyping || !input.trim() || disabled}
+          className={`
+            px-4 py-2 rounded-lg font-medium transition-all
+            ${isTyping || !input.trim() || disabled
+              ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+              : 'bg-gradient-to-r from-purple-600 to-emerald-600 text-white hover:shadow-lg'
+            }
+          `}
+        >
+          {isTyping ? '...' : t.send}
+        </button>
+        <button
+          onClick={onLeaveMessage}
+          disabled={disabled}
+          className={`
+            px-4 py-2 border border-gray-300 rounded-lg transition-all
+            ${disabled
+              ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
+              : 'hover:bg-gray-50'
+            }
+          `}
+          title={t.messageForm.title}
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
           </svg>
         </button>
       </div>
-      <p className="text-xs text-gray-500 mt-2 text-center">
-        {t.poweredBy}
-      </p>
     </div>
   );
 }
