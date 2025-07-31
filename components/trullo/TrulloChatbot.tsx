@@ -1,19 +1,13 @@
-// PATH: components/trullo/TrulloChatbot.tsx
-'use client'
 import React, { useState, useEffect, useRef } from 'react';
 import { Language, TrulloChatbotProps, Message } from './types';
 import { translations } from './constants/translations';
-import { authMessages } from './constants/authMessages';
 import { useChat } from './hooks/useChat';
 import ChatMessages from './ChatMessages';
 import ChatInput from './ChatInput';
 import ContactForm from './ContactForm';
 import { sendEmailMessage, saveContactRequest } from './utils/api';
-import { createClient } from '@/lib/supabase';
 
 export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
-  // Initialize Supabase client
-  const supabase = createClient();
   
   // Check if mobile on mount
   const [isMobile, setIsMobile] = useState(false);
@@ -33,48 +27,18 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
   useEffect(() => {
     // Check if we're in the browser
     if (typeof window !== 'undefined') {
-      // Check if returning from auth
-      const urlParams = new URLSearchParams(window.location.search);
-      const authSuccess = urlParams.get('trullo_auth') === 'success';
-      
-      if (authSuccess) {
-        // Remove the query parameter
-        urlParams.delete('trullo_auth');
-        const newUrl = window.location.pathname + (urlParams.toString() ? '?' + urlParams.toString() : '');
-        window.history.replaceState({}, '', newUrl);
-        
-        // Always open chat after successful auth
-        setIsOpen(true);
-        
-        // Check for saved chat state
-        const savedChatState = localStorage.getItem('trullo-chat-state-temp');
-        if (savedChatState) {
-          try {
-            const chatState = JSON.parse(savedChatState);
-            // Check if state is recent (within 10 minutes)
-            if (Date.now() - chatState.timestamp < 600000) {
-              // We'll pass this to useChat hook
-              window.trulloRestoredState = chatState;
-            }
-            localStorage.removeItem('trullo-chat-state-temp');
-          } catch (e) {
-            console.error('Failed to restore chat state:', e);
-          }
-        }
-      } else {
-        // Normal flow - check if user has manually closed before
-        const hasUserClosed = localStorage.getItem('trullo-user-closed') === 'true';
-        const savedState = localStorage.getItem('trullo-chat-state');
+      // Check if user has manually closed before
+      const hasUserClosed = localStorage.getItem('trullo-user-closed') === 'true';
+      const savedState = localStorage.getItem('trullo-chat-state');
 
-        if (!hasUserClosed) {
-          // Auto-open after 3 seconds if user hasn't manually closed before
-          setTimeout(() => {
-            setIsOpen(true);
-          }, 3000);
-        } else if (savedState === 'open') {
-          // Respect saved state if user has interacted before
+      if (!hasUserClosed) {
+        // Auto-open after 3 seconds if user hasn't manually closed before
+        setTimeout(() => {
           setIsOpen(true);
-        }
+        }, 3000);
+      } else if (savedState === 'open') {
+        // Respect saved state if user has interacted before
+        setIsOpen(true);
       }
 
       // Show button with animation after a short delay
@@ -190,34 +154,6 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
   } = useChat(isOpen, currentLang);
 
   const t = translations[currentLang];
-  const authT = authMessages[currentLang];
-
-  // Handle Google login
-  const handleGoogleLogin = async () => {
-    // Save current chat state to localStorage before redirecting
-    if (typeof window !== 'undefined') {
-      const chatState = {
-        messages: messages,
-        sessionId: sessionId,
-        conversationId: conversationId,
-        language: currentLang,
-        timestamp: Date.now()
-      };
-      localStorage.setItem('trullo-chat-state-temp', JSON.stringify(chatState));
-    }
-
-    // Include current page URL as the redirect destination
-    const currentUrl = window.location.pathname + window.location.search;
-    
-    const { error } = await supabase.auth.signInWithOAuth({
-      provider: 'google',
-      options: {
-        redirectTo: `${window.location.origin}/auth/callback?next=${encodeURIComponent(currentUrl)}`,
-      },
-    });
-
-    if (error) console.error('Error:', error);
-  };
 
   // Handle automated email sending
   useEffect(() => {
