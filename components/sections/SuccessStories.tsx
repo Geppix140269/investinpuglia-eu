@@ -70,21 +70,27 @@ export default function SuccessStories() {
           </div>
         </div>
         
-        <div className="text-center mt-12">
-          <div className="inline-flex items-center gap-8 text-white/90 bg-white/10 backdrop-blur-md px-8 py-4 rounded-full">
-            <div>
-              <p className="text-4xl font-bold">€50M+</p>
-              <p className="text-sm">Grants Secured by Network</p>
+        {/* Mobile-optimized stats section */}
+        <div className="mt-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:flex md:justify-center md:items-center gap-6 md:gap-8">
+            <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 text-center md:bg-transparent md:p-0">
+              <p className="text-3xl sm:text-4xl font-bold mb-1">€50M+</p>
+              <p className="text-xs sm:text-sm text-white/70">Grants Secured by Network</p>
             </div>
-            <div className="w-px h-12 bg-white/30"></div>
-            <div>
-              <p className="text-4xl font-bold">€100k+</p>
-              <p className="text-sm">Average Savings Per Client</p>
+            
+            {/* Divider - hidden on mobile, shown on desktop */}
+            <div className="hidden md:block w-px h-12 bg-white/30"></div>
+            
+            <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 text-center md:bg-transparent md:p-0">
+              <p className="text-3xl sm:text-4xl font-bold mb-1">€100k+</p>
+              <p className="text-xs sm:text-sm text-white/70">Average Savings Per Client</p>
             </div>
-            <div className="w-px h-12 bg-white/30"></div>
-            <div>
-              <p className="text-4xl font-bold">Zero</p>
-              <p className="text-sm">Project Failures</p>
+            
+            {/* Make "Zero" span full width on mobile for emphasis */}
+            <div className="col-span-1 sm:col-span-2 md:col-span-1 bg-white/10 backdrop-blur-md rounded-2xl p-6 text-center md:bg-transparent md:p-0">
+              <div className="hidden md:block w-px h-12 bg-white/30 absolute -left-8"></div>
+              <p className="text-3xl sm:text-4xl font-bold mb-1">Zero</p>
+              <p className="text-xs sm:text-sm text-white/70">Project Failures</p>
             </div>
           </div>
         </div>
