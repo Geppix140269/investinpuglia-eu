@@ -1,7 +1,7 @@
 // Path: app/register-professional/page.tsx
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
 
@@ -20,7 +20,7 @@ interface FormData {
   response_time: string;
 }
 
-export default function RegisterProfessional() {
+function RegisterProfessionalContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const token = searchParams.get('token');
@@ -379,5 +379,20 @@ export default function RegisterProfessional() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function RegisterProfessional() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="text-center">
+          <Loader2 className="animate-spin h-12 w-12 text-teal-600 mx-auto mb-4" />
+          <p className="text-gray-600">Loading registration...</p>
+        </div>
+      </div>
+    }>
+      <RegisterProfessionalContent />
+    </Suspense>
   );
 }
