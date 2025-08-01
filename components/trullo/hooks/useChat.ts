@@ -274,6 +274,14 @@ export function useChat(isOpen: boolean, language: Language): UseChatReturn {
         timestamp: new Date()
       };
 
+      // Professional interest detection
+      const professionalInterest = detectProfessionalInterest(input, language);
+      if (professionalInterest && conversationId) {
+        await logProfessionalInterest(conversationId, professionalInterest.professionalType, professionalInterest.confidence, input, language);
+        const followUp = generateProfessionalFollowUp(professionalInterest.professionalType, language);
+        assistantMessage.content = `${assistantMessage.content}\n\n${followUp}`;
+      }
+
       setMessages(prev => [...prev, assistantMessage]);
 
       if (conversationId) {
