@@ -61,6 +61,7 @@ export default function ProfessionalDirectory() {
 
   useEffect(() => {
     filterProfessionals();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchTerm, selectedType, selectedLanguage, professionals]);
 
   const fetchProfessionals = async () => {
