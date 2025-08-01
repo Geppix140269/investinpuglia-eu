@@ -353,7 +353,7 @@ export default function ProfessionalDirectory() {
 
                   <div className="flex gap-4 pt-4">
                     {selectedProfessional.phone && (
-                      
+                      <a
                         href={`tel:${selectedProfessional.phone}`}
                         className="flex items-center gap-2 text-teal-600 hover:text-teal-700"
                       >
@@ -362,7 +362,7 @@ export default function ProfessionalDirectory() {
                       </a>
                     )}
                     {selectedProfessional.email && (
-                      
+                      <a
                         href={`mailto:${selectedProfessional.email}`}
                         className="flex items-center gap-2 text-teal-600 hover:text-teal-700"
                       >
@@ -371,7 +371,7 @@ export default function ProfessionalDirectory() {
                       </a>
                     )}
                     {selectedProfessional.website && (
-                      
+                      <a
                         href={selectedProfessional.website}
                         target="_blank"
                         rel="noopener noreferrer"
