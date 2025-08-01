@@ -1,73 +1,76 @@
+'use client';
+
 import React, { useState, useEffect } from 'react';
-import { Save, Plus, Edit, Trash2, Search, CheckCircle, XCircle } from 'lucide-react';
+import { Plus, Edit2, Trash2, Search, Check, X, Globe, Clock, Star } from 'lucide-react';
 
-const ProfessionalAdmin = () => {
-  const [professionals, setProfessionals] = useState([]);
-  const [editingProfessional, setEditingProfessional] = useState(null);
-  const [isAddingNew, setIsAddingNew] = useState(false);
-  const [searchTerm, setSearchTerm] = useState('');
+// Define types
+type Professional = {
+  id: string;
+  name: string;
+  type: string;
+  email: string;
+  phone: string;
+  website: string;
+  location: string;
+  languages: string[];
+  specialties: string[];
+  description: string;
+  rating: number;
+  review_count: number;
+  verified: boolean;
+  response_time: string;
+  created_at: string;
+  updated_at: string;
+};
+
+type FormData = {
+  name: string;
+  type: string;
+  email: string;
+  phone: string;
+  website: string;
+  location: string;
+  languages: string;
+  specialties: string;
+  description: string;
+  rating: number;
+  verified: boolean;
+  response_time: string;
+};
+
+const ProfessionalAdmin: React.FC = () => {
+  const [professionals, setProfessionals] = useState<Professional[]>([]);
   const [loading, setLoading] = useState(false);
-  const [successMessage, setSuccessMessage] = useState('');
-
-  // Form state
-  const [formData, setFormData] = useState({
+  const [searchTerm, setSearchTerm] = useState('');
+  const [showForm, setShowForm] = useState(false);
+  const [editingId, setEditingId] = useState<string | null>(null);
+  const [formData, setFormData] = useState<FormData>({
     name: '',
     type: 'lawyer',
     email: '',
     phone: '',
     website: '',
     location: '',
-    languages: [],
-    specialties: [],
+    languages: '',
+    specialties: '',
     description: '',
+    rating: 5.0,
     verified: false,
-    response_time: '< 24h'
+    response_time: '24 hours'
   });
 
-  const PROFESSIONAL_TYPES = [
-    { value: 'lawyer', label: 'Lawyer / Avvocato' },
-    { value: 'architect', label: 'Architect / Architetto' },
-    { value: 'accountant', label: 'Accountant / Commercialista' },
-    { value: 'engineer', label: 'Engineer / Ingegnere' },
-    { value: 'realtor', label: 'Real Estate / Agente Immobiliare' },
-    { value: 'contractor', label: 'Contractor / Impresa Edile' },
-    { value: 'notary', label: 'Notary / Notaio' },
-    { value: 'surveyor', label: 'Surveyor / Geometra' }
+  // Professional types
+  const professionalTypes = [
+    'lawyer', 'architect', 'accountant', 'notary', 
+    'real_estate_agent', 'contractor', 'surveyor', 'engineer'
   ];
 
-  const LANGUAGES = [
-    { code: 'IT', label: '🇮🇹 Italian' },
-    { code: 'EN', label: '🇬🇧 English' },
-    { code: 'ES', label: '🇪🇸 Spanish' },
-    { code: 'FR', label: '🇫🇷 French' },
-    { code: 'DE', label: '🇩🇪 German' },
-    { code: 'RU', label: '🇷🇺 Russian' },
-    { code: 'AR', label: '🇸🇦 Arabic' },
-    { code: 'ZH', label: '🇨🇳 Chinese' }
-  ];
-
-  const LOCATIONS = [
-    'Bari', 'Lecce', 'Brindisi', 'Taranto', 'Foggia', 
-    'Ostuni', 'Monopoli', 'Alberobello', 'Gallipoli', 
-    'Polignano a Mare', 'Fasano', 'Martina Franca'
-  ];
-
-  const SPECIALTY_SUGGESTIONS = {
-    lawyer: ['Real Estate Law', 'Foreign Investment', 'Tax Law', 'Immigration', 'Corporate Law', 'Contract Law'],
-    architect: ['Historic Restoration', 'Modern Design', 'Sustainable Architecture', 'Interior Design', 'Urban Planning'],
-    accountant: ['International Tax', 'VAT Optimization', 'Grant Applications', 'Business Formation', 'Financial Planning'],
-    engineer: ['Structural Analysis', 'Seismic Assessment', 'MEP Engineering', 'Building Permits', 'Project Management'],
-    realtor: ['Luxury Properties', 'Commercial Real Estate', 'Property Management', 'Investment Analysis', 'Market Research'],
-    contractor: ['Renovation', 'New Construction', 'Historic Restoration', 'Project Management', 'Green Building']
-  };
-
-  // Load professionals
+  // Fetch professionals
   useEffect(() => {
-    loadProfessionals();
+    fetchProfessionals();
   }, []);
 
-  const loadProfessionals = async () => {
-    setLoading(true);
+  const fetchProfessionals = async () => {
     try {
       const response = await fetch('/api/professionals');
       if (response.ok) {
@@ -75,62 +78,87 @@ const ProfessionalAdmin = () => {
         setProfessionals(data);
       }
     } catch (error) {
-      console.error('Error loading professionals:', error);
+      console.error('Error fetching professionals:', error);
     }
-    setLoading(false);
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
 
     try {
-      const url = editingProfessional 
-        ? `/api/professionals/${editingProfessional.id}`
+      const method = editingId ? 'PUT' : 'POST';
+      const url = editingId 
+        ? `/api/professionals/${editingId}`
         : '/api/professionals';
-      
-      const method = editingProfessional ? 'PUT' : 'POST';
 
       const response = await fetch(url, {
         method,
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...formData,
+          languages: formData.languages.split(',').map(l => l.trim()),
+          specialties: formData.specialties.split(',').map(s => s.trim()),
+          rating: parseFloat(formData.rating.toString())
+        }),
       });
 
       if (response.ok) {
-        setSuccessMessage(editingProfessional ? 'Professional updated!' : 'Professional added!');
+        await fetchProfessionals();
         resetForm();
-        loadProfessionals();
-        setTimeout(() => setSuccessMessage(''), 3000);
+        setShowForm(false);
       }
     } catch (error) {
       console.error('Error saving professional:', error);
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
-  const handleDelete = async (id) => {
+  const handleEdit = (professional: Professional) => {
+    setFormData({
+      name: professional.name,
+      type: professional.type,
+      email: professional.email,
+      phone: professional.phone,
+      website: professional.website,
+      location: professional.location,
+      languages: professional.languages.join(', '),
+      specialties: professional.specialties.join(', '),
+      description: professional.description,
+      rating: professional.rating,
+      verified: professional.verified,
+      response_time: professional.response_time
+    });
+    setEditingId(professional.id);
+    setShowForm(true);
+  };
+
+  const handleDelete = async (id: string) => {
     if (!confirm('Are you sure you want to delete this professional?')) return;
 
     try {
       const response = await fetch(`/api/professionals/${id}`, {
-        method: 'DELETE'
+        method: 'DELETE',
       });
 
       if (response.ok) {
-        loadProfessionals();
-        setSuccessMessage('Professional deleted');
-        setTimeout(() => setSuccessMessage(''), 3000);
+        await fetchProfessionals();
       }
     } catch (error) {
       console.error('Error deleting professional:', error);
     }
   };
 
-  const handleEdit = (professional) => {
-    setFormData(professional);
-    setEditingProfessional(professional);
-    setIsAddingNew(true);
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    const { name, value, type } = e.target;
+    if (type === 'checkbox' && e.target instanceof HTMLInputElement) {
+      setFormData(prev => ({ ...prev, [name]: e.target.checked }));
+    } else {
+      setFormData(prev => ({ ...prev, [name]: value }));
+    }
   };
 
   const resetForm = () => {
@@ -141,46 +169,20 @@ const ProfessionalAdmin = () => {
       phone: '',
       website: '',
       location: '',
-      languages: [],
-      specialties: [],
+      languages: '',
+      specialties: '',
       description: '',
+      rating: 5.0,
       verified: false,
-      response_time: '< 24h'
+      response_time: '24 hours'
     });
-    setEditingProfessional(null);
-    setIsAddingNew(false);
+    setEditingId(null);
   };
 
-  const toggleLanguage = (lang) => {
-    setFormData(prev => ({
-      ...prev,
-      languages: prev.languages.includes(lang)
-        ? prev.languages.filter(l => l !== lang)
-        : [...prev.languages, lang]
-    }));
-  };
-
-  const addSpecialty = (specialty) => {
-    if (!formData.specialties.includes(specialty)) {
-      setFormData(prev => ({
-        ...prev,
-        specialties: [...prev.specialties, specialty]
-      }));
-    }
-  };
-
-  const removeSpecialty = (specialty) => {
-    setFormData(prev => ({
-      ...prev,
-      specialties: prev.specialties.filter(s => s !== specialty)
-    }));
-  };
-
-  // Filter professionals
-  const filteredProfessionals = professionals.filter(p => 
-    p.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    p.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    p.location.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredProfessionals = professionals.filter(prof =>
+    prof.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    prof.type.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    prof.location.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
@@ -189,51 +191,60 @@ const ProfessionalAdmin = () => {
         <div className="flex justify-between items-center mb-8">
           <h1 className="text-3xl font-bold text-gray-800">Professional Directory Admin</h1>
           <button
-            onClick={() => setIsAddingNew(true)}
-            className="bg-teal-600 text-white px-4 py-2 rounded-lg hover:bg-teal-700 flex items-center gap-2"
+            onClick={() => setShowForm(!showForm)}
+            className="bg-teal-600 text-white px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-teal-700"
           >
             <Plus size={20} />
             Add Professional
           </button>
         </div>
 
-        {/* Success Message */}
-        {successMessage && (
-          <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
-            {successMessage}
+        {/* Search Bar */}
+        <div className="mb-6">
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+            <input
+              type="text"
+              placeholder="Search professionals..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+            />
           </div>
-        )}
+        </div>
 
         {/* Add/Edit Form */}
-        {isAddingNew && (
-          <div className="bg-white rounded-lg shadow-md p-6 mb-8">
+        {showForm && (
+          <div className="bg-white rounded-lg shadow-md p-6 mb-6">
             <h2 className="text-xl font-semibold mb-4">
-              {editingProfessional ? 'Edit Professional' : 'Add New Professional'}
+              {editingId ? 'Edit Professional' : 'Add New Professional'}
             </h2>
-            
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <form onSubmit={handleSubmit}>
+              <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Name</label>
                   <input
                     type="text"
-                    required
+                    name="name"
                     value={formData.name}
-                    onChange={(e) => setFormData({...formData, name: e.target.value})}
-                    className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-teal-500"
-                    placeholder="e.g., Avv. Mario Rossi"
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
                   />
                 </div>
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Type</label>
                   <select
+                    name="type"
                     value={formData.type}
-                    onChange={(e) => setFormData({...formData, type: e.target.value})}
-                    className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-teal-500"
+                    onChange={handleInputChange}
+                    className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
                   >
-                    {PROFESSIONAL_TYPES.map(type => (
-                      <option key={type.value} value={type.value}>{type.label}</option>
+                    {professionalTypes.map(type => (
+                      <option key={type} value={type}>
+                        {type.replace('_', ' ').charAt(0).toUpperCase() + type.slice(1).replace('_', ' ')}
+                      </option>
                     ))}
                   </select>
                 </div>
@@ -242,160 +253,140 @@ const ProfessionalAdmin = () => {
                   <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
                   <input
                     type="email"
-                    required
+                    name="email"
                     value={formData.email}
-                    onChange={(e) => setFormData({...formData, email: e.target.value})}
-                    className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-teal-500"
+                    onChange={handleInputChange}
+                    className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
                   />
                 </div>
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Phone</label>
                   <input
-                    type="tel"
-                    required
+                    type="text"
+                    name="phone"
                     value={formData.phone}
-                    onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                    className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-teal-500"
-                    placeholder="+39 xxx xxx xxxx"
+                    onChange={handleInputChange}
+                    className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
                   />
                 </div>
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Website</label>
                   <input
-                    type="text"
+                    type="url"
+                    name="website"
                     value={formData.website}
-                    onChange={(e) => setFormData({...formData, website: e.target.value})}
-                    className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-teal-500"
-                    placeholder="www.example.com"
+                    onChange={handleInputChange}
+                    className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
                   />
                 </div>
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Location</label>
-                  <select
+                  <input
+                    type="text"
+                    name="location"
                     value={formData.location}
-                    onChange={(e) => setFormData({...formData, location: e.target.value})}
-                    className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-teal-500"
-                  >
-                    <option value="">Select location</option>
-                    {LOCATIONS.map(loc => (
-                      <option key={loc} value={loc}>{loc}</option>
-                    ))}
-                  </select>
+                    onChange={handleInputChange}
+                    className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Languages (comma-separated)
+                  </label>
+                  <input
+                    type="text"
+                    name="languages"
+                    value={formData.languages}
+                    onChange={handleInputChange}
+                    placeholder="English, Italian, Spanish"
+                    className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Specialties (comma-separated)
+                  </label>
+                  <input
+                    type="text"
+                    name="specialties"
+                    value={formData.specialties}
+                    onChange={handleInputChange}
+                    placeholder="Real Estate, Immigration Law"
+                    className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+                  />
+                </div>
+
+                <div className="col-span-2">
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
+                  <textarea
+                    name="description"
+                    value={formData.description}
+                    onChange={handleInputChange}
+                    rows={3}
+                    className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Rating</label>
+                  <input
+                    type="number"
+                    name="rating"
+                    value={formData.rating}
+                    onChange={handleInputChange}
+                    min="0"
+                    max="5"
+                    step="0.1"
+                    className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+                  />
                 </div>
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Response Time</label>
-                  <select
+                  <input
+                    type="text"
+                    name="response_time"
                     value={formData.response_time}
-                    onChange={(e) => setFormData({...formData, response_time: e.target.value})}
-                    className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-teal-500"
-                  >
-                    <option value="< 24h">Less than 24 hours</option>
-                    <option value="< 48h">Less than 48 hours</option>
-                    <option value="< 72h">Less than 72 hours</option>
-                    <option value="< 1 week">Less than 1 week</option>
-                  </select>
+                    onChange={handleInputChange}
+                    placeholder="24 hours"
+                    className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+                  />
                 </div>
 
-                <div className="flex items-center">
-                  <input
-                    type="checkbox"
-                    id="verified"
-                    checked={formData.verified}
-                    onChange={(e) => setFormData({...formData, verified: e.target.checked})}
-                    className="mr-2"
-                  />
-                  <label htmlFor="verified" className="text-sm font-medium text-gray-700">
-                    Verified Professional
+                <div className="col-span-2">
+                  <label className="flex items-center gap-2">
+                    <input
+                      type="checkbox"
+                      name="verified"
+                      checked={formData.verified}
+                      onChange={handleInputChange}
+                      className="rounded focus:ring-2 focus:ring-teal-500"
+                    />
+                    <span className="text-sm font-medium text-gray-700">Verified Professional</span>
                   </label>
                 </div>
               </div>
 
-              {/* Languages */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Languages</label>
-                <div className="flex flex-wrap gap-2">
-                  {LANGUAGES.map(lang => (
-                    <button
-                      key={lang.code}
-                      type="button"
-                      onClick={() => toggleLanguage(lang.code)}
-                      className={`px-3 py-1 rounded-full text-sm ${
-                        formData.languages.includes(lang.code)
-                          ? 'bg-teal-600 text-white'
-                          : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                      }`}
-                    >
-                      {lang.label}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              {/* Specialties */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Specialties</label>
-                <div className="flex flex-wrap gap-2 mb-2">
-                  {formData.specialties.map(spec => (
-                    <span key={spec} className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm flex items-center gap-1">
-                      {spec}
-                      <button
-                        type="button"
-                        onClick={() => removeSpecialty(spec)}
-                        className="text-blue-500 hover:text-blue-700"
-                      >
-                        ×
-                      </button>
-                    </span>
-                  ))}
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  {(SPECIALTY_SUGGESTIONS[formData.type] || []).map(spec => (
-                    <button
-                      key={spec}
-                      type="button"
-                      onClick={() => addSpecialty(spec)}
-                      disabled={formData.specialties.includes(spec)}
-                      className={`px-3 py-1 rounded-full text-sm ${
-                        formData.specialties.includes(spec)
-                          ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                          : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                      }`}
-                    >
-                      + {spec}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              {/* Description */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
-                <textarea
-                  value={formData.description}
-                  onChange={(e) => setFormData({...formData, description: e.target.value})}
-                  rows={3}
-                  className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-teal-500"
-                  placeholder="Brief description of expertise and experience..."
-                />
-              </div>
-
-              <div className="flex gap-4">
+              <div className="flex gap-2 mt-6">
                 <button
                   type="submit"
                   disabled={loading}
-                  className="bg-teal-600 text-white px-6 py-2 rounded-lg hover:bg-teal-700 flex items-center gap-2"
+                  className="bg-teal-600 text-white px-4 py-2 rounded-lg hover:bg-teal-700 disabled:opacity-50"
                 >
-                  <Save size={20} />
-                  {editingProfessional ? 'Update' : 'Save'} Professional
+                  {loading ? 'Saving...' : (editingId ? 'Update' : 'Add')} Professional
                 </button>
                 <button
                   type="button"
-                  onClick={resetForm}
-                  className="bg-gray-300 text-gray-700 px-6 py-2 rounded-lg hover:bg-gray-400"
+                  onClick={() => {
+                    resetForm();
+                    setShowForm(false);
+                  }}
+                  className="bg-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-400"
                 >
                   Cancel
                 </button>
@@ -404,66 +395,88 @@ const ProfessionalAdmin = () => {
           </div>
         )}
 
-        {/* Search Bar */}
-        <div className="relative mb-6">
-          <Search className="absolute left-3 top-3 text-gray-400" size={20} />
-          <input
-            type="text"
-            placeholder="Search professionals..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:border-teal-500"
-          />
-        </div>
-
         {/* Professionals List */}
         <div className="bg-white rounded-lg shadow-md overflow-hidden">
           <table className="w-full">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Location</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Languages</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Professional
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Type
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Location
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Languages
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Rating
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Status
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Actions
+                </th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {filteredProfessionals.map((professional) => (
-                <tr key={professional.id} className="hover:bg-gray-50">
+                <tr key={professional.id}>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div>
                       <div className="text-sm font-medium text-gray-900">{professional.name}</div>
                       <div className="text-sm text-gray-500">{professional.email}</div>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                    {professional.type}
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+                      {professional.type.replace('_', ' ')}
+                    </span>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                     {professional.location}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                    {professional.languages?.join(', ')}
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <div className="flex gap-1">
+                      {professional.languages.slice(0, 2).map((lang, i) => (
+                        <span key={i} className="text-xs bg-gray-100 px-2 py-1 rounded">
+                          {lang}
+                        </span>
+                      ))}
+                      {professional.languages.length > 2 && (
+                        <span className="text-xs text-gray-500">+{professional.languages.length - 2}</span>
+                      )}
+                    </div>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <div className="flex items-center">
+                      <Star className="text-yellow-400 h-4 w-4 mr-1" />
+                      <span className="text-sm text-gray-900">{professional.rating}</span>
+                    </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     {professional.verified ? (
                       <span className="text-green-600 flex items-center gap-1">
-                        <CheckCircle size={16} /> Verified
+                        <Check size={16} />
+                        Verified
                       </span>
                     ) : (
                       <span className="text-gray-400 flex items-center gap-1">
-                        <XCircle size={16} /> Unverified
+                        <X size={16} />
+                        Unverified
                       </span>
                     )}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                  <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                     <button
                       onClick={() => handleEdit(professional)}
-                      className="text-teal-600 hover:text-teal-900 mr-4"
+                      className="text-teal-600 hover:text-teal-900 mr-3"
                     >
-                      <Edit size={18} />
+                      <Edit2 size={18} />
                     </button>
                     <button
                       onClick={() => handleDelete(professional.id)}
@@ -479,35 +492,9 @@ const ProfessionalAdmin = () => {
 
           {filteredProfessionals.length === 0 && (
             <div className="text-center py-8 text-gray-500">
-              No professionals found
+              No professionals found. Add your first professional to get started.
             </div>
           )}
-        </div>
-
-        {/* Stats */}
-        <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
-          <div className="bg-white p-4 rounded-lg shadow">
-            <p className="text-2xl font-bold text-teal-600">{professionals.length}</p>
-            <p className="text-sm text-gray-600">Total Professionals</p>
-          </div>
-          <div className="bg-white p-4 rounded-lg shadow">
-            <p className="text-2xl font-bold text-green-600">
-              {professionals.filter(p => p.verified).length}
-            </p>
-            <p className="text-sm text-gray-600">Verified</p>
-          </div>
-          <div className="bg-white p-4 rounded-lg shadow">
-            <p className="text-2xl font-bold text-blue-600">
-              {[...new Set(professionals.map(p => p.location))].length}
-            </p>
-            <p className="text-sm text-gray-600">Cities Covered</p>
-          </div>
-          <div className="bg-white p-4 rounded-lg shadow">
-            <p className="text-2xl font-bold text-purple-600">
-              {[...new Set(professionals.flatMap(p => p.languages || []))].length}
-            </p>
-            <p className="text-sm text-gray-600">Languages</p>
-          </div>
         </div>
       </div>
     </div>
