@@ -1,0 +1,20 @@
+{
+  "name": "puglia-professional-crawler",
+  "version": "1.0.0",
+  "description": "Automated professional discovery and invitation system for InvestInPuglia",
+  "main": "crawler.js",
+  "scripts": {
+    "crawl": "node crawler.js",
+    "send-invites": "node email-sender.js",
+    "test": "node crawler.js --test"
+  },
+  "dependencies": {
+    "puppeteer": "^22.0.0",
+    "cheerio": "^1.0.0-rc.12",
+    "axios": "^1.6.0",
+    "@supabase/supabase-js": "^2.39.0",
+    "resend": "^2.0.0",
+    "csv-writer": "^1.6.0",
+    "dotenv": "^16.3.1"
+  }
+}
