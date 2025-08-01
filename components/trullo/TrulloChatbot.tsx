@@ -4,7 +4,6 @@ import { translations } from './constants/translations';
 import { useChat } from './hooks/useChat';
 import ChatMessages from './ChatMessages';
 import ChatInput from './ChatInput';
-import ContactForm from './ContactForm';
 import { sendEmailMessage, saveContactRequest } from './utils/api';
 
 export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
@@ -13,7 +12,6 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
   const [isMobile, setIsMobile] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [currentLang, setCurrentLang] = useState<Language>(language);
-  const [showMessageForm, setShowMessageForm] = useState(false);
   const [isButtonVisible, setIsButtonVisible] = useState(false); // For button entrance animation
   const [isDragging, setIsDragging] = useState(false);
   const [dragOffset, setDragOffset] = useState(0);
@@ -208,18 +206,6 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
     setIsOpen(false);
   };
 
-  const handleContactFormSuccess = () => {
-    const successMessage: Message = {
-      id: Date.now().toString(),
-      role: 'assistant',
-      content: t.messageForm.success,
-      timestamp: new Date()
-    };
-
-    // Add success message to chat (this will trigger re-render with updated messages)
-    setShowMessageForm(false);
-  };
-
   // Handle user manually closing the chat
   const handleUserClose = () => {
     setIsOpen(false);
@@ -401,30 +387,18 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
             )}
           </div>
 
-          {/* Messages or Contact Form */}
-          {showMessageForm ? (
-            <ContactForm
-              language={currentLang}
-              conversationId={conversationId}
-              onSuccess={handleContactFormSuccess}
-              onCancel={() => setShowMessageForm(false)}
-            />
-          ) : (
-            <>
-              <ChatMessages
-                messages={messages}
-                isTyping={isTyping}
-              />
+          {/* Messages */}
+          <ChatMessages
+            messages={messages}
+            isTyping={isTyping}
+          />
 
-              <ChatInput
-                language={currentLang}
-                isTyping={isTyping}
-                onSend={sendMessage}
-                onLeaveMessage={() => setShowMessageForm(true)}
-                disabled={false}
-              />
-            </>
-          )}
+          <ChatInput
+            language={currentLang}
+            isTyping={isTyping}
+            onSend={sendMessage}
+            disabled={false}
+          />
 
           {/* Mobile Safe Area Bottom Padding */}
           {isMobile && (
