@@ -1,321 +1,502 @@
+'use client';
+
 import React, { useState, useEffect } from 'react';
-import { Search, Phone, Mail, Globe, MapPin, Star, Filter, Calendar } from 'lucide-react';
+import { Search, Filter, MapPin, Globe, Clock, Star, Phone, Mail, ExternalLink, X } from 'lucide-react';
 
-// Sample professional data - in production, this would come from your database
-const SAMPLE_PROFESSIONALS = [
-  {
-    id: 1,
-    name: "Avv. Maria Rossi",
-    type: "lawyer",
-    specialties: ["Real Estate Law", "Foreign Investment", "Tax Planning"],
-    languages: ["IT", "EN", "FR"],
-    location: "Lecce",
-    rating: 4.8,
-    reviews: 42,
-    email: "m.rossi@example.com",
-    phone: "+39 0832 123456",
-    website: "www.rossilaw.it",
-    verified: true,
-    responseTime: "< 24h",
-    description: "Specialized in helping international investors navigate Italian property law with 15+ years experience."
-  },
-  {
-    id: 2,
-    name: "Arch. Giuseppe Bianchi",
-    type: "architect",
-    specialties: ["Historic Restoration", "Luxury Villas", "Sustainable Design"],
-    languages: ["IT", "EN", "DE"],
-    location: "Ostuni",
-    rating: 4.9,
-    reviews: 38,
-    email: "studio@bianchi.it",
-    phone: "+39 0831 987654",
-    website: "www.studiobianchi.it",
-    verified: true,
-    responseTime: "< 48h",
-    description: "Award-winning architect specializing in preserving Puglia's architectural heritage while creating modern luxury spaces."
-  },
-  {
-    id: 3,
-    name: "Ing. Roberto Russo",
-    type: "engineer",
-    specialties: ["Structural Analysis", "Seismic Assessment", "Building Permits"],
-    languages: ["IT", "EN"],
-    location: "Bari",
-    rating: 4.7,
-    reviews: 29,
-    email: "ing.russo@example.com",
-    phone: "+39 080 555444",
-    verified: true,
-    responseTime: "< 72h",
-    description: "Expert in structural engineering and regulatory compliance for property renovations in Puglia."
-  },
-  {
-    id: 4,
-    name: "Dott. Lucia Greco",
-    type: "accountant",
-    specialties: ["International Tax", "VAT Optimization", "Grant Applications"],
-    languages: ["IT", "EN", "ES"],
-    location: "Brindisi",
-    rating: 4.9,
-    reviews: 51,
-    email: "l.greco@fiscale.it",
-    phone: "+39 0831 333222",
-    website: "www.grecofiscale.it",
-    verified: true,
-    responseTime: "< 24h",
-    description: "Certified accountant with expertise in EU grant applications and cross-border tax optimization."
-  }
-];
-
-const PROFESSIONAL_TYPES = {
-  all: { label: "All Professionals", icon: "👥" },
-  lawyer: { label: "Lawyers", icon: "⚖️" },
-  architect: { label: "Architects", icon: "🏛️" },
-  accountant: { label: "Accountants", icon: "💰" },
-  engineer: { label: "Engineers", icon: "🔧" },
-  realtor: { label: "Real Estate", icon: "🏠" },
-  contractor: { label: "Contractors", icon: "🔨" }
+// Define types
+type Professional = {
+  id: string;
+  name: string;
+  type: string;
+  email: string;
+  phone: string;
+  website: string;
+  location: string;
+  languages: string[];
+  specialties: string[];
+  description: string;
+  rating: number;
+  review_count: number;
+  verified: boolean;
+  response_time: string;
 };
 
-const ProfessionalDirectory = () => {
-  const [professionals, setProfessionals] = useState(SAMPLE_PROFESSIONALS);
-  const [filteredProfessionals, setFilteredProfessionals] = useState(SAMPLE_PROFESSIONALS);
-  const [selectedType, setSelectedType] = useState('all');
+type ContactForm = {
+  name: string;
+  email: string;
+  phone: string;
+  message: string;
+};
+
+const ProfessionalDirectory: React.FC = () => {
+  const [professionals, setProfessionals] = useState<Professional[]>([]);
+  const [filteredProfessionals, setFilteredProfessionals] = useState<Professional[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const [selectedType, setSelectedType] = useState('all');
   const [selectedLanguage, setSelectedLanguage] = useState('all');
-  const [selectedLocation, setSelectedLocation] = useState('all');
+  const [selectedProfessional, setSelectedProfessional] = useState<Professional | null>(null);
   const [showContactModal, setShowContactModal] = useState(false);
-  const [selectedProfessional, setSelectedProfessional] = useState(null);
+  const [contactForm, setContactForm] = useState<ContactForm>({
+    name: '',
+    email: '',
+    phone: '',
+    message: ''
+  });
+  const [loading, setLoading] = useState(true);
+  const [sending, setSending] = useState(false);
 
-  // Filter professionals based on criteria
+  // Professional type labels
+  const professionalTypeLabels: Record<string, string> = {
+    lawyer: 'Lawyer',
+    architect: 'Architect',
+    accountant: 'Accountant',
+    notary: 'Notary',
+    real_estate_agent: 'Real Estate Agent',
+    contractor: 'Contractor',
+    surveyor: 'Surveyor',
+    engineer: 'Engineer'
+  };
+
+  // Fetch professionals
   useEffect(() => {
-    let filtered = professionals;
+    fetchProfessionals();
+  }, []);
 
-    // Filter by type
-    if (selectedType !== 'all') {
-      filtered = filtered.filter(p => p.type === selectedType);
+  useEffect(() => {
+    filterProfessionals();
+  }, [searchTerm, selectedType, selectedLanguage, professionals]);
+
+  const fetchProfessionals = async () => {
+    try {
+      const response = await fetch('/api/professionals');
+      if (response.ok) {
+        const data = await response.json();
+        setProfessionals(data);
+        setFilteredProfessionals(data);
+      }
+    } catch (error) {
+      console.error('Error fetching professionals:', error);
+    } finally {
+      setLoading(false);
     }
+  };
+
+  const filterProfessionals = () => {
+    let filtered = [...professionals];
 
     // Filter by search term
     if (searchTerm) {
-      filtered = filtered.filter(p => 
-        p.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        p.specialties.some(s => s.toLowerCase().includes(searchTerm.toLowerCase())) ||
-        p.description.toLowerCase().includes(searchTerm.toLowerCase())
+      filtered = filtered.filter(prof =>
+        prof.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        prof.location.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        prof.specialties.some(spec => spec.toLowerCase().includes(searchTerm.toLowerCase()))
       );
+    }
+
+    // Filter by type
+    if (selectedType !== 'all') {
+      filtered = filtered.filter(prof => prof.type === selectedType);
     }
 
     // Filter by language
     if (selectedLanguage !== 'all') {
-      filtered = filtered.filter(p => p.languages.includes(selectedLanguage));
-    }
-
-    // Filter by location
-    if (selectedLocation !== 'all') {
-      filtered = filtered.filter(p => p.location === selectedLocation);
+      filtered = filtered.filter(prof => prof.languages.includes(selectedLanguage));
     }
 
     setFilteredProfessionals(filtered);
-  }, [selectedType, searchTerm, selectedLanguage, selectedLocation, professionals]);
+  };
 
-  const handleContactClick = (professional) => {
+  const handleViewProfile = async (professional: Professional) => {
     setSelectedProfessional(professional);
-    setShowContactModal(true);
     
-    // Track the interest
-    trackProfessionalView(professional.id, professional.type);
+    // Track view
+    try {
+      await fetch('/api/professional-interaction', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          professional_id: professional.id,
+          interaction_type: 'view'
+        })
+      });
+    } catch (error) {
+      console.error('Error tracking view:', error);
+    }
   };
 
-  const trackProfessionalView = async (professionalId, professionalType) => {
-    // In production, send this to your API
-    console.log('Tracking view:', { professionalId, professionalType });
+  const handleContact = () => {
+    setShowContactModal(true);
   };
 
-  const ContactModal = ({ professional, onClose }) => (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg max-w-md w-full p-6">
-        <h3 className="text-xl font-bold mb-4">Contact {professional.name}</h3>
-        
-        <div className="space-y-4">
-          <a href={`tel:${professional.phone}`} className="flex items-center gap-3 p-3 bg-green-50 rounded-lg hover:bg-green-100 transition">
-            <Phone className="text-green-600" size={20} />
-            <span className="font-medium">{professional.phone}</span>
-          </a>
-          
-          <a href={`mailto:${professional.email}`} className="flex items-center gap-3 p-3 bg-blue-50 rounded-lg hover:bg-blue-100 transition">
-            <Mail className="text-blue-600" size={20} />
-            <span className="font-medium">{professional.email}</span>
-          </a>
-          
-          {professional.website && (
-            <a href={`https://${professional.website}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 p-3 bg-purple-50 rounded-lg hover:bg-purple-100 transition">
-              <Globe className="text-purple-600" size={20} />
-              <span className="font-medium">{professional.website}</span>
-            </a>
-          )}
-          
-          <button className="w-full bg-teal-600 text-white py-3 rounded-lg hover:bg-teal-700 transition flex items-center justify-center gap-2">
-            <Calendar size={20} />
-            Schedule Consultation
-          </button>
-        </div>
-        
-        <button onClick={onClose} className="mt-6 text-gray-500 hover:text-gray-700 w-full text-center">
-          Close
-        </button>
+  const handleSendMessage = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!selectedProfessional) return;
+
+    setSending(true);
+    try {
+      // Track contact
+      await fetch('/api/professional-interaction', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          professional_id: selectedProfessional.id,
+          interaction_type: 'contact'
+        })
+      });
+
+      // Send email (implement your email logic here)
+      await fetch('/api/contact-professional', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          professional: selectedProfessional,
+          ...contactForm
+        })
+      });
+
+      // Reset form
+      setContactForm({ name: '', email: '', phone: '', message: '' });
+      setShowContactModal(false);
+      alert('Message sent successfully! The professional will contact you soon.');
+    } catch (error) {
+      console.error('Error sending message:', error);
+      alert('Failed to send message. Please try again.');
+    } finally {
+      setSending(false);
+    }
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setContactForm(prev => ({ ...prev, [name]: value }));
+  };
+
+  // Get unique languages
+  const allLanguages = Array.from(new Set(professionals.flatMap(p => p.languages))).sort();
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-teal-600"></div>
       </div>
-    </div>
-  );
+    );
+  }
 
   return (
-    <div className="max-w-6xl mx-auto p-6">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-800 mb-2">Professional Directory</h1>
-        <p className="text-gray-600">Connect with trusted professionals for your investment in Puglia</p>
-      </div>
+    <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto">
+        <h1 className="text-4xl font-bold text-gray-900 text-center mb-8">
+          Find Trusted Professionals in Puglia
+        </h1>
 
-      {/* Filters */}
-      <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          {/* Search */}
-          <div className="relative">
-            <Search className="absolute left-3 top-3 text-gray-400" size={20} />
-            <input
-              type="text"
-              placeholder="Search professionals..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:border-teal-500"
-            />
-          </div>
-
-          {/* Type Filter */}
-          <select
-            value={selectedType}
-            onChange={(e) => setSelectedType(e.target.value)}
-            className="px-4 py-2 border rounded-lg focus:outline-none focus:border-teal-500"
-          >
-            {Object.entries(PROFESSIONAL_TYPES).map(([value, { label, icon }]) => (
-              <option key={value} value={value}>{icon} {label}</option>
-            ))}
-          </select>
-
-          {/* Language Filter */}
-          <select
-            value={selectedLanguage}
-            onChange={(e) => setSelectedLanguage(e.target.value)}
-            className="px-4 py-2 border rounded-lg focus:outline-none focus:border-teal-500"
-          >
-            <option value="all">🌐 All Languages</option>
-            <option value="IT">🇮🇹 Italian</option>
-            <option value="EN">🇬🇧 English</option>
-            <option value="ES">🇪🇸 Spanish</option>
-            <option value="FR">🇫🇷 French</option>
-            <option value="DE">🇩🇪 German</option>
-          </select>
-
-          {/* Location Filter */}
-          <select
-            value={selectedLocation}
-            onChange={(e) => setSelectedLocation(e.target.value)}
-            className="px-4 py-2 border rounded-lg focus:outline-none focus:border-teal-500"
-          >
-            <option value="all">📍 All Locations</option>
-            <option value="Bari">Bari</option>
-            <option value="Lecce">Lecce</option>
-            <option value="Brindisi">Brindisi</option>
-            <option value="Ostuni">Ostuni</option>
-            <option value="Taranto">Taranto</option>
-          </select>
-        </div>
-      </div>
-
-      {/* Results Count */}
-      <p className="text-gray-600 mb-4">
-        Found {filteredProfessionals.length} professionals
-      </p>
-
-      {/* Professional Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {filteredProfessionals.map((professional) => (
-          <div key={professional.id} className="bg-white rounded-lg shadow-md hover:shadow-lg transition p-6">
-            <div className="flex justify-between items-start mb-4">
-              <div>
-                <h3 className="text-xl font-semibold text-gray-800 flex items-center gap-2">
-                  {professional.name}
-                  {professional.verified && (
-                    <span className="text-teal-600" title="Verified Professional">✓</span>
-                  )}
-                </h3>
-                <p className="text-gray-600 capitalize">{PROFESSIONAL_TYPES[professional.type].icon} {professional.type}</p>
-              </div>
-              <div className="text-right">
-                <div className="flex items-center gap-1">
-                  <Star className="text-yellow-500 fill-current" size={16} />
-                  <span className="font-semibold">{professional.rating}</span>
-                  <span className="text-gray-500 text-sm">({professional.reviews})</span>
-                </div>
-                <p className="text-sm text-gray-500">{professional.responseTime}</p>
-              </div>
+        {/* Search and Filters */}
+        <div className="bg-white rounded-lg shadow-md p-6 mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+              <input
+                type="text"
+                placeholder="Search by name, location, or specialty..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+              />
             </div>
 
-            <p className="text-gray-700 mb-4">{professional.description}</p>
-
-            <div className="space-y-2 mb-4">
-              <div className="flex items-center gap-2 text-sm text-gray-600">
-                <MapPin size={16} />
-                {professional.location}
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {professional.specialties.map((specialty, idx) => (
-                  <span key={idx} className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-full">
-                    {specialty}
-                  </span>
-                ))}
-              </div>
-              <div className="flex gap-2">
-                {professional.languages.map((lang, idx) => (
-                  <span key={idx} className="text-sm text-gray-600">
-                    {lang}{idx < professional.languages.length - 1 ? ' •' : ''}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            <button
-              onClick={() => handleContactClick(professional)}
-              className="w-full bg-teal-600 text-white py-2 rounded-lg hover:bg-teal-700 transition flex items-center justify-center gap-2"
+            <select
+              value={selectedType}
+              onChange={(e) => setSelectedType(e.target.value)}
+              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
             >
-              <Phone size={18} />
-              Contact Professional
-            </button>
+              <option value="all">All Professionals</option>
+              {Object.entries(professionalTypeLabels).map(([value, label]) => (
+                <option key={value} value={value}>{label}</option>
+              ))}
+            </select>
+
+            <select
+              value={selectedLanguage}
+              onChange={(e) => setSelectedLanguage(e.target.value)}
+              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+            >
+              <option value="all">All Languages</option>
+              {allLanguages.map(lang => (
+                <option key={lang} value={lang}>{lang}</option>
+              ))}
+            </select>
           </div>
-        ))}
-      </div>
-
-      {/* Contact Modal */}
-      {showContactModal && selectedProfessional && (
-        <ContactModal
-          professional={selectedProfessional}
-          onClose={() => setShowContactModal(false)}
-        />
-      )}
-
-      {/* No Results */}
-      {filteredProfessionals.length === 0 && (
-        <div className="text-center py-12">
-          <p className="text-gray-500">No professionals found matching your criteria.</p>
-          <button onClick={() => {
-            setSelectedType('all');
-            setSearchTerm('');
-            setSelectedLanguage('all');
-            setSelectedLocation('all');
-          }} className="mt-4 text-teal-600 hover:text-teal-700">
-            Clear all filters
-          </button>
         </div>
-      )}
+
+        {/* Results count */}
+        <p className="text-gray-600 mb-4">
+          Found {filteredProfessionals.length} professionals
+        </p>
+
+        {/* Professionals Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filteredProfessionals.map((professional) => (
+            <div key={professional.id} className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow">
+              <div className="p-6">
+                <div className="flex justify-between items-start mb-4">
+                  <div>
+                    <h3 className="text-xl font-semibold text-gray-900">{professional.name}</h3>
+                    <span className="inline-block px-3 py-1 text-sm bg-teal-100 text-teal-800 rounded-full mt-1">
+                      {professionalTypeLabels[professional.type] || professional.type}
+                    </span>
+                  </div>
+                  {professional.verified && (
+                    <div className="bg-green-100 p-2 rounded-full">
+                      <svg className="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                  )}
+                </div>
+
+                <div className="space-y-2 mb-4">
+                  <div className="flex items-center text-gray-600 text-sm">
+                    <MapPin size={16} className="mr-2" />
+                    {professional.location}
+                  </div>
+                  <div className="flex items-center text-gray-600 text-sm">
+                    <Globe size={16} className="mr-2" />
+                    {professional.languages.join(', ')}
+                  </div>
+                  <div className="flex items-center text-gray-600 text-sm">
+                    <Clock size={16} className="mr-2" />
+                    Response time: {professional.response_time}
+                  </div>
+                  {professional.rating > 0 && (
+                    <div className="flex items-center text-gray-600 text-sm">
+                      <Star size={16} className="mr-2 text-yellow-400" />
+                      {professional.rating} ({professional.review_count} reviews)
+                    </div>
+                  )}
+                </div>
+
+                {professional.specialties.length > 0 && (
+                  <div className="mb-4">
+                    <p className="text-sm text-gray-500 mb-1">Specialties:</p>
+                    <div className="flex flex-wrap gap-1">
+                      {professional.specialties.slice(0, 3).map((specialty, i) => (
+                        <span key={i} className="text-xs bg-gray-100 px-2 py-1 rounded">
+                          {specialty}
+                        </span>
+                      ))}
+                      {professional.specialties.length > 3 && (
+                        <span className="text-xs text-gray-500">+{professional.specialties.length - 3} more</span>
+                      )}
+                    </div>
+                  </div>
+                )}
+
+                <button
+                  onClick={() => handleViewProfile(professional)}
+                  className="w-full bg-teal-600 text-white py-2 rounded-lg hover:bg-teal-700 transition-colors"
+                >
+                  View Profile
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {filteredProfessionals.length === 0 && (
+          <div className="text-center py-12">
+            <p className="text-gray-500 text-lg">No professionals found matching your criteria.</p>
+            <p className="text-gray-400 mt-2">Try adjusting your filters or search term.</p>
+          </div>
+        )}
+
+        {/* Professional Detail Modal */}
+        {selectedProfessional && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+            <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+              <div className="p-6">
+                <div className="flex justify-between items-start mb-4">
+                  <div>
+                    <h2 className="text-2xl font-bold text-gray-900">{selectedProfessional.name}</h2>
+                    <span className="inline-block px-3 py-1 text-sm bg-teal-100 text-teal-800 rounded-full mt-1">
+                      {professionalTypeLabels[selectedProfessional.type] || selectedProfessional.type}
+                    </span>
+                  </div>
+                  <button
+                    onClick={() => setSelectedProfessional(null)}
+                    className="text-gray-400 hover:text-gray-600"
+                  >
+                    <X size={24} />
+                  </button>
+                </div>
+
+                <div className="space-y-4 mb-6">
+                  <p className="text-gray-700">{selectedProfessional.description}</p>
+
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="flex items-center text-gray-600">
+                      <MapPin size={18} className="mr-2" />
+                      {selectedProfessional.location}
+                    </div>
+                    <div className="flex items-center text-gray-600">
+                      <Clock size={18} className="mr-2" />
+                      Response: {selectedProfessional.response_time}
+                    </div>
+                    <div className="flex items-center text-gray-600">
+                      <Globe size={18} className="mr-2" />
+                      {selectedProfessional.languages.join(', ')}
+                    </div>
+                    {selectedProfessional.rating > 0 && (
+                      <div className="flex items-center text-gray-600">
+                        <Star size={18} className="mr-2 text-yellow-400" />
+                        {selectedProfessional.rating} ({selectedProfessional.review_count} reviews)
+                      </div>
+                    )}
+                  </div>
+
+                  {selectedProfessional.specialties.length > 0 && (
+                    <div>
+                      <h3 className="font-semibold text-gray-900 mb-2">Specialties</h3>
+                      <div className="flex flex-wrap gap-2">
+                        {selectedProfessional.specialties.map((specialty, i) => (
+                          <span key={i} className="bg-gray-100 px-3 py-1 rounded-full text-sm">
+                            {specialty}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  <div className="flex gap-4 pt-4">
+                    {selectedProfessional.phone && (
+                      
+                        href={`tel:${selectedProfessional.phone}`}
+                        className="flex items-center gap-2 text-teal-600 hover:text-teal-700"
+                      >
+                        <Phone size={18} />
+                        {selectedProfessional.phone}
+                      </a>
+                    )}
+                    {selectedProfessional.email && (
+                      
+                        href={`mailto:${selectedProfessional.email}`}
+                        className="flex items-center gap-2 text-teal-600 hover:text-teal-700"
+                      >
+                        <Mail size={18} />
+                        Email
+                      </a>
+                    )}
+                    {selectedProfessional.website && (
+                      
+                        href={selectedProfessional.website}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 text-teal-600 hover:text-teal-700"
+                      >
+                        <ExternalLink size={18} />
+                        Website
+                      </a>
+                    )}
+                  </div>
+                </div>
+
+                <button
+                  onClick={handleContact}
+                  className="w-full bg-teal-600 text-white py-3 rounded-lg hover:bg-teal-700 transition-colors"
+                >
+                  Contact This Professional
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Contact Modal */}
+        {showContactModal && selectedProfessional && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+            <div className="bg-white rounded-lg max-w-md w-full">
+              <div className="p-6">
+                <div className="flex justify-between items-center mb-4">
+                  <h3 className="text-xl font-semibold">Contact {selectedProfessional.name}</h3>
+                  <button
+                    onClick={() => setShowContactModal(false)}
+                    className="text-gray-400 hover:text-gray-600"
+                  >
+                    <X size={24} />
+                  </button>
+                </div>
+
+                <form onSubmit={handleSendMessage}>
+                  <div className="space-y-4">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">Your Name</label>
+                      <input
+                        type="text"
+                        name="name"
+                        value={contactForm.name}
+                        onChange={handleInputChange}
+                        required
+                        className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">Your Email</label>
+                      <input
+                        type="email"
+                        name="email"
+                        value={contactForm.email}
+                        onChange={handleInputChange}
+                        required
+                        className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">Your Phone (optional)</label>
+                      <input
+                        type="tel"
+                        name="phone"
+                        value={contactForm.phone}
+                        onChange={handleInputChange}
+                        className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">Message</label>
+                      <textarea
+                        name="message"
+                        value={contactForm.message}
+                        onChange={handleInputChange}
+                        required
+                        rows={4}
+                        className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+                        placeholder="Describe your project or inquiry..."
+                      />
+                    </div>
+                  </div>
+
+                  <div className="flex gap-2 mt-6">
+                    <button
+                      type="submit"
+                      disabled={sending}
+                      className="flex-1 bg-teal-600 text-white py-2 rounded-lg hover:bg-teal-700 disabled:opacity-50"
+                    >
+                      {sending ? 'Sending...' : 'Send Message'}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setShowContactModal(false)}
+                      className="flex-1 bg-gray-300 text-gray-700 py-2 rounded-lg hover:bg-gray-400"
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
