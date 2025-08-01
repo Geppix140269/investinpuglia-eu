@@ -3,8 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { Search, MapPin, Globe, Clock, Star, Phone, Mail, ExternalLink, X } from 'lucide-react';
 
-// Define types
-type Professional = {
+interface Professional {
   id: string;
   name: string;
   type: string;
@@ -19,16 +18,16 @@ type Professional = {
   review_count: number;
   verified: boolean;
   response_time: string;
-};
+}
 
-type ContactForm = {
+interface ContactForm {
   name: string;
   email: string;
   phone: string;
   message: string;
-};
+}
 
-const ProfessionalDirectory: React.FC = () => {
+export default function ProfessionalDirectory() {
   const [professionals, setProfessionals] = useState<Professional[]>([]);
   const [filteredProfessionals, setFilteredProfessionals] = useState<Professional[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
@@ -45,7 +44,6 @@ const ProfessionalDirectory: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [sending, setSending] = useState(false);
 
-  // Professional type labels
   const professionalTypeLabels: Record<string, string> = {
     lawyer: 'Lawyer',
     architect: 'Architect',
@@ -57,7 +55,6 @@ const ProfessionalDirectory: React.FC = () => {
     engineer: 'Engineer'
   };
 
-  // Fetch professionals
   useEffect(() => {
     fetchProfessionals();
   }, []);
@@ -174,7 +171,6 @@ const ProfessionalDirectory: React.FC = () => {
     );
   }
 
-  // This is the critical part - making sure the return statement is clean
   return (
     <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
@@ -487,6 +483,4 @@ const ProfessionalDirectory: React.FC = () => {
       </div>
     </div>
   );
-}; // Make sure this semicolon is here
-
-export default ProfessionalDirectory;
+}
