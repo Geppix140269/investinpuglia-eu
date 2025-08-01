@@ -5,7 +5,7 @@ const { createClient } = require('@supabase/supabase-js');
 const fs = require('fs').promises;
 
 // Initialize services
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resend = new Resend(process.env.RESEND_API_KEY || process.env.NEXT_PUBLIC_RESEND_API_KEY);
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL,
   process.env.SUPABASE_SERVICE_ROLE_KEY
@@ -184,7 +184,7 @@ InvestInPuglia.eu
       
       // Send email
       const { data, error } = await resend.emails.send({
-        from: 'InvestInPuglia <noreply@investinpuglia.eu>',
+        from: 'InvestInPuglia <info@investinpuglia.eu>', // Use your existing from address
         to: professional.email,
         subject: template.subject,
         html: template.html,
