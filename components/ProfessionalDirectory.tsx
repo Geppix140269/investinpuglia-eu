@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Search, Filter, MapPin, Globe, Clock, Star, Phone, Mail, ExternalLink, X } from 'lucide-react';
+import { Search, MapPin, Globe, Clock, Star, Phone, Mail, ExternalLink, X } from 'lucide-react';
 
 // Define types
 type Professional = {
@@ -84,7 +84,6 @@ const ProfessionalDirectory: React.FC = () => {
   const filterProfessionals = () => {
     let filtered = [...professionals];
 
-    // Filter by search term
     if (searchTerm) {
       filtered = filtered.filter(prof =>
         prof.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -93,12 +92,10 @@ const ProfessionalDirectory: React.FC = () => {
       );
     }
 
-    // Filter by type
     if (selectedType !== 'all') {
       filtered = filtered.filter(prof => prof.type === selectedType);
     }
 
-    // Filter by language
     if (selectedLanguage !== 'all') {
       filtered = filtered.filter(prof => prof.languages.includes(selectedLanguage));
     }
@@ -109,7 +106,6 @@ const ProfessionalDirectory: React.FC = () => {
   const handleViewProfile = async (professional: Professional) => {
     setSelectedProfessional(professional);
     
-    // Track view
     try {
       await fetch('/api/professional-interaction', {
         method: 'POST',
@@ -134,7 +130,6 @@ const ProfessionalDirectory: React.FC = () => {
 
     setSending(true);
     try {
-      // Track contact
       await fetch('/api/professional-interaction', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -144,7 +139,6 @@ const ProfessionalDirectory: React.FC = () => {
         })
       });
 
-      // Send email (implement your email logic here)
       await fetch('/api/contact-professional', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -154,7 +148,6 @@ const ProfessionalDirectory: React.FC = () => {
         })
       });
 
-      // Reset form
       setContactForm({ name: '', email: '', phone: '', message: '' });
       setShowContactModal(false);
       alert('Message sent successfully! The professional will contact you soon.');
@@ -171,7 +164,6 @@ const ProfessionalDirectory: React.FC = () => {
     setContactForm(prev => ({ ...prev, [name]: value }));
   };
 
-  // Get unique languages
   const allLanguages = Array.from(new Set(professionals.flatMap(p => p.languages))).sort();
 
   if (loading) {
@@ -182,6 +174,7 @@ const ProfessionalDirectory: React.FC = () => {
     );
   }
 
+  // This is the critical part - making sure the return statement is clean
   return (
     <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
@@ -189,7 +182,6 @@ const ProfessionalDirectory: React.FC = () => {
           Find Trusted Professionals in Puglia
         </h1>
 
-        {/* Search and Filters */}
         <div className="bg-white rounded-lg shadow-md p-6 mb-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="relative">
@@ -227,12 +219,10 @@ const ProfessionalDirectory: React.FC = () => {
           </div>
         </div>
 
-        {/* Results count */}
         <p className="text-gray-600 mb-4">
           Found {filteredProfessionals.length} professionals
         </p>
 
-        {/* Professionals Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredProfessionals.map((professional) => (
             <div key={professional.id} className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow">
@@ -308,7 +298,6 @@ const ProfessionalDirectory: React.FC = () => {
           </div>
         )}
 
-        {/* Professional Detail Modal */}
         {selectedProfessional && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
             <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
@@ -409,7 +398,6 @@ const ProfessionalDirectory: React.FC = () => {
           </div>
         )}
 
-        {/* Contact Modal */}
         {showContactModal && selectedProfessional && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
             <div className="bg-white rounded-lg max-w-md w-full">
@@ -499,6 +487,6 @@ const ProfessionalDirectory: React.FC = () => {
       </div>
     </div>
   );
-};
+}; // Make sure this semicolon is here
 
 export default ProfessionalDirectory;
