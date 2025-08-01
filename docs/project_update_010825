@@ -216,12 +216,14 @@ OPENAI_API_KEY=
 - Identified need for professional directory as priority
 - Created comprehensive documentation to prevent work loss
 - Started exploring ApuLink project but hit node_modules issue
+- **REMOVED**: Fiscal code, preliminary agreement, and buyer profile features
 
 ### Key Decisions Made
 1. NO authentication development for now
 2. Focus on professional directory and tools
 3. Manual addition of professionals first
 4. Track engagement before monetizing
+5. **ELIMINATED**: Fiscal code, preliminary agreements, buyer profile
 
 ### Session End Status
 - **IMPORTANT**: None of the generated code has been implemented yet
@@ -258,6 +260,44 @@ npm run dev
 
 # Build for production
 npm run build
+```
+
+## 📁 CLEANED PROJECT STRUCTURE (Key Directories)
+```
+├── app/
+│   ├── about/
+│   ├── admin/
+│   ├── api/
+│   │   ├── calculator/
+│   │   ├── chat/
+│   │   ├── createPost/
+│   │   ├── get-industries/
+│   │   ├── import-industries/
+│   │   ├── lead-capture/
+│   │   ├── trullo-log/
+│   │   └── trullo-message/
+│   ├── blog/
+│   ├── calculator/
+│   ├── contact/
+│   ├── faq/
+│   ├── how-it-works/
+│   ├── industries/
+│   ├── investment-process/
+│   ├── login/
+│   ├── professionals/ (TO BE CREATED)
+│   ├── services/
+│   ├── tools/
+│   ├── trullo-monitor/
+│   └── [locale]/
+├── components/
+│   ├── trullo/
+│   ├── sections/
+│   └── (other shared components)
+├── lib/
+│   ├── database.ts
+│   ├── sanity/
+│   └── supabase.ts
+└── public/
 ```
 
 ---
