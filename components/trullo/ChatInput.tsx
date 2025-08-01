@@ -7,7 +7,6 @@ interface ChatInputProps {
   language: Language;
   isTyping: boolean;
   onSend: (message: string) => void;
-  onLeaveMessage: () => void;
   disabled?: boolean;
 }
 
@@ -62,23 +61,7 @@ export default function ChatInput({ language, isTyping, onSend, onLeaveMessage, 
         >
           {isTyping ? '...' : t.send}
         </button>
-        <button
-          onClick={onLeaveMessage}
-          disabled={disabled}
-          className={`
-            px-4 py-2 border border-gray-300 rounded-lg transition-all
-            ${disabled
-              ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-              : 'hover:bg-gray-50'
-            }
-          `}
-          title={t.messageForm.title}
-        >
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-          </svg>
-        </button>
-      </div>
+          </div>
     </div>
   );
 }
