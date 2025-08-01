@@ -73,6 +73,10 @@ class ProfessionalCrawler {
   }
 
   // Google Maps crawler
+  sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
   async crawlGoogleMaps(category, city) {
     console.log(`🔍 Searching Google Maps for ${category} in ${city}...`);
     const page = await this.browser.newPage();
@@ -82,7 +86,7 @@ class ProfessionalCrawler {
       const url = `https://www.google.com/maps/search/${encodeURIComponent(searchQuery)}`;
       
       await page.goto(url, { waitUntil: 'networkidle0' });
-      await new Promise(resolve => setTimeout(resolve, 3000));
+      await this.sleep(3000);
 
       // Scroll to load more results
       const scrollContainer = 'div[role="feed"]';
@@ -93,7 +97,7 @@ class ProfessionalCrawler {
           const element = document.querySelector(selector);
           if (element) element.scrollTop = element.scrollHeight;
         }, scrollContainer);
-        await page.waitForTimeout(2000);
+        await this.sleep(2000);
       }
 
       // Extract business information
@@ -360,9 +364,16 @@ class ProfessionalCrawler {
     try {
       await this.initialize();
       
+      // Check if test mode
+      const isTestMode = process.argv.includes('--test');
+      const citiesToCrawl = isTestMode ? ['Lecce'] : PUGLIA_CITIES;
+      const categoriesToCrawl = isTestMode ? ['avvocato', 'notaio'] : CATEGORIES;
+      
+      console.log(isTestMode ? '🧪 Running in TEST MODE (Lecce only)' : '🏃 Running FULL crawl');
+      
       // Crawl each category in each city
-      for (const city of PUGLIA_CITIES) {
-        for (const category of CATEGORIES) {
+      for (const city of citiesToCrawl) {
+        for (const category of categoriesToCrawl) {
           // Google Maps
           await this.crawlGoogleMaps(category, city);
           await this.sleep(2000); // Rate limiting
