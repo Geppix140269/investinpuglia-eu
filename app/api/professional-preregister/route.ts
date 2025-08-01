@@ -11,16 +11,21 @@ export async function POST(request: Request) {
   try {
     const { name, email, profession, city, sessionId } = await request.json();
     
-    // Create pre-registration
+    // Create pre-registration in professionals table
     const { data, error } = await supabase
-      .from('professional_registrations')
+      .from('professionals')
       .insert({
         name,
         email,
         profession,
         city,
+        location: city, // Map city to location field
+        type: profession, // Map profession to type field
         chat_session_id: sessionId,
-        status: 'pending'
+        status: 'pending',
+        registration_source: 'trullo',
+        verified: false,
+        created_at: new Date().toISOString()
       })
       .select()
       .single();
@@ -42,7 +47,7 @@ export async function POST(request: Request) {
     }
     
     // TODO: Send confirmation email
-    // await sendConfirmationEmail(email, name, data.confirmation_token);
+    // await sendConfirmationEmail(email, name);
     
     return NextResponse.json({ 
       success: true,
