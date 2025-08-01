@@ -1,5 +1,6 @@
 // scripts/professional-crawler/crawler.js
-require('dotenv').config({ path: '../../.env.local' });
+const path = require('path');
+require('dotenv').config({ path: path.join(__dirname, '../../.env.local') });
 const puppeteer = require('puppeteer');
 const cheerio = require('cheerio');
 const axios = require('axios');
@@ -81,7 +82,7 @@ class ProfessionalCrawler {
       const url = `https://www.google.com/maps/search/${encodeURIComponent(searchQuery)}`;
       
       await page.goto(url, { waitUntil: 'networkidle0' });
-      await page.waitForTimeout(3000);
+      await new Promise(resolve => setTimeout(resolve, 3000));
 
       // Scroll to load more results
       const scrollContainer = 'div[role="feed"]';
