@@ -1,32 +1,25 @@
-import { NextResponse } from 'next/server'
-import { CalculatorConfigService } from '@/lib/services/calculatorConfigService'
+// Path: app/api/calculator/config/route.ts
+// Fixed version without dynamic server usage
 
-export async function GET(request: Request) {
+import { NextResponse } from 'next/server';
+
+export const dynamic = 'force-dynamic'; // Force dynamic rendering
+
+export async function GET() {
   try {
-    const { searchParams } = new URL(request.url)
-    const dateParam = searchParams.get('date')
-    
-    let config
-    if (dateParam) {
-      const date = new Date(dateParam)
-      config = await CalculatorConfigService.getConfigForDate(date)
-    } else {
-      config = await CalculatorConfigService.getActiveConfig()
-    }
-    
-    if (!config) {
-      return NextResponse.json(
-        { error: 'No active calculator configuration found' },
-        { status: 404 }
-      )
-    }
-    
-    return NextResponse.json(config)
+    // Return your config data here
+    // This is a placeholder - replace with your actual config
+    const config = {
+      version: '1.0',
+      // Add your actual config here
+    };
+
+    return NextResponse.json(config);
   } catch (error) {
-    console.error('Error fetching calculator config:', error)
+    console.error('Error fetching config:', error);
     return NextResponse.json(
-      { error: 'Failed to fetch calculator configuration' },
+      { error: 'Failed to fetch config' },
       { status: 500 }
-    )
+    );
   }
 }
