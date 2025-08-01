@@ -1,0 +1,249 @@
+# InvestInPuglia Development Session Documentation
+*Last Updated: August 1, 2025*
+
+## 🏆 GOLDEN RULES (ALWAYS REMEMBER)
+1. **STEP BY STEP APPROACH** - Plan first, explain why, then execute
+2. **GITHUB EDITING** - Giuseppe edits directly on GitHub, local needs git pull
+3. **WINDOWS ENVIRONMENT** - Use PowerShell commands, not Linux/Mac
+4. **COMPLETE CODE UPDATES** - Only update after seeing existing code
+5. **NO LINE REDUCTION** - Never return less code without justification
+
+## 📁 PROJECT LOCATIONS
+- **InvestInPuglia**: `C:\Development\investinpuglia-eu`
+- **ApuLink**: `C:\Development\apulink` (exists but not explored yet)
+- **Live Site**: https://investinpuglia.eu
+- **GitHub**: https://github.com/Geppix140269/investinpuglia-eu
+
+## 🔄 CURRENT STATUS (August 1, 2025)
+
+### ✅ COMPLETED WORK
+1. **Trullo Chatbot** - Deployed and working
+   - Real-time monitor exists at `/trullo-monitor`
+   - Polls every 3 seconds for updates
+   - Has notifications and sound alerts
+   - Tracks conversations, messages, contact requests
+
+2. **Data Collection** - Already implemented
+   - Tables: `trullo_conversations`, `trullo_messages`, `trullo_contact_requests`
+   - Email integration via Resend API
+   - Logging endpoints at `/api/trullo-log` and `/api/trullo-message`
+
+3. **Authentication** - Partially implemented but NOT active
+   - Code exists for Giuseppe's special auth (password: "250milionieuro")
+   - Google OAuth packages installed but not connected
+   - Message counting logic missing
+   - Decision: NOT pursuing auth development for now
+
+### 🎯 CURRENT FOCUS: Professional Directory
+
+#### Vision
+- **Phase 1**: Manually add 100 professionals, track engagement (FREE)
+- **Phase 2**: Charge for premium listings once traction established
+- **Integration**: InvestInPuglia (lead gen) → ApuLink (services)
+
+#### Generated but NOT Implemented
+1. **Professional Interest Detection** (artifact: `trullo-professional-detector`)
+   - Detects when users ask about lawyers, architects, etc.
+   - Multi-language keyword matching
+   - Confidence scoring
+   - Auto-response suggestions
+
+2. **Professional Directory Component** (artifact: `professional-directory-component`)
+   - Search/filter interface
+   - Contact modal
+   - View tracking
+   - Multi-language support
+
+3. **Admin Interface** (artifact: `professional-admin-interface`)
+   - Add/edit professionals manually
+   - Manage listings
+   - Track stats
+
+4. **Analytics Dashboard** (artifact: `trullo-analytics-dashboard`)
+   - Real-time conversation stats
+   - Language distribution
+   - Topic analysis
+   - Conversion tracking
+
+## 📊 DATABASE SCHEMA NEEDED
+
+```sql
+-- Professional profiles table
+CREATE TABLE professionals (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  name TEXT NOT NULL,
+  type TEXT NOT NULL, -- lawyer, architect, accountant, etc.
+  email TEXT,
+  phone TEXT,
+  website TEXT,
+  location TEXT,
+  languages TEXT[],
+  specialties TEXT[],
+  description TEXT,
+  rating DECIMAL(2,1),
+  review_count INTEGER DEFAULT 0,
+  verified BOOLEAN DEFAULT false,
+  response_time TEXT,
+  created_at TIMESTAMP DEFAULT NOW(),
+  updated_at TIMESTAMP DEFAULT NOW()
+);
+
+-- Track when users show interest in professionals
+CREATE TABLE professional_interests (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  conversation_id UUID REFERENCES trullo_conversations(id),
+  professional_type TEXT NOT NULL,
+  confidence DECIMAL(3,2),
+  user_message TEXT,
+  language TEXT,
+  detected_at TIMESTAMP DEFAULT NOW()
+);
+
+-- Track interactions with directory
+CREATE TABLE professional_interactions (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  professional_id UUID REFERENCES professionals(id),
+  interaction_type TEXT NOT NULL, -- 'view', 'contact', 'schedule'
+  user_identifier TEXT,
+  created_at TIMESTAMP DEFAULT NOW()
+);
+```
+
+## 🚀 NEXT ACTIONS QUEUE
+
+### Priority 1: Create Professional Directory Infrastructure
+```powershell
+# 1. Create API routes
+New-Item -Path "app\api\professionals\route.ts" -Force
+New-Item -Path "app\api\professionals\[id]\route.ts" -Force
+New-Item -Path "app\api\professional-interest\route.ts" -Force
+
+# 2. Create pages
+New-Item -Path "app\admin\professionals\page.tsx" -Force
+New-Item -Path "app\professionals\page.tsx" -Force
+
+# 3. Create Supabase tables (run SQL above)
+```
+
+### Priority 2: Implement Professional Detection in Trullo
+- Add detection logic to useChat.ts
+- Log interests to database
+- Add follow-up responses
+
+### Priority 3: Deploy and Test
+- Test professional directory
+- Add first 10-20 professionals manually
+- Monitor engagement metrics
+
+## 🔧 TOOLS & INTEGRATIONS
+
+### Current Stack
+- **Frontend**: Next.js 14.2.0, React 18, TypeScript, Tailwind
+- **Backend**: Supabase (DB), Sanity (CMS), Next.js API Routes
+- **Email**: Resend API (was EmailJS)
+- **AI**: OpenAI API (Trullo chatbot)
+
+### Environment Variables Needed
+```
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_ANON_KEY=
+SUPABASE_SERVICE_ROLE_KEY=
+NEXT_PUBLIC_SANITY_PROJECT_ID=
+NEXT_PUBLIC_SANITY_DATASET=
+SANITY_API_TOKEN=
+RESEND_API_KEY=
+OPENAI_API_KEY=
+```
+
+## 📈 METRICS TO TRACK
+
+1. **Trullo Performance**
+   - Messages per conversation
+   - Contact request conversion rate
+   - Most asked topics
+   - Language distribution
+
+2. **Professional Directory**
+   - Profile views
+   - Contact clicks
+   - Search terms
+   - Popular professional types
+
+3. **Business Goals**
+   - Lead quality score
+   - Professional engagement
+   - Revenue per professional (future)
+
+## 🎯 STRATEGIC ROADMAP
+
+### Phase 1 (Current): Build Traction
+- [x] Trullo chatbot live
+- [ ] Professional directory live
+- [ ] 100 professionals added
+- [ ] Track all interactions
+
+### Phase 2: Monetization
+- [ ] Premium listings ($29-49/month)
+- [ ] Lead packages
+- [ ] Analytics dashboard for professionals
+- [ ] Automated onboarding
+
+### Phase 3: Full Integration
+- [ ] ApuLink.it integration
+- [ ] Automated matching
+- [ ] Review system
+- [ ] Transaction tracking
+
+## 🐛 KNOWN ISSUES
+1. Authentication code exists but not connected
+2. ApuLink project not yet explored
+3. No automated professional matching yet
+
+## 💡 IDEAS PARKING LOT
+1. Auto-match users with professionals based on needs
+2. WhatsApp integration for instant contact
+3. Professional availability calendar
+4. Automated quote system
+5. Document sharing vault
+6. Virtual consultation booking
+
+## 📝 SESSION NOTES
+
+### August 1, 2025 Session Summary
+- Discovered auth partially implemented but decided to skip
+- Found existing Trullo monitor with real-time updates
+- Generated 4 major components (not yet implemented)
+- Identified need for professional directory as priority
+- Created comprehensive documentation to prevent work loss
+
+### Key Decisions Made
+1. NO authentication development for now
+2. Focus on professional directory and tools
+3. Manual addition of professionals first
+4. Track engagement before monetizing
+
+## 🔗 USEFUL COMMANDS
+
+```powershell
+# Navigate to project
+cd C:\Development\investinpuglia-eu
+
+# Sync with GitHub
+git pull
+
+# Check recent changes
+git log --oneline -10
+
+# Search for patterns in code
+Get-Content components\trullo\*.tsx | Select-String -Pattern "professional"
+
+# Start development server
+npm run dev
+
+# Build for production
+npm run build
+```
+
+---
+
+**TO UPDATE THIS DOCUMENT**: Save this artifact locally and upload at the start of each session. Update with new findings, decisions, and generated code.
