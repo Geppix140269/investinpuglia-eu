@@ -51,6 +51,21 @@ When someone expresses interest in joining as a professional (keywords: "I'm a l
 5. Inform them they'll receive a confirmation email shortly
 6. Offer to explain platform benefits or connect them with potential opportunities
 
+PRICING AND BUSINESS MODEL (MUST BE TRANSPARENT):
+When professionals ask about costs, pricing, or "what's in it for InvestInPuglia", always be transparent:
+
+Current Status:
+- Registration is FREE during launch phase
+- We're preparing Premium features for the coming weeks
+- Annual plans will have 20% discount when available
+- Premium will be €29/month (or €278/year with discount)
+
+Key message: "Right now, our main goal is to get professionals using the platform and give visibility to your services. We want investors to see your offerings, rates, and terms clearly."
+
+Example response: "Great question! Complete transparency: We're currently in launch phase, so registration is FREE. We're preparing Premium features (€29/month, 20% discount annually) coming in the next weeks. Right now, our main goal is to populate the platform with quality professionals like you and showcase your services to international investors. You can list your rates, terms, and conditions so investors know exactly what to expect. Start free now, upgrade later if you see value!"
+
+IMPORTANT: Never promise specific Premium features until they're ready. Focus on current benefits: visibility, connecting with investors, building your professional profile.
+
 Keep the conversation natural and professional. Make them feel they're joining an exclusive network that will transform their business.
 
 Remember: InvestInPuglia is building the most comprehensive investment ecosystem in Italy. Every professional who joins makes us stronger!`,
@@ -102,6 +117,21 @@ Quando qualcuno esprime interesse a unirsi come professionista (parole chiave: "
 4. Registralo nel sistema
 5. Informalo che riceverà un'email di conferma a breve
 6. Offri di spiegare i vantaggi della piattaforma o di connetterlo con potenziali opportunità
+
+PREZZI E MODELLO DI BUSINESS (DEVE ESSERE TRASPARENTE):
+Quando i professionisti chiedono di costi, prezzi, o "cosa ci guadagna InvestInPuglia", sii sempre trasparente:
+
+Stato Attuale:
+- La registrazione è GRATUITA durante la fase di lancio
+- Stiamo preparando funzionalità Premium per le prossime settimane
+- I piani annuali avranno uno sconto del 20%
+- Premium sarà €29/mese (o €278/anno con sconto)
+
+Messaggio chiave: "In questo momento il nostro obiettivo principale è farvi utilizzare la piattaforma e dare visibilità ai servizi da voi offerti e alle condizioni generali che i nostri utenti devono conoscere (tariffe, termini e condizioni ove possibile, etc..)"
+
+Esempio di risposta: "Ottima domanda! Massima trasparenza: Siamo in fase di lancio, quindi la registrazione è GRATUITA. Stiamo preparando funzionalità Premium (€29/mese, 20% sconto annuale) nelle prossime settimane. In questo momento il nostro obiettivo principale è farvi utilizzare la piattaforma e dare visibilità ai servizi da voi offerti. Potete inserire le vostre tariffe, termini e condizioni così gli investitori sanno esattamente cosa aspettarsi. Iniziate gratis ora, passate a Premium dopo se vedete valore!"
+
+IMPORTANTE: Non promettere mai funzionalità Premium specifiche finché non sono pronte. Concentrati sui benefici attuali: visibilità, connessione con investitori, costruzione del profilo professionale.
 
 Mantieni la conversazione naturale e professionale. Falli sentire che stanno entrando in un network esclusivo che trasformerà il loro business.
 
@@ -400,6 +430,8 @@ export const professionalRegistration = {
       `• Visibility in our searchable directory\n` +
       `• Investment opportunity alerts for ${city}\n` +
       `• Networking events and webinars\n\n` +
+      `🎁 **Current Status**: Registration is FREE during our launch phase!\n` +
+      `📅 **Coming Soon**: Premium features (€29/month, 20% discount annually)\n\n` +
       `Is there anything specific about our platform you'd like to know more about?`,
       
     it: (name: string, profession: string, city: string, email: string) => 
@@ -414,6 +446,8 @@ export const professionalRegistration = {
       `• Visibilità nella nostra directory consultabile\n` +
       `• Avvisi di opportunità di investimento per ${city}\n` +
       `• Eventi di networking e webinar\n\n` +
+      `🎁 **Stato Attuale**: Registrazione GRATUITA durante la fase di lancio!\n` +
+      `📅 **Prossimamente**: Funzionalità Premium (€29/mese, 20% sconto annuale)\n\n` +
       `C'è qualcosa di specifico sulla nostra piattaforma che vorresti sapere?`
   },
   
@@ -427,6 +461,33 @@ export const professionalRegistration = {
       en: "I apologize, but there was an issue with the registration. Please try again or contact our support team at support@investinpuglia.eu",
       it: "Mi scuso, ma c'è stato un problema con la registrazione. Per favore riprova o contatta il nostro team di supporto a support@investinpuglia.eu"
     }
+  },
+  
+  // Pricing response when asked
+  pricingResponse: {
+    en: "Great question! Complete transparency about our model:\n\n" +
+        "🚀 **Launch Phase (NOW)**\n" +
+        "• Registration is completely FREE\n" +
+        "• Full directory listing with your services and rates\n" +
+        "• Direct visibility to international investors\n\n" +
+        "💎 **Premium Features (Coming Soon)**\n" +
+        "• €29/month (or €278/year - save 20%!)\n" +
+        "• Priority listing in search results\n" +
+        "• Advanced analytics and insights\n" +
+        "• Direct messaging with investors\n\n" +
+        "Our goal right now is to build a strong professional network. Start free today, upgrade later if you see value!",
+        
+    it: "Ottima domanda! Massima trasparenza sul nostro modello:\n\n" +
+        "🚀 **Fase di Lancio (ADESSO)**\n" +
+        "• Registrazione completamente GRATUITA\n" +
+        "• Inserimento completo con i tuoi servizi e tariffe\n" +
+        "• Visibilità diretta agli investitori internazionali\n\n" +
+        "💎 **Funzionalità Premium (Prossimamente)**\n" +
+        "• €29/mese (o €278/anno - risparmia il 20%!)\n" +
+        "• Posizionamento prioritario nei risultati\n" +
+        "• Analytics avanzati e insights\n" +
+        "• Messaggi diretti con investitori\n\n" +
+        "Il nostro obiettivo ora è costruire una forte rete professionale. Inizia gratis oggi, passa a Premium dopo se vedi valore!"
   }
 };
 
