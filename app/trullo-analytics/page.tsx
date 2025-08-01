@@ -1,3 +1,6 @@
+'use client';
+
+// rest of the file...
 import React, { useState, useEffect } from 'react';
 import { LineChart, Line, BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { Activity, Users, MessageSquare, Globe, TrendingUp, Clock } from 'lucide-react';
