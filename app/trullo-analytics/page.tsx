@@ -1,12 +1,41 @@
 'use client';
 
-// rest of the file...
 import React, { useState, useEffect } from 'react';
 import { LineChart, Line, BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { Activity, Users, MessageSquare, Globe, TrendingUp, Clock } from 'lucide-react';
 
+// Define types for all data structures
+type Stats = {
+  totalConversations: number;
+  totalMessages: number;
+  activeToday: number;
+  contactRequests: number;
+  conversionRate: number;
+};
+
+type LanguageData = {
+  name: string;
+  value: number;
+};
+
+type HourlyData = {
+  hour: string;
+  messages: number;
+};
+
+type TopicData = {
+  topic: string;
+  count: number;
+};
+
+type MessageData = {
+  id: number;
+  content: string;
+  created_at: string;
+};
+
 const TrulloAnalyticsDashboard = () => {
-  const [stats, setStats] = useState({
+  const [stats, setStats] = useState<Stats>({
     totalConversations: 0,
     totalMessages: 0,
     activeToday: 0,
@@ -14,10 +43,10 @@ const TrulloAnalyticsDashboard = () => {
     conversionRate: 0
   });
   
-  const [hourlyData, setHourlyData] = useState([]);
-  const [languageData, setLanguageData] = useState([]);
-  const [topTopics, setTopTopics] = useState([]);
-  const [recentMessages, setRecentMessages] = useState([]);
+  const [hourlyData, setHourlyData] = useState<HourlyData[]>([]);
+  const [languageData, setLanguageData] = useState<LanguageData[]>([]);
+  const [topTopics, setTopTopics] = useState<TopicData[]>([]);
+  const [recentMessages, setRecentMessages] = useState<MessageData[]>([]);
   const [loading, setLoading] = useState(true);
 
   // Fetch real-time data
@@ -205,7 +234,7 @@ const TrulloAnalyticsDashboard = () => {
                   cx="50%"
                   cy="50%"
                   labelLine={false}
-                  label={({name, percent}) => `${name} ${(percent * 100).toFixed(0)}%`}
+                  label={({name, percent}: any) => `${name} ${(percent * 100).toFixed(0)}%`}
                   outerRadius={80}
                   fill="#8884d8"
                   dataKey="value"
@@ -233,7 +262,7 @@ const TrulloAnalyticsDashboard = () => {
                     <div className="w-32 bg-gray-200 rounded-full h-2">
                       <div 
                         className="bg-teal-500 h-2 rounded-full"
-                        style={{ width: `${(topic.count / topTopics[0]?.count) * 100}%` }}
+                        style={{ width: `${(topic.count / (topTopics[0]?.count || 1)) * 100}%` }}
                       />
                     </div>
                     <span className="text-sm text-gray-600 w-8 text-right">{topic.count}</span>
