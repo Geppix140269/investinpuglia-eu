@@ -1,4 +1,4 @@
-﻿// PATH: components/trullo/ChatInput.tsx
+// PATH: components/trullo/ChatInput.tsx
 import React, { useState } from 'react';
 import { Language } from './types';
 import { translations } from './constants/translations';
@@ -10,7 +10,7 @@ interface ChatInputProps {
   disabled?: boolean;
 }
 
-export default function ChatInput({ language, isTyping, onSend, onLeaveMessage, disabled = false }: ChatInputProps) {
+export default function ChatInput({ language, isTyping, onSend, disabled = false }: ChatInputProps) {
   const [input, setInput] = useState('');
   const t = translations[language];
 
@@ -61,7 +61,7 @@ export default function ChatInput({ language, isTyping, onSend, onLeaveMessage, 
         >
           {isTyping ? '...' : t.send}
         </button>
-          </div>
+      </div>
     </div>
   );
 }
