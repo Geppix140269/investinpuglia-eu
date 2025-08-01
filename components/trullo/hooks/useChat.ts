@@ -1,4 +1,5 @@
 // PATH: components/trullo/hooks/useChat.ts
+import { detectProfessionalInterest, logProfessionalInterest, generateProfessionalFollowUp } from '@/lib/professionalDetector';
 import { useState, useEffect, useCallback } from 'react';
 import { Message, Language, AuthState } from '../types';
 import { translations } from '../constants/translations';
