@@ -20,7 +20,7 @@ export const EXPERT_DIRECTORY: Expert[] = [
     email: 'g.funaro@investinpuglia.eu',
     phone: '+39 351 400 1402',
     whatsapp: '+393514001402',
-    specialties: ['investment', 'real estate', 'general', 'property', 'puglia', 'trulli'],
+    specialties: ['investment', 'real estate', 'general', 'property', 'puglia', 'trulli', 'masseria', 'grants', 'pia turismo', 'tourism', 'agriturismo'],
     languages: ['en', 'it'],
     title: 'Investment Advisor',
     isExternal: false
@@ -89,4 +89,5 @@ Protocollo routing con privacy per esperti esterni.
     version: '1.0.0'
   }
 };
+
 
