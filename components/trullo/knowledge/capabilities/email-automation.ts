@@ -15,32 +15,70 @@ export const emailAutomationKnowledge: KnowledgeModule = {
     'giuseppe',
     'meeting',
     'call',
-    'appointment'
+    'appointment',
+    'strategy',
+    'invest',
+    'help'
   ],
   content: {
     en: `
-EMAIL AUTOMATION INSTRUCTIONS:
+EXPERT CONSULTATION PROTOCOL:
 
-When user wants to contact Giuseppe or book a consultation:
+When user shows interest in speaking with an expert, ALWAYS offer BOTH options:
 
-1. Ask for their name and email
-2. When they provide email, you MUST include this EXACT format in your response:
-   [AUTO_EMAIL: name="Their Name" email="their@email.com"]
+"Excellent! I can help you connect with Giuseppe, our investment expert. You have two options:
 
-EXAMPLE - YOU MUST FOLLOW THIS:
-User: "I want to talk to Giuseppe"
-You: "Excellent! I'll connect you with Giuseppe. May I have your name and email?"
-User: "John Smith, john@example.com"
-You: "Perfect! I'm connecting you with Giuseppe now. [AUTO_EMAIL: name="John Smith" email="john@example.com"] Giuseppe will review your inquiry personally."
+📅 **Option 1: Book a Direct Call**
+Schedule a 30-minute strategy call at your convenience:
+https://calendly.com/investinpuglia/30min
 
-CRITICAL: The [AUTO_EMAIL: ...] text MUST be included EXACTLY as shown!
+📧 **Option 2: Send Your Details**
+I can send your information to Giuseppe for a personalized response within 24 hours.
 
-Also offer: "You can also book directly: https://calendly.com/investinpuglia/30min"
+Which would you prefer? Or would you like to do both?"
+
+IF THEY CHOOSE EMAIL/SEND DETAILS:
+1. Ask: "Perfect! What's your name and email address?"
+2. When they provide it, respond with:
+   "Thank you! I'm sending your information to Giuseppe now. [AUTO_EMAIL: name="Their Name" email="their@email.com"] 
+   
+   You'll receive:
+   ✓ Immediate confirmation email
+   ✓ Personal response from Giuseppe within 24 hours
+   
+   You can also still book a direct call here: https://calendly.com/investinpuglia/30min"
+
+IF THEY CHOOSE BOOK A CALL:
+"Great choice! Click here to see Giuseppe's availability:
+https://calendly.com/investinpuglia/30min
+
+Would you also like me to send your details so Giuseppe can prepare for your call?"
+
+ALWAYS present BOTH options clearly!
 `,
     it: `
-Quando l'utente vuole contattare Giuseppe:
-1. Chiedi nome ed email
-2. DEVI includere: [AUTO_EMAIL: name="Nome" email="email@example.com"]
+PROTOCOLLO CONSULENZA ESPERTO:
+
+Quando l'utente vuole parlare con un esperto, offri SEMPRE entrambe le opzioni:
+
+"Eccellente! Posso aiutarti a contattare Giuseppe. Hai due opzioni:
+
+📅 **Opzione 1: Prenota una Chiamata**
+Prenota una consulenza di 30 minuti:
+https://calendly.com/investinpuglia/30min
+
+📧 **Opzione 2: Invia i Tuoi Dati**
+Posso inviare le tue informazioni a Giuseppe per una risposta personalizzata entro 24 ore.
+
+Cosa preferisci? O vuoi fare entrambe?"
+
+SE SCELGONO EMAIL:
+Usa: [AUTO_EMAIL: name="Nome" email="email@example.com"]
 `
+  },
+  metadata: {
+    lastUpdated: '2025-08-02',
+    author: 'Giuseppe',
+    version: 'DUAL_CTA'
   }
 };

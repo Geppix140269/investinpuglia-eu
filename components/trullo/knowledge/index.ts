@@ -8,6 +8,7 @@ import { leadStorageKnowledge } from './capabilities/lead-storage';
 import { leadCaptureStrategy } from './strategies/lead-capture';
 import { euGrantsKnowledge } from './expertise/eu-grants';
 import { trustBuildingStrategy } from './strategies/trust-building';
+import { ctaButtonsKnowledge } from './strategies/cta-buttons';
 
 export class TrulloKnowledgeBase {
   private modules: Map<string, KnowledgeModule> = new Map();
@@ -28,6 +29,7 @@ export class TrulloKnowledgeBase {
       // Strategies
       leadCaptureStrategy,
       trustBuildingStrategy,
+      ctaButtonsKnowledge,
       
       // Add more modules here as you create them
     ]);
@@ -90,3 +92,4 @@ export class TrulloKnowledgeBase {
 }
 
 export const trulloKnowledge = new TrulloKnowledgeBase();
+
