@@ -15,6 +15,7 @@
     "@sanity/icons": "^3.7.4",
     "@sanity/image-url": "^1.1.0",
     "@sanity/vision": "^3.98.0",
+    "@stripe/stripe-js": "^7.8.0",
     "@supabase/auth-helpers-nextjs": "^0.10.0",
     "@supabase/supabase-js": "^2.50.3",
     "axios": "^1.10.0",
@@ -32,6 +33,7 @@
     "recharts": "^2.12.7",
     "resend": "^3.2.0",
     "sanity": "^3.98.0",
+    "stripe": "^18.4.0",
     "styled-components": "^6.1.19",
     "typescript": "^5"
   },
