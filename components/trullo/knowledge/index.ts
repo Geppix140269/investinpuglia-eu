@@ -4,6 +4,9 @@ import { KnowledgeModule, KnowledgeContext } from './types';
 // Import all knowledge modules
 import { personalityKnowledge } from './core/personality';
 import { emailAutomationKnowledge } from './capabilities/email-automation';
+import { leadCaptureStrategy } from './strategies/lead-capture';
+import { euGrantsKnowledge } from './expertise/eu-grants';
+import { trustBuildingStrategy } from './strategies/trust-building';
 
 export class TrulloKnowledgeBase {
   private modules: Map<string, KnowledgeModule> = new Map();
@@ -11,8 +14,19 @@ export class TrulloKnowledgeBase {
   constructor() {
     // Register all knowledge modules
     this.registerModules([
+      // Core
       personalityKnowledge,
+      
+      // Capabilities
       emailAutomationKnowledge,
+      
+      // Expertise
+      euGrantsKnowledge,
+      
+      // Strategies
+      leadCaptureStrategy,
+      trustBuildingStrategy,
+      
       // Add more modules here as you create them
     ]);
   }
