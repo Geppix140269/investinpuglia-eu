@@ -1,8 +1,8 @@
 ﻿// File: components/trullo/knowledge/index.ts
 import { KnowledgeModule, KnowledgeContext } from './types';
 
-// Import all knowledge modules
-import { personalityModule } from './core/personality';
+// Import all knowledge modules with CORRECT names
+import { personalityKnowledge } from './core/personality';
 import { expertRoutingKnowledge } from './core/expert-directory';
 import { emailAutomationKnowledge } from './capabilities/email-automation';
 import { leadStorageKnowledge } from './capabilities/lead-storage';
@@ -18,9 +18,9 @@ export class TrulloKnowledgeBase {
   constructor() {
     // Register all knowledge modules
     this.registerModules([
-      // Core
-      personalityModule,
-      expertRoutingKnowledge, // ADDED!
+      // Core - THESE ARE CRITICAL!
+      personalityKnowledge,
+      expertRoutingKnowledge,
 
       // Capabilities
       emailAutomationKnowledge,
@@ -34,14 +34,13 @@ export class TrulloKnowledgeBase {
       leadCaptureStrategy,
       trustBuildingStrategy,
       ctaButtonsKnowledge,
-
-      // Add more modules here as you create them
     ]);
   }
 
   private registerModules(modules: KnowledgeModule[]) {
     modules.forEach(module => {
       this.modules.set(module.id, module);
+      console.log(`📚 Registered knowledge module: ${module.id}`);
     });
   }
 
@@ -96,4 +95,3 @@ export class TrulloKnowledgeBase {
 }
 
 export const trulloKnowledge = new TrulloKnowledgeBase();
-
