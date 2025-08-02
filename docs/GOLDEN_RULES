@@ -1,0 +1,41 @@
+# 🏆 GOLDEN RULE #4: COMPONENT MODIFICATION PROTOCOL
+
+## NEVER MODIFY EXISTING COMPONENTS WITHOUT:
+
+1. **EXPLICIT DECLARATION**
+   - State EXACTLY which file is being modified
+   - List EXACTLY which functions/features are being changed
+   - Explain WHY the change is necessary
+   - Show WHAT other components might be affected
+
+2. **CHANGE SUMMARY FORMAT**
+   ```
+   📝 MODIFICATION NOTICE:
+   - FILE: [exact file path]
+   - FUNCTION: [function name being modified]
+   - CHANGE: [what is changing]
+   - REASON: [why this change]
+   - AFFECTS: [what else might be impacted]
+   - PRESERVES: [what functionality remains intact]
+   ```
+
+3. **BACKUP FIRST**
+   - Always create a backup version comment
+   - Preserve existing functionality unless explicitly asked to remove
+   - Test that existing features still work
+
+4. **EMAIL FUNCTIONALITY IS SACRED**
+   - The AUTO_EMAIL system must NEVER be removed
+   - Contact form functionality must ALWAYS work
+   - Email triggers must remain sensitive and proactive
+
+## Example:
+```
+📝 MODIFICATION NOTICE:
+- FILE: components/trullo/TrulloChatbot.tsx
+- FUNCTION: sendAutomatedEmail
+- CHANGE: Adding debug logging
+- REASON: To troubleshoot email sending
+- AFFECTS: Console output only
+- PRESERVES: All email functionality intact
+```
