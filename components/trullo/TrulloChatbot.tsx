@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Language, TrulloChatbotProps, Message } from './types';
 import { translations } from './constants/translations';
 import { useChat } from './hooks/useChat';
@@ -307,7 +307,7 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
                     className="w-full h-full object-contain"
                     onError={(e) => {
                       e.currentTarget.style.display = 'none';
-                      e.currentTarget.parentElement!.innerHTML = 'ðŸ¤–';
+                      e.currentTarget.parentElement!.innerHTML = '🤖';
                     }}
                   />
                 </div>
@@ -317,12 +317,12 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
                     {t.subtitle}
                     {authState.isGiuseppe && (
                       <span className="block text-xs text-yellow-300 mt-1">
-                        ðŸ‘‘ Boss Mode Active
+                        👑 Boss Mode Active
                       </span>
                     )}
                     {authState.isAuthenticated && !authState.isGiuseppe && (
                       <span className="block text-xs text-green-300 mt-1">
-                        âœ… {authState.userEmail}
+                        ✓ {authState.userEmail}
                       </span>
                     )}
                   </p>
@@ -353,15 +353,16 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
                   <select
                     value={currentLang}
                     onChange={(e) => setCurrentLang(e.target.value as Language)}
-                    className="bg-white/20 text-white border border-white/30 rounded px-2 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-white/50"
+                    className="bg-gray-700 text-white border border-gray-600 rounded px-2 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-white/50 hover:bg-gray-600 cursor-pointer"
+                    style={{ backgroundColor: '#374151', color: 'white' }}
                   >
-                    <option value="en">ðŸ‡¬ðŸ‡§ EN</option>
-                    <option value="it">ðŸ‡®ðŸ‡¹ IT</option>
-                    <option value="es">ðŸ‡ªðŸ‡¸ ES</option>
-                    <option value="fr">ðŸ‡«ðŸ‡· FR</option>
-                    <option value="de">ðŸ‡©ðŸ‡ª DE</option>
-                    <option value="ar">ðŸ‡¸ðŸ‡¦ AR</option>
-                    <option value="zh">ðŸ‡¨ðŸ‡³ ZH</option>
+                    <option value="en" style={{ backgroundColor: '#374151', color: 'white' }}>🇬🇧 EN</option>
+                    <option value="it" style={{ backgroundColor: '#374151', color: 'white' }}>🇮🇹 IT</option>
+                    <option value="es" style={{ backgroundColor: '#374151', color: 'white' }}>🇪🇸 ES</option>
+                    <option value="fr" style={{ backgroundColor: '#374151', color: 'white' }}>🇫🇷 FR</option>
+                    <option value="de" style={{ backgroundColor: '#374151', color: 'white' }}>🇩🇪 DE</option>
+                    <option value="ar" style={{ backgroundColor: '#374151', color: 'white' }}>🇸🇦 AR</option>
+                    <option value="zh" style={{ backgroundColor: '#374151', color: 'white' }}>🇨🇳 ZH</option>
                   </select>
                 )}
               </div>
@@ -373,15 +374,16 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
                 <select
                   value={currentLang}
                   onChange={(e) => setCurrentLang(e.target.value as Language)}
-                  className="w-full bg-white/20 text-white border border-white/30 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-white/50"
+                  className="w-full bg-gray-700 text-white border border-gray-600 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-white/50"
+                  style={{ backgroundColor: '#374151', color: 'white' }}
                 >
-                  <option value="en">ðŸ‡¬ðŸ‡§ English</option>
-                  <option value="it">ðŸ‡®ðŸ‡¹ Italiano</option>
-                  <option value="es">ðŸ‡ªðŸ‡¸ EspaÃ±ol</option>
-                  <option value="fr">ðŸ‡«ðŸ‡· FranÃ§ais</option>
-                  <option value="de">ðŸ‡©ðŸ‡ª Deutsch</option>
-                  <option value="ar">ðŸ‡¸ðŸ‡¦ Ø§Ù„Ø¹Ø±Ø¨ÙŠØ©</option>
-                  <option value="zh">ðŸ‡¨ðŸ‡³ ä¸­æ–‡</option>
+                  <option value="en" style={{ backgroundColor: '#374151', color: 'white' }}>🇬🇧 English</option>
+                  <option value="it" style={{ backgroundColor: '#374151', color: 'white' }}>🇮🇹 Italiano</option>
+                  <option value="es" style={{ backgroundColor: '#374151', color: 'white' }}>🇪🇸 Español</option>
+                  <option value="fr" style={{ backgroundColor: '#374151', color: 'white' }}>🇫🇷 Français</option>
+                  <option value="de" style={{ backgroundColor: '#374151', color: 'white' }}>🇩🇪 Deutsch</option>
+                  <option value="ar" style={{ backgroundColor: '#374151', color: 'white' }}>🇸🇦 العربية</option>
+                  <option value="zh" style={{ backgroundColor: '#374151', color: 'white' }}>🇨🇳 中文</option>
                 </select>
               </div>
             )}
@@ -409,4 +411,3 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
     </>
   );
 }
-
