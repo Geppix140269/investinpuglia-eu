@@ -1,193 +1,148 @@
 // Path: app/register-professional/page.tsx
 'use client';
 
-import React, { useState, useEffect, Suspense } from 'react';
-import { useSearchParams, useRouter } from 'next/navigation';
-import { CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
+import { useState, useEffect, Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
+import { loadStripe } from '@stripe/stripe-js';
 
-interface FormData {
-  name: string;
-  type: string;
-  email: string;
-  phone: string;
-  website: string;
-  location: string;
-  languages: string[];
-  specialties: string[];
-  description: string;
-  rating: number;
-  verified: boolean;
-  response_time: string;
-}
+// Initialize Stripe
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
 
 function RegisterProfessionalContent() {
   const searchParams = useSearchParams();
-  const router = useRouter();
   const token = searchParams.get('token');
-  
-  const [loading, setLoading] = useState(true);
-  const [validating, setValidating] = useState(true);
-  const [submitting, setSubmitting] = useState(false);
-  const [error, setError] = useState('');
-  const [success, setSuccess] = useState(false);
-  
-  const [formData, setFormData] = useState<FormData>({
+  const [formData, setFormData] = useState({
     name: '',
-    type: 'lawyer',
     email: '',
     phone: '',
     website: '',
     location: '',
-    languages: [],
-    specialties: [],
     description: '',
-    rating: 5.0,
-    verified: false,
-    response_time: '24 hours'
+    specialties: '',
+    languages: 'English',
+    type: 'lawyer'
   });
-
-  const professionalTypes = [
-    { value: 'lawyer', label: 'Lawyer' },
-    { value: 'architect', label: 'Architect' },
-    { value: 'accountant', label: 'Accountant' },
-    { value: 'notary', label: 'Notary' },
-    { value: 'real_estate_agent', label: 'Real Estate Agent' },
-    { value: 'contractor', label: 'Contractor' },
-    { value: 'surveyor', label: 'Surveyor' },
-    { value: 'engineer', label: 'Engineer' }
-  ];
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState(false);
+  const [registrationData, setRegistrationData] = useState<any>(null);
+  const [selectedPlan, setSelectedPlan] = useState<'free' | 'premium'>('free');
 
   useEffect(() => {
-    validateToken();
+    if (token) {
+      // Fetch registration data
+      fetchRegistrationData(token);
+    }
   }, [token]);
 
-  const validateToken = async () => {
-    if (!token) {
-      setError('No registration token provided');
-      setValidating(false);
-      return;
-    }
-
+  const fetchRegistrationData = async (token: string) => {
     try {
       const response = await fetch(`/api/professional-registration?token=${token}`);
       const data = await response.json();
-
-      if (!response.ok) {
-        setError(data.error || 'Invalid registration link');
-        setValidating(false);
-        return;
-      }
-
-      // Pre-fill form with initial data from Trullo
-      if (data.initialData) {
+      
+      if (data.registration) {
+        setRegistrationData(data.registration);
         setFormData(prev => ({
           ...prev,
-          ...data.initialData,
-          languages: Array.isArray(data.initialData.languages) 
-            ? data.initialData.languages 
-            : data.initialData.languages?.split(',').map((l: string) => l.trim()) || [],
-          specialties: Array.isArray(data.initialData.specialties)
-            ? data.initialData.specialties
-            : data.initialData.specialties?.split(',').map((s: string) => s.trim()) || []
+          email: data.registration.email,
+          name: data.registration.name || ''
         }));
       }
-    } catch (err) {
-      setError('Failed to validate registration link');
-    } finally {
-      setValidating(false);
-      setLoading(false);
+    } catch (error) {
+      console.error('Error fetching registration:', error);
     }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitting(true);
+    setLoading(true);
     setError('');
 
     try {
-      // First, create the professional profile
-      const response = await fetch('/api/professionals', {
+      // First, complete the registration
+      const response = await fetch('/api/professional-registration/complete', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
+        body: JSON.stringify({
+          token,
+          ...formData,
+          subscription_type: selectedPlan
+        })
       });
+
+      const data = await response.json();
 
       if (!response.ok) {
-        throw new Error('Failed to create profile');
+        throw new Error(data.error || 'Registration failed');
       }
 
-      // Mark registration as completed
-      await fetch('/api/professional-registration/complete', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ token })
-      });
+      if (selectedPlan === 'premium') {
+        // Redirect to Stripe checkout
+        const checkoutResponse = await fetch('/api/create-checkout-session', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            professionalId: data.professionalId,
+            email: formData.email,
+            registrationToken: token
+          })
+        });
 
-      setSuccess(true);
-    } catch (err) {
-      setError('Failed to create profile. Please try again.');
-    } finally {
-      setSubmitting(false);
+        const checkoutData = await checkoutResponse.json();
+
+        if (checkoutData.url) {
+          // Redirect to Stripe
+          window.location.href = checkoutData.url;
+        } else {
+          // Use Stripe.js for embedded checkout
+          const stripe = await stripePromise;
+          if (stripe && checkoutData.sessionId) {
+            const { error } = await stripe.redirectToCheckout({
+              sessionId: checkoutData.sessionId
+            });
+            if (error) {
+              throw error;
+            }
+          }
+        }
+      } else {
+        // Free plan - show success
+        setSuccess(true);
+      }
+    } catch (err: any) {
+      setError(err.message || 'Something went wrong');
+      setLoading(false);
     }
   };
 
-  const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
-
-  const handleArrayInput = (field: 'languages' | 'specialties', value: string) => {
-    const items = value.split(',').map(item => item.trim()).filter(item => item);
-    setFormData(prev => ({ ...prev, [field]: items }));
-  };
-
-  if (validating) {
+  if (!token) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
-        <div className="text-center">
-          <Loader2 className="animate-spin h-12 w-12 text-teal-600 mx-auto mb-4" />
-          <p className="text-gray-600">Validating registration link...</p>
-        </div>
-      </div>
-    );
-  }
-
-  if (error && !formData.email) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50 p-4">
-        <div className="max-w-md w-full bg-white rounded-lg shadow-md p-6 text-center">
-          <AlertCircle className="h-12 w-12 text-red-500 mx-auto mb-4" />
-          <h2 className="text-2xl font-bold text-gray-900 mb-2">Registration Error</h2>
-          <p className="text-gray-600 mb-4">{error}</p>
-          <button
-            onClick={() => router.push('/')}
-            className="bg-teal-600 text-white px-6 py-2 rounded-lg hover:bg-teal-700"
-          >
-            Return to Home
-          </button>
-        </div>
-      </div>
-    );
-  }
-
-  if (success) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50 p-4">
-        <div className="max-w-md w-full bg-white rounded-lg shadow-md p-6 text-center">
-          <CheckCircle className="h-12 w-12 text-green-500 mx-auto mb-4" />
-          <h2 className="text-2xl font-bold text-gray-900 mb-2">Registration Complete!</h2>
-          <p className="text-gray-600 mb-6">
-            Your professional profile has been created successfully. 
-            You will receive confirmation once your profile is reviewed and activated.
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
+        <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full text-center">
+          <h2 className="text-2xl font-bold text-red-600 mb-4">Invalid Registration Link</h2>
+          <p className="text-gray-600">
+            This registration link is invalid or has expired. Please request a new invitation.
           </p>
-          <button
-            onClick={() => router.push('/professionals')}
-            className="bg-teal-600 text-white px-6 py-2 rounded-lg hover:bg-teal-700"
+        </div>
+      </div>
+    );
+  }
+
+  if (success && selectedPlan === 'free') {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
+        <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full text-center">
+          <div className="text-green-600 text-5xl mb-4">✓</div>
+          <h2 className="text-2xl font-bold text-gray-800 mb-4">Registration Complete!</h2>
+          <p className="text-gray-600">
+            Welcome to the InvestInPuglia Professional Directory. Your free listing is now active.
+          </p>
+          <a 
+            href="/professionals" 
+            className="mt-6 inline-block bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700"
           >
-            View Professional Directory
-          </button>
+            View Directory
+          </a>
         </div>
       </div>
     );
@@ -195,45 +150,108 @@ function RegisterProfessionalContent() {
 
   return (
     <div className="min-h-screen bg-gray-50 py-12 px-4">
-      <div className="max-w-2xl mx-auto">
-        <div className="bg-white rounded-lg shadow-md p-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-8">
-            Complete Your Professional Profile
+      <div className="max-w-4xl mx-auto">
+        <div className="bg-white rounded-lg shadow-lg p-8">
+          <h1 className="text-3xl font-bold text-gray-800 mb-2">
+            Complete Your Professional Registration
           </h1>
+          <p className="text-gray-600 mb-8">
+            Join the InvestInPuglia Professional Directory and connect with international investors
+          </p>
+
+          {/* Pricing Plans */}
+          <div className="grid md:grid-cols-2 gap-6 mb-8">
+            <div 
+              className={`border-2 rounded-lg p-6 cursor-pointer transition-all ${
+                selectedPlan === 'free' 
+                  ? 'border-blue-500 bg-blue-50' 
+                  : 'border-gray-200 hover:border-gray-300'
+              }`}
+              onClick={() => setSelectedPlan('free')}
+            >
+              <h3 className="text-xl font-bold mb-2">Free Listing</h3>
+              <p className="text-3xl font-bold mb-4">€0<span className="text-sm font-normal">/month</span></p>
+              <ul className="space-y-2 text-sm">
+                <li className="flex items-center">
+                  <span className="text-green-500 mr-2">✓</span>
+                  Basic profile listing
+                </li>
+                <li className="flex items-center">
+                  <span className="text-green-500 mr-2">✓</span>
+                  Contact information
+                </li>
+                <li className="flex items-center text-gray-400">
+                  <span className="mr-2">✗</span>
+                  Priority placement
+                </li>
+                <li className="flex items-center text-gray-400">
+                  <span className="mr-2">✗</span>
+                  Analytics dashboard
+                </li>
+                <li className="flex items-center text-gray-400">
+                  <span className="mr-2">✗</span>
+                  Direct lead notifications
+                </li>
+              </ul>
+            </div>
+
+            <div 
+              className={`border-2 rounded-lg p-6 cursor-pointer transition-all relative ${
+                selectedPlan === 'premium' 
+                  ? 'border-green-500 bg-green-50' 
+                  : 'border-gray-200 hover:border-gray-300'
+              }`}
+              onClick={() => setSelectedPlan('premium')}
+            >
+              <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-green-500 text-white text-xs px-3 py-1 rounded-full">
+                RECOMMENDED
+              </div>
+              <h3 className="text-xl font-bold mb-2">Premium Listing</h3>
+              <p className="text-3xl font-bold mb-4">€39<span className="text-sm font-normal">/month</span></p>
+              <ul className="space-y-2 text-sm">
+                <li className="flex items-center">
+                  <span className="text-green-500 mr-2">✓</span>
+                  Everything in Free
+                </li>
+                <li className="flex items-center">
+                  <span className="text-green-500 mr-2">✓</span>
+                  Priority placement
+                </li>
+                <li className="flex items-center">
+                  <span className="text-green-500 mr-2">✓</span>
+                  Analytics dashboard
+                </li>
+                <li className="flex items-center">
+                  <span className="text-green-500 mr-2">✓</span>
+                  Direct lead notifications
+                </li>
+                <li className="flex items-center">
+                  <span className="text-green-500 mr-2">✓</span>
+                  Enhanced profile features
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          {error && (
+            <div className="bg-red-50 text-red-600 p-4 rounded mb-6">
+              {error}
+            </div>
+          )}
 
           <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Full Name *
                 </label>
                 <input
                   type="text"
-                  name="name"
+                  required
                   value={formData.name}
-                  onChange={handleInputChange}
-                  required
-                  className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-teal-500 focus:outline-none"
+                  onChange={(e) => setFormData({...formData, name: e.target.value})}
+                  className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
                 />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Professional Type *
-                </label>
-                <select
-                  name="type"
-                  value={formData.type}
-                  onChange={handleInputChange}
-                  required
-                  className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-teal-500 focus:outline-none"
-                >
-                  {professionalTypes.map(type => (
-                    <option key={type.value} value={type.value}>
-                      {type.label}
-                    </option>
-                  ))}
-                </select>
               </div>
 
               <div>
@@ -242,27 +260,22 @@ function RegisterProfessionalContent() {
                 </label>
                 <input
                   type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
                   required
-                  disabled
-                  className="w-full px-4 py-2 border rounded-lg bg-gray-100"
+                  value={formData.email}
+                  readOnly={!!registrationData}
+                  className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 bg-gray-50"
                 />
               </div>
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Phone *
+                  Phone
                 </label>
                 <input
                   type="tel"
-                  name="phone"
                   value={formData.phone}
-                  onChange={handleInputChange}
-                  required
-                  placeholder="+39 123 456 7890"
-                  className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-teal-500 focus:outline-none"
+                  onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                  className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
                 />
               </div>
 
@@ -272,12 +285,32 @@ function RegisterProfessionalContent() {
                 </label>
                 <input
                   type="url"
-                  name="website"
                   value={formData.website}
-                  onChange={handleInputChange}
-                  placeholder="https://example.com"
-                  className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-teal-500 focus:outline-none"
+                  onChange={(e) => setFormData({...formData, website: e.target.value})}
+                  className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                  placeholder="https://..."
                 />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Professional Type *
+                </label>
+                <select
+                  value={formData.type}
+                  onChange={(e) => setFormData({...formData, type: e.target.value})}
+                  className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                  required
+                >
+                  <option value="lawyer">Lawyer</option>
+                  <option value="accountant">Accountant</option>
+                  <option value="architect">Architect</option>
+                  <option value="engineer">Engineer</option>
+                  <option value="real_estate_agent">Real Estate Agent</option>
+                  <option value="notary">Notary</option>
+                  <option value="consultant">Business Consultant</option>
+                  <option value="other">Other</option>
+                </select>
               </div>
 
               <div>
@@ -286,112 +319,85 @@ function RegisterProfessionalContent() {
                 </label>
                 <input
                   type="text"
-                  name="location"
+                  required
                   value={formData.location}
-                  onChange={handleInputChange}
-                  required
+                  onChange={(e) => setFormData({...formData, location: e.target.value})}
+                  className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
                   placeholder="City, Province"
-                  className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-teal-500 focus:outline-none"
                 />
               </div>
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Languages (comma-separated) *
+                  Languages
                 </label>
                 <input
                   type="text"
-                  value={formData.languages.join(', ')}
-                  onChange={(e) => handleArrayInput('languages', e.target.value)}
-                  required
-                  placeholder="Italian, English, Spanish"
-                  className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-teal-500 focus:outline-none"
+                  value={formData.languages}
+                  onChange={(e) => setFormData({...formData, languages: e.target.value})}
+                  className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                  placeholder="English, Italian, ..."
                 />
               </div>
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Response Time
+                  Specialties
                 </label>
                 <input
                   type="text"
-                  name="response_time"
-                  value={formData.response_time}
-                  onChange={handleInputChange}
-                  placeholder="24 hours"
-                  className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-teal-500 focus:outline-none"
+                  value={formData.specialties}
+                  onChange={(e) => setFormData({...formData, specialties: e.target.value})}
+                  className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                  placeholder="Real estate, Immigration, ..."
                 />
               </div>
             </div>
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Specialties (comma-separated) *
-              </label>
-              <input
-                type="text"
-                value={formData.specialties.join(', ')}
-                onChange={(e) => handleArrayInput('specialties', e.target.value)}
-                required
-                placeholder="Real Estate Law, Immigration, Corporate Law"
-                className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-teal-500 focus:outline-none"
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Professional Description *
+                Professional Description
               </label>
               <textarea
-                name="description"
-                value={formData.description}
-                onChange={handleInputChange}
-                required
                 rows={4}
-                placeholder="Describe your experience, qualifications, and services..."
-                className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-teal-500 focus:outline-none"
+                value={formData.description}
+                onChange={(e) => setFormData({...formData, description: e.target.value})}
+                className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                placeholder="Tell potential clients about your services and experience..."
               />
             </div>
 
-            {error && (
-              <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded">
-                {error}
-              </div>
-            )}
-
-            <div className="flex gap-4">
+            <div className="pt-6 border-t">
               <button
                 type="submit"
-                disabled={submitting}
-                className="flex-1 bg-teal-600 text-white py-3 rounded-lg hover:bg-teal-700 disabled:opacity-50 disabled:cursor-not-allowed font-medium"
+                disabled={loading}
+                className={`w-full py-3 rounded-lg font-medium transition-colors ${
+                  selectedPlan === 'premium'
+                    ? 'bg-green-600 hover:bg-green-700 text-white'
+                    : 'bg-blue-600 hover:bg-blue-700 text-white'
+                } disabled:opacity-50`}
               >
-                {submitting ? (
-                  <span className="flex items-center justify-center">
-                    <Loader2 className="animate-spin h-5 w-5 mr-2" />
-                    Creating Profile...
-                  </span>
-                ) : (
-                  'Complete Registration'
+                {loading ? 'Processing...' : (
+                  selectedPlan === 'premium' 
+                    ? 'Complete Registration & Pay €39/month' 
+                    : 'Complete Free Registration'
                 )}
               </button>
             </div>
           </form>
+
+          <div className="mt-6 text-center text-sm text-gray-500">
+            By registering, you agree to our Terms of Service and Privacy Policy
+          </div>
         </div>
       </div>
     </div>
   );
 }
 
-export default function RegisterProfessional() {
+export default function RegisterProfessionalPage() {
   return (
-    <Suspense fallback={
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
-        <div className="text-center">
-          <Loader2 className="animate-spin h-12 w-12 text-teal-600 mx-auto mb-4" />
-          <p className="text-gray-600">Loading registration...</p>
-        </div>
-      </div>
-    }>
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
       <RegisterProfessionalContent />
     </Suspense>
   );
