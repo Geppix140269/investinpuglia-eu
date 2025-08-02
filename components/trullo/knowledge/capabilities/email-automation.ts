@@ -8,76 +8,47 @@ export const emailAutomationKnowledge: KnowledgeModule = {
   languages: ['en', 'it', 'es', 'fr', 'de', 'ar', 'zh'],
   triggers: [
     'talk to expert',
+    'speak with giuseppe',
+    'talk to giuseppe',
+    'contact expert',
     'book consultation',
-    'speak with someone',
-    'schedule call',
-    'need help',
-    'contact giuseppe',
-    'personalized advice',
-    'specific situation',
-    'discuss my case',
-    'strategy call',
-    'meeting',
-    'appointment'
+    'email',
+    '@'
   ],
   content: {
     en: `
-CRITICAL EMAIL & MEETING AUTOMATION PROTOCOL:
+CRITICAL EMAIL AUTOMATION RULES:
 
-GIUSEPPE'S EMAIL: g.funaro@investinpuglia.eu
-CALENDLY LINK: https://calendly.com/investinpuglia/30min
+When user provides email for contacting Giuseppe/expert:
 
-When user expresses interest in consultation:
+STEP 1: Get the email address
+STEP 2: MUST include this EXACT text in your response:
+[AUTO_EMAIL: name="UserName" email="their.email@domain.com"]
 
-OPTION 1 - Email Automation:
-1. IMMEDIATELY recognize intent with enthusiasm
-2. Ask for name and email naturally
-3. Once you have BOTH, use EXACT format: [AUTO_EMAIL: name="Name" email="email@example.com"]
-4. The system will automatically:
-   - Send email to Giuseppe (g.funaro@investinpuglia.eu)
-   - CC the client
-   - Store lead in Supabase
+EXAMPLE THAT MUST BE FOLLOWED:
+User: "email g.funaro@yahoo.com"
+You: "Perfect! I'm connecting you with Giuseppe right now. [AUTO_EMAIL: name="Investor" email="g.funaro@yahoo.com"] You'll receive a confirmation email shortly, and Giuseppe will personally respond within 24 hours!"
 
-OPTION 2 - Direct Booking:
-When appropriate, offer: "You can also book a strategy call directly with Giuseppe here: https://calendly.com/investinpuglia/30min"
+NEVER say "I'll send" or "✅ Email sent" yourself - the system adds that automatically!
+ALWAYS include the [AUTO_EMAIL: ...] format when you have an email address!
 
-Example flows:
-User: "I'd like to discuss my investment plans"
-You: "Excellent! I have two options for you:
-1. I can arrange for Giuseppe to contact you personally - just need your name and email
-2. Or you can book a 30-minute strategy call directly: https://calendly.com/investinpuglia/30min
-Which would you prefer?"
-
-User provides details: "John Smith, john@email.com"
-You: "Perfect, John! I'm sending your information to Giuseppe now. [AUTO_EMAIL: name="John Smith" email="john@email.com"] 
-Giuseppe will personally review your inquiry and respond within 24 hours. You'll receive a confirmation email shortly!"
-
-IMPORTANT: Always store conversation data including investment interest, budget range, timeline, property type preference.
+Also mention: "You can also book directly at https://calendly.com/investinpuglia/30min"
 `,
     it: `
-PROTOCOLLO EMAIL E APPUNTAMENTI:
+REGOLE CRITICHE AUTOMAZIONE EMAIL:
 
-EMAIL GIUSEPPE: g.funaro@investinpuglia.eu
-LINK CALENDLY: https://calendly.com/investinpuglia/30min
+Quando l'utente fornisce email per contattare Giuseppe/esperto:
 
-Quando l'utente esprime interesse:
+PASSO 1: Ottieni l'indirizzo email
+PASSO 2: DEVI includere questo testo ESATTO nella tua risposta:
+[AUTO_EMAIL: name="NomeUtente" email="loro.email@dominio.com"]
 
-OPZIONE 1 - Automazione Email:
-1. Riconosci l'intento con entusiasmo
-2. Chiedi nome ed email naturalmente
-3. Usa formato: [AUTO_EMAIL: name="Nome" email="email@example.com"]
-4. Il sistema automaticamente:
-   - Invia email a Giuseppe
-   - Mette in CC il cliente
-   - Salva lead in Supabase
-
-OPZIONE 2 - Prenotazione Diretta:
-"Puoi anche prenotare una chiamata strategica direttamente: https://calendly.com/investinpuglia/30min"
+MAI dire "invierò" o "✅ Email inviata" - il sistema lo aggiunge automaticamente!
 `
   },
   metadata: {
     lastUpdated: '2025-08-02',
     author: 'Giuseppe',
-    version: '3.0.0'
+    version: '5.0.0'
   }
 };
