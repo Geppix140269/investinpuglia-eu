@@ -1,4 +1,4 @@
-// PATH: app/layout.tsx
+﻿// PATH: app/layout.tsx
 import type { Metadata } from 'next'
 import { Inter, Playfair_Display } from 'next/font/google'
 import './globals.css'
@@ -35,10 +35,10 @@ const playfairDisplay = Playfair_Display({
 export const metadata: Metadata = {
   metadataBase: new URL('https://investinpuglia.eu'),
   title: {
-    default: 'Property Investment in Puglia - EU Grants up to €2.25M | Invest in Puglia',
+    default: 'Property Investment in Puglia - EU Grants up to â‚¬2.25M | Invest in Puglia',
     template: '%s | Property Investment Puglia - Invest in Puglia'
   },
-  description: 'Expert property investment advisory in Puglia, Italy. Secure up to €2.25M in EU grants. Free grant calculator, professional surveys, and professional guidance for foreign investors.',
+  description: 'Expert property investment advisory in Puglia, Italy. Secure up to â‚¬2.25M in EU grants. Free grant calculator, professional surveys, and professional guidance for foreign investors.',
   keywords: [
     'property investment puglia',
     'puglia real estate investment',
@@ -65,8 +65,8 @@ export const metadata: Metadata = {
     telephone: false,
   },
   openGraph: {
-    title: 'Property Investment in Puglia - Secure €2.25M in EU Grants',
-    description: 'Expert advisory for property investment in Puglia. Free grant calculator, professional surveys, and proven strategies for foreign investors.',
+    title: 'Property Investment in Puglia - Secure â‚¬2.25M in EU Grants',
+    description: 'Investment advisory and grant consulting services for Puglia. Free grant calculator, professional surveys, and proven strategies for foreign investors.',
     url: 'https://investinpuglia.eu',
     siteName: 'Invest in Puglia - EU Property Grants & Investment',
     images: [
@@ -83,7 +83,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Property Investment in Puglia - EU Grants Available',
-    description: 'Secure up to €2.25M in grants for your Puglia property investment. Expert advisory services.',
+    description: 'Secure up to â‚¬2.25M in grants for your Puglia property investment. Expert advisory services.',
     images: ['/og-image.png'],
     creator: '@investinpuglia'
   },
@@ -171,9 +171,9 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "RealEstateAgent",
+              "@type": "ProfessionalService",
               "name": "Invest in Puglia",
-              "description": "Expert property investment advisory in Puglia, Italy. EU grants up to €2.25M.",
+              "description": "Expert property investment advisory in Puglia, Italy. EU grants up to â‚¬2.25M.",
               "url": "https://investinpuglia.eu",
               "telephone": "+39 351 400 1402",
               "email": "info@investinpuglia.eu",
@@ -203,3 +203,4 @@ export default function RootLayout({
     </html>
   )
 }
+
