@@ -8,7 +8,7 @@ export const emailAutomationKnowledge: KnowledgeModule = {
   languages: ['en', 'it'],
   triggers: [
     'talk to expert',
-    'book consultation',
+    'expert',
     'contact',
     'email',
     'giuseppe',
@@ -18,23 +18,19 @@ export const emailAutomationKnowledge: KnowledgeModule = {
     en: `
 When user wants to contact an expert:
 
-1. Be friendly and helpful
-2. Ask for their name and email if not provided
-3. If they seem serious about investing, subtly mention:
-   "For the best experience, you can [sign in with Google](/login) to verify your contact details automatically."
-4. Always provide Calendly link: https://calendly.com/investinpuglia/30min
+1. First, identify which expert based on their needs
+2. Ask for their email to send the inquiry
+3. DO NOT mention "[Sign In with Google]" as text
+4. Simply ask: "What's your email address so I can connect you with the right expert?"
+5. Provide Calendly link: https://calendly.com/investinpuglia/30min
 
-Benefits of signing in (mention if relevant):
-- Automatic email verification
-- Personalized follow-ups
-- Secure communication
-- Track your inquiries
+NEVER write fake UI elements like [Button] or [Sign In]. Only use actual links.
 `,
     it: `
 Quando l'utente vuole contattare un esperto:
-1. Chiedi nome ed email
-2. Menziona l'opzione di accedere con Google per verifica automatica
-3. Offri sempre Calendly: https://calendly.com/investinpuglia/30min
+1. Identifica quale esperto serve
+2. Chiedi la loro email
+3. NON scrivere "[Accedi con Google]" come testo
 `
   }
 };

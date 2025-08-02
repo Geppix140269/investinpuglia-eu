@@ -2,7 +2,7 @@
 import { KnowledgeModule, KnowledgeContext } from './types';
 
 // Import all knowledge modules
-import { personalityKnowledge } from './core/personality';
+import { personalityModule } from './core/personality';
 import { expertRoutingKnowledge } from './core/expert-directory';
 import { emailAutomationKnowledge } from './capabilities/email-automation';
 import { leadStorageKnowledge } from './capabilities/lead-storage';
@@ -19,7 +19,7 @@ export class TrulloKnowledgeBase {
     // Register all knowledge modules
     this.registerModules([
       // Core
-      personalityKnowledge,
+      personalityModule,
       expertRoutingKnowledge, // ADDED!
 
       // Capabilities
@@ -96,3 +96,4 @@ export class TrulloKnowledgeBase {
 }
 
 export const trulloKnowledge = new TrulloKnowledgeBase();
+
