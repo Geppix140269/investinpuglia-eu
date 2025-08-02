@@ -1,4 +1,4 @@
-﻿// PATH: components/trullo/hooks/useChat.ts
+// PATH: components/trullo/hooks/useChat.ts
 import { detectProfessionalInterest, logProfessionalInterest, generateProfessionalFollowUp } from '@/lib/professionalDetector';
 import { useState, useEffect, useCallback } from 'react';
 import { Message, Language, AuthState } from '../types';
@@ -162,34 +162,6 @@ export function useChat(isOpen: boolean, language: Language): UseChatReturn {
     };
 
     setMessages(prev => [...prev, userMessage]);
-
-
-
-      // SIMPLE EMAIL DETECTION - NO AUTO_EMAIL BULLSHIT
-      const emailRegex = /([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+)/;
-      const wantsContact = /giuseppe|expert|contact|talk|speak|email|meeting|consultation/i;
-      
-      console.log('📧 DEBUG: Checking email detection...');
-      console.log('📧 Input text:', input);
-      console.log('📧 Email regex test:', emailRegex.test(input));
-      console.log('📧 Contact intent test:', wantsContact.test(input));
-      console.log('📧 Email match:', input.match(emailRegex));
-      
-      if (emailRegex.test(input) && wantsContact.test(input)) {
-        const emailMatch = input.match(emailRegex);
-        if (emailMatch) {
-          // Fire email event directly
-          const event = new CustomEvent('trullo-auto-email', {
-            detail: { 
-              name: 'Investor', 
-              email: emailMatch[0], 
-              message: input 
-            }
-          });
-          window.dispatchEvent(event);
-          console.log('📧 Email trigger fired for:', emailMatch[0]);
-        }
-      }
     setIsTyping(true);
 
     // Log user message
@@ -284,8 +256,8 @@ export function useChat(isOpen: boolean, language: Language): UseChatReturn {
 
       // Debug logging in development
       if (process.env.NODE_ENV === 'development') {
-        console.log('ðŸ§  Knowledge Context:', knowledgeContext);
-        console.log('ðŸ“ Dynamic Prompt:', enhancedSystemPrompt);
+        console.log('🧠 Knowledge Context:', knowledgeContext);
+        console.log('📝 Dynamic Prompt:', enhancedSystemPrompt);
       }
 
       // Normal chat flow with dynamic prompt
@@ -310,7 +282,7 @@ export function useChat(isOpen: boolean, language: Language): UseChatReturn {
         });
         window.dispatchEvent(event);
 
-        responseContent += '\n\nâœ… Email sent successfully!';
+        responseContent += '\n\n✅ Email sent successfully!';
       }
 
       const assistantMessage: Message = {
@@ -357,7 +329,3 @@ export function useChat(isOpen: boolean, language: Language): UseChatReturn {
     closeChat
   };
 }
-
-
-
-
