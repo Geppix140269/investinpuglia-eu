@@ -1,6 +1,5 @@
-
 // app/professionals/cancel/page.tsx
-export function CancelPage() {
+export default function CancelPage() {
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
       <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full text-center">
@@ -20,18 +19,18 @@ export function CancelPage() {
         </div>
 
         <div className="space-y-3">
-          <Link 
+          <a 
             href="/register-professional"
             className="block bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700 transition"
           >
             Try Again
-          </Link>
-          <Link 
+          </a>
+          <a 
             href="/professionals"
             className="block bg-gray-200 text-gray-700 px-6 py-3 rounded hover:bg-gray-300 transition"
           >
             View Directory
-          </Link>
+          </a>
         </div>
       </div>
     </div>
