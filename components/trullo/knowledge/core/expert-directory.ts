@@ -54,7 +54,13 @@ export const expertRoutingKnowledge: KnowledgeModule = {
   category: 'core',
   priority: 10,
   languages: ['en', 'it'],
-  triggers: ['expert', 'contact', 'speak', 'help', 'consult'],
+  triggers: [
+    'expert', 'contact', 'speak', 'help', 'consult',
+    'esperto', 'contattare', 'parlare', 'aiuto', 'consulenza',
+    'ristrutturare', 'ristrutturazione', 'ingegnere', 'commercialista',
+    'renovation', 'engineer', 'accountant', 'tax', 'engineering',
+    'costruzione', 'permesso', 'strutturale', 'tecnico'
+  ],
   content: {
     en: `
 EXPERT ROUTING WITH PRIVACY PROTOCOL:
@@ -83,3 +89,4 @@ Protocollo routing con privacy per esperti esterni.
     version: '1.0.0'
   }
 };
+
