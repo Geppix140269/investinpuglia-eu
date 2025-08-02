@@ -4,6 +4,7 @@ import { KnowledgeModule, KnowledgeContext } from './types';
 // Import all knowledge modules
 import { personalityKnowledge } from './core/personality';
 import { emailAutomationKnowledge } from './capabilities/email-automation';
+import { leadStorageKnowledge } from './capabilities/lead-storage';
 import { leadCaptureStrategy } from './strategies/lead-capture';
 import { euGrantsKnowledge } from './expertise/eu-grants';
 import { trustBuildingStrategy } from './strategies/trust-building';
@@ -19,6 +20,7 @@ export class TrulloKnowledgeBase {
       
       // Capabilities
       emailAutomationKnowledge,
+      leadStorageKnowledge, // NEW!
       
       // Expertise
       euGrantsKnowledge,
