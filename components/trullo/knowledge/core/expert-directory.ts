@@ -10,7 +10,7 @@ export interface Expert {
   specialties: string[];
   languages: string[];
   title: string;
-  isExternal: boolean; // NEW: Track internal vs external
+  isExternal: boolean;
 }
 
 export const EXPERT_DIRECTORY: Expert[] = [
@@ -23,7 +23,7 @@ export const EXPERT_DIRECTORY: Expert[] = [
     specialties: ['investment', 'real estate', 'general', 'property', 'puglia', 'trulli'],
     languages: ['en', 'it'],
     title: 'Investment Advisor',
-    isExternal: false // Internal - gets full details
+    isExternal: false
   },
   {
     id: 'russo',
@@ -34,7 +34,7 @@ export const EXPERT_DIRECTORY: Expert[] = [
     specialties: ['engineering', 'construction', 'renovation', 'structural', 'technical', 'permits', 'building'],
     languages: ['it', 'en'],
     title: 'Chief Engineer',
-    isExternal: true // External - no customer details
+    isExternal: true
   },
   {
     id: 'quarta',
@@ -45,7 +45,7 @@ export const EXPERT_DIRECTORY: Expert[] = [
     specialties: ['accounting', 'tax', 'finance', 'fiscal', 'business', 'company', 'vat', 'taxes'],
     languages: ['it', 'en'],
     title: 'Senior Accountant',
-    isExternal: true // External - no customer details
+    isExternal: true
   }
 ];
 
@@ -78,6 +78,8 @@ Protocollo routing con privacy per esperti esterni.
 `
   },
   metadata: {
-    experts: EXPERT_DIRECTORY
+    lastUpdated: '2025-08-02',
+    author: 'Giuseppe',
+    version: '1.0.0'
   }
 };
