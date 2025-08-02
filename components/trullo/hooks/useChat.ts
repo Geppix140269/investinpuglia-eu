@@ -163,15 +163,17 @@ export function useChat(isOpen: boolean, language: Language): UseChatReturn {
 
     setMessages(prev => [...prev, userMessage]);
 
-    console.log('📧 DEBUG: Checking email detection...');
-    console.log('📧 Input text:', input);
-    console.log('📧 Email regex test:', emailRegex.test(input));
-    console.log('📧 Contact intent test:', wantsContact.test(input));
-    console.log('📧 Email match:', input.match(emailRegex));
+
 
       // SIMPLE EMAIL DETECTION - NO AUTO_EMAIL BULLSHIT
       const emailRegex = /([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+)/;
       const wantsContact = /giuseppe|expert|contact|talk|speak|email|meeting|consultation/i;
+      
+      console.log('📧 DEBUG: Checking email detection...');
+      console.log('📧 Input text:', input);
+      console.log('📧 Email regex test:', emailRegex.test(input));
+      console.log('📧 Contact intent test:', wantsContact.test(input));
+      console.log('📧 Email match:', input.match(emailRegex));
       
       if (emailRegex.test(input) && wantsContact.test(input)) {
         const emailMatch = input.match(emailRegex);
@@ -355,6 +357,7 @@ export function useChat(isOpen: boolean, language: Language): UseChatReturn {
     closeChat
   };
 }
+
 
 
 
