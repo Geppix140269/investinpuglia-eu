@@ -9,44 +9,38 @@ export const emailAutomationKnowledge: KnowledgeModule = {
   triggers: [
     'talk to expert',
     'book consultation',
-    'speak with someone',
-    'schedule call',
-    'need help',
-    'contact giuseppe',
-    'strategy call',
-    'calendly',
-    'book a meeting',
+    'speak with',
+    'contact',
+    'email',
+    'giuseppe',
     'meeting',
-    'appointment',
-    'consult'
+    'call',
+    'appointment'
   ],
   content: {
     en: `
-When user wants to talk to an expert or book a call:
-1. Be enthusiastic and helpful
-2. Ask for their name and email if not provided
-3. Once you have both, confirm you will connect them with Giuseppe
-4. Always offer the Calendly link: https://calendly.com/investinpuglia/30min
+EMAIL AUTOMATION INSTRUCTIONS:
 
-Example responses:
-"Excellent! I'd be happy to connect you with Giuseppe. May I have your name and email?"
-"Perfect! I'll arrange for Giuseppe to contact you. What's your email address?"
-"Great! You can book directly at https://calendly.com/investinpuglia/30min or I can send your details to Giuseppe."
+When user wants to contact Giuseppe or book a consultation:
 
-When you have their details, say something like:
-"Thank you! I'll send your information to Giuseppe right away. You'll receive a confirmation email shortly."
+1. Ask for their name and email
+2. When they provide email, you MUST include this EXACT format in your response:
+   [AUTO_EMAIL: name="Their Name" email="their@email.com"]
+
+EXAMPLE - YOU MUST FOLLOW THIS:
+User: "I want to talk to Giuseppe"
+You: "Excellent! I'll connect you with Giuseppe. May I have your name and email?"
+User: "John Smith, john@example.com"
+You: "Perfect! I'm connecting you with Giuseppe now. [AUTO_EMAIL: name="John Smith" email="john@example.com"] Giuseppe will review your inquiry personally."
+
+CRITICAL: The [AUTO_EMAIL: ...] text MUST be included EXACTLY as shown!
+
+Also offer: "You can also book directly: https://calendly.com/investinpuglia/30min"
 `,
     it: `
-Quando l'utente vuole parlare con un esperto:
-1. Sii entusiasta
-2. Chiedi nome ed email
-3. Conferma che li metterai in contatto con Giuseppe
-4. Offri sempre il link Calendly: https://calendly.com/investinpuglia/30min
+Quando l'utente vuole contattare Giuseppe:
+1. Chiedi nome ed email
+2. DEVI includere: [AUTO_EMAIL: name="Nome" email="email@example.com"]
 `
-  },
-  metadata: {
-    lastUpdated: '2025-08-02',
-    author: 'Giuseppe',
-    version: 'WORKING'
   }
 };
