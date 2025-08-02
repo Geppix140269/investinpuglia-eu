@@ -1,4 +1,6 @@
 // app/professionals/cancel/page.tsx
+import Link from 'next/link';
+
 export default function CancelPage() {
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
@@ -19,18 +21,18 @@ export default function CancelPage() {
         </div>
 
         <div className="space-y-3">
-          <a 
+          <Link 
             href="/register-professional"
             className="block bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700 transition"
           >
             Try Again
-          </a>
-          <a 
+          </Link>
+          <Link 
             href="/professionals"
             className="block bg-gray-200 text-gray-700 px-6 py-3 rounded hover:bg-gray-300 transition"
           >
             View Directory
-          </a>
+          </Link>
         </div>
       </div>
     </div>
