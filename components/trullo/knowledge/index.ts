@@ -11,6 +11,7 @@ import { euGrantsKnowledge } from './expertise/eu-grants';
 import { trustBuildingStrategy } from './strategies/trust-building';
 import { ctaButtonsKnowledge } from './strategies/cta-buttons';
 import { authRequirementKnowledge } from './strategies/auth-requirement';
+import { authRequirementKnowledge } from './strategies/auth-requirement';
 import { userRegistrationKnowledge } from './capabilities/user-registration';
 
 export class TrulloKnowledgeBase {
@@ -35,6 +36,7 @@ export class TrulloKnowledgeBase {
       leadCaptureStrategy,
       trustBuildingStrategy,
       ctaButtonsKnowledge,
+      authRequirementKnowledge,
       authRequirementKnowledge,
     ]);
   }
@@ -97,4 +99,5 @@ export class TrulloKnowledgeBase {
 }
 
 export const trulloKnowledge = new TrulloKnowledgeBase();
+
 

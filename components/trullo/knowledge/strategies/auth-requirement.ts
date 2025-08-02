@@ -4,7 +4,7 @@ import { KnowledgeModule } from '../types';
 export const authRequirementKnowledge: KnowledgeModule = {
   id: 'auth-requirement',
   category: 'strategy',
-  priority: 15, // HIGH PRIORITY
+  priority: 15,
   languages: ['en', 'it'],
   triggers: [
     'email',
@@ -12,27 +12,39 @@ export const authRequirementKnowledge: KnowledgeModule = {
     'expert',
     'invest',
     'property',
-    'consultation'
+    'consultation',
+    'masseria',
+    'grants'
   ],
   content: {
     en: `
-AUTHENTICATION REQUIREMENT STRATEGY:
+AUTHENTICATION REQUIREMENT:
 
-IF user is NOT authenticated (check userProfile.isAuthenticated):
-- When they want to contact experts or provide email
-- Say: "To ensure secure communication and track your investment journey, please sign in first."
-- Add: "This helps us provide personalized service and protect your information."
-- Include: "Please visit /login to sign in with Google - it takes just 10 seconds!"
+Check userProfile.isAuthenticated in the context.
 
-IF user IS authenticated:
-- Use their verified Google email: userProfile.email
-- Never ask for email again
-- Say: "I have your verified email: [their email]"
-- Proceed with AUTO_EMAIL using their Google email
+IF NOT authenticated and user wants to:
+- Contact experts
+- Discuss investment details
+- Get personalized advice
+
+RESPOND: "To provide personalized investment guidance and secure your information, please sign in with your Google account first. It only takes 10 seconds!"
+
+Add button text: "[Sign in with Google](/login)"
+
+Benefits to mention:
+- Secure communication
+- Personalized recommendations
+- Track your investment journey
+- Direct access to experts
+
+IF authenticated:
+- Use their Google email automatically
+- Never ask for email
+- Say: "Perfect! I'll use your verified email: [userProfile.email]"
 `,
     it: `
-Se utente NON autenticato: richiedi login a /login
-Se autenticato: usa email verificata da Google
+Se NON autenticato: "Per un servizio personalizzato, accedi con Google: [Accedi](/login)"
+Se autenticato: Usa email verificata
 `
   }
 };
