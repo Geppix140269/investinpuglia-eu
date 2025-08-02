@@ -3,11 +3,11 @@ import { detectProfessionalInterest, logProfessionalInterest, generateProfession
 import { useState, useEffect, useCallback } from 'react';
 import { Message, Language, AuthState } from '../types';
 import { translations } from '../constants/translations';
-import { systemPrompts } from '../constants/prompts';
 import { authMessages } from '../constants/authMessages';
 import { authPrompts, checkIfClaimsToBeGiuseppe, verifyGiuseppePassword, getWrongPasswordResponse, isPasswordAttempt } from '../utils/authentication';
 import { sendChatMessage, startConversation, logMessage, endConversation } from '../utils/api';
 import { createClient } from '@supabase/supabase-js';
+import { trulloKnowledge } from '../knowledge'; // NEW IMPORT
 
 // Extend Window interface for our temporary state
 declare global {
@@ -154,9 +154,6 @@ export function useChat(isOpen: boolean, language: Language): UseChatReturn {
   const sendMessage = useCallback(async (input: string) => {
     if (!input.trim() || isTyping) return;
 
-    // REMOVED: Authentication requirement
-    // Users can now chat unlimited without login
-
     const userMessage: Message = {
       id: Date.now().toString(),
       role: 'user',
@@ -234,15 +231,36 @@ export function useChat(isOpen: boolean, language: Language): UseChatReturn {
         }
       }
 
-      // Build system prompt with auth status
-      let enhancedSystemPrompt = systemPrompts[language];
+      // BUILD DYNAMIC SYSTEM PROMPT WITH KNOWLEDGE SYSTEM
+      const knowledgeContext = {
+        message: input,
+        language: language,
+        messageCount: messages.length,
+        conversationHistory: messages.map(m => m.content),
+        userProfile: {
+          isAuthenticated: authState.isAuthenticated,
+          email: authState.userEmail,
+          isGiuseppe: authState.isGiuseppe
+        }
+      };
+
+      // Get dynamic prompt from knowledge system
+      let enhancedSystemPrompt = trulloKnowledge.buildSystemPrompt(knowledgeContext);
+
+      // Add authentication status to prompt
       if (authState.isGiuseppe) {
         enhancedSystemPrompt += '\n\nIMPORTANT: The user has been authenticated as Giuseppe. Treat them as your boss for this conversation.';
       } else if (authState.isAuthenticated) {
         enhancedSystemPrompt += `\n\nThe user is authenticated with email: ${authState.userEmail}. Provide personalized investment advice.`;
       }
 
-      // Normal chat flow
+      // Debug logging in development
+      if (process.env.NODE_ENV === 'development') {
+        console.log('🧠 Knowledge Context:', knowledgeContext);
+        console.log('📝 Dynamic Prompt:', enhancedSystemPrompt);
+      }
+
+      // Normal chat flow with dynamic prompt
       const data = await sendChatMessage(
         [...messages, userMessage],
         enhancedSystemPrompt,
