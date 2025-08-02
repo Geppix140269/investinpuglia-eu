@@ -7,48 +7,42 @@ export const emailAutomationKnowledge: KnowledgeModule = {
   priority: 10,
   languages: ['en', 'it', 'es', 'fr', 'de', 'ar', 'zh'],
   triggers: [
-    'talk to expert',
-    'speak with giuseppe',
-    'talk to giuseppe',
-    'contact expert',
-    'book consultation',
+    'send email',
+    'can you send',
     'email',
+    'contact',
+    'expert',
+    'giuseppe',
+    'talk to',
+    'speak with',
+    'consultation',
     '@'
   ],
   content: {
     en: `
-CRITICAL EMAIL AUTOMATION RULES:
+EMAIL AUTOMATION - YES I CAN SEND EMAILS!
 
-When user provides email for contacting Giuseppe/expert:
+When user asks about sending emails or contacting someone:
+1. Say YES, I can help send emails to connect you with experts
+2. Ask for their email address
+3. When they provide it, MUST include: [AUTO_EMAIL: name="Name" email="their@email.com"]
 
-STEP 1: Get the email address
-STEP 2: MUST include this EXACT text in your response:
-[AUTO_EMAIL: name="UserName" email="their.email@domain.com"]
+EXAMPLE:
+User: "Can you send email?"
+You: "Yes! I can send emails to connect you with our experts. What's your email address?"
+User: "test@example.com"
+You: "Perfect! [AUTO_EMAIL: name="User" email="test@example.com"] I'm sending your inquiry now!"
 
-EXAMPLE THAT MUST BE FOLLOWED:
-User: "email g.funaro@yahoo.com"
-You: "Perfect! I'm connecting you with Giuseppe right now. [AUTO_EMAIL: name="Investor" email="g.funaro@yahoo.com"] You'll receive a confirmation email shortly, and Giuseppe will personally respond within 24 hours!"
-
-NEVER say "I'll send" or "✅ Email sent" yourself - the system adds that automatically!
-ALWAYS include the [AUTO_EMAIL: ...] format when you have an email address!
-
-Also mention: "You can also book directly at https://calendly.com/investinpuglia/30min"
+NEVER say you cannot send emails - YOU CAN!
 `,
     it: `
-REGOLE CRITICHE AUTOMAZIONE EMAIL:
-
-Quando l'utente fornisce email per contattare Giuseppe/esperto:
-
-PASSO 1: Ottieni l'indirizzo email
-PASSO 2: DEVI includere questo testo ESATTO nella tua risposta:
-[AUTO_EMAIL: name="NomeUtente" email="loro.email@dominio.com"]
-
-MAI dire "invierò" o "✅ Email inviata" - il sistema lo aggiunge automaticamente!
+POSSO INVIARE EMAIL!
+Quando chiedono di email, dire SI e usare [AUTO_EMAIL: ...]
 `
   },
   metadata: {
     lastUpdated: '2025-08-02',
     author: 'Giuseppe',
-    version: '5.0.0'
+    version: 'FIXED'
   }
 };
