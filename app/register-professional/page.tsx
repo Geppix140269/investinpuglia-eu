@@ -44,12 +44,14 @@ function RegisterProfessionalContent() {
         setRegistrationData(data.registration);
         setFormData(prev => ({
           ...prev,
-          email: data.registration.email,
+          email: data.registration.email || '',
           name: data.registration.name || ''
         }));
       }
     } catch (error) {
       console.error('Error fetching registration:', error);
+      // If the API fails, at least allow manual entry
+      setRegistrationData(null);
     }
   };
 
@@ -84,6 +86,7 @@ function RegisterProfessionalContent() {
           body: JSON.stringify({
             professionalId: data.professionalId,
             email: formData.email,
+            name: formData.name,
             registrationToken: token
           })
         });
@@ -262,8 +265,12 @@ function RegisterProfessionalContent() {
                   type="email"
                   required
                   value={formData.email}
-                  readOnly={!!registrationData}
-                  className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 bg-gray-50"
+                  readOnly={!!registrationData && !!formData.email}
+                  onChange={(e) => setFormData({...formData, email: e.target.value})}
+                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 ${
+                    registrationData && formData.email ? 'bg-gray-50' : ''
+                  }`}
+                  placeholder="your@email.com"
                 />
               </div>
 
@@ -276,19 +283,20 @@ function RegisterProfessionalContent() {
                   value={formData.phone}
                   onChange={(e) => setFormData({...formData, phone: e.target.value})}
                   className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                  placeholder="+39 123 456 7890"
                 />
               </div>
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Website
+                  Website <span className="text-gray-400 text-xs">(optional)</span>
                 </label>
                 <input
                   type="url"
                   value={formData.website}
                   onChange={(e) => setFormData({...formData, website: e.target.value})}
                   className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
-                  placeholder="https://..."
+                  placeholder="https://... (optional)"
                 />
               </div>
 
