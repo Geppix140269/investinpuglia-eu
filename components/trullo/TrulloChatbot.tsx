@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+﻿import React, { useState, useEffect, useRef } from 'react';
 import { Language, TrulloChatbotProps, Message } from './types';
 import { translations } from './constants/translations';
 import { useChat } from './hooks/useChat';
@@ -277,7 +277,7 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
             ${currentLang === 'ar' ? 'rtl' : 'ltr'}
             ${isMobile
               ? 'inset-x-4 bottom-0 h-[70vh] rounded-b-none'
-              : 'bottom-4 left-1/2 transform -translate-x-1/2 w-96 h-[500px]'
+              : 'bottom-4 left-1/2 transform -translate-x-1/2 w-[480px] h-[500px]'
             }
             ${isOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}
           `}
@@ -307,7 +307,7 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
                     className="w-full h-full object-contain"
                     onError={(e) => {
                       e.currentTarget.style.display = 'none';
-                      e.currentTarget.parentElement!.innerHTML = '🤖';
+                      e.currentTarget.parentElement!.innerHTML = 'ðŸ¤–';
                     }}
                   />
                 </div>
@@ -317,12 +317,12 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
                     {t.subtitle}
                     {authState.isGiuseppe && (
                       <span className="block text-xs text-yellow-300 mt-1">
-                        👑 Boss Mode Active
+                        ðŸ‘‘ Boss Mode Active
                       </span>
                     )}
                     {authState.isAuthenticated && !authState.isGiuseppe && (
                       <span className="block text-xs text-green-300 mt-1">
-                        ✅ {authState.userEmail}
+                        âœ… {authState.userEmail}
                       </span>
                     )}
                   </p>
@@ -355,13 +355,13 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
                     onChange={(e) => setCurrentLang(e.target.value as Language)}
                     className="bg-white/20 text-white border border-white/30 rounded px-2 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-white/50"
                   >
-                    <option value="en">🇬🇧 EN</option>
-                    <option value="it">🇮🇹 IT</option>
-                    <option value="es">🇪🇸 ES</option>
-                    <option value="fr">🇫🇷 FR</option>
-                    <option value="de">🇩🇪 DE</option>
-                    <option value="ar">🇸🇦 AR</option>
-                    <option value="zh">🇨🇳 ZH</option>
+                    <option value="en">ðŸ‡¬ðŸ‡§ EN</option>
+                    <option value="it">ðŸ‡®ðŸ‡¹ IT</option>
+                    <option value="es">ðŸ‡ªðŸ‡¸ ES</option>
+                    <option value="fr">ðŸ‡«ðŸ‡· FR</option>
+                    <option value="de">ðŸ‡©ðŸ‡ª DE</option>
+                    <option value="ar">ðŸ‡¸ðŸ‡¦ AR</option>
+                    <option value="zh">ðŸ‡¨ðŸ‡³ ZH</option>
                   </select>
                 )}
               </div>
@@ -375,13 +375,13 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
                   onChange={(e) => setCurrentLang(e.target.value as Language)}
                   className="w-full bg-white/20 text-white border border-white/30 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-white/50"
                 >
-                  <option value="en">🇬🇧 English</option>
-                  <option value="it">🇮🇹 Italiano</option>
-                  <option value="es">🇪🇸 Español</option>
-                  <option value="fr">🇫🇷 Français</option>
-                  <option value="de">🇩🇪 Deutsch</option>
-                  <option value="ar">🇸🇦 العربية</option>
-                  <option value="zh">🇨🇳 中文</option>
+                  <option value="en">ðŸ‡¬ðŸ‡§ English</option>
+                  <option value="it">ðŸ‡®ðŸ‡¹ Italiano</option>
+                  <option value="es">ðŸ‡ªðŸ‡¸ EspaÃ±ol</option>
+                  <option value="fr">ðŸ‡«ðŸ‡· FranÃ§ais</option>
+                  <option value="de">ðŸ‡©ðŸ‡ª Deutsch</option>
+                  <option value="ar">ðŸ‡¸ðŸ‡¦ Ø§Ù„Ø¹Ø±Ø¨ÙŠØ©</option>
+                  <option value="zh">ðŸ‡¨ðŸ‡³ ä¸­æ–‡</option>
                 </select>
               </div>
             )}
@@ -409,3 +409,4 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
     </>
   );
 }
+
