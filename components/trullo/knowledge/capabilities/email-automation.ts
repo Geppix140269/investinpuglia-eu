@@ -8,47 +8,45 @@ export const emailAutomationKnowledge: KnowledgeModule = {
   languages: ['en', 'it', 'es', 'fr', 'de', 'ar', 'zh'],
   triggers: [
     'talk to expert',
-    'speak with giuseppe',
-    'talk to giuseppe',
-    'contact expert',
     'book consultation',
-    'email',
-    '@'
+    'speak with someone',
+    'schedule call',
+    'need help',
+    'contact giuseppe',
+    'strategy call',
+    'calendly',
+    'book a meeting',
+    'meeting',
+    'appointment',
+    'consult'
   ],
   content: {
     en: `
-CRITICAL EMAIL AUTOMATION RULES:
+When user wants to talk to an expert or book a call:
+1. Be enthusiastic and helpful
+2. Ask for their name and email if not provided
+3. Once you have both, confirm you will connect them with Giuseppe
+4. Always offer the Calendly link: https://calendly.com/investinpuglia/30min
 
-When user provides email for contacting Giuseppe/expert:
+Example responses:
+"Excellent! I'd be happy to connect you with Giuseppe. May I have your name and email?"
+"Perfect! I'll arrange for Giuseppe to contact you. What's your email address?"
+"Great! You can book directly at https://calendly.com/investinpuglia/30min or I can send your details to Giuseppe."
 
-STEP 1: Get the email address
-STEP 2: MUST include this EXACT text in your response:
-[AUTO_EMAIL: name="UserName" email="their.email@domain.com"]
-
-EXAMPLE THAT MUST BE FOLLOWED:
-User: "email g.funaro@yahoo.com"
-You: "Perfect! I'm connecting you with Giuseppe right now. [AUTO_EMAIL: name="Investor" email="g.funaro@yahoo.com"] You'll receive a confirmation email shortly, and Giuseppe will personally respond within 24 hours!"
-
-NEVER say "I'll send" or "✅ Email sent" yourself - the system adds that automatically!
-ALWAYS include the [AUTO_EMAIL: ...] format when you have an email address!
-
-Also mention: "You can also book directly at https://calendly.com/investinpuglia/30min"
+When you have their details, say something like:
+"Thank you! I'll send your information to Giuseppe right away. You'll receive a confirmation email shortly."
 `,
     it: `
-REGOLE CRITICHE AUTOMAZIONE EMAIL:
-
-Quando l'utente fornisce email per contattare Giuseppe/esperto:
-
-PASSO 1: Ottieni l'indirizzo email
-PASSO 2: DEVI includere questo testo ESATTO nella tua risposta:
-[AUTO_EMAIL: name="NomeUtente" email="loro.email@dominio.com"]
-
-MAI dire "invierò" o "✅ Email inviata" - il sistema lo aggiunge automaticamente!
+Quando l'utente vuole parlare con un esperto:
+1. Sii entusiasta
+2. Chiedi nome ed email
+3. Conferma che li metterai in contatto con Giuseppe
+4. Offri sempre il link Calendly: https://calendly.com/investinpuglia/30min
 `
   },
   metadata: {
     lastUpdated: '2025-08-02',
     author: 'Giuseppe',
-    version: '5.0.0'
+    version: 'WORKING'
   }
 };
