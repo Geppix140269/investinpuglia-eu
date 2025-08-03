@@ -1,4 +1,8 @@
-﻿const services = [
+// Path: app/services/page.tsx
+'use client'
+
+export default function ServicesPage() {
+  const services = [
     {
       title: "EU Grant Advisory",
       icon: "💶",
@@ -73,7 +77,6 @@
       ]
     }
   ]
-  
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
@@ -174,7 +177,7 @@
               <div className="text-gray-600 mt-2">Properties Analyzed</div>
             </div>
             <div>
-              <div className="text-4xl font-bold text-emerald-600">â‚¬18M+</div>
+              <div className="text-4xl font-bold text-emerald-600">€18M+</div>
               <div className="text-gray-600 mt-2">Grants Secured</div>
             </div>
             <div>
@@ -191,5 +194,3 @@
     </div>
   )
 }
-
-
