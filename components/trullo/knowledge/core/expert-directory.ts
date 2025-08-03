@@ -13,6 +13,7 @@ export interface Expert {
   isExternal: boolean;
 }
 
+// Single expert - Giuseppe as the consulting authority
 export const EXPERT_DIRECTORY: Expert[] = [
   {
     id: 'giuseppe',
@@ -20,74 +21,46 @@ export const EXPERT_DIRECTORY: Expert[] = [
     email: 'g.funaro@investinpuglia.eu',
     phone: '+39 351 400 1402',
     whatsapp: '+393514001402',
-    specialties: ['investment', 'real estate', 'general', 'property', 'puglia', 'trulli', 'masseria', 'grants', 'pia turismo', 'tourism', 'agriturismo'],
+    specialties: ['investment', 'real estate', 'general', 'property', 'puglia', 'trulli', 'masseria', 'grants', 'pia turismo', 'tourism', 'agriturismo', 'consulting', 'advisory', 'strategy'],
     languages: ['en', 'it'],
-    title: 'Investment Advisor',
+    title: 'Investment Advisor & Consultant',
     isExternal: false
-  },
-  {
-    id: 'russo',
-    name: 'Ing. Cataldo Russo',
-    email: 'cataldorusso@msn.com',
-    phone: '+39 347 533 0647',
-    whatsapp: '+393475330647',
-    specialties: ['engineering', 'construction', 'renovation', 'structural', 'technical', 'permits', 'building'],
-    languages: ['it', 'en'],
-    title: 'Chief Engineer',
-    isExternal: true
-  },
-  {
-    id: 'quarta',
-    name: 'Antonio Quarta',
-    email: 'a.quarta@studioquarta.it',
-    phone: '+39 348 331 9772',
-    whatsapp: '+393483319772',
-    specialties: ['accounting', 'tax', 'finance', 'fiscal', 'business', 'company', 'vat', 'taxes'],
-    languages: ['it', 'en'],
-    title: 'Senior Accountant',
-    isExternal: true
   }
 ];
 
-export const expertRoutingKnowledge: KnowledgeModule = {
-  id: 'expert-routing',
+export const expertDirectoryKnowledge: KnowledgeModule = {
+  id: 'expert-directory',
   category: 'core',
   priority: 10,
-  languages: ['en', 'it'],
-  triggers: [
-    'expert', 'contact', 'speak', 'help', 'consult',
-    'esperto', 'contattare', 'parlare', 'aiuto', 'consulenza',
-    'ristrutturare', 'ristrutturazione', 'ingegnere', 'commercialista',
-    'renovation', 'engineer', 'accountant', 'tax', 'engineering',
-    'costruzione', 'permesso', 'strutturale', 'tecnico'
-  ],
-  content: {
-    en: `
-EXPERT ROUTING WITH PRIVACY PROTOCOL:
+  languages: ['*'],
+  content: `
+EXPERT CONSULTATION APPROACH:
 
-1. IDENTIFY the topic and route to expert
-2. PRIVACY RULES:
-   - INTERNAL (Giuseppe): Gets full customer details
-   - EXTERNAL (Russo, Quarta): Gets ONLY the inquiry, NO customer info
-   - Giuseppe is ALWAYS CC'd on all communications
+Giuseppe Funaro is the sole investment advisor and consultant at InvestInPuglia.
+- 35+ years of international business experience
+- Expert in Puglia property investment and EU grants
+- Personal, one-on-one consulting approach
 
-3. For EXTERNAL experts, say:
-   "I'll send your technical question to [Expert Name] while keeping your details private. Giuseppe will coordinate the response with you directly."
+When users need specific expertise:
+1. Always route to Giuseppe for ALL inquiries
+2. Mention his trusted network of vetted professionals (without naming them)
+3. Emphasize that Giuseppe personally oversees all projects
+4. Focus on the consultation value, not directory services
 
-4. Contact options remain:
-   📧 Email (privacy-protected for external)
-   📱 WhatsApp (direct chat)
-   📅 Schedule Call
+Example responses:
+- "Giuseppe will personally guide you through the entire process"
+- "Through his extensive network, Giuseppe ensures you work only with proven professionals"
+- "Giuseppe''s 35+ years of experience protects your investment at every step"
+
+NEVER:
+- Mention other experts by name
+- Suggest users can choose between professionals
+- Present it as a marketplace or directory
+- Route inquiries to anyone except Giuseppe
 `,
-    it: `
-Protocollo routing con privacy per esperti esterni.
-`
-  },
   metadata: {
-    lastUpdated: '2025-08-02',
+    lastUpdated: '2025-01-08',
     author: 'Giuseppe',
-    version: '1.0.0'
+    version: '2.0.0'
   }
 };
-
-
