@@ -7,11 +7,14 @@ import { expertRoutingKnowledge } from './core/expert-directory';
 import { emailAutomationKnowledge } from './capabilities/email-automation';
 import { leadStorageKnowledge } from './capabilities/lead-storage';
 import { userRegistrationKnowledge } from './capabilities/user-registration';
+import { investmentCalculatorKnowledge } from './capabilities/investment-calculator';
 import { euGrantsKnowledge } from './expertise/eu-grants';
+import { miniPiaKnowledge } from './expertise/mini-pia';
 import { authRequirementKnowledge } from './strategies/auth-requirement';
 import { ctaButtonsKnowledge } from './strategies/cta-buttons';
 import { leadCaptureStrategy } from './strategies/lead-capture';
 import { trustBuildingStrategy } from './strategies/trust-building';
+import { professionalRedirectStrategy } from './strategies/professional-redirect';
 
 // Import the CORRECT system prompts
 import { systemPrompts } from '../constants/prompts';
@@ -20,8 +23,11 @@ export class TrulloKnowledgeBase {
   private modules: Map<string, KnowledgeModule> = new Map();
 
   constructor() {
-    // Register ALL modules
+    // Register ALL modules - HIGH PRIORITY FIRST
     this.registerModules([
+      // High priority strategies (these override others)
+      professionalRedirectStrategy,
+      
       // Core
       personalityKnowledge,
       expertRoutingKnowledge,
@@ -30,9 +36,11 @@ export class TrulloKnowledgeBase {
       emailAutomationKnowledge,
       leadStorageKnowledge,
       userRegistrationKnowledge,
+      investmentCalculatorKnowledge,
       
       // Expertise
       euGrantsKnowledge,
+      miniPiaKnowledge,
       
       // Strategies
       authRequirementKnowledge,
@@ -76,7 +84,7 @@ export class TrulloKnowledgeBase {
       }
     });
 
-    // Sort by priority
+    // Sort by priority (higher priority first)
     return relevant.sort((a, b) => b.priority - a.priority);
   }
 
