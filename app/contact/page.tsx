@@ -70,7 +70,7 @@ export default function ContactPage() {
                 <div>
                   <h3 className="font-semibold text-gray-700 mb-2">Email</h3>
                   <a href="mailto:info@investinpuglia.eu" className="text-green-600 hover:underline text-lg">
-                    info@investiscope.net
+                    info@investinpuglia.eu
                   </a>
                 </div>
                 
@@ -118,6 +118,7 @@ export default function ContactPage() {
     </>
   )
 }
+
 
 
 
