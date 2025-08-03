@@ -1,6 +1,6 @@
-﻿// components/sections/CTASection.tsx
+// components/sections/CTASection.tsx
 import Icon from '@/lib/iconMappings'
-import CTAButton from '@/components/CTAButton'
+
 
 export default function CTASection() {
   return (
@@ -27,13 +27,7 @@ export default function CTASection() {
               location="footer-cta"
               className="text-lg px-10 py-5 bg-white text-purple-700 hover:bg-gray-100 rounded-full font-bold shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all"
             />
-            <CTAButton
-              variant="custom"
-              href="/contact"
-              text="Get in Touch"
-              location="footer-cta"
-              className="text-lg px-10 py-5 bg-transparent border-2 border-white text-white hover:bg-white hover:text-purple-700 rounded-full font-bold shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all"
-            />
+            <a href="/contact" className="text-lg px-10 py-5 bg-purple-100 text-purple-700 hover:bg-purple-200 rounded-full font-bold shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all">Start Your Journey</a>
           </div>
           
           <p className="mt-8 text-sm text-white/70 flex items-center justify-center gap-2">
@@ -45,3 +39,4 @@ export default function CTASection() {
     </section>
   )
 }
+

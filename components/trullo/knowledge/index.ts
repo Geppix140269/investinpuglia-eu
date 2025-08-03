@@ -1,4 +1,4 @@
-﻿// File: components/trullo/knowledge/index.ts
+// File: components/trullo/knowledge/index.ts
 import { KnowledgeModule, KnowledgeContext } from './types';
 
 // Import all knowledge modules with CORRECT names
@@ -9,7 +9,7 @@ import { leadStorageKnowledge } from './capabilities/lead-storage';
 import { leadCaptureStrategy } from './strategies/lead-capture';
 import { euGrantsKnowledge } from './expertise/eu-grants';
 import { trustBuildingStrategy } from './strategies/trust-building';
-import { ctaButtonsKnowledge } from './strategies/cta-buttons';
+
 import { authRequirementKnowledge } from './strategies/auth-requirement';
 import { userRegistrationKnowledge } from './capabilities/user-registration';
 
@@ -34,7 +34,7 @@ export class TrulloKnowledgeBase {
       // Strategies
       leadCaptureStrategy,
       trustBuildingStrategy,
-      ctaButtonsKnowledge,
+      
       authRequirementKnowledge,
     ]);
   }
@@ -42,7 +42,7 @@ export class TrulloKnowledgeBase {
   private registerModules(modules: KnowledgeModule[]) {
     modules.forEach(module => {
       this.modules.set(module.id, module);
-      console.log(`📚 Registered knowledge module: ${module.id}`);
+      console.log(`?? Registered knowledge module: ${module.id}`);
     });
   }
 
@@ -97,6 +97,7 @@ export class TrulloKnowledgeBase {
 }
 
 export const trulloKnowledge = new TrulloKnowledgeBase();
+
 
 
 

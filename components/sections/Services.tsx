@@ -1,6 +1,6 @@
-﻿// components/sections/Services.tsx
+// components/sections/Services.tsx
 import Icon from '@/lib/iconMappings'
-import CTAButton from '@/components/CTAButton'
+
 
 export default function Services() {
   return (
@@ -32,16 +32,9 @@ export default function Services() {
             </div>
             <h3 className="text-2xl font-bold mb-4 text-gray-900">Grant Strategy</h3>
             <p className="mb-6 text-gray-600">
-              Expert guidance on accessing up to €2.25M in EU grants with 95% approval rate
+              Expert guidance on accessing up to �2.25M in EU grants with 95% approval rate
             </p>
-            <CTAButton
-              variant="custom"
-              href="/contact"
-              text="Get Grant Guidance"
-              location="services"
-              className="inline-flex items-center gap-2 font-semibold bg-gradient-to-r from-purple-600 to-emerald-600 bg-clip-text text-transparent hover:scale-105 transition-transform"
-              showIcon={true}
-            />
+            <a href="/contact" className="text-purple-600 font-semibold hover:text-purple-700 hover:underline">Learn More ?</a>
           </div>
 
           <div className="bg-white/70 backdrop-blur-sm rounded-3xl p-8 shadow-xl hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 relative overflow-hidden group border border-white/50">
@@ -53,14 +46,7 @@ export default function Services() {
             <p className="mb-6 text-gray-600">
               Strategic due diligence to uncover risks and opportunities before you commit
             </p>
-            <CTAButton
-              variant="custom"
-              href="/contact"
-              text="Schedule Analysis"
-              location="services"
-              className="inline-flex items-center gap-2 font-semibold bg-gradient-to-r from-purple-600 to-emerald-600 bg-clip-text text-transparent hover:scale-105 transition-transform"
-              showIcon={true}
-            />
+            <a href="/contact" className="text-purple-600 font-semibold hover:text-purple-700 hover:underline">Learn More ?</a>
           </div>
 
           <div className="bg-white/70 backdrop-blur-sm rounded-3xl p-8 shadow-xl hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 relative overflow-hidden group border border-white/50">
@@ -72,14 +58,7 @@ export default function Services() {
             <p className="mb-6 text-gray-600">
               Personal guidance through every step of your Puglia investment journey
             </p>
-            <CTAButton
-              variant="custom"
-              href="https://calendly.com/investinpuglia/30min"
-              text="Book Consultation"
-              location="services"
-              className="inline-flex items-center gap-2 font-semibold bg-gradient-to-r from-purple-600 to-emerald-600 bg-clip-text text-transparent hover:scale-105 transition-transform"
-              showIcon={true}
-            />
+            <a href="https://calendly.com/investinpuglia/30min" target="_blank" rel="noopener noreferrer" className="text-purple-600 font-semibold hover:text-purple-700 hover:underline">Book Strategy Call ?</a>
           </div>
         </div>
 
@@ -87,17 +66,12 @@ export default function Services() {
           <p className="text-gray-600 mb-6">
             All services include access to my trusted network of vetted professionals
           </p>
-          <CTAButton
-            variant="custom"
-            href="/services"
-            text="View All Services"
-            location="services-footer"
-            className="mx-auto"
-          />
+          <a href="/services" className="text-purple-600 font-semibold hover:text-purple-700 hover:underline">View All Services ?</a>
         </div>
       </div>
     </section>
   )
 }
+
 
 

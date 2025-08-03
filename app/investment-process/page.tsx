@@ -1,7 +1,7 @@
 'use client'
 
 import PropertyInvestmentTimeline from '@/components/PropertyInvestmentTimeline'
-import CTAButton from '@/components/CTAButton'
+
 
 export default function InvestmentProcessPage() {
   return (
@@ -58,9 +58,9 @@ export default function InvestmentProcessPage() {
               Get a personalized timeline for your property investment journey. 
               Our team will guide you through every step.
             </p>
-            <CTAButton variant="bookCall" className="w-full justify-center" />
+            <a href="https://calendly.com/investinpuglia/30min" target="_blank" rel="noopener noreferrer" className="w-full justify-center inline-flex items-center gap-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-8 py-4 rounded-full font-bold hover:shadow-xl hover:-translate-y-1 transition-all duration-300">Book Strategy Call</a>
             <div className="mt-4">
-              <CTAButton variant="whatsapp" className="w-full justify-center" />
+              <a href="https://wa.me/393514001402?text=Hi%2C%20I%27m%20interested%20in%20Puglia%20property%20investment%20and%20grants" target="_blank" rel="noopener noreferrer" className="w-full justify-center inline-flex items-center gap-3 bg-gradient-to-r from-green-500 to-green-600 text-white px-8 py-4 rounded-full font-bold hover:shadow-xl hover:-translate-y-1 transition-all duration-300">WhatsApp Support</a>
             </div>
           </div>
         </div>
@@ -68,3 +68,4 @@ export default function InvestmentProcessPage() {
     </div>
   )
 }
+

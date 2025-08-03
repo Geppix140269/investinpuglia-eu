@@ -43,13 +43,7 @@ export default function HeroSection() {
 
         {/* CTA Buttons - Mobile optimized */}
         <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-12 md:mb-16 px-4 sm:px-0">
-          <CTAButton
-            variant="custom"
-            href="/contact"
-            text="Schedule Consultation"
-            location="hero"
-            className="bg-gradient-to-r from-purple-600 to-emerald-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold hover:shadow-xl transition-all text-base sm:text-lg hover:scale-105 w-full sm:w-auto"
-          />
+          <a href="/contact" className="bg-gradient-to-r from-purple-600 to-emerald-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold hover:shadow-xl transition-all text-base sm:text-lg hover:scale-105 w-full sm:w-auto inline-flex items-center justify-center">Schedule Consultation</a>
           <a
             href="/calculator"
             className="bg-white/70 backdrop-blur-sm text-gray-900 border border-white/50 px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold hover:shadow-lg transition-all text-base sm:text-lg hover:scale-105 w-full sm:w-auto text-center"
@@ -89,3 +83,4 @@ export default function HeroSection() {
     </section>
   )
 }
+
