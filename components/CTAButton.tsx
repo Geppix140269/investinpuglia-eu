@@ -111,7 +111,7 @@ const CTAButton: React.FC<CTAButtonProps> = ({
     return (
       
         
-        href={finalHref}
+        <a`n        href={finalHref}
         target="_blank"
         rel="noopener noreferrer"
         className={finalClassName}
@@ -126,7 +126,7 @@ const CTAButton: React.FC<CTAButtonProps> = ({
   return (
     <Link
       
-        href={finalHref}
+        <a`n        href={finalHref}
       className={finalClassName}
       onClick={handleClick}
     >
@@ -137,4 +137,5 @@ const CTAButton: React.FC<CTAButtonProps> = ({
 }
 
 export default CTAButton
+
 
