@@ -1,13 +1,7 @@
 // PATH: app/trullo-monitor/page.tsx
 'use client'
 import { useEffect, useState, useRef } from 'react';
-import { createClient } from '@supabase/supabase-js';
-
-// Initialize Supabase client
-const supabase = createClient(
-  'https://kjyobkrjcmiuusijvrme.supabase.co',  // Fixed URL - was using wrong URL
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtqeW9ia3JqY21pdXVzaWp2cm1lIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTA5NDM5NzMsImV4cCI6MjA2NjUxOTk3M30.2GxAUtXPal7ufxg7KgWMO7h15RXJOolBWt0-NPygj2I'  // Your actual anon key
-);
+import { supabase } from '@/lib/supabase'; // Use the singleton instance!
 
 interface Message {
   id: string;
