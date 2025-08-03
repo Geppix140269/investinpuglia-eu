@@ -1,55 +1,82 @@
-// File: components/trullo/knowledge/index.ts
+// PATH: components/trullo/knowledge/index.ts
 import { KnowledgeModule, KnowledgeContext } from './types';
+import { createClient } from '@sanity/client';
 
-// Import all knowledge modules with CORRECT names
+// Keep core modules in code
 import { personalityKnowledge } from './core/personality';
 import { expertRoutingKnowledge } from './core/expert-directory';
-import { emailAutomationKnowledge } from './capabilities/email-automation';
-import { leadStorageKnowledge } from './capabilities/lead-storage';
-import { leadCaptureStrategy } from './strategies/lead-capture';
-import { euGrantsKnowledge } from './expertise/eu-grants';
-import { trustBuildingStrategy } from './strategies/trust-building';
 
-import { authRequirementKnowledge } from './strategies/auth-requirement';
-import { userRegistrationKnowledge } from './capabilities/user-registration';
+// Sanity client
+const sanityClient = createClient({
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!,
+  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET!,
+  apiVersion: '2024-01-01',
+  useCdn: true,
+});
 
 export class TrulloKnowledgeBase {
   private modules: Map<string, KnowledgeModule> = new Map();
+  private sanityModules: KnowledgeModule[] = [];
+  private lastSanityFetch: number = 0;
+  private CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
 
   constructor() {
-    // Register all knowledge modules
-    this.registerModules([
-      // Core - THESE ARE CRITICAL!
-      personalityKnowledge,
-      expertRoutingKnowledge,
+    // Register core modules that should always be in code
+    this.registerModule(personalityKnowledge);
+    this.registerModule(expertRoutingKnowledge);
+    
+    // Load Sanity modules on init
+    this.loadSanityModules();
+  }
 
-      // Capabilities
-      emailAutomationKnowledge,
-      leadStorageKnowledge,
-      userRegistrationKnowledge,
+  private registerModule(module: KnowledgeModule) {
+    this.modules.set(module.id, module);
+  }
 
-      // Expertise
-      euGrantsKnowledge,
+  private async loadSanityModules() {
+    try {
+      // Check cache
+      if (Date.now() - this.lastSanityFetch < this.CACHE_DURATION) {
+        return;
+      }
 
-      // Strategies
-      leadCaptureStrategy,
-      trustBuildingStrategy,
+      const query = `*[_type == "trulloKnowledge" && isActive == true] {
+        moduleId,
+        category,
+        priority,
+        languages,
+        triggers,
+        content,
+        metadata
+      }`;
+
+      const modules = await sanityClient.fetch(query);
       
-      authRequirementKnowledge,
-    ]);
+      this.sanityModules = modules.map((m: any) => ({
+        id: m.moduleId,
+        category: m.category,
+        priority: m.priority,
+        languages: m.languages,
+        triggers: m.triggers,
+        content: m.content,
+        metadata: m.metadata
+      }));
+
+      this.lastSanityFetch = Date.now();
+      console.log(`Loaded ${this.sanityModules.length} knowledge modules from Sanity`);
+    } catch (error) {
+      console.error('Failed to load Sanity modules:', error);
+    }
   }
 
-  private registerModules(modules: KnowledgeModule[]) {
-    modules.forEach(module => {
-      this.modules.set(module.id, module);
-      console.log(`?? Registered knowledge module: ${module.id}`);
-    });
-  }
+  async getRelevantKnowledge(context: KnowledgeContext): Promise<KnowledgeModule[]> {
+    // Refresh Sanity modules if needed
+    await this.loadSanityModules();
 
-  getRelevantKnowledge(context: KnowledgeContext): KnowledgeModule[] {
     const relevant: KnowledgeModule[] = [];
+    const allModules = [...this.modules.values(), ...this.sanityModules];
 
-    this.modules.forEach(module => {
+    allModules.forEach(module => {
       // Check language support
       if (!module.languages.includes(context.language) && !module.languages.includes('*')) {
         return;
@@ -77,8 +104,8 @@ export class TrulloKnowledgeBase {
     return relevant.sort((a, b) => b.priority - a.priority);
   }
 
-  buildSystemPrompt(context: KnowledgeContext): string {
-    const relevantModules = this.getRelevantKnowledge(context);
+  async buildSystemPrompt(context: KnowledgeContext): Promise<string> {
+    const relevantModules = await this.getRelevantKnowledge(context);
     const language = context.language;
 
     let prompt = "";
@@ -97,7 +124,3 @@ export class TrulloKnowledgeBase {
 }
 
 export const trulloKnowledge = new TrulloKnowledgeBase();
-
-
-
-
