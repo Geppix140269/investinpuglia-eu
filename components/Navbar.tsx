@@ -62,9 +62,6 @@ export default function Navbar() {
               </div>
             </div>
 
-            {/* REMOVED: Locations link - moved to Footer for SEO */}
-            {/* REMOVED: Tools dropdown with calculators */}
-
             <a href="/services" className="text-gray-700 hover:text-gray-900 transition-colors font-medium">
               Services
             </a>
@@ -78,12 +75,13 @@ export default function Navbar() {
               Blog
             </a>
             
-              <a href="https://calendly.com/investinpuglia/30min"
+            
+              href="https://calendly.com/investinpuglia/30min"
               className="bg-green-600 hover:bg-green-700 text-white px-5 py-2.5 rounded-full font-semibold transition-all hover:shadow-lg hover:scale-105 transform duration-200"
               target="_blank"
               rel="noopener noreferrer"
             >
-              Book Strategy Call ?
+              Book Strategy Call →
             </a>
           </div>
         </div>
@@ -103,19 +101,16 @@ export default function Navbar() {
                 </a>
                 <div className="ml-4 mt-2 space-y-2">
                   <a href="/about" className="text-gray-600 hover:text-gray-900 transition-colors text-sm block py-1">
-                    ? About Us
+                    → About Us
                   </a>
                   <a href="/how-it-works" className="text-gray-600 hover:text-gray-900 transition-colors text-sm block py-1">
-                    ? How It Works
+                    → How It Works
                   </a>
                   <a href="/investment-process" className="text-gray-600 hover:text-gray-900 transition-colors text-sm block py-1">
-                    ? Investment Process
+                    → Investment Process
                   </a>
                 </div>
               </div>
-
-              {/* REMOVED: Locations link for mobile - moved to Footer for SEO */}
-              {/* REMOVED: Tools section with calculators */}
 
               <a href="/services" className="text-gray-700 hover:text-gray-900 transition-colors font-medium py-2">
                 Services
@@ -130,12 +125,13 @@ export default function Navbar() {
                 Blog
               </a>
               
-                <a href="https://calendly.com/investinpuglia/30min"
+              
+                href="https://calendly.com/investinpuglia/30min"
                 className="bg-green-600 text-white px-5 py-3 rounded-full font-semibold text-center"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Book Strategy Call ?
+                Book Strategy Call →
               </a>
             </div>
           </div>
@@ -144,4 +140,3 @@ export default function Navbar() {
     </nav>
   )
 }
-
