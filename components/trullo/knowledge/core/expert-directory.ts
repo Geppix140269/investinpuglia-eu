@@ -64,3 +64,6 @@ NEVER:
     version: '2.0.0'
   }
 };
+
+// Export with the name expected by index.ts
+export const expertRoutingKnowledge = expertDirectoryKnowledge;
