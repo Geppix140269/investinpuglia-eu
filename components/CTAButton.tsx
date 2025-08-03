@@ -1,11 +1,10 @@
-'use client'
-
+﻿'use client'
 import React from 'react'
 import Link from 'next/link'
 import { trackCTAClick } from '@/lib/database'
 
 interface CTAButtonProps {
-  variant: 'calculator' | 'bookCall' | 'whatsapp' | 'custom'
+  variant: 'calculator' | 'consultation' | 'bookCall' | 'whatsapp' | 'custom'
   href?: string
   text?: string
   icon?: React.ReactNode
@@ -30,8 +29,14 @@ const CTAButton: React.FC<CTAButtonProps> = ({
   // Default configurations for each variant
   const variantConfigs = {
     calculator: {
-      text: 'Calculate My Grant',
-      href: '/calculator',
+      text: 'Get Expert Guidance',
+      href: '/contact',
+      className: 'inline-flex items-center gap-3 bg-gradient-to-r from-green-600 to-green-700 text-white px-8 py-4 rounded-full font-bold hover:shadow-xl hover:-translate-y-1 transition-all duration-300',
+      isExternal: false
+    },
+    consultation: {
+      text: 'Get Expert Guidance',
+      href: '/contact',
       className: 'inline-flex items-center gap-3 bg-gradient-to-r from-green-600 to-green-700 text-white px-8 py-4 rounded-full font-bold hover:shadow-xl hover:-translate-y-1 transition-all duration-300',
       isExternal: false
     },
@@ -48,42 +53,43 @@ const CTAButton: React.FC<CTAButtonProps> = ({
       isExternal: true
     },
     custom: {
-      text: text || 'Click Here',
+      text: text || '',
       href: href || '#',
-      className: 'inline-flex items-center gap-3 bg-gradient-to-r from-gray-600 to-gray-700 text-white px-8 py-4 rounded-full font-bold hover:shadow-xl hover:-translate-y-1 transition-all duration-300',
-      isExternal: false
+      className: className,
+      isExternal: href?.startsWith('http') || false
     }
   }
 
-  const config = variantConfigs[variant]
-  const finalHref = href || config.href
+  const config = variantConfigs[variant] || variantConfigs.custom
   const finalText = text || config.text
-  const finalClassName = `${config.className} ${className}`.trim()
-  const isExternal = href ? href.startsWith('http') : config.isExternal
+  const finalHref = href || config.href
+  const finalClassName = variant === 'custom' ? className : `${config.className} ${className}`
+  const isExternal = config.isExternal
 
   const handleClick = async (e: React.MouseEvent) => {
+    if (onClick) {
+      onClick()
+    }
+    
     // Track the click
     try {
-      await trackCTAClick(variant, location, {
-        ...metadata,
+      await trackCTAClick({
+        variant,
+        location,
         href: finalHref,
-        text: finalText
+        text: finalText,
+        metadata
       })
     } catch (error) {
       console.error('Error tracking CTA click:', error)
-    }
-
-    // Call custom onClick if provided
-    if (onClick) {
-      onClick()
     }
   }
 
   // Default icons for variants
   const defaultIcons = {
-    calculator: (
+    consultation: (
       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
       </svg>
     ),
     bookCall: (
@@ -103,7 +109,7 @@ const CTAButton: React.FC<CTAButtonProps> = ({
 
   if (isExternal) {
     return (
-      <a
+      
         href={finalHref}
         target="_blank"
         rel="noopener noreferrer"
@@ -129,3 +135,4 @@ const CTAButton: React.FC<CTAButtonProps> = ({
 }
 
 export default CTAButton
+

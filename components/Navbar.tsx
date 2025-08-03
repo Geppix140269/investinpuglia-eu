@@ -1,4 +1,4 @@
-// Path: components/Navbar.tsx
+﻿// Path: components/Navbar.tsx
 'use client'
 
 import { useState } from 'react'
@@ -27,9 +27,9 @@ export default function Navbar() {
           {/* Logo - Centered on mobile, aligned left on desktop */}
           <div className="absolute inset-x-0 top-0 flex justify-center items-center h-16 md:static md:justify-start">
             <a href="/" className="flex items-center group">
-              <img 
-                src="/Logo_InvestInPuglia_Morph.png" 
-                alt="Invest in Puglia" 
+              <img
+                src="/Logo_InvestInPuglia_Morph.png"
+                alt="Invest in Puglia"
                 className="h-10 md:h-12 w-auto object-contain opacity-90 group-hover:opacity-100 transition-opacity duration-200"
               />
             </a>
@@ -40,7 +40,7 @@ export default function Navbar() {
             <a href="/" className="text-gray-700 hover:text-gray-900 transition-colors font-medium">
               Home
             </a>
-            
+
             {/* About dropdown */}
             <div className="relative group">
               <a href="/about" className="text-gray-700 hover:text-gray-900 transition-colors font-medium flex items-center gap-1">
@@ -63,31 +63,11 @@ export default function Navbar() {
             </div>
 
             {/* REMOVED: Locations link - moved to Footer for SEO */}
+            {/* REMOVED: Tools dropdown with calculators */}
 
-            {/* Tools dropdown with calculators */}
-            <div className="relative group">
-              <a href="/tools" className="text-gray-700 hover:text-gray-900 transition-colors font-medium flex items-center gap-1">
-                Tools
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </a>
-              <div className="absolute top-full left-0 mt-2 bg-white rounded-lg shadow-lg py-2 min-w-[220px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                <div className="px-4 py-2 text-xs font-semibold text-gray-500 uppercase tracking-wide border-b border-gray-100">
-                  Calculators
-                </div>
-                <a href="/calculator" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 transition-colors">
-                  Grant Calculator
-                </a>
-                <a href="https://classic.investinpuglia.eu" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 transition-colors">
-                  Classic Calculator
-                </a>
-                <a href="https://investiscope-easy.netlify.app/" target="_blank" rel="noopener noreferrer" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 transition-colors">
-                  Quick Calculator
-                </a>
-              </div>
-            </div>
-
+            <a href="/services" className="text-gray-700 hover:text-gray-900 transition-colors font-medium">
+              Services
+            </a>
             <a href="/faq" className="text-gray-700 hover:text-gray-900 transition-colors font-medium">
               FAQ
             </a>
@@ -97,8 +77,8 @@ export default function Navbar() {
             <a href="/blog" className="text-gray-700 hover:text-gray-900 transition-colors font-medium">
               Blog
             </a>
-            <a 
-              href="https://calendly.com/investinpuglia/30min" 
+            
+              href="https://calendly.com/investinpuglia/30min"
               className="bg-green-600 hover:bg-green-700 text-white px-5 py-2.5 rounded-full font-semibold transition-all hover:shadow-lg hover:scale-105 transform duration-200"
               target="_blank"
               rel="noopener noreferrer"
@@ -115,7 +95,7 @@ export default function Navbar() {
               <a href="/" className="text-gray-700 hover:text-gray-900 transition-colors font-medium py-2">
                 Home
               </a>
-              
+
               {/* About section */}
               <div>
                 <a href="/about" className="text-gray-700 hover:text-gray-900 transition-colors font-medium py-2 block">
@@ -135,28 +115,11 @@ export default function Navbar() {
               </div>
 
               {/* REMOVED: Locations link for mobile - moved to Footer for SEO */}
+              {/* REMOVED: Tools section with calculators */}
 
-              {/* Tools section with sub-items */}
-              <div>
-                <a href="/tools" className="text-gray-700 hover:text-gray-900 transition-colors font-medium py-2 block">
-                  Tools
-                </a>
-                <div className="ml-4 mt-2 space-y-2">
-                  <div className="text-xs font-semibold text-gray-500 uppercase tracking-wide py-1">
-                    Calculators
-                  </div>
-                  <a href="/calculator" className="text-gray-600 hover:text-gray-900 transition-colors text-sm block py-1">
-                    → Grant Calculator
-                  </a>
-                  <a href="https://classic.investinpuglia.eu" className="text-gray-600 hover:text-gray-900 transition-colors text-sm block py-1">
-                    → Classic Calculator
-                  </a>
-                  <a href="https://investiscope-easy.netlify.app/" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-gray-900 transition-colors text-sm block py-1">
-                    → Quick Calculator
-                  </a>
-                </div>
-              </div>
-
+              <a href="/services" className="text-gray-700 hover:text-gray-900 transition-colors font-medium py-2">
+                Services
+              </a>
               <a href="/faq" className="text-gray-700 hover:text-gray-900 transition-colors font-medium py-2">
                 FAQ
               </a>
@@ -166,8 +129,8 @@ export default function Navbar() {
               <a href="/blog" className="text-gray-700 hover:text-gray-900 transition-colors font-medium py-2">
                 Blog
               </a>
-              <a 
-                href="https://calendly.com/investinpuglia/30min" 
+              
+                href="https://calendly.com/investinpuglia/30min"
                 className="bg-green-600 text-white px-5 py-3 rounded-full font-semibold text-center"
                 target="_blank"
                 rel="noopener noreferrer"
