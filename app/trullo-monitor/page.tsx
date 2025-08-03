@@ -90,14 +90,14 @@ export default function TrulloMonitor() {
       if (error) throw error;
 
       const conversationsWithMessages = await Promise.all(
-        (convos || []).map(async (conv: Conversation) => {
+        (convos || []).map(async (conv: any) => {  // Changed from Conversation to any
           const { data: messages } = await supabase
             .from('trullo_messages')
             .select('*')
             .eq('conversation_id', conv.id)
             .order('timestamp', { ascending: true });
 
-          return { ...conv, messages: messages || [] };
+          return { ...conv, messages: messages || [] } as Conversation;  // Type assertion here
         })
       );
 
