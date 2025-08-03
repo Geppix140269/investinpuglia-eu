@@ -1,82 +1,79 @@
-// app/services/page.tsx
-// A beautiful services page for InvestiScope - COMPLETE FILE
-
-export default function ServicesPage() {
-  const services = [
+﻿const services = [
     {
       title: "EU Grant Advisory",
       icon: "💶",
       price: "Success-based fee",
       description: "Expert guidance through Mini PIA Turismo grants up to €2.25M",
       features: [
-        "Complete application preparation",
-        "Business plan development",
-        "Technical documentation",
-        "Post-approval support"
+        "Complete application strategy",
+        "Business plan consultation",
+        "Technical documentation guidance",
+        "Post-approval advisory"
       ],
       highlight: true
     },
     {
-      title: "Property Investment Analysis",
+      title: "Investment Strategy Consulting",
       icon: "📊",
-      price: "€499",
-      description: "Comprehensive investment evaluation and ROI projections",
+      price: "From €999",
+      description: "Comprehensive investment evaluation and strategic planning",
       features: [
-        "Market analysis report",
-        "Renovation cost estimates",
-        "Revenue projections",
-        "Risk assessment"
+        "Market opportunity analysis",
+        "Investment strategy development",
+        "Risk assessment and mitigation",
+        "ROI optimization planning"
       ]
     },
     {
-      title: "Technical Property Surveys",
-      icon: "🏗️",
-      price: "From €899",
-      description: "Professional architectural and structural assessments",
-      features: [
-        "Structural evaluation",
-        "Planning permissions check",
-        "Renovation feasibility",
-        "Cost estimation"
-      ]
-    },
-    {
-      title: "Fiscal Code Service",
-      icon: "🆔",
-      price: "€99",
-      description: "Fast-track Italian fiscal code for international buyers",
-      features: [
-        "2-3 day processing",
-        "Official documentation",
-        "Remote application",
-        "Full support included"
-      ]
-    },
-    {
-      title: "Property Search & Negotiation",
+      title: "Due Diligence Advisory",
       icon: "🔍",
-      price: "2% of purchase",
-      description: "Exclusive access to off-market properties in Puglia",
+      price: "From €1,499",
+      description: "Strategic guidance for property evaluation and verification",
       features: [
-        "Curated property selection",
-        "Price negotiation",
-        "Legal verification",
-        "Purchase support"
+        "Investment risk analysis",
+        "Legal compliance review",
+        "Strategic recommendations",
+        "Negotiation support"
       ]
     },
     {
-      title: "Renovation Management",
-      icon: "🔨",
-      price: "10% of project",
-      description: "Full project management for property renovations",
+      title: "Acquisition Strategy",
+      icon: "🎯",
+      price: "Custom pricing",
+      description: "Strategic advisory for property acquisition in Puglia",
       features: [
-        "Contractor sourcing",
-        "Project supervision",
-        "Quality control",
-        "Timeline management"
+        "Market positioning strategy",
+        "Acquisition planning",
+        "Network introductions",
+        "Deal structuring advice"
+      ]
+    },
+    {
+      title: "Project Development Consulting",
+      icon: "🏗️",
+      price: "Monthly retainer",
+      description: "Strategic oversight for property development projects",
+      features: [
+        "Development strategy",
+        "Vendor selection guidance",
+        "Risk management",
+        "Progress monitoring"
+      ]
+    },
+    {
+      title: "VIP Concierge Advisory",
+      icon: "⭐",
+      price: "Premium service",
+      description: "Exclusive end-to-end investment advisory service",
+      features: [
+        "Personal investment strategy",
+        "Direct access to Giuseppe",
+        "Priority support",
+        "Comprehensive oversight"
       ]
     }
   ]
+  
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
@@ -86,10 +83,10 @@ export default function ServicesPage() {
         <div className="relative max-w-7xl mx-auto px-4 py-24 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              Our Services
+              Strategic Advisory Services
             </h1>
             <p className="text-xl md:text-2xl text-emerald-100 max-w-3xl mx-auto">
-              Comprehensive support for your Italian property investment journey
+              Expert consulting for successful property investment in Puglia
             </p>
           </div>
         </div>
@@ -177,7 +174,7 @@ export default function ServicesPage() {
               <div className="text-gray-600 mt-2">Properties Analyzed</div>
             </div>
             <div>
-              <div className="text-4xl font-bold text-emerald-600">€18M+</div>
+              <div className="text-4xl font-bold text-emerald-600">â‚¬18M+</div>
               <div className="text-gray-600 mt-2">Grants Secured</div>
             </div>
             <div>
@@ -194,3 +191,5 @@ export default function ServicesPage() {
     </div>
   )
 }
+
+
