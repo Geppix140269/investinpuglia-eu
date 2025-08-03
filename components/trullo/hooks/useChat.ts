@@ -1,4 +1,4 @@
-﻿// PATH: components/trullo/hooks/useChat.ts
+// PATH: components/trullo/hooks/useChat.ts
 import { detectProfessionalInterest, logProfessionalInterest, generateProfessionalFollowUp } from '@/lib/professionalDetector';
 import { useState, useEffect, useCallback } from 'react';
 import { Message, Language, AuthState } from '../types';
@@ -244,8 +244,8 @@ export function useChat(isOpen: boolean, language: Language): UseChatReturn {
         }
       };
 
-      // Get dynamic prompt from knowledge system
-      let enhancedSystemPrompt = trulloKnowledge.buildSystemPrompt(knowledgeContext);
+      // Get dynamic prompt from knowledge system - THIS IS NOW ASYNC
+      let enhancedSystemPrompt = await trulloKnowledge.buildSystemPrompt(knowledgeContext);
 
       // Add authentication status to prompt
       if (authState.isGiuseppe) {
@@ -256,8 +256,8 @@ export function useChat(isOpen: boolean, language: Language): UseChatReturn {
 
       // Debug logging in development
       if (process.env.NODE_ENV === 'development') {
-        console.log('ðŸ§  Knowledge Context:', knowledgeContext);
-        console.log('ðŸ“ Dynamic Prompt:', enhancedSystemPrompt);
+        console.log('🧠 Knowledge Context:', knowledgeContext);
+        console.log('📝 Dynamic Prompt:', enhancedSystemPrompt);
       }
 
       // Normal chat flow with dynamic prompt
@@ -282,7 +282,7 @@ export function useChat(isOpen: boolean, language: Language): UseChatReturn {
         });
         window.dispatchEvent(event);
 
-        responseContent += '\n\nâœ… Email sent successfully!';
+        responseContent += '\n\n✅ Email sent successfully!';
       }
 
       const assistantMessage: Message = {
@@ -329,5 +329,3 @@ export function useChat(isOpen: boolean, language: Language): UseChatReturn {
     closeChat
   };
 }
-
-
