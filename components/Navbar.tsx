@@ -1,4 +1,4 @@
-// Path: components/Navbar.tsx
+﻿// Path: components/Navbar.tsx
 'use client'
 
 import { useState } from 'react'
@@ -81,7 +81,7 @@ export default function Navbar() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Book Strategy Call →
+              Book Strategy Call â†’
             </a>
           </div>
         </div>
@@ -101,13 +101,13 @@ export default function Navbar() {
                 </a>
                 <div className="ml-4 mt-2 space-y-2">
                   <a href="/about" className="text-gray-600 hover:text-gray-900 transition-colors text-sm block py-1">
-                    → About Us
+                    â†’ About Us
                   </a>
                   <a href="/how-it-works" className="text-gray-600 hover:text-gray-900 transition-colors text-sm block py-1">
-                    → How It Works
+                    â†’ How It Works
                   </a>
                   <a href="/investment-process" className="text-gray-600 hover:text-gray-900 transition-colors text-sm block py-1">
-                    → Investment Process
+                    â†’ Investment Process
                   </a>
                 </div>
               </div>
@@ -131,7 +131,7 @@ export default function Navbar() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Book Strategy Call →
+                Book Strategy Call â†’
               </a>
             </div>
           </div>
