@@ -1,4 +1,14 @@
-// Add this function to your existing trullo-log/route.ts
+// PATH: app/api/trullo-log/route.ts
+import { NextRequest, NextResponse } from 'next/server';
+import { createClient } from '@supabase/supabase-js';
+
+// Create Supabase client
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.SUPABASE_SERVICE_ROLE_KEY! // Use service role key for server-side operations
+);
+
+// Function to notify Telegram
 async function notifyTelegram(type: string, data: any) {
   try {
     await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/trullo-telegram`, {
@@ -11,7 +21,6 @@ async function notifyTelegram(type: string, data: any) {
   }
 }
 
-// In your existing POST handler, add notifications:
 export async function POST(request: NextRequest) {
   try {
     const { action, ...data } = await request.json();
@@ -19,6 +28,8 @@ export async function POST(request: NextRequest) {
     switch (action) {
       case 'startConversation': {
         const { sessionId, language, userAgent } = data;
+        
+        // Get user IP (in production, you might use headers['x-forwarded-for'])
         const userIp = request.headers.get('x-forwarded-for') || 'unknown';
         
         const { data: conversation, error } = await supabase
@@ -28,7 +39,7 @@ export async function POST(request: NextRequest) {
             language,
             user_ip: userIp,
             user_agent: userAgent,
-            started_at: new Date().toISOString() // Add this field
+            started_at: new Date().toISOString()
           })
           .select()
           .single();
@@ -91,6 +102,19 @@ export async function POST(request: NextRequest) {
             conversationId
           });
         }
+        
+        return NextResponse.json({ success: true });
+      }
+
+      case 'endConversation': {
+        const { conversationId } = data;
+        
+        const { error } = await supabase
+          .from('trullo_conversations')
+          .update({ ended_at: new Date().toISOString() })
+          .eq('id', conversationId);
+
+        if (error) throw error;
         
         return NextResponse.json({ success: true });
       }
