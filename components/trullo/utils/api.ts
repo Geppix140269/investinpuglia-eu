@@ -1,5 +1,24 @@
-﻿// PATH: components/trullo/utils/api.ts
+// PATH: components/trullo/utils/api.ts
 import { Message, MessageForm, Language } from '../types';
+
+// Helper function to detect browser type
+function getBrowserInfo(): string {
+  const ua = navigator.userAgent;
+  if (ua.includes('Chrome') && !ua.includes('Edg')) return 'Chrome';
+  if (ua.includes('Safari') && !ua.includes('Chrome')) return 'Safari';
+  if (ua.includes('Firefox')) return 'Firefox';
+  if (ua.includes('Edg')) return 'Edge';
+  if (ua.includes('Opera') || ua.includes('OPR')) return 'Opera';
+  return 'Other';
+}
+
+// Helper function to detect device type
+function getDeviceType(): string {
+  const ua = navigator.userAgent;
+  if (/tablet|ipad|playbook|silk/i.test(ua)) return 'Tablet';
+  if (/mobile|iphone|ipod|android|blackberry|opera mini|iemobile/i.test(ua)) return 'Mobile';
+  return 'Desktop';
+}
 
 // Chat API
 export async function sendChatMessage(
@@ -75,9 +94,38 @@ export async function logToSupabase(action: string, data: any) {
 export async function startConversation(sessionId: string, language: Language) {
   // Send Telegram notification for new session
   try {
-    // Get user's IP address (approximate from browser)
-    const ipResponse = await fetch('https://api.ipify.org?format=json');
-    const { ip } = await ipResponse.json();
+    // Get user's IP address and location data
+    const ipResponse = await fetch('https://ipapi.co/json/');
+    const locationData = await ipResponse.json();
+    
+    // Get additional browser/device information
+    const userInfo = {
+      // Browser info
+      userAgent: navigator.userAgent,
+      browser: getBrowserInfo(),
+      device: getDeviceType(),
+      screenResolution: `${window.screen.width}x${window.screen.height}`,
+      viewport: `${window.innerWidth}x${window.innerHeight}`,
+      
+      // Location info from IP
+      ip: locationData.ip || 'Unknown',
+      city: locationData.city || 'Unknown',
+      region: locationData.region || 'Unknown',
+      country: locationData.country_name || 'Unknown',
+      countryCode: locationData.country_code || 'Unknown',
+      timezone: locationData.timezone || 'Unknown',
+      
+      // Referrer and URL info
+      referrer: document.referrer || 'Direct',
+      currentPage: window.location.pathname,
+      fullUrl: window.location.href,
+      
+      // Session info
+      language: navigator.language || 'Unknown',
+      chatLanguage: language,
+      sessionId,
+      started_at: new Date().toISOString()
+    };
     
     // Send notification to Telegram
     await fetch('/api/trullo-telegram', {
@@ -87,17 +135,11 @@ export async function startConversation(sessionId: string, language: Language) {
       },
       body: JSON.stringify({
         type: 'new_session',
-        data: {
-          language,
-          user_ip: ip || 'Unknown',
-          started_at: new Date().toISOString(),
-          sessionId
-        }
+        data: userInfo
       })
     });
   } catch (error) {
     console.error('Failed to send Telegram notification:', error);
-    // Don't fail the session start if notification fails
   }
   
   // Continue with Supabase logging
@@ -133,5 +175,3 @@ export async function endConversation(conversationId: string) {
     conversationId
   });
 }
-
-
