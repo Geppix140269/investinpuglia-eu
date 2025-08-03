@@ -1,11 +1,11 @@
-﻿// components/sections/HeroSection.tsx
+// components/sections/HeroSection.tsx
 'use client'
 
 import Icon from '@/lib/iconMappings'
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-white via-purple-50 to-emerald-50">
+    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-white via-purple-50 to-emerald-50">
       {/* Gradient orbs matching other sections */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-purple-200/30 rounded-full blur-3xl"></div>
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-emerald-200/30 rounded-full blur-3xl"></div>
@@ -15,7 +15,7 @@ export default function HeroSection() {
         {/* Premium badge matching other sections */}
         <div className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-600 to-emerald-600 text-white px-5 py-2 rounded-full text-sm font-semibold mb-6 sm:mb-8 shadow-lg">
           <Icon name="Shield" size={20} />
-          ESTABLISHED 2024 â€¢ PUGLIA, ITALY
+          ESTABLISHED 2024 • PUGLIA, ITALY
         </div>
 
         {/* Main Title - Mobile optimized */}
@@ -47,7 +47,7 @@ export default function HeroSection() {
             href="/calculator"
             className="bg-white/70 backdrop-blur-sm text-gray-900 border border-white/50 px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold hover:shadow-lg transition-all text-base sm:text-lg hover:scale-105 w-full sm:w-auto text-center"
           >
-            EU Grant Analysis â†’
+            EU Grant Analysis →
           </a>
         </div>
 
@@ -66,7 +66,7 @@ export default function HeroSection() {
             <div className="text-lg sm:text-xl font-semibold text-gray-900 mb-1 sm:mb-2">Grant Specialists</div>
             <div className="text-xs sm:text-sm text-gray-600 leading-relaxed">
               Mini PIA & EU funds<span className="hidden sm:inline"><br /></span>
-              <span className="inline sm:hidden"> </span>up to â‚¬2.25M
+              <span className="inline sm:hidden"> </span>up to €2.25M
             </div>
           </div>
           <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-4 sm:p-6 shadow-lg border border-white/50">

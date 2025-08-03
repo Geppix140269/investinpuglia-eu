@@ -3,7 +3,7 @@ import Icon from '@/lib/iconMappings'
 
 export default function OpportunitySection() {
   return (
-    <section className="py-20 relative bg-gradient-to-br from-white to-purple-50 overflow-hidden">
+    <section id="opportunity" className="py-20 relative bg-gradient-to-br from-white to-purple-50 overflow-hidden">
       <div className="absolute inset-0">
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-to-br from-purple-400/20 to-emerald-400/20 rounded-full blur-3xl"></div>
         <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-to-tr from-emerald-400/20 to-teal-400/20 rounded-full blur-3xl"></div>
