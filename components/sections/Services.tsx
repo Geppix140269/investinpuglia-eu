@@ -88,7 +88,7 @@ export default function Services() {
             All services include access to my trusted network of vetted professionals
           </p>
           <CTAButton
-            variant="primary"
+            variant="custom"
             href="/services"
             text="View All Services"
             location="services-footer"
@@ -99,3 +99,4 @@ export default function Services() {
     </section>
   )
 }
+
