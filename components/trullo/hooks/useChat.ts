@@ -245,7 +245,7 @@ export function useChat(isOpen: boolean, language: Language): UseChatReturn {
       };
 
       // Get dynamic prompt from knowledge system - THIS IS NOW ASYNC
-      let enhancedSystemPrompt = await trulloKnowledge.buildSystemPrompt(knowledgeContext);
+      let enhancedSystemPrompt = trulloKnowledge.buildSystemPrompt(knowledgeContext);
 
       // Add authentication status to prompt
       if (authState.isGiuseppe) {
