@@ -1,4 +1,4 @@
-﻿// Path: components/Footer.tsx
+// Path: components/Footer.tsx
 'use client'
 
 import { useState, useEffect } from 'react'
@@ -48,7 +48,7 @@ export default function Footer() {
               className="h-12 w-auto mb-4 opacity-90"
             />
             <p className="text-gray-400 mb-4">
-              EU PROPERTY GRANTS â€¢ INVESTMENT ADVISORY â€¢ PUGLIA EXPERTISE
+              EU PROPERTY GRANTS • INVESTMENT ADVISORY • PUGLIA EXPERTISE
             </p>
             <div className="flex gap-4">
               {/* Facebook */}
@@ -112,8 +112,8 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href="/calculator" className="text-gray-400 hover:text-white transition-colors">
-                  Grant Calculator
+                <a href="/services" className="text-gray-400 hover:text-white transition-colors">
+                  Our Services
                 </a>
               </li>
               <li>
@@ -135,7 +135,7 @@ export default function Footer() {
             <ul className="space-y-2">
               <li>
                 <a href="/industries" className="text-gray-400 hover:text-white transition-colors font-medium">
-                  All Industries â†’
+                  All Industries →
                 </a>
               </li>
               {displayedIndustries.map((industry) => (
@@ -154,7 +154,7 @@ export default function Footer() {
                     onClick={() => setShowAllIndustries(!showAllIndustries)}
                     className="text-blue-400 hover:text-blue-300 transition-colors text-sm font-medium"
                   >
-                    {showAllIndustries ? 'â† Show Less' : `View All ${industries.length} Industries â†’`}
+                    {showAllIndustries ? '← Show Less' : `View All ${industries.length} Industries →`}
                   </button>
                 </li>
               )}
@@ -227,7 +227,7 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* SEO Links Section - New Addition */}
+        {/* SEO Links Section */}
         <div className="mt-12 pt-8 border-t border-gray-800">
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
             {/* Investment Resources */}
@@ -236,7 +236,7 @@ export default function Footer() {
               <ul className="space-y-2 text-sm">
                 <li>
                   <a href="/tools" className="text-gray-500 hover:text-gray-300 transition-colors">
-                    EU Grant Calculators
+                    Investment Tools
                   </a>
                 </li>
                 <li>
@@ -303,10 +303,10 @@ export default function Footer() {
 
             {/* Popular Searches */}
             <div>
-              <h4 className="text-sm font-semibold mb-3 text-gray-300">Popular Searches</h4>
+              <h4 className="text-sm font-semibold mb-3 text-gray-300">Popular Topics</h4>
               <ul className="space-y-2 text-sm">
                 <li>
-                  <a href="/calculator" className="text-gray-500 hover:text-gray-300 transition-colors">
+                  <a href="/blog" className="text-gray-500 hover:text-gray-300 transition-colors">
                     Mini PIA Turismo Grants
                   </a>
                 </li>
@@ -330,18 +330,102 @@ export default function Footer() {
           </div>
         </div>
 
+        {/* Institutional Partners */}
+        <div className="mt-12 pt-8 border-t border-gray-800">
+          <h3 className="text-lg font-semibold mb-6 text-center">Institutional Partners & Resources</h3>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+            {/* Regional Agencies */}
+            <div>
+              <h4 className="text-sm font-semibold mb-3 text-gray-300">Regional Agencies</h4>
+              <ul className="space-y-2 text-sm">
+                <li>
+                  <a href="https://www.pugliasviluppo.eu" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-gray-300 transition-colors">
+                    Puglia Sviluppo S.p.A.
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.sistema.puglia.it" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-gray-300 transition-colors">
+                    Sistema Puglia
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.investinbari.it" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-gray-300 transition-colors">
+                    Invest in Bari
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            {/* National & EU */}
+            <div>
+              <h4 className="text-sm font-semibold mb-3 text-gray-300">National & EU Institutions</h4>
+              <ul className="space-y-2 text-sm">
+                <li>
+                  <a href="https://www.investinitaly.com" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-gray-300 transition-colors">
+                    Invest in Italy (ICE)
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.mimit.gov.it" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-gray-300 transition-colors">
+                    Ministry of Economic Development
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.eib.org" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-gray-300 transition-colors">
+                    European Investment Bank
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            {/* Special Zones */}
+            <div>
+              <h4 className="text-sm font-semibold mb-3 text-gray-300">Special Economic Zones</h4>
+              <ul className="space-y-2 text-sm">
+                <li>
+                  <a href="https://www.agenziacoesione.gov.it/zes-zone-economiche-speciali/zes-ionica-interregionale-puglia-basilicata/?lang=en" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-gray-300 transition-colors">
+                    SEZ Puglia-Basilicata
+                  </a>
+                </li>
+                <li>
+                  <a href="https://por.regione.puglia.it/en/fesr" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-gray-300 transition-colors">
+                    POR Puglia FESR
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            {/* Support & Info */}
+            <div>
+              <h4 className="text-sm font-semibold mb-3 text-gray-300">Support & Information</h4>
+              <ul className="space-y-2 text-sm">
+                <li>
+                  <a href="https://www.eif.org" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-gray-300 transition-colors">
+                    European Investment Fund
+                  </a>
+                </li>
+                <li>
+                  <a href="https://europa.eu/european-union/contact/europe-direct_en" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-gray-300 transition-colors">
+                    Europe Direct Puglia
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
         {/* Bottom Bar */}
         <div className="mt-8 pt-8 border-t border-gray-800">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-400 text-sm">
-              Â© 2025 Invest in Pugliaâ„¢. All rights reserved. | 1402 Celsius Ltd International Advisory, Consultancy and Procurment Specialists
+              © 2025 Invest in Puglia™. All rights reserved. | 1402 Celsius Ltd International Advisory, Consultancy and Procurement Specialists
             </p>
             <div className="mt-4 md:mt-0 flex items-center gap-4 text-sm text-gray-400">
               <a href="tel:+393514001402" className="hover:text-white transition-colors flex items-center gap-2">
                 <Icon name="phone" size={16} />
                 +39 351 400 1402
               </a>
-              <span>â€¢</span>
+              <span>•</span>
               <a href="mailto:info@investinpuglia.eu" className="hover:text-white transition-colors flex items-center gap-2">
                 <Icon name="mail" size={16} />
                 info@investinpuglia.eu
@@ -353,4 +437,3 @@ export default function Footer() {
     </footer>
   )
 }
-
