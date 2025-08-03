@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { trackCTAClick } from '@/lib/database'
 
 interface CTAButtonProps {
-  variant: 'consultation' | 'bookCall' | 'whatsapp' | 'custom'
+  variant: 'calculator' | 'consultation' | 'bookCall' | 'whatsapp' | 'custom'
   href?: string
   text?: string
   icon?: React.ReactNode
@@ -28,6 +28,12 @@ const CTAButton: React.FC<CTAButtonProps> = ({
 }) => {
   // Default configurations for each variant
   const variantConfigs = {
+    calculator: {
+      text: 'Get Expert Guidance',
+      href: '/contact',
+      className: 'inline-flex items-center gap-3 bg-gradient-to-r from-green-600 to-green-700 text-white px-8 py-4 rounded-full font-bold hover:shadow-xl hover:-translate-y-1 transition-all duration-300',
+      isExternal: false
+    },
     consultation: {
       text: 'Get Expert Guidance',
       href: '/contact',
@@ -129,3 +135,4 @@ const CTAButton: React.FC<CTAButtonProps> = ({
 }
 
 export default CTAButton
+
