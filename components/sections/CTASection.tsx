@@ -1,4 +1,4 @@
-// components/sections/CTASection.tsx
+﻿// components/sections/CTASection.tsx
 import Icon from '@/lib/iconMappings'
 
 
@@ -20,13 +20,7 @@ export default function CTASection() {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
-            <CTAButton
-              variant="custom"
-              href="https://calendly.com/investinpuglia/30min"
-              text="Book Free Consultation"
-              location="footer-cta"
-              className="text-lg px-10 py-5 bg-white text-purple-700 hover:bg-gray-100 rounded-full font-bold shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all"
-            />
+            
             <a href="/contact" className="text-lg px-10 py-5 bg-purple-100 text-purple-700 hover:bg-purple-200 rounded-full font-bold shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all">Start Your Journey</a>
           </div>
           
@@ -39,4 +33,5 @@ export default function CTASection() {
     </section>
   )
 }
+
 
