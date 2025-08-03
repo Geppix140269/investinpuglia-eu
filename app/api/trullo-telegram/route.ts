@@ -37,8 +37,21 @@ export async function POST(request: NextRequest) {
     switch (type) {
       case 'new_session':
         message = `🚨 <b>NEW TRULLO SESSION</b>\n\n` +
-                 `📍 Language: ${data.language}\n` +
-                 `🌍 IP: ${data.user_ip}\n` +
+                 `📍 <b>Location:</b>\n` +
+                 `🌍 ${data.city}, ${data.region}\n` +
+                 `🏴 ${data.country} (${data.countryCode})\n` +
+                 `🌐 IP: ${data.ip}\n` +
+                 `⏰ Timezone: ${data.timezone}\n\n` +
+                 `💻 <b>Device Info:</b>\n` +
+                 `📱 Type: ${data.device}\n` +
+                 `🌐 Browser: ${data.browser}\n` +
+                 `📐 Screen: ${data.screenResolution}\n` +
+                 `🖼️ Viewport: ${data.viewport}\n\n` +
+                 `🔍 <b>Session Info:</b>\n` +
+                 `💬 Chat Language: ${data.chatLanguage}\n` +
+                 `🌐 Browser Language: ${data.language}\n` +
+                 `📄 Current Page: ${data.currentPage}\n` +
+                 `🔗 Referrer: ${data.referrer}\n` +
                  `⏰ Started: ${new Date(data.started_at).toLocaleString()}\n\n` +
                  `<a href="https://investinpuglia.eu/trullo-monitor">Open Monitor</a>`;
         break;
