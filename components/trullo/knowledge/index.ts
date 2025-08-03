@@ -127,6 +127,46 @@ export class TrulloKnowledgeBase {
       .sort((a, b) => (b.priority || 0) - (a.priority || 0));
   }
 
+  buildSystemPrompt(context: KnowledgeContext): string {
+    // Get the personality module for base prompt
+    const personalityModule = this.modules.get('trullo-personality');
+    let systemPrompt = personalityModule?.content || 'You are Trullo, the helpful AI assistant for InvestInPuglia.eu.';
+
+    // Add language-specific adjustments
+    if (context.language === 'it') {
+      systemPrompt += '\n\nRISPONDI SEMPRE IN ITALIANO. Usa un tono amichevole e professionale.';
+    } else {
+      systemPrompt += '\n\nALWAYS RESPOND IN ENGLISH. Use a friendly and professional tone.';
+    }
+
+    // Add context about conversation stage
+    if (context.messageCount === 0) {
+      systemPrompt += '\n\nThis is the start of a new conversation. Greet the user warmly.';
+    }
+
+    // Add any relevant module-specific prompts based on triggers
+    const relevantModules = Array.from(this.modules.values())
+      .filter(module => {
+        if (module.triggers && module.triggers.length > 0 && context.lastMessage) {
+          const messageLower = context.lastMessage.toLowerCase();
+          return module.triggers.some(trigger => 
+            messageLower.includes(trigger.toLowerCase())
+          );
+        }
+        return false;
+      })
+      .sort((a, b) => (b.priority || 0) - (a.priority || 0));
+
+    // Add high-priority module instructions
+    relevantModules.slice(0, 3).forEach(module => {
+      if (module.content && typeof module.content === 'string') {
+        systemPrompt += '\n\n' + module.content;
+      }
+    });
+
+    return systemPrompt;
+  }
+
   getModuleById(id: string): KnowledgeModule | undefined {
     return this.modules.get(id);
   }
