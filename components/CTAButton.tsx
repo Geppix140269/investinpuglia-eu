@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 import React from 'react'
 import Link from 'next/link'
 import { trackCTAClick } from '@/lib/database'
@@ -110,7 +110,7 @@ const CTAButton: React.FC<CTAButtonProps> = ({
   if (isExternal) {
     return (
       
-        href={finalHref}
+        <a href={finalHref}
         target="_blank"
         rel="noopener noreferrer"
         className={finalClassName}
@@ -124,7 +124,7 @@ const CTAButton: React.FC<CTAButtonProps> = ({
 
   return (
     <Link
-      href={finalHref}
+      <a href={finalHref}
       className={finalClassName}
       onClick={handleClick}
     >
@@ -135,4 +135,5 @@ const CTAButton: React.FC<CTAButtonProps> = ({
 }
 
 export default CTAButton
+
 
