@@ -1,17 +1,16 @@
-﻿// Path: components/Navbar.tsx
 'use client'
 
 import { useState, useEffect } from 'react'
+import Link from 'next/link'
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('home')
 
-  // Smooth scroll function
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
     if (element) {
-      const offset = 80 // Height of navbar
+      const offset = 80
       const elementPosition = element.getBoundingClientRect().top
       const offsetPosition = elementPosition + window.scrollY - offset
 
@@ -20,10 +19,9 @@ export default function Navbar() {
         behavior: 'smooth'
       })
     }
-    setIsOpen(false) // Close mobile menu
+    setIsOpen(false)
   }
 
-  // Track active section on scroll
   useEffect(() => {
     const handleScroll = () => {
       const sections = ['home', 'services', 'advisor', 'how-it-works', 'opportunity', 'trullo', 'faq']
@@ -57,17 +55,13 @@ export default function Navbar() {
         <div className="relative flex items-center h-16">
           {/* Logo - Left aligned */}
           <div className="flex-shrink-0">
-            <button
-              onClick={() => scrollToSection('home')}
-              className="flex items-center group"
-              aria-label="Go to home"
-            >
+            <Link href="/" className="flex items-center group">
               <img
                 src="/Logo_InvestInPuglia_Morph.png"
                 alt="Invest in Puglia"
                 className="h-10 md:h-12 w-auto object-contain opacity-90 group-hover:opacity-100 transition-opacity duration-200"
               />
-            </button>
+            </Link>
           </div>
 
           {/* Desktop Navigation - Centered */}
@@ -84,39 +78,28 @@ export default function Navbar() {
               </button>
             ))}
             
-            {/* Services page link */}
-            
-              <a href="/services"
-              className="text-gray-700 hover:text-gray-900 transition-colors font-medium"
-            >
+            <a href="/services" className="text-gray-700 hover:text-gray-900 transition-colors font-medium">
               Services
             </a>
             
-            {/* Insights/Blog link */}
-            
-              <a href="/insights"
-              className="text-gray-700 hover:text-gray-900 transition-colors font-medium"
-            >
+            <a href="/insights" className="text-gray-700 hover:text-gray-900 transition-colors font-medium">
               Insights
             </a>
             
-            
-              <a href="/contact"
-              className="text-gray-700 hover:text-gray-900 transition-colors font-medium"
-            >
+            <a href="/contact" className="text-gray-700 hover:text-gray-900 transition-colors font-medium">
               Contact
             </a>
           </div>
 
           {/* CTA Button - Right aligned */}
           <div className="hidden md:block ml-auto">
-            
-              <a href="https://calendly.com/investinpuglia/30min"
+            <a 
+              href="https://calendly.com/investinpuglia/30min"
               className="bg-gradient-to-r from-purple-600 to-emerald-600 text-white px-5 py-2.5 rounded-full font-semibold transition-all hover:shadow-lg hover:scale-105 transform duration-200"
               target="_blank"
               rel="noopener noreferrer"
             >
-              Book Strategy Call â†’
+              Book Strategy Call →
             </a>
           </div>
 
@@ -151,34 +134,25 @@ export default function Navbar() {
                 </button>
               ))}
               
-              
-                <a href="/services"
-                className="text-gray-700 hover:text-gray-900 transition-colors font-medium py-2"
-              >
+              <a href="/services" className="text-gray-700 hover:text-gray-900 transition-colors font-medium py-2">
                 Services
               </a>
               
-              
-                <a href="/insights"
-                className="text-gray-700 hover:text-gray-900 transition-colors font-medium py-2"
-              >
+              <a href="/insights" className="text-gray-700 hover:text-gray-900 transition-colors font-medium py-2">
                 Insights
               </a>
               
-              
-                <a href="/contact"
-                className="text-gray-700 hover:text-gray-900 transition-colors font-medium py-2"
-              >
+              <a href="/contact" className="text-gray-700 hover:text-gray-900 transition-colors font-medium py-2">
                 Contact
               </a>
               
-              
-                <a href="https://calendly.com/investinpuglia/30min"
+              <a 
+                href="https://calendly.com/investinpuglia/30min"
                 className="bg-gradient-to-r from-purple-600 to-emerald-600 text-white px-5 py-3 rounded-full font-semibold text-center"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Book Strategy Call â†’
+                Book Strategy Call →
               </a>
             </div>
           </div>
@@ -187,4 +161,3 @@ export default function Navbar() {
     </nav>
   )
 }
-
