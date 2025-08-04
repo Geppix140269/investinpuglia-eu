@@ -1,18 +1,23 @@
+// PATH: components/trullo/TrulloChatbot.tsx
+'use client'
 import React, { useState, useEffect, useRef } from 'react';
 import { Language, TrulloChatbotProps, Message } from './types';
 import { translations } from './constants/translations';
 import { useChat } from './hooks/useChat';
 import ChatMessages from './ChatMessages';
 import ChatInput from './ChatInput';
+import ContactForm from './ContactForm';
 import { sendEmailMessage, saveContactRequest } from './utils/api';
+import { isIPBlocked, getBlockedMessage } from './utils/ipBlocker';
 
 export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
-  
   // Check if mobile on mount
   const [isMobile, setIsMobile] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [currentLang, setCurrentLang] = useState<Language>(language);
-  const [isButtonVisible, setIsButtonVisible] = useState(false); // For button entrance animation
+  const [showMessageForm, setShowMessageForm] = useState(false);
+  const [isBlocked, setIsBlocked] = useState(false);
+  const [isButtonVisible, setIsButtonVisible] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
   const [dragOffset, setDragOffset] = useState(0);
 
@@ -64,6 +69,84 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
 
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
+
+  // Initialize session and visitor tracking when chat opens
+  useEffect(() => {
+    if (isOpen && !sessionId) {
+      const newSessionId = `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+      
+      // Get visitor info from browser
+      const getVisitorInfo = async () => {
+        try {
+          // Get IP and location info
+          const response = await fetch('https://ipapi.co/json/');
+          const data = await response.json();
+          
+          // Store in sessionStorage for telegram updates
+          sessionStorage.setItem('userIP', data.ip || 'Unknown');
+          sessionStorage.setItem('userCity', data.city || 'Unknown');
+          sessionStorage.setItem('userCountry', data.country_name || 'Unknown');
+          
+          // Check if IP is blocked (optional - you can comment this out if not using blocking)
+          if (isIPBlocked && isIPBlocked(data.ip)) {
+            setIsBlocked(true);
+            // Log blocked attempt
+            await fetch('/api/trullo-telegram', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                type: 'bot_detected',
+                data: {
+                  ip: data.ip,
+                  city: data.city || 'Unknown',
+                  country: data.country_name || 'Unknown',
+                  score: 10,
+                  reasons: ['IP is on blocklist', 'Access denied']
+                }
+              })
+            });
+            return;
+          }
+          
+          // Send new session notification to Telegram
+          await fetch('/api/trullo-telegram', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              type: 'new_session',
+              data: {
+                sessionId: newSessionId,
+                ip: data.ip,
+                city: data.city,
+                region: data.region,
+                country: data.country_name,
+                countryCode: data.country,
+                timezone: data.timezone,
+                device: /Mobile|Android|iPhone/i.test(navigator.userAgent) ? 'Mobile' : 'Desktop',
+                browser: getBrowserName(),
+                screenResolution: `${window.screen.width}x${window.screen.height}`,
+                viewport: `${window.innerWidth}x${window.innerHeight}`,
+                chatLanguage: currentLang,
+                language: navigator.language,
+                currentPage: window.location.pathname,
+                referrer: document.referrer || 'Direct',
+                started_at: new Date().toISOString(),
+                userAgent: navigator.userAgent
+              }
+            })
+          });
+        } catch (error) {
+          console.error('Failed to get visitor info:', error);
+          // Store unknown values if API fails
+          sessionStorage.setItem('userIP', 'Unknown');
+          sessionStorage.setItem('userCity', 'Unknown');
+          sessionStorage.setItem('userCountry', 'Unknown');
+        }
+      };
+      
+      getVisitorInfo();
+    }
+  }, [isOpen, sessionId, currentLang]);
 
   // Handle swipe to close on mobile - FIXED VERSION
   useEffect(() => {
@@ -204,6 +287,7 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
   const handleCloseChat = () => {
     closeChat();
     setIsOpen(false);
+    setIsBlocked(false);
   };
 
   // Handle user manually closing the chat
@@ -214,6 +298,27 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
       localStorage.setItem('trullo-user-closed', 'true');
     }
   };
+
+  const handleContactFormSuccess = () => {
+    const successMessage: Message = {
+      id: Date.now().toString(),
+      role: 'assistant',
+      content: t.messageForm.success,
+      timestamp: new Date()
+    };
+    
+    setShowMessageForm(false);
+  };
+
+  // Helper function to get browser name
+  function getBrowserName() {
+    const agent = navigator.userAgent;
+    if (agent.indexOf('Chrome') > -1) return 'Chrome';
+    if (agent.indexOf('Safari') > -1) return 'Safari';
+    if (agent.indexOf('Firefox') > -1) return 'Firefox';
+    if (agent.indexOf('Edge') > -1) return 'Edge';
+    return 'Other';
+  }
 
   // Calculate opacity based on drag offset for visual feedback
   const getWindowOpacity = () => {
@@ -320,11 +425,6 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
                         👑 Boss Mode Active
                       </span>
                     )}
-                    {authState.isAuthenticated && !authState.isGiuseppe && (
-                      <span className="block text-xs text-green-300 mt-1">
-                        ✓ {authState.userEmail}
-                      </span>
-                    )}
                   </p>
                 </div>
               </div>
@@ -389,22 +489,42 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
             )}
           </div>
 
-          {/* Messages */}
-          <ChatMessages
-            messages={messages}
-            isTyping={isTyping}
-          />
+          {/* Blocked Message */}
+          {isBlocked ? (
+            <div className="flex-1 flex items-center justify-center p-6">
+              <div className="text-center">
+                <div className="text-6xl mb-4">🚫</div>
+                <p className="text-gray-700 text-lg">{getBlockedMessage ? getBlockedMessage(currentLang) : 'Access restricted.'}</p>
+                <p className="text-gray-500 text-sm mt-2">support@investinpuglia.eu</p>
+              </div>
+            </div>
+          ) : showMessageForm ? (
+            <ContactForm
+              language={currentLang}
+              conversationId={conversationId}
+              onSuccess={handleContactFormSuccess}
+              onCancel={() => setShowMessageForm(false)}
+            />
+          ) : (
+            <>
+              {/* Messages */}
+              <ChatMessages
+                messages={messages}
+                isTyping={isTyping}
+              />
 
-          <ChatInput
-            language={currentLang}
-            isTyping={isTyping}
-            onSend={sendMessage}
-            disabled={false}
-          />
+              <ChatInput
+                language={currentLang}
+                isTyping={isTyping}
+                onSend={sendMessage}
+                onLeaveMessage={() => setShowMessageForm(true)}
+              />
 
-          {/* Mobile Safe Area Bottom Padding */}
-          {isMobile && (
-            <div className="h-safe-area-inset-bottom bg-white" />
+              {/* Mobile Safe Area Bottom Padding */}
+              {isMobile && (
+                <div className="h-safe-area-inset-bottom bg-white" />
+              )}
+            </>
           )}
         </div>
       )}
