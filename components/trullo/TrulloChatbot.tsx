@@ -507,18 +507,29 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
             />
           ) : (
             <>
-              {/* Messages */}
-              <ChatMessages
-                messages={messages}
-                isTyping={isTyping}
-              />
+             ) : (
+  <>
+    {/* Messages */}
+    <ChatMessages
+      messages={messages}
+      isTyping={isTyping}
+    />
 
-              <ChatInput
-                language={currentLang}
-                isTyping={isTyping}
-                onSend={sendMessage}
-                onLeaveMessage={() => setShowMessageForm(true)}
-              />
+    {/* Leave a Message Button */}
+    <div className="border-t border-gray-200 p-2 bg-white">
+      <button
+        onClick={() => setShowMessageForm(true)}
+        className="w-full px-3 py-2 text-sm bg-purple-100 text-purple-700 rounded-lg hover:bg-purple-200 transition-all flex items-center justify-center gap-2"
+      >
+        📝 {t.leaveMessage || 'Leave a Message'}
+      </button>
+    </div>
+
+    <ChatInput
+      language={currentLang}
+      isTyping={isTyping}
+      onSend={sendMessage}
+    />
 
               {/* Mobile Safe Area Bottom Padding */}
               {isMobile && (
