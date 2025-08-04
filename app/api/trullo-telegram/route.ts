@@ -585,11 +585,11 @@ export async function POST(request: NextRequest) {
       await sendTelegramNotification(message, alertLevel);
     }
     
-    return NextResponse.json({ 
-      success: true,
-      suspicionScore: type === 'new_session' ? score : undefined,
-      leadScore: type === 'conversation_update' ? calculateLeadScore(data.messages || []) : undefined
-    });
+   return NextResponse.json({
+  success: true,
+  suspicionScore: type === 'new_session' ? suspicionScore : undefined,
+  leadScore: type === 'conversation_update' ? calculateLeadScore(messages || []) : undefined
+});
   } catch (error) {
     console.error('Telegram API error:', error);
     return NextResponse.json({ error: 'Failed to send notification' }, { status: 500 });
