@@ -30,7 +30,7 @@ export default async function PostPage({ params }: { params: { slug: string } })
         <div className="max-w-4xl mx-auto px-6 py-16 text-center">
           <h1 className="text-2xl text-gray-600">Post not found</h1>
           <Link href="/insights" className="text-emerald-600 hover:underline mt-4 inline-block">
-            ? Back to Insights
+            Back to Insights
           </Link>
         </div>
       </main>
@@ -40,12 +40,10 @@ export default async function PostPage({ params }: { params: { slug: string } })
   return (
     <main className="pt-20 min-h-screen bg-gray-50">
       <article className="max-w-4xl mx-auto px-6 py-16">
-        {/* Back Link */}
         <Link href="/insights" className="text-emerald-600 hover:underline mb-8 inline-block">
-          ? Back to Insights
+          Back to Insights
         </Link>
 
-        {/* Article Header */}
         <header className="mb-12">
           <h1 className="text-4xl md:text-5xl font-light text-gray-900 mb-6">
             {post.title}
@@ -53,7 +51,7 @@ export default async function PostPage({ params }: { params: { slug: string } })
           
           <div className="flex items-center gap-6 text-gray-500">
             <span>{post.author?.name || 'Giuseppe Funaro'}</span>
-            <span>•</span>
+            <span>â€¢</span>
             <time>{new Date(post.publishedAt).toLocaleDateString()}</time>
           </div>
           
@@ -68,7 +66,6 @@ export default async function PostPage({ params }: { params: { slug: string } })
           )}
         </header>
 
-        {/* Featured Image */}
         {post.mainImage && (
           <img
             src={urlFor(post.mainImage).width(1200).url()}
@@ -77,7 +74,6 @@ export default async function PostPage({ params }: { params: { slug: string } })
           />
         )}
 
-        {/* Article Content */}
         <div className="prose prose-lg max-w-none">
           <PortableText value={post.body} />
         </div>
