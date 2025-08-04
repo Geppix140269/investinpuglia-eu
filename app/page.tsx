@@ -5,7 +5,7 @@
 import ExitIntentPopup from '@/components/ExitIntentPopup'
 
 // Sections
-import HeroSection from '@/components/sections/HeroSection'
+import HeroSection from '@/components/sections/HeroSectionExec'
 import GrantInstitutions from '@/components/sections/GrantInstitutions'
 import OpportunitySection from '@/components/sections/OpportunitySection'
 import HowItWorks from '@/components/sections/HowItWorks'
