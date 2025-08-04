@@ -1,6 +1,8 @@
 // Path: app/services/page.tsx
 'use client'
 
+import Link from 'next/link'
+
 export default function ServicesPage() {
   const services = [
     {
@@ -16,7 +18,8 @@ export default function ServicesPage() {
       ],
       cta: "Book Discovery Session",
       link: "https://buy.stripe.com/test_6oUfZj9bm1trdOOgyV0x200",
-      highlight: false
+      highlight: false,
+      premium: false
     },
     {
       title: "Strategy Consultation",
@@ -32,7 +35,8 @@ export default function ServicesPage() {
       ],
       cta: "Book Strategy Session",
       link: "https://buy.stripe.com/test_5kQ8wR5Za5JHaCCgyV0x201",
-      highlight: true
+      highlight: true,
+      premium: false
     },
     {
       title: "Implementation Partnership",
@@ -66,7 +70,7 @@ export default function ServicesPage() {
             </h1>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
               Leverage 30 years of executive experience and €200M+ in managed operations 
-              to navigate Puglia's €2.25M grant opportunities
+              to navigate Puglia&apos;s €2.25M grant opportunities
             </p>
           </div>
         </div>
@@ -113,7 +117,7 @@ export default function ServicesPage() {
                     ))}
                   </ul>
                   
-                  <a 
+                  <Link 
                     href={service.link}
                     className={`block w-full text-center py-3 px-6 rounded font-semibold transition-all duration-300 ${
                       service.premium 
@@ -122,7 +126,7 @@ export default function ServicesPage() {
                     }`}
                   >
                     {service.cta} →
-                  </a>
+                  </Link>
                 </div>
               </div>
             ))}
@@ -172,7 +176,7 @@ export default function ServicesPage() {
             Ready to Unlock Your Puglia Investment Opportunity?
           </h2>
           <p className="text-xl text-emerald-100 mb-8">
-            Don't navigate Italian bureaucracy alone. Let three decades of experience guide you.
+            Don&apos;t navigate Italian bureaucracy alone. Let three decades of experience guide you.
           </p>
           <a 
             href="https://calendly.com/investinpuglia/30min"
