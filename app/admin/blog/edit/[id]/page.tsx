@@ -9,6 +9,7 @@ export default function EditBlogPost({ params }: { params: { id: string } }) {
   const router = useRouter()
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [loading, setLoading] = useState(true)
+  const [currentImageUrl, setCurrentImageUrl] = useState<string | null>(null)
   const [formData, setFormData] = useState({
     title: '',
     excerpt: '',
@@ -24,16 +25,35 @@ export default function EditBlogPost({ params }: { params: { id: string } }) {
     try {
       const post = await client.fetch(`*[_type == "post" && _id == $id][0]`, { id: params.id })
       if (post) {
-        const textContent = post.body?.[0]?.children?.[0]?.text || ''
+        // Extract ALL text from ALL blocks and paragraphs
+        let fullContent = ''
+        if (post.body && Array.isArray(post.body)) {
+          fullContent = post.body
+            .map((block: any) => {
+              if (block._type === 'block' && block.children) {
+                return block.children
+                  .map((child: any) => child.text || '')
+                  .join('')
+              }
+              return ''
+            })
+            .join('\n\n') // Add double line breaks between paragraphs
+        }
+        
         setFormData({
           title: post.title || '',
           excerpt: post.excerpt || '',
-          content: textContent,
+          content: fullContent,
           mainImage: null
         })
+        
+        if (post.mainImage) {
+          setCurrentImageUrl(urlFor(post.mainImage).width(800).url())
+        }
       }
     } catch (error) {
-      console.error('Error:', error)
+      console.error('Error fetching post:', error)
+      alert('Error loading post')
     } finally {
       setLoading(false)
     }
@@ -44,30 +64,74 @@ export default function EditBlogPost({ params }: { params: { id: string } }) {
     setIsSubmitting(true)
     
     try {
-      await client.patch(params.id).set({
+      // Convert content back to Sanity block format
+      // Split by double newlines to create paragraphs
+      const paragraphs = formData.content.split('\n\n').filter(p => p.trim())
+      const bodyBlocks = paragraphs.map((paragraph, index) => ({
+        _type: 'block',
+        _key: `block-${index}`,
+        style: 'normal',
+        markDefs: [],
+        children: [{
+          _type: 'span',
+          _key: `span-${index}`,
+          text: paragraph.trim(),
+          marks: []
+        }]
+      }))
+      
+      let updateData: any = {
         title: formData.title,
         excerpt: formData.excerpt,
-        body: [{
-          _type: 'block',
-          children: [{ _type: 'span', text: formData.content }]
-        }]
-      }).commit()
+        body: bodyBlocks
+      }
       
+      // Handle image upload if new image selected
+      if (formData.mainImage) {
+        const imageAsset = await client.assets.upload('image', formData.mainImage)
+        updateData.mainImage = {
+          _type: 'image',
+          asset: {
+            _type: 'reference',
+            _ref: imageAsset._id
+          }
+        }
+      }
+      
+      await client.patch(params.id).set(updateData).commit()
+      
+      alert('Post updated successfully!')
       router.push('/admin/blog')
     } catch (error) {
-      console.error('Error:', error)
-      alert('Error updating post')
+      console.error('Error updating post:', error)
+      alert('Error updating post. Please try again.')
     } finally {
       setIsSubmitting(false)
     }
   }
 
-  if (loading) return <div className="min-h-screen bg-gray-50 pt-20 flex items-center justify-center"><div className="text-gray-500">Loading...</div></div>
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gray-50 pt-20 flex items-center justify-center">
+        <div className="text-gray-500">Loading post...</div>
+      </div>
+    )
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 pt-20">
       <div className="max-w-4xl mx-auto px-4 py-12">
-        <h1 className="text-3xl font-light mb-8">Edit Blog Post</h1>
+        <div className="mb-8 flex items-center justify-between">
+          <h1 className="text-3xl font-light text-gray-900">Edit Blog Post</h1>
+          <button
+            onClick={() => router.push('/admin/blog')}
+            className="text-gray-500 hover:text-gray-700"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
         
         <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow-sm p-8">
           <div className="mb-6">
@@ -76,29 +140,58 @@ export default function EditBlogPost({ params }: { params: { id: string } }) {
               type="text"
               value={formData.title}
               onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-              className="w-full px-4 py-2 border rounded-md focus:ring-emerald-500 focus:border-emerald-500"
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-emerald-500 focus:border-emerald-500"
               required
             />
           </div>
           
           <div className="mb-6">
-            <label className="block text-sm font-medium text-gray-700 mb-2">Excerpt</label>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Excerpt <span className="text-gray-400">(Brief summary for listings)</span>
+            </label>
             <textarea
-              rows={2}
+              rows={3}
               value={formData.excerpt}
               onChange={(e) => setFormData({ ...formData, excerpt: e.target.value })}
-              className="w-full px-4 py-2 border rounded-md focus:ring-emerald-500 focus:border-emerald-500"
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-emerald-500 focus:border-emerald-500"
               maxLength={200}
             />
+            <p className="text-xs text-gray-500 mt-1">{formData.excerpt.length}/200 characters</p>
           </div>
           
           <div className="mb-6">
-            <label className="block text-sm font-medium text-gray-700 mb-2">Content</label>
+            <label className="block text-sm font-medium text-gray-700 mb-2">Featured Image</label>
+            {currentImageUrl && !formData.mainImage && (
+              <div className="mb-3">
+                <img src={currentImageUrl} alt="Current featured image" className="w-48 h-32 object-cover rounded" />
+                <p className="text-sm text-gray-500 mt-1">Current image (upload new to replace)</p>
+              </div>
+            )}
+            <input
+              type="file"
+              accept="image/*"
+              onChange={(e) => setFormData({ ...formData, mainImage: e.target.files?.[0] || null })}
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-emerald-500 focus:border-emerald-500"
+            />
+            {formData.mainImage && (
+              <p className="text-sm text-emerald-600 mt-1">New image selected: {formData.mainImage.name}</p>
+            )}
+          </div>
+          
+          <div className="mb-6">
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Content <span className="text-gray-400">(Separate paragraphs with blank lines)</span>
+            </label>
             <textarea
-              rows={20}
+              rows={25}
               value={formData.content}
               onChange={(e) => setFormData({ ...formData, content: e.target.value })}
-              className="w-full px-4 py-2 border rounded-md focus:ring-emerald-500 focus:border-emerald-500"
+              className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-emerald-500 focus:border-emerald-500 font-mono text-sm"
+              placeholder="Write your blog post content here...
+
+Separate paragraphs with blank lines for proper formatting.
+
+You can edit the full content of your post here."
               required
             />
           </div>
@@ -111,15 +204,28 @@ export default function EditBlogPost({ params }: { params: { id: string } }) {
             >
               Cancel
             </button>
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className="px-6 py-2 bg-emerald-600 text-white rounded-md hover:bg-emerald-700 disabled:opacity-50"
-            >
-              {isSubmitting ? 'Updating...' : 'Update Post'}
-            </button>
+            <div className="flex gap-3">
+              <button
+                type="button"
+                onClick={() => window.open(`/insights/${post.slug?.current}`, '_blank')}
+                className="px-6 py-2 text-emerald-700 border border-emerald-600 rounded-md hover:bg-emerald-50"
+              >
+                Preview
+              </button>
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="px-6 py-2 bg-emerald-600 text-white rounded-md hover:bg-emerald-700 disabled:opacity-50"
+              >
+                {isSubmitting ? 'Updating...' : 'Update Post'}
+              </button>
+            </div>
           </div>
         </form>
+        
+        <div className="mt-4 text-sm text-gray-500 text-center">
+          Tip: Use blank lines between paragraphs for proper formatting
+        </div>
       </div>
     </div>
   )
