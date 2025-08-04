@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react'
 import { client } from '@/sanity/lib/client'
-import { writeClient } from '@/sanity/lib/writeClient'
 import { useRouter } from 'next/navigation'
 import { urlFor } from '@/sanity/lib/image'
 
@@ -78,38 +77,36 @@ export default function EditBlogPost({ params }: { params: { id: string } }) {
         }]
       }))
       
-      const patchQuery = writeClient.patch(params.id)
-        .set({
-          title: formData.title,
-          excerpt: formData.excerpt,
-          body: bodyBlocks
-        })
-      
-      if (formData.mainImage) {
-        try {
-          const imageAsset = await writeClient.assets.upload('image', formData.mainImage)
-          patchQuery.set({
-            mainImage: {
-              _type: 'image',
-              asset: {
-                _type: 'reference',
-                _ref: imageAsset._id
-              }
-            }
-          })
-        } catch (imageError) {
-          console.error('Error uploading image:', imageError)
-        }
+      const updateData = {
+        title: formData.title,
+        excerpt: formData.excerpt,
+        body: bodyBlocks
       }
       
-      await patchQuery.commit()
+      // Use API route for update
+      const response = await fetch('/api/blog', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          id: params.id,
+          data: updateData,
+          action: 'update'
+        })
+      })
+      
+      const result = await response.json()
+      
+      if (!response.ok) {
+        throw new Error(result.error || 'Update failed')
+      }
       
       alert('Post updated successfully!')
       router.push('/admin/blog')
     } catch (error: any) {
       console.error('Error updating post:', error)
-      const errorMessage = error.message || 'Unknown error occurred'
-      alert(`Error updating post: ${errorMessage}\n\nPlease check the console for details.`)
+      alert(`Error updating post: ${error.message}`)
     } finally {
       setIsSubmitting(false)
     }
@@ -162,25 +159,6 @@ export default function EditBlogPost({ params }: { params: { id: string } }) {
               maxLength={200}
             />
             <p className="text-xs text-gray-500 mt-1">{formData.excerpt.length}/200 characters</p>
-          </div>
-          
-          <div className="mb-6">
-            <label className="block text-sm font-medium text-gray-700 mb-2">Featured Image</label>
-            {currentImageUrl && !formData.mainImage && (
-              <div className="mb-3">
-                <img src={currentImageUrl} alt="Current featured image" className="w-48 h-32 object-cover rounded" />
-                <p className="text-sm text-gray-500 mt-1">Current image (upload new to replace)</p>
-              </div>
-            )}
-            <input
-              type="file"
-              accept="image/*"
-              onChange={(e) => setFormData({ ...formData, mainImage: e.target.files?.[0] || null })}
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-emerald-500 focus:border-emerald-500"
-            />
-            {formData.mainImage && (
-              <p className="text-sm text-emerald-600 mt-1">New image selected: {formData.mainImage.name}</p>
-            )}
           </div>
           
           <div className="mb-6">
