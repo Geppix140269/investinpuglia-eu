@@ -1,4 +1,4 @@
-// Path: components/Navbar.tsx
+﻿// Path: components/Navbar.tsx
 'use client'
 
 import { useState, useEffect } from 'react'
@@ -86,7 +86,7 @@ export default function Navbar() {
             
             {/* Services page link */}
             
-              href="/services"
+              <a href="/services"
               className="text-gray-700 hover:text-gray-900 transition-colors font-medium"
             >
               Services
@@ -94,14 +94,14 @@ export default function Navbar() {
             
             {/* Insights/Blog link */}
             
-              href="/insights"
+              <a href="/insights"
               className="text-gray-700 hover:text-gray-900 transition-colors font-medium"
             >
               Insights
             </a>
             
             
-              href="/contact"
+              <a href="/contact"
               className="text-gray-700 hover:text-gray-900 transition-colors font-medium"
             >
               Contact
@@ -111,12 +111,12 @@ export default function Navbar() {
           {/* CTA Button - Right aligned */}
           <div className="hidden md:block ml-auto">
             
-              href="https://calendly.com/investinpuglia/30min"
+              <a href="https://calendly.com/investinpuglia/30min"
               className="bg-gradient-to-r from-purple-600 to-emerald-600 text-white px-5 py-2.5 rounded-full font-semibold transition-all hover:shadow-lg hover:scale-105 transform duration-200"
               target="_blank"
               rel="noopener noreferrer"
             >
-              Book Strategy Call →
+              Book Strategy Call â†’
             </a>
           </div>
 
@@ -152,33 +152,33 @@ export default function Navbar() {
               ))}
               
               
-                href="/services"
+                <a href="/services"
                 className="text-gray-700 hover:text-gray-900 transition-colors font-medium py-2"
               >
                 Services
               </a>
               
               
-                href="/insights"
+                <a href="/insights"
                 className="text-gray-700 hover:text-gray-900 transition-colors font-medium py-2"
               >
                 Insights
               </a>
               
               
-                href="/contact"
+                <a href="/contact"
                 className="text-gray-700 hover:text-gray-900 transition-colors font-medium py-2"
               >
                 Contact
               </a>
               
               
-                href="https://calendly.com/investinpuglia/30min"
+                <a href="https://calendly.com/investinpuglia/30min"
                 className="bg-gradient-to-r from-purple-600 to-emerald-600 text-white px-5 py-3 rounded-full font-semibold text-center"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Book Strategy Call →
+                Book Strategy Call â†’
               </a>
             </div>
           </div>
@@ -187,3 +187,4 @@ export default function Navbar() {
     </nav>
   )
 }
+
