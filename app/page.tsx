@@ -7,6 +7,7 @@ import ExitIntentPopup from '@/components/ExitIntentPopup'
 // Sections
 import HeroSection from '@/components/sections/HeroSectionExec'
 import GrantInstitutions from '@/components/sections/GrantInstitutions'
+import WhyPuglia from '@/components/sections/WhyPuglia'
 import OpportunitySection from '@/components/sections/OpportunitySection'
 import HowItWorks from '@/components/sections/HowItWorks'
 import AboutGiuseppe from '@/components/sections/AboutGiuseppe'
