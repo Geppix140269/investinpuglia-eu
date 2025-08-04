@@ -1,3 +1,4 @@
+// Path: app/admin/blog/new/page.tsx
 'use client'
 
 import { useState } from 'react'
@@ -21,11 +22,13 @@ export default function NewBlogPost() {
     setIsSubmitting(true)
 
     try {
+      // Upload image if exists
       let imageAsset = null
       if (formData.mainImage) {
         imageAsset = await client.assets.upload('image', formData.mainImage)
       }
 
+      // Create the post
       const slug = slugify(formData.title, { lower: true, strict: true })
       
       const doc = {
@@ -56,7 +59,11 @@ export default function NewBlogPost() {
             _ref: imageAsset._id
           }
         } : undefined,
-        publishedAt: new Date().toISOString()
+        publishedAt: new Date().toISOString(),
+        author: {
+          _type: 'reference',
+          _ref: 'your-author-id' // Replace with actual author ID
+        }
       }
 
       await client.create(doc)
@@ -78,6 +85,7 @@ export default function NewBlogPost() {
         </div>
 
         <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow-sm p-8">
+          {/* Title */}
           <div className="mb-6">
             <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-2">
               Title
@@ -92,6 +100,7 @@ export default function NewBlogPost() {
             />
           </div>
 
+          {/* Excerpt */}
           <div className="mb-6">
             <label htmlFor="excerpt" className="block text-sm font-medium text-gray-700 mb-2">
               Excerpt (Brief summary)
@@ -108,6 +117,7 @@ export default function NewBlogPost() {
             <p className="text-xs text-gray-500 mt-1">{formData.excerpt.length}/200 characters</p>
           </div>
 
+          {/* Main Image */}
           <div className="mb-6">
             <label htmlFor="image" className="block text-sm font-medium text-gray-700 mb-2">
               Featured Image
@@ -121,21 +131,82 @@ export default function NewBlogPost() {
             />
           </div>
 
+          {/* Category */}
+          <div className="mb-6">
+            <label htmlFor="category" className="block text-sm font-medium text-gray-700 mb-2">
+              Category
+            </label>
+            <select
+              id="category"
+              value={formData.category}
+              onChange={(e) => setFormData({ ...formData, category: e.target.value })}
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-emerald-500 focus:border-emerald-500"
+            >
+              <option value="investment">Investment</option>
+              <option value="grants">Grants</option>
+              <option value="tax">Tax Benefits</option>
+              <option value="real-estate">Real Estate</option>
+              <option value="lifestyle">Lifestyle</option>
+            </select>
+          </div>
+
+          {/* Content */}
           <div className="mb-6">
             <label htmlFor="content" className="block text-sm font-medium text-gray-700 mb-2">
               Content
             </label>
-            <textarea
-              id="content"
-              rows={20}
-              value={formData.content}
-              onChange={(e) => setFormData({ ...formData, content: e.target.value })}
-              className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-emerald-500 focus:border-emerald-500"
-              placeholder="Write your blog post content here..."
-              required
-            />
+            <div className="border border-gray-300 rounded-md">
+              <div className="flex items-center gap-2 p-2 border-b border-gray-300 bg-gray-50">
+                <button
+                  type="button"
+                  className="px-3 py-1 text-sm font-medium text-gray-700 hover:bg-gray-200 rounded"
+                  onClick={() => {
+                    const textarea = document.getElementById('content') as HTMLTextAreaElement
+                    const start = textarea.selectionStart
+                    const end = textarea.selectionEnd
+                    const text = formData.content
+                    const newText = text.substring(0, start) + '**' + text.substring(start, end) + '**' + text.substring(end)
+                    setFormData({ ...formData, content: newText })
+                  }}
+                >
+                  <strong>B</strong>
+                </button>
+                <button
+                  type="button"
+                  className="px-3 py-1 text-sm font-medium text-gray-700 hover:bg-gray-200 rounded italic"
+                  onClick={() => {
+                    const textarea = document.getElementById('content') as HTMLTextAreaElement
+                    const start = textarea.selectionStart
+                    const end = textarea.selectionEnd
+                    const text = formData.content
+                    const newText = text.substring(0, start) + '*' + text.substring(start, end) + '*' + text.substring(end)
+                    setFormData({ ...formData, content: newText })
+                  }}
+                >
+                  I
+                </button>
+                <span className="text-xs text-gray-500 ml-auto">Markdown supported</span>
+              </div>
+              <textarea
+                id="content"
+                rows={20}
+                value={formData.content}
+                onChange={(e) => setFormData({ ...formData, content: e.target.value })}
+                className="w-full px-4 py-3 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                placeholder="Write your blog post content here...
+
+You can use Markdown:
+- **Bold text**
+- *Italic text*
+- # Headings
+- [Links](https://example.com)
+- Lists and more..."
+                required
+              />
+            </div>
           </div>
 
+          {/* Submit Buttons */}
           <div className="flex items-center justify-between">
             <button
               type="button"

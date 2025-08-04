@@ -1,5 +1,6 @@
+// Path: sanity-studio/sanity.config.ts
 import {defineConfig} from 'sanity'
-import {deskTool} from 'sanity/desk'
+import {deskTool} from 'sanity/structure'
 import {visionTool} from '@sanity/vision'
 import {schemaTypes} from './schemaTypes'
 import {markdownSchema} from 'sanity-plugin-markdown'
@@ -20,6 +21,7 @@ export default defineConfig({
           .items([
             S.listItem()
               .title('Blog Posts')
+              .icon(() => '📝')
               .child(
                 S.documentTypeList('post')
                   .title('Blog Posts')
@@ -28,18 +30,16 @@ export default defineConfig({
             S.divider(),
             S.listItem()
               .title('Authors')
+              .icon(() => '👤')
               .child(S.documentTypeList('author').title('Authors')),
             S.listItem()
               .title('Categories')
+              .icon(() => '🏷️')
               .child(S.documentTypeList('category').title('Categories')),
-            S.divider(),
-            S.listItem()
-              .title('Media Library')
-              .child(S.documentTypeList('sanity.imageAsset').title('Images')),
           ])
     }),
     visionTool(),
-    markdownSchema(),
+    markdownSchema() // Add markdown support,
     media()
   ],
 
@@ -47,3 +47,7 @@ export default defineConfig({
     types: schemaTypes,
   },
 })
+
+
+
+
