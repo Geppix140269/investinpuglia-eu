@@ -1,4 +1,3 @@
-// Path: app/insights/page.tsx
 import { client } from '@/sanity/lib/client'
 import Link from 'next/link'
 import { urlFor } from '@/sanity/lib/image'
@@ -24,13 +23,11 @@ async function getPosts() {
 export default async function InsightsPage() {
   const posts = await getPosts()
   
-  // Separate featured post (most recent) from others
   const featuredPost = posts[0]
   const otherPosts = posts.slice(1)
 
   return (
     <main className="pt-20 min-h-screen bg-gradient-to-b from-gray-50 to-white">
-      {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-gray-900 to-gray-800 text-white py-24">
         <div className="absolute inset-0 bg-black opacity-20"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -45,7 +42,6 @@ export default async function InsightsPage() {
 
       <section className="py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          {/* Featured Post */}
           {featuredPost && (
             <div className="mb-16">
               <h2 className="text-2xl font-light text-gray-900 mb-8 flex items-center">
@@ -109,7 +105,6 @@ export default async function InsightsPage() {
             </div>
           )}
 
-          {/* Other Posts Grid */}
           {otherPosts.length > 0 && (
             <>
               <h2 className="text-2xl font-light text-gray-900 mb-8 flex items-center">
@@ -117,7 +112,7 @@ export default async function InsightsPage() {
                 Latest Articles
               </h2>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {otherPosts.map((post: any, index: number) => (
+                {otherPosts.map((post: any) => (
                   <article 
                     key={post._id} 
                     className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 group"
@@ -188,7 +183,6 @@ export default async function InsightsPage() {
             </div>
           )}
 
-          {/* Newsletter CTA */}
           <div className="mt-20 bg-gradient-to-r from-emerald-600 to-emerald-700 rounded-2xl p-8 md:p-12 text-white text-center">
             <h3 className="text-3xl font-light mb-4">Stay Updated on Investment Opportunities</h3>
             <p className="text-emerald-100 mb-8 max-w-2xl mx-auto">
