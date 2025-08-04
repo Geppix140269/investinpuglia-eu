@@ -173,10 +173,10 @@ export default function WhyPugliaSection() {
             are appreciating rapidly. Smart money is moving fast.
           </p>
           <button 
-            onClick={() => window.location.href = 'https://buy.stripe.com/test_14A00l87i6NLaCC3M90x202'}
+            onClick={() => window.location.href = 'https://calendly.com/investinpuglia/30min'}
             className="group px-10 py-5 bg-gradient-to-r from-purple-600 to-emerald-600 text-white font-semibold text-lg rounded-full hover:shadow-2xl transition-all inline-flex items-center gap-3"
           >
-            Get Your Market Analysis
+            Book a Strategy Call
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </button>
         </div>
