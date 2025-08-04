@@ -16,19 +16,21 @@ export default function HeroSection() {
           <p className="text-center text-sm font-semibold text-gray-600 uppercase tracking-wider mb-4">
             Trusted by Leading Organizations
           </p>
-          <div className="flex justify-center items-center gap-12">
+          <div className="flex flex-col sm:flex-row justify-center items-center gap-6 sm:gap-12">
             <a 
               href="https://capitalimprese.it" 
               target="_blank" 
               rel="noopener noreferrer" 
               className="group"
             >
-              <div className="bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-all hover:scale-105">
-                <img 
-                  src="/CAPITALIMPRESE-min.png" 
-                  alt="CapitalImprese" 
-                  className="h-16 w-auto object-contain mb-3" 
-                />
+              <div className="bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-all hover:scale-105 w-[200px] h-[180px] flex flex-col items-center justify-center">
+                <div className="h-16 flex items-center justify-center mb-3">
+                  <img 
+                    src="/CAPITALIMPRESE-min.png" 
+                    alt="CapitalImprese" 
+                    className="max-h-16 w-auto object-contain" 
+                  />
+                </div>
                 <div className="text-center">
                   <p className="font-semibold text-gray-900">CapitalImprese</p>
                   <p className="text-xs text-gray-600">International Relations Department</p>
@@ -43,12 +45,14 @@ export default function HeroSection() {
               rel="noopener noreferrer" 
               className="group"
             >
-              <div className="bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-all hover:scale-105">
-                <img 
-                  src="/ITC-min.png" 
-                  alt="International Trade Council" 
-                  className="h-16 w-auto object-contain mb-3" 
-                />
+              <div className="bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-all hover:scale-105 w-[200px] h-[180px] flex flex-col items-center justify-center">
+                <div className="h-16 flex items-center justify-center mb-3">
+                  <img 
+                    src="/ITC-min.png" 
+                    alt="International Trade Council" 
+                    className="max-h-16 w-auto object-contain" 
+                  />
+                </div>
                 <div className="text-center">
                   <p className="font-semibold text-gray-900">ITC Member</p>
                   <p className="text-xs text-gray-600">International Trade Council</p>
