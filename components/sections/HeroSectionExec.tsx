@@ -11,24 +11,67 @@ export default function HeroSection() {
 
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-5 pt-20 sm:pt-24 md:pt-28 text-center">
-        {/* Logo placeholders */}
-        <div className="flex justify-center gap-8 mb-8">
-          <a href="https://capitalimprese.it" target="_blank" rel="noopener noreferrer" className="bg-white/80 backdrop-blur-sm rounded-lg shadow-md px-6 py-3 hover:shadow-xl transition-shadow">
-            <img src="/CAPITALIMPRESE-min.png" alt="CapitalImprese" className="h-10 object-contain" />
-            {/* Placeholder if logo missing */}
-            <div className="text-xs text-gray-500 mt-1">[CapitalImprese Logo]</div>
-          </a>
-          <a href="https://tradecouncil.org" target="_blank" rel="noopener noreferrer" className="bg-white/80 backdrop-blur-sm rounded-lg shadow-md px-6 py-3 hover:shadow-xl transition-shadow">
-            <img src="/ITC-min.png" alt="International Trade Council Member" className="h-10 object-contain" />
-            {/* Placeholder if logo missing */}
-            <div className="text-xs text-gray-500 mt-1">[ITC Member Logo]</div>
-          </a>
+        {/* Professional Affiliations - Clear & Prominent */}
+        <div className="mb-12">
+          <p className="text-center text-sm font-semibold text-gray-600 uppercase tracking-wider mb-4">
+            Trusted by Leading Organizations
+          </p>
+          <div className="flex justify-center items-center gap-12">
+            <a 
+              href="https://capitalimprese.it" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="group"
+            >
+              <div className="bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-all hover:scale-105">
+                <img 
+                  src="/CAPITALIMPRESE-min.png" 
+                  alt="CapitalImprese" 
+                  className="h-16 w-auto object-contain mb-3" 
+                />
+                <div className="text-center">
+                  <p className="font-semibold text-gray-900">CapitalImprese</p>
+                  <p className="text-xs text-gray-600">International Relations Department</p>
+                  <p className="text-xs text-purple-600 font-medium">70,000 Members</p>
+                </div>
+              </div>
+            </a>
+            
+            <a 
+              href="https://tradecouncil.org" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="group"
+            >
+              <div className="bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-all hover:scale-105">
+                <img 
+                  src="/ITC-min.png" 
+                  alt="International Trade Council" 
+                  className="h-16 w-auto object-contain mb-3" 
+                />
+                <div className="text-center">
+                  <p className="font-semibold text-gray-900">ITC Member</p>
+                  <p className="text-xs text-gray-600">International Trade Council</p>
+                  <p className="text-xs text-emerald-600 font-medium">Global Network</p>
+                </div>
+              </div>
+            </a>
+          </div>
         </div>
 
         {/* Premium badge with credentials */}
         <div className="inline-flex items-center gap-3 bg-gradient-to-r from-purple-600 to-emerald-600 text-white px-6 py-2.5 rounded-full text-sm font-semibold mb-8 shadow-xl">
           <Award size={20} />
           <span>30 YEARS C-LEVEL EXPERIENCE • €200M+ MANAGED</span>
+        </div>
+
+        {/* Professional Photo */}
+        <div className="mb-8">
+          <img 
+            src="/Giuseppe Funaro 062025.png" 
+            alt="Giuseppe Funaro"
+            className="w-40 h-48 rounded-2xl object-cover shadow-xl mx-auto"
+          />
         </div>
 
         {/* Main Title - Professional */}
@@ -46,7 +89,7 @@ export default function HeroSection() {
         <div className="flex flex-wrap justify-center gap-3 sm:gap-4 text-gray-700 mb-10 text-sm sm:text-base">
           <span className="bg-white/80 backdrop-blur-sm px-4 sm:px-5 py-2 sm:py-2.5 rounded-full border border-purple-200 shadow-lg hover:shadow-xl transition-shadow">
             <Building2 size={16} className="inline mr-2 text-purple-600" />
-            Head of International • CapitalImprese
+            International Relations Dept. • CapitalImprese
           </span>
           <span className="bg-white/80 backdrop-blur-sm px-4 sm:px-5 py-2 sm:py-2.5 rounded-full border border-emerald-200 shadow-lg hover:shadow-xl transition-shadow">
             <Globe2 size={16} className="inline mr-2 text-emerald-600" />
@@ -67,14 +110,14 @@ export default function HeroSection() {
         {/* CTA Buttons - More prominent */}
         <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 justify-center mb-16 px-4 sm:px-0">
           <button 
-            onClick={() => window.location.href = 'https://buy.stripe.com/test_14A00l87i6NLaCC3M90x202'}
+            onClick={() => window.location.href = 'https://calendly.com/investinpuglia/30min'}
             className="group bg-gradient-to-r from-purple-600 to-emerald-600 text-white px-8 sm:px-10 py-4 sm:py-5 rounded-full font-semibold hover:shadow-2xl transition-all text-lg hover:scale-105 w-full sm:w-auto inline-flex items-center justify-center gap-3"
           >
             Book Executive Consultation
             <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
           </button>
           <button
-            onClick={() => window.location.href = '/calculator'}
+            onClick={() => window.location.href = 'https://classic.investinpuglia.eu'}
             className="bg-white/80 backdrop-blur-sm text-gray-900 border-2 border-gray-200 px-8 sm:px-10 py-4 sm:py-5 rounded-full font-semibold hover:shadow-xl hover:border-purple-300 transition-all text-lg hover:scale-105 w-full sm:w-auto text-center"
           >
             Calculate Your Grant →
