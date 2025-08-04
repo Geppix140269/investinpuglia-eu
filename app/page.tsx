@@ -1,4 +1,5 @@
 // app/page.tsx
+// app/page.tsx
 'use client'
 
 // Components
@@ -26,6 +27,7 @@ export default function HomePage() {
 
       <HeroSection />
       <GrantInstitutions />
+      <WhyPuglia />
       <OpportunitySection />
       <HowItWorks />
       <AboutGiuseppe />
