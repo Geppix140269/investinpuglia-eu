@@ -1,6 +1,6 @@
 // Path: sanity-studio/sanity.config.ts
 import {defineConfig} from 'sanity'
-import {deskTool} from 'sanity/structure'
+import {deskTool} from 'sanity/desk'
 import {visionTool} from '@sanity/vision'
 import {schemaTypes} from './schemaTypes'
 import {markdownSchema} from 'sanity-plugin-markdown'
@@ -47,6 +47,7 @@ export default defineConfig({
     types: schemaTypes,
   },
 })
+
 
 
 
