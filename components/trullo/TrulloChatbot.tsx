@@ -70,84 +70,6 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // Initialize session and visitor tracking when chat opens
-  useEffect(() => {
-    if (isOpen && !sessionId) {
-      const newSessionId = `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
-      
-      // Get visitor info from browser
-      const getVisitorInfo = async () => {
-        try {
-          // Get IP and location info
-          const response = await fetch('https://ipapi.co/json/');
-          const data = await response.json();
-          
-          // Store in sessionStorage for telegram updates
-          sessionStorage.setItem('userIP', data.ip || 'Unknown');
-          sessionStorage.setItem('userCity', data.city || 'Unknown');
-          sessionStorage.setItem('userCountry', data.country_name || 'Unknown');
-          
-          // Check if IP is blocked (optional - you can comment this out if not using blocking)
-          if (isIPBlocked && isIPBlocked(data.ip)) {
-            setIsBlocked(true);
-            // Log blocked attempt
-            await fetch('/api/trullo-telegram', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({
-                type: 'bot_detected',
-                data: {
-                  ip: data.ip,
-                  city: data.city || 'Unknown',
-                  country: data.country_name || 'Unknown',
-                  score: 10,
-                  reasons: ['IP is on blocklist', 'Access denied']
-                }
-              })
-            });
-            return;
-          }
-          
-          // Send new session notification to Telegram
-          await fetch('/api/trullo-telegram', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              type: 'new_session',
-              data: {
-                sessionId: newSessionId,
-                ip: data.ip,
-                city: data.city,
-                region: data.region,
-                country: data.country_name,
-                countryCode: data.country,
-                timezone: data.timezone,
-                device: /Mobile|Android|iPhone/i.test(navigator.userAgent) ? 'Mobile' : 'Desktop',
-                browser: getBrowserName(),
-                screenResolution: `${window.screen.width}x${window.screen.height}`,
-                viewport: `${window.innerWidth}x${window.innerHeight}`,
-                chatLanguage: currentLang,
-                language: navigator.language,
-                currentPage: window.location.pathname,
-                referrer: document.referrer || 'Direct',
-                started_at: new Date().toISOString(),
-                userAgent: navigator.userAgent
-              }
-            })
-          });
-        } catch (error) {
-          console.error('Failed to get visitor info:', error);
-          // Store unknown values if API fails
-          sessionStorage.setItem('userIP', 'Unknown');
-          sessionStorage.setItem('userCity', 'Unknown');
-          sessionStorage.setItem('userCountry', 'Unknown');
-        }
-      };
-      
-      getVisitorInfo();
-    }
-  }, [isOpen, sessionId, currentLang]);
-
   // Handle swipe to close on mobile - FIXED VERSION
   useEffect(() => {
     if (!isMobile || !isOpen || !chatRef.current) return;
@@ -235,6 +157,84 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
   } = useChat(isOpen, currentLang);
 
   const t = translations[currentLang];
+
+  // Initialize session and visitor tracking when chat opens
+  useEffect(() => {
+    if (isOpen && !sessionId) {
+      const newSessionId = `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+      
+      // Get visitor info from browser
+      const getVisitorInfo = async () => {
+        try {
+          // Get IP and location info
+          const response = await fetch('https://ipapi.co/json/');
+          const data = await response.json();
+          
+          // Store in sessionStorage for telegram updates
+          sessionStorage.setItem('userIP', data.ip || 'Unknown');
+          sessionStorage.setItem('userCity', data.city || 'Unknown');
+          sessionStorage.setItem('userCountry', data.country_name || 'Unknown');
+          
+          // Check if IP is blocked (optional - you can comment this out if not using blocking)
+          if (isIPBlocked && isIPBlocked(data.ip)) {
+            setIsBlocked(true);
+            // Log blocked attempt
+            await fetch('/api/trullo-telegram', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                type: 'bot_detected',
+                data: {
+                  ip: data.ip,
+                  city: data.city || 'Unknown',
+                  country: data.country_name || 'Unknown',
+                  score: 10,
+                  reasons: ['IP is on blocklist', 'Access denied']
+                }
+              })
+            });
+            return;
+          }
+          
+          // Send new session notification to Telegram
+          await fetch('/api/trullo-telegram', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              type: 'new_session',
+              data: {
+                sessionId: newSessionId,
+                ip: data.ip,
+                city: data.city,
+                region: data.region,
+                country: data.country_name,
+                countryCode: data.country,
+                timezone: data.timezone,
+                device: /Mobile|Android|iPhone/i.test(navigator.userAgent) ? 'Mobile' : 'Desktop',
+                browser: getBrowserName(),
+                screenResolution: `${window.screen.width}x${window.screen.height}`,
+                viewport: `${window.innerWidth}x${window.innerHeight}`,
+                chatLanguage: currentLang,
+                language: navigator.language,
+                currentPage: window.location.pathname,
+                referrer: document.referrer || 'Direct',
+                started_at: new Date().toISOString(),
+                userAgent: navigator.userAgent
+              }
+            })
+          });
+        } catch (error) {
+          console.error('Failed to get visitor info:', error);
+          // Store unknown values if API fails
+          sessionStorage.setItem('userIP', 'Unknown');
+          sessionStorage.setItem('userCity', 'Unknown');
+          sessionStorage.setItem('userCountry', 'Unknown');
+        }
+      };
+      
+      getVisitorInfo();
+    }
+  }, [isOpen, sessionId, currentLang]);
 
   // Handle automated email sending
   useEffect(() => {
