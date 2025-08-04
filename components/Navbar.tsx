@@ -56,12 +56,13 @@ export default function Navbar() {
   return (
     <nav className="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-md z-50 border-b border-gray-200 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          {/* Logo */}
+        <div className="relative flex items-center h-16">
+          {/* Logo - Left aligned */}
           <div className="flex-shrink-0">
             <button
               onClick={() => scrollToSection('home')}
               className="flex items-center group"
+              aria-label="Go to home"
             >
               <img
                 src="/Logo_InvestInPuglia_Morph.png"
@@ -71,8 +72,8 @@ export default function Navbar() {
             </button>
           </div>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
+          {/* Desktop Navigation - Centered */}
+          <div className="hidden md:flex items-center gap-8 absolute left-1/2 transform -translate-x-1/2">
             {navLinks.map((link) => (
               <button
                 key={link.id}
@@ -91,7 +92,10 @@ export default function Navbar() {
             >
               Contact
             </a>
-            
+          </div>
+
+          {/* CTA Button - Right aligned */}
+          <div className="hidden md:block ml-auto">
             <a
               href="https://calendly.com/investinpuglia/30min"
               className="bg-gradient-to-r from-purple-600 to-emerald-600 text-white px-5 py-2.5 rounded-full font-semibold transition-all hover:shadow-lg hover:scale-105 transform duration-200"
@@ -105,7 +109,7 @@ export default function Navbar() {
           {/* Mobile menu button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors"
+            className="md:hidden ml-auto p-2 text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors"
           >
             <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               {isOpen ? (
