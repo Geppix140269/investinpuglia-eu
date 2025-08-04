@@ -47,10 +47,8 @@ export default function Navbar() {
 
   const navLinks = [
     { name: 'Home', id: 'home' },
-    { name: 'Services', id: 'services' },
     { name: 'About', id: 'advisor' },
     { name: 'How It Works', id: 'how-it-works' },
-    { name: 'FAQ', id: 'faq' },
   ]
 
   return (
@@ -86,7 +84,23 @@ export default function Navbar() {
               </button>
             ))}
             
-            <a
+            {/* Services page link */}
+            
+              href="/services"
+              className="text-gray-700 hover:text-gray-900 transition-colors font-medium"
+            >
+              Services
+            </a>
+            
+            {/* Insights/Blog link */}
+            
+              href="/insights"
+              className="text-gray-700 hover:text-gray-900 transition-colors font-medium"
+            >
+              Insights
+            </a>
+            
+            
               href="/contact"
               className="text-gray-700 hover:text-gray-900 transition-colors font-medium"
             >
@@ -96,7 +110,7 @@ export default function Navbar() {
 
           {/* CTA Button - Right aligned */}
           <div className="hidden md:block ml-auto">
-            <a
+            
               href="https://calendly.com/investinpuglia/30min"
               className="bg-gradient-to-r from-purple-600 to-emerald-600 text-white px-5 py-2.5 rounded-full font-semibold transition-all hover:shadow-lg hover:scale-105 transform duration-200"
               target="_blank"
@@ -137,14 +151,28 @@ export default function Navbar() {
                 </button>
               ))}
               
-              <a
+              
+                href="/services"
+                className="text-gray-700 hover:text-gray-900 transition-colors font-medium py-2"
+              >
+                Services
+              </a>
+              
+              
+                href="/insights"
+                className="text-gray-700 hover:text-gray-900 transition-colors font-medium py-2"
+              >
+                Insights
+              </a>
+              
+              
                 href="/contact"
                 className="text-gray-700 hover:text-gray-900 transition-colors font-medium py-2"
               >
                 Contact
               </a>
               
-              <a
+              
                 href="https://calendly.com/investinpuglia/30min"
                 className="bg-gradient-to-r from-purple-600 to-emerald-600 text-white px-5 py-3 rounded-full font-semibold text-center"
                 target="_blank"
