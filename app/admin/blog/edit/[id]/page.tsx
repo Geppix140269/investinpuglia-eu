@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { client } from '@/sanity/lib/client'
+import { writeClient } from '@/sanity/lib/writeClient'
 import { useRouter } from 'next/navigation'
 import { urlFor } from '@/sanity/lib/image'
 
@@ -63,11 +64,10 @@ export default function EditBlogPost({ params }: { params: { id: string } }) {
     setIsSubmitting(true)
     
     try {
-      // Convert content back to Sanity block format
       const paragraphs = formData.content.split('\n\n').filter(p => p.trim())
       const bodyBlocks = paragraphs.map((paragraph, index) => ({
         _type: 'block',
-        _key: `block-${Date.now()}-${index}`, // Use timestamp for unique keys
+        _key: `block-${Date.now()}-${index}`,
         style: 'normal',
         markDefs: [],
         children: [{
@@ -78,18 +78,16 @@ export default function EditBlogPost({ params }: { params: { id: string } }) {
         }]
       }))
       
-      // First update text content
-      const patchQuery = client.patch(params.id)
+      const patchQuery = writeClient.patch(params.id)
         .set({
           title: formData.title,
           excerpt: formData.excerpt,
           body: bodyBlocks
         })
       
-      // Handle image upload if new image selected
       if (formData.mainImage) {
         try {
-          const imageAsset = await client.assets.upload('image', formData.mainImage)
+          const imageAsset = await writeClient.assets.upload('image', formData.mainImage)
           patchQuery.set({
             mainImage: {
               _type: 'image',
@@ -101,7 +99,6 @@ export default function EditBlogPost({ params }: { params: { id: string } }) {
           })
         } catch (imageError) {
           console.error('Error uploading image:', imageError)
-          // Continue with text update even if image fails
         }
       }
       
@@ -111,7 +108,6 @@ export default function EditBlogPost({ params }: { params: { id: string } }) {
       router.push('/admin/blog')
     } catch (error: any) {
       console.error('Error updating post:', error)
-      // Show more specific error message
       const errorMessage = error.message || 'Unknown error occurred'
       alert(`Error updating post: ${errorMessage}\n\nPlease check the console for details.`)
     } finally {

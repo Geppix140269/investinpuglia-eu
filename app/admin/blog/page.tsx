@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { client } from '@/sanity/lib/client'
+import { writeClient } from '@/sanity/lib/writeClient'
 import Link from 'next/link'
 import { urlFor } from '@/sanity/lib/image'
 
@@ -48,7 +49,7 @@ export default function AdminBlogList() {
   const handleDelete = async (id: string, title: string) => {
     if (confirm(`Are you sure you want to delete "${title}"?`)) {
       try {
-        await client.delete(id)
+        await writeClient.delete(id)
         setPosts(posts.filter(post => post._id !== id))
         alert('Post deleted successfully')
       } catch (error) {

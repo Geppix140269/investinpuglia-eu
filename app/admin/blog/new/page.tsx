@@ -3,6 +3,7 @@
 
 import { useState } from 'react'
 import { client } from '@/sanity/lib/client'
+import { writeClient } from '@/sanity/lib/writeClient'
 import { useRouter } from 'next/navigation'
 import slugify from 'slugify'
 
@@ -25,7 +26,7 @@ export default function NewBlogPost() {
       // Upload image if exists
       let imageAsset = null
       if (formData.mainImage) {
-        imageAsset = await client.assets.upload('image', formData.mainImage)
+        imageAsset = await writeClient.assets.upload('image', formData.mainImage)
       }
 
       // Create the post
@@ -66,7 +67,7 @@ export default function NewBlogPost() {
         }
       }
 
-      await client.create(doc)
+      await writeClient.create(doc)
       router.push('/admin/blog')
     } catch (error) {
       console.error('Error creating post:', error)
