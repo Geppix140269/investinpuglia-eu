@@ -33,7 +33,7 @@ export async function POST(req: NextRequest) {
     const caption = formData.get('caption') as string
     const file = formData.get('mainImage') as File | null
 
-    let mainImageRef = null
+    let mainImageRef: any = null
 
     if (file && typeof file === 'object') {
       const arrayBuffer = await file.arrayBuffer()
