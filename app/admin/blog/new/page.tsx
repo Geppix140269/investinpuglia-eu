@@ -24,7 +24,7 @@ export default function NewBlogPost() {
 
     try {
       // Upload image if exists
-      let imageAsset = null
+      let imageAsset: any = null
       if (formData.mainImage) {
         imageAsset = await writeClient.assets.upload('image', formData.mainImage)
       }
