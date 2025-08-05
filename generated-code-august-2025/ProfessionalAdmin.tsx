@@ -3,7 +3,7 @@ import { Save, Plus, Edit, Trash2, Search, CheckCircle, XCircle } from 'lucide-r
 
 const ProfessionalAdmin = () => {
   const [professionals, setProfessionals] = useState([]);
-  const [editingProfessional, setEditingProfessional] = useState(null);
+  const [editingProfessional, setEditingProfessional] = useState<any>(null);
   const [isAddingNew, setIsAddingNew] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [loading, setLoading] = useState(false);
