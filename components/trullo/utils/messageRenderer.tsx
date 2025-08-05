@@ -1,56 +1,59 @@
-﻿import React from 'react';
+﻿import React from "react";
+
+interface LinkPart {
+  type: "text" | "link";
+  content: string;
+  url?: string;
+}
 
 export function renderMessageWithLinks(content: string): React.ReactNode {
-  // Simple markdown link pattern: [text](url)
   const linkPattern = /\[([^\]]+)\]\(([^)]+)\)/g;
+  const parts: LinkPart[] = [];
   let lastIndex = 0;
-  const elements: React.ReactNode[] = [];
   let match;
-  let keyIndex = 0;
 
   while ((match = linkPattern.exec(content)) !== null) {
-    // Add text before the link
     if (match.index > lastIndex) {
-      elements.push(
-        <span key={`text-${keyIndex++}`}>
-          {content.substring(lastIndex, match.index)}
-        </span>
-      );
+      parts.push({
+        type: "text",
+        content: content.substring(lastIndex, match.index)
+      });
     }
-
-    // Add the link
-    const linkText = match[1];
-    const linkUrl = match[2];
-    const isExternal = linkUrl.startsWith('http');
-    
-    elements.push(
-      
-        key={`link-${keyIndex++}`}
-        href={linkUrl}
-        target={isExternal ? '_blank' : '_self'}
-        rel={isExternal ? 'noopener noreferrer' : undefined}
-        className="text-purple-600 hover:text-purple-800 underline font-medium"
-      >
-        {linkText}
-      </a>
-    );
-
+    parts.push({
+      type: "link",
+      content: match[1],
+      url: match[2]
+    });
     lastIndex = match.index + match[0].length;
   }
 
-  // Add any remaining text
   if (lastIndex < content.length) {
-    elements.push(
-      <span key={`text-${keyIndex++}`}>
-        {content.substring(lastIndex)}
-      </span>
-    );
+    parts.push({
+      type: "text",
+      content: content.substring(lastIndex)
+    });
   }
 
-  // If no links were found, return the original content
-  if (elements.length === 0) {
-    return <span>{content}</span>;
-  }
-
-  return <>{elements}</>;
+  return (
+    <>
+      {parts.map((part, index) => {
+        if (part.type === "text") {
+          return <span key={index}>{part.content}</span>;
+        } else {
+          const isExternal = part.url?.startsWith("http") || false;
+          return (
+            
+              key={index}
+              href={part.url}
+              target={isExternal ? "_blank" : "_self"}
+              rel={isExternal ? "noopener noreferrer" : undefined}
+              className="text-purple-600 hover:text-purple-800 underline font-medium"
+            >
+              {part.content}
+            </a>
+          );
+        }
+      })}
+    </>
+  );
 }
