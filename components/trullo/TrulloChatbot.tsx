@@ -37,7 +37,7 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
       const hasUserClosed = localStorage.getItem('trullo-user-closed') === 'true';
       const savedState = localStorage.getItem('trullo-chat-state');
 
-      if (!hasUserClosed) {
+      if (!hasUserClosed && window.location.pathname === '/') {
         // Auto-open after 3 seconds if user hasn't manually closed before
         setTimeout(() => {
           setIsOpen(true);
@@ -624,4 +624,5 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
     </>
   );
 }
+
 
