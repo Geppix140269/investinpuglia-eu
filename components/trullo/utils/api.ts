@@ -34,17 +34,16 @@ export async function endConversation(conversationId: string) {
 }
 
 export async function logMessage(conversationId: string, role: string, message: any) {
-  console.log('Logging message:', message);
+  console.log('Logging message:', { conversationId, role, message });
   return { success: true };
 }
 
 export async function sendChatMessage(messages: any[], systemPrompt: string, language: string) {
-  console.log('Sending chat message:', message);
+  console.log('Sending chat message:', { messages, systemPrompt, language });
+  // Return the structure that useChat.ts expects
   return { 
     success: true, 
+    message: "I understand you're interested in investing in Puglia. How can I help you today?",
     response: "I understand you're interested in investing in Puglia. How can I help you today?"
   };
 }
-
-
-
