@@ -24,7 +24,7 @@ export async function initializeChat() {
   return { sessionId: 'temp-session-' + Date.now() };
 }
 
-export async function startConversation() {
+export async function startConversation(sessionId?: string, language?: string) {
   return { conversationId: 'conv-' + Date.now() };
 }
 
