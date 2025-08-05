@@ -419,7 +419,7 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
                     className="w-full h-full object-contain"
                     onError={(e) => {
                       e.currentTarget.style.display = 'none';
-                      e.currentTarget.parentElement!.innerHTML = 'ðŸ¤–';
+                      e.currentTarget.parentElement!.innerHTML = '🤖';
                     }}
                   />
                 </div>
@@ -429,7 +429,7 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
                     {t.subtitle}
                     {authState.isGiuseppe && (
                       <span className="block text-xs text-yellow-300 mt-1">
-                        ðŸ‘‘ Boss Mode Active
+                        👑 Boss Mode Active
                       </span>
                     )}
                   </p>
@@ -463,13 +463,13 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
                     className="bg-gray-700 text-white border border-gray-600 rounded px-2 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-white/50 hover:bg-gray-600 cursor-pointer"
                     style={{ backgroundColor: '#374151', color: 'white' }}
                   >
-                    <option value="en" style={{ backgroundColor: '#374151', color: 'white' }}>ðŸ‡¬ðŸ‡§ EN</option>
-                    <option value="it" style={{ backgroundColor: '#374151', color: 'white' }}>ðŸ‡®ðŸ‡¹ IT</option>
-                    <option value="es" style={{ backgroundColor: '#374151', color: 'white' }}>ðŸ‡ªðŸ‡¸ ES</option>
-                    <option value="fr" style={{ backgroundColor: '#374151', color: 'white' }}>ðŸ‡«ðŸ‡· FR</option>
-                    <option value="de" style={{ backgroundColor: '#374151', color: 'white' }}>ðŸ‡©ðŸ‡ª DE</option>
-                    <option value="ar" style={{ backgroundColor: '#374151', color: 'white' }}>ðŸ‡¸ðŸ‡¦ AR</option>
-                    <option value="zh" style={{ backgroundColor: '#374151', color: 'white' }}>ðŸ‡¨ðŸ‡³ ZH</option>
+                    <option value="en" style={{ backgroundColor: '#374151', color: 'white' }}>🇬🇧 EN</option>
+                    <option value="it" style={{ backgroundColor: '#374151', color: 'white' }}>🇮🇹 IT</option>
+                    <option value="es" style={{ backgroundColor: '#374151', color: 'white' }}>🇪🇸 ES</option>
+                    <option value="fr" style={{ backgroundColor: '#374151', color: 'white' }}>🇫🇷 FR</option>
+                    <option value="de" style={{ backgroundColor: '#374151', color: 'white' }}>🇩🇪 DE</option>
+                    <option value="ar" style={{ backgroundColor: '#374151', color: 'white' }}>🇸🇦 AR</option>
+                    <option value="zh" style={{ backgroundColor: '#374151', color: 'white' }}>🇨🇳 ZH</option>
                   </select>
                 )}
               </div>
@@ -484,13 +484,13 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
                   className="w-full bg-gray-700 text-white border border-gray-600 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-white/50"
                   style={{ backgroundColor: '#374151', color: 'white' }}
                 >
-                  <option value="en" style={{ backgroundColor: '#374151', color: 'white' }}>ðŸ‡¬ðŸ‡§ English</option>
-                  <option value="it" style={{ backgroundColor: '#374151', color: 'white' }}>ðŸ‡®ðŸ‡¹ Italiano</option>
-                  <option value="es" style={{ backgroundColor: '#374151', color: 'white' }}>ðŸ‡ªðŸ‡¸ EspaÃ±ol</option>
-                  <option value="fr" style={{ backgroundColor: '#374151', color: 'white' }}>ðŸ‡«ðŸ‡· FranÃ§ais</option>
-                  <option value="de" style={{ backgroundColor: '#374151', color: 'white' }}>ðŸ‡©ðŸ‡ª Deutsch</option>
-                  <option value="ar" style={{ backgroundColor: '#374151', color: 'white' }}>ðŸ‡¸ðŸ‡¦ Ø§Ù„Ø¹Ø±Ø¨ÙŠØ©</option>
-                  <option value="zh" style={{ backgroundColor: '#374151', color: 'white' }}>ðŸ‡¨ðŸ‡³ ä¸­æ–‡</option>
+                  <option value="en" style={{ backgroundColor: '#374151', color: 'white' }}>🇬🇧 English</option>
+                  <option value="it" style={{ backgroundColor: '#374151', color: 'white' }}>🇮🇹 Italiano</option>
+                  <option value="es" style={{ backgroundColor: '#374151', color: 'white' }}>🇪🇸 Español</option>
+                  <option value="fr" style={{ backgroundColor: '#374151', color: 'white' }}>🇫🇷 Français</option>
+                  <option value="de" style={{ backgroundColor: '#374151', color: 'white' }}>🇩🇪 Deutsch</option>
+                  <option value="ar" style={{ backgroundColor: '#374151', color: 'white' }}>🇸🇦 العربية</option>
+                  <option value="zh" style={{ backgroundColor: '#374151', color: 'white' }}>🇨🇳 中文</option>
                 </select>
               </div>
             )}
@@ -500,7 +500,7 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
           {isBlocked ? (
             <div className="flex-1 flex items-center justify-center p-6">
               <div className="text-center">
-                <div className="text-6xl mb-4">ðŸš«</div>
+                <div className="text-6xl mb-4">🚫</div>
                 <p className="text-gray-700 text-lg">{getBlockedMessage ? getBlockedMessage(currentLang) : 'Access restricted.'}</p>
                 <p className="text-gray-500 text-sm mt-2">support@investinpuglia.eu</p>
               </div>
@@ -531,17 +531,17 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
                         className="w-20 h-20 mx-auto mb-4"
                         onError={(e) => {
                           e.currentTarget.style.display = 'none';
-                          e.currentTarget.parentElement!.innerHTML = 'ðŸ›ï¸';
+                          e.currentTarget.parentElement!.innerHTML = '🏛️';
                         }}
                       />
                       <h3 className="text-xl font-bold text-gray-800 mb-2">
                         {currentLang === 'en' ? 'Welcome to Premium Investment Advisory' : 
                          currentLang === 'it' ? 'Benvenuto nella Consulenza Premium' :
-                         currentLang === 'es' ? 'Bienvenido a la AsesorÃ­a Premium' :
+                         currentLang === 'es' ? 'Bienvenido a la Asesoría Premium' :
                          currentLang === 'fr' ? 'Bienvenue au Conseil Premium' :
                          currentLang === 'de' ? 'Willkommen bei Premium-Beratung' :
-                         currentLang === 'ar' ? 'Ù…Ø±Ø­Ø¨Ø§Ù‹ Ø¨Ùƒ ÙÙŠ Ø§Ù„Ø§Ø³ØªØ´Ø§Ø±Ø§Øª Ø§Ù„Ù…ØªÙ…ÙŠØ²Ø©' :
-                         currentLang === 'zh' ? 'æ¬¢è¿Žæ¥åˆ°é«˜çº§æŠ•èµ„å’¨è¯¢' :
+                         currentLang === 'ar' ? 'مرحباً بك في الاستشارات المتميزة' :
+                         currentLang === 'zh' ? '欢迎来到高级投资咨询' :
                          'Welcome'}
                       </h3>
                       <p className="text-gray-600 text-sm">
@@ -549,14 +549,14 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
                       </p>
                     </div>
                     
-                    {/* Google Sign In Button */}
+                    {/* Google Sign In Button - FIXED REDIRECT */}
                     <button
                       onClick={async () => {
                         try {
                           const { error } = await supabase.auth.signInWithOAuth({
                             provider: 'google',
                             options: {
-                              redirectTo: `${window.location.origin}/auth/callback`
+                              redirectTo: 'https://investinpuglia.eu/api/auth/callback'
                             }
                           });
                           if (error) throw error;
@@ -579,22 +579,22 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
                            currentLang === 'es' ? 'Continuar con Google' :
                            currentLang === 'fr' ? 'Continuer avec Google' :
                            currentLang === 'de' ? 'Mit Google fortfahren' :
-                           currentLang === 'ar' ? 'ØªØ§Ø¨Ø¹ Ù…Ø¹ Google' :
-                           currentLang === 'zh' ? 'ä½¿ç”¨Googleç»§ç»­' :
+                           currentLang === 'ar' ? 'تابع مع Google' :
+                           currentLang === 'zh' ? '使用Google继续' :
                            'Continue with Google'}
                         </span>
                       </div>
                     </button>
                     
                     <p className="text-xs text-gray-500 mt-4">
-                      {currentLang === 'en' ? 'ðŸ”’ Your data is secure and never shared' : 
-                       currentLang === 'it' ? 'ðŸ”’ I tuoi dati sono sicuri e mai condivisi' :
-                       currentLang === 'es' ? 'ðŸ”’ Tus datos estÃ¡n seguros' :
-                       currentLang === 'fr' ? 'ðŸ”’ Vos donnÃ©es sont sÃ©curisÃ©es' :
-                       currentLang === 'de' ? 'ðŸ”’ Ihre Daten sind sicher' :
-                       currentLang === 'ar' ? 'ðŸ”’ Ø¨ÙŠØ§Ù†Ø§ØªÙƒ Ø¢Ù…Ù†Ø©' :
-                       currentLang === 'zh' ? 'ðŸ”’ æ‚¨çš„æ•°æ®æ˜¯å®‰å…¨çš„' :
-                       'ðŸ”’ Secure & Private'}
+                      {currentLang === 'en' ? '🔒 Your data is secure and never shared' : 
+                       currentLang === 'it' ? '🔒 I tuoi dati sono sicuri e mai condivisi' :
+                       currentLang === 'es' ? '🔒 Tus datos están seguros' :
+                       currentLang === 'fr' ? '🔒 Vos données sont sécurisées' :
+                       currentLang === 'de' ? '🔒 Ihre Daten sind sicher' :
+                       currentLang === 'ar' ? '🔒 بياناتك آمنة' :
+                       currentLang === 'zh' ? '🔒 您的数据是安全的' :
+                       '🔒 Secure & Private'}
                     </p>
                   </div>
                 </div>
@@ -606,7 +606,7 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
                   onClick={() => setShowMessageForm(true)}
                   className="w-full px-3 py-2 text-sm bg-purple-100 text-purple-700 rounded-lg hover:bg-purple-200 transition-all flex items-center justify-center gap-2"
                 >
-                  ðŸ“ {t.leaveMessage || 'Leave a Message'}
+                  📝 {t.leaveMessage || 'Leave a Message'}
                 </button>
               </div>
 
