@@ -9,7 +9,7 @@ import ChatInput from './ChatInput';
 import ContactForm from './ContactForm';
 import { sendEmailMessage, saveContactRequest } from './utils/api';
 import { isIPBlocked, getBlockedMessage } from './utils/ipBlocker';
-import { createClient } from '@supabase/supabase-js';
+import { supabase } from '@/lib/supabase';
 
 // Initialize Supabase client
 const supabase = createClient(
