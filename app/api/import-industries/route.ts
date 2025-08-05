@@ -3128,7 +3128,7 @@ export async function GET() {
   try {
     let successCount = 0
     let errorCount = 0
-    const errors = []
+    const errors: any[] = []
 
     for (const industry of allIndustries) {
       try {
