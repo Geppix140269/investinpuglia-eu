@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { LineChart, Line, BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { Activity, Users, MessageSquare, Globe, TrendingUp, Clock } from 'lucide-react';
 
@@ -11,10 +11,10 @@ const TrulloAnalyticsDashboard = () => {
     conversionRate: 0
   });
   
-  const [hourlyData, setHourlyData] = useState([]);
-  const [languageData, setLanguageData] = useState([]);
-  const [topTopics, setTopTopics] = useState([]);
-  const [recentMessages, setRecentMessages] = useState([]);
+  const [hourlyData, setHourlyData] = useState<Array<{hour: string; messages: number}>>([]);
+  const [languageData, setLanguageData] = useState<Array<{name: string; value: number}>>([]);
+  const [topTopics, setTopTopics] = useState<Array<{topic: string; count: number}>>([]);
+  const [recentMessages, setRecentMessages] = useState<Array<{id: number; content: string; created_at: string}>>([]);
   const [loading, setLoading] = useState(true);
 
   // Fetch real-time data
