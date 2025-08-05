@@ -12,7 +12,7 @@ export function isIPBlocked(ip: string): boolean {
   return isIpBlocked(ip);
 }
 
-export function getBlockedMessage(): string {
+export function getBlockedMessage(language?: string): string {
   return "You have been temporarily blocked due to excessive requests. Please try again later.";
 }
 
@@ -43,3 +43,4 @@ export function blockIp(ip: string): void {
     BLOCKED_IPS.push(ip);
   }
 }
+
