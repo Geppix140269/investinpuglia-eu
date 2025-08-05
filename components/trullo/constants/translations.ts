@@ -1,17 +1,17 @@
-// PATH: components/trullo/constants/translations.ts
+﻿// PATH: components/trullo/constants/translations.ts
 import { Language } from '../types';
 
 export const translations: Record<Language, any> = {
   en: {
-    greeting: `To talk we need to know each other first... ha ha ha! 😊
+    greeting: `To talk we need to know each other first... ha ha ha! ðŸ˜Š
 
 Please sign in with Google to start our conversation. It only takes a second and helps me provide you with personalized investment advice.
 
 **Why sign in?**
-✅ Personalized investment guidance
-✅ Save your conversation history
-✅ Direct access to our experts
-✅ Secure and private communication
+âœ… Personalized investment guidance
+âœ… Save your conversation history
+âœ… Direct access to our experts
+âœ… Secure and private communication
 
 Click the "Sign in with Google" button below to get started!`,
     title: 'Trullo',
@@ -20,7 +20,7 @@ Click the "Sign in with Google" button below to get started!`,
     send: 'Send',
     authRequired: 'Please sign in to continue',
     error: `I'm having trouble connecting right now. Please try again in a moment, or contact us directly at info@investinpuglia.eu`,
-    poweredBy: 'Powered by AI • Expert Investment Advisory',
+    poweredBy: 'Powered by AI â€¢ Expert Investment Advisory',
     leaveMessage: 'Leave a Message',
     messageForm: {
       title: 'Leave a Message for Giuseppe',
@@ -36,15 +36,15 @@ Click the "Sign in with Google" button below to get started!`,
     }
   },
   it: {
-    greeting: `Per parlare dobbiamo prima conoscerci... ah ah ah! 😊
+    greeting: `Per parlare dobbiamo prima conoscerci... ah ah ah! ðŸ˜Š
 
 Accedi con Google per iniziare la nostra conversazione. Ci vuole solo un secondo e mi aiuta a fornirti consigli di investimento personalizzati.
 
-**Perché accedere?**
-✅ Consulenza personalizzata
-✅ Salva la cronologia delle conversazioni
-✅ Accesso diretto ai nostri esperti
-✅ Comunicazione sicura e privata
+**PerchÃ© accedere?**
+âœ… Consulenza personalizzata
+âœ… Salva la cronologia delle conversazioni
+âœ… Accesso diretto ai nostri esperti
+âœ… Comunicazione sicura e privata
 
 Clicca il pulsante "Continua con Google" qui sotto per iniziare!`,
     title: 'Trullo',
@@ -53,7 +53,7 @@ Clicca il pulsante "Continua con Google" qui sotto per iniziare!`,
     send: 'Invia',
     authRequired: 'Accedi per continuare',
     error: `Ho problemi di connessione al momento. Riprova tra poco o contattaci direttamente a info@investinpuglia.eu`,
-    poweredBy: 'Powered by AI • Consulenza Esperta per Investimenti',
+    poweredBy: 'Powered by AI â€¢ Consulenza Esperta per Investimenti',
     leaveMessage: 'Lascia un Messaggio',
     messageForm: {
       title: 'Lascia un Messaggio per Giuseppe',
@@ -64,20 +64,20 @@ Clicca il pulsante "Continua con Google" qui sotto per iniziare!`,
       send: 'Invia Messaggio',
       cancel: 'Annulla',
       sending: 'Invio...',
-      success: 'Messaggio inviato! Giuseppe risponderà entro 24 ore.',
+      success: 'Messaggio inviato! Giuseppe risponderÃ  entro 24 ore.',
       error: 'Invio fallito. Riprova.'
     }
   },
   fr: {
-    greeting: `Pour parler, nous devons d'abord nous connaître... ha ha ha! 😊
+    greeting: `Pour parler, nous devons d'abord nous connaÃ®tre... ha ha ha! ðŸ˜Š
 
-Connectez-vous avec Google pour commencer notre conversation. Cela ne prend qu'une seconde et m'aide à vous fournir des conseils d'investissement personnalisés.
+Connectez-vous avec Google pour commencer notre conversation. Cela ne prend qu'une seconde et m'aide Ã  vous fournir des conseils d'investissement personnalisÃ©s.
 
 **Pourquoi se connecter?**
-✅ Conseils personnalisés
-✅ Sauvegardez votre historique de conversation
-✅ Accès direct à nos experts
-✅ Communication sécurisée et privée
+âœ… Conseils personnalisÃ©s
+âœ… Sauvegardez votre historique de conversation
+âœ… AccÃ¨s direct Ã  nos experts
+âœ… Communication sÃ©curisÃ©e et privÃ©e
 
 Cliquez sur le bouton "Continuer avec Google" ci-dessous pour commencer!`,
     title: 'Trullo',
@@ -85,32 +85,32 @@ Cliquez sur le bouton "Continuer avec Google" ci-dessous pour commencer!`,
     placeholder: 'Questions sur les investissements dans les Pouilles...',
     send: 'Envoyer',
     authRequired: 'Veuillez vous connecter pour continuer',
-    error: `J'ai des difficultés de connexion. Veuillez réessayer ou contactez-nous à info@investinpuglia.eu`,
-    poweredBy: 'Propulsé par IA • Conseil Expert en Investissement',
+    error: `J'ai des difficultÃ©s de connexion. Veuillez rÃ©essayer ou contactez-nous Ã  info@investinpuglia.eu`,
+    poweredBy: 'PropulsÃ© par IA â€¢ Conseil Expert en Investissement',
     leaveMessage: 'Laisser un Message',
     messageForm: {
       title: 'Laisser un Message pour Giuseppe',
       name: 'Votre Nom',
       email: 'Votre Email',
-      phone: 'Téléphone (optionnel)',
+      phone: 'TÃ©lÃ©phone (optionnel)',
       message: 'Votre Message',
       send: 'Envoyer le Message',
       cancel: 'Annuler',
       sending: 'Envoi...',
-      success: 'Message envoyé! Giuseppe répondra dans les 24 heures.',
-      error: 'Échec de l\'envoi. Réessayez.'
+      success: 'Message envoyÃ©! Giuseppe rÃ©pondra dans les 24 heures.',
+      error: 'Ã‰chec de l\'envoi. RÃ©essayez.'
     }
   },
   de: {
-    greeting: `Um zu sprechen, müssen wir uns zuerst kennenlernen... ha ha ha! 😊
+    greeting: `Um zu sprechen, mÃ¼ssen wir uns zuerst kennenlernen... ha ha ha! ðŸ˜Š
 
-Melden Sie sich mit Google an, um unser Gespräch zu beginnen. Es dauert nur eine Sekunde und hilft mir, Ihnen personalisierte Anlageberatung zu bieten.
+Melden Sie sich mit Google an, um unser GesprÃ¤ch zu beginnen. Es dauert nur eine Sekunde und hilft mir, Ihnen personalisierte Anlageberatung zu bieten.
 
 **Warum anmelden?**
-✅ Personalisierte Beratung
-✅ Speichern Sie Ihren Gesprächsverlauf
-✅ Direkter Zugang zu unseren Experten
-✅ Sichere und private Kommunikation
+âœ… Personalisierte Beratung
+âœ… Speichern Sie Ihren GesprÃ¤chsverlauf
+âœ… Direkter Zugang zu unseren Experten
+âœ… Sichere und private Kommunikation
 
 Klicken Sie unten auf "Mit Google fortfahren", um zu beginnen!`,
     title: 'Trullo',
@@ -118,11 +118,11 @@ Klicken Sie unten auf "Mit Google fortfahren", um zu beginnen!`,
     placeholder: 'Fragen zu Investitionen in Apulien...',
     send: 'Senden',
     authRequired: 'Bitte anmelden um fortzufahren',
-    error: `Verbindungsprobleme. Bitte versuchen Sie es später erneut oder kontaktieren Sie uns unter info@investinpuglia.eu`,
-    poweredBy: 'KI-gestützt • Experten-Investmentberatung',
+    error: `Verbindungsprobleme. Bitte versuchen Sie es spÃ¤ter erneut oder kontaktieren Sie uns unter info@investinpuglia.eu`,
+    poweredBy: 'KI-gestÃ¼tzt â€¢ Experten-Investmentberatung',
     leaveMessage: 'Nachricht hinterlassen',
     messageForm: {
-      title: 'Nachricht für Giuseppe hinterlassen',
+      title: 'Nachricht fÃ¼r Giuseppe hinterlassen',
       name: 'Ihr Name',
       email: 'Ihre E-Mail',
       phone: 'Telefon (optional)',
@@ -135,102 +135,102 @@ Klicken Sie unten auf "Mit Google fortfahren", um zu beginnen!`,
     }
   },
   ar: {
-    greeting: `للحديث، نحتاج أن نتعرف على بعضنا البعض أولاً... ها ها ها! 😊
+    greeting: `Ù„Ù„Ø­Ø¯ÙŠØ«ØŒ Ù†Ø­ØªØ§Ø¬ Ø£Ù† Ù†ØªØ¹Ø±Ù Ø¹Ù„Ù‰ Ø¨Ø¹Ø¶Ù†Ø§ Ø§Ù„Ø¨Ø¹Ø¶ Ø£ÙˆÙ„Ø§Ù‹... Ù‡Ø§ Ù‡Ø§ Ù‡Ø§! ðŸ˜Š
 
-سجل الدخول باستخدام Google لبدء محادثتنا. يستغرق الأمر ثانية واحدة فقط ويساعدني في تقديم نصائح استثمارية مخصصة لك.
+Ø³Ø¬Ù„ Ø§Ù„Ø¯Ø®ÙˆÙ„ Ø¨Ø§Ø³ØªØ®Ø¯Ø§Ù… Google Ù„Ø¨Ø¯Ø¡ Ù…Ø­Ø§Ø¯Ø«ØªÙ†Ø§. ÙŠØ³ØªØºØ±Ù‚ Ø§Ù„Ø£Ù…Ø± Ø«Ø§Ù†ÙŠØ© ÙˆØ§Ø­Ø¯Ø© ÙÙ‚Ø· ÙˆÙŠØ³Ø§Ø¹Ø¯Ù†ÙŠ ÙÙŠ ØªÙ‚Ø¯ÙŠÙ… Ù†ØµØ§Ø¦Ø­ Ø§Ø³ØªØ«Ù…Ø§Ø±ÙŠØ© Ù…Ø®ØµØµØ© Ù„Ùƒ.
 
-**لماذا تسجيل الدخول؟**
-✅ إرشادات استثمارية مخصصة
-✅ احفظ سجل المحادثة
-✅ الوصول المباشر إلى خبرائنا
-✅ اتصال آمن وخاص
+**Ù„Ù…Ø§Ø°Ø§ ØªØ³Ø¬ÙŠÙ„ Ø§Ù„Ø¯Ø®ÙˆÙ„ØŸ**
+âœ… Ø¥Ø±Ø´Ø§Ø¯Ø§Øª Ø§Ø³ØªØ«Ù…Ø§Ø±ÙŠØ© Ù…Ø®ØµØµØ©
+âœ… Ø§Ø­ÙØ¸ Ø³Ø¬Ù„ Ø§Ù„Ù…Ø­Ø§Ø¯Ø«Ø©
+âœ… Ø§Ù„ÙˆØµÙˆÙ„ Ø§Ù„Ù…Ø¨Ø§Ø´Ø± Ø¥Ù„Ù‰ Ø®Ø¨Ø±Ø§Ø¦Ù†Ø§
+âœ… Ø§ØªØµØ§Ù„ Ø¢Ù…Ù† ÙˆØ®Ø§Øµ
 
-انقر على زر "المتابعة مع Google" أدناه للبدء!`,
-    title: 'ترولو',
-    subtitle: 'مستشارك الاستثماري المتميز',
-    placeholder: 'اسأل عن الاستثمارات في بوليا...',
-    send: 'إرسال',
-    authRequired: 'يرجى تسجيل الدخول للمتابعة',
-    error: `أواجه مشكلة في الاتصال. يرجى المحاولة مرة أخرى أو التواصل معنا على info@investinpuglia.eu`,
-    poweredBy: 'مدعوم بالذكاء الاصطناعي • استشارات استثمارية خبيرة',
-    leaveMessage: 'اترك رسالة',
+Ø§Ù†Ù‚Ø± Ø¹Ù„Ù‰ Ø²Ø± "Ø§Ù„Ù…ØªØ§Ø¨Ø¹Ø© Ù…Ø¹ Google" Ø£Ø¯Ù†Ø§Ù‡ Ù„Ù„Ø¨Ø¯Ø¡!`,
+    title: 'ØªØ±ÙˆÙ„Ùˆ',
+    subtitle: 'Ù…Ø³ØªØ´Ø§Ø±Ùƒ Ø§Ù„Ø§Ø³ØªØ«Ù…Ø§Ø±ÙŠ Ø§Ù„Ù…ØªÙ…ÙŠØ²',
+    placeholder: 'Ø§Ø³Ø£Ù„ Ø¹Ù† Ø§Ù„Ø§Ø³ØªØ«Ù…Ø§Ø±Ø§Øª ÙÙŠ Ø¨ÙˆÙ„ÙŠØ§...',
+    send: 'Ø¥Ø±Ø³Ø§Ù„',
+    authRequired: 'ÙŠØ±Ø¬Ù‰ ØªØ³Ø¬ÙŠÙ„ Ø§Ù„Ø¯Ø®ÙˆÙ„ Ù„Ù„Ù…ØªØ§Ø¨Ø¹Ø©',
+    error: `Ø£ÙˆØ§Ø¬Ù‡ Ù…Ø´ÙƒÙ„Ø© ÙÙŠ Ø§Ù„Ø§ØªØµØ§Ù„. ÙŠØ±Ø¬Ù‰ Ø§Ù„Ù…Ø­Ø§ÙˆÙ„Ø© Ù…Ø±Ø© Ø£Ø®Ø±Ù‰ Ø£Ùˆ Ø§Ù„ØªÙˆØ§ØµÙ„ Ù…Ø¹Ù†Ø§ Ø¹Ù„Ù‰ info@investinpuglia.eu`,
+    poweredBy: 'Ù…Ø¯Ø¹ÙˆÙ… Ø¨Ø§Ù„Ø°ÙƒØ§Ø¡ Ø§Ù„Ø§ØµØ·Ù†Ø§Ø¹ÙŠ â€¢ Ø§Ø³ØªØ´Ø§Ø±Ø§Øª Ø§Ø³ØªØ«Ù…Ø§Ø±ÙŠØ© Ø®Ø¨ÙŠØ±Ø©',
+    leaveMessage: 'Ø§ØªØ±Ùƒ Ø±Ø³Ø§Ù„Ø©',
     messageForm: {
-      title: 'اترك رسالة لجوزيبي',
-      name: 'اسمك',
-      email: 'بريدك الإلكتروني',
-      phone: 'الهاتف (اختياري)',
-      message: 'رسالتك',
-      send: 'إرسال الرسالة',
-      cancel: 'إلغاء',
-      sending: 'جاري الإرسال...',
-      success: 'تم إرسال الرسالة! سيرد جوزيبي خلال 24 ساعة.',
-      error: 'فشل الإرسال. حاول مرة أخرى.'
+      title: 'Ø§ØªØ±Ùƒ Ø±Ø³Ø§Ù„Ø© Ù„Ø¬ÙˆØ²ÙŠØ¨ÙŠ',
+      name: 'Ø§Ø³Ù…Ùƒ',
+      email: 'Ø¨Ø±ÙŠØ¯Ùƒ Ø§Ù„Ø¥Ù„ÙƒØªØ±ÙˆÙ†ÙŠ',
+      phone: 'Ø§Ù„Ù‡Ø§ØªÙ (Ø§Ø®ØªÙŠØ§Ø±ÙŠ)',
+      message: 'Ø±Ø³Ø§Ù„ØªÙƒ',
+      send: 'Ø¥Ø±Ø³Ø§Ù„ Ø§Ù„Ø±Ø³Ø§Ù„Ø©',
+      cancel: 'Ø¥Ù„ØºØ§Ø¡',
+      sending: 'Ø¬Ø§Ø±ÙŠ Ø§Ù„Ø¥Ø±Ø³Ø§Ù„...',
+      success: 'ØªÙ… Ø¥Ø±Ø³Ø§Ù„ Ø§Ù„Ø±Ø³Ø§Ù„Ø©! Ø³ÙŠØ±Ø¯ Ø¬ÙˆØ²ÙŠØ¨ÙŠ Ø®Ù„Ø§Ù„ 24 Ø³Ø§Ø¹Ø©.',
+      error: 'ÙØ´Ù„ Ø§Ù„Ø¥Ø±Ø³Ø§Ù„. Ø­Ø§ÙˆÙ„ Ù…Ø±Ø© Ø£Ø®Ø±Ù‰.'
     }
   },
   zh: {
-    greeting: `要交谈，我们需要先认识一下...哈哈哈！😊
+    greeting: `è¦äº¤è°ˆï¼Œæˆ‘ä»¬éœ€è¦å…ˆè®¤è¯†ä¸€ä¸‹...å“ˆå“ˆå“ˆï¼ðŸ˜Š
 
-使用Google登录开始我们的对话。只需一秒钟，就能帮助我为您提供个性化的投资建议。
+ä½¿ç”¨Googleç™»å½•å¼€å§‹æˆ‘ä»¬çš„å¯¹è¯ã€‚åªéœ€ä¸€ç§’é’Ÿï¼Œå°±èƒ½å¸®åŠ©æˆ‘ä¸ºæ‚¨æä¾›ä¸ªæ€§åŒ–çš„æŠ•èµ„å»ºè®®ã€‚
 
-**为什么要登录？**
-✅ 个性化投资指导
-✅ 保存您的对话历史
-✅ 直接联系我们的专家
-✅ 安全私密的通信
+**ä¸ºä»€ä¹ˆè¦ç™»å½•ï¼Ÿ**
+âœ… ä¸ªæ€§åŒ–æŠ•èµ„æŒ‡å¯¼
+âœ… ä¿å­˜æ‚¨çš„å¯¹è¯åŽ†å²
+âœ… ç›´æŽ¥è”ç³»æˆ‘ä»¬çš„ä¸“å®¶
+âœ… å®‰å…¨ç§å¯†çš„é€šä¿¡
 
-点击下面的"使用Google继续"按钮开始！`,
+ç‚¹å‡»ä¸‹é¢çš„"ä½¿ç”¨Googleç»§ç»­"æŒ‰é’®å¼€å§‹ï¼`,
     title: 'Trullo',
-    subtitle: '您的高级投资顾问',
-    placeholder: '询问普利亚的投资...',
-    send: '发送',
-    authRequired: '请登录以继续',
-    error: `连接出现问题。请稍后再试或直接联系我们：info@investinpuglia.eu`,
-    poweredBy: 'AI驱动 • 专家投资咨询',
-    leaveMessage: '留言',
+    subtitle: 'æ‚¨çš„é«˜çº§æŠ•èµ„é¡¾é—®',
+    placeholder: 'è¯¢é—®æ™®åˆ©äºšçš„æŠ•èµ„...',
+    send: 'å‘é€',
+    authRequired: 'è¯·ç™»å½•ä»¥ç»§ç»­',
+    error: `è¿žæŽ¥å‡ºçŽ°é—®é¢˜ã€‚è¯·ç¨åŽå†è¯•æˆ–ç›´æŽ¥è”ç³»æˆ‘ä»¬ï¼šinfo@investinpuglia.eu`,
+    poweredBy: 'AIé©±åŠ¨ â€¢ ä¸“å®¶æŠ•èµ„å’¨è¯¢',
+    leaveMessage: 'ç•™è¨€',
     messageForm: {
-      title: '给Giuseppe留言',
-      name: '您的姓名',
-      email: '您的邮箱',
-      phone: '电话（可选）',
-      message: '您的留言',
-      send: '发送留言',
-      cancel: '取消',
-      sending: '发送中...',
-      success: '留言已发送！Giuseppe将在24小时内回复。',
-      error: '发送失败。请重试。'
+      title: 'ç»™Giuseppeç•™è¨€',
+      name: 'æ‚¨çš„å§“å',
+      email: 'æ‚¨çš„é‚®ç®±',
+      phone: 'ç”µè¯ï¼ˆå¯é€‰ï¼‰',
+      message: 'æ‚¨çš„ç•™è¨€',
+      send: 'å‘é€ç•™è¨€',
+      cancel: 'å–æ¶ˆ',
+      sending: 'å‘é€ä¸­...',
+      success: 'ç•™è¨€å·²å‘é€ï¼Giuseppeå°†åœ¨24å°æ—¶å†…å›žå¤ã€‚',
+      error: 'å‘é€å¤±è´¥ã€‚è¯·é‡è¯•ã€‚'
     }
   },
   es: {
-    greeting: `Para hablar, primero necesitamos conocernos... ¡ja ja ja! 😊
+    greeting: `Para hablar, primero necesitamos conocernos... Â¡ja ja ja! ðŸ˜Š
 
-Inicia sesión con Google para comenzar nuestra conversación. Solo toma un segundo y me ayuda a brindarte asesoramiento de inversión personalizado.
+Inicia sesiÃ³n con Google para comenzar nuestra conversaciÃ³n. Solo toma un segundo y me ayuda a brindarte asesoramiento de inversiÃ³n personalizado.
 
-**¿Por qué iniciar sesión?**
-✅ Orientación de inversión personalizada
-✅ Guarda tu historial de conversación
-✅ Acceso directo a nuestros expertos
-✅ Comunicación segura y privada
+**Â¿Por quÃ© iniciar sesiÃ³n?**
+âœ… OrientaciÃ³n de inversiÃ³n personalizada
+âœ… Guarda tu historial de conversaciÃ³n
+âœ… Acceso directo a nuestros expertos
+âœ… ComunicaciÃ³n segura y privada
 
-¡Haz clic en el botón "Continuar con Google" a continuación para comenzar!`,
+Â¡Haz clic en el botÃ³n "Continuar con Google" a continuaciÃ³n para comenzar!`,
     title: 'Trullo',
-    subtitle: 'Tu Asesor de Inversión Premium',
+    subtitle: 'Tu Asesor de InversiÃ³n Premium',
     placeholder: 'Pregunta sobre inversiones en Puglia...',
     send: 'Enviar',
-    authRequired: 'Por favor inicia sesión para continuar',
-    error: `Tengo problemas de conexión en este momento. Por favor, inténtalo de nuevo o contáctanos directamente en info@investinpuglia.eu`,
-    poweredBy: 'Impulsado por IA • Asesoría Experta en Inversiones',
+    authRequired: 'Por favor inicia sesiÃ³n para continuar',
+    error: `Tengo problemas de conexiÃ³n en este momento. Por favor, intÃ©ntalo de nuevo o contÃ¡ctanos directamente en info@investinpuglia.eu`,
+    poweredBy: 'Impulsado por IA â€¢ AsesorÃ­a Experta en Inversiones',
     leaveMessage: 'Dejar un Mensaje',
     messageForm: {
       title: 'Dejar un Mensaje para Giuseppe',
       name: 'Tu Nombre',
       email: 'Tu Email',
-      phone: 'Teléfono (opcional)',
+      phone: 'TelÃ©fono (opcional)',
       message: 'Tu Mensaje',
       send: 'Enviar Mensaje',
       cancel: 'Cancelar',
       sending: 'Enviando...',
-      success: '¡Mensaje enviado! Giuseppe responderá en 24 horas.',
-      error: 'Error al enviar. Por favor, inténtalo de nuevo.'
+      success: 'Â¡Mensaje enviado! Giuseppe responderÃ¡ en 24 horas.',
+      error: 'Error al enviar. Por favor, intÃ©ntalo de nuevo.'
     }
   }
 };
