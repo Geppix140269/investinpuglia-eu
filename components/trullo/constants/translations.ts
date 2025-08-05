@@ -3,7 +3,17 @@ import { Language } from '../types';
 
 export const translations: Record<Language, any> = {
   en: {
-    greeting: `Welcome to InvestInPuglia! I'm Trullo, your gateway to successful property investment in Puglia. I can help you explore EU grants up to €2.25M, understand our investment process, and connect you with Giuseppe Funaro's exclusive network of pre-vetted professionals. How can I assist with your Puglia investment journey? 🚀`,
+    greeting: `To talk we need to know each other first... ha ha ha! 😊
+
+Please sign in with Google to start our conversation. It only takes a second and helps me provide you with personalized investment advice.
+
+**Why sign in?**
+✅ Personalized investment guidance
+✅ Save your conversation history
+✅ Direct access to our experts
+✅ Secure and private communication
+
+Click the "Sign in with Google" button below to get started!`,
     title: 'Trullo',
     subtitle: 'Your Premium Investment Advisor',
     placeholder: 'Ask about investments in Puglia...',
@@ -26,7 +36,17 @@ export const translations: Record<Language, any> = {
     }
   },
   it: {
-    greeting: `Benvenuto su InvestInPuglia! Sono Trullo, il tuo accesso agli investimenti immobiliari di successo in Puglia. Posso aiutarti a esplorare i fondi UE fino a €2,25M, comprendere il nostro processo di investimento e connetterti con la rete esclusiva di professionisti pre-selezionati di Giuseppe Funaro. Come posso assistere il tuo percorso di investimento in Puglia? 🚀`,
+    greeting: `Per parlare dobbiamo prima conoscerci... ah ah ah! 😊
+
+Accedi con Google per iniziare la nostra conversazione. Ci vuole solo un secondo e mi aiuta a fornirti consigli di investimento personalizzati.
+
+**Perché accedere?**
+✅ Consulenza personalizzata
+✅ Salva la cronologia delle conversazioni
+✅ Accesso diretto ai nostri esperti
+✅ Comunicazione sicura e privata
+
+Clicca il pulsante "Continua con Google" qui sotto per iniziare!`,
     title: 'Trullo',
     subtitle: 'Il tuo Consulente di Investimento Premium',
     placeholder: 'Chiedi sugli investimenti in Puglia...',
@@ -49,7 +69,17 @@ export const translations: Record<Language, any> = {
     }
   },
   fr: {
-    greeting: `Bienvenue sur InvestInPuglia ! Je suis Trullo, votre passerelle vers l'investissement immobilier réussi dans les Pouilles. Je peux vous aider à explorer les subventions européennes jusqu'à 2,25M€, comprendre notre processus d'investissement et vous connecter avec le réseau exclusif de professionnels présélectionnés de Giuseppe Funaro. Comment puis-je vous aider dans votre parcours d'investissement dans les Pouilles ? 🚀`,
+    greeting: `Pour parler, nous devons d'abord nous connaître... ha ha ha! 😊
+
+Connectez-vous avec Google pour commencer notre conversation. Cela ne prend qu'une seconde et m'aide à vous fournir des conseils d'investissement personnalisés.
+
+**Pourquoi se connecter?**
+✅ Conseils personnalisés
+✅ Sauvegardez votre historique de conversation
+✅ Accès direct à nos experts
+✅ Communication sécurisée et privée
+
+Cliquez sur le bouton "Continuer avec Google" ci-dessous pour commencer!`,
     title: 'Trullo',
     subtitle: 'Votre Conseiller en Investissement Premium',
     placeholder: 'Questions sur les investissements dans les Pouilles...',
@@ -72,7 +102,17 @@ export const translations: Record<Language, any> = {
     }
   },
   de: {
-    greeting: `Willkommen bei InvestInPuglia! Ich bin Trullo, Ihr Tor zu erfolgreichen Immobilieninvestitionen in Apulien. Ich kann Ihnen helfen, EU-Zuschüsse bis zu 2,25 Mio. € zu erkunden, unseren Investitionsprozess zu verstehen und Sie mit Giuseppe Funaros exklusivem Netzwerk vorgeprüfter Fachleute zu verbinden. Wie kann ich Sie auf Ihrer Investitionsreise in Apulien unterstützen? 🚀`,
+    greeting: `Um zu sprechen, müssen wir uns zuerst kennenlernen... ha ha ha! 😊
+
+Melden Sie sich mit Google an, um unser Gespräch zu beginnen. Es dauert nur eine Sekunde und hilft mir, Ihnen personalisierte Anlageberatung zu bieten.
+
+**Warum anmelden?**
+✅ Personalisierte Beratung
+✅ Speichern Sie Ihren Gesprächsverlauf
+✅ Direkter Zugang zu unseren Experten
+✅ Sichere und private Kommunikation
+
+Klicken Sie unten auf "Mit Google fortfahren", um zu beginnen!`,
     title: 'Trullo',
     subtitle: 'Ihr Premium-Investmentberater',
     placeholder: 'Fragen zu Investitionen in Apulien...',
@@ -95,7 +135,17 @@ export const translations: Record<Language, any> = {
     }
   },
   ar: {
-    greeting: `مرحباً بك في InvestInPuglia! أنا ترولو، بوابتك إلى الاستثمار العقاري الناجح في بوليا. يمكنني مساعدتك في استكشاف منح الاتحاد الأوروبي حتى 2.25 مليون يورو، وفهم عملية الاستثمار لدينا، والتواصل مع شبكة جوزيبي فونارو الحصرية من المحترفين المعتمدين مسبقاً. كيف يمكنني مساعدتك في رحلة الاستثمار في بوليا؟ 🚀`,
+    greeting: `للحديث، نحتاج أن نتعرف على بعضنا البعض أولاً... ها ها ها! 😊
+
+سجل الدخول باستخدام Google لبدء محادثتنا. يستغرق الأمر ثانية واحدة فقط ويساعدني في تقديم نصائح استثمارية مخصصة لك.
+
+**لماذا تسجيل الدخول؟**
+✅ إرشادات استثمارية مخصصة
+✅ احفظ سجل المحادثة
+✅ الوصول المباشر إلى خبرائنا
+✅ اتصال آمن وخاص
+
+انقر على زر "المتابعة مع Google" أدناه للبدء!`,
     title: 'ترولو',
     subtitle: 'مستشارك الاستثماري المتميز',
     placeholder: 'اسأل عن الاستثمارات في بوليا...',
@@ -118,7 +168,17 @@ export const translations: Record<Language, any> = {
     }
   },
   zh: {
-    greeting: `欢迎来到InvestInPuglia！我是Trullo，您通往普利亚成功房地产投资的门户。我可以帮助您探索高达225万欧元的欧盟资助，了解我们的投资流程，并将您与Giuseppe Funaro的独家预审专业人士网络联系起来。我如何协助您的普利亚投资之旅？🚀`,
+    greeting: `要交谈，我们需要先认识一下...哈哈哈！😊
+
+使用Google登录开始我们的对话。只需一秒钟，就能帮助我为您提供个性化的投资建议。
+
+**为什么要登录？**
+✅ 个性化投资指导
+✅ 保存您的对话历史
+✅ 直接联系我们的专家
+✅ 安全私密的通信
+
+点击下面的"使用Google继续"按钮开始！`,
     title: 'Trullo',
     subtitle: '您的高级投资顾问',
     placeholder: '询问普利亚的投资...',
@@ -141,7 +201,17 @@ export const translations: Record<Language, any> = {
     }
   },
   es: {
-    greeting: `¡Bienvenido a InvestInPuglia! Soy Trullo, tu puerta de entrada a la inversión inmobiliaria exitosa en Puglia. Puedo ayudarte a explorar subvenciones de la UE hasta €2.25M, entender nuestro proceso de inversión y conectarte con la red exclusiva de profesionales preseleccionados de Giuseppe Funaro. ¿Cómo puedo ayudarte en tu viaje de inversión en Puglia? 🚀`,
+    greeting: `Para hablar, primero necesitamos conocernos... ¡ja ja ja! 😊
+
+Inicia sesión con Google para comenzar nuestra conversación. Solo toma un segundo y me ayuda a brindarte asesoramiento de inversión personalizado.
+
+**¿Por qué iniciar sesión?**
+✅ Orientación de inversión personalizada
+✅ Guarda tu historial de conversación
+✅ Acceso directo a nuestros expertos
+✅ Comunicación segura y privada
+
+¡Haz clic en el botón "Continuar con Google" a continuación para comenzar!`,
     title: 'Trullo',
     subtitle: 'Tu Asesor de Inversión Premium',
     placeholder: 'Pregunta sobre inversiones en Puglia...',
