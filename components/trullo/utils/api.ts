@@ -33,7 +33,7 @@ export async function endConversation(conversationId: string) {
   return { success: true };
 }
 
-export async function logMessage(message: any) {
+export async function logMessage(conversationId: string, role: string, message: any) {
   console.log('Logging message:', message);
   return { success: true };
 }
@@ -45,3 +45,4 @@ export async function sendChatMessage(message: string) {
     response: "I understand you're interested in investing in Puglia. How can I help you today?"
   };
 }
+
