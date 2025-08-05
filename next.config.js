@@ -1,6 +1,6 @@
-/** @type {import('next').NextConfig} */
+﻿/** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Remove the output: 'export' line - this allows dynamic routes
+  output: 'export',
   images: {
     unoptimized: true
   }

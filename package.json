@@ -1,10 +1,10 @@
-{
+﻿{
     "name":  "invest-in-puglia",
     "version":  "0.1.0",
     "private":  true,
     "scripts":  {
                     "dev":  "next dev",
-                    "build":  "next build \u0026\u0026 next export",
+                    "build":  "next build",
                     "start":  "next start",
                     "lint":  "next lint"
                 },
