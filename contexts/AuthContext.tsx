@@ -35,7 +35,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         
         if (event === 'SIGNED_IN') {
           // Redirect to the page they were trying to access, or dashboard
-          const redirectTo = sessionStorage.getItem('redirectAfterLogin') || '/dashboard'
+          const redirectTo = sessionStorage.getItem('redirectAfterLogin') || '/'
           sessionStorage.removeItem('redirectAfterLogin')
           router.push(redirectTo)
         } else if (event === 'SIGNED_OUT') {
@@ -103,4 +103,5 @@ export const useAuth = () => {
   }
   return context
 }
+
 
