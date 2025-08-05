@@ -1,7 +1,8 @@
-// Path: components/Footer.tsx
+﻿// Path: components/Footer.tsx
 'use client'
 
 import { useState, useEffect } from 'react'
+import Link from 'next/link'
 import Icon from '@/lib/iconMappings'
 
 // Define the industry type
@@ -48,7 +49,7 @@ export default function Footer() {
               className="h-12 w-auto mb-4 opacity-90"
             />
             <p className="text-gray-400 mb-4">
-              EU PROPERTY GRANTS • INVESTMENT ADVISORY • PUGLIA EXPERTISE
+              EU PROPERTY GRANTS â€¢ INVESTMENT ADVISORY â€¢ PUGLIA EXPERTISE
             </p>
             <div className="flex gap-4">
               {/* Facebook */}
@@ -135,7 +136,7 @@ export default function Footer() {
             <ul className="space-y-2">
               <li>
                 <a href="/industries" className="text-gray-400 hover:text-white transition-colors font-medium">
-                  All Industries →
+                  All Industries â†’
                 </a>
               </li>
               {displayedIndustries.map((industry) => (
@@ -154,7 +155,7 @@ export default function Footer() {
                     onClick={() => setShowAllIndustries(!showAllIndustries)}
                     className="text-blue-400 hover:text-blue-300 transition-colors text-sm font-medium"
                   >
-                    {showAllIndustries ? '← Show Less' : `View All ${industries.length} Industries →`}
+                    {showAllIndustries ? 'â† Show Less' : `View All ${industries.length} Industries â†’`}
                   </button>
                 </li>
               )}
@@ -208,9 +209,9 @@ export default function Footer() {
               <h3 className="text-lg font-semibold mb-4">Legal</h3>
               <ul className="space-y-2">
                 <li>
-                  <a href="/privacy" className="text-gray-400 hover:text-white transition-colors text-sm">
+                  <Link href="/privacy" className="text-gray-400 hover:text-white transition-colors text-sm">
                     Privacy Policy
-                  </a>
+                  </Link>
                 </li>
                 <li>
                   <a href="/terms" className="text-gray-400 hover:text-white transition-colors text-sm">
@@ -418,14 +419,14 @@ export default function Footer() {
         <div className="mt-8 pt-8 border-t border-gray-800">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-400 text-sm">
-              © 2025 Invest in Puglia™. All rights reserved. | 1402 Celsius Ltd International Advisory, Consultancy and Procurement Specialists
+              Â© 2025 Invest in Pugliaâ„¢. All rights reserved. | 1402 Celsius Ltd International Advisory, Consultancy and Procurement Specialists
             </p>
             <div className="mt-4 md:mt-0 flex items-center gap-4 text-sm text-gray-400">
               <a href="tel:+393514001402" className="hover:text-white transition-colors flex items-center gap-2">
                 <Icon name="phone" size={16} />
                 +39 351 400 1402
               </a>
-              <span>•</span>
+              <span>â€¢</span>
               <a href="mailto:info@investinpuglia.eu" className="hover:text-white transition-colors flex items-center gap-2">
                 <Icon name="mail" size={16} />
                 info@investinpuglia.eu
@@ -437,3 +438,4 @@ export default function Footer() {
     </footer>
   )
 }
+
