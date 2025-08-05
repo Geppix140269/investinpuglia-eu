@@ -175,7 +175,7 @@ export function useChat(isOpen: boolean, language: Language): UseChatReturn {
         return;
       }
 
-      if (authState.awaitingPassword && isPasswordAttempt(input, authState.awaitingPassword)) {
+      if (authState.awaitingPassword && isPasswordAttempt(input, language)) {
         if (verifyGiuseppePassword(input)) {
           const successMessage: Message = {
             id: Date.now().toString(),
@@ -297,3 +297,4 @@ export function useChat(isOpen: boolean, language: Language): UseChatReturn {
     closeChat
   };
 }
+
