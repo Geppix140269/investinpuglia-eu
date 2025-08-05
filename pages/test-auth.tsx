@@ -48,7 +48,7 @@ export default function TestAuth() {
             const { error } = await supabase.auth.signInWithOAuth({
               provider: 'google',
               options: {
-                redirectTo: 'https://investinpuglia.eu/test-auth'
+                redirectTo: 'https://investinpuglia.eu/api/auth/callback'
               }
             })
             if (error) console.error('Auth error:', error)
@@ -60,3 +60,4 @@ export default function TestAuth() {
     </div>
   )
 }
+
