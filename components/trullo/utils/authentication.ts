@@ -28,7 +28,7 @@ export function checkIfClaimsToBeGiuseppe(message: string): boolean {
          lowerMessage.includes("this is giuseppe");
 }
 
-export function isPasswordAttempt(message: string): boolean {
+export function isPasswordAttempt(message: string, language?: string): boolean {
   const lowerMessage = message.toLowerCase();
   return lowerMessage.includes("password") || 
          lowerMessage.includes("pass") ||
@@ -49,3 +49,4 @@ export const authPrompts = {
   welcome: "Welcome, Giuseppe! You now have admin access.",
   unauthorized: "You need to be authenticated to perform this action."
 };
+
