@@ -18,7 +18,7 @@ const ProfessionalAdmin = () => {
     website: '',
     location: '',
     languages: [] as string[],
-    specialties: [],
+    specialties: [] as string[],
     description: '',
     verified: false,
     response_time: '< 24h'
@@ -142,7 +142,7 @@ const ProfessionalAdmin = () => {
       website: '',
       location: '',
       languages: [] as string[],
-      specialties: [],
+      specialties: [] as string[],
       description: '',
       verified: false,
       response_time: '< 24h'
@@ -160,7 +160,7 @@ const ProfessionalAdmin = () => {
     }));
   };
 
-  const addSpecialty = (specialty) => {
+  const addSpecialty = (specialty: string) => {
     if (!formData.specialties.includes(specialty)) {
       setFormData(prev => ({
         ...prev,
@@ -169,7 +169,7 @@ const ProfessionalAdmin = () => {
     }
   };
 
-  const removeSpecialty = (specialty) => {
+  const removeSpecialty = (specialty: string) => {
     setFormData(prev => ({
       ...prev,
       specialties: prev.specialties.filter(s => s !== specialty)
@@ -515,4 +515,5 @@ const ProfessionalAdmin = () => {
 };
 
 export default ProfessionalAdmin;
+
 
