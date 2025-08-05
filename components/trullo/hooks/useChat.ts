@@ -1,4 +1,4 @@
-// PATH: components/trullo/hooks/useChat.ts
+﻿// PATH: components/trullo/hooks/useChat.ts
 import { detectProfessionalInterest, logProfessionalInterest, generateProfessionalFollowUp } from '@/lib/professionalDetector';
 import { useState, useEffect, useCallback } from 'react';
 import { Message, Language, AuthState } from '../types';
@@ -7,6 +7,7 @@ import { authMessages } from '../constants/authMessages';
 import { authPrompts, checkIfClaimsToBeGiuseppe, verifyGiuseppePassword, getWrongPasswordResponse, isPasswordAttempt } from '../utils/authentication';
 import { sendChatMessage, startConversation, logMessage, endConversation } from '../utils/api';
 import { createClient } from '@supabase/supabase-js';
+import { supabase } from '@/lib/supabase';
 import { trulloKnowledge } from '../knowledge'; // NEW IMPORT
 
 // Extend Window interface for our temporary state
@@ -23,10 +24,7 @@ declare global {
 }
 
 // Initialize Supabase client
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-);
+
 
 interface UseChatReturn {
   messages: Message[];
@@ -75,13 +73,13 @@ export function useChat(isOpen: boolean, language: Language): UseChatReturn {
   // Check authentication status on mount
   useEffect(() => {
     const checkAuth = async () => {
-      const { data: { user } } = await supabase.auth.getUser();
-      if (user) {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (session?.user) {
         setAuthState(prev => ({
           ...prev,
           isAuthenticated: true,
-          userEmail: user.email,
-          userId: user.id,
+          userEmail: session.user.email,
+          userId: session.user.id,
           requiresAuth: false // Important: clear the auth requirement
         }));
         
@@ -91,7 +89,7 @@ export function useChat(isOpen: boolean, language: Language): UseChatReturn {
           const welcomeBackMessage: Message = {
             id: Date.now().toString(),
             role: 'assistant',
-            content: authMessages[language].welcomeBack || `Welcome back ${user.email}! Let's continue our conversation about joining the professional network.`,
+            content: authMessages[language].welcomeBack || `Welcome back ${session.user.email}! Let's continue our conversation about joining the professional network.`,
             timestamp: new Date()
           };
           setMessages(prev => [...prev, welcomeBackMessage]);
@@ -106,8 +104,8 @@ export function useChat(isOpen: boolean, language: Language): UseChatReturn {
         setAuthState(prev => ({
           ...prev,
           isAuthenticated: true,
-          userEmail: session.user.email,
-          userId: session.user.id,
+          userEmail: session.session.user.email,
+          userId: session.session.user.id,
           requiresAuth: false
         }));
       } else {
@@ -256,8 +254,8 @@ export function useChat(isOpen: boolean, language: Language): UseChatReturn {
 
       // Debug logging in development
       if (process.env.NODE_ENV === 'development') {
-        console.log('🧠 Knowledge Context:', knowledgeContext);
-        console.log('📝 Dynamic Prompt:', enhancedSystemPrompt);
+        console.log('ðŸ§  Knowledge Context:', knowledgeContext);
+        console.log('ðŸ“ Dynamic Prompt:', enhancedSystemPrompt);
       }
 
       // Normal chat flow with dynamic prompt
@@ -282,7 +280,7 @@ export function useChat(isOpen: boolean, language: Language): UseChatReturn {
         });
         window.dispatchEvent(event);
 
-        responseContent += '\n\n✅ Email sent successfully!';
+        responseContent += '\n\nâœ… Email sent successfully!';
       }
 
       const assistantMessage: Message = {
@@ -329,3 +327,4 @@ export function useChat(isOpen: boolean, language: Language): UseChatReturn {
     closeChat
   };
 }
+
