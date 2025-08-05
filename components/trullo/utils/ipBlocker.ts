@@ -43,4 +43,3 @@ export function blockIp(ip: string): void {
     BLOCKED_IPS.push(ip);
   }
 }
-
