@@ -9,6 +9,13 @@ import ChatInput from './ChatInput';
 import ContactForm from './ContactForm';
 import { sendEmailMessage, saveContactRequest } from './utils/api';
 import { isIPBlocked, getBlockedMessage } from './utils/ipBlocker';
+import { createClient } from '@supabase/supabase-js';
+
+// Initialize Supabase client
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+);
 
 export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
   // Check if mobile on mount
@@ -513,6 +520,86 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
                 isTyping={isTyping}
               />
 
+              {/* Authentication Overlay - Shows when not authenticated */}
+              {!authState.isAuthenticated && (
+                <div className="absolute inset-0 bg-white/98 backdrop-blur-sm flex items-center justify-center z-20 rounded-2xl">
+                  <div className="text-center p-8 max-w-sm">
+                    <div className="mb-6">
+                      <img 
+                        src="/trullo.png" 
+                        alt="Trullo" 
+                        className="w-20 h-20 mx-auto mb-4"
+                        onError={(e) => {
+                          e.currentTarget.style.display = 'none';
+                          e.currentTarget.parentElement!.innerHTML = '🏛️';
+                        }}
+                      />
+                      <h3 className="text-xl font-bold text-gray-800 mb-2">
+                        {currentLang === 'en' ? 'Welcome to Premium Investment Advisory' : 
+                         currentLang === 'it' ? 'Benvenuto nella Consulenza Premium' :
+                         currentLang === 'es' ? 'Bienvenido a la Asesoría Premium' :
+                         currentLang === 'fr' ? 'Bienvenue au Conseil Premium' :
+                         currentLang === 'de' ? 'Willkommen bei Premium-Beratung' :
+                         currentLang === 'ar' ? 'مرحباً بك في الاستشارات المتميزة' :
+                         currentLang === 'zh' ? '欢迎来到高级投资咨询' :
+                         'Welcome'}
+                      </h3>
+                      <p className="text-gray-600 text-sm">
+                        {translations[currentLang].authRequired}
+                      </p>
+                    </div>
+                    
+                    {/* Google Sign In Button */}
+                    <button
+                      onClick={async () => {
+                        try {
+                          const { error } = await supabase.auth.signInWithOAuth({
+                            provider: 'google',
+                            options: {
+                              redirectTo: `${window.location.origin}/auth/callback`
+                            }
+                          });
+                          if (error) throw error;
+                        } catch (error) {
+                          console.error('Auth error:', error);
+                        }
+                      }}
+                      className="w-full bg-white hover:bg-gray-50 text-gray-900 font-medium py-3 px-6 rounded-lg border border-gray-300 transition-all transform hover:scale-105 shadow-sm hover:shadow-md"
+                    >
+                      <div className="flex items-center justify-center gap-3">
+                        <svg className="w-5 h-5" viewBox="0 0 24 24">
+                          <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                          <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                          <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                          <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                        </svg>
+                        <span>
+                          {currentLang === 'en' ? 'Continue with Google' : 
+                           currentLang === 'it' ? 'Continua con Google' :
+                           currentLang === 'es' ? 'Continuar con Google' :
+                           currentLang === 'fr' ? 'Continuer avec Google' :
+                           currentLang === 'de' ? 'Mit Google fortfahren' :
+                           currentLang === 'ar' ? 'تابع مع Google' :
+                           currentLang === 'zh' ? '使用Google继续' :
+                           'Continue with Google'}
+                        </span>
+                      </div>
+                    </button>
+                    
+                    <p className="text-xs text-gray-500 mt-4">
+                      {currentLang === 'en' ? '🔒 Your data is secure and never shared' : 
+                       currentLang === 'it' ? '🔒 I tuoi dati sono sicuri e mai condivisi' :
+                       currentLang === 'es' ? '🔒 Tus datos están seguros' :
+                       currentLang === 'fr' ? '🔒 Vos données sont sécurisées' :
+                       currentLang === 'de' ? '🔒 Ihre Daten sind sicher' :
+                       currentLang === 'ar' ? '🔒 بياناتك آمنة' :
+                       currentLang === 'zh' ? '🔒 您的数据是安全的' :
+                       '🔒 Secure & Private'}
+                    </p>
+                  </div>
+                </div>
+              )}
+
               {/* Leave a Message Button */}
               <div className="border-t border-gray-200 p-2 bg-white">
                 <button
@@ -527,6 +614,7 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
                 language={currentLang}
                 isTyping={isTyping}
                 onSend={sendMessage}
+                disabled={!authState.isAuthenticated}
               />
 
               {/* Mobile Safe Area Bottom Padding */}
