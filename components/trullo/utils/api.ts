@@ -38,11 +38,13 @@ export async function logMessage(conversationId: string, role: string, message: 
   return { success: true };
 }
 
-export async function sendChatMessage(message: string) {
+export async function sendChatMessage(messages: any[], systemPrompt: string, language: string) {
   console.log('Sending chat message:', message);
   return { 
     success: true, 
     response: "I understand you're interested in investing in Puglia. How can I help you today?"
   };
 }
+
+
 

@@ -36,17 +36,47 @@ export function isPasswordAttempt(message: string, language?: string): boolean {
 }
 
 export function verifyGiuseppePassword(password: string): boolean {
-  // In production, this would check against a secure hash
   return password === "SecurePassword123!";
 }
 
-export function getWrongPasswordResponse(): string {
+export function getWrongPasswordResponse(language?: string): string {
   return "Invalid password. Please try again.";
 }
 
 export const authPrompts = {
-  requestPassword: "Please enter your password to continue.",
-  welcome: "Welcome, Giuseppe! You now have admin access.",
-  unauthorized: "You need to be authenticated to perform this action."
+  en: {
+    askForPassword: "Please enter your password to continue.",
+    authenticated: "Welcome, Giuseppe! You now have admin access.",
+    unauthorized: "You need to be authenticated to perform this action."
+  },
+  it: {
+    askForPassword: "Inserisci la password per continuare.",
+    authenticated: "Benvenuto, Giuseppe! Ora hai accesso amministratore.",
+    unauthorized: "Devi essere autenticato per eseguire questa azione."
+  },
+  fr: {
+    askForPassword: "Veuillez entrer votre mot de passe pour continuer.",
+    authenticated: "Bienvenue, Giuseppe! Vous avez maintenant un accès administrateur.",
+    unauthorized: "Vous devez être authentifié pour effectuer cette action."
+  },
+  de: {
+    askForPassword: "Bitte geben Sie Ihr Passwort ein, um fortzufahren.",
+    authenticated: "Willkommen, Giuseppe! Sie haben jetzt Administratorzugriff.",
+    unauthorized: "Sie müssen authentifiziert sein, um diese Aktion auszuführen."
+  },
+  ar: {
+    askForPassword: "الرجاء إدخال كلمة المرور للمتابعة.",
+    authenticated: "مرحباً جوزيبي! لديك الآن صلاحيات المسؤول.",
+    unauthorized: "يجب أن تكون مصادقاً لتنفيذ هذا الإجراء."
+  },
+  zh: {
+    askForPassword: "请输入密码以继续。",
+    authenticated: "欢迎，Giuseppe！您现在拥有管理员权限。",
+    unauthorized: "您需要进行身份验证才能执行此操作。"
+  },
+  es: {
+    askForPassword: "Por favor, ingrese su contraseña para continuar.",
+    authenticated: "¡Bienvenido, Giuseppe! Ahora tienes acceso de administrador.",
+    unauthorized: "Necesitas estar autenticado para realizar esta acción."
+  }
 };
-
