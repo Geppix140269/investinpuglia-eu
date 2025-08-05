@@ -1,32 +1,26 @@
-﻿// Netlify Function: trullo-chat.js
-exports.handler = async (event, context) => {
-  // Only allow POST requests
-  if (event.httpMethod !== 'POST') {
-    return {
-      statusCode: 405,
-      body: JSON.stringify({ error: 'Method not allowed' })
-    };
-  }
+﻿import { NextRequest, NextResponse } from 'next/server';
 
+// This is the REAL API route that handles Trullo chat messages
+export async function POST(request: NextRequest) {
   try {
-    const { messages, systemPrompt, language } = JSON.parse(event.body);
+    const { messages, systemPrompt, language } = await request.json();
 
     // Validate required fields
     if (!messages || !Array.isArray(messages)) {
-      return {
-        statusCode: 400,
-        body: JSON.stringify({ error: 'Messages array is required' })
-      };
+      return NextResponse.json(
+        { error: 'Messages array is required' },
+        { status: 400 }
+      );
     }
 
     // Check for OpenAI API key
     const apiKey = process.env.OPENAI_API_KEY;
     if (!apiKey) {
       console.error('OPENAI_API_KEY is not set in environment variables');
-      return {
-        statusCode: 500,
-        body: JSON.stringify({ error: 'OpenAI API key is not configured' })
-      };
+      return NextResponse.json(
+        { error: 'OpenAI API key is not configured' },
+        { status: 500 }
+      );
     }
 
     // Prepare messages for OpenAI
@@ -35,7 +29,7 @@ exports.handler = async (event, context) => {
         role: 'system',
         content: systemPrompt || 'You are Trullo, a helpful investment advisor for InvestInPuglia.eu'
       },
-      ...messages.map((msg) => ({
+      ...messages.map((msg: any) => ({
         role: msg.role,
         content: msg.content
       }))
@@ -60,31 +54,25 @@ exports.handler = async (event, context) => {
     if (!response.ok) {
       const error = await response.text();
       console.error('OpenAI API error:', error);
-      return {
-        statusCode: response.status,
-        body: JSON.stringify({ error: 'Failed to get response from AI' })
-      };
+      return NextResponse.json(
+        { error: 'Failed to get response from AI' },
+        { status: response.status }
+      );
     }
 
     const data = await response.json();
     const assistantMessage = data.choices[0]?.message?.content || 'I apologize, but I encountered an error processing your request.';
 
-    return {
-      statusCode: 200,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        success: true,
-        message: assistantMessage
-      })
-    };
+    return NextResponse.json({
+      success: true,
+      message: assistantMessage
+    });
 
   } catch (error) {
     console.error('Chat API error:', error);
-    return {
-      statusCode: 500,
-      body: JSON.stringify({ error: 'Internal server error' })
-    };
+    return NextResponse.json(
+      { error: 'Internal server error' },
+      { status: 500 }
+    );
   }
-};
+}
