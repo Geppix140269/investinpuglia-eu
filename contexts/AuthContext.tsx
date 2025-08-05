@@ -1,4 +1,4 @@
-// app/contexts/AuthContext.tsx
+﻿// app/contexts/AuthContext.tsx
 'use client'
 import React, { createContext, useContext, useEffect, useState } from 'react'
 import { useRouter, usePathname } from 'next/navigation'
@@ -64,7 +64,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       
       // Store the current path to redirect back after login
       if (pathname !== '/login') {
-        sessionStorage.setItem('redirectAfterLogin', pathname)
+        sessionStorage.setItem('redirectAfterLogin', pathname || '/')
       }
       
       const { error } = await supabase.auth.signInWithOAuth({
@@ -103,3 +103,4 @@ export const useAuth = () => {
   }
   return context
 }
+
