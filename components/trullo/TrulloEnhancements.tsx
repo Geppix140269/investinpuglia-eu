@@ -405,7 +405,7 @@ export class TrustBuilder {
   }
   
   static generateTrustBadges(profile: EnhancedUserProfile) {
-    const badges = [];
+    const badges: { icon: string; text: string }[] = [];
     
     if (profile.trustScore > 30) badges.push({ icon: "🔍", text: "Verified Interest" });
     if (profile.trustScore > 50) badges.push({ icon: "💎", text: "Quality Lead" });
