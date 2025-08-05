@@ -5,8 +5,8 @@ export async function sendMessage(message: string) {
   return { success: true, response: 'Message received' };
 }
 
-export async function sendEmailMessage(data: any) {
-  console.log('Sending email message:', data);
+export async function sendEmailMessage(formData: any, language: string) {
+  console.log('Sending email message:', { formData, language });
   return { success: true };
 }
 
@@ -15,8 +15,8 @@ export async function sendContactForm(data: any) {
   return { success: true };
 }
 
-export async function saveContactRequest(data: any) {
-  console.log('Saving contact request:', data);
+export async function saveContactRequest(conversationId: string, formData: any, language: string) {
+  console.log('Saving contact request:', { conversationId, formData, language });
   return { success: true };
 }
 
@@ -40,7 +40,6 @@ export async function logMessage(message: any) {
 
 export async function sendChatMessage(message: string) {
   console.log('Sending chat message:', message);
-  // Simulate AI response
   return { 
     success: true, 
     response: "I understand you're interested in investing in Puglia. How can I help you today?"
