@@ -1,8 +1,8 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Save, Plus, Edit, Trash2, Search, CheckCircle, XCircle } from 'lucide-react';
 
 const ProfessionalAdmin = () => {
-  const [professionals, setProfessionals] = useState([]);
+  const [professionals, setProfessionals] = useState<any[]>([]);
   const [editingProfessional, setEditingProfessional] = useState<any>(null);
   const [isAddingNew, setIsAddingNew] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
@@ -36,14 +36,14 @@ const ProfessionalAdmin = () => {
   ];
 
   const LANGUAGES = [
-    { code: 'IT', label: 'ðŸ‡®ðŸ‡¹ Italian' },
-    { code: 'EN', label: 'ðŸ‡¬ðŸ‡§ English' },
-    { code: 'ES', label: 'ðŸ‡ªðŸ‡¸ Spanish' },
-    { code: 'FR', label: 'ðŸ‡«ðŸ‡· French' },
-    { code: 'DE', label: 'ðŸ‡©ðŸ‡ª German' },
-    { code: 'RU', label: 'ðŸ‡·ðŸ‡º Russian' },
-    { code: 'AR', label: 'ðŸ‡¸ðŸ‡¦ Arabic' },
-    { code: 'ZH', label: 'ðŸ‡¨ðŸ‡³ Chinese' }
+    { code: 'IT', label: '🇮🇹 Italian' },
+    { code: 'EN', label: '🇬🇧 English' },
+    { code: 'ES', label: '🇪🇸 Spanish' },
+    { code: 'FR', label: '🇫🇷 French' },
+    { code: 'DE', label: '🇩🇪 German' },
+    { code: 'RU', label: '🇷🇺 Russian' },
+    { code: 'AR', label: '🇸🇦 Arabic' },
+    { code: 'ZH', label: '🇨🇳 Chinese' }
   ];
 
   const LOCATIONS = [
@@ -347,7 +347,7 @@ const ProfessionalAdmin = () => {
                         onClick={() => removeSpecialty(spec)}
                         className="text-blue-500 hover:text-blue-700"
                       >
-                        Ã—
+                        ×
                       </button>
                     </span>
                   ))}
@@ -515,5 +515,6 @@ const ProfessionalAdmin = () => {
 };
 
 export default ProfessionalAdmin;
+
 
 
