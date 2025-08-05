@@ -1,8 +1,6 @@
 ﻿// Authentication utilities for Trullo
 
 export function isAuthenticated(): boolean {
-  // Placeholder authentication check
-  // In production, this would check against your auth system
   if (typeof window !== 'undefined') {
     return localStorage.getItem('userAuthenticated') === 'true';
   }
@@ -16,10 +14,38 @@ export function setAuthenticated(value: boolean): void {
 }
 
 export function getUserInfo() {
-  // Placeholder for user information
   return {
     id: 'user-' + Date.now(),
     email: 'user@example.com',
     name: 'Guest User'
   };
 }
+
+export function checkIfClaimsToBeGiuseppe(message: string): boolean {
+  const lowerMessage = message.toLowerCase();
+  return lowerMessage.includes("i am giuseppe") || 
+         lowerMessage.includes("i'm giuseppe") ||
+         lowerMessage.includes("this is giuseppe");
+}
+
+export function isPasswordAttempt(message: string): boolean {
+  const lowerMessage = message.toLowerCase();
+  return lowerMessage.includes("password") || 
+         lowerMessage.includes("pass") ||
+         lowerMessage.includes("pwd");
+}
+
+export function verifyGiuseppePassword(password: string): boolean {
+  // In production, this would check against a secure hash
+  return password === "SecurePassword123!";
+}
+
+export function getWrongPasswordResponse(): string {
+  return "Invalid password. Please try again.";
+}
+
+export const authPrompts = {
+  requestPassword: "Please enter your password to continue.",
+  welcome: "Welcome, Giuseppe! You now have admin access.",
+  unauthorized: "You need to be authenticated to perform this action."
+};

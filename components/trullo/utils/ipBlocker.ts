@@ -8,6 +8,14 @@ export function isIpBlocked(ip: string): boolean {
   return BLOCKED_IPS.includes(ip);
 }
 
+export function isIPBlocked(ip: string): boolean {
+  return isIpBlocked(ip);
+}
+
+export function getBlockedMessage(): string {
+  return "You have been temporarily blocked due to excessive requests. Please try again later.";
+}
+
 export function checkRateLimit(identifier: string): boolean {
   const now = Date.now();
   const userLimit = RATE_LIMIT_STORE.get(identifier);
@@ -17,18 +25,15 @@ export function checkRateLimit(identifier: string): boolean {
     return true;
   }
   
-  // Reset if more than a minute has passed
   if (now - userLimit.timestamp > 60000) {
     RATE_LIMIT_STORE.set(identifier, { count: 1, timestamp: now });
     return true;
   }
   
-  // Check if limit exceeded
   if (userLimit.count >= MAX_REQUESTS_PER_MINUTE) {
     return false;
   }
   
-  // Increment count
   userLimit.count++;
   return true;
 }
