@@ -1,6 +1,5 @@
 ﻿// PATH: components/trullo/ChatMessages.tsx
 import React, { useRef, useEffect } from 'react';
-import { renderMessageWithLinks } from './utils/messageRenderer';
 import { Message } from './types';
 
 interface ChatMessagesProps {
@@ -96,4 +95,5 @@ export default function ChatMessages({ messages, isTyping }: ChatMessagesProps) 
     </div>
   );
 }
+
 
