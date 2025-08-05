@@ -17,15 +17,12 @@ export default async function handler(
         console.error('Session exchange error:', error)
         return res.status(400).json({ error: error.message })
       }
-      
-      // Set cookie header for the session
-      res.setHeader('Set-Cookie', res.getHeader('Set-Cookie') || '')
     } catch (error) {
       console.error('Auth callback error:', error)
       return res.status(500).json({ error: 'Internal server error' })
     }
   }
 
-  // Redirect back to the main page
+  // REDIRECT TO HOME PAGE (/) NOT /dashboard
   return res.redirect('/')
 }
