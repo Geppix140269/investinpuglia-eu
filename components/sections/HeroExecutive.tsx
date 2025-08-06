@@ -82,9 +82,9 @@ const HeroExecutive = () => {
           
           {/* Fixed headline sizes to prevent cutoff */}
           <div className="mb-4">
-            <div className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-emerald-600 font-bold text-2xl sm:text-3xl lg:text-4xl xl:text-5xl leading-tight">
+          <div className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-emerald-600 font-bold text-4xl sm:text-5xl lg:text-6xl xl:text-7xl leading-tight pb-2 overflow-visible">
               Up to 55% FREE Funding
-            </div>
+          </div>
             <div className="text-lg lg:text-xl xl:text-2xl text-gray-700 font-medium mt-2 leading-tight">
               On €5M Total Investment
             </div>
