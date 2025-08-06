@@ -4,7 +4,7 @@ import { TrendingUp, Euro, Users, MapPin, ArrowRight, CheckCircle, Globe, Buildi
 const HeroExecutive = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [selectedProject, setSelectedProject] = useState('trulli');
-  const [hoveredMetric, setHoveredMetric] = useState(null);
+ const [hoveredMetric, setHoveredMetric] = useState<string | null>(null);
   
   useEffect(() => {
     setIsVisible(true);
