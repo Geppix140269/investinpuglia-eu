@@ -74,23 +74,23 @@ const HeroExecutive = () => {
           </p>
         </div>
         
-        {/* Main Value Proposition - FIXED STRUCTURE */}
+        {/* Main Value Proposition - REDUCED TEXT SIZES */}
         <div className={`text-center mb-12 transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <h1 className="text-4xl lg:text-6xl xl:text-7xl font-light text-gray-900 mb-6 leading-tight">
+          <h1 className="text-3xl lg:text-4xl xl:text-5xl font-light text-gray-900 mb-4 leading-tight">
             Access Puglia's
           </h1>
           
-          {/* Clear Two-Line Headline */}
+          {/* Reduced headline sizes to prevent cutoff */}
           <div className="mb-4">
-            <div className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-emerald-600 font-bold text-5xl lg:text-7xl xl:text-8xl leading-tight">
+            <div className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-emerald-600 font-bold text-3xl lg:text-5xl xl:text-6xl leading-tight">
               Up to 55% FREE Funding
             </div>
-            <div className="text-2xl lg:text-4xl xl:text-5xl text-gray-700 font-medium mt-2 leading-tight">
+            <div className="text-xl lg:text-2xl xl:text-3xl text-gray-700 font-medium mt-2 leading-tight">
               On €5M Total Investment
             </div>
           </div>
           
-          <p className="text-xl lg:text-2xl font-light text-gray-600 max-w-4xl mx-auto">
+          <p className="text-lg lg:text-xl font-light text-gray-600 max-w-4xl mx-auto">
             Up to 55% non-repayable grants on eligible investments up to €5M total project value
           </p>
         </div>
