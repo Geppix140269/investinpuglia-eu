@@ -2,7 +2,7 @@ import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { PortableText } from '@portabletext/react'
 import { client } from '@/sanity/lib/client'
-import { urlForImage } from '@/sanity/lib/image'
+import { urlFor } from '@/sanity/lib/image'  // CHANGED FROM urlForImage TO urlFor
 import ShareButtons from '@/components/ShareButtons'
 
 // Query to get a specific article by slug
@@ -38,7 +38,7 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
   }
 
   const imageUrl = article.mainImage 
-    ? urlForImage(article.mainImage).width(1200).height(630).url()
+    ? urlFor(article.mainImage).width(1200).height(630).url()  // CHANGED FROM urlForImage TO urlFor
     : '/og-image.png'
 
   return {
@@ -115,7 +115,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
         {article.mainImage && (
           <div className="mb-8">
             <img
-              src={urlForImage(article.mainImage).width(800).height(400).url()}
+              src={urlFor(article.mainImage).width(800).height(400).url()}  // CHANGED FROM urlForImage TO urlFor
               alt={article.title}
               className="w-full h-auto rounded-lg"
             />
