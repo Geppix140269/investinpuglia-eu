@@ -41,7 +41,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         
         // FIXED: Only redirect on actual sign in, not on initial session or token refresh
         // This prevents the redirect loop on page navigation
-        if (event === 'SIGNED_IN' && event !== 'INITIAL_SESSION' && event !== 'TOKEN_REFRESHED') {
+        if (event === 'SIGNED_IN') {
           // Only redirect if we have a stored redirect path
           const redirectTo = sessionStorage.getItem('redirectAfterLogin')
           if (redirectTo) {
