@@ -2,11 +2,11 @@ import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { PortableText } from '@portabletext/react'
 import { client } from '@/sanity/lib/client'
-import { urlFor } from '@/sanity/lib/image'  // CHANGED FROM urlForImage TO urlFor
+import { urlFor } from '@/sanity/lib/image'
 import ShareButtons from '@/components/ShareButtons'
 
-// Query to get a specific article by slug
-const ARTICLE_QUERY = `*[_type == "article" && slug.current == $slug][0]{
+// Query to get a specific insight by slug - CHANGED FROM "article" TO "insight"
+const ARTICLE_QUERY = `*[_type == "insight" && slug.current == $slug][0]{
   _id,
   title,
   slug,
@@ -18,8 +18,8 @@ const ARTICLE_QUERY = `*[_type == "article" && slug.current == $slug][0]{
   "categories": categories[]->title
 }`
 
-// Query to get all article slugs for static generation
-const ARTICLES_SLUGS_QUERY = `*[_type == "article" && defined(slug.current)][].slug.current`
+// Query to get all insight slugs for static generation - CHANGED FROM "article" TO "insight"
+const ARTICLES_SLUGS_QUERY = `*[_type == "insight" && defined(slug.current)][].slug.current`
 
 interface ArticlePageProps {
   params: {
@@ -38,7 +38,7 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
   }
 
   const imageUrl = article.mainImage 
-    ? urlFor(article.mainImage).width(1200).height(630).url()  // CHANGED FROM urlForImage TO urlFor
+    ? urlFor(article.mainImage).width(1200).height(630).url()
     : '/og-image.png'
 
   return {
@@ -115,7 +115,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
         {article.mainImage && (
           <div className="mb-8">
             <img
-              src={urlFor(article.mainImage).width(800).height(400).url()}  // CHANGED FROM urlForImage TO urlFor
+              src={urlFor(article.mainImage).width(800).height(400).url()}
               alt={article.title}
               className="w-full h-auto rounded-lg"
             />
