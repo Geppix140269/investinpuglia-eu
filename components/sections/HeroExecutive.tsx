@@ -74,17 +74,24 @@ const HeroExecutive = () => {
           </p>
         </div>
         
-        {/* Main Value Proposition */}
+        {/* Main Value Proposition - FIXED STRUCTURE */}
         <div className={`text-center mb-12 transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <h1 className="text-4xl lg:text-6xl xl:text-7xl font-light text-gray-900 mb-6 leading-tight">
             Access Puglia's
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-emerald-600 font-bold text-5xl lg:text-7xl xl:text-8xl mt-2">
-           Up to 55% FREE Funding
-           On €5M Total Investment
-            </span>
           </h1>
-          <p className="text-xl lg:text-2xl font-light text-gray-600 max-w-3xl mx-auto">
-            Non-repayable funding for international investors • 45-55% project coverage
+          
+          {/* Clear Two-Line Headline */}
+          <div className="mb-4">
+            <div className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-emerald-600 font-bold text-5xl lg:text-7xl xl:text-8xl leading-tight">
+              Up to 55% FREE Funding
+            </div>
+            <div className="text-2xl lg:text-4xl xl:text-5xl text-gray-700 font-medium mt-2 leading-tight">
+              On €5M Total Investment
+            </div>
+          </div>
+          
+          <p className="text-xl lg:text-2xl font-light text-gray-600 max-w-4xl mx-auto">
+            Up to 55% non-repayable grants on eligible investments up to €5M total project value
           </p>
         </div>
 
@@ -183,10 +190,10 @@ const HeroExecutive = () => {
             onMouseLeave={() => setHoveredMetric(null)}
           >
             <Euro className="w-8 h-8 text-purple-600 mb-3" />
-            <div className="text-2xl font-bold text-gray-900">€2.25M</div>
+            <div className="text-2xl font-bold text-gray-900">€2.75M</div>
             <div className="text-sm text-gray-600">Max Grant Available</div>
             {hoveredMetric === 'funding' && (
-              <div className="text-xs text-purple-600 mt-2">Mini PIA Tourism Fund</div>
+              <div className="text-xs text-purple-600 mt-2">55% of €5M Investment</div>
             )}
           </div>
           
