@@ -79,7 +79,8 @@ const HeroExecutive = () => {
           <h1 className="text-4xl lg:text-6xl xl:text-7xl font-light text-gray-900 mb-6 leading-tight">
             Access Puglia's
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-emerald-600 font-bold text-5xl lg:text-7xl xl:text-8xl mt-2">
-              €2.25M-€5M Grants
+           Up to 55% FREE Funding
+           On €5M Total Investment
             </span>
           </h1>
           <p className="text-xl lg:text-2xl font-light text-gray-600 max-w-3xl mx-auto">
