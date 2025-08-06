@@ -4,7 +4,7 @@ import { TrendingUp, Euro, Users, MapPin, ArrowRight, CheckCircle, Globe, Buildi
 const HeroExecutive = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [selectedProject, setSelectedProject] = useState('trulli');
- const [hoveredMetric, setHoveredMetric] = useState<string | null>(null);
+  const [hoveredMetric, setHoveredMetric] = useState<string | null>(null);
   
   useEffect(() => {
     setIsVisible(true);
@@ -74,18 +74,18 @@ const HeroExecutive = () => {
           </p>
         </div>
         
-        {/* Main Value Proposition - REDUCED TEXT SIZES */}
+        {/* Main Value Proposition - FIXED TEXT SIZES */}
         <div className={`text-center mb-12 transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <h1 className="text-3xl lg:text-4xl xl:text-5xl font-light text-gray-900 mb-4 leading-tight">
             Access Puglia's
           </h1>
           
-          {/* Reduced headline sizes to prevent cutoff */}
+          {/* Fixed headline sizes to prevent cutoff */}
           <div className="mb-4">
-            <div className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-emerald-600 font-bold text-3xl lg:text-5xl xl:text-6xl leading-tight">
+            <div className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-emerald-600 font-bold text-2xl sm:text-3xl lg:text-4xl xl:text-5xl leading-tight">
               Up to 55% FREE Funding
             </div>
-            <div className="text-xl lg:text-2xl xl:text-3xl text-gray-700 font-medium mt-2 leading-tight">
+            <div className="text-lg lg:text-xl xl:text-2xl text-gray-700 font-medium mt-2 leading-tight">
               On €5M Total Investment
             </div>
           </div>
