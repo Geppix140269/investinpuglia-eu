@@ -5,8 +5,8 @@ import { client } from '@/sanity/lib/client'
 import { urlFor } from '@/sanity/lib/image'
 import ShareButtons from '@/components/ShareButtons'
 
-// FIXED: Changed from "article" to "insight" - THIS IS THE KEY FIX
-const ARTICLE_QUERY = `*[_type == "insight" && slug.current == $slug][0]{
+// FIXED: Changed to "post" - matching what's in your Sanity Studio
+const ARTICLE_QUERY = `*[_type == "post" && slug.current == $slug][0]{
   _id,
   title,
   slug,
@@ -18,8 +18,8 @@ const ARTICLE_QUERY = `*[_type == "insight" && slug.current == $slug][0]{
   "categories": categories[]->title
 }`
 
-// FIXED: Changed from "article" to "insight"
-const ARTICLES_SLUGS_QUERY = `*[_type == "insight" && defined(slug.current)][].slug.current`
+// FIXED: Changed to "post"
+const ARTICLES_SLUGS_QUERY = `*[_type == "post" && defined(slug.current)][].slug.current`
 
 interface ArticlePageProps {
   params: {
