@@ -1,4 +1,9 @@
 // app/industries/[slug]/page.tsx
+export const runtime = 'nodejs'
+export const dynamic = 'force-dynamic'
+export const dynamicParams = true
+export const revalidate = 0
+  
 import { notFound } from 'next/navigation'
 import { createClient } from '@sanity/client'
 import { groq } from 'next-sanity'
