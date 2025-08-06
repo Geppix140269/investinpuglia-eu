@@ -1,160 +1,183 @@
-// Path: app/insights/[slug]/page.tsx
 import { Metadata } from 'next'
-import { client } from '@/sanity/lib/client'
-import { urlFor } from '@/sanity/lib/image'
+import { notFound } from 'next/navigation'
 import { PortableText } from '@portabletext/react'
-import Link from 'next/link'
+import { client } from '@/sanity/lib/client'
+import { urlForImage } from '@/sanity/lib/image'
+import ShareButtons from '@/components/ShareButtons'
 
-async function getPost(slug: string) {
-  const post = await client.fetch(`
-    *[_type == "post" && slug.current == $slug][0] {
-      _id,
-      title,
-      slug,
-      author->{name},
-      mainImage,
-      categories[]->{title},
-      publishedAt,
-      body,
-      excerpt,
-      description
-    }
-  `, { slug })
-  return post
+// Query to get a specific article by slug
+const ARTICLE_QUERY = `*[_type == "article" && slug.current == $slug][0]{
+  _id,
+  title,
+  slug,
+  excerpt,
+  body,
+  publishedAt,
+  mainImage,
+  "author": author->name,
+  "categories": categories[]->title
+}`
+
+// Query to get all article slugs for static generation
+const ARTICLES_SLUGS_QUERY = `*[_type == "article" && defined(slug.current)][].slug.current`
+
+interface ArticlePageProps {
+  params: {
+    slug: string
+  }
 }
 
-// GENERATE METADATA FOR WHATSAPP AND SOCIAL MEDIA PREVIEWS
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const post = await getPost(params.slug)
+// Generate metadata for each article
+export async function generateMetadata({ params }: ArticlePageProps): Promise<Metadata> {
+  const article = await client.fetch(ARTICLE_QUERY, { slug: params.slug })
   
-  if (!post) {
+  if (!article) {
     return {
-      title: 'Article Not Found | Invest in Puglia',
-      description: 'The requested article could not be found.',
+      title: 'Article Not Found',
     }
   }
 
-  // Get the image URL for Open Graph
-  const ogImage = post.mainImage 
-    ? urlFor(post.mainImage).width(1200).height(630).url()
-    : 'https://investinpuglia.eu/og-image.png'
-  
-  // Create description from excerpt, body, or fallback
-  const description = post.excerpt || post.description || 
-    `${post.title} - Expert insights on PIA & Mini PIA grants and investment opportunities in Puglia.`
+  const imageUrl = article.mainImage 
+    ? urlForImage(article.mainImage).width(1200).height(630).url()
+    : '/og-image.png'
 
   return {
-    title: `${post.title} | Invest in Puglia Insights`,
-    description: description,
-    
-    // OPEN GRAPH TAGS FOR WHATSAPP/FACEBOOK
+    title: article.title,
+    description: article.excerpt || 'Read more insights about investment opportunities in Puglia',
     openGraph: {
-      title: post.title,
-      description: description,
-      url: `https://investinpuglia.eu/insights/${params.slug}`,
-      siteName: 'Invest in Puglia',
+      title: article.title,
+      description: article.excerpt || 'Read more insights about investment opportunities in Puglia',
+      type: 'article',
+      publishedTime: article.publishedAt,
+      authors: article.author ? [article.author] : [],
       images: [
         {
-          url: ogImage,
+          url: imageUrl,
           width: 1200,
           height: 630,
-          alt: post.title,
-        }
+          alt: article.title,
+        },
       ],
-      locale: 'en_US',
-      type: 'article',
-      publishedTime: post.publishedAt,
-      authors: post.author?.name ? [post.author.name] : ['Giuseppe Funaro'],
-      tags: post.categories?.map((cat: any) => cat.title) || [],
     },
-    
-    // TWITTER CARD
     twitter: {
       card: 'summary_large_image',
-      title: post.title,
-      description: description,
-      images: [ogImage],
-      site: '@investinpuglia',
-      creator: '@investinpuglia',
-    },
-    
-    // CANONICAL URL
-    alternates: {
-      canonical: `https://investinpuglia.eu/insights/${params.slug}`,
-    },
-    
-    // SEO
-    robots: {
-      index: true,
-      follow: true,
-      googleBot: {
-        index: true,
-        follow: true,
-        'max-video-preview': -1,
-        'max-image-preview': 'large',
-        'max-snippet': -1,
-      },
+      title: article.title,
+      description: article.excerpt || 'Read more insights about investment opportunities in Puglia',
+      images: [imageUrl],
     },
   }
 }
 
-export default async function PostPage({ params }: { params: { slug: string } }) {
-  const post = await getPost(params.slug)
-  
-  if (!post) {
-    return (
-      <main className="pt-20 min-h-screen bg-gray-50">
-        <div className="max-w-4xl mx-auto px-6 py-16 text-center">
-          <h1 className="text-2xl text-gray-600">Post not found</h1>
-          <Link href="/insights" className="text-emerald-600 hover:underline mt-4 inline-block">
-            Back to Insights
-          </Link>
-        </div>
-      </main>
-    )
+export default async function ArticlePage({ params }: ArticlePageProps) {
+  const article = await client.fetch(ARTICLE_QUERY, { slug: params.slug })
+
+  if (!article) {
+    notFound()
   }
 
+  // Format the published date
+  const formattedDate = new Date(article.publishedAt).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  })
+
+  // Generate the full URL for this article
+  const articleUrl = `https://investinpuglia.eu/insights/${article.slug.current}`
+
   return (
-    <main className="pt-20 min-h-screen bg-gray-50">
-      <article className="max-w-4xl mx-auto px-6 py-16">
-        <Link href="/insights" className="text-emerald-600 hover:underline mb-8 inline-block">
-          Back to Insights
-        </Link>
+    <article className="max-w-4xl mx-auto px-4 py-8">
+      {/* Article Header */}
+      <header className="mb-8">
+        <h1 className="text-4xl font-bold mb-4">{article.title}</h1>
         
-        <header className="mb-12">
-          <h1 className="text-4xl md:text-5xl font-light text-gray-900 mb-6">
-            {post.title}
-          </h1>
-          
-          <div className="flex items-center gap-6 text-gray-500">
-            <span>{post.author?.name || 'Giuseppe Funaro'}</span>
-            <span>•</span>
-            <time>{new Date(post.publishedAt).toLocaleDateString()}</time>
-          </div>
-          
-          {post.categories && (
-            <div className="flex gap-2 mt-4">
-              {post.categories.map((category: any) => (
-                <span key={category.title} className="text-xs text-emerald-600 uppercase tracking-wider">
-                  {category.title}
-                </span>
-              ))}
-            </div>
+        <div className="text-gray-600 mb-4">
+          <time dateTime={article.publishedAt}>{formattedDate}</time>
+          {article.author && (
+            <span> • By {article.author}</span>
           )}
-        </header>
-        
-        {post.mainImage && (
-          <img
-            src={urlFor(post.mainImage).width(1200).url()}
-            alt={post.title}
-            className="w-full rounded-lg mb-12"
+        </div>
+
+        {article.categories && article.categories.length > 0 && (
+          <div className="flex gap-2 mb-6">
+            {article.categories.map((category: string, index: number) => (
+              <span 
+                key={index}
+                className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm"
+              >
+                {category}
+              </span>
+            ))}
+          </div>
+        )}
+
+        {/* Main Image */}
+        {article.mainImage && (
+          <div className="mb-8">
+            <img
+              src={urlForImage(article.mainImage).width(800).height(400).url()}
+              alt={article.title}
+              className="w-full h-auto rounded-lg"
+            />
+          </div>
+        )}
+      </header>
+
+      {/* Share Buttons Component */}
+      <ShareButtons 
+        url={articleUrl}
+        title={article.title}
+        description={article.excerpt}
+      />
+
+      {/* Article Body */}
+      <div className="prose prose-lg max-w-none">
+        {article.body && (
+          <PortableText 
+            value={article.body}
+            components={{
+              // You can customize how different elements are rendered
+              block: {
+                h2: ({children}) => <h2 className="text-2xl font-bold mt-8 mb-4">{children}</h2>,
+                h3: ({children}) => <h3 className="text-xl font-bold mt-6 mb-3">{children}</h3>,
+                normal: ({children}) => <p className="mb-4">{children}</p>,
+              },
+              marks: {
+                link: ({children, value}) => {
+                  const rel = !value.href.startsWith('/') ? 'noreferrer noopener' : undefined
+                  return (
+                    <a 
+                      href={value.href} 
+                      rel={rel}
+                      className="text-blue-600 hover:underline"
+                    >
+                      {children}
+                    </a>
+                  )
+                },
+              },
+            }}
           />
         )}
-        
-        <div className="prose prose-lg max-w-none">
-          <PortableText value={post.body} />
-        </div>
-      </article>
-    </main>
+      </div>
+
+      {/* Share Buttons at the bottom too */}
+      <div className="mt-12 pt-8 border-t">
+        <ShareButtons 
+          url={articleUrl}
+          title={article.title}
+          description={article.excerpt}
+        />
+      </div>
+    </article>
   )
+}
+
+// Generate static params for all articles
+export async function generateStaticParams() {
+  const slugs = await client.fetch(ARTICLES_SLUGS_QUERY)
+  
+  return slugs.map((slug: string) => ({
+    slug: slug,
+  }))
 }
