@@ -5,7 +5,7 @@ import { client } from '@/sanity/lib/client'
 import { urlFor } from '@/sanity/lib/image'
 import ShareButtons from '@/components/ShareButtons'
 
-// Query to get a specific insight by slug - CHANGED FROM "article" TO "insight"
+// FIXED: Changed from "article" to "insight" - THIS IS THE KEY FIX
 const ARTICLE_QUERY = `*[_type == "insight" && slug.current == $slug][0]{
   _id,
   title,
@@ -18,7 +18,7 @@ const ARTICLE_QUERY = `*[_type == "insight" && slug.current == $slug][0]{
   "categories": categories[]->title
 }`
 
-// Query to get all insight slugs for static generation - CHANGED FROM "article" TO "insight"
+// FIXED: Changed from "article" to "insight"
 const ARTICLES_SLUGS_QUERY = `*[_type == "insight" && defined(slug.current)][].slug.current`
 
 interface ArticlePageProps {
