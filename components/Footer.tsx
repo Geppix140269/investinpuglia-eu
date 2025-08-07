@@ -168,37 +168,37 @@ export default function Footer() {
               <h3 className="text-lg font-semibold mb-4">Top Locations</h3>
               <ul className="space-y-2">
                 <li>
-                  <a href="/en/locations" className="text-gray-400 hover:text-white transition-colors">
+                  <a href="/locations" className="text-gray-400 hover:text-white transition-colors">
                     All Locations
                   </a>
                 </li>
                 <li>
-                  <a href="/en/locations/invest-in-bari-bari" className="text-gray-400 hover:text-white transition-colors text-sm">
+                  <a href="/locations/invest-in-bari-bari" className="text-gray-400 hover:text-white transition-colors text-sm">
                     Bari
                   </a>
                 </li>
                 <li>
-                  <a href="/en/locations/invest-in-lecce-lecce" className="text-gray-400 hover:text-white transition-colors text-sm">
+                  <a href="/locations/invest-in-lecce-lecce" className="text-gray-400 hover:text-white transition-colors text-sm">
                     Lecce
                   </a>
                 </li>
                 <li>
-                  <a href="/en/locations/invest-in-taranto-taranto" className="text-gray-400 hover:text-white transition-colors text-sm">
+                  <a href="/locations/invest-in-taranto-taranto" className="text-gray-400 hover:text-white transition-colors text-sm">
                     Taranto
                   </a>
                 </li>
                 <li>
-                  <a href="/en/locations/invest-in-brindisi-brindisi" className="text-gray-400 hover:text-white transition-colors text-sm">
+                  <a href="/locations/invest-in-brindisi-brindisi" className="text-gray-400 hover:text-white transition-colors text-sm">
                     Brindisi
                   </a>
                 </li>
                 <li>
-                  <a href="/en/locations/invest-in-ostuni-brindisi" className="text-gray-400 hover:text-white transition-colors text-sm">
+                  <a href="/locations/invest-in-ostuni-brindisi" className="text-gray-400 hover:text-white transition-colors text-sm">
                     Ostuni
                   </a>
                 </li>
                 <li>
-                  <a href="/en/locations/invest-in-polignano-a-mare-bari" className="text-gray-400 hover:text-white transition-colors text-sm">
+                  <a href="/locations/invest-in-polignano-a-mare-bari" className="text-gray-400 hover:text-white transition-colors text-sm">
                     Polignano a Mare
                   </a>
                 </li>
