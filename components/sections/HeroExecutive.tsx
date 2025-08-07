@@ -70,7 +70,7 @@ const HeroExecutive = () => {
         {/* Professional Positioning */}
         <div className={`text-center mb-8 transition-all duration-1000 delay-100 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
           <p className="text-sm uppercase tracking-[0.3em] text-gray-500">
-            International Investment Advisory • Est. 1994
+            International Procurment & Investment Advisory • Est. 2019
           </p>
         </div>
         
