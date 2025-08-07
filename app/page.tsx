@@ -6,7 +6,7 @@
 import ExitIntentPopup from '@/components/ExitIntentPopup'
 
 // Sections
-import HeroExecutive from '@/components/sections/HeroExecutive'
+import HeroVisual from '@/components/sections/HeroVisual'
 import GrantInstitutions from '@/components/sections/GrantInstitutions'
 import WhyPuglia from '@/components/sections/WhyPuglia'
 import OpportunitySection from '@/components/sections/OpportunitySection'
@@ -25,7 +25,7 @@ export default function HomePage() {
         <ExitIntentPopup />
       </div>
 
-      <HeroExecutive />
+      <HeroVisual />
       <GrantInstitutions />
       <WhyPuglia />
       <OpportunitySection />
