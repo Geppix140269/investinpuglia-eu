@@ -30,14 +30,14 @@ type Industry = {
 }
 
 // Query
-const industriesQuery = groq`*[_type == "industryPage"] | order(industry asc) {
+const industriesQuery = groq`*[_type == "industry" || _type == "industryPage"] | order(industry asc) {
   _id,
-  industry,
+  "industry": coalesce(name, industry),
   slug,
-  heroTitle,
-  heroDescription,
-  marketSize,
-  growthRate,
+  "heroTitle": coalesce(heroTitle, name),
+  "heroDescription": coalesce(heroDescription, "Investment opportunities"),
+  "marketSize": coalesce(marketSize, "Growing"),
+  "growthRate": coalesce(growthRate, "10"),
   statistics
 }`
 
@@ -105,3 +105,4 @@ export default async function IndustriesPage() {
     </div>
   )
 }
+

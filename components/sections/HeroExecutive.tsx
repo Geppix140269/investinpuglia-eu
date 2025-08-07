@@ -237,21 +237,33 @@ const HeroExecutive = () => {
           </div>
         </div>
 
-        {/* CTAs */}
-        <div className={`flex flex-col sm:flex-row gap-4 justify-center mb-12 transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
-          <button 
-            onClick={() => window.location.href = '/locations'}
-            className="group bg-gradient-to-r from-purple-600 to-emerald-600 text-white px-10 py-5 rounded-full font-semibold text-lg hover:shadow-2xl transition-all flex items-center justify-center gap-3"
-          >
-            Investment Locations
-            <Euro className="w-5 h-5 group-hover:scale-110 transition-transform" />
-          </button>
+        {/* CTAs - MODIFICATO CON 3 BOTTONI */}
+        <div className={`flex flex-col gap-6 items-center mb-12 transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
+          {/* Prima riga - Investment Locations e Industries */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <button 
+              onClick={() => window.location.href = '/locations'}
+              className="group bg-gradient-to-r from-purple-600 to-emerald-600 text-white px-10 py-5 rounded-full font-semibold text-lg hover:shadow-2xl transition-all flex items-center justify-center gap-3"
+            >
+              Investment Locations
+              <MapPin className="w-5 h-5 group-hover:scale-110 transition-transform" />
+            </button>
+            <button 
+              onClick={() => window.location.href = '/industries'}
+              className="group bg-gradient-to-r from-emerald-600 to-blue-600 text-white px-10 py-5 rounded-full font-semibold text-lg hover:shadow-2xl transition-all flex items-center justify-center gap-3"
+            >
+              Investment Industries
+              <Factory className="w-5 h-5 group-hover:scale-110 transition-transform" />
+            </button>
+          </div>
+          
+          {/* Seconda riga - Book Consultation */}
           <button 
             onClick={() => window.open('https://calendly.com/investinpuglia/30min', '_blank')}
-            className="bg-white text-gray-900 border-2 border-gray-200 px-10 py-5 rounded-full font-semibold text-lg hover:border-purple-400 hover:shadow-xl transition-all"
+            className="bg-white text-gray-900 border-2 border-gray-200 px-10 py-5 rounded-full font-semibold text-lg hover:border-purple-400 hover:shadow-xl transition-all flex items-center justify-center gap-3"
           >
             Book Free Consultation
-            <ArrowRight className="inline ml-2 w-5 h-5" />
+            <ArrowRight className="w-5 h-5" />
           </button>
         </div>
 
@@ -322,6 +334,3 @@ const HeroExecutive = () => {
 };
 
 export default HeroExecutive;
-
-
-
