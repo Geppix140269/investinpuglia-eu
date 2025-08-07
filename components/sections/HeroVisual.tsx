@@ -1,4 +1,30 @@
-// components/sections/HeroVisual.tsx
+{/* Scrolling Photo Strip */}
+        <div className={`my-12 py-8 bg-gradient-to-r from-purple-50/50 to-emerald-50/50 -mx-6 px-6 overflow-hidden transition-all duration-1000 delay-[600ms] ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
+          <div className="flex gap-4 animate-scroll">
+            <a href="/locations/invest-in-bari-bari" className="flex-shrink-0 w-[250px] h-[150px] rounded-2xl overflow-hidden hover:scale-105 transition-transform">
+              <img src="/images/locations/bari-thumb.jpg" alt="Bari" className="w-full h-full object-cover" />
+            </a>
+            <a href="/locations/invest-in-lecce-lecce" className="flex-shrink-0 w-[250px] h-[150px] rounded-2xl overflow-hidden hover:scale-105 transition-transform">
+              <img src="/images/locations/lecce-thumb.jpg" alt="Lecce" className="w-full h-full object-cover" />
+            </a>
+            <a href="/locations/invest-in-ostuni-brindisi" className="flex-shrink-0 w-[250px] h-[150px] rounded-2xl overflow-hidden hover:scale-105 transition-transform">
+              <img src="/images/locations/ostuni-thumb.jpg" alt="Ostuni" className="w-full h-full object-cover" />
+            </a>
+            <a href="/locations/invest-in-polignano-a-mare-bari" className="flex-shrink-0 w-[250px] h-[150px] rounded-2xl overflow-hidden hover:scale-105 transition-transform">
+              <img src="/images/locations/polignano-thumb.jpg" alt="Polignano a Mare" className="w-full h-full object-cover" />
+            </a>
+            <a href="/locations/invest-in-brindisi-brindisi" className="flex-shrink-0         {/* Scrolling Photo Strip */}
+        <div className={`my-12 py-8 bg-gradient-to-r from-purple-50/50 to-emerald-50/50 -mx-6 px-6 overflow-hidden transition-all duration-1000 delay-[600ms] ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
+          <div className="flex gap-4 animate-scroll">
+            <a href="/locations/invest-in-bari-bari" className="flex-shrink-0 w-[250px] h-[150px] rounded-2xl overflow-hidden hover:scale-105 transition-transform">
+              <img src="/images/locations/bari-thumb.jpg" alt="Bari" className="w-full h-full object-cover" />
+            </a>
+            <a href="/locations/invest-in-lecce-lecce" className="flex-shrink-0 w-[250px] h-[150px] rounded-2xl overflow-hidden hover:scale-105 transition-transform">
+              <img src="/images/locations/lecce-thumb.jpg" alt="Lecce" className="w-full h-full object-cover" />
+            </a>
+            <a href="/locations/invest-in-ostuni-brindisi" className="flex-shrink-0 w-[250px] h-[150px] rounded-2xl overflow-hidden hover:scale-105 transition-transform">
+              <img src="/images/locations/ostuni-thumb.jpg" alt="Ostuni" className="w-full h-full object-cover" />
+            </a>// components/sections/HeroVisual.tsx
 'use client'
 
 import React, { useState, useEffect } from 'react';
@@ -150,40 +176,6 @@ const HeroVisual = () => {
                 className="w-full h-full rounded-full object-cover shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)] hover:scale-105 transition-transform duration-500 cursor-pointer"
               />
               
-              {/* Orbital Images - Hidden on mobile, visible on larger screens */}
-              <div className="hidden sm:block absolute inset-0 pointer-events-none">
-                <div className="absolute w-full h-full animate-spin-slow pointer-events-auto">
-                  <a 
-                    href="/locations/invest-in-ostuni-brindisi" 
-                    className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-purple-500 hover:scale-110 transition-transform cursor-pointer flex items-center justify-center text-white text-[10px] md:text-xs font-semibold shadow-lg"
-                    style={{ pointerEvents: 'auto' }}
-                  >
-                    Trulli
-                  </a>
-                  <a 
-                    href="/industries/hospitality" 
-                    className="absolute top-1/2 right-0 translate-x-1/2 -translate-y-1/2 w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-emerald-500 hover:scale-110 transition-transform cursor-pointer flex items-center justify-center text-white text-[10px] md:text-xs font-semibold shadow-lg"
-                    style={{ pointerEvents: 'auto' }}
-                  >
-                    Hotels
-                  </a>
-                  <a 
-                    href="/locations/invest-in-polignano-a-mare-bari" 
-                    className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-amber-500 hover:scale-110 transition-transform cursor-pointer flex items-center justify-center text-white text-[10px] md:text-xs font-semibold shadow-lg"
-                    style={{ pointerEvents: 'auto' }}
-                  >
-                    Beach
-                  </a>
-                  <a 
-                    href="/industries/restaurants" 
-                    className="absolute top-1/2 left-0 -translate-x-1/2 -translate-y-1/2 w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-red-500 hover:scale-110 transition-transform cursor-pointer flex items-center justify-center text-white text-[10px] md:text-xs font-semibold shadow-lg"
-                    style={{ pointerEvents: 'auto' }}
-                  >
-                    Dining
-                  </a>
-                </div>
-              </div>
-              
               {/* Floating Info Cards - Hidden on mobile */}
               <div className="hidden md:block">
                 <div className="absolute -top-5 -left-20 bg-white/95 px-4 py-3 lg:px-6 lg:py-4 rounded-[20px] shadow-lg animate-float z-10">
@@ -210,15 +202,43 @@ const HeroVisual = () => {
         {/* Scrolling Photo Strip */}
         <div className={`my-12 py-8 bg-gradient-to-r from-purple-50/50 to-emerald-50/50 -mx-6 px-6 overflow-hidden transition-all duration-1000 delay-[600ms] ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
           <div className="flex gap-4 animate-scroll">
-            {[...locations, ...locations].map((location, index) => (
-              <a
-                key={index}
-                href={location.link}
-                className="flex-shrink-0 w-[250px] h-[150px] rounded-2xl bg-gradient-to-br from-purple-100 to-emerald-100 flex items-center justify-center text-gray-700 font-semibold hover:scale-105 transition-transform"
-              >
-                {location.name}
-              </a>
-            ))}
+            <a href="/locations/invest-in-bari-bari" className="flex-shrink-0 w-[250px] h-[150px] rounded-2xl overflow-hidden hover:scale-105 transition-transform">
+              <img src="/images/locations/bari-thumb.jpg" alt="Bari" className="w-full h-full object-cover" />
+            </a>
+            <a href="/locations/invest-in-lecce-lecce" className="flex-shrink-0 w-[250px] h-[150px] rounded-2xl overflow-hidden hover:scale-105 transition-transform">
+              <img src="/images/locations/lecce-thumb.jpg" alt="Lecce" className="w-full h-full object-cover" />
+            </a>
+            <a href="/locations/invest-in-ostuni-brindisi" className="flex-shrink-0 w-[250px] h-[150px] rounded-2xl overflow-hidden hover:scale-105 transition-transform">
+              <img src="/images/locations/ostuni-thumb.jpg" alt="Ostuni" className="w-full h-full object-cover" />
+            </a>
+            <a href="/locations/invest-in-polignano-a-mare-bari" className="flex-shrink-0 w-[250px] h-[150px] rounded-2xl overflow-hidden hover:scale-105 transition-transform">
+              <img src="/images/locations/polignano-thumb.jpg" alt="Polignano a Mare" className="w-full h-full object-cover" />
+            </a>
+            <a href="/locations/invest-in-brindisi-brindisi" className="flex-shrink-0 w-[250px] h-[150px] rounded-2xl overflow-hidden hover:scale-105 transition-transform">
+              <img src="/images/locations/brindisi-thumb.jpg" alt="Brindisi" className="w-full h-full object-cover" />
+            </a>
+            <a href="/locations/invest-in-taranto-taranto" className="flex-shrink-0 w-[250px] h-[150px] rounded-2xl overflow-hidden hover:scale-105 transition-transform">
+              <img src="/images/locations/taranto-thumb.jpg" alt="Taranto" className="w-full h-full object-cover" />
+            </a>
+            {/* Duplicate for continuous scroll */}
+            <a href="/locations/invest-in-bari-bari" className="flex-shrink-0 w-[250px] h-[150px] rounded-2xl overflow-hidden hover:scale-105 transition-transform">
+              <img src="/images/locations/bari-thumb.jpg" alt="Bari" className="w-full h-full object-cover" />
+            </a>
+            <a href="/locations/invest-in-lecce-lecce" className="flex-shrink-0 w-[250px] h-[150px] rounded-2xl overflow-hidden hover:scale-105 transition-transform">
+              <img src="/images/locations/lecce-thumb.jpg" alt="Lecce" className="w-full h-full object-cover" />
+            </a>
+            <a href="/locations/invest-in-ostuni-brindisi" className="flex-shrink-0 w-[250px] h-[150px] rounded-2xl overflow-hidden hover:scale-105 transition-transform">
+              <img src="/images/locations/ostuni-thumb.jpg" alt="Ostuni" className="w-full h-full object-cover" />
+            </a>
+            <a href="/locations/invest-in-polignano-a-mare-bari" className="flex-shrink-0 w-[250px] h-[150px] rounded-2xl overflow-hidden hover:scale-105 transition-transform">
+              <img src="/images/locations/polignano-thumb.jpg" alt="Polignano a Mare" className="w-full h-full object-cover" />
+            </a>
+            <a href="/locations/invest-in-brindisi-brindisi" className="flex-shrink-0 w-[250px] h-[150px] rounded-2xl overflow-hidden hover:scale-105 transition-transform">
+              <img src="/images/locations/brindisi-thumb.jpg" alt="Brindisi" className="w-full h-full object-cover" />
+            </a>
+            <a href="/locations/invest-in-taranto-taranto" className="flex-shrink-0 w-[250px] h-[150px] rounded-2xl overflow-hidden hover:scale-105 transition-transform">
+              <img src="/images/locations/taranto-thumb.jpg" alt="Taranto" className="w-full h-full object-cover" />
+            </a>
           </div>
         </div>
 
