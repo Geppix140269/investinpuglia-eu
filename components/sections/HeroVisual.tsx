@@ -99,27 +99,27 @@ const HeroVisual = () => {
         </div>
 
         {/* Main Content Grid */}
-        <div className="grid lg:grid-cols-2 gap-16 items-center mb-12">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center mb-12">
           {/* Left Content */}
           <div className={`transition-all duration-1000 delay-[400ms] ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}>
-            <h1 className="text-[2.5rem] font-light text-gray-900 mb-4 leading-tight">
+            <h1 className="text-2xl sm:text-3xl lg:text-[2.5rem] font-light text-gray-900 mb-4 leading-tight">
               Transform €2.25M into €10M
             </h1>
-            <div className="text-[3.5rem] font-bold bg-gradient-to-r from-purple-600 to-emerald-600 bg-clip-text text-transparent leading-[1.1] mb-2">
+            <div className="text-3xl sm:text-4xl lg:text-[3.5rem] font-bold bg-gradient-to-r from-purple-600 to-emerald-600 bg-clip-text text-transparent leading-[1.1] mb-2">
               With Puglia's 55% Grant Program
             </div>
-            <div className="text-xl text-gray-600 font-medium mb-6">
+            <div className="text-lg sm:text-xl text-gray-600 font-medium mb-6">
               344% ROI Through Government-Backed Funding
             </div>
-            <p className="text-base text-gray-600 leading-relaxed mb-8">
+            <p className="text-sm sm:text-base text-gray-600 leading-relaxed mb-8">
               The Mini PIA program provides 55% non-repayable grants on investments up to €5M. 
               Your €2.25M contribution, combined with €2.75M in grant funding, creates a €5M project 
               with full ownership retained by you. Recent market valuations show successful projects 
               achieving 2x multiples within 3 years.
             </p>
 
-            {/* Quick Stats */}
-            <div className="flex gap-8 mb-8">
+            {/* Quick Stats - Mobile Responsive */}
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 mb-8">
               <div className="bg-gradient-to-br from-purple-50 to-purple-100/50 rounded-2xl p-4 flex-1 hover:scale-105 transition-transform cursor-pointer">
                 <div className="text-2xl font-bold text-purple-600">344%</div>
                 <div className="text-sm text-gray-600">Projected ROI</div>
@@ -135,9 +135,9 @@ const HeroVisual = () => {
             </div>
           </div>
 
-          {/* Right Content - Circular Design */}
+          {/* Right Content - Circular Design - Mobile Responsive */}
           <div className={`relative flex justify-center items-center transition-all duration-1000 delay-[400ms] ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}>
-            <div className="relative w-[500px] h-[500px]">
+            <div className="relative w-[280px] h-[280px] sm:w-[350px] sm:h-[350px] md:w-[400px] md:h-[400px] lg:w-[500px] lg:h-[500px]">
               {/* Main Circular Image */}
               <img 
                 src="/Hero_BG.jpg" 
@@ -145,38 +145,58 @@ const HeroVisual = () => {
                 className="w-full h-full rounded-full object-cover shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)] hover:scale-105 transition-transform duration-500 cursor-pointer"
               />
               
-              {/* Orbital Images */}
-              <div className="absolute w-full h-full animate-spin-slow">
-                <a href="/locations/invest-in-ostuni-brindisi" className="absolute -top-10 left-1/2 -translate-x-1/2 w-20 h-20 rounded-2xl bg-purple-500 hover:scale-110 transition-transform cursor-pointer flex items-center justify-center text-white text-xs font-semibold">
-                  Trulli
-                </a>
-                <a href="/industries/hospitality" className="absolute top-1/2 -right-10 -translate-y-1/2 w-20 h-20 rounded-2xl bg-emerald-500 hover:scale-110 transition-transform cursor-pointer flex items-center justify-center text-white text-xs font-semibold">
-                  Hotels
-                </a>
-                <a href="/locations/invest-in-polignano-a-mare-bari" className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-20 h-20 rounded-2xl bg-amber-500 hover:scale-110 transition-transform cursor-pointer flex items-center justify-center text-white text-xs font-semibold">
-                  Beach
-                </a>
-                <a href="/industries/restaurants" className="absolute top-1/2 -left-10 -translate-y-1/2 w-20 h-20 rounded-2xl bg-red-500 hover:scale-110 transition-transform cursor-pointer flex items-center justify-center text-white text-xs font-semibold">
-                  Dining
-                </a>
+              {/* Orbital Images - Hidden on mobile, visible on larger screens */}
+              <div className="hidden sm:block absolute inset-0 pointer-events-none">
+                <div className="absolute w-full h-full animate-spin-slow pointer-events-auto">
+                  <a 
+                    href="/locations/invest-in-ostuni-brindisi" 
+                    className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-purple-500 hover:scale-110 transition-transform cursor-pointer flex items-center justify-center text-white text-[10px] md:text-xs font-semibold shadow-lg"
+                    style={{ pointerEvents: 'auto' }}
+                  >
+                    Trulli
+                  </a>
+                  <a 
+                    href="/industries/hospitality" 
+                    className="absolute top-1/2 right-0 translate-x-1/2 -translate-y-1/2 w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-emerald-500 hover:scale-110 transition-transform cursor-pointer flex items-center justify-center text-white text-[10px] md:text-xs font-semibold shadow-lg"
+                    style={{ pointerEvents: 'auto' }}
+                  >
+                    Hotels
+                  </a>
+                  <a 
+                    href="/locations/invest-in-polignano-a-mare-bari" 
+                    className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-amber-500 hover:scale-110 transition-transform cursor-pointer flex items-center justify-center text-white text-[10px] md:text-xs font-semibold shadow-lg"
+                    style={{ pointerEvents: 'auto' }}
+                  >
+                    Beach
+                  </a>
+                  <a 
+                    href="/industries/restaurants" 
+                    className="absolute top-1/2 left-0 -translate-x-1/2 -translate-y-1/2 w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-red-500 hover:scale-110 transition-transform cursor-pointer flex items-center justify-center text-white text-[10px] md:text-xs font-semibold shadow-lg"
+                    style={{ pointerEvents: 'auto' }}
+                  >
+                    Dining
+                  </a>
+                </div>
               </div>
               
-              {/* Floating Info Cards */}
-              <div className="absolute top-[10%] -left-[15%] bg-white/95 px-6 py-4 rounded-[20px] shadow-lg animate-float">
-                <div className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-emerald-600 bg-clip-text text-transparent">55%</div>
-                <div className="text-xs text-gray-600">Grant Coverage</div>
-              </div>
-              <div className="absolute top-[15%] -right-[15%] bg-white/95 px-6 py-4 rounded-[20px] shadow-lg animate-float-delayed-1">
-                <div className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-emerald-600 bg-clip-text text-transparent">€5M</div>
-                <div className="text-xs text-gray-600">Max Project</div>
-              </div>
-              <div className="absolute bottom-[20%] -left-[10%] bg-white/95 px-6 py-4 rounded-[20px] shadow-lg animate-float-delayed-2">
-                <div className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-emerald-600 bg-clip-text text-transparent">344%</div>
-                <div className="text-xs text-gray-600">Typical ROI</div>
-              </div>
-              <div className="absolute bottom-[15%] -right-[10%] bg-white/95 px-6 py-4 rounded-[20px] shadow-lg animate-float-delayed-3">
-                <div className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-emerald-600 bg-clip-text text-transparent">3 Years</div>
-                <div className="text-xs text-gray-600">Exit Timeline</div>
+              {/* Floating Info Cards - Hidden on mobile */}
+              <div className="hidden md:block">
+                <div className="absolute -top-5 -left-20 bg-white/95 px-4 py-3 lg:px-6 lg:py-4 rounded-[20px] shadow-lg animate-float z-10">
+                  <div className="text-xl lg:text-2xl font-bold bg-gradient-to-r from-purple-600 to-emerald-600 bg-clip-text text-transparent">55%</div>
+                  <div className="text-xs text-gray-600">Grant Coverage</div>
+                </div>
+                <div className="absolute -top-5 -right-20 bg-white/95 px-4 py-3 lg:px-6 lg:py-4 rounded-[20px] shadow-lg animate-float-delayed-1 z-10">
+                  <div className="text-xl lg:text-2xl font-bold bg-gradient-to-r from-purple-600 to-emerald-600 bg-clip-text text-transparent">€5M</div>
+                  <div className="text-xs text-gray-600">Max Project</div>
+                </div>
+                <div className="absolute -bottom-10 -left-16 bg-white/95 px-4 py-3 lg:px-6 lg:py-4 rounded-[20px] shadow-lg animate-float-delayed-2 z-10">
+                  <div className="text-xl lg:text-2xl font-bold bg-gradient-to-r from-purple-600 to-emerald-600 bg-clip-text text-transparent">344%</div>
+                  <div className="text-xs text-gray-600">Typical ROI</div>
+                </div>
+                <div className="absolute -bottom-10 -right-16 bg-white/95 px-4 py-3 lg:px-6 lg:py-4 rounded-[20px] shadow-lg animate-float-delayed-3 z-10">
+                  <div className="text-xl lg:text-2xl font-bold bg-gradient-to-r from-purple-600 to-emerald-600 bg-clip-text text-transparent">3 Years</div>
+                  <div className="text-xs text-gray-600">Exit Timeline</div>
+                </div>
               </div>
             </div>
           </div>
@@ -197,17 +217,17 @@ const HeroVisual = () => {
           </div>
         </div>
 
-        {/* Project Types */}
+        {/* Project Types - Mobile Responsive */}
         <div className={`mb-12 transition-all duration-1000 delay-[600ms] ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <h3 className="text-center text-lg font-semibold uppercase tracking-wider text-gray-600 mb-8">
+          <h3 className="text-center text-sm sm:text-base lg:text-lg font-semibold uppercase tracking-wider text-gray-600 mb-6 sm:mb-8">
             Select Your Investment Type
           </h3>
-          <div className="grid md:grid-cols-4 gap-4 max-w-6xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 max-w-6xl mx-auto">
             {projectTypes.map((project, index) => (
               <a
                 key={index}
                 href={project.link}
-                className={`group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all hover:scale-105 ${
+                className={`group relative bg-white rounded-xl sm:rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all hover:scale-105 ${
                   selectedProject === index ? 'ring-2 ring-purple-600 scale-105' : ''
                 }`}
                 onClick={(e) => {
@@ -216,82 +236,82 @@ const HeroVisual = () => {
                   window.location.href = project.link;
                 }}
               >
-                <div className="h-[120px] bg-gradient-to-br from-purple-100 to-emerald-100 relative overflow-hidden">
+                <div className="h-[80px] sm:h-[100px] md:h-[120px] bg-gradient-to-br from-purple-100 to-emerald-100 relative overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                 </div>
-                <div className="p-6 bg-white">
-                  <div className="text-sm font-semibold text-gray-700 mb-2">{project.name}</div>
-                  <div className="text-3xl font-bold text-gray-900">{project.grant}</div>
-                  <div className="text-xs text-gray-500">{project.max}</div>
+                <div className="p-3 sm:p-4 md:p-6 bg-white">
+                  <div className="text-xs sm:text-sm font-semibold text-gray-700 mb-1 sm:mb-2">{project.name}</div>
+                  <div className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900">{project.grant}</div>
+                  <div className="text-[10px] sm:text-xs text-gray-500">{project.max}</div>
                 </div>
               </a>
             ))}
           </div>
         </div>
 
-        {/* CTA Buttons */}
-        <div className={`flex flex-col gap-6 items-center mb-12 transition-all duration-1000 delay-[800ms] ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+        {/* CTA Buttons - Mobile Responsive */}
+        <div className={`flex flex-col gap-4 sm:gap-6 items-center mb-12 transition-all duration-1000 delay-[800ms] ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center w-full sm:w-auto">
             <a 
               href="/locations"
-              className="group bg-gradient-to-r from-purple-600 to-emerald-600 text-white px-10 py-5 rounded-full font-semibold text-lg hover:shadow-2xl transition-all flex items-center justify-center gap-3"
+              className="group bg-gradient-to-r from-purple-600 to-emerald-600 text-white px-6 sm:px-10 py-4 sm:py-5 rounded-full font-semibold text-base sm:text-lg hover:shadow-2xl transition-all flex items-center justify-center gap-3"
             >
               Investment Locations
-              <MapPin className="w-5 h-5 group-hover:scale-110 transition-transform" />
+              <MapPin className="w-4 h-4 sm:w-5 sm:h-5 group-hover:scale-110 transition-transform" />
             </a>
             <a 
               href="/industries"
-              className="group bg-gradient-to-r from-emerald-600 to-blue-600 text-white px-10 py-5 rounded-full font-semibold text-lg hover:shadow-2xl transition-all flex items-center justify-center gap-3"
+              className="group bg-gradient-to-r from-emerald-600 to-blue-600 text-white px-6 sm:px-10 py-4 sm:py-5 rounded-full font-semibold text-base sm:text-lg hover:shadow-2xl transition-all flex items-center justify-center gap-3"
             >
               Investment Industries
-              <Factory className="w-5 h-5 group-hover:scale-110 transition-transform" />
+              <Factory className="w-4 h-4 sm:w-5 sm:h-5 group-hover:scale-110 transition-transform" />
             </a>
           </div>
           <a 
             href="https://calendly.com/investinpuglia/30min"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-white text-gray-900 border-2 border-gray-200 px-10 py-5 rounded-full font-semibold text-lg hover:border-purple-400 hover:shadow-xl transition-all flex items-center justify-center gap-3"
+            className="bg-white text-gray-900 border-2 border-gray-200 px-6 sm:px-10 py-4 sm:py-5 rounded-full font-semibold text-base sm:text-lg hover:border-purple-400 hover:shadow-xl transition-all flex items-center justify-center gap-3 w-full sm:w-auto"
           >
             Book Free Consultation
-            <ArrowRight className="w-5 h-5" />
+            <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
           </a>
         </div>
 
-        {/* Stats Grid */}
-        <div className={`grid md:grid-cols-4 gap-4 max-w-5xl mx-auto mb-12 transition-all duration-1000 delay-[1000ms] ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+        {/* Stats Grid - Mobile Responsive */}
+        <div className={`grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 max-w-5xl mx-auto mb-12 transition-all duration-1000 delay-[1000ms] ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           {stats.map((stat, index) => (
             <a
               key={index}
               href={stat.link}
-              className="bg-white/90 backdrop-blur-sm rounded-2xl p-6 text-center shadow-lg hover:shadow-xl transition-all hover:scale-105 hover:-translate-y-1 border border-white/50"
+              className="bg-white/90 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 text-center shadow-lg hover:shadow-xl transition-all hover:scale-105 hover:-translate-y-1 border border-white/50"
             >
-              <div className="text-3xl font-bold text-gray-900 mb-1">{stat.value}</div>
-              <div className="text-sm text-gray-600">{stat.label}</div>
+              <div className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-1">{stat.value}</div>
+              <div className="text-xs sm:text-sm text-gray-600">{stat.label}</div>
             </a>
           ))}
         </div>
 
-        {/* Location Quick Links */}
+        {/* Location Quick Links - Mobile Responsive */}
         <div className={`text-center transition-all duration-1000 delay-[1200ms] ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <h3 className="text-base uppercase tracking-wider text-gray-600 mb-6 font-semibold">
+          <h3 className="text-xs sm:text-sm md:text-base uppercase tracking-wider text-gray-600 mb-4 sm:mb-6 font-semibold px-4">
             Top Investment Destinations in Puglia
           </h3>
-          <div className="flex flex-wrap justify-center gap-3 max-w-5xl mx-auto">
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-3 max-w-5xl mx-auto px-4">
             {locations.map((location, index) => (
               <a
                 key={index}
                 href={location.link}
-                className="px-6 py-3 bg-white border border-gray-200 rounded-full text-gray-700 text-sm hover:border-purple-400 hover:bg-gradient-to-r hover:from-purple-50 hover:to-emerald-50 transition-all hover:scale-105"
+                className="px-3 sm:px-6 py-2 sm:py-3 bg-white border border-gray-200 rounded-full text-gray-700 text-xs sm:text-sm hover:border-purple-400 hover:bg-gradient-to-r hover:from-purple-50 hover:to-emerald-50 transition-all hover:scale-105"
               >
                 {location.name}
               </a>
             ))}
             <a
               href="/locations"
-              className="px-6 py-3 bg-gradient-to-r from-purple-100 to-emerald-100 border border-purple-400 rounded-full text-purple-700 text-sm font-semibold hover:shadow-lg transition-all hover:scale-105"
+              className="px-3 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-purple-100 to-emerald-100 border border-purple-400 rounded-full text-purple-700 text-xs sm:text-sm font-semibold hover:shadow-lg transition-all hover:scale-105"
             >
-              View All Locations →
+              View All →
             </a>
           </div>
         </div>
