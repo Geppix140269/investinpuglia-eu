@@ -3,94 +3,344 @@
   <!-- Homepage -->
   <url>
     <loc>https://investinpuglia.eu</loc>
-    <lastmod>2025-07-28</lastmod>
+    <lastmod>2025-01-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   
   <!-- Main Pages -->
   <url>
-    <loc>https://investinpuglia.eu/en</loc>
-    <lastmod>2025-07-28</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://investinpuglia.eu/en/about</loc>
-    <lastmod>2025-07-28</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://investinpuglia.eu/en/calculator</loc>
-    <lastmod>2025-07-28</lastmod>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://investinpuglia.eu/en/contact</loc>
-    <lastmod>2025-07-28</lastmod>
+    <loc>https://investinpuglia.eu/about</loc>
+    <lastmod>2025-01-09</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   
-  <!-- Location Pages -->
   <url>
-    <loc>https://investinpuglia.eu/en/locations</loc>
-    <lastmod>2025-07-28</lastmod>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://investinpuglia.eu/en/locations/invest-in-bari-bari</loc>
-    <lastmod>2025-07-28</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://investinpuglia.eu/en/locations/invest-in-lecce-lecce</loc>
-    <lastmod>2025-07-28</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://investinpuglia.eu/en/locations/invest-in-taranto-taranto</loc>
-    <lastmod>2025-07-28</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://investinpuglia.eu/en/locations/invest-in-foggia-foggia</loc>
-    <lastmod>2025-07-28</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://investinpuglia.eu/en/locations/invest-in-brindisi-brindisi</loc>
-    <lastmod>2025-07-28</lastmod>
+    <loc>https://investinpuglia.eu/services</loc>
+    <lastmod>2025-01-09</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   
-  <!-- Industry Pages -->
   <url>
-    <loc>https://investinpuglia.eu/en/industries</loc>
-    <lastmod>2025-07-28</lastmod>
+    <loc>https://investinpuglia.eu/how-it-works</loc>
+    <lastmod>2025-01-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://investinpuglia.eu/contact</loc>
+    <lastmod>2025-01-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://investinpuglia.eu/faq</loc>
+    <lastmod>2025-01-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://investinpuglia.eu/insights</loc>
+    <lastmod>2025-01-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://investinpuglia.eu/tools</loc>
+    <lastmod>2025-01-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://investinpuglia.eu/investment-process</loc>
+    <lastmod>2025-01-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Location Pages (without /en) -->
+  <url>
+    <loc>https://investinpuglia.eu/locations</loc>
+    <lastmod>2025-01-09</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
+  
   <url>
-    <loc>https://investinpuglia.eu/en/industries/tourism-hospitality</loc>
-    <lastmod>2025-07-28</lastmod>
+    <loc>https://investinpuglia.eu/locations/invest-in-bari-bari</loc>
+    <lastmod>2025-01-09</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  
   <url>
-    <loc>https://investinpuglia.eu/en/industries/renewable-energy</loc>
-    <lastmod>2025-07-28</lastmod>
+    <loc>https://investinpuglia.eu/locations/invest-in-lecce-lecce</loc>
+    <lastmod>2025-01-09</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  
   <url>
-    <loc>https://investinpuglia.eu/en/industries/agriculture-agritech</loc>
-    <lastmod>2025-07-28</lastmod>
+    <loc>https://investinpuglia.eu/locations/invest-in-taranto-taranto</loc>
+    <lastmod>2025-01-09</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  
   <url>
-    <loc>https://investinpuglia.eu/en/industries/manufacturing</loc>
-    <lastmod>2025-07-28</lastmod>
+    <loc>https://investinpuglia.eu/locations/invest-in-brindisi-brindisi</loc>
+    <lastmod>2025-01-09</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  
   <url>
-    <loc>https://investinpuglia.eu/en/industries/real-estate-development</loc>
-    <lastmod>2025-07-28</lastmod>
+    <loc>https://investinpuglia.eu/locations/invest-in-foggia-foggia</loc>
+    <lastmod>2025-01-09</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://investinpuglia.eu/locations/invest-in-ostuni-brindisi</loc>
+    <lastmod>2025-01-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://investinpuglia.eu/locations/invest-in-polignano-a-mare-bari</loc>
+    <lastmod>2025-01-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://investinpuglia.eu/locations/invest-in-monopoli-bari</loc>
+    <lastmod>2025-01-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://investinpuglia.eu/locations/invest-in-alberobello-bari</loc>
+    <lastmod>2025-01-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://investinpuglia.eu/locations/invest-in-locorotondo-bari</loc>
+    <lastmod>2025-01-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://investinpuglia.eu/locations/invest-in-cisternino-brindisi</loc>
+    <lastmod>2025-01-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://investinpuglia.eu/locations/invest-in-gallipoli-lecce</loc>
+    <lastmod>2025-01-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://investinpuglia.eu/locations/invest-in-otranto-lecce</loc>
+    <lastmod>2025-01-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://investinpuglia.eu/locations/invest-in-porto-cesareo-lecce</loc>
+    <lastmod>2025-01-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://investinpuglia.eu/locations/invest-in-castro-lecce</loc>
+    <lastmod>2025-01-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://investinpuglia.eu/locations/invest-in-vieste-foggia</loc>
+    <lastmod>2025-01-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://investinpuglia.eu/locations/invest-in-san-giovanni-rotondo-foggia</loc>
+    <lastmod>2025-01-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://investinpuglia.eu/locations/invest-in-canosa-di-puglia-barletta-andria-trani</loc>
+    <lastmod>2025-01-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://investinpuglia.eu/locations/invest-in-giovinazzo-bari</loc>
+    <lastmod>2025-01-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://investinpuglia.eu/locations/invest-in-molfetta-bari</loc>
+    <lastmod>2025-01-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Industry Pages (without /en) -->
+  <url>
+    <loc>https://investinpuglia.eu/industries</loc>
+    <lastmod>2025-01-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <url>
+    <loc>https://investinpuglia.eu/industries/tourism-hospitality</loc>
+    <lastmod>2025-01-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://investinpuglia.eu/industries/renewable-energy</loc>
+    <lastmod>2025-01-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://investinpuglia.eu/industries/agriculture-agritech</loc>
+    <lastmod>2025-01-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://investinpuglia.eu/industries/manufacturing</loc>
+    <lastmod>2025-01-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://investinpuglia.eu/industries/real-estate-development</loc>
+    <lastmod>2025-01-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://investinpuglia.eu/industries/aerospace-defense</loc>
+    <lastmod>2025-01-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://investinpuglia.eu/industries/ict-digital-services</loc>
+    <lastmod>2025-01-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://investinpuglia.eu/industries/logistics-transportation</loc>
+    <lastmod>2025-01-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://investinpuglia.eu/industries/healthcare-biotechnology</loc>
+    <lastmod>2025-01-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://investinpuglia.eu/industries/creative-cultural</loc>
+    <lastmod>2025-01-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Blog/Insights Pages -->
+  <url>
+    <loc>https://investinpuglia.eu/blog</loc>
+    <lastmod>2025-01-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Legal Pages -->
+  <url>
+    <loc>https://investinpuglia.eu/privacy</loc>
+    <lastmod>2025-01-09</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  
+  <url>
+    <loc>https://investinpuglia.eu/terms</loc>
+    <lastmod>2025-01-09</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  
+  <url>
+    <loc>https://investinpuglia.eu/cookies</loc>
+    <lastmod>2025-01-09</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  
+  <url>
+    <loc>https://investinpuglia.eu/legal-notice</loc>
+    <lastmod>2025-01-09</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  
+  <!-- Dashboard (if needed) -->
+  <url>
+    <loc>https://investinpuglia.eu/dashboard</loc>
+    <lastmod>2025-01-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <!-- Login (if public) -->
+  <url>
+    <loc>https://investinpuglia.eu/login</loc>
+    <lastmod>2025-01-09</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
   </url>
 </urlset>
