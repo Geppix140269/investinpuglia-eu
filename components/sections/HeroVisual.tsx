@@ -18,6 +18,7 @@ const HeroVisual = () => {
       grant: '55%',
       max: 'up to €2.25M',
       image: '/images/locations/trulli-alberobello.jpg',
+      fallback: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400"%3E%3Crect fill="%23f3e8ff" width="800" height="400"/%3E%3Ctext x="400" y="200" text-anchor="middle" font-size="24" fill="%239333ea"%3ETrulli Properties%3C/text%3E%3C/svg%3E',
       link: '/industries/real-estate'
     },
     {
@@ -25,6 +26,7 @@ const HeroVisual = () => {
       grant: '45%',
       max: 'up to €5M',
       image: '/images/industries/hotels-puglia.jpg',
+      fallback: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400"%3E%3Crect fill="%23dbeafe" width="800" height="400"/%3E%3Ctext x="400" y="200" text-anchor="middle" font-size="24" fill="%233b82f6"%3EHotels %26 Resorts%3C/text%3E%3C/svg%3E',
       link: '/industries/hospitality'
     },
     {
@@ -32,6 +34,7 @@ const HeroVisual = () => {
       grant: '50%',
       max: 'up to €2M',
       image: '/images/industries/restaurants-puglia.jpg',
+      fallback: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400"%3E%3Crect fill="%23fef3c7" width="800" height="400"/%3E%3Ctext x="400" y="200" text-anchor="middle" font-size="24" fill="%23f59e0b"%3ERestaurants%3C/text%3E%3C/svg%3E',
       link: '/industries/restaurants'
     },
     {
@@ -39,6 +42,7 @@ const HeroVisual = () => {
       grant: '45%',
       max: 'up to €5M',
       image: '/images/industries/manufacturing-puglia.jpg',
+      fallback: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400"%3E%3Crect fill="%23dcfce7" width="800" height="400"/%3E%3Ctext x="400" y="200" text-anchor="middle" font-size="24" fill="%2310b981"%3EManufacturing%3C/text%3E%3C/svg%3E',
       link: '/industries/manufacturing'
     }
   ];
@@ -105,8 +109,9 @@ const HeroVisual = () => {
             <h1 className="text-2xl sm:text-3xl lg:text-[2.5rem] font-light text-gray-900 mb-4 leading-tight">
               Transform €2.25M into €10M
             </h1>
-            <div className="text-3xl sm:text-4xl lg:text-[3.5rem] font-bold bg-gradient-to-r from-purple-600 to-emerald-600 bg-clip-text text-transparent leading-[1.1] mb-2">
-              With Puglia's 55% Grant Program
+            <div className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold bg-gradient-to-r from-purple-600 to-emerald-600 bg-clip-text text-transparent leading-tight mb-4">
+              With Puglia's 55%<br className="hidden sm:block" />
+              Grant Program
             </div>
             <div className="text-lg sm:text-xl text-gray-600 font-medium mb-6">
               344% ROI Through Government-Backed Funding
@@ -236,7 +241,15 @@ const HeroVisual = () => {
                   window.location.href = project.link;
                 }}
               >
-                <div className="h-[80px] sm:h-[100px] md:h-[120px] bg-gradient-to-br from-purple-100 to-emerald-100 relative overflow-hidden">
+                <div className="h-[80px] sm:h-[100px] md:h-[120px] relative overflow-hidden">
+                  <img 
+                    src={project.image} 
+                    alt={project.name}
+                    className="w-full h-full object-cover"
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).src = project.fallback;
+                    }}
+                  />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                 </div>
                 <div className="p-3 sm:p-4 md:p-6 bg-white">
