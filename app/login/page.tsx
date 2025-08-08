@@ -14,7 +14,7 @@ export default function LoginPage() {
   useEffect(() => {
     // If already logged in, redirect to intended destination or dashboard
     if (user && !loading) {
-      const redirectTo = sessionStorage.getItem('redirectAfterLogin') || '/dashboard'
+      const redirectTo = sessionStorage.getItem('redirectAfterLogin') || '/'
       sessionStorage.removeItem('redirectAfterLogin')
       if (redirectTo.startsWith('http')) {
           window.location.href = redirectTo;
@@ -48,10 +48,9 @@ export default function LoginPage() {
       <div className="flex-1 flex items-center justify-center p-4">
         <div className="max-w-md w-full">
           <div className="bg-white rounded-2xl shadow-xl p-8">
-            {/* Logo/Brand */}
+            {/* Logo/Brand - CLEAN, NO EMOJIS */}
             <div className="text-center mb-8">
-              <div className="inline-flex items-center gap-3 mb-4">
-                <span className="text-4xl">ðŸ‡®ðŸ‡¹</span>
+              <div className="mb-4">
                 <h1 className="text-3xl font-bold text-gray-900">InvestinPuglia</h1>
               </div>
               <h2 className="text-xl font-semibold text-gray-700 mb-2">Welcome Back</h2>
@@ -92,19 +91,19 @@ export default function LoginPage() {
               <h3 className="text-sm font-semibold text-gray-700 mb-4">Why create an account?</h3>
               <ul className="space-y-2 text-sm text-gray-600">
                 <li className="flex items-start gap-2">
-                  <span className="text-green-500 mt-0.5">âœ“</span>
+                  <span className="text-green-500 mt-0.5">✓</span>
                   Save and manage your property searches
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-green-500 mt-0.5">âœ“</span>
+                  <span className="text-green-500 mt-0.5">✓</span>
                   Create detailed buyer profiles
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-green-500 mt-0.5">âœ“</span>
+                  <span className="text-green-500 mt-0.5">✓</span>
                   Access investment calculators
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-green-500 mt-0.5">âœ“</span>
+                  <span className="text-green-500 mt-0.5">✓</span>
                   Connect with local partners and agencies
                 </li>
               </ul>
@@ -127,4 +126,3 @@ export default function LoginPage() {
     </div>
   )
 }
-

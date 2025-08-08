@@ -517,7 +517,7 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
               />
 
               {/* Authentication Overlay - Shows when not authenticated */}
-              {!authState.isAuthenticated && (
+              {/* DISABLED {!authState.isAuthenticated && (
                 <div className="absolute inset-0 bg-white/98 backdrop-blur-sm flex items-center justify-center z-20 rounded-2xl">
                   <div className="text-center p-8 max-w-sm">
                     <div className="mb-6">
@@ -610,7 +610,7 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
                 language={currentLang}
                 isTyping={isTyping}
                 onSend={sendMessage}
-                disabled={!authState.isAuthenticated}
+                disabled={/* DISABLED {!authState.isAuthenticated}
               />
 
               {/* Mobile Safe Area Bottom Padding */}
@@ -624,5 +624,6 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
     </>
   );
 }
+
 
 
