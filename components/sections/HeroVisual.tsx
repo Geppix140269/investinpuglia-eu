@@ -1,578 +1,646 @@
-// components/sections/HeroVisual.tsx
+// PATH: components/trullo/TrulloChatbot.tsx
 'use client'
+import React, { useState, useEffect, useRef } from 'react';
+import { Language, TrulloChatbotProps, Message } from './types';
+import { translations } from './constants/translations';
+import { useChat } from './hooks/useChat';
+import ChatMessages from './ChatMessages';
+import ChatInput from './ChatInput';
+import ContactForm from './ContactForm';
+import { sendEmailMessage, saveContactRequest } from './utils/api';
+import { isIPBlocked, getBlockedMessage } from './utils/ipBlocker';
+// Import Firebase auth from your existing setup
+import { auth, googleProvider } from '@/lib/firebase';
+import { onAuthStateChanged, signInWithPopup, signInWithRedirect, getRedirectResult } from 'firebase/auth';
 
-import React, { useState, useEffect } from 'react';
-import { MapPin, Factory, ArrowRight, Shield } from 'lucide-react';
-
-const HeroVisual = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const [selectedProject, setSelectedProject] = useState(0);
-  const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
+export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
   const [isMobile, setIsMobile] = useState(false);
-  
-  // Trulli/Property videos for hero
-  const heroVideos = [
-    'https://res.cloudinary.com/dusubfxgo/video/upload/v1754597045/social_geppix1402_81420_Luxurious_renovated_trulli_houses_in_Puglia__f6f51651-9ca0-4e21-a004-ae288528045f_0_ofth8z.mp4',
-    'https://res.cloudinary.com/dusubfxgo/video/upload/v1754597042/social_geppix1402_81420_Luxurious_renovated_trulli_houses_in_Puglia__8e712bde-425d-423c-91d8-a9ad1d9ca973_1_g7aad3.mp4',
-    'https://res.cloudinary.com/dusubfxgo/video/upload/v1753030861/TrulloClip_sqv4cl.mp4'
-  ];
-  
-  // Business videos
-  const businessVideo = 'https://res.cloudinary.com/dusubfxgo/video/upload/v1753030831/geppix1402_81420_Homepage_concept_for_Apulink.com_a_modern_di_02fb68c3-5806-40b5-984f-f47e14c23456_1_vkjhc8.mp4';
-  
+  const [isOpen, setIsOpen] = useState(false);
+  const [currentLang, setCurrentLang] = useState<Language>(language);
+  const [showMessageForm, setShowMessageForm] = useState(false);
+  const [isBlocked, setIsBlocked] = useState(false);
+  const [isButtonVisible, setIsButtonVisible] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragOffset, setDragOffset] = useState(0);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [userEmail, setUserEmail] = useState<string | undefined>(undefined);
+  const [authLoading, setAuthLoading] = useState(true);
+  const [authError, setAuthError] = useState<string | null>(null);
+
+  const chatRef = useRef<HTMLDivElement>(null);
+  const touchStartY = useRef<number>(0);
+  const touchStartTime = useRef<number>(0);
+
+  // Check Firebase authentication status on mount and when chat opens
   useEffect(() => {
-    setIsVisible(true);
-    
-    // Check if mobile
-    const checkMobile = () => {
-      const mobile = typeof window !== 'undefined' && (
-        /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || 
-        window.innerWidth < 768
-      );
-      setIsMobile(mobile);
+    const checkRedirectResult = async () => {
+      try {
+        const result = await getRedirectResult(auth);
+        if (result?.user) {
+          console.log('Redirect login successful:', result.user.email);
+          setIsAuthenticated(true);
+          setUserEmail(result.user.email || undefined);
+        }
+      } catch (error) {
+        console.error('Redirect result error:', error);
+      }
     };
-    
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    
-    // Rotate videos every 10 seconds
-    const videoInterval = setInterval(() => {
-      setCurrentVideoIndex((prev) => (prev + 1) % heroVideos.length);
-    }, 10000);
-    
-    return () => {
-      window.removeEventListener('resize', checkMobile);
-      clearInterval(videoInterval);
-    };
+
+    checkRedirectResult();
+
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      console.log('Auth state changed:', user?.email || 'not authenticated');
+      if (user) {
+        setIsAuthenticated(true);
+        setUserEmail(user.email || undefined);
+        setAuthError(null);
+      } else {
+        setIsAuthenticated(false);
+        setUserEmail(undefined);
+      }
+      setAuthLoading(false);
+    });
+
+    return () => unsubscribe();
   }, []);
 
-  const projectTypes = [
-    {
-      name: 'Trulli & Historic',
-      grant: '55%',
-      max: 'up to €2.25M',
-      image: '/images/locations/trulli-alberobello.jpg',
-      fallback: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400"%3E%3Crect fill="%23f3e8ff" width="800" height="400"/%3E%3Ctext x="400" y="200" text-anchor="middle" font-size="24" fill="%239333ea"%3ETrulli Properties%3C/text%3E%3C/svg%3E',
-      link: '/industries'
-    },
-    {
-      name: 'Hotels & Tourism',
-      grant: '45%',
-      max: 'up to €5M',
-      image: '/images/industries/hotels-puglia.jpg',
-      fallback: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400"%3E%3Crect fill="%23dbeafe" width="800" height="400"/%3E%3Ctext x="400" y="200" text-anchor="middle" font-size="24" fill="%233b82f6"%3EHotels %26 Resorts%3C/text%3E%3C/svg%3E',
-      link: '/industries'
-    },
-    {
-      name: 'Restaurants',
-      grant: '50%',
-      max: 'up to €2M',
-      image: '/images/industries/restaurants-puglia.jpg',
-      fallback: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400"%3E%3Crect fill="%23fef3c7" width="800" height="400"/%3E%3Ctext x="400" y="200" text-anchor="middle" font-size="24" fill="%23f59e0b"%3ERestaurants%3C/text%3E%3C/svg%3E',
-      link: '/industries'
-    },
-    {
-      name: 'Manufacturing',
-      grant: '45%',
-      max: 'up to €5M',
-      image: '/images/industries/manufacturing-puglia.jpg',
-      fallback: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400"%3E%3Crect fill="%23dcfce7" width="800" height="400"/%3E%3Ctext x="400" y="200" text-anchor="middle" font-size="24" fill="%2310b981"%3EManufacturing%3C/text%3E%3C/svg%3E',
-      link: '/industries'
+  // Load user preference and auto-open on mount
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const hasUserClosed = localStorage.getItem('trullo-user-closed') === 'true';
+      const savedState = localStorage.getItem('trullo-chat-state');
+
+      if (!hasUserClosed && window.location.pathname === '/') {
+        setTimeout(() => {
+          setIsOpen(true);
+        }, 3000);
+      } else if (savedState === 'open') {
+        setIsOpen(true);
+      }
+
+      setTimeout(() => {
+        setIsButtonVisible(true);
+      }, 500);
     }
-  ];
+  }, []);
 
-  const locations = [
-    { name: 'Bari', link: '/locations/invest-in-bari-bari' },
-    { name: 'Lecce', link: '/locations/invest-in-lecce-lecce' },
-    { name: 'Ostuni', link: '/locations/invest-in-ostuni-brindisi' },
-    { name: 'Polignano a Mare', link: '/locations/invest-in-polignano-a-mare-bari' },
-    { name: 'Brindisi', link: '/locations/invest-in-brindisi-brindisi' },
-    { name: 'Taranto', link: '/locations/invest-in-taranto-taranto' }
-  ];
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('trullo-chat-state', isOpen ? 'open' : 'closed');
+    }
+  }, [isOpen]);
 
-  const stats = [
-    { value: '€9.9B', label: '2024 Investment', link: '/locations/invest-in-bari-bari' },
-    { value: '+66%', label: 'Year on Year', link: '/industries' },
-    { value: '95%', label: 'Approval Rate', link: '/how-it-works' },
-    { value: '30 Years', label: 'Experience', link: '/about' }
-  ];
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
 
-  // ADAPTIVE MOBILE DESIGN - COMPLETELY DIFFERENT LAYOUT
-  if (isMobile) {
-    return (
-      <section className="relative min-h-screen bg-white">
-        {/* Full Screen Video Hero */}
-        <div className="relative h-[100vh]">
-          {/* Background Video */}
-          <video 
-            key={currentVideoIndex}
-            autoPlay 
-            muted 
-            loop 
-            playsInline
-            className="absolute inset-0 w-full h-full object-cover"
-          >
-            <source src={heroVideos[currentVideoIndex]} type="video/mp4" />
-          </video>
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Swipe to close handler (unchanged)
+  useEffect(() => {
+    if (!isMobile || !isOpen || !chatRef.current) return;
+
+    const element = chatRef.current;
+    let startY = 0;
+    let currentY = 0;
+    let startedInHeader = false;
+
+    const handleTouchStart = (e: TouchEvent) => {
+      const touch = e.touches[0];
+      const rect = element.getBoundingClientRect();
+      const relativeY = touch.clientY - rect.top;
+      
+      if (relativeY <= 80) {
+        startedInHeader = true;
+        startY = touch.clientY;
+        touchStartY.current = startY;
+        touchStartTime.current = Date.now();
+        setIsDragging(true);
+      } else {
+        startedInHeader = false;
+      }
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+      if (!isDragging || !startedInHeader) return;
+      currentY = e.touches[0].clientY;
+      const deltaY = currentY - startY;
+      if (deltaY > 0) {
+        const resistance = 0.8;
+        setDragOffset(deltaY * resistance);
+      }
+    };
+
+    const handleTouchEnd = () => {
+      if (!startedInHeader) {
+        setIsDragging(false);
+        return;
+      }
+
+      setIsDragging(false);
+      const swipeDuration = Date.now() - touchStartTime.current;
+      const swipeVelocity = dragOffset / swipeDuration;
+
+      if (dragOffset > 150 || (dragOffset > 50 && swipeVelocity > 0.5)) {
+        handleUserClose();
+      }
+
+      setDragOffset(0);
+      startedInHeader = false;
+    };
+
+    element.addEventListener('touchstart', handleTouchStart, { passive: true });
+    element.addEventListener('touchmove', handleTouchMove, { passive: true });
+    element.addEventListener('touchend', handleTouchEnd, { passive: true });
+
+    return () => {
+      element.removeEventListener('touchstart', handleTouchStart);
+      element.removeEventListener('touchmove', handleTouchMove);
+      element.removeEventListener('touchend', handleTouchEnd);
+    };
+  }, [isMobile, isOpen, isDragging, dragOffset]);
+
+  const {
+    messages,
+    isTyping,
+    sessionId,
+    conversationId,
+    authState,
+    sendMessage,
+    closeChat
+  } = useChat(isOpen, currentLang);
+
+  const t = translations[currentLang];
+
+  // Initialize session and visitor tracking (unchanged)
+  useEffect(() => {
+    if (isOpen && !sessionId) {
+      const newSessionId = `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+      
+      const getVisitorInfo = async () => {
+        try {
+          const response = await fetch('https://ipapi.co/json/');
+          const data = await response.json();
           
-          {/* Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/40 to-black/70" />
+          sessionStorage.setItem('userIP', data.ip || 'Unknown');
+          sessionStorage.setItem('userCity', data.city || 'Unknown');
+          sessionStorage.setItem('userCountry', data.country_name || 'Unknown');
           
-          {/* Content Overlay */}
-          <div className="relative z-10 h-full flex flex-col justify-between p-6 text-white">
-            {/* Top Section */}
-            <div style={{ paddingTop: '20px' }}>
-              <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md rounded-full px-3 py-1.5 text-xs">
-                <Shield className="w-3 h-3 text-yellow-400" />
-                <span className="font-medium">Government Backed</span>
-              </div>
-            </div>
-            
-            {/* Middle Section - Main Content */}
-            <div className="flex-1 flex flex-col justify-center -mt-20">
-              {/* Giant ROI Number */}
-              <div className="mb-6">
-                <div className="text-7xl font-bold text-white mb-2">
-                  344%
-                </div>
-                <div className="text-xl text-white/90">
-                  Return on Investment
-                </div>
-              </div>
-              
-              {/* Transform Text */}
-              <div className="mb-6">
-                <div className="text-2xl font-light text-white/90">Transform</div>
-                <div className="text-3xl font-bold text-white">
-                  €2.25M → €10M
-                </div>
-              </div>
-              
-              {/* Grant Badge */}
-              <div className="inline-block bg-gradient-to-r from-purple-600 to-emerald-600 rounded-full px-4 py-2 mb-6">
-                <span className="text-sm font-bold">55% Grant • Until 2027</span>
-              </div>
-            </div>
-            
-            {/* Bottom Section */}
-            <div style={{ paddingBottom: '20px' }}>
-              {/* Stats Bar */}
-              <div className="grid grid-cols-3 gap-4 mb-6">
-                <div className="text-center">
-                  <div className="text-2xl font-bold">€5M</div>
-                  <div className="text-xs opacity-80">Max Project</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl font-bold">95%</div>
-                  <div className="text-xs opacity-80">Success</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl font-bold">3yrs</div>
-                  <div className="text-xs opacity-80">Exit</div>
-                </div>
-              </div>
-              
-              {/* CTA Button */}
-              <a 
-                href="https://calendly.com/investinpuglia/30min"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block w-full bg-white text-black py-4 rounded-2xl font-bold text-center text-lg shadow-2xl"
-              >
-                Book Free Consultation →
-              </a>
-            </div>
-          </div>
-        </div>
-        
-        {/* Second Section - Details */}
-        <div className="bg-white px-6 py-12">
-          {/* Alert */}
-          <div className="bg-red-50 border-l-4 border-red-500 p-4 mb-8 rounded">
-            <p className="text-sm font-bold text-red-900">
-              ⏰ LIMITED TIME - Funds allocated "a sportello" until 2027!
-            </p>
-          </div>
+          if (isIPBlocked && isIPBlocked(data.ip)) {
+            setIsBlocked(true);
+            await fetch('/api/trullo-telegram', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                type: 'bot_detected',
+                data: {
+                  ip: data.ip,
+                  city: data.city || 'Unknown',
+                  country: data.country_name || 'Unknown',
+                  score: 10,
+                  reasons: ['IP is on blocklist', 'Access denied']
+                }
+              })
+            });
+            return;
+          }
           
-          {/* About */}
-          <div className="mb-10">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">
-              Puglia Investment Program
-            </h2>
-            <p className="text-gray-600 leading-relaxed">
-              The Mini PIA program provides 55% non-repayable grants on investments up to €5M. 
-              Your €2.25M contribution, combined with €2.75M in grant funding, creates a €5M 
-              project with full ownership retained by you.
-            </p>
-          </div>
-          
-          {/* Investment Categories Grid */}
-          <div className="mb-10">
-            <h3 className="text-lg font-bold text-gray-900 mb-4">
-              Investment Categories
-            </h3>
-            <div className="grid grid-cols-2 gap-3">
-              {projectTypes.map((type, i) => (
-                <a
-                  key={i}
-                  href={type.link}
-                  className="relative rounded-xl overflow-hidden shadow-lg"
-                >
-                  <img 
-                    src={type.image} 
-                    alt={type.name}
-                    className="w-full h-28 object-cover"
-                    onError={(e) => {
-                      (e.target as HTMLImageElement).src = type.fallback;
-                    }}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-                  <div className="absolute bottom-0 left-0 right-0 p-3 text-white">
-                    <div className="text-xs font-semibold">{type.name}</div>
-                    <div className="text-lg font-bold">{type.grant}</div>
-                  </div>
-                </a>
-              ))}
-            </div>
-          </div>
-          
-          {/* Secondary CTAs */}
-          <div className="space-y-3">
-            <a 
-              href="/locations"
-              className="block w-full bg-gradient-to-r from-purple-600 to-emerald-600 text-white py-3 rounded-xl font-semibold text-center"
-            >
-              View All Locations
-            </a>
-            <a 
-              href="/industries"
-              className="block w-full bg-white text-purple-600 py-3 rounded-xl font-semibold text-center border-2 border-purple-200"
-            >
-              Explore Industries
-            </a>
-          </div>
-          
-          {/* Locations - Added for Mobile */}
-          <div className="mt-10">
-            <h3 className="text-lg font-bold text-gray-900 mb-4">
-              Top Investment Locations
-            </h3>
-            <div className="grid grid-cols-3 gap-2">
-              {locations.slice(0, 6).map((location, i) => (
-                <a
-                  key={i}
-                  href={location.link}
-                  className="bg-gray-50 border border-gray-200 rounded-lg py-2 px-3 text-center text-sm font-medium text-gray-700 hover:bg-purple-50 hover:border-purple-300 transition-all"
-                >
-                  {location.name}
-                </a>
-              ))}
-            </div>
-            <a 
-              href="/locations"
-              className="block mt-3 text-center text-purple-600 font-semibold text-sm"
-            >
-              View All Locations →
-            </a>
-          </div>
-          
-          {/* Trust Bar */}
-          <div className="mt-10 pt-8 border-t border-gray-200">
-            <div className="flex justify-center items-center gap-4 text-xs text-gray-500">
-              <span>Est. 2019</span>
-              <span>•</span>
-              <span>€9.9B Invested</span>
-              <span>•</span>
-              <span>30+ Years</span>
-            </div>
-          </div>
-        </div>
-      </section>
-    );
+          await fetch('/api/trullo-telegram', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              type: 'new_session',
+              data: {
+                sessionId: newSessionId,
+                ip: data.ip,
+                city: data.city,
+                region: data.region,
+                country: data.country_name,
+                countryCode: data.country,
+                timezone: data.timezone,
+                device: /Mobile|Android|iPhone/i.test(navigator.userAgent) ? 'Mobile' : 'Desktop',
+                browser: getBrowserName(),
+                screenResolution: `${window.screen.width}x${window.screen.height}`,
+                viewport: `${window.innerWidth}x${window.innerHeight}`,
+                chatLanguage: currentLang,
+                language: navigator.language,
+                currentPage: window.location.pathname,
+                referrer: document.referrer || 'Direct',
+                started_at: new Date().toISOString(),
+                userAgent: navigator.userAgent
+              }
+            })
+          });
+        } catch (error) {
+          console.error('Failed to get visitor info:', error);
+          sessionStorage.setItem('userIP', 'Unknown');
+          sessionStorage.setItem('userCity', 'Unknown');
+          sessionStorage.setItem('userCountry', 'Unknown');
+        }
+      };
+      
+      getVisitorInfo();
+    }
+  }, [isOpen, sessionId, currentLang]);
+
+  // Handle automated email sending (unchanged)
+  useEffect(() => {
+    const handleAutoEmail = async (event: CustomEvent) => {
+      const { name, email, message } = event.detail;
+
+      try {
+        console.log('Sending automated email for:', name, email);
+        const conversationHistory = messages.map(m =>
+          `${m.role === 'user' ? 'User' : 'Trullo'}: ${m.content}`
+        ).join('\n\n');
+
+        if (conversationId) {
+          await saveContactRequest(conversationId, {
+            name,
+            email,
+            phone: '',
+            message
+          }, currentLang);
+        }
+
+        await sendEmailMessage({
+          name,
+          email,
+          phone: '',
+          message: `Automated message from chat:\n\n${message}\n\n---\nFull conversation:\n${conversationHistory}`
+        }, currentLang);
+
+        console.log('Automated email sent successfully!');
+      } catch (error) {
+        console.error('Failed to send automated email:', error);
+      }
+    };
+
+    const eventListener = (event: Event) => {
+      handleAutoEmail(event as CustomEvent);
+    };
+
+    window.addEventListener('trullo-auto-email', eventListener);
+    return () => {
+      window.removeEventListener('trullo-auto-email', eventListener);
+    };
+  }, [conversationId, currentLang, messages]);
+
+  const handleCloseChat = () => {
+    closeChat();
+    setIsOpen(false);
+    setIsBlocked(false);
+  };
+
+  const handleUserClose = () => {
+    setIsOpen(false);
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('trullo-user-closed', 'true');
+    }
+  };
+
+  const handleContactFormSuccess = () => {
+    const successMessage: Message = {
+      id: Date.now().toString(),
+      role: 'assistant',
+      content: t.messageForm.success,
+      timestamp: new Date()
+    };
+    
+    setShowMessageForm(false);
+  };
+
+  function getBrowserName() {
+    const agent = navigator.userAgent;
+    if (agent.indexOf('Chrome') > -1) return 'Chrome';
+    if (agent.indexOf('Safari') > -1) return 'Safari';
+    if (agent.indexOf('Firefox') > -1) return 'Firefox';
+    if (agent.indexOf('Edge') > -1) return 'Edge';
+    return 'Other';
   }
 
-  // DESKTOP VERSION - Your existing layout
+  const getWindowOpacity = () => {
+    if (!isDragging || dragOffset <= 0) return 1;
+    const opacity = Math.max(0, 1 - (dragOffset - 50) / 150);
+    return opacity;
+  };
+
+  const handleGoogleLogin = async () => {
+    try {
+      setAuthError(null);
+      setAuthLoading(true);
+      
+      // Try popup first (better UX on desktop)
+      if (!isMobile) {
+        try {
+          const result = await signInWithPopup(auth, googleProvider);
+          console.log('Popup login successful:', result.user.email);
+          setIsAuthenticated(true);
+          setUserEmail(result.user.email || undefined);
+        } catch (popupError: any) {
+          // If popup blocked, fall back to redirect
+          if (popupError.code === 'auth/popup-blocked' || 
+              popupError.code === 'auth/cancelled-popup-request') {
+            console.log('Popup blocked, using redirect...');
+            await signInWithRedirect(auth, googleProvider);
+          } else {
+            throw popupError;
+          }
+        }
+      } else {
+        // Use redirect for mobile (more reliable)
+        await signInWithRedirect(auth, googleProvider);
+      }
+    } catch (error: any) {
+      console.error('Auth error:', error);
+      setAuthError(error.message || 'Authentication failed. Please try again.');
+      setAuthLoading(false);
+    }
+  };
+
   return (
-    <section className="relative min-h-screen bg-white overflow-hidden">
-      {/* Background Effects */}
-      <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-50/40 via-white to-emerald-50/40" />
-        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-purple-100/20 rounded-full blur-[60px]" />
-        <div className="absolute bottom-0 left-0 w-[800px] h-[800px] bg-emerald-100/20 rounded-full blur-[60px]" />
-      </div>
-
-      {/* Floating Background Images */}
-      <div className="absolute inset-0 overflow-hidden opacity-5">
-        <div className="absolute top-[10%] left-[5%] w-[200px] h-[200px] rounded-[20px] bg-gray-200 blur-[2px] animate-pulse" />
-        <div className="absolute top-[60%] right-[10%] w-[200px] h-[200px] rounded-[20px] bg-purple-200 blur-[2px] animate-pulse" />
-        <div className="absolute bottom-[20%] left-[15%] w-[200px] h-[200px] rounded-[20px] bg-emerald-200 blur-[2px] animate-pulse" />
-      </div>
-
-      {/* Main Container */}
-      <div className="relative max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-20">
-        
-        {/* Top Alert */}
-        <div className={`text-center mb-8 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-5'}`}>
-          <div className="inline-flex items-center gap-2 backdrop-blur-xl bg-red-50 border border-red-300 px-6 py-3 rounded-full">
-            <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse" />
-            <span className="text-sm font-semibold text-red-700">
-              ⚠️ Mini PIA Program • 55% Grants
-            </span>
-            <span className="text-xs text-red-600 font-bold">
-              Until 2027 • First Come First Served!
-            </span>
+    <>
+      {!isOpen && (
+        <button
+          onClick={() => setIsOpen(true)}
+          className={`
+            fixed z-50 rounded-full shadow-xl transition-all duration-300
+            bg-gradient-to-r from-purple-600 to-emerald-600
+            hover:shadow-2xl hover:scale-110 active:scale-95
+            ${isMobile ? 'bottom-4 right-4 p-3' : 'bottom-8 right-8 p-4'}
+            ${isButtonVisible ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-0 translate-y-10'}
+          `}
+          aria-label="Open chat"
+          style={{
+            transition: 'opacity 0.5s ease-out, transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55)'
+          }}
+        >
+          <div className="relative">
+            <img
+              src="/trullo.png"
+              alt="Chat with Trullo"
+              className={`object-contain ${isMobile ? 'w-10 h-10' : 'w-8 h-8'}`}
+              onError={(e) => {
+                e.currentTarget.style.display = 'none';
+                e.currentTarget.parentElement!.innerHTML = `
+                  <svg class="${isMobile ? 'w-10 h-10' : 'w-8 h-8'} text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+                  </svg>
+                `;
+              }}
+            />
+            <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
           </div>
-        </div>
+        </button>
+      )}
 
-        {/* Professional Positioning */}
-        <div className={`text-center mb-8 transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
-          <p className="text-xs uppercase tracking-[0.3em] text-gray-500">
-            International Procurement & Investment Advisory • Est. 2019
-          </p>
-        </div>
-
-        {/* Main Content Grid */}
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center mb-12">
-          {/* Left Content */}
-          <div className={`transition-all duration-1000 delay-[400ms] ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}>
-            <h1 className="text-2xl sm:text-3xl lg:text-[2.5rem] font-light text-gray-900 mb-4 leading-tight">
-              Transform €2.25M into €10M
-            </h1>
-            <div className="text-3xl lg:text-4xl xl:text-5xl font-bold bg-gradient-to-r from-purple-600 to-emerald-600 bg-clip-text text-transparent leading-tight mb-4">
-              With Puglia's 55%
-              <span className="block">Grant Program</span>
+      {isOpen && (
+        <div
+          ref={chatRef}
+          className={`
+            fixed z-50 bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden
+            transition-all duration-300
+            ${currentLang === 'ar' ? 'rtl' : 'ltr'}
+            ${isMobile ? 'inset-x-4 bottom-0 h-[70vh] rounded-b-none' : 'bottom-4 left-1/2 transform -translate-x-1/2 w-[480px] h-[500px]'}
+            ${isOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}
+          `}
+          style={{
+            transform: isMobile ? `translateY(${dragOffset}px)` : 'translateX(-50%)',
+            opacity: getWindowOpacity(),
+            transition: isDragging ? 'none' : 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
+          }}
+        >
+          {isMobile && (
+            <div className="absolute top-0 left-0 right-0 h-8 flex items-center justify-center bg-gradient-to-b from-gray-100 to-transparent pointer-events-none">
+              <div className="w-16 h-1.5 bg-gray-400 rounded-full shadow-sm" />
             </div>
-            <div className="text-lg sm:text-xl text-gray-600 font-medium mb-6">
-              344% ROI Through Government-Backed Funding
-            </div>
-            
-            {/* URGENCY MESSAGE */}
-            <div className="bg-yellow-50 border-l-4 border-yellow-500 p-4 mb-6 rounded">
-              <p className="text-sm font-bold text-gray-900">
-                ⏰ LIMITED TIME - Funds allocated "a sportello" until 2027
-              </p>
-            </div>
-            
-            <p className="text-sm sm:text-base text-gray-600 leading-relaxed mb-8">
-              The Mini PIA program provides 55% non-repayable grants on investments up to €5M. 
-              Your €2.25M contribution, combined with €2.75M in grant funding, creates a €5M project 
-              with full ownership retained by you. Recent market valuations show successful projects 
-              achieving 2x multiples within 3 years.
-            </p>
+          )}
 
-            {/* Quick Stats */}
-            <div className="flex gap-8 mb-8">
-              <div className="bg-gradient-to-br from-purple-50 to-purple-100/50 rounded-2xl p-4 flex-1 hover:scale-105 transition-transform cursor-pointer">
-                <div className="text-2xl font-bold text-purple-600">344%</div>
-                <div className="text-sm text-gray-600">Projected ROI</div>
-              </div>
-              <div className="bg-gradient-to-br from-emerald-50 to-emerald-100/50 rounded-2xl p-4 flex-1 hover:scale-105 transition-transform cursor-pointer">
-                <div className="text-2xl font-bold text-emerald-600">€2.75M</div>
-                <div className="text-sm text-gray-600">Grant Funding</div>
-              </div>
-              <div className="bg-gradient-to-br from-purple-50 to-purple-100/50 rounded-2xl p-4 flex-1 hover:scale-105 transition-transform cursor-pointer">
-                <div className="text-2xl font-bold text-purple-600">95%</div>
-                <div className="text-sm text-gray-600">Success Rate</div>
-              </div>
-            </div>
-          </div>
-
-          {/* Right Content - Circular VIDEO */}
-          <div className={`relative flex justify-center items-center transition-all duration-1000 delay-[400ms] ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}>
-            <div className="relative w-[500px] h-[500px]">
-              {/* Main Circular Video */}
-              <div className="w-full h-full rounded-full overflow-hidden shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)]">
-                <video 
-                  key={currentVideoIndex}
-                  autoPlay 
-                  muted 
-                  loop 
-                  playsInline
-                  className="w-full h-full object-cover scale-110"
-                >
-                  <source src={heroVideos[currentVideoIndex]} type="video/mp4" />
-                  <img 
-                    src="/Hero_BG.jpg" 
-                    alt="Puglia Investment Opportunities" 
-                    className="w-full h-full object-cover"
-                  />
-                </video>
-              </div>
-              
-              {/* Floating Info Cards */}
-              <div className="absolute -top-5 -left-20 bg-white/95 px-6 py-4 rounded-[20px] shadow-lg animate-float z-10">
-                <div className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-emerald-600 bg-clip-text text-transparent">55%</div>
-                <div className="text-xs text-gray-600">Grant Coverage</div>
-              </div>
-              <div className="absolute -top-5 -right-20 bg-white/95 px-6 py-4 rounded-[20px] shadow-lg animate-float-delayed-1 z-10">
-                <div className="text-2xl font-bold text-red-600">2027</div>
-                <div className="text-xs text-gray-600">Deadline</div>
-              </div>
-              <div className="absolute -bottom-10 -left-16 bg-white/95 px-6 py-4 rounded-[20px] shadow-lg animate-float-delayed-2 z-10">
-                <div className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-emerald-600 bg-clip-text text-transparent">344%</div>
-                <div className="text-xs text-gray-600">Typical ROI</div>
-              </div>
-              <div className="absolute -bottom-10 -right-16 bg-white/95 px-6 py-4 rounded-[20px] shadow-lg animate-float-delayed-3 z-10">
-                <div className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-emerald-600 bg-clip-text text-transparent">€5M</div>
-                <div className="text-xs text-gray-600">Max Project</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Scrolling Photo Strip */}
-        <div className={`my-12 py-8 bg-gradient-to-r from-purple-50/50 to-emerald-50/50 -mx-6 px-6 overflow-hidden transition-all duration-1000 delay-[600ms] ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
-          <div className="flex gap-4 animate-scroll">
-            {[...locations, ...locations].map((location, i) => (
-              <a key={i} href={location.link} className="flex-shrink-0 w-[250px] h-[150px] rounded-2xl overflow-hidden hover:scale-105 transition-transform">
-                <img src={`/images/locations/${location.name.toLowerCase().replace(/ /g, '-')}-thumb.jpg`} alt={location.name} className="w-full h-full object-cover" />
-              </a>
-            ))}
-          </div>
-        </div>
-
-        {/* Project Types */}
-        <div className={`mb-12 transition-all duration-1000 delay-[600ms] ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <h3 className="text-center text-lg font-semibold uppercase tracking-wider text-gray-600 mb-8">
-            Select Your Investment Type
-          </h3>
-          <div className="grid grid-cols-4 gap-4 max-w-6xl mx-auto">
-            {projectTypes.map((project, index) => (
-              <a
-                key={index}
-                href={project.link}
-                className={`group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all hover:scale-105 ${
-                  selectedProject === index ? 'ring-2 ring-purple-600 scale-105' : ''
-                }`}
-                onClick={(e) => {
-                  e.preventDefault();
-                  setSelectedProject(index);
-                  window.location.href = project.link;
-                }}
-              >
-                <div className="h-[120px] relative overflow-hidden">
-                  <img 
-                    src={project.image} 
-                    alt={project.name}
-                    className="w-full h-full object-cover"
+          <div className="bg-gradient-to-r from-purple-600 to-emerald-600 p-4 md:p-6 text-white">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-2 md:space-x-3">
+                <div className={`bg-white rounded-full flex items-center justify-center shadow-md ${isMobile ? 'w-10 h-10 p-1' : 'w-12 h-12 p-1'}`}>
+                  <img
+                    src="/trullo.png"
+                    alt="Trullo"
+                    className="w-full h-full object-contain"
                     onError={(e) => {
-                      (e.target as HTMLImageElement).src = project.fallback;
+                      e.currentTarget.style.display = 'none';
+                      e.currentTarget.parentElement!.innerHTML = '🤖';
                     }}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                 </div>
-                <div className="p-6 bg-white">
-                  <div className="text-sm font-semibold text-gray-700 mb-2">{project.name}</div>
-                  <div className="text-3xl font-bold text-gray-900">{project.grant}</div>
-                  <div className="text-xs text-gray-500">{project.max}</div>
+                <div>
+                  <h3 className={`font-bold ${isMobile ? 'text-base' : 'text-lg'}`}>{t.title}</h3>
+                  <p className={`text-white/80 ${isMobile ? 'text-xs hidden' : 'text-sm'}`}>
+                    {t.subtitle}
+                    {isAuthenticated && userEmail && (
+                      <span className="block text-xs text-green-300 mt-1">
+                        ✓ {userEmail}
+                      </span>
+                    )}
+                  </p>
                 </div>
-              </a>
-            ))}
+              </div>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={handleUserClose}
+                  className={`
+                    bg-white/20 hover:bg-white/30 rounded-full transition-colors
+                    ${isMobile ? 'p-2' : 'p-1'}
+                  `}
+                  aria-label="Close chat"
+                >
+                  <svg className={`text-white ${isMobile ? 'w-6 h-6' : 'w-5 h-5'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    {isMobile ? (
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                    ) : (
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                    )}
+                  </svg>
+                </button>
+                {!isMobile && (
+                  <select
+                    value={currentLang}
+                    onChange={(e) => setCurrentLang(e.target.value as Language)}
+                    className="bg-gray-700 text-white border border-gray-600 rounded px-2 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-white/50 hover:bg-gray-600 cursor-pointer"
+                    style={{ backgroundColor: '#374151', color: 'white' }}
+                  >
+                    <option value="en" style={{ backgroundColor: '#374151', color: 'white' }}>🇬🇧 EN</option>
+                    <option value="it" style={{ backgroundColor: '#374151', color: 'white' }}>🇮🇹 IT</option>
+                    <option value="es" style={{ backgroundColor: '#374151', color: 'white' }}>🇪🇸 ES</option>
+                    <option value="fr" style={{ backgroundColor: '#374151', color: 'white' }}>🇫🇷 FR</option>
+                    <option value="de" style={{ backgroundColor: '#374151', color: 'white' }}>🇩🇪 DE</option>
+                    <option value="ar" style={{ backgroundColor: '#374151', color: 'white' }}>🇸🇦 AR</option>
+                    <option value="zh" style={{ backgroundColor: '#374151', color: 'white' }}>🇨🇳 ZH</option>
+                  </select>
+                )}
+              </div>
+            </div>
+
+            {isMobile && (
+              <div className="mt-3">
+                <select
+                  value={currentLang}
+                  onChange={(e) => setCurrentLang(e.target.value as Language)}
+                  className="w-full bg-gray-700 text-white border border-gray-600 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-white/50"
+                  style={{ backgroundColor: '#374151', color: 'white' }}
+                >
+                  <option value="en" style={{ backgroundColor: '#374151', color: 'white' }}>🇬🇧 English</option>
+                  <option value="it" style={{ backgroundColor: '#374151', color: 'white' }}>🇮🇹 Italiano</option>
+                  <option value="es" style={{ backgroundColor: '#374151', color: 'white' }}>🇪🇸 Español</option>
+                  <option value="fr" style={{ backgroundColor: '#374151', color: 'white' }}>🇫🇷 Français</option>
+                  <option value="de" style={{ backgroundColor: '#374151', color: 'white' }}>🇩🇪 Deutsch</option>
+                  <option value="ar" style={{ backgroundColor: '#374151', color: 'white' }}>🇸🇦 العربية</option>
+                  <option value="zh" style={{ backgroundColor: '#374151', color: 'white' }}>🇨🇳 中文</option>
+                </select>
+              </div>
+            )}
           </div>
-        </div>
 
-        {/* CTA Buttons */}
-        <div className={`flex gap-6 items-center justify-center mb-12 transition-all duration-1000 delay-[800ms] ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <a 
-            href="/locations"
-            className="bg-gradient-to-r from-purple-600 to-emerald-600 text-white px-10 py-5 rounded-full font-semibold text-lg hover:shadow-2xl transition-all flex items-center gap-3"
-          >
-            Investment Locations
-            <MapPin className="w-5 h-5" />
-          </a>
-          <a 
-            href="/industries"
-            className="bg-gradient-to-r from-emerald-600 to-blue-600 text-white px-10 py-5 rounded-full font-semibold text-lg hover:shadow-2xl transition-all flex items-center gap-3"
-          >
-            Investment Industries
-            <Factory className="w-5 h-5" />
-          </a>
-          <a 
-            href="https://calendly.com/investinpuglia/30min"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-white text-gray-900 border-2 border-gray-200 px-10 py-5 rounded-full font-semibold text-lg hover:border-purple-400 hover:shadow-xl transition-all flex items-center gap-3"
-          >
-            Book Free Consultation
-            <ArrowRight className="w-5 h-5" />
-          </a>
-        </div>
+          {isBlocked ? (
+            <div className="flex-1 flex items-center justify-center p-6">
+              <div className="text-center">
+                <div className="text-6xl mb-4">🚫</div>
+                <p className="text-gray-700 text-lg">{getBlockedMessage ? getBlockedMessage(currentLang) : 'Access restricted.'}</p>
+                <p className="text-gray-500 text-sm mt-2">support@investinpuglia.eu</p>
+              </div>
+            </div>
+          ) : showMessageForm ? (
+            <ContactForm
+              language={currentLang}
+              conversationId={conversationId}
+              onSuccess={handleContactFormSuccess}
+              onCancel={() => setShowMessageForm(false)}
+            />
+          ) : (
+            <>
+              <ChatMessages
+                messages={messages}
+                isTyping={isTyping}
+              />
 
-        {/* Stats Grid */}
-        <div className={`grid grid-cols-4 gap-4 max-w-5xl mx-auto mb-12 transition-all duration-1000 delay-[1000ms] ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          {stats.map((stat, index) => (
-            <a
-              key={index}
-              href={stat.link}
-              className="bg-white/90 backdrop-blur-sm rounded-2xl p-6 text-center shadow-lg hover:shadow-xl transition-all hover:scale-105 hover:-translate-y-1 border border-white/50"
-            >
-              <div className="text-3xl font-bold text-gray-900 mb-1">{stat.value}</div>
-              <div className="text-sm text-gray-600">{stat.label}</div>
-            </a>
-          ))}
-        </div>
+              {/* Authentication Overlay - ALWAYS VISIBLE WHEN NOT AUTHENTICATED */}
+              {!isAuthenticated && !authLoading && (
+                <div className="absolute inset-0 bg-white/98 backdrop-blur-sm flex items-center justify-center z-20 rounded-2xl">
+                  <div className="text-center p-8 max-w-sm">
+                    <div className="mb-6">
+                      <img 
+                        src="/trullo.png" 
+                        alt="Trullo" 
+                        className="w-20 h-20 mx-auto mb-4"
+                        onError={(e) => {
+                          e.currentTarget.style.display = 'none';
+                          e.currentTarget.parentElement!.innerHTML = '🏛️';
+                        }}
+                      />
+                      <h3 className="text-xl font-bold text-gray-800 mb-2">
+                        {currentLang === 'en' ? 'Welcome to Premium Investment Advisory' : 
+                         currentLang === 'it' ? 'Benvenuto nella Consulenza Premium' :
+                         currentLang === 'es' ? 'Bienvenido a la Asesoría Premium' :
+                         currentLang === 'fr' ? 'Bienvenue au Conseil Premium' :
+                         currentLang === 'de' ? 'Willkommen bei Premium-Beratung' :
+                         currentLang === 'ar' ? 'مرحباً بك في الاستشارات المتميزة' :
+                         currentLang === 'zh' ? '欢迎来到高级投资咨询' :
+                         'Welcome'}
+                      </h3>
+                      <p className="text-gray-600 text-sm">
+                        {translations[currentLang].authRequired}
+                      </p>
+                    </div>
+                    
+                    {authError && (
+                      <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg">
+                        <p className="text-sm text-red-600">{authError}</p>
+                      </div>
+                    )}
+                    
+                    <button
+                      onClick={handleGoogleLogin}
+                      disabled={authLoading}
+                      className="w-full bg-white hover:bg-gray-50 text-gray-900 font-medium py-3 px-6 rounded-lg border border-gray-300 transition-all transform hover:scale-105 shadow-sm hover:shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      <div className="flex items-center justify-center gap-3">
+                        {authLoading ? (
+                          <>
+                            <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-gray-900"></div>
+                            <span>Authenticating...</span>
+                          </>
+                        ) : (
+                          <>
+                            <svg className="w-5 h-5" viewBox="0 0 24 24">
+                              <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                              <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                              <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                              <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                            </svg>
+                            <span>
+                              {currentLang === 'en' ? 'Continue with Google' : 
+                               currentLang === 'it' ? 'Continua con Google' :
+                               currentLang === 'es' ? 'Continuar con Google' :
+                               currentLang === 'fr' ? 'Continuer avec Google' :
+                               currentLang === 'de' ? 'Mit Google fortfahren' :
+                               currentLang === 'ar' ? 'تابع مع Google' :
+                               currentLang === 'zh' ? '使用Google继续' :
+                               'Continue with Google'}
+                            </span>
+                          </>
+                        )}
+                      </div>
+                    </button>
+                    
+                    <p className="text-xs text-gray-500 mt-4">
+                      {currentLang === 'en' ? '🔒 Your data is secure and never shared' : 
+                       currentLang === 'it' ? '🔒 I tuoi dati sono sicuri e mai condivisi' :
+                       currentLang === 'es' ? '🔒 Tus datos están seguros' :
+                       currentLang === 'fr' ? '🔒 Vos données sont sécurisées' :
+                       currentLang === 'de' ? '🔒 Ihre Daten sind sicher' :
+                       currentLang === 'ar' ? '🔒 بياناتك آمنة' :
+                       currentLang === 'zh' ? '🔒 您的数据是安全的' :
+                       '🔒 Secure & Private'}
+                    </p>
+                  </div>
+                </div>
+              )}
 
-        {/* Location Quick Links */}
-        <div className={`text-center transition-all duration-1000 delay-[1200ms] ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <h3 className="text-base uppercase tracking-wider text-gray-600 mb-6 font-semibold">
-            Top Investment Destinations in Puglia
-          </h3>
-          <div className="flex flex-wrap justify-center gap-3 max-w-5xl mx-auto">
-            {locations.map((location, index) => (
-              <a
-                key={index}
-                href={location.link}
-                className="px-6 py-3 bg-white border border-gray-200 rounded-full text-gray-700 text-sm hover:border-purple-400 hover:bg-gradient-to-r hover:from-purple-50 hover:to-emerald-50 transition-all hover:scale-105"
-              >
-                {location.name}
-              </a>
-            ))}
-            <a
-              href="/locations"
-              className="px-6 py-3 bg-gradient-to-r from-purple-100 to-emerald-100 border border-purple-400 rounded-full text-purple-700 text-sm font-semibold hover:shadow-lg transition-all hover:scale-105"
-            >
-              View All →
-            </a>
-          </div>
-        </div>
-      </div>
+              {/* Loading overlay while checking auth */}
+              {authLoading && (
+                <div className="absolute inset-0 bg-white/98 backdrop-blur-sm flex items-center justify-center z-20 rounded-2xl">
+                  <div className="text-center">
+                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600 mx-auto"></div>
+                    <p className="mt-4 text-gray-600">Checking authentication...</p>
+                  </div>
+                </div>
+              )}
 
-      <style jsx>{`
-        @keyframes float {
-          0%, 100% { transform: translateY(0) rotate(0deg); }
-          50% { transform: translateY(-20px) rotate(1deg); }
-        }
-        
-        @keyframes scroll {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-        
-        .animate-float {
-          animation: float 4s ease-in-out infinite;
-        }
-        
-        .animate-float-delayed-1 {
-          animation: float 4s ease-in-out infinite;
-          animation-delay: 1s;
-        }
-        
-        .animate-float-delayed-2 {
-          animation: float 4s ease-in-out infinite;
-          animation-delay: 2s;
-        }
-        
-        .animate-float-delayed-3 {
-          animation: float 4s ease-in-out infinite;
-          animation-delay: 1.5s;
-        }
-        
-        .animate-scroll {
-          animation: scroll 30s linear infinite;
-        }
-      `}</style>
-    </section>
+              <div className="border-t border-gray-200 p-2 bg-white">
+                <button
+                  onClick={() => setShowMessageForm(true)}
+                  className="w-full px-3 py-2 text-sm bg-purple-100 text-purple-700 rounded-lg hover:bg-purple-200 transition-all flex items-center justify-center gap-2"
+                  disabled={!isAuthenticated}
+                >
+                  📝 {t.leaveMessage || 'Leave a Message'}
+                </button>
+              </div>
+
+              <ChatInput
+                language={currentLang}
+                isTyping={isTyping}
+                onSend={sendMessage}
+                disabled={!isAuthenticated}
+              />
+
+              {isMobile && (
+                <div className="h-safe-area-inset-bottom bg-white" />
+              )}
+            </>
+          )}
+        </div>
+      )}
+    </>
   );
-};
-
-export default HeroVisual;
+}
