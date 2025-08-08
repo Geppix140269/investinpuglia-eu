@@ -1,4 +1,4 @@
-// PATH: components/trullo/hooks/useChat.test.ts
+// PATH: components/trullo/hooks/useChat.ts
 import { detectProfessionalInterest, logProfessionalInterest, generateProfessionalFollowUp } from '@/lib/professionalDetector';
 import { useState, useEffect, useCallback } from 'react';
 import { Message, Language, AuthState } from '../types';
@@ -7,8 +7,11 @@ import { systemPrompts } from '../constants/prompts';
 import { authMessages } from '../constants/authMessages';
 import { authPrompts, checkIfClaimsToBeGiuseppe, verifyGiuseppePassword, getWrongPasswordResponse, isPasswordAttempt } from '../utils/authentication';
 import { sendChatMessage, startConversation, logMessage, endConversation } from '../utils/api';
-import { supabase } from '@/lib/supabase';
 import { trulloKnowledge } from '../knowledge';
+
+// CHANGED: Import Firebase auth instead of Supabase
+import { auth } from '@/lib/firebase';
+import { onAuthStateChanged } from 'firebase/auth';
 
 // ============ ENHANCEMENT IMPORTS ============
 import { 
@@ -73,57 +76,29 @@ export function useChat(isOpen: boolean, language: Language): UseChatReturn {
   }, [enhancedProfile.trustScore, enhancedProfile.engagementLevel]);
   // ============ END ENHANCEMENT STATE ============
 
-  // Check authentication status when chat opens
+  // CHANGED: Check Firebase authentication status when chat opens
   useEffect(() => {
-    const checkAuth = async () => {
-      try {
-        const { data: { session } } = await supabase.auth.getSession();
-        
-        if (session?.user) {
-          console.log('User authenticated:', session.user.email);
-          setAuthState(prev => ({
-            ...prev,
-            isAuthenticated: true,
-            userEmail: session.user.email,
-            userId: session.user.id,
-            requiresAuth: false
-          }));
-          
-          // Update greeting for authenticated users
-          const welcomeMessage: Message = {
-            id: Date.now().toString(),
-            role: 'assistant',
-            content: `Welcome ${session.user.email?.split('@')[0]}! 🎉 I'm Trullo, your personal investment advisor for Puglia. How can I help you explore investment opportunities today?`,
-            timestamp: new Date()
-          };
-          setMessages([welcomeMessage]);
-        } else {
-          console.log('No authenticated session found');
-        }
-      } catch (error) {
-        console.error('Auth check error:', error);
-      }
-    };
-
-    if (isOpen) {
-      checkAuth();
-    }
-  }, [isOpen]);
-
-  // Listen for auth state changes
-  useEffect(() => {
-    const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
-      console.log('Auth state changed:', event, session?.user?.email);
-      
-      if (session?.user) {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        console.log('User authenticated via Firebase:', user.email);
         setAuthState(prev => ({
           ...prev,
           isAuthenticated: true,
-          userEmail: session.user.email,
-          userId: session.user.id,
+          userEmail: user.email || undefined,
+          userId: user.uid,
           requiresAuth: false
         }));
+        
+        // Update greeting for authenticated users
+        const welcomeMessage: Message = {
+          id: Date.now().toString(),
+          role: 'assistant',
+          content: `Welcome ${user.email?.split('@')[0]}! 🎉 I'm Trullo, your personal investment advisor for Puglia. How can I help you explore investment opportunities today?`,
+          timestamp: new Date()
+        };
+        setMessages([welcomeMessage]);
       } else {
+        console.log('No Firebase authenticated session found');
         setAuthState(prev => ({
           ...prev,
           isAuthenticated: false,
@@ -134,10 +109,8 @@ export function useChat(isOpen: boolean, language: Language): UseChatReturn {
       }
     });
 
-    return () => {
-      authListener?.subscription.unsubscribe();
-    };
-  }, []);
+    return () => unsubscribe();
+  }, [isOpen]);
 
   // Initialize session when chat opens
   useEffect(() => {
