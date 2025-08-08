@@ -11,10 +11,7 @@ import { sendEmailMessage, saveContactRequest } from './utils/api';
 import { isIPBlocked, getBlockedMessage } from './utils/ipBlocker';
 import { supabase } from '@/lib/supabase';
 
-// Initialize Supabase client
-
 export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
-  // Check if mobile on mount
   const [isMobile, setIsMobile] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [currentLang, setCurrentLang] = useState<Language>(language);
@@ -23,45 +20,78 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
   const [isButtonVisible, setIsButtonVisible] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
   const [dragOffset, setDragOffset] = useState(0);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [userEmail, setUserEmail] = useState<string | undefined>(undefined);
 
-  // Swipe handling refs
   const chatRef = useRef<HTMLDivElement>(null);
   const touchStartY = useRef<number>(0);
   const touchStartTime = useRef<number>(0);
 
+  // Check authentication status on mount and when chat opens
+  useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        const { data: { session } } = await supabase.auth.getSession();
+        if (session?.user) {
+          console.log('User authenticated:', session.user.email);
+          setIsAuthenticated(true);
+          setUserEmail(session.user.email);
+        } else {
+          console.log('No authenticated session');
+          setIsAuthenticated(false);
+          setUserEmail(undefined);
+        }
+      } catch (error) {
+        console.error('Auth check error:', error);
+        setIsAuthenticated(false);
+      }
+    };
+
+    checkAuth();
+    
+    // Listen for auth state changes
+    const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
+      console.log('Auth state changed:', event);
+      if (session?.user) {
+        setIsAuthenticated(true);
+        setUserEmail(session.user.email);
+      } else {
+        setIsAuthenticated(false);
+        setUserEmail(undefined);
+      }
+    });
+
+    return () => {
+      authListener?.subscription.unsubscribe();
+    };
+  }, []);
+
   // Load user preference and auto-open on mount
   useEffect(() => {
-    // Check if we're in the browser
     if (typeof window !== 'undefined') {
-      // Check if user has manually closed before
       const hasUserClosed = localStorage.getItem('trullo-user-closed') === 'true';
       const savedState = localStorage.getItem('trullo-chat-state');
 
       if (!hasUserClosed && window.location.pathname === '/') {
-        // Auto-open after 3 seconds if user hasn't manually closed before
         setTimeout(() => {
           setIsOpen(true);
         }, 3000);
       } else if (savedState === 'open') {
-        // Respect saved state if user has interacted before
         setIsOpen(true);
       }
 
-      // Show button with animation after a short delay
       setTimeout(() => {
         setIsButtonVisible(true);
       }, 500);
     }
   }, []);
 
-  // Save user preference when state changes
   useEffect(() => {
     if (typeof window !== 'undefined') {
       localStorage.setItem('trullo-chat-state', isOpen ? 'open' : 'closed');
     }
   }, [isOpen]);
 
-  // Detect mobile/desktop
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
@@ -69,11 +99,10 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
 
     checkMobile();
     window.addEventListener('resize', checkMobile);
-
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // Handle swipe to close on mobile - FIXED VERSION
+  // Swipe to close handler
   useEffect(() => {
     if (!isMobile || !isOpen || !chatRef.current) return;
 
@@ -84,14 +113,9 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
 
     const handleTouchStart = (e: TouchEvent) => {
       const touch = e.touches[0];
-      const target = e.target as HTMLElement;
-      
-      // Get the touch position relative to the chat window
       const rect = element.getBoundingClientRect();
       const relativeY = touch.clientY - rect.top;
       
-      // Only start swipe if touch begins in the header area (top 80px)
-      // This includes the handle and header
       if (relativeY <= 80) {
         startedInHeader = true;
         startY = touch.clientY;
@@ -105,13 +129,9 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
 
     const handleTouchMove = (e: TouchEvent) => {
       if (!isDragging || !startedInHeader) return;
-
       currentY = e.touches[0].clientY;
       const deltaY = currentY - startY;
-
-      // Only allow downward swipe
       if (deltaY > 0) {
-        // Apply some resistance to make it feel more natural
         const resistance = 0.8;
         setDragOffset(deltaY * resistance);
       }
@@ -124,12 +144,9 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
       }
 
       setIsDragging(false);
-
-      // Calculate swipe velocity
       const swipeDuration = Date.now() - touchStartTime.current;
       const swipeVelocity = dragOffset / swipeDuration;
 
-      // Close if swiped down more than 150px OR if it was a fast downward swipe
       if (dragOffset > 150 || (dragOffset > 50 && swipeVelocity > 0.5)) {
         handleUserClose();
       }
@@ -161,27 +178,22 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
 
   const t = translations[currentLang];
 
-  // Initialize session and visitor tracking when chat opens
+  // Initialize session and visitor tracking
   useEffect(() => {
     if (isOpen && !sessionId) {
       const newSessionId = `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
       
-      // Get visitor info from browser
       const getVisitorInfo = async () => {
         try {
-          // Get IP and location info
           const response = await fetch('https://ipapi.co/json/');
           const data = await response.json();
           
-          // Store in sessionStorage for telegram updates
           sessionStorage.setItem('userIP', data.ip || 'Unknown');
           sessionStorage.setItem('userCity', data.city || 'Unknown');
           sessionStorage.setItem('userCountry', data.country_name || 'Unknown');
           
-          // Check if IP is blocked (optional - you can comment this out if not using blocking)
           if (isIPBlocked && isIPBlocked(data.ip)) {
             setIsBlocked(true);
-            // Log blocked attempt
             await fetch('/api/trullo-telegram', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
@@ -199,7 +211,6 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
             return;
           }
           
-          // Send new session notification to Telegram
           await fetch('/api/trullo-telegram', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -228,7 +239,6 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
           });
         } catch (error) {
           console.error('Failed to get visitor info:', error);
-          // Store unknown values if API fails
           sessionStorage.setItem('userIP', 'Unknown');
           sessionStorage.setItem('userCity', 'Unknown');
           sessionStorage.setItem('userCountry', 'Unknown');
@@ -246,13 +256,10 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
 
       try {
         console.log('Sending automated email for:', name, email);
-
-        // Get conversation history
         const conversationHistory = messages.map(m =>
           `${m.role === 'user' ? 'User' : 'Trullo'}: ${m.content}`
         ).join('\n\n');
 
-        // Save to Supabase
         if (conversationId) {
           await saveContactRequest(conversationId, {
             name,
@@ -262,7 +269,6 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
           }, currentLang);
         }
 
-        // Send email
         await sendEmailMessage({
           name,
           email,
@@ -276,7 +282,6 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
       }
     };
 
-    // Properly typed event listener wrapper
     const eventListener = (event: Event) => {
       handleAutoEmail(event as CustomEvent);
     };
@@ -293,10 +298,8 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
     setIsBlocked(false);
   };
 
-  // Handle user manually closing the chat
   const handleUserClose = () => {
     setIsOpen(false);
-    // Remember that user has manually closed the chat
     if (typeof window !== 'undefined') {
       localStorage.setItem('trullo-user-closed', 'true');
     }
@@ -313,7 +316,6 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
     setShowMessageForm(false);
   };
 
-  // Helper function to get browser name
   function getBrowserName() {
     const agent = navigator.userAgent;
     if (agent.indexOf('Chrome') > -1) return 'Chrome';
@@ -323,17 +325,28 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
     return 'Other';
   }
 
-  // Calculate opacity based on drag offset for visual feedback
   const getWindowOpacity = () => {
     if (!isDragging || dragOffset <= 0) return 1;
-    // Start fading after 50px, fully transparent at 200px
     const opacity = Math.max(0, 1 - (dragOffset - 50) / 150);
     return opacity;
   };
 
+  const handleGoogleLogin = async () => {
+    try {
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: 'google',
+        options: {
+          redirectTo: `${window.location.origin}/api/auth/callback`
+        }
+      });
+      if (error) throw error;
+    } catch (error) {
+      console.error('Auth error:', error);
+    }
+  };
+
   return (
     <>
-      {/* Chat Button - Only show when closed */}
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
@@ -341,14 +354,8 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
             fixed z-50 rounded-full shadow-xl transition-all duration-300
             bg-gradient-to-r from-purple-600 to-emerald-600
             hover:shadow-2xl hover:scale-110 active:scale-95
-            ${isMobile
-              ? 'bottom-4 right-4 p-3'
-              : 'bottom-8 right-8 p-4'
-            }
-            ${isButtonVisible
-              ? 'opacity-100 scale-100 translate-y-0'
-              : 'opacity-0 scale-0 translate-y-10'
-            }
+            ${isMobile ? 'bottom-4 right-4 p-3' : 'bottom-8 right-8 p-4'}
+            ${isButtonVisible ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-0 translate-y-10'}
           `}
           aria-label="Open chat"
           style={{
@@ -361,7 +368,6 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
               alt="Chat with Trullo"
               className={`object-contain ${isMobile ? 'w-10 h-10' : 'w-8 h-8'}`}
               onError={(e) => {
-                // Fallback if image doesn't load
                 e.currentTarget.style.display = 'none';
                 e.currentTarget.parentElement!.innerHTML = `
                   <svg class="${isMobile ? 'w-10 h-10' : 'w-8 h-8'} text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -375,7 +381,6 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
         </button>
       )}
 
-      {/* Chat Window - Responsive positioning */}
       {isOpen && (
         <div
           ref={chatRef}
@@ -383,28 +388,21 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
             fixed z-50 bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden
             transition-all duration-300
             ${currentLang === 'ar' ? 'rtl' : 'ltr'}
-            ${isMobile
-              ? 'inset-x-4 bottom-0 h-[70vh] rounded-b-none'
-              : 'bottom-4 left-1/2 transform -translate-x-1/2 w-[480px] h-[500px]'
-            }
+            ${isMobile ? 'inset-x-4 bottom-0 h-[70vh] rounded-b-none' : 'bottom-4 left-1/2 transform -translate-x-1/2 w-[480px] h-[500px]'}
             ${isOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}
           `}
           style={{
-            transform: isMobile
-              ? `translateY(${dragOffset}px)`
-              : 'translateX(-50%)',
+            transform: isMobile ? `translateY(${dragOffset}px)` : 'translateX(-50%)',
             opacity: getWindowOpacity(),
             transition: isDragging ? 'none' : 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
           }}
         >
-          {/* Swipe Indicator for Mobile - More prominent */}
           {isMobile && (
             <div className="absolute top-0 left-0 right-0 h-8 flex items-center justify-center bg-gradient-to-b from-gray-100 to-transparent pointer-events-none">
               <div className="w-16 h-1.5 bg-gray-400 rounded-full shadow-sm" />
             </div>
           )}
 
-          {/* Header */}
           <div className="bg-gradient-to-r from-purple-600 to-emerald-600 p-4 md:p-6 text-white">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-2 md:space-x-3">
@@ -423,16 +421,15 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
                   <h3 className={`font-bold ${isMobile ? 'text-base' : 'text-lg'}`}>{t.title}</h3>
                   <p className={`text-white/80 ${isMobile ? 'text-xs hidden' : 'text-sm'}`}>
                     {t.subtitle}
-                    {authState.isGiuseppe && (
-                      <span className="block text-xs text-yellow-300 mt-1">
-                        👑 Boss Mode Active
+                    {isAuthenticated && userEmail && (
+                      <span className="block text-xs text-green-300 mt-1">
+                        ✓ {userEmail}
                       </span>
                     )}
                   </p>
                 </div>
               </div>
               <div className="flex items-center gap-2">
-                {/* Close/Minimize Button - Larger on mobile */}
                 <button
                   onClick={handleUserClose}
                   className={`
@@ -443,15 +440,12 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
                 >
                   <svg className={`text-white ${isMobile ? 'w-6 h-6' : 'w-5 h-5'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     {isMobile ? (
-                      // X icon for mobile (close)
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
                     ) : (
-                      // Chevron down for desktop (minimize)
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
                     )}
                   </svg>
                 </button>
-                {/* Language Selector - Hidden on mobile in header */}
                 {!isMobile && (
                   <select
                     value={currentLang}
@@ -471,7 +465,6 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
               </div>
             </div>
 
-            {/* Mobile Language Selector - Below header */}
             {isMobile && (
               <div className="mt-3">
                 <select
@@ -492,7 +485,6 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
             )}
           </div>
 
-          {/* Blocked Message */}
           {isBlocked ? (
             <div className="flex-1 flex items-center justify-center p-6">
               <div className="text-center">
@@ -510,17 +502,83 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
             />
           ) : (
             <>
-              {/* Messages */}
               <ChatMessages
                 messages={messages}
                 isTyping={isTyping}
               />
 
-              {/* Leave a Message Button */}
+              {/* Authentication Overlay - ALWAYS VISIBLE WHEN NOT AUTHENTICATED */}
+              {!isAuthenticated && (
+                <div className="absolute inset-0 bg-white/98 backdrop-blur-sm flex items-center justify-center z-20 rounded-2xl">
+                  <div className="text-center p-8 max-w-sm">
+                    <div className="mb-6">
+                      <img 
+                        src="/trullo.png" 
+                        alt="Trullo" 
+                        className="w-20 h-20 mx-auto mb-4"
+                        onError={(e) => {
+                          e.currentTarget.style.display = 'none';
+                          e.currentTarget.parentElement!.innerHTML = '🏛️';
+                        }}
+                      />
+                      <h3 className="text-xl font-bold text-gray-800 mb-2">
+                        {currentLang === 'en' ? 'Welcome to Premium Investment Advisory' : 
+                         currentLang === 'it' ? 'Benvenuto nella Consulenza Premium' :
+                         currentLang === 'es' ? 'Bienvenido a la Asesoría Premium' :
+                         currentLang === 'fr' ? 'Bienvenue au Conseil Premium' :
+                         currentLang === 'de' ? 'Willkommen bei Premium-Beratung' :
+                         currentLang === 'ar' ? 'مرحباً بك في الاستشارات المتميزة' :
+                         currentLang === 'zh' ? '欢迎来到高级投资咨询' :
+                         'Welcome'}
+                      </h3>
+                      <p className="text-gray-600 text-sm">
+                        {translations[currentLang].authRequired}
+                      </p>
+                    </div>
+                    
+                    <button
+                      onClick={handleGoogleLogin}
+                      className="w-full bg-white hover:bg-gray-50 text-gray-900 font-medium py-3 px-6 rounded-lg border border-gray-300 transition-all transform hover:scale-105 shadow-sm hover:shadow-md"
+                    >
+                      <div className="flex items-center justify-center gap-3">
+                        <svg className="w-5 h-5" viewBox="0 0 24 24">
+                          <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                          <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                          <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                          <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                        </svg>
+                        <span>
+                          {currentLang === 'en' ? 'Continue with Google' : 
+                           currentLang === 'it' ? 'Continua con Google' :
+                           currentLang === 'es' ? 'Continuar con Google' :
+                           currentLang === 'fr' ? 'Continuer avec Google' :
+                           currentLang === 'de' ? 'Mit Google fortfahren' :
+                           currentLang === 'ar' ? 'تابع مع Google' :
+                           currentLang === 'zh' ? '使用Google继续' :
+                           'Continue with Google'}
+                        </span>
+                      </div>
+                    </button>
+                    
+                    <p className="text-xs text-gray-500 mt-4">
+                      {currentLang === 'en' ? '🔒 Your data is secure and never shared' : 
+                       currentLang === 'it' ? '🔒 I tuoi dati sono sicuri e mai condivisi' :
+                       currentLang === 'es' ? '🔒 Tus datos están seguros' :
+                       currentLang === 'fr' ? '🔒 Vos données sont sécurisées' :
+                       currentLang === 'de' ? '🔒 Ihre Daten sind sicher' :
+                       currentLang === 'ar' ? '🔒 بياناتك آمنة' :
+                       currentLang === 'zh' ? '🔒 您的数据是安全的' :
+                       '🔒 Secure & Private'}
+                    </p>
+                  </div>
+                </div>
+              )}
+
               <div className="border-t border-gray-200 p-2 bg-white">
                 <button
                   onClick={() => setShowMessageForm(true)}
                   className="w-full px-3 py-2 text-sm bg-purple-100 text-purple-700 rounded-lg hover:bg-purple-200 transition-all flex items-center justify-center gap-2"
+                  disabled={!isAuthenticated}
                 >
                   📝 {t.leaveMessage || 'Leave a Message'}
                 </button>
@@ -530,10 +588,9 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
                 language={currentLang}
                 isTyping={isTyping}
                 onSend={sendMessage}
-                disabled={false}
+                disabled={!isAuthenticated}
               />
 
-              {/* Mobile Safe Area Bottom Padding */}
               {isMobile && (
                 <div className="h-safe-area-inset-bottom bg-white" />
               )}
