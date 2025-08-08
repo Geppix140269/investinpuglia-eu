@@ -330,7 +330,6 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
     const opacity = Math.max(0, 1 - (dragOffset - 50) / 150);
     return opacity;
   };
-}  // THIS WAS MISSING! Added closing brace for the main component function
 
   return (
     <>
