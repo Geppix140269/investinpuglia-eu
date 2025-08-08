@@ -610,7 +610,7 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
                 language={currentLang}
                 isTyping={isTyping}
                 onSend={sendMessage}
-                disabled={/* DISABLED {!authState.isAuthenticated}
+                disabled={false /* DISABLED {!authState.isAuthenticated} */}
               />
 
               {/* Mobile Safe Area Bottom Padding */}
