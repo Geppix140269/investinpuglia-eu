@@ -2,11 +2,6 @@
 'use client'
 import React, { useState, useEffect, useRef } from 'react';
 import { Language, TrulloChatbotProps, Message } from './types';
-import { translations } from './constants/translations';
-import { useChat } from './hooks/useChat';
-import ChatMessages from './ChatMessages';
-import ChatInput from './ChatInput';
-import ContactForm from './ContactForm';
 import { sendEmailMessage, saveContactRequest } from './utils/api';
 import { isIPBlocked, getBlockedMessage } from './utils/ipBlocker';
 // Import Firebase auth from your existing setup
