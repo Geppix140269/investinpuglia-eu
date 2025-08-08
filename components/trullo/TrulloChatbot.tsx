@@ -9,7 +9,9 @@ import ChatInput from './ChatInput';
 import ContactForm from './ContactForm';
 import { sendEmailMessage, saveContactRequest } from './utils/api';
 import { isIPBlocked, getBlockedMessage } from './utils/ipBlocker';
-import { supabase } from '@/lib/supabase';
+// Import Firebase auth from your existing setup
+import { auth, googleProvider } from '@/lib/firebase';
+import { onAuthStateChanged, signInWithPopup } from 'firebase/auth';
 
 export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
   const [isMobile, setIsMobile] = useState(false);
@@ -27,43 +29,21 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
   const touchStartY = useRef<number>(0);
   const touchStartTime = useRef<number>(0);
 
-  // Check authentication status on mount and when chat opens
+  // Check Firebase authentication status on mount and when chat opens
   useEffect(() => {
-    const checkAuth = async () => {
-      try {
-        const { data: { session } } = await supabase.auth.getSession();
-        if (session?.user) {
-          console.log('User authenticated:', session.user.email);
-          setIsAuthenticated(true);
-          setUserEmail(session.user.email);
-        } else {
-          console.log('No authenticated session');
-          setIsAuthenticated(false);
-          setUserEmail(undefined);
-        }
-      } catch (error) {
-        console.error('Auth check error:', error);
-        setIsAuthenticated(false);
-      }
-    };
-
-    checkAuth();
-    
-    // Listen for auth state changes
-    const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
-      console.log('Auth state changed:', event);
-      if (session?.user) {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        console.log('User authenticated:', user.email);
         setIsAuthenticated(true);
-        setUserEmail(session.user.email);
+        setUserEmail(user.email || undefined);
       } else {
+        console.log('No authenticated session');
         setIsAuthenticated(false);
         setUserEmail(undefined);
       }
     });
 
-    return () => {
-      authListener?.subscription.unsubscribe();
-    };
+    return () => unsubscribe();
   }, []);
 
   // Load user preference and auto-open on mount
@@ -333,13 +313,8 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
 
   const handleGoogleLogin = async () => {
     try {
-      const { error } = await supabase.auth.signInWithOAuth({
-        provider: 'google',
-        options: {
-          redirectTo: `${window.location.origin}/api/auth/callback`
-        }
-      });
-      if (error) throw error;
+      await signInWithPopup(auth, googleProvider);
+      console.log('Successfully signed in with Google');
     } catch (error) {
       console.error('Auth error:', error);
     }
