@@ -1,5 +1,5 @@
 // app/api/fix-post-content/route.ts
-// This will UPDATE all posts with proper Portable Text content
+// FIXED VERSION - COPY THIS ENTIRE FILE
 import { NextResponse } from 'next/server'
 import { createClient } from '@sanity/client'
 
@@ -14,9 +14,19 @@ const sanityClient = createClient({
   useCdn: false,
 })
 
+// Define types for Portable Text
+interface PortableTextBlock {
+  _type: string
+  style?: string
+  children: Array<{
+    _type: string
+    text: string
+  }>
+}
+
 // Helper to create Portable Text blocks
-function createPortableTextContent(title: string, category: string) {
-  const blocks = []
+function createPortableTextContent(title: string, category: string): PortableTextBlock[] {
+  const blocks: PortableTextBlock[] = []
   
   // Add different content based on category
   if (category === 'Investment Guide') {
@@ -410,7 +420,7 @@ export async function GET() {
     
     let updatedCount = 0
     let skippedCount = 0
-    const errors: any[] = []
+    const errors: Array<{ title: string; error: string }> = []
     
     for (const post of posts) {
       try {
