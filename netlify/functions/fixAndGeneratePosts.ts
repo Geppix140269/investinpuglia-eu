@@ -5,10 +5,10 @@ import { nanoid } from 'nanoid'
 
 const client = createClient({
   projectId: process.env.SANITY_PROJECT_ID!,
-  dataset: process.env.SANITY_DATASET!,
-  apiVersion: process.env.SANITY_API_VERSION!,
+  dataset: process.env.SANITY_DATASET || 'production',
+  apiVersion: process.env.SANITY_API_VERSION || '2025-08-01',
   token: process.env.SANITY_TOKEN!,
-  useCdn: false
+  useCdn: false,
 })
 
 function makeDoc(index: number) {
@@ -23,7 +23,7 @@ function makeDoc(index: number) {
       {
         _type: 'block',
         style: 'normal',
-        children: [{ _type: 'span', text: `This is an SEO-ready post about Puglia opportunity #${index + 1}. Replace or enrich with full content.` }]
+        children: [{ _type: 'span', text: `SEO-ready content for opportunity #${index + 1}. Replace or enrich later.` }]
       }
     ],
     publishedAt: new Date().toISOString(),
@@ -36,46 +36,41 @@ function makeDoc(index: number) {
 }
 
 export const handler: Handler = async (event) => {
-  if ((event.headers['x-generation-secret'] || '') !== process.env.GENERATION_SECRET) {
+  // Browser-friendly auth: allow secret via query string OR header
+  const provided = event.queryStringParameters?.secret || (event.headers['x-generation-secret'] as string)
+  if (!provided || provided !== process.env.GENERATION_SECRET) {
     return { statusCode: 401, body: 'Unauthorized' }
   }
 
   try {
-    // 1. Fix posts with no body
-    const emptyPosts = await client.fetch(
-      `*[_type == "post" && (!defined(body) || count(body) == 0)]{_id,title}`
-    )
+    // 1) Fix posts with no body
+    const emptyPosts = await client.fetch(`*[_type == "post" && (!defined(body) || count(body) == 0)]{_id,title}`)
     for (const p of emptyPosts) {
       await client.patch(p._id).set({
         body: [
           {
             _type: 'block',
             style: 'normal',
-            children: [{ _type: 'span', text: `This is updated SEO content for ${p.title}.` }]
+            children: [{ _type: 'span', text: `Updated SEO content for ${p.title}.` }]
           }
         ]
       }).commit()
     }
 
-    // 2. Count existing posts
-    const totalPosts = await client.fetch(`count(*[_type == "post"])`)
+    // 2) Count total posts
+    const totalPosts: number = await client.fetch(`count(*[_type == "post"])`)
 
-    // 3. Create missing to reach 100
-    const toCreate = 100 - totalPosts
+    // 3) Create remaining to reach 100
+    const toCreate = Math.max(0, 100 - totalPosts)
     if (toCreate > 0) {
       let tx = client.transaction()
-      for (let i = 0; i < toCreate; i++) {
-        tx = tx.create(makeDoc(totalPosts + i))
-      }
+      for (let i = 0; i < toCreate; i++) tx = tx.create(makeDoc(totalPosts + i))
       await tx.commit()
     }
 
-    return {
-      statusCode: 200,
-      body: JSON.stringify({ fixed: emptyPosts.length, created: Math.max(0, 100 - totalPosts) })
-    }
+    return { statusCode: 200, body: JSON.stringify({ fixed: emptyPosts.length, created: toCreate }) }
   } catch (err: any) {
     console.error(err)
-    return { statusCode: 500, body: err.message }
+    return { statusCode: 500, body: err.message || 'Unknown error' }
   }
 }
