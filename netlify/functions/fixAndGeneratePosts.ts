@@ -1,19 +1,25 @@
-import type { Handler } from '@netlify/functions'
-import { createClient } from '@sanity/client'
-import slugify from 'slugify'
-import { nanoid } from 'nanoid'
+// netlify/functions/fixAndGeneratePosts.js
+const { createClient } = require('@sanity/client')
 
-const client = createClient({
-  projectId: process.env.SANITY_PROJECT_ID!,
-  dataset: process.env.SANITY_DATASET || 'production',
-  apiVersion: process.env.SANITY_API_VERSION || '2025-08-01',
-  token: process.env.SANITY_TOKEN!,
-  useCdn: false,
-})
+// Fallbacks to NEXT_PUBLIC_* if needed
+const projectId = process.env.SANITY_PROJECT_ID || process.env.NEXT_PUBLIC_SANITY_PROJECT_ID
+const dataset = process.env.SANITY_DATASET || process.env.NEXT_PUBLIC_SANITY_DATASET || 'production'
+const token = process.env.SANITY_API_WRITE_TOKEN || process.env.SANITY_TOKEN
+const apiVersion = process.env.SANITY_API_VERSION || '2025-08-01'
 
-function makeDoc(index: number) {
+const client = createClient({ projectId, dataset, token, apiVersion, useCdn: false })
+
+// No external deps: tiny slug + id helpers
+const tinyId = () => Math.random().toString(36).slice(2, 8)
+const slugify = (s) =>
+  s.toLowerCase()
+    .normalize('NFKD').replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+
+function makeDoc(index) {
   const title = `Invest in Puglia — Opportunity #${index + 1}`
-  const slug = slugify(`${title}-${nanoid(6)}`, { lower: true, strict: true })
+  const slug = `${slugify(title)}-${tinyId()}`
   return {
     _type: 'post',
     title,
@@ -23,7 +29,12 @@ function makeDoc(index: number) {
       {
         _type: 'block',
         style: 'normal',
-        children: [{ _type: 'span', text: `SEO-ready content for opportunity #${index + 1}. Replace or enrich later.` }]
+        children: [{ _type: 'span', text: `SEO-ready content for opportunity #${index + 1}.` }]
+      },
+      {
+        _type: 'block',
+        style: 'normal',
+        children: [{ _type: 'span', text: 'Mini PIA eligibility, due diligence, and next steps.' }]
       }
     ],
     publishedAt: new Date().toISOString(),
@@ -35,16 +46,16 @@ function makeDoc(index: number) {
   }
 }
 
-export const handler: Handler = async (event) => {
-  // Browser-friendly auth: allow secret via query string OR header
-  const provided = event.queryStringParameters?.secret || (event.headers['x-generation-secret'] as string)
+exports.handler = async (event) => {
+  // Simple browser-friendly auth using a NON‑Sanity secret
+  const provided = (event.queryStringParameters && event.queryStringParameters.secret) || event.headers['x-generation-secret']
   if (!provided || provided !== process.env.GENERATION_SECRET) {
     return { statusCode: 401, body: 'Unauthorized' }
   }
 
   try {
-    // 1) Fix posts with no body
-    const emptyPosts = await client.fetch(`*[_type == "post" && (!defined(body) || count(body) == 0)]{_id,title}`)
+    // 1) Patch posts with missing/empty body
+    const emptyPosts = await client.fetch(`*[_type=="post" && (!defined(body) || count(body)==0)]{_id,title}`)
     for (const p of emptyPosts) {
       await client.patch(p._id).set({
         body: [
@@ -58,19 +69,19 @@ export const handler: Handler = async (event) => {
     }
 
     // 2) Count total posts
-    const totalPosts: number = await client.fetch(`count(*[_type == "post"])`)
+    const total = await client.fetch(`count(*[_type=="post"])`)
 
-    // 3) Create remaining to reach 100
-    const toCreate = Math.max(0, 100 - totalPosts)
+    // 3) Create up to 100
+    const toCreate = Math.max(0, 100 - total)
     if (toCreate > 0) {
       let tx = client.transaction()
-      for (let i = 0; i < toCreate; i++) tx = tx.create(makeDoc(totalPosts + i))
+      for (let i = 0; i < toCreate; i++) tx = tx.create(makeDoc(total + i))
       await tx.commit()
     }
 
     return { statusCode: 200, body: JSON.stringify({ fixed: emptyPosts.length, created: toCreate }) }
-  } catch (err: any) {
-    console.error(err)
-    return { statusCode: 500, body: err.message || 'Unknown error' }
+  } catch (e) {
+    console.error(e)
+    return { statusCode: 500, body: e.message || 'Unknown error' }
   }
 }
