@@ -1,5 +1,5 @@
 // app/api/generate-seo-posts/route.ts
-// COMPLETE FILE - JUST COPY THIS ENTIRE FILE
+// COMPLETE FIXED FILE - COPY ALL OF THIS
 import { NextResponse } from 'next/server'
 import { createClient } from '@sanity/client'
 
@@ -14,8 +14,29 @@ const sanityClient = createClient({
   useCdn: false,
 })
 
-function generateAllPosts() {
-  const posts = []
+// Define the type for posts
+interface PostData {
+  _type: string
+  title: string
+  slug: {
+    _type: string
+    current: string
+  }
+  excerpt: string
+  content: string
+  seo: {
+    metaTitle: string
+    metaDescription: string
+    keywords: string[]
+  }
+  category: string
+  tags: string[]
+  publishedAt: string
+  featured: boolean
+}
+
+function generateAllPosts(): PostData[] {
+  const posts: PostData[] = []
   const currentDate = new Date().toISOString()
   
   // 1. INDUSTRY GUIDES (20 posts)
@@ -416,7 +437,7 @@ export async function GET() {
     
     let successCount = 0
     let errorCount = 0
-    const errors = []
+    const errors: { title: string; error: string }[] = []
     
     for (const post of posts) {
       try {
@@ -432,7 +453,7 @@ export async function GET() {
         }
         
         successCount++
-      } catch (error) {
+      } catch (error: any) {
         errorCount++
         errors.push({ title: post.title, error: error.message })
       }
@@ -446,7 +467,7 @@ export async function GET() {
       errorCount,
       errors
     })
-  } catch (error) {
+  } catch (error: any) {
     return NextResponse.json(
       { success: false, error: error.message },
       { status: 500 }
