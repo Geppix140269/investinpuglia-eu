@@ -1,10 +1,17 @@
 // app/api/fix-post-content/route.ts
-// FIXED VERSION - COPY THIS ENTIRE FILE
+// VERSION WITH CORS HEADERS - REPLACE YOUR FILE WITH THIS
 import { NextResponse } from 'next/server'
 import { createClient } from '@sanity/client'
 
 export const dynamic = 'force-dynamic'
 export const maxDuration = 60
+
+// Add CORS headers to allow browser access
+const corsHeaders = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+  'Access-Control-Allow-Headers': 'Content-Type',
+}
 
 const sanityClient = createClient({
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'trdbxmjo',
@@ -404,6 +411,14 @@ function createPortableTextContent(title: string, category: string): PortableTex
   return blocks
 }
 
+// Handle OPTIONS request for CORS
+export async function OPTIONS() {
+  return new Response(null, {
+    status: 200,
+    headers: corsHeaders,
+  })
+}
+
 export async function GET() {
   try {
     // Fetch all posts that might have empty content
@@ -463,11 +478,16 @@ export async function GET() {
       updatedCount,
       skippedCount,
       errors
+    }, {
+      headers: corsHeaders // Add CORS headers to response
     })
   } catch (error: any) {
     return NextResponse.json(
       { success: false, error: error.message },
-      { status: 500 }
+      { 
+        status: 500,
+        headers: corsHeaders // Add CORS headers even on error
+      }
     )
   }
 }
