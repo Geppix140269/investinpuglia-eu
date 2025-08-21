@@ -13,6 +13,7 @@ import OpportunitySection from '@/components/sections/OpportunitySection'
 import HowItWorks from '@/components/sections/HowItWorks'
 import AboutGiuseppe from '@/components/sections/AboutGiuseppe'
 import Services from '@/components/sections/Services'
+import ApulinkShowcase from '@/components/sections/ApulinkShowcase'
 import TrulloSection from '@/components/sections/TrulloSection'
 import SuccessStories from '@/components/sections/OurCommitment'
 import FAQ from '@/components/sections/FAQ'
@@ -32,6 +33,7 @@ export default function HomePage() {
       <HowItWorks />
       <AboutGiuseppe />
       <Services />
+      <ApulinkShowcase />
       <TrulloSection />
       <SuccessStories />
       <FAQ />

@@ -1,0 +1,16 @@
+{
+  "crons": [
+    {
+      "path": "/api/telegram-reports?type=daily&apiKey=${CRON_API_KEY}",
+      "schedule": "0 9 * * *"
+    },
+    {
+      "path": "/api/telegram-reports?type=daily&apiKey=${CRON_API_KEY}",
+      "schedule": "0 18 * * *"
+    },
+    {
+      "path": "/api/telegram-reports?type=weekly&apiKey=${CRON_API_KEY}",
+      "schedule": "0 10 * * 1"
+    }
+  ]
+}

@@ -21,6 +21,15 @@ const TrulloChatbotWrapper = dynamic(
   }
 )
 
+// Lazy load the VisitorTracker
+const VisitorTracker = dynamic(
+  () => import('@/components/VisitorTracker'),
+  {
+    ssr: false,
+    loading: () => null
+  }
+)
+
 const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
@@ -203,6 +212,7 @@ export default function RootLayout({
           <main className="pt-16">{children}</main>
           <Footer />
           <TrulloChatbotWrapper />
+          <VisitorTracker />
         </AuthProvider>
       </body>
     </html>
