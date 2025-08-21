@@ -224,25 +224,28 @@ export default function VisitorAnalytics() {
           <div className="bg-white rounded-lg shadow p-6">
             <h2 className="text-lg font-semibold text-gray-800 mb-4">Device Types</h2>
             <div className="space-y-3">
-              {dailyStats.deviceTypes && Object.entries(dailyStats.deviceTypes).map(([device, count]: [string, any]) => (
-                <div key={device} className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    {getDeviceIcon(device)}
-                    <span className="font-medium">{device}</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <div className="w-32 bg-gray-200 rounded-full h-2">
-                      <div 
-                        className="bg-teal-500 h-2 rounded-full"
-                        style={{ 
-                          width: `${(count / Object.values(dailyStats.deviceTypes).reduce((a: any, b: any) => a + b, 0)) * 100}%` 
-                        }}
-                      />
+              {dailyStats.deviceTypes && Object.entries(dailyStats.deviceTypes).map(([device, count]: [string, any]) => {
+                const total = Object.values(dailyStats.deviceTypes as Record<string, number>).reduce((a: number, b: number) => a + b, 0);
+                return (
+                  <div key={device} className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      {getDeviceIcon(device)}
+                      <span className="font-medium">{device}</span>
                     </div>
-                    <span className="text-sm text-gray-600 w-12 text-right">{count}</span>
+                    <div className="flex items-center gap-2">
+                      <div className="w-32 bg-gray-200 rounded-full h-2">
+                        <div 
+                          className="bg-teal-500 h-2 rounded-full"
+                          style={{ 
+                            width: `${(count / total) * 100}%` 
+                          }}
+                        />
+                      </div>
+                      <span className="text-sm text-gray-600 w-12 text-right">{count}</span>
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </div>

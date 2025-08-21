@@ -29,7 +29,7 @@ export function useVisitorTracking() {
       const duration = lastPage.current ? Math.round((Date.now() - startTime.current) / 1000) : 0;
       
       const visitorData: VisitorData = {
-        page: pathname,
+        page: pathname || '/',
         referrer: document.referrer || 'Direct',
         duration,
         timestamp: Date.now(),
@@ -91,7 +91,7 @@ export function useVisitorTracking() {
               type: 'new_session',
               data: {
                 sessionId: sessionId.current,
-                currentPage: pathname,
+                currentPage: pathname || '/',
                 referrer: document.referrer || 'Direct',
                 device,
                 browser: getBrowser(),
@@ -119,7 +119,7 @@ export function useVisitorTracking() {
       }
       
       // Update tracking variables
-      lastPage.current = pathname;
+      lastPage.current = pathname || '/';
       startTime.current = Date.now();
     };
     
@@ -131,7 +131,7 @@ export function useVisitorTracking() {
       
       // Use sendBeacon for reliable tracking on page leave
       const data = JSON.stringify({
-        page: pathname,
+        page: pathname || '/',
         referrer: document.referrer || 'Direct',
         duration,
         timestamp: Date.now(),
@@ -160,7 +160,7 @@ export function useVisitorTracking() {
           type: 'event',
           event: eventName,
           data: eventData,
-          page: pathname,
+          page: pathname || '/',
           sessionId: sessionId.current,
           timestamp: Date.now(),
         }),

@@ -69,7 +69,7 @@ async function generateAnalyticsReport(period: 'daily' | 'weekly' | 'monthly'): 
         const flag = getCountryFlag(country);
         report += `${index + 1}. ${flag} ${country}: ${stats.visitors} visitors\n`;
         if (stats.cities?.size > 0) {
-          const topCity = Array.from(stats.cities.entries())[0];
+          const topCity = Array.from(stats.cities.entries())[0] as [string, number];
           report += `   📍 Top city: ${topCity[0]}\n`;
         }
       });
