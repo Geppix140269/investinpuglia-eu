@@ -1,6 +1,28 @@
 import { client } from '@/sanity/lib/client'
 import Link from 'next/link'
 import { urlFor } from '@/sanity/lib/image'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Investment Insights & Expert Analysis | PIA Grants Guide - Invest in Puglia',
+  description: 'Expert insights on Puglia investment opportunities, PIA & Mini PIA grants, EU funding programs, and Italian property investment strategies by Giuseppe Funaro. Access guides for American, British, German, and international investors.',
+  keywords: 'puglia investment insights, PIA grants analysis, Mini PIA funding guide, italian property investment, giuseppe funaro consultant, EU grants puglia, investment strategies italy, foreign investor guides',
+  openGraph: {
+    title: 'Puglia Investment Insights - Expert Guides for International Investors',
+    description: 'Comprehensive guides on PIA grants, EU funding, and investment opportunities in Puglia by Giuseppe Funaro',
+    type: 'website',
+  },
+  alternates: {
+    canonical: 'https://investinpuglia.eu/insights',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    'max-snippet': -1,
+    'max-image-preview': 'large',
+    'max-video-preview': -1,
+  }
+}
 
 async function getPosts() {
   const posts = await client.fetch(`

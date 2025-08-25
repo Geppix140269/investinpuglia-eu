@@ -82,10 +82,6 @@ export default function Navbar() {
               Services
             </a>
             
-            <a href="/insights" className="text-gray-700 hover:text-gray-900 transition-colors font-medium">
-              Insights
-            </a>
-            
             <a href="/contact" className="text-gray-700 hover:text-gray-900 transition-colors font-medium">
               Contact
             </a>
@@ -136,10 +132,6 @@ export default function Navbar() {
               
               <a href="/services" className="text-gray-700 hover:text-gray-900 transition-colors font-medium py-2">
                 Services
-              </a>
-              
-              <a href="/insights" className="text-gray-700 hover:text-gray-900 transition-colors font-medium py-2">
-                Insights
               </a>
               
               <a href="/contact" className="text-gray-700 hover:text-gray-900 transition-colors font-medium py-2">

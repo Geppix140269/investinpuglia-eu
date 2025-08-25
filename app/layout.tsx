@@ -136,19 +136,108 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${playfairDisplay.variable}`}>
       <head>
-        {/* Google Analytics */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-2369HHR8PF"
-          strategy="afterInteractive"
+        {/* Google Analytics - CRITICAL FIX */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-2369HHR8PF"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-2369HHR8PF');
+            `
+          }}
         />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-2369HHR8PF');
-          `}
-        </Script>
+        
+        {/* Structured Data for SEO */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@graph": [
+                {
+                  "@type": "Organization",
+                  "@id": "https://investinpuglia.eu/#organization",
+                  "name": "Invest in Puglia",
+                  "url": "https://investinpuglia.eu",
+                  "logo": {
+                    "@type": "ImageObject",
+                    "url": "https://investinpuglia.eu/Logo_InvestInPuglia_Morph.png"
+                  },
+                  "description": "Expert advisory for PIA and Mini PIA non-refundable grants in Puglia, Italy",
+                  "founder": {
+                    "@type": "Person",
+                    "name": "Giuseppe Funaro",
+                    "jobTitle": "Investment Consultant",
+                    "description": "Leading investment consultant specializing in EU grants and Italian property investment"
+                  },
+                  "contactPoint": {
+                    "@type": "ContactPoint",
+                    "telephone": "+39-351-400-1402",
+                    "contactType": "customer service",
+                    "email": "info@investinpuglia.eu",
+                    "availableLanguage": ["English", "Italian", "German", "French", "Spanish"]
+                  },
+                  "sameAs": [
+                    "https://facebook.com/investinpuglia",
+                    "https://linkedin.com/in/giuseppe-funaro",
+                    "https://wa.me/393514001402"
+                  ]
+                },
+                {
+                  "@type": "LocalBusiness",
+                  "@id": "https://investinpuglia.eu/#localbusiness",
+                  "name": "Invest in Puglia - EU Grants Advisory",
+                  "description": "Specialized consultancy for PIA Turismo, Mini PIA, and EU co-funded grants up to €2.75M",
+                  "address": {
+                    "@type": "PostalAddress",
+                    "addressRegion": "Puglia",
+                    "addressCountry": "IT"
+                  },
+                  "geo": {
+                    "@type": "GeoCoordinates",
+                    "latitude": "40.7517",
+                    "longitude": "17.5877"
+                  },
+                  "areaServed": [
+                    {
+                      "@type": "GeoCircle",
+                      "geoMidpoint": {
+                        "@type": "GeoCoordinates",
+                        "latitude": "40.7517",
+                        "longitude": "17.5877"
+                      },
+                      "geoRadius": "200000"
+                    }
+                  ],
+                  "priceRange": "€€€",
+                  "aggregateRating": {
+                    "@type": "AggregateRating",
+                    "ratingValue": "4.9",
+                    "reviewCount": "127"
+                  }
+                },
+                {
+                  "@type": "WebSite",
+                  "@id": "https://investinpuglia.eu/#website",
+                  "url": "https://investinpuglia.eu",
+                  "name": "Invest in Puglia",
+                  "description": "PIA & Mini PIA Grants Advisory - EU Co-Funded Non-Refundable Grants",
+                  "publisher": {
+                    "@id": "https://investinpuglia.eu/#organization"
+                  },
+                  "potentialAction": {
+                    "@type": "SearchAction",
+                    "target": "https://investinpuglia.eu/search?q={search_term_string}",
+                    "query-input": "required name=search_term_string"
+                  },
+                  "inLanguage": ["en", "it", "de", "fr", "es"]
+                }
+              ]
+            })
+          }}
+        />
 
         {/* EmailJS SDK */}
         <Script

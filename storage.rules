@@ -1,0 +1,76 @@
+// PATH: storage.rules
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    function isAdmin() {
+      return isAuthenticated() && (
+        request.auth.token.email == 'info@investinpuglia.eu' ||
+        request.auth.token.email == 'giuseppe@investinpuglia.eu'
+      );
+    }
+    
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+    
+    // Agreement PDFs
+    match /agreements/{agreementId}/{fileName} {
+      // Anyone with the link can read (URLs are unguessable)
+      allow read: if true;
+      
+      // Only admins or system can upload
+      allow write: if isAdmin() || isAuthenticated();
+      
+      // Only admins can delete
+      allow delete: if isAdmin();
+    }
+    
+    // Signed agreements
+    match /signed-agreements/{agreementId}/{fileName} {
+      // Anyone with the link can read
+      allow read: if true;
+      
+      // Only system can write (after both signatures)
+      allow write: if isAuthenticated();
+      
+      // Signed documents cannot be deleted
+      allow delete: if false;
+    }
+    
+    // User uploads (for attachments)
+    match /user-uploads/{userId}/{fileName} {
+      // User can read their own uploads
+      allow read: if isOwner(userId) || isAdmin();
+      
+      // User can upload with size limit (10MB)
+      allow write: if isOwner(userId) && request.resource.size < 10 * 1024 * 1024;
+      
+      // User can delete their own uploads
+      allow delete: if isOwner(userId) || isAdmin();
+    }
+    
+    // Company documents
+    match /company-documents/{fileName} {
+      // Anyone authenticated can read
+      allow read: if isAuthenticated();
+      
+      // Only admins can manage
+      allow write, delete: if isAdmin();
+    }
+    
+    // Templates
+    match /templates/{templateId}/{fileName} {
+      // Anyone authenticated can read
+      allow read: if isAuthenticated();
+      
+      // Only admins can manage
+      allow write, delete: if isAdmin();
+    }
+  }
+}

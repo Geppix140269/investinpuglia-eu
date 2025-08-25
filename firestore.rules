@@ -1,0 +1,97 @@
+// PATH: firestore.rules
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    function isAdmin() {
+      return isAuthenticated() && 
+        request.auth.token.email == 'info@investinpuglia.eu' ||
+        request.auth.token.email == 'giuseppe@investinpuglia.eu';
+    }
+    
+    function hasValidToken(token) {
+      return resource != null && resource.data.access_token == token;
+    }
+    
+    // Agreements collection
+    match /agreements/{agreementId} {
+      // Anyone can read if they have the correct token (verified at API level)
+      allow read: if true;
+      
+      // Allow creation from anyone (API handles security)
+      allow create: if true;
+      
+      // Allow updates from API (authenticated) or admin
+      allow update: if true;
+      
+      // Only admins can delete
+      allow delete: if isAdmin();
+    }
+    
+    // Agreement drafts collection
+    match /agreement_drafts/{draftId} {
+      // Allow all operations (temporary for development)
+      allow read, write: if true;
+    }
+    
+    // Shared agreement templates
+    match /agreement_templates_shared/{templateId} {
+      // Allow all operations (API handles security via token/password)
+      allow read, write: if true;
+    }
+    
+    // Agreement logs collection
+    match /agreement_logs/{logId} {
+      // Only admins can read logs
+      allow read: if isAdmin();
+      
+      // Allow creating logs from API
+      allow create: if true;
+      
+      // Logs cannot be updated or deleted
+      allow update: if false;
+      allow delete: if false;
+    }
+    
+    // Agreement templates
+    match /agreement_templates/{templateId} {
+      // Anyone authenticated can read templates
+      allow read: if isAuthenticated();
+      
+      // Only admins can manage templates
+      allow create, update, delete: if isAdmin();
+    }
+    
+    // User profiles (for client access)
+    match /users/{userId} {
+      // Users can read their own profile
+      allow read: if isAuthenticated() && request.auth.uid == userId;
+      
+      // Users can update their own profile
+      allow update: if isAuthenticated() && request.auth.uid == userId;
+      
+      // Only the system can create profiles
+      allow create: if isAuthenticated();
+      
+      // Users cannot delete profiles
+      allow delete: if isAdmin();
+    }
+    
+    // Email templates
+    match /email_templates/{templateId} {
+      allow read: if isAuthenticated();
+      allow write: if isAdmin();
+    }
+    
+    // System configuration
+    match /config/{configId} {
+      allow read: if isAuthenticated();
+      allow write: if isAdmin();
+    }
+  }
+}

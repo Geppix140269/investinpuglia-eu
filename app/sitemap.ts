@@ -16,6 +16,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     groq`*[_type == "industry"] { slug }`
   )
   
+  // Fetch ALL insights/blog posts from Sanity
+  const insights = await client.fetch<{ slug: { current: string }, publishedAt: string }[]>(
+    groq`*[_type == "post" && publishedAt < now()] { slug, publishedAt } | order(publishedAt desc)`
+  )
+  
   // Static pages
   const staticPages = [
     {
@@ -113,5 +118,21 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })),
   ]
   
-  return [...staticPages, ...locationPages, ...industryPages, ...nonLocalizedPages]
+  // Insights pages (SEO-focused, high priority for AI crawlers)
+  const insightsPages = [
+    {
+      url: `${baseUrl}/insights`,
+      lastModified: new Date(),
+      changeFrequency: 'daily' as const,
+      priority: 0.9,
+    },
+    ...insights.map((post) => ({
+      url: `${baseUrl}/insights/${post.slug.current}`,
+      lastModified: new Date(post.publishedAt),
+      changeFrequency: 'monthly' as const,
+      priority: 0.8,
+    })),
+  ]
+  
+  return [...staticPages, ...locationPages, ...industryPages, ...nonLocalizedPages, ...insightsPages]
 }

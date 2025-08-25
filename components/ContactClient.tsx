@@ -92,7 +92,7 @@ export default function ContactClient() {
               </div>
               <h3 className="font-semibold text-stone-800 mb-2">Phone</h3>
               <p className="text-stone-600">
-                <a href="tel:+442079460958" className="hover:text-sea">+44 20 7946 0958</a>
+                <a href="tel:+441969434469" className="hover:text-sea">+44 1969 434469</a>
               </p>
               <p className="text-sm text-stone-500 mt-1">Mon-Fri 9AM-6PM GMT</p>
             </div>
@@ -112,7 +112,7 @@ export default function ContactClient() {
               </div>
               <h3 className="font-semibold text-stone-800 mb-2">WhatsApp</h3>
               <p className="text-stone-600">
-                <a href="https://wa.me/442079460958" className="hover:text-warm">+44 20 7946 0958</a>
+                <a href="https://wa.me/441969434469" className="hover:text-warm">+44 1969 434469</a>
               </p>
               <p className="text-sm text-stone-500 mt-1">Quick questions welcome</p>
             </div>

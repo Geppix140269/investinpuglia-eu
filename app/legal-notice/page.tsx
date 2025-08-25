@@ -60,7 +60,7 @@ export default function LegalNoticePage() {
                   <strong>Company Registration Number:</strong> 124 75013<br/>
                   <strong>VAT Number:</strong> GB 343 1702 32<br/>
                   <strong>Email:</strong> <a href="mailto:info@investinpuglia.eu" className="text-terracotta hover:text-terracotta-dark">info@investinpuglia.eu</a><br/>
-                  <strong>Phone:</strong> +44 20 7946 0958
+                  <strong>Phone:</strong> +44 1969 434469
                 </p>
               </div>
 
@@ -242,7 +242,7 @@ export default function LegalNoticePage() {
                 <p className="text-stone-700">
                   <strong>General Inquiries:</strong> <a href="mailto:info@investinpuglia.eu" className="text-terracotta hover:text-terracotta-dark">info@investinpuglia.eu</a><br/>
                   <strong>Legal Department:</strong> <a href="mailto:legal@investinpuglia.eu" className="text-terracotta hover:text-terracotta-dark">legal@investinpuglia.eu</a><br/>
-                  <strong>Phone:</strong> +44 20 7946 0958<br/>
+                  <strong>Phone:</strong> +44 1969 434469<br/>
                   <strong>Business Hours:</strong> Monday-Friday, 9:00 AM - 6:00 PM GMT
                 </p>
               </div>

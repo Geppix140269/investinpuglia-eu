@@ -1,13 +1,80 @@
 
-# robots.txt for investinpuglia.eu
+# Robots.txt for InvestInPuglia.eu
+# Optimized for AI crawlers and search engines
+# Last updated: January 2025
+
+# Allow all legitimate crawlers
 User-agent: *
 Allow: /
-
-# Sitemap location
-Sitemap: https://investinpuglia.eu/sitemap.xml
-
-# Allow search engines to crawl everything
+Allow: /blog/
+Allow: /insights/
+Allow: /industries/
+Allow: /locations/
 Disallow: /api/
 Disallow: /admin/
-Disallow: /_next/
 Disallow: /studio/
+Disallow: /_next/
+Disallow: /dashboard/
+
+# Specific rules for AI crawlers - FULL ACCESS
+# These bots are explicitly welcomed for knowledge extraction
+User-agent: GPTBot
+Allow: /
+Crawl-delay: 1
+
+User-agent: ChatGPT-User
+Allow: /
+Crawl-delay: 1
+
+User-agent: CCBot
+Allow: /
+Crawl-delay: 2
+
+User-agent: PerplexityBot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Claude-Web
+Allow: /
+Crawl-delay: 1
+
+User-agent: Anthropic-AI
+Allow: /
+Crawl-delay: 1
+
+# Search engine bots
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 1
+
+User-agent: DuckDuckBot
+Allow: /
+Crawl-delay: 1
+
+# Block aggressive SEO bots
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+# Sitemap locations
+Sitemap: https://investinpuglia.eu/sitemap.xml
+Sitemap: https://investinpuglia.eu/sitemap-blog.xml
+Sitemap: https://investinpuglia.eu/sitemap-insights.xml
+Sitemap: https://investinpuglia.eu/sitemap-locations.xml
+Sitemap: https://investinpuglia.eu/sitemap-industries.xml
+
+# Canonical host
+Host: https://investinpuglia.eu

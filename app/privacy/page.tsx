@@ -278,7 +278,7 @@ export default function PrivacyPolicyPage() {
                     <p className="text-stone-700">
                       <strong>Data Protection Officer:</strong><br/>
                       Email: <a href="mailto:privacy@investinpuglia.eu" className="text-terracotta hover:text-terracotta-dark">privacy@investinpuglia.eu</a><br/>
-                      Phone: +44 20 7946 0958<br/>
+                      Phone: +44 1969 434469<br/>
                       Mail: 1402 Celsius Ltd, 20-22 Wenlock Road, N1 7GU, London, UK<br/><br/>
                       <strong>Supervisory Authority:</strong><br/>
                       UK: Information Commissioner&apos;s Office (ICO)<br/>

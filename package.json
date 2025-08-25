@@ -6,7 +6,9 @@
         "dev": "next dev",
         "build": "next build",
         "start": "next start",
-        "lint": "next lint"
+        "lint": "next lint",
+        "generate-seo": "node scripts/generate-seo-content.js",
+        "generate-ai-content": "node scripts/generate-ai-optimized-content.js"
     },
     "dependencies": {
         "@emailjs/browser": "^3.11.0",
@@ -21,6 +23,7 @@
         "@supabase/supabase-js": "^2.50.3",
         "@tailwindcss/typography": "^0.5.16",
         "axios": "^1.10.0",
+        "bcryptjs": "^2.4.3",
         "csv-parse": "^6.1.0",
         "dotenv": "^17.2.1",
         "firebase": "^12.1.0",
@@ -32,6 +35,7 @@
         "next-compose-plugins": "^2.2.1",
         "next-sanity": "^9.12.0",
         "openai": "^5.10.2",
+        "pdf-lib": "^1.17.1",
         "react": "^18",
         "react-dom": "^18",
         "recharts": "^2.12.7",
