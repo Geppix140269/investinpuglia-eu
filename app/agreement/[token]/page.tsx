@@ -151,7 +151,7 @@ export default function AgreementPortal() {
 
   const downloadPDF = async () => {
     try {
-      const response = await fetch(`/api/agreements/${params.token}/download`, {
+      const response = await fetch(`/api/agreements/${params?.token}/download`, {
         method: 'GET',
       });
 
