@@ -10,7 +10,7 @@ import { ref, getDownloadURL } from 'firebase/storage';
 export default function ClientAgreementAccess() {
   const params = useParams();
   const router = useRouter();
-  const token = params.token as string;
+  const token = params?.token as string;
   
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);

@@ -41,8 +41,12 @@ export default function AgreementPortal() {
   }, [isAuthenticated]);
 
   const loadAgreementData = async () => {
+    if (!params?.token) {
+      setError('Invalid agreement link');
+      return;
+    }
     try {
-      const response = await fetch(`/api/agreements/${params.token}`);
+      const response = await fetch(`/api/agreements/${params?.token}`);
       if (response.ok) {
         const data = await response.json();
         setAgreementData(data);
@@ -64,7 +68,7 @@ export default function AgreementPortal() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
-          token: params.token,
+          token: params?.token,
           password 
         })
       });
@@ -76,7 +80,7 @@ export default function AgreementPortal() {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            token: params.token,
+            token: params?.token,
             action: 'accessed',
             timestamp: new Date().toISOString()
           })
@@ -94,7 +98,7 @@ export default function AgreementPortal() {
   const handleSaveChanges = async () => {
     setLoading(true);
     try {
-      const response = await fetch(`/api/agreements/${params.token}`, {
+      const response = await fetch(`/api/agreements/${params?.token}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(agreementData)
@@ -107,7 +111,7 @@ export default function AgreementPortal() {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            token: params.token,
+            token: params?.token,
             action: 'edited',
             timestamp: new Date().toISOString()
           })
@@ -131,7 +135,7 @@ export default function AgreementPortal() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          token: params.token,
+          token: params?.token,
           agreementData
         })
       });
