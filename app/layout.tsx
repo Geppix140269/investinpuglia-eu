@@ -113,7 +113,7 @@ export const metadata: Metadata = {
     }
   },
   verification: {
-    google: 'G-2369HHR8PF', // Your existing Google verification
+    google: '', // Add your actual Google Search Console verification code here
   },
   robots: {
     index: true,
@@ -136,16 +136,11 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${playfairDisplay.variable}`}>
       <head>
-        {/* Google Analytics - CRITICAL FIX */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-2369HHR8PF"></script>
+        {/* Google Analytics - REAL GA4 MEASUREMENT ID */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-B6V5FJ4ECZ"></script>
         <script
           dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-2369HHR8PF');
-            `
+            __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-B6V5FJ4ECZ');`
           }}
         />
         

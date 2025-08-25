@@ -97,7 +97,7 @@ export function generatePageMetadata({
     
     // Verification codes (if you have them)
     verification: {
-      google: 'G-2369HHR8PF',
+      google: '', // Add Google Search Console verification code here (NOT the GA4 ID)
       // Add others if needed
     },
   }
