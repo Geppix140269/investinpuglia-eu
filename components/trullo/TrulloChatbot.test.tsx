@@ -318,7 +318,7 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
         >
           <div className="relative">
             <img
-              src="/trullo.png"
+              src="/trullo.jpg"
               alt="Chat with Trullo"
               className={`object-contain ${isMobile ? 'w-10 h-10' : 'w-8 h-8'}`}
               onError={(e) => {
@@ -367,7 +367,7 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
               <div className="flex items-center space-x-2 md:space-x-3">
                 <div className={`bg-white rounded-full flex items-center justify-center shadow-md ${isMobile ? 'w-10 h-10 p-1' : 'w-12 h-12 p-1'}`}>
                   <img
-                    src="/trullo.png"
+                    src="/trullo.jpg"
                     alt="Trullo"
                     className="w-full h-full object-contain"
                     onError={(e) => {
@@ -501,7 +501,7 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
                   <div className="text-center p-8 max-w-sm">
                     <div className="mb-6">
                       <img 
-                        src="/trullo.png" 
+                        src="/trullo.jpg" 
                         alt="Trullo" 
                         className="w-20 h-20 mx-auto mb-4"
                         onError={(e) => {
