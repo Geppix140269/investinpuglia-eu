@@ -72,7 +72,7 @@ export const mockProperties: Property[] = [
       }
     ],
     investment: {
-      potentialReturn: '15-20% annual ROI with boutique hotel conversion',
+      potentialReturn: '26% annual ROI with Mini PIA grant (5% property appreciation)',
       suggestedUse: ['Boutique Hotel', 'Luxury B&B', 'Event Venue', 'Private Residence'],
       grants: ['PIA Tourism', 'Historic Restoration Fund'],
       zoning: 'Mixed use - residential/commercial'
@@ -131,7 +131,7 @@ export const mockProperties: Property[] = [
       }
     ],
     investment: {
-      potentialReturn: '12-15% annual ROI',
+      potentialReturn: '26% annual ROI with Mini PIA grant (5% property appreciation)',
       suggestedUse: ['Luxury Vacation Rental', 'Private Residence'],
       grants: ['Tourism Development Grant']
     },
@@ -188,7 +188,7 @@ export const mockProperties: Property[] = [
       }
     ],
     investment: {
-      potentialReturn: '14-18% annual ROI',
+      potentialReturn: '26% annual ROI with Mini PIA grant (5% property appreciation)',
       suggestedUse: ['Boutique B&B', 'Vacation Rental', 'Cultural Tourism'],
       grants: ['UNESCO Heritage Grant', 'Rural Tourism Development']
     },
@@ -247,7 +247,7 @@ export const mockProperties: Property[] = [
       }
     ],
     investment: {
-      potentialReturn: '18-22% annual ROI with agriturismo conversion',
+      potentialReturn: '26% annual ROI with Mini PIA grant (5% property appreciation)',
       suggestedUse: ['Boutique Hotel', 'Agriturismo', 'Wedding Venue', 'Rural Resort'],
       grants: ['Mini PIA Tourism', 'Rural Development Fund', 'Historic Restoration Grant'],
       zoning: 'Agricultural with tourism development permitted'
@@ -308,7 +308,7 @@ export const mockProperties: Property[] = [
       }
     ],
     investment: {
-      potentialReturn: '16-20% annual ROI with restoration and agriturismo conversion',
+      potentialReturn: '26% annual ROI with Mini PIA grant (5% property appreciation)',
       suggestedUse: ['Luxury Agriturismo', 'Boutique Resort', 'Organic Farm Stay', 'Wellness Retreat'],
       grants: ['Mini PIA Tourism', 'Agricultural Development Fund', 'Historic Building Restoration'],
       zoning: 'Agricultural with tourism permitted'
