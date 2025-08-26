@@ -9,7 +9,7 @@ import CloudinaryImage from '@/components/properties/CloudinaryImage'
 
 export default function PropertyDetailPage() {
   const params = useParams()
-  const property = mockProperties.find(p => p.slug === params.slug)
+  const property = mockProperties.find(p => p.slug === params?.slug)
   const [activeImage, setActiveImage] = useState(0)
 
   if (!property) {
