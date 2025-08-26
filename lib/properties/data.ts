@@ -205,5 +205,129 @@ export const mockProperties: Property[] = [
     updatedAt: new Date('2024-01-10'),
     featured: false,
     status: 'available'
+  },
+  {
+    id: '4',
+    title: 'Historic Masseria with 8.3 Hectares - Martina Franca',
+    slug: 'masseria-martina-franca',
+    type: 'historic',
+    price: 700000,
+    currency: 'EUR',
+    location: {
+      city: 'Martina Franca',
+      province: 'Taranto',
+      region: 'Puglia'
+    },
+    details: {
+      squareMeters: 818,
+      landSquareMeters: 83000,
+      floors: 2,
+      yearBuilt: 1800,
+      condition: 'to-renovate'
+    },
+    description: {
+      short: 'Early 19th-century masseria with trulli complex (8 cones), 818 sqm interior on 8.3 hectares, perfect for boutique hotel conversion with 24 beds planned.',
+      full: 'Ancient masseria dating from the early nineteenth century, partly to be restored in the prestigious Barratta district. Features main structure with 2 residential units, trulli complex with 8 cones, planned dining room for 50 seats, wood-burning oven, and large open space. Property includes barnyard of approximately 4,000 sqm.',
+      features: [
+        'Early 19th century historic building',
+        'Trulli complex with 8 cones',
+        'Planned capacity for 24 beds',
+        'Dining room for 50 guests',
+        'Traditional wood-burning oven',
+        '8.3 hectares of land',
+        'Partially restored structure'
+      ],
+      investmentPotential: 'Ideal Mini PIA candidate - historic 19th-century property requiring partial restoration, planned for 24-bed accommodation facility with restaurant. Perfect for boutique hotel or agriturismo conversion.'
+    },
+    images: [
+      {
+        url: 'https://images.gate-away.com/properties2/2243/520414/main/800/Main_image.jpg',
+        alt: 'Masseria Martina Franca exterior',
+        isPrimary: true
+      }
+    ],
+    investment: {
+      potentialReturn: '18-22% annual ROI with agriturismo conversion',
+      suggestedUse: ['Boutique Hotel', 'Agriturismo', 'Wedding Venue', 'Rural Resort'],
+      grants: ['Mini PIA Tourism', 'Rural Development Fund', 'Historic Restoration Grant'],
+      zoning: 'Agricultural with tourism development permitted'
+    },
+    amenities: [
+      'Trulli complex',
+      'Wood-burning oven',
+      'Large courtyard',
+      'Agricultural land',
+      'Development potential'
+    ],
+    distanceToSea: 25,
+    distanceToAirport: 70,
+    createdAt: new Date('2024-01-25'),
+    updatedAt: new Date('2024-01-25'),
+    featured: true,
+    status: 'available'
+  },
+  {
+    id: '5',
+    title: 'Ancient Two-Level Masseria - Ceglie Messapica',
+    slug: 'masseria-ceglie-messapica',
+    type: 'historic',
+    price: 590000,
+    currency: 'EUR',
+    location: {
+      city: 'Ceglie Messapica',
+      province: 'Brindisi',
+      region: 'Puglia'
+    },
+    details: {
+      squareMeters: 583,
+      landSquareMeters: 490000,
+      floors: 2,
+      yearBuilt: 1700,
+      condition: 'to-renovate'
+    },
+    description: {
+      short: 'Ancient masseria on two levels with 583 sqm, stone rooms, partial trulli, on 49 hectares of land in the prestigious Fedele Grande district.',
+      full: 'Ancient masseria on two levels in the Fedele Grande district. Ground floor features numerous stone rooms with partial trulli and wood-burning oven (480 sqm). First floor in rustic state with star vaulted rooms and fireplace (103 sqm). Set on 49 hectares of mostly arable land and woodland with cisterns and potential aqueduct connection.',
+      features: [
+        'Historic stone construction',
+        'Star vaulted ceilings',
+        'Partial trulli structures',
+        'Traditional fireplace',
+        'Wood-burning oven',
+        '49 hectares of land',
+        'Cisterns for water storage',
+        'ENEL electricity available'
+      ],
+      investmentPotential: 'Excellent Mini PIA opportunity - historic masseria requiring full restoration, 583 sqm allows for 10-12 guest rooms plus common areas. Large land holding perfect for agricultural tourism activities.'
+    },
+    images: [
+      {
+        url: 'https://images.gate-away.com/properties2/2243/488192/main/800/Main_image.jpg',
+        alt: 'Masseria Ceglie Messapica exterior',
+        isPrimary: true
+      }
+    ],
+    investment: {
+      potentialReturn: '16-20% annual ROI with restoration and agriturismo conversion',
+      suggestedUse: ['Luxury Agriturismo', 'Boutique Resort', 'Organic Farm Stay', 'Wellness Retreat'],
+      grants: ['Mini PIA Tourism', 'Agricultural Development Fund', 'Historic Building Restoration'],
+      zoning: 'Agricultural with tourism permitted'
+    },
+    amenities: [
+      'Star vaulted ceilings',
+      'Traditional oven',
+      'Fireplace',
+      'Cisterns',
+      'Extensive agricultural land',
+      'Woodland areas'
+    ],
+    distanceToSea: 20,
+    distanceToAirport: 40,
+    createdAt: new Date('2024-01-22'),
+    updatedAt: new Date('2024-01-22'),
+    featured: false,
+    status: 'available'
   }
 ]
+
+// Property listings courtesy of Gate-away.com
