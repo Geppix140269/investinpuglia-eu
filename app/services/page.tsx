@@ -96,6 +96,32 @@ export default function ServicesPage() {
         </div>
       </section>
 
+      {/* CTA Section - Moved to top for immediate visibility */}
+      <section className="bg-gradient-to-r from-emerald-600 to-teal-600 py-16">
+        <div className="max-w-4xl mx-auto text-center px-4">
+          <h2 className="text-3xl md:text-4xl font-light text-white mb-6">
+            Ready to Start Your Puglia Investment Journey?
+          </h2>
+          <p className="text-xl text-emerald-100 mb-8">
+            Begin with Phase 1 and discover the perfect property investment opportunity in Southern Italy
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link 
+              href="/sign-agreement"
+              className="inline-block bg-white text-emerald-700 py-4 px-8 rounded-lg font-semibold hover:shadow-xl transition-all duration-300 animate-pulse text-lg"
+            >
+              ✍️ Sign Agreement Online →
+            </Link>
+            <Link 
+              href="/project-agreement"
+              className="inline-block bg-emerald-700 text-white py-4 px-8 rounded-lg font-semibold hover:bg-emerald-800 transition-all duration-300"
+            >
+              📄 Review Full Terms First
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Value Proposition */}
       <section className="py-12 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -495,32 +521,6 @@ export default function ServicesPage() {
                 Example: €450,000 property (saved €50,000) + €500,000 grant = €2,500 negotiation bonus + €12,500 grant fee
               </p>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="bg-gradient-to-r from-emerald-600 to-teal-600 py-20">
-        <div className="max-w-4xl mx-auto text-center px-4">
-          <h2 className="text-3xl md:text-4xl font-light text-white mb-6">
-            Ready to Start Your Puglia Investment Journey?
-          </h2>
-          <p className="text-xl text-emerald-100 mb-8">
-            Begin with Phase 1 and discover the perfect property investment opportunity in Southern Italy
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link 
-              href="/sign-agreement"
-              className="inline-block bg-white text-emerald-700 py-4 px-8 rounded-lg font-semibold hover:shadow-xl transition-all duration-300 animate-pulse"
-            >
-              Sign Agreement Online →
-            </Link>
-            <Link 
-              href="/project-agreement"
-              className="inline-block bg-emerald-700 text-white py-4 px-8 rounded-lg font-semibold hover:bg-emerald-800 transition-all duration-300"
-            >
-              Review Full Terms First
-            </Link>
           </div>
         </div>
       </section>
