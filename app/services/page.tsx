@@ -160,14 +160,7 @@ export default function ServicesPage() {
                   </div>
 
                   <div className="mb-6">
-                    {service.isSuccessBased ? (
-                      <div>
-                        <p className="text-2xl font-light text-gray-900">{service.price}</p>
-                        <p className="text-sm text-emerald-600 mt-1">5% of secured grants</p>
-                      </div>
-                    ) : (
-                      <p className="text-3xl font-light text-gray-900">{service.price}</p>
-                    )}
+                    <p className="text-3xl font-light text-gray-900">{service.price}</p>
                     <p className="text-sm text-gray-500 mt-2">Duration: {service.duration}</p>
                   </div>
 

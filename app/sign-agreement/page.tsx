@@ -23,10 +23,11 @@ export default function SignAgreementPage() {
 
   const [showAgreement, setShowAgreement] = useState(false)
   const [processing, setProcessing] = useState(false)
-  const [errors, setErrors] = useState({})
+  const [errors, setErrors] = useState<Record<string, string>>({})
 
-  const handleInputChange = (e) => {
-    const { name, value, type, checked } = e.target
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value, type } = e.target
+    const checked = (e.target as HTMLInputElement).checked
     setFormData(prev => ({
       ...prev,
       [name]: type === 'checkbox' ? checked : value
@@ -34,7 +35,7 @@ export default function SignAgreementPage() {
   }
 
   const validateForm = () => {
-    const newErrors = {}
+    const newErrors: Record<string, string> = {}
     
     if (!formData.fullName) newErrors.fullName = 'Full name is required'
     if (!formData.email) newErrors.email = 'Email is required'
@@ -49,7 +50,7 @@ export default function SignAgreementPage() {
     return Object.keys(newErrors).length === 0
   }
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     
     if (!validateForm()) {
