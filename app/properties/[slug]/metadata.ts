@@ -1,7 +1,5 @@
-import { mockProperties } from '@/lib/properties/data'
-import Link from 'next/link'
 import { Metadata } from 'next'
-import PropertyDetailClient from './PropertyDetailClient'
+import { mockProperties } from '@/lib/properties/data'
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const property = mockProperties.find(p => p.slug === params.slug)
@@ -41,25 +39,15 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       title,
       description,
       images: [image]
+    },
+    alternates: {
+      canonical: `https://investinpuglia.eu/properties/${property.slug}`
+    },
+    other: {
+      'property:type': property.type,
+      'property:price': `€${property.price.toLocaleString()}`,
+      'property:location': `${property.location.city}, ${property.location.province}`,
+      'property:size': `${property.details.squareMeters}m²`
     }
   }
-}
-
-export default function PropertyDetailPage({ params }: { params: { slug: string } }) {
-  const property = mockProperties.find(p => p.slug === params.slug)
-  
-  if (!property) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold text-gray-900 mb-4">Property not found</h1>
-          <Link href="/properties" className="text-purple-600 hover:text-purple-700">
-            Back to properties
-          </Link>
-        </div>
-      </div>
-    )
-  }
-
-  return <PropertyDetailClient property={property} />
 }
