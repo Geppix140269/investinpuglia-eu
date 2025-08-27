@@ -32,10 +32,15 @@ export default function ProjectAgreementPage() {
           <div className="text-center mt-6">
             <Link 
               href="/sign-agreement"
-              className="inline-block bg-emerald-600 text-white py-3 px-8 rounded-lg font-semibold hover:bg-emerald-700 transition-all duration-300 animate-pulse"
+              className="inline-block bg-emerald-600 text-white py-3 px-8 rounded-lg font-semibold hover:bg-emerald-700 transition-all duration-300"
             >
               ✍️ Sign This Agreement Online Now →
             </Link>
+          </div>
+          <div className="text-center mt-4">
+            <p className="text-sm text-gray-300 italic">
+              ✨ À La Carte Services - Use only what you need, when you need it
+            </p>
           </div>
         </div>
       </section>
@@ -107,6 +112,55 @@ export default function ProjectAgreementPage() {
                 </p>
               </div>
             </article>
+
+            {/* FLEXIBILITY NOTICE - À LA CARTE SERVICES */}
+            <div className="bg-gradient-to-r from-emerald-50 to-blue-50 border-2 border-emerald-500 rounded-lg p-6 mb-10">
+              <div className="flex items-start">
+                <div className="flex-shrink-0">
+                  <span className="text-3xl">🎯</span>
+                </div>
+                <div className="ml-4">
+                  <h3 className="text-xl font-bold text-emerald-900 mb-3">
+                    FLEXIBLE À LA CARTE SERVICES - Use Only What You Need
+                  </h3>
+                  <p className="text-gray-700 mb-4">
+                    <strong>You are FREE to choose how to use our services.</strong> This agreement provides 
+                    maximum flexibility for your investment journey:
+                  </p>
+                  <div className="grid md:grid-cols-2 gap-4 mb-4">
+                    <div className="bg-white p-4 rounded-lg">
+                      <h4 className="font-semibold text-emerald-700 mb-2">✅ You CAN:</h4>
+                      <ul className="text-sm space-y-1 text-gray-600">
+                        <li>• Start with Phase 1 only (€2,500)</li>
+                        <li>• Stop after any phase with no penalties</li>
+                        <li>• Skip phases (e.g., go directly to Phase 3)</li>
+                        <li>• Take breaks between phases</li>
+                        <li>• Use only specific services you need</li>
+                      </ul>
+                    </div>
+                    <div className="bg-white p-4 rounded-lg">
+                      <h4 className="font-semibold text-blue-700 mb-2">🚫 NO Obligations to:</h4>
+                      <ul className="text-sm space-y-1 text-gray-600">
+                        <li>• Complete all phases</li>
+                        <li>• Follow a strict timeline</li>
+                        <li>• Pay for unused services</li>
+                        <li>• Continue if not satisfied</li>
+                        <li>• Use services sequentially</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div className="bg-yellow-50 border-l-4 border-yellow-500 p-3 rounded">
+                    <p className="text-sm text-gray-700">
+                      <strong>Example Scenarios:</strong><br />
+                      • Just need property search? Use Phase 1 only<br />
+                      • Already found a property? Jump to Phase 3 for agreement support<br />
+                      • Want to negotiate yourself? Skip Phase 2<br />
+                      • Need time to decide? Take a break after any phase
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
 
             {/* Article 2: Recitals and Background */}
             <article className="mb-10">

@@ -142,6 +142,57 @@ export default function ServicesPage() {
         </div>
       </section>
 
+      {/* À LA CARTE FLEXIBILITY BANNER */}
+      <section className="py-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-emerald-50 to-blue-50">
+        <div className="max-w-5xl mx-auto">
+          <div className="bg-white rounded-2xl shadow-xl p-8 border-2 border-emerald-500">
+            <div className="text-center mb-6">
+              <span className="inline-block bg-emerald-100 text-emerald-800 px-4 py-2 rounded-full text-sm font-bold mb-4">
+                🎯 FLEXIBLE À LA CARTE SERVICES
+              </span>
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                You're FREE to Use Only What You Need
+              </h2>
+              <p className="text-lg text-gray-700 max-w-3xl mx-auto">
+                No contracts, no obligations, no pressure. Choose your own path to property investment success.
+              </p>
+            </div>
+            
+            <div className="grid md:grid-cols-3 gap-6">
+              <div className="text-center">
+                <div className="text-4xl mb-3">🚀</div>
+                <h3 className="font-bold text-gray-900 mb-2">Start & Stop Anytime</h3>
+                <p className="text-sm text-gray-600">
+                  Begin with Phase 1 for just €2,500. Not ready to continue? No problem - stop with no penalties.
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="text-4xl mb-3">🎨</div>
+                <h3 className="font-bold text-gray-900 mb-2">Mix & Match Services</h3>
+                <p className="text-sm text-gray-600">
+                  Already found a property? Skip to Phase 3. Need just negotiations? Use Phase 2 only.
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="text-4xl mb-3">⏰</div>
+                <h3 className="font-bold text-gray-900 mb-2">Your Timeline</h3>
+                <p className="text-sm text-gray-600">
+                  Take breaks between phases. Move at your own pace. No rush, no expiry dates.
+                </p>
+              </div>
+            </div>
+            
+            <div className="mt-6 p-4 bg-yellow-50 rounded-lg border border-yellow-200">
+              <p className="text-center text-sm text-gray-700">
+                <strong>Popular Flexibility Options:</strong> 
+                Phase 1 only (€2,500) | Skip to Phase 3 (€2,500) | Full journey (€7,500) | 
+                Take 6-month break between phases | Use for multiple properties
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Phases Grid */}
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
@@ -154,6 +205,9 @@ export default function ServicesPage() {
             </p>
             <p className="text-sm text-emerald-600 mt-2">
               Phase 1 (€2,500) → Phase 2 (€2,500) → Phase 3 (€2,500)
+            </p>
+            <p className="text-xs text-gray-500 mt-2 italic">
+              Remember: You can stop after any phase or skip phases as needed
             </p>
           </div>
 
