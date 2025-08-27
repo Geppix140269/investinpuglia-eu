@@ -1,4 +1,5 @@
 // components/sections/AboutGiuseppe.tsx
+import Image from 'next/image'
 import Icon from '@/lib/iconMappings'
 
 export default function AboutGiuseppe() {
@@ -24,9 +25,11 @@ export default function AboutGiuseppe() {
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="relative">
             <div className="absolute inset-0 bg-gradient-to-br from-purple-600 to-emerald-600 rounded-3xl transform rotate-3"></div>
-            <img 
+            <Image 
               src="/Giuseppe Funaro 062025.png" 
               alt="Giuseppe Funaro - Property Investment Advisor Puglia" 
+              width={400}
+              height={400}
               className="relative rounded-3xl shadow-2xl w-full transform -rotate-3 hover:rotate-0 transition-transform duration-300"
             />
             {/* LinkedIn button below image */}

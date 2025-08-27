@@ -1,4 +1,6 @@
 // components/sections/GrantInstitutions.tsx
+import Image from 'next/image'
+
 export default function GrantInstitutions() {
   return (
     <section id="grants" className="py-20 bg-gradient-to-br from-purple-50 via-white to-emerald-50 relative overflow-hidden">
@@ -27,17 +29,21 @@ export default function GrantInstitutions() {
             
             <div className="flex flex-wrap items-center justify-center gap-12 mb-8">
               <div className="flex flex-col items-center">
-                <img 
+                <Image 
                   src="/EN_co_fundedvertical_RGB_POS.png" 
                   alt="Co-funded by the European Union" 
+                  width={120}
+                  height={96}
                   className="h-24 w-auto mb-2"
                 />
               </div>
               
               <div className="flex flex-col items-center">
-                <img 
+                <Image 
                   src="/regione_puglia-Photoroom.png" 
                   alt="Regione Puglia" 
+                  width={100}
+                  height={80}
                   className="h-20 w-auto mb-2"
                 />
                 <p className="text-sm text-gray-600">Regione Puglia</p>

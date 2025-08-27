@@ -1,4 +1,42 @@
-// app/tools/page.tsx
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Investment Tools & Mini PIA Calculators | Grant Analysis Tools Puglia',
+  description: 'Free Mini PIA grant calculators and investment analysis tools. InvestiScope Classic & Light calculators for detailed grant projections. Professional ROI analysis for Puglia investments.',
+  keywords: [
+    'mini PIA calculator',
+    'investment calculator puglia',
+    'grant calculator italy',
+    'ROI calculator puglia',
+    'investiscope classic',
+    'investiscope light',
+    'PIA grant analysis tools',
+    'property investment calculator',
+    'EU grant calculator',
+    'puglia investment analysis'
+  ],
+  openGraph: {
+    title: 'Mini PIA Grant Calculators & Investment Analysis Tools | InvestInPuglia',
+    description: 'Free professional-grade calculators for Mini PIA grants and Puglia property investments. Instant ROI analysis and grant projections.',
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://investinpuglia.eu/tools',
+    siteName: 'InvestInPuglia',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Investment Tools & Calculators | InvestInPuglia',
+    description: 'Free Mini PIA grant calculators. Professional investment analysis tools for Puglia properties.',
+  },
+  alternates: {
+    canonical: 'https://investinpuglia.eu/tools'
+  },
+  robots: {
+    index: true,
+    follow: true,
+  }
+}
+
 export default function ToolsPage() {
   return (
     <main className="pt-20 min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
@@ -129,45 +167,11 @@ export default function ToolsPage() {
             >
               Schedule Expert Consultation →
             </a>
-            </div>
-
-            {/* ROI Calculator - Coming Soon */}
-            <div className="bg-gray-50 rounded-2xl p-8 shadow-lg border-2 border-dashed border-gray-300">
-              <div className="w-16 h-16 bg-gray-300 rounded-xl flex items-center justify-center mb-6">
-                <span className="text-2xl">📊</span>
-              </div>
-              <h3 className="text-xl font-bold mb-4 text-gray-600">ROI Calculator</h3>
-              <p className="text-gray-500 mb-6">
-                Advanced ROI analysis with rental income projections, market trends, and exit strategies.
-              </p>
-              <div className="space-y-3">
-                <span className="block text-gray-400 font-medium">→ Coming Soon</span>
-                <span className="block text-gray-400 font-medium">→ Rental Analysis</span>
-                <span className="block text-gray-400 font-medium">→ Market Trends</span>
-              </div>
-            </div>
-
-            {/* Grant Assistant - Coming Soon */}
-            <div className="bg-gray-50 rounded-2xl p-8 shadow-lg border-2 border-dashed border-gray-300">
-              <div className="w-16 h-16 bg-gray-300 rounded-xl flex items-center justify-center mb-6">
-                <span className="text-2xl">🤖</span>
-              </div>
-              <h3 className="text-xl font-bold mb-4 text-gray-600">Grant Assistant</h3>
-              <p className="text-gray-500 mb-6">
-                AI-powered grant application assistance and document preparation for Mini PIA applications.
-              </p>
-              <div className="space-y-3">
-                <span className="block text-gray-400 font-medium">→ Coming Q2 2025</span>
-                <span className="block text-gray-400 font-medium">→ Document Prep</span>
-                <span className="block text-gray-400 font-medium">→ Application Help</span>
-              </div>
-            </div>
-
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* Final CTA Section */}
       <section className="py-20 bg-gradient-to-r from-green-600 to-blue-600 text-white">
         <div className="max-w-4xl mx-auto px-5 text-center">
           <h2 className="text-4xl font-bold mb-6">

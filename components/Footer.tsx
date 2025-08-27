@@ -3,6 +3,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import Icon from '@/lib/iconMappings'
 
 // Define the industry type
@@ -43,9 +44,11 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-6 gap-8">
           {/* Company Info */}
           <div className="col-span-1 md:col-span-2">
-            <img 
+            <Image 
               src="/Logo_InvestInPuglia_Morph.png" 
               alt="Invest in Puglia" 
+              width={200}
+              height={48}
               className="h-12 w-auto mb-4 opacity-90"
             />
             <p className="text-gray-400 mb-4">

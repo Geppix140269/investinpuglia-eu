@@ -63,6 +63,7 @@ export default function PropertyDetailClient({ property }: { property: Property 
                 height={800}
                 quality="auto"
                 priority
+                sizes="(max-width: 768px) 100vw, 80vw"
               />
               {property.featured && (
                 <span className="absolute top-4 left-4 bg-emerald-600 text-white px-4 py-2 rounded-full text-sm font-semibold">
@@ -92,6 +93,7 @@ export default function PropertyDetailClient({ property }: { property: Property 
                       width={400}
                       height={300}
                       quality="auto"
+                      sizes="(max-width: 768px) 25vw, 10vw"
                     />
                   </div>
                   <div 

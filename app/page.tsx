@@ -27,19 +27,22 @@ export default function HomePage() {
         <ExitIntentPopup />
       </div>
 
+      {/* STREAMLINED MOBILE-FIRST HOMEPAGE FOR CONVERSION */}
       <HeroVisual />
       <SignAgreementBanner />
-      <GrantInstitutions />
-      <WhyPuglia />
       <OpportunitySection />
       <HowItWorks />
       <AboutGiuseppe />
-      <Services />
-      <ApulinkShowcase />
-      <TrulloSection />
-      <SuccessStories />
       <FAQ />
       <CTASection />
+
+      {/* MOVED TO SEPARATE PAGES FOR BETTER SEO & LESS CLUTTER */}
+      {/* <GrantInstitutions /> - Move to /about or /how-it-works */}
+      {/* <WhyPuglia /> - Move to /about or dedicated landing page */}
+      {/* <Services /> - Already has /services page */}
+      {/* <ApulinkShowcase /> - Move to /tools or /services */}
+      {/* <TrulloSection /> - Move to /tools or separate page */}
+      {/* <SuccessStories /> - Move to /about or testimonials page */}
     </>
   )
 }

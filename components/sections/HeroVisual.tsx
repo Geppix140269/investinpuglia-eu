@@ -3,6 +3,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { MapPin, Factory, ArrowRight, Shield } from 'lucide-react';
+import Image from 'next/image';
 
 const HeroVisual = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -395,10 +396,12 @@ const HeroVisual = () => {
                   className="w-full h-full object-cover scale-110"
                 >
                   <source src={heroVideos[currentVideoIndex]} type="video/mp4" />
-                  <img 
+                  <Image 
                     src="/Hero_BG.jpg" 
                     alt="Puglia Investment Opportunities" 
-                    className="w-full h-full object-cover"
+                    fill
+                    priority
+                    className="object-cover"
                   />
                 </video>
               </div>

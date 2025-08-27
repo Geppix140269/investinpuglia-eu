@@ -1,5 +1,8 @@
 ﻿import { Metadata } from 'next'
 import Icon from '@/lib/iconMappings'
+import WhyPuglia from '@/components/sections/WhyPuglia'
+import GrantInstitutions from '@/components/sections/GrantInstitutions'
+import SuccessStories from '@/components/sections/OurCommitment'
 
 export const metadata: Metadata = {
   title: 'About InvestInPuglia | Property & Investment Advisory in Puglia, Italy',

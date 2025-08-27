@@ -29,6 +29,7 @@ export default function PropertyCard({ property }: PropertyCardProps) {
             width={600}
             height={400}
             quality="auto"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
           {property.featured && (
             <span className="absolute top-4 left-4 bg-emerald-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
