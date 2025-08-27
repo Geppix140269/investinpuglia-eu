@@ -97,7 +97,9 @@ export default function ToolsPage() {
                 </div>
               </div>
               <a 
-                href="/tools/mini-pia-simulator" 
+                href="https://classic-investinpuglia.netlify.app" 
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-3 bg-green-600 text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-green-700 transition-colors w-full justify-center"
               >
                 Launch Classic Calculator
@@ -182,7 +184,9 @@ export default function ToolsPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <a 
-              href="/tools/mini-pia-simulator" 
+              href="https://classic-investinpuglia.netlify.app" 
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-3 bg-white text-green-700 px-10 py-5 rounded-full text-lg font-bold hover:bg-gray-100 transition-colors"
             >
               Start Advanced Calculator

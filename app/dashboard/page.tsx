@@ -6,7 +6,7 @@ export default function DashboardPage() {
   useEffect(() => {
     // Forza il redirect al calculator
     const timer = setTimeout(() => {
-      window.open('https://classic.investinpuglia.eu', '_self')
+      window.open('https://classic-investinpuglia.netlify.app', '_blank')
     }, 100)
     
     return () => clearTimeout(timer)
@@ -18,7 +18,7 @@ export default function DashboardPage() {
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
         <p className="text-gray-600 mb-4">Redirecting to calculator...</p>
         <a 
-          href="https://classic.investinpuglia.eu" 
+          href="https://classic-investinpuglia.netlify.app" 
           className="text-blue-600 underline"
         >
           Click here if not redirected

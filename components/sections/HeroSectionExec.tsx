@@ -121,7 +121,7 @@ export default function HeroSection() {
             <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
           </button>
           <button
-            onClick={() => window.location.href = 'https://classic.investinpuglia.eu'}
+            onClick={() => window.open('https://classic-investinpuglia.netlify.app', '_blank')}
             className="bg-white/80 backdrop-blur-sm text-gray-900 border-2 border-gray-200 px-8 sm:px-10 py-4 sm:py-5 rounded-full font-semibold hover:shadow-xl hover:border-purple-300 transition-all text-lg hover:scale-105 w-full sm:w-auto text-center"
           >
             Calculate Your Grant →

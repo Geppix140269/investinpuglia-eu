@@ -23,8 +23,8 @@
             left: 0;
             width: 280px;
             height: 100vh;
-            background: linear-gradient(135deg, #2c3e50, #34495e);
-            color: white;
+            background: linear-gradient(135deg, #2c3e50, #34495e) !important;
+            color: white !important;
             padding: 0;
             z-index: 1000;
         }
@@ -32,16 +32,19 @@
         .sidebar-header {
             padding: 30px 20px;
             border-bottom: 1px solid rgba(255,255,255,0.1);
+            background: transparent !important;
         }
 
         .sidebar-header h1 {
             font-size: 20px;
             margin-bottom: 5px;
+            color: white !important;
         }
 
         .sidebar-header p {
             font-size: 14px;
             opacity: 0.8;
+            color: white !important;
         }
 
         .sidebar-menu {
@@ -51,7 +54,7 @@
         .menu-item {
             display: block;
             padding: 15px 25px;
-            color: white;
+            color: white !important;
             text-decoration: none;
             transition: background 0.3s;
             border: none;
@@ -59,11 +62,12 @@
             text-align: left;
             cursor: pointer;
             font-size: 16px;
+            background: transparent !important;
         }
 
         .menu-item:hover,
         .menu-item.active {
-            background: rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.1) !important;
         }
 
         .menu-item i {
@@ -295,31 +299,31 @@
 <body>
     <div class="sidebar" id="sidebar">
         <div class="sidebar-header">
-            <h1>🏛️ InvestInPuglia.eu</h1>
+            <h1>InvestInPuglia.eu</h1>
             <p>Agency Dashboard</p>
         </div>
         
         <nav class="sidebar-menu">
             <button class="menu-item active" onclick="showSection('dashboard')">
-                📊 Dashboard
+                Dashboard
             </button>
             <button class="menu-item" onclick="showSection('properties')">
-                🏠 My Properties
+                My Properties
             </button>
             <button class="menu-item" onclick="showSection('upload')">
-                ➕ Upload Property
+                Upload Property
             </button>
             <button class="menu-item" onclick="showSection('inquiries')">
-                📧 Inquiries
+                Inquiries
             </button>
             <button class="menu-item" onclick="showSection('analytics')">
-                📈 Analytics
+                Analytics
             </button>
             <button class="menu-item" onclick="showSection('profile')">
-                👤 Profile Settings
+                Profile Settings
             </button>
             <button class="menu-item" onclick="logout()">
-                🚪 Logout
+                Logout
             </button>
         </nav>
     </div>
@@ -381,7 +385,7 @@
                 </div>
                 <div class="property-list">
                     <div class="property-item">
-                        <div class="property-image">🏠</div>
+                        <div class="property-image">T</div>
                         <div class="property-details">
                             <div class="property-title">Trullo Complex - Alberobello</div>
                             <div class="property-meta">5 rooms • €450,000 • Mini PIA Eligible</div>
@@ -390,7 +394,7 @@
                         <button class="btn btn-secondary">Edit</button>
                     </div>
                     <div class="property-item">
-                        <div class="property-image">🏛️</div>
+                        <div class="property-image">M</div>
                         <div class="property-details">
                             <div class="property-title">Masseria San Giorgio</div>
                             <div class="property-meta">12 rooms • €1,200,000 • Historic Property</div>
@@ -399,7 +403,7 @@
                         <button class="btn btn-secondary">Edit</button>
                     </div>
                     <div class="property-item">
-                        <div class="property-image">🌊</div>
+                        <div class="property-image">V</div>
                         <div class="property-details">
                             <div class="property-title">Coastal Villa - Polignano</div>
                             <div class="property-meta">8 rooms • €2,500,000 • Sea View</div>
@@ -419,7 +423,7 @@
                 </div>
                 <div class="card-content">
                     <div style="text-align: center; padding: 40px; color: #7f8c8d;">
-                        <div style="font-size: 48px; margin-bottom: 20px;">📋</div>
+                        <div style="font-size: 48px; margin-bottom: 20px;">+</div>
                         <h3>Property Upload Form</h3>
                         <p style="margin-bottom: 20px;">Complete Mini PIA property upload form will be implemented here</p>
                         <button class="btn" onclick="alert('Property upload form coming soon!')">Start Upload Process</button>
@@ -436,7 +440,7 @@
                 </div>
                 <div class="card-content">
                     <div class="empty-state">
-                        <h3>📧 No new inquiries</h3>
+                        <h3>No new inquiries</h3>
                         <p>International investors' inquiries will appear here</p>
                         <button class="btn" onclick="alert('Inquiry management system coming soon!')">Manage Inquiries</button>
                     </div>
@@ -452,7 +456,7 @@
                 </div>
                 <div class="card-content">
                     <div class="empty-state">
-                        <h3>📈 Analytics Dashboard</h3>
+                        <h3>Analytics Dashboard</h3>
                         <p>Detailed analytics and reporting will be available here</p>
                         <button class="btn" onclick="alert('Analytics coming soon!')">View Reports</button>
                     </div>
@@ -468,7 +472,7 @@
                 </div>
                 <div class="card-content">
                     <div class="empty-state">
-                        <h3>👤 Profile Management</h3>
+                        <h3>Profile Management</h3>
                         <p>Update your agency information and preferences</p>
                         <button class="btn" onclick="alert('Profile settings coming soon!')">Edit Profile</button>
                     </div>

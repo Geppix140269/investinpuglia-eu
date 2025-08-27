@@ -160,7 +160,9 @@ export default async function IndustryPage({ params }: Props) {
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a 
-                  href="https://classic.investinpuglia.eu"
+                  href="https://classic-investinpuglia.netlify.app"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="bg-white text-purple-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition"
                 >
                   Calculate Your Grant →
