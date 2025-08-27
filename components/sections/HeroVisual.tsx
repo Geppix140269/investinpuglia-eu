@@ -421,13 +421,21 @@ const HeroVisual = () => {
         </div>
 
         {/* Scrolling Photo Strip - Touch-scrollable on mobile */}
-        <div className={`my-12 py-8 bg-gradient-to-r from-purple-50/50 to-emerald-50/50 -mx-6 px-6 overflow-x-auto lg:overflow-hidden transition-all duration-1000 delay-[600ms] ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
-          <div className="flex gap-4 lg:animate-scroll">
-            {[...locations, ...locations].map((location, i) => (
-              <a key={i} href={location.link} className="flex-shrink-0 w-[250px] h-[150px] rounded-2xl overflow-hidden hover:scale-105 transition-transform">
-                <img src={`/images/locations/${location.name.toLowerCase().replace(/ /g, '-')}-thumb.jpg`} alt={location.name} className="w-full h-full object-cover" />
-              </a>
-            ))}
+        <div className={`my-12 bg-gradient-to-r from-purple-50/50 to-emerald-50/50 transition-all duration-1000 delay-[600ms] ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
+          <div className="relative">
+            <div className="overflow-x-auto lg:overflow-hidden scrollbar-thin scrollbar-thumb-purple-400 scrollbar-track-purple-100 py-8">
+              <div className="flex gap-4 lg:animate-scroll w-max px-6">
+                {[...locations, ...locations].map((location, i) => (
+                  <a key={i} href={location.link} className="inline-block flex-shrink-0 w-[250px] h-[150px] rounded-2xl overflow-hidden hover:scale-105 transition-transform">
+                    <img src={`/images/locations/${location.name.toLowerCase().replace(/ /g, '-')}-thumb.jpg`} alt={location.name} className="w-full h-full object-cover" />
+                  </a>
+                ))}
+              </div>
+            </div>
+            {/* Mobile scroll indicator */}
+            <div className="lg:hidden text-center mt-2">
+              <span className="text-xs text-gray-500">← Swipe to explore →</span>
+            </div>
           </div>
         </div>
 
@@ -574,25 +582,34 @@ const HeroVisual = () => {
         }
         
         /* Touch scrolling improvements for mobile */
-        @media (max-width: 1023px) {
-          .overflow-x-auto {
-            -webkit-overflow-scrolling: touch;
-            scroll-behavior: smooth;
-            scrollbar-width: thin;
-          }
-          
-          .overflow-x-auto::-webkit-scrollbar {
-            height: 4px;
-          }
-          
-          .overflow-x-auto::-webkit-scrollbar-track {
-            background: transparent;
-          }
-          
-          .overflow-x-auto::-webkit-scrollbar-thumb {
-            background-color: rgba(147, 51, 234, 0.3);
-            border-radius: 2px;
-          }
+        .overflow-x-auto {
+          -webkit-overflow-scrolling: touch;
+          scroll-behavior: smooth;
+          scrollbar-width: thin;
+          overscroll-behavior-x: contain;
+        }
+        
+        .overflow-x-auto::-webkit-scrollbar {
+          height: 6px;
+        }
+        
+        .overflow-x-auto::-webkit-scrollbar-track {
+          background: rgba(147, 51, 234, 0.1);
+          border-radius: 3px;
+        }
+        
+        .overflow-x-auto::-webkit-scrollbar-thumb {
+          background-color: rgba(147, 51, 234, 0.4);
+          border-radius: 3px;
+        }
+        
+        .overflow-x-auto::-webkit-scrollbar-thumb:hover {
+          background-color: rgba(147, 51, 234, 0.6);
+        }
+        
+        /* Ensure width is set for scrolling */
+        .w-max {
+          width: max-content;
         }
       `}</style>
     </section>
