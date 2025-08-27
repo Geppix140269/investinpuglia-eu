@@ -413,8 +413,8 @@ const HeroVisual = () => {
                 <div className="text-xs text-gray-600">Deadline</div>
               </div>
               <div className="absolute -bottom-10 -left-16 bg-white/95 px-6 py-4 rounded-[20px] shadow-lg animate-float-delayed-2 z-10">
-                <div className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-emerald-600 bg-clip-text text-transparent">344%</div>
-                <div className="text-xs text-gray-600">Typical ROI</div>
+                <div className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-emerald-600 bg-clip-text text-transparent">95%</div>
+                <div className="text-xs text-gray-600">Success Rate</div>
               </div>
               <div className="absolute -bottom-10 -right-16 bg-white/95 px-6 py-4 rounded-[20px] shadow-lg animate-float-delayed-3 z-10">
                 <div className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-emerald-600 bg-clip-text text-transparent">€5M</div>
