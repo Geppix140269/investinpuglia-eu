@@ -113,90 +113,22 @@ export default function ToolsPage() {
         </div>
       </section>
 
-      {/* Other Tools Grid */}
+      {/* CTA Section */}
       <section className="pb-20">
-        <div className="max-w-6xl mx-auto px-5">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">Analysis & Support Tools</h2>
-            <p className="text-lg text-gray-600">Professional services and resources for investment success</p>
-          </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            
-            {/* Property Analysis */}
-            <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all hover:-translate-y-1">
-              <div className="w-16 h-16 bg-gradient-to-r from-orange-500 to-red-600 rounded-xl flex items-center justify-center mb-6">
-                <span className="text-2xl">🏠</span>
-              </div>
-              <h3 className="text-xl font-bold mb-4">Property Surveys</h3>
-              <p className="text-gray-600 mb-6">
-                Professional property analysis, legal reviews, and market assessments for informed decisions.
-              </p>
-              <div className="space-y-3">
-                <a href="/surveys" className="block text-orange-600 hover:underline font-medium">
-                  → Survey Services
-                </a>
-                <a href="/surveys/order" className="block text-orange-600 hover:underline font-medium">
-                  → Order Survey
-                </a>
-              </div>
-            </div>
-
-            {/* Investment Process */}
-            <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all hover:-translate-y-1">
-              <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-indigo-600 rounded-xl flex items-center justify-center mb-6">
-                <span className="text-2xl">📈</span>
-              </div>
-              <h3 className="text-xl font-bold mb-4">Investment Guides</h3>
-              <p className="text-gray-600 mb-6">
-                Step-by-step guides and timelines for successful property investment in Italy.
-              </p>
-              <div className="space-y-3">
-                <a href="/investment-process" className="block text-purple-600 hover:underline font-medium">
-                  → Investment Process
-                </a>
-                <a href="/blog" className="block text-purple-600 hover:underline font-medium">
-                  → Investment Blog
-                </a>
-              </div>
-            </div>
-
-            {/* Expert Support */}
-            <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all hover:-translate-y-1">
-              <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-600 rounded-xl flex items-center justify-center mb-6">
-                <span className="text-2xl">💬</span>
-              </div>
-              <h3 className="text-xl font-bold mb-4">Expert Support</h3>
-              <p className="text-gray-600 mb-6">
-                Get personalized advice and professional consultation for your investment strategy.
-              </p>
-              <div className="space-y-3">
-                <a href="/contact" className="block text-blue-600 hover:underline font-medium">
-                  → Contact Us
-                </a>
-                <a href="https://calendly.com/investinpuglia/30min" target="_blank" rel="noopener noreferrer" className="block text-blue-600 hover:underline font-medium">
-                  → Book Consultation
-                </a>
-              </div>
-            </div>
-
-            {/* Resources */}
-            <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all hover:-translate-y-1">
-              <div className="w-16 h-16 bg-gradient-to-r from-yellow-500 to-orange-600 rounded-xl flex items-center justify-center mb-6">
-                <span className="text-2xl">📚</span>
-              </div>
-              <h3 className="text-xl font-bold mb-4">Resources</h3>
-              <p className="text-gray-600 mb-6">
-                Comprehensive guides, templates, and resources for Italian property investment.
-              </p>
-              <div className="space-y-3">
-                <a href="/blog" className="block text-yellow-600 hover:underline font-medium">
-                  → Investment Blog
-                </a>
-                <a href="/contact" className="block text-yellow-600 hover:underline font-medium">
-                  → Get Resources
-                </a>
-              </div>
+        <div className="max-w-4xl mx-auto px-5 text-center">
+          <div className="bg-gradient-to-r from-purple-600 to-indigo-600 rounded-3xl p-12 text-white shadow-xl">
+            <h2 className="text-3xl font-bold mb-4">Need Custom Analysis?</h2>
+            <p className="text-lg mb-8 opacity-90">
+              Our experts can provide personalized investment analysis and grant optimization strategies
+            </p>
+            <a 
+              href="https://calendly.com/investinpuglia/30min" 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block bg-white text-purple-600 px-8 py-4 rounded-full font-bold hover:shadow-xl transition-all"
+            >
+              Schedule Expert Consultation →
+            </a>
             </div>
 
             {/* ROI Calculator - Coming Soon */}
