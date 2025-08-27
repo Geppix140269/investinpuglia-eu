@@ -11,7 +11,7 @@ import CloudinaryImage from '@/components/properties/CloudinaryImage'
 export default function EditPropertyPage() {
   const router = useRouter()
   const params = useParams()
-  const slug = params.slug as string
+  const slug = params?.slug as string
   
   const [property, setProperty] = useState<Property | null>(null)
   const [loading, setLoading] = useState(true)
@@ -20,9 +20,11 @@ export default function EditPropertyPage() {
 
   useEffect(() => {
     // Find property by slug
-    const found = mockProperties.find(p => p.slug === slug)
-    if (found) {
-      setProperty({ ...found })
+    if (slug) {
+      const found = mockProperties.find(p => p.slug === slug)
+      if (found) {
+        setProperty({ ...found })
+      }
     }
     setLoading(false)
   }, [slug])
