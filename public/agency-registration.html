@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agency Registration - InvestInPuglia.eu</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #3498db, #2ecc71);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 16px;
+        }
+
+        .form-container {
+            padding: 40px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ecf0f1;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 20px;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+            margin: 0;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #3498db, #2ecc71);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #ecf0f1;
+        }
+
+        .login-link a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .features {
+            background: #f8f9fa;
+            padding: 30px;
+            margin-top: 30px;
+        }
+
+        .features h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        .features ul {
+            list-style: none;
+        }
+
+        .features li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            color: #34495e;
+        }
+
+        .features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #2ecc71;
+            font-weight: bold;
+        }
+
+        .help-text {
+            font-size: 14px;
+            color: #7f8c8d;
+            margin-top: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .container {
+                margin: 10px;
+            }
+            
+            .form-container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏛️ Agency Registration</h1>
+            <p>Join InvestInPuglia.eu - Connect with International Investors</p>
+        </div>
+
+        <div class="form-container">
+            <form id="registrationForm">
+                <div class="form-group">
+                    <label for="agencyName">Agency Name *</label>
+                    <input type="text" id="agencyName" name="agencyName" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="contactPerson">Contact Person *</label>
+                        <input type="text" id="contactPerson" name="contactPerson" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="position">Position</label>
+                        <input type="text" id="position" name="position" placeholder="e.g. Managing Director">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Business Email *</label>
+                    <input type="email" id="email" name="email" required>
+                    <div class="help-text">This will be your login email</div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="website">Website</label>
+                        <input type="url" id="website" name="website" placeholder="https://yourwebsite.com">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="address">Business Address *</label>
+                    <textarea id="address" name="address" rows="3" required placeholder="Via/Corso/Piazza, Number, City, Province"></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="province">Province *</label>
+                        <select id="province" name="province" required>
+                            <option value="">Select Province</option>
+                            <option value="bari">Bari</option>
+                            <option value="lecce">Lecce</option>
+                            <option value="brindisi">Brindisi</option>
+                            <option value="foggia">Foggia</option>
+                            <option value="taranto">Taranto</option>
+                            <option value="bat">Barletta-Andria-Trani</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="established">Established Year</label>
+                        <input type="number" id="established" name="established" min="1980" max="2024" placeholder="e.g. 2005">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="specialties">Property Specialties *</label>
+                    <div style="display: flex; flex-wrap: wrap; gap: 15px; margin-top: 10px;">
+                        <label style="display: flex; align-items: center; font-weight: normal;">
+                            <input type="checkbox" name="specialties" value="trulli" style="margin-right: 8px;">
+                            Trulli
+                        </label>
+                        <label style="display: flex; align-items: center; font-weight: normal;">
+                            <input type="checkbox" name="specialties" value="masserias" style="margin-right: 8px;">
+                            Masserias
+                        </label>
+                        <label style="display: flex; align-items: center; font-weight: normal;">
+                            <input type="checkbox" name="specialties" value="palazzi" style="margin-right: 8px;">
+                            Historic Palazzi
+                        </label>
+                        <label style="display: flex; align-items: center; font-weight: normal;">
+                            <input type="checkbox" name="specialties" value="coastal" style="margin-right: 8px;">
+                            Coastal Properties
+                        </label>
+                        <label style="display: flex; align-items: center; font-weight: normal;">
+                            <input type="checkbox" name="specialties" value="luxury" style="margin-right: 8px;">
+                            Luxury Properties
+                        </label>
+                        <label style="display: flex; align-items: center; font-weight: normal;">
+                            <input type="checkbox" name="specialties" value="restoration" style="margin-right: 8px;">
+                            Restoration Projects
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="languages">Languages Spoken</label>
+                    <div style="display: flex; flex-wrap: wrap; gap: 15px; margin-top: 10px;">
+                        <label style="display: flex; align-items: center; font-weight: normal;">
+                            <input type="checkbox" name="languages" value="italian" checked disabled style="margin-right: 8px;">
+                            Italian
+                        </label>
+                        <label style="display: flex; align-items: center; font-weight: normal;">
+                            <input type="checkbox" name="languages" value="english" style="margin-right: 8px;">
+                            English
+                        </label>
+                        <label style="display: flex; align-items: center; font-weight: normal;">
+                            <input type="checkbox" name="languages" value="german" style="margin-right: 8px;">
+                            German
+                        </label>
+                        <label style="display: flex; align-items: center; font-weight: normal;">
+                            <input type="checkbox" name="languages" value="french" style="margin-right: 8px;">
+                            French
+                        </label>
+                        <label style="display: flex; align-items: center; font-weight: normal;">
+                            <input type="checkbox" name="languages" value="spanish" style="margin-right: 8px;">
+                            Spanish
+                        </label>
+                    </div>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="miniPiaExperience" name="miniPiaExperience">
+                    <label for="miniPiaExperience">We have experience with Mini PIA projects</label>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Create Password *</label>
+                    <input type="password" id="password" name="password" required minlength="8">
+                    <div class="help-text">Minimum 8 characters</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password *</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" required>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="terms" name="terms" required>
+                    <label for="terms">I agree to the <a href="/terms" target="_blank">Terms of Service</a> and <a href="/privacy" target="_blank">Privacy Policy</a></label>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="marketing" name="marketing">
+                    <label for="marketing">I would like to receive updates about new international investors and platform features</label>
+                </div>
+
+                <button type="submit" class="btn">Create Agency Account</button>
+
+                <div class="login-link">
+                    Already have an account? <a href="/login">Login here</a>
+                </div>
+            </form>
+        </div>
+
+        <div class="features">
+            <h3>🌟 What You Get With Your Account:</h3>
+            <ul>
+                <li>Dedicated dashboard to upload Mini PIA properties</li>
+                <li>Access to 5,000+ international investors database</li>
+                <li>Automatic property translation in 4 languages</li>
+                <li>Professional photography and video tools</li>
+                <li>ROI calculator for Mini PIA investments</li>
+                <li>Real-time inquiry management system</li>
+                <li>Detailed analytics and reporting</li>
+                <li>Priority customer support</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Form submission handler
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const data = {};
+            
+            // Convert form data to object
+            for (let [key, value] of formData.entries()) {
+                if (data[key]) {
+                    if (Array.isArray(data[key])) {
+                        data[key].push(value);
+                    } else {
+                        data[key] = [data[key], value];
+                    }
+                } else {
+                    data[key] = value;
+                }
+            }
+            
+            // Handle checkboxes for specialties and languages
+            data.specialties = formData.getAll('specialties');
+            data.languages = formData.getAll('languages');
+            
+            // Password validation
+            if (data.password !== data.confirmPassword) {
+                alert('Passwords do not match!');
+                return;
+            }
+            
+            // Validate required fields
+            if (!data.agencyName || !data.contactPerson || !data.email || !data.phone || !data.address || !data.province) {
+                alert('Please fill in all required fields!');
+                return;
+            }
+            
+            if (data.specialties.length === 0) {
+                alert('Please select at least one property specialty!');
+                return;
+            }
+            
+            if (!data.terms) {
+                alert('Please accept the Terms of Service!');
+                return;
+            }
+            
+            // Here you would normally send to your backend/Firebase
+            console.log('Registration data:', data);
+            
+            // For demo purposes, show success message
+            alert('Registration successful! Please check your email to verify your account.');
+            
+            // Reset form
+            this.reset();
+        });
+
+        // Password confirmation validation
+        document.getElementById('confirmPassword').addEventListener('input', function() {
+            const password = document.getElementById('password').value;
+            const confirmPassword = this.value;
+            
+            if (password !== confirmPassword) {
+                this.setCustomValidity('Passwords do not match');
+            } else {
+                this.setCustomValidity('');
+            }
+        });
+    </script>
+</body>
+</html>
