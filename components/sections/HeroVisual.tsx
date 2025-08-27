@@ -420,9 +420,9 @@ const HeroVisual = () => {
           </div>
         </div>
 
-        {/* Scrolling Photo Strip */}
-        <div className={`my-12 py-8 bg-gradient-to-r from-purple-50/50 to-emerald-50/50 -mx-6 px-6 overflow-hidden transition-all duration-1000 delay-[600ms] ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
-          <div className="flex gap-4 animate-scroll">
+        {/* Scrolling Photo Strip - Touch-scrollable on mobile */}
+        <div className={`my-12 py-8 bg-gradient-to-r from-purple-50/50 to-emerald-50/50 -mx-6 px-6 overflow-x-auto lg:overflow-hidden transition-all duration-1000 delay-[600ms] ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
+          <div className="flex gap-4 lg:animate-scroll">
             {[...locations, ...locations].map((location, i) => (
               <a key={i} href={location.link} className="flex-shrink-0 w-[250px] h-[150px] rounded-2xl overflow-hidden hover:scale-105 transition-transform">
                 <img src={`/images/locations/${location.name.toLowerCase().replace(/ /g, '-')}-thumb.jpg`} alt={location.name} className="w-full h-full object-cover" />
@@ -567,8 +567,32 @@ const HeroVisual = () => {
           animation-delay: 1.5s;
         }
         
-        .animate-scroll {
-          animation: scroll 30s linear infinite;
+        @media (min-width: 1024px) {
+          .lg\\:animate-scroll {
+            animation: scroll 30s linear infinite;
+          }
+        }
+        
+        /* Touch scrolling improvements for mobile */
+        @media (max-width: 1023px) {
+          .overflow-x-auto {
+            -webkit-overflow-scrolling: touch;
+            scroll-behavior: smooth;
+            scrollbar-width: thin;
+          }
+          
+          .overflow-x-auto::-webkit-scrollbar {
+            height: 4px;
+          }
+          
+          .overflow-x-auto::-webkit-scrollbar-track {
+            background: transparent;
+          }
+          
+          .overflow-x-auto::-webkit-scrollbar-thumb {
+            background-color: rgba(147, 51, 234, 0.3);
+            border-radius: 2px;
+          }
         }
       `}</style>
     </section>

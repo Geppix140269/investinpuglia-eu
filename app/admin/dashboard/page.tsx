@@ -8,7 +8,7 @@ import {
   TrendingUp, Mail, Calendar, DollarSign, 
   ChevronRight, Eye, Download, Send, Plus,
   BarChart3, PieChart, Clock, CheckCircle,
-  AlertCircle, Archive, Shield, Globe
+  AlertCircle, Archive, Shield, Globe, Building2
 } from 'lucide-react';
 
 interface DashboardStats {
@@ -99,6 +99,7 @@ export default function AdminDashboard() {
   }
 
   const quickActions = [
+    { icon: Building2, label: 'Properties', href: '/admin/properties', color: 'bg-emerald-500' },
     { icon: FileText, label: 'Share Agreement', href: '/admin/agreements/share', color: 'bg-blue-500' },
     { icon: Users, label: 'View Clients', href: '/admin/clients', color: 'bg-green-500' },
     { icon: Plus, label: 'New Agreement', href: '/admin/agreements/create', color: 'bg-purple-500' },

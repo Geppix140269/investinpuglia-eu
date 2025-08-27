@@ -1,16 +1,18 @@
 'use client'
 
 import { useState } from 'react'
-import { MapPin, Euro, Maximize, Home, Calendar, Shield, TrendingUp, Plane, Waves, Check, ArrowLeft, Expand } from 'lucide-react'
+import { MapPin, Euro, Maximize, Home, Calendar, Shield, TrendingUp, Plane, Waves, Check, ArrowLeft, Expand, Edit } from 'lucide-react'
 import Link from 'next/link'
 import CloudinaryImage from '@/components/properties/CloudinaryImage'
 import ImageModal from '@/components/properties/ImageModal'
 import { Property } from '@/lib/properties/types'
+import { useAdmin } from '@/hooks/useAdmin'
 
 export default function PropertyDetailClient({ property }: { property: Property }) {
   const [activeImage, setActiveImage] = useState(0)
   const [showModal, setShowModal] = useState(false)
   const [modalIndex, setModalIndex] = useState(0)
+  const { isAdmin } = useAdmin()
 
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat('it-IT', {
@@ -22,12 +24,23 @@ export default function PropertyDetailClient({ property }: { property: Property 
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Back Button */}
+      {/* Back Button and Admin Controls */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-4">
-        <Link href="/properties" className="inline-flex items-center text-purple-600 hover:text-purple-700 font-medium">
-          <ArrowLeft className="h-5 w-5 mr-2" />
-          Back to Properties
-        </Link>
+        <div className="flex items-center justify-between">
+          <Link href="/properties" className="inline-flex items-center text-purple-600 hover:text-purple-700 font-medium">
+            <ArrowLeft className="h-5 w-5 mr-2" />
+            Back to Properties
+          </Link>
+          {isAdmin && (
+            <Link 
+              href={`/admin/properties/${property.slug}/edit`}
+              className="inline-flex items-center bg-purple-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-purple-700 transition-colors"
+            >
+              <Edit className="h-4 w-4 mr-2" />
+              Edit Property
+            </Link>
+          )}
+        </div>
       </div>
 
       {/* Property Header */}
