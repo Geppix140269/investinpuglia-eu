@@ -45,9 +45,6 @@ export default function Navbar() {
   }, [])
 
   const navLinks = [
-    { name: 'Home', id: 'home' },
-    { name: 'About', id: 'advisor' },
-    { name: 'How It Works', id: 'how-it-works' },
   ]
 
   return (
@@ -70,18 +67,6 @@ export default function Navbar() {
 
           {/* Desktop Navigation - Centered */}
           <div className="hidden md:flex items-center gap-8 absolute left-1/2 transform -translate-x-1/2">
-            {navLinks.map((link) => (
-              <button
-                key={link.id}
-                onClick={() => scrollToSection(link.id)}
-                className={`text-gray-700 hover:text-gray-900 transition-colors font-medium ${
-                  activeSection === link.id ? 'text-purple-600 border-b-2 border-purple-600' : ''
-                }`}
-              >
-                {link.name}
-              </button>
-            ))}
-            
             <a href="/services" className="text-gray-700 hover:text-gray-900 transition-colors font-medium">
               Services
             </a>
@@ -94,8 +79,8 @@ export default function Navbar() {
               Tools
             </a>
             
-            <a href="/contact" className="text-gray-700 hover:text-gray-900 transition-colors font-medium">
-              Contact
+            <a href="/agency" className="text-gray-700 hover:text-gray-900 transition-colors font-medium">
+              Agencies
             </a>
           </div>
 
@@ -130,18 +115,6 @@ export default function Navbar() {
         {isOpen && (
           <div className="md:hidden py-4 border-t border-gray-200">
             <div className="flex flex-col gap-4">
-              {navLinks.map((link) => (
-                <button
-                  key={link.id}
-                  onClick={() => scrollToSection(link.id)}
-                  className={`text-gray-700 hover:text-gray-900 transition-colors font-medium py-2 text-left ${
-                    activeSection === link.id ? 'text-purple-600' : ''
-                  }`}
-                >
-                  {link.name}
-                </button>
-              ))}
-              
               <a href="/services" className="text-gray-700 hover:text-gray-900 transition-colors font-medium py-2">
                 Services
               </a>
@@ -154,8 +127,8 @@ export default function Navbar() {
                 Tools
               </a>
               
-              <a href="/contact" className="text-gray-700 hover:text-gray-900 transition-colors font-medium py-2">
-                Contact
+              <a href="/agency" className="text-gray-700 hover:text-gray-900 transition-colors font-medium py-2">
+                Agencies
               </a>
               
               <a 
