@@ -130,27 +130,31 @@ const HeroVisual = () => {
             
             {/* Middle Section - Main Content */}
             <div className="flex-1 flex flex-col justify-center -mt-20">
-              {/* Giant ROI Number */}
+              {/* Main Value Proposition */}
               <div className="mb-6">
-                <div className="text-7xl font-bold text-white mb-2">
-                  344%
+                <div className="text-5xl font-bold text-white mb-2">
+                  55% Grants
                 </div>
                 <div className="text-xl text-white/90">
-                  Return on Investment
+                  Government Funded
                 </div>
               </div>
               
-              {/* Transform Text */}
+              {/* Investment Example */}
               <div className="mb-6">
-                <div className="text-2xl font-light text-white/90">Transform</div>
+                <div className="text-xl font-light text-white/90">Your Investment</div>
                 <div className="text-3xl font-bold text-white">
-                  €2.25M → €10M
+                  €2.25M
+                </div>
+                <div className="text-xl font-light text-white/90 mt-2">Total Project Value</div>
+                <div className="text-3xl font-bold text-emerald-400">
+                  €5M
                 </div>
               </div>
               
-              {/* Grant Badge */}
-              <div className="inline-block bg-gradient-to-r from-purple-600 to-emerald-600 rounded-full px-4 py-2 mb-6">
-                <span className="text-sm font-bold">55% Grant • Until 2027</span>
+              {/* Trust Badge */}
+              <div className="inline-block bg-white/20 backdrop-blur-md rounded-full px-4 py-2 mb-6">
+                <span className="text-sm font-bold text-white">✓ EU Approved • Until 2027</span>
               </div>
             </div>
             
@@ -336,14 +340,14 @@ const HeroVisual = () => {
           {/* Left Content */}
           <div className={`transition-all duration-1000 delay-[400ms] ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}>
             <h1 className="text-2xl sm:text-3xl lg:text-[2.5rem] font-light text-gray-900 mb-4 leading-tight">
-              Transform €2.25M into €10M
+              Invest in Puglia's Future
             </h1>
             <div className="text-3xl lg:text-4xl xl:text-5xl font-bold bg-gradient-to-r from-purple-600 to-emerald-600 bg-clip-text text-transparent leading-tight mb-4">
-              With Puglia's 55%
-              <span className="block">Grant Program</span>
+              55% EU Grant Funding
+              <span className="block">Available Now</span>
             </div>
             <div className="text-lg sm:text-xl text-gray-600 font-medium mb-6">
-              344% ROI Through Government-Backed Funding
+              Government-Backed Investment Opportunities
             </div>
             
             {/* URGENCY MESSAGE */}
@@ -356,19 +360,19 @@ const HeroVisual = () => {
             <p className="text-sm sm:text-base text-gray-600 leading-relaxed mb-8">
               The Mini PIA program provides 55% non-repayable grants on investments up to €5M. 
               Your €2.25M contribution, combined with €2.75M in grant funding, creates a €5M project 
-              with full ownership retained by you. Recent market valuations show successful projects 
-              achieving 2x multiples within 3 years.
+              with full ownership retained by you. Build hotels, restaurants, manufacturing facilities, 
+              or restore historic properties with substantial government support.
             </p>
 
             {/* Quick Stats */}
             <div className="flex gap-8 mb-8">
               <div className="bg-gradient-to-br from-purple-50 to-purple-100/50 rounded-2xl p-4 flex-1 hover:scale-105 transition-transform cursor-pointer">
-                <div className="text-2xl font-bold text-purple-600">344%</div>
-                <div className="text-sm text-gray-600">Projected ROI</div>
+                <div className="text-2xl font-bold text-purple-600">55%</div>
+                <div className="text-sm text-gray-600">Grant Coverage</div>
               </div>
               <div className="bg-gradient-to-br from-emerald-50 to-emerald-100/50 rounded-2xl p-4 flex-1 hover:scale-105 transition-transform cursor-pointer">
                 <div className="text-2xl font-bold text-emerald-600">€2.75M</div>
-                <div className="text-sm text-gray-600">Grant Funding</div>
+                <div className="text-sm text-gray-600">Max Grant</div>
               </div>
               <div className="bg-gradient-to-br from-purple-50 to-purple-100/50 rounded-2xl p-4 flex-1 hover:scale-105 transition-transform cursor-pointer">
                 <div className="text-2xl font-bold text-purple-600">95%</div>
