@@ -8,7 +8,7 @@ export default function ServicesPage() {
       phase: 1,
       title: "Property Search & Planning",
       icon: "🔍",
-      price: "€1,500",
+      price: "€2,500",
       duration: "2-4 weeks",
       description: "Property evaluation, search, and initial project planning",
       features: [
@@ -29,7 +29,7 @@ export default function ServicesPage() {
       phase: 2,
       title: "Negotiation & Due Diligence",
       icon: "📊",
-      price: "€3,500",
+      price: "€2,500",
       duration: "4-6 weeks",
       description: "Property negotiation and comprehensive legal/technical support",
       features: [
@@ -153,7 +153,7 @@ export default function ServicesPage() {
               €7,500 total investment to secure your property with professional support at every step
             </p>
             <p className="text-sm text-emerald-600 mt-2">
-              Phase 1 (€1,500) → Phase 2 (€3,500) → Phase 3 (€2,500)
+              Phase 1 (€2,500) → Phase 2 (€2,500) → Phase 3 (€2,500)
             </p>
           </div>
 
@@ -417,7 +417,7 @@ export default function ServicesPage() {
             </div>
             <div className="mt-6 pt-6 border-t">
               <p className="text-sm text-gray-700 mb-4">
-                <strong>To get started:</strong> Email us your requirements, receive personalized agreement in 24h, sign digitally, pay €1,500 to begin
+                <strong>To get started:</strong> Email us your requirements, receive personalized agreement in 24h, sign digitally, pay €2,500 to begin
               </p>
               <a 
                 href="mailto:info@investinpuglia.eu?subject=International%20Client%20Inquiry"
@@ -467,11 +467,11 @@ export default function ServicesPage() {
                 <ul className="space-y-3 text-sm">
                   <li className="flex justify-between">
                     <span className="text-gray-700">Property Search & Planning</span>
-                    <span className="font-semibold">€1,500</span>
+                    <span className="font-semibold">€2,500</span>
                   </li>
                   <li className="flex justify-between">
                     <span className="text-gray-700">Negotiation & Due Diligence</span>
-                    <span className="font-semibold">€3,500</span>
+                    <span className="font-semibold">€2,500</span>
                   </li>
                   <li className="flex justify-between">
                     <span className="text-gray-700">Preliminary Agreement</span>
@@ -540,19 +540,19 @@ export default function ServicesPage() {
                 </li>
                 
                 <li>
-                  <strong className="text-white">2. Create Phase 1 Link (€1,500):</strong>
+                  <strong className="text-white">2. Create Phase 1 Link (€2,500):</strong>
                   <br />• Click "New payment link"
                   <br />• Add product: "Phase 1: Property Search & Planning"
-                  <br />• Set price: €1,500 (one-time)
+                  <br />• Set price: €2,500 (one-time)
                   <br />• Add description from agreement
                   <br />• Enable "Collect billing address"
                   <br />• Enable "Collect phone number"
                 </li>
                 
                 <li>
-                  <strong className="text-white">3. Create Phase 2 Link (€3,500):</strong>
+                  <strong className="text-white">3. Create Phase 2 Link (€2,500):</strong>
                   <br />• Product: "Phase 2: Negotiation & Due Diligence"
-                  <br />• Price: €3,500 (one-time)
+                  <br />• Price: €2,500 (one-time)
                 </li>
                 
                 <li>

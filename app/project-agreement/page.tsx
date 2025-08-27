@@ -206,7 +206,7 @@ export default function ProjectAgreementPage() {
                 <h3 className="font-semibold text-lg text-gray-800 mb-4">Stage 1: From Search to Preliminary Agreement</h3>
                 
                 <div className="bg-emerald-50 p-6 rounded-lg">
-                  <h3 className="font-semibold mb-3 text-emerald-900">Phase 1.1: Property Search & Planning (€1,500)</h3>
+                  <h3 className="font-semibold mb-3 text-emerald-900">Phase 1.1: Property Search & Planning (€2,500)</h3>
                   <p className="mb-3 text-sm">Duration: 2-4 weeks from commencement</p>
                   
                   <p className="font-medium mb-2">Deliverables:</p>
@@ -223,7 +223,7 @@ export default function ProjectAgreementPage() {
                 </div>
                 
                 <div className="bg-blue-50 p-6 rounded-lg">
-                  <h3 className="font-semibold mb-3 text-blue-900">Phase 1.2: Negotiation & Due Diligence (€3,500)</h3>
+                  <h3 className="font-semibold mb-3 text-blue-900">Phase 1.2: Negotiation & Due Diligence (€2,500)</h3>
                   <p className="mb-3 text-sm">Duration: 4-6 weeks from commencement</p>
                   
                   <p className="font-medium mb-2">Deliverables:</p>
@@ -443,24 +443,56 @@ export default function ProjectAgreementPage() {
               </div>
             </article>
 
-            {/* Article 8: Confidentiality */}
+            {/* Article 8: Confidentiality, NDA & NCA */}
             <article id="confidentiality" className="mb-10">
-              <h2 className="text-2xl font-semibold mb-4 text-gray-900">Article 8: Confidentiality and Data Protection</h2>
+              <h2 className="text-2xl font-semibold mb-4 text-gray-900">Article 8: Confidentiality, Non-Disclosure & Non-Circumvention</h2>
               
               <div className="space-y-4">
-                <div>
-                  <h3 className="font-semibold mb-2">8.1 Confidential Information</h3>
-                  <p>Both Parties agree to maintain strict confidentiality regarding all non-public information exchanged during the engagement, including but not limited to business strategies, financial information, and proprietary methodologies.</p>
+                <div className="bg-red-50 p-4 rounded-lg border border-red-200">
+                  <h3 className="font-semibold mb-2 text-red-900">8.1 Non-Disclosure Agreement (NDA)</h3>
+                  <p className="mb-3">Both Parties agree to maintain strict confidentiality regarding all non-public information exchanged during the engagement, including but not limited to:</p>
+                  <ul className="list-disc pl-6 space-y-1 text-sm">
+                    <li>Business strategies, plans, and financial information</li>
+                    <li>Property details, pricing, and negotiation strategies</li>
+                    <li>Contact information of sellers, agents, and professionals</li>
+                    <li>Grant application strategies and documentation</li>
+                    <li>Proprietary methodologies and business processes</li>
+                    <li>Any information marked or identified as confidential</li>
+                  </ul>
+                  <p className="mt-3 text-sm">Neither party shall disclose, publish, or disseminate confidential information to any third party without prior written consent, except as required by law or court order.</p>
+                </div>
+                
+                <div className="bg-orange-50 p-4 rounded-lg border border-orange-200">
+                  <h3 className="font-semibold mb-2 text-orange-900">8.2 Non-Circumvention Agreement (NCA)</h3>
+                  <p className="mb-3">The Client agrees not to circumvent, avoid, bypass, or obviate the Service Provider, directly or indirectly, to:</p>
+                  <ul className="list-disc pl-6 space-y-1 text-sm">
+                    <li>Contact, deal with, or engage any contacts, professionals, or service providers introduced by the Service Provider</li>
+                    <li>Enter into any business transactions with parties introduced through this engagement without the Service Provider's involvement</li>
+                    <li>Share contact information of introduced parties with third parties for the purpose of circumvention</li>
+                    <li>Attempt to negotiate directly with properties or sellers identified by the Service Provider</li>
+                  </ul>
+                  <p className="mt-3 text-sm font-medium">This non-circumvention clause applies to all introductions made during the term of this Agreement and for a period of three (3) years thereafter.</p>
+                </div>
+                
+                <div className="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
+                  <h3 className="font-semibold mb-2 text-yellow-900">8.3 Breach and Remedies</h3>
+                  <p className="mb-3">In the event of breach of confidentiality or circumvention:</p>
+                  <ul className="list-disc pl-6 space-y-1 text-sm">
+                    <li>The breaching party shall be liable for all damages, losses, and costs incurred</li>
+                    <li>The non-breaching party may seek immediate injunctive relief</li>
+                    <li>For circumvention breaches, the Client shall pay the Service Provider the full commission or fees that would have been earned</li>
+                    <li>Legal costs and attorney fees shall be borne by the breaching party</li>
+                  </ul>
                 </div>
                 
                 <div>
-                  <h3 className="font-semibold mb-2">8.2 GDPR Compliance</h3>
-                  <p>The Consultant shall process personal data in accordance with the General Data Protection Regulation (GDPR) and Italian privacy laws.</p>
+                  <h3 className="font-semibold mb-2">8.4 GDPR Compliance</h3>
+                  <p>The Service Provider shall process personal data in accordance with the General Data Protection Regulation (GDPR) and Italian privacy laws. All data processing shall be limited to the purposes of this Agreement.</p>
                 </div>
                 
                 <div>
-                  <h3 className="font-semibold mb-2">8.3 Duration</h3>
-                  <p>Confidentiality obligations shall survive termination of this Agreement for a period of five (5) years.</p>
+                  <h3 className="font-semibold mb-2">8.5 Duration</h3>
+                  <p>Confidentiality and non-disclosure obligations shall survive termination of this Agreement for a period of five (5) years. Non-circumvention obligations shall survive for three (3) years after termination.</p>
                 </div>
               </div>
             </article>
@@ -752,7 +784,7 @@ export default function ProjectAgreementPage() {
               <div className="text-4xl mb-4 text-center">3️⃣</div>
               <h3 className="font-semibold text-lg mb-3 text-center">Sign & Pay</h3>
               <p className="text-sm text-gray-600">
-                Sign electronically and make Phase 1.1 payment (€1,500) via 
+                Sign electronically and make Phase 1.1 payment (€2,500) via 
                 Stripe secure link to activate services immediately
               </p>
             </div>
@@ -830,7 +862,7 @@ export default function ProjectAgreementPage() {
               </li>
               <li className="flex items-start">
                 <span className="font-bold mr-2">4.</span>
-                <span>Sign digitally and pay Phase 1.1 (€1,500) to begin</span>
+                <span>Sign digitally and pay Phase 1.1 (€2,500) to begin</span>
               </li>
             </ol>
           </div>
