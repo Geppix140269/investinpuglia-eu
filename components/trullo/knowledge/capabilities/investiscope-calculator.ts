@@ -3,7 +3,7 @@ import { KnowledgeModule } from '../types';
 
 export const investiScopeKnowledge: KnowledgeModule = {
   id: 'investiscope-calculator',
-  category: 'capabilities',
+  category: 'capability',
   priority: 15, // High priority - this is our main tool!
   languages: ['en', 'it'],
   triggers: [

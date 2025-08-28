@@ -119,24 +119,24 @@ const miniPIAIntroductionTemplate = `
         </p>
       </div>
       
-      <div style="background: #fefce8; border: 1px solid #facc15; border-radius: 8px; padding: 20px; margin: 20px 0;">
-        <h3 style="color: #854d0e; margin: 0 0 10px 0;">Our Expertise at Your Service:</h3>
-        <ul style="margin: 10px 0; padding-left: 20px;">
-          <li>✅ 30+ years experience in EU/Regional grants</li>
-          <li>✅ 95% grant approval success rate</li>
-          <li>✅ Complete application management</li>
-          <li>✅ Property sourcing and due diligence</li>
-          <li>✅ AI Assistant "Trullo" for 24/7 support</li>
+      <div style="background: #fafafa; border-left: 3px solid #1e40af; padding: 20px; margin: 25px 0;">
+        <h3 style="color: #1e293b; margin: 0 0 15px 0; font-size: 18px; font-weight: 500;">Our Professional Services</h3>
+        <ul style="margin: 0; padding-left: 20px; color: #475569; line-height: 1.8;">
+          <li style="margin-bottom: 8px;"><strong>Experience:</strong> Over 30 years in EU and Regional grant acquisition</li>
+          <li style="margin-bottom: 8px;"><strong>Success Rate:</strong> 95% grant approval rate</li>
+          <li style="margin-bottom: 8px;"><strong>Full Service:</strong> Complete application management from start to finish</li>
+          <li style="margin-bottom: 8px;"><strong>Due Diligence:</strong> Comprehensive property sourcing and evaluation</li>
+          <li style="margin-bottom: 8px;"><strong>Digital Support:</strong> AI-powered assistant available 24/7</li>
         </ul>
       </div>
       
       <p style="font-size: 16px; margin-bottom: 20px;">
-        <strong>Free Tools to Get Started:</strong>
+        <strong>Resources for Your Due Diligence:</strong>
       </p>
-      <ul style="margin-bottom: 20px;">
-        <li>🧮 <a href="https://investinpuglia.eu/tools" style="color: #3b82f6;">InvestiScope Calculator</a> - Calculate your grant eligibility instantly</li>
-        <li>🤖 <a href="https://investinpuglia.eu" style="color: #3b82f6;">Meet Trullo</a> - Our AI assistant for immediate answers</li>
-        <li>📊 <a href="https://investinpuglia.eu/portfolio" style="color: #3b82f6;">View Our Portfolio</a> - €50M+ in successful projects</li>
+      <ul style="margin-bottom: 20px; line-height: 1.8;">
+        <li><a href="https://investinpuglia.eu/tools" style="color: #1e40af; text-decoration: none; border-bottom: 1px solid #93c5fd;"><strong>InvestiScope Calculator</strong></a> - Calculate your grant eligibility instantly</li>
+        <li><a href="https://investinpuglia.eu" style="color: #1e40af; text-decoration: none; border-bottom: 1px solid #93c5fd;"><strong>Investment Assistant Portal</strong></a> - Get immediate answers to your questions</li>
+        <li><a href="https://investinpuglia.eu/portfolio" style="color: #1e40af; text-decoration: none; border-bottom: 1px solid #93c5fd;"><strong>View Our Portfolio</strong></a> - Over €50M in successful projects</li>
       </ul>
       
       <div style="background: #f3f4f6; border-radius: 8px; padding: 20px; margin: 20px 0; text-align: center;">
@@ -145,15 +145,15 @@ const miniPIAIntroductionTemplate = `
         </p>
         
         <!-- SPECIAL OFFER BANNER -->
-        <div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-radius: 8px; padding: 20px; margin: 15px 0; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-          <p style="margin: 0; color: white; font-size: 24px; font-weight: bold;">
-            🎁 EXCLUSIVE OFFER: FREE 30-Minute Consultation! 🎁
+        <div style="background: linear-gradient(135deg, #1e40af 0%, #312e81 100%); border-radius: 8px; padding: 25px; margin: 15px 0; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+          <p style="margin: 0; color: white; font-size: 22px; font-weight: 500; text-align: center; letter-spacing: 0.5px;">
+            EXCLUSIVE OFFER: COMPLIMENTARY 30-MINUTE CONSULTATION
           </p>
-          <p style="margin: 10px 0 0 0; color: #f0fdf4; font-size: 18px;">
-            For email recipients ONLY with code: <span style="background: rgba(255,255,255,0.9); color: #059669; padding: 4px 14px; border-radius: 6px; font-weight: bold; font-size: 20px;">MINIPIA50</span>
+          <p style="margin: 12px 0 0 0; color: #dbeafe; font-size: 17px; text-align: center;">
+            Email Recipients Only - Use Code: <span style="background: white; color: #1e40af; padding: 5px 16px; border-radius: 6px; font-weight: 600; font-size: 18px; letter-spacing: 1px;">MINIPIA50</span>
           </p>
-          <p style="margin: 8px 0 0 0; color: #d1fae5; font-size: 14px;">
-            Regular price: €60 → Your price: €0 (100% OFF!)
+          <p style="margin: 10px 0 0 0; color: #bfdbfe; font-size: 15px; text-align: center;">
+            Standard Consultation Fee: €60 | Your Investment: €0
           </p>
         </div>
         
@@ -161,28 +161,29 @@ const miniPIAIntroductionTemplate = `
           <strong>30-Minute Professional Consultation</strong> with Giuseppe Funaro<br>
           <span style="color: #6b7280;">30+ years of grant expertise • 95% success rate</span>
         </p>
-        <div style="background: white; border-radius: 6px; padding: 15px; margin: 15px 0; border: 2px solid #10b981;">
-          <p style="margin: 5px 0; color: #064e3b; font-size: 18px; font-weight: bold;">
-            ✨ This Consultation is FREE for You! ✨
+        <div style="background: white; border-radius: 6px; padding: 20px; margin: 15px 0; border: 1px solid #e5e7eb;">
+          <p style="margin: 0 0 15px 0; color: #1e293b; font-size: 17px; font-weight: 500; text-align: center;">
+            Complimentary Professional Consultation
           </p>
-          <p style="margin: 10px 0; color: #4b5563;">
-            What you'll receive in 30 minutes:
+          <p style="margin: 0 0 12px 0; color: #475569; text-align: center;">
+            Your 30-minute session will include:
           </p>
-          <ul style="margin: 10px 0; padding-left: 20px; color: #374151;">
-            <li>Grant eligibility assessment (worth €500+)</li>
-            <li>Personalized investment strategy</li>
-            <li>Q&A on Mini PIA grants</li>
-            <li>Clear next steps roadmap</li>
+          <ul style="margin: 10px 0; padding-left: 30px; color: #374151; line-height: 1.8;">
+            <li>Comprehensive grant eligibility assessment</li>
+            <li>Personalized investment strategy development</li>
+            <li>Expert guidance on Mini PIA grant applications</li>
+            <li>Clear roadmap for your investment journey</li>
           </ul>
-          <p style="margin: 10px 0 5px 0; font-size: 16px; color: #dc2626; font-weight: bold;">
-            ⏰ First 50 recipients only - Limited availability!
+          <p style="margin: 15px 0 0 0; font-size: 14px; color: #dc2626; text-align: center; font-weight: 500;">
+            LIMITED AVAILABILITY - First 50 Recipients Only
           </p>
         </div>
         <a href="https://investinpuglia.eu/book-consultation?source=email&campaign=introduction&coupon=MINIPIA50" 
-           style="display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
-                  color: white; padding: 14px 32px; text-decoration: none; border-radius: 6px; 
-                  font-weight: bold; margin-top: 10px;">
-          Book Your Consultation →
+           style="display: inline-block; background: #1e40af; 
+                  color: white; padding: 16px 40px; text-decoration: none; border-radius: 6px; 
+                  font-weight: 500; margin-top: 10px; letter-spacing: 0.5px; 
+                  box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: all 0.3s;">
+          SCHEDULE YOUR CONSULTATION
         </a>
       </div>
       
@@ -190,12 +191,12 @@ const miniPIAIntroductionTemplate = `
         <p style="font-size: 16px; margin-bottom: 20px;">
           <strong>Why Choose InvestInPuglia?</strong>
         </p>
-        <ul style="margin-bottom: 20px; line-height: 1.8;">
-          <li>✓ Direct relationships with regional grant authorities</li>
-          <li>✓ Complete end-to-end service from property search to grant approval</li>
-          <li>✓ Multi-lingual team (English, Italian, German, French, Spanish)</li>
-          <li>✓ No upfront fees for initial consultation</li>
-          <li>✓ Success-based pricing available for qualified projects</li>
+        <ul style="margin-bottom: 20px; line-height: 2; color: #374151;">
+          <li style="margin-bottom: 5px;"><strong>Direct relationships</strong> with regional grant authorities</li>
+          <li style="margin-bottom: 5px;"><strong>Complete end-to-end service</strong> from property search to grant approval</li>
+          <li style="margin-bottom: 5px;"><strong>Multi-lingual team</strong> (English, Italian, German, French, Spanish)</li>
+          <li style="margin-bottom: 5px;"><strong>No upfront fees</strong> for initial consultation</li>
+          <li style="margin-bottom: 5px;"><strong>Success-based pricing</strong> available for qualified projects</li>
         </ul>
       </div>
       
@@ -206,10 +207,11 @@ const miniPIAIntroductionTemplate = `
         InvestInPuglia.eu
       </p>
       
-      <div style="background: #f9fafb; border-radius: 6px; padding: 15px; margin-top: 20px;">
-        <p style="margin: 0; font-size: 14px; color: #6b7280; text-align: center;">
-          📞 Italy: +39 351 400 1402 | UK: +44 1969 434469<br>
-          📧 g.funaro@investinpuglia.eu | 🌐 investinpuglia.eu
+      <div style="background: #f9fafb; border-radius: 6px; padding: 20px; margin-top: 25px;">
+        <p style="margin: 0; font-size: 14px; color: #4b5563; text-align: center; line-height: 1.8;">
+          <strong>Italy:</strong> +39 351 400 1402 | <strong>UK:</strong> +44 1969 434469<br>
+          <strong>Email:</strong> g.funaro@investinpuglia.eu<br>
+          <strong>Web:</strong> investinpuglia.eu
         </p>
       </div>
     </div>
@@ -242,7 +244,7 @@ async function sendCampaignPreview() {
     const { data, error } = await resend.emails.send({
       from: 'InvestInPuglia Campaign <onboarding@resend.dev>',
       to: ['g.funaro@1402celsius.com'],
-      subject: '[PREVIEW] 🎁 FREE 30-Min Consultation + Access 50% EU Grant Funding',
+      subject: '[PREVIEW] Complimentary Consultation: Access 50% EU Grant Funding for Italian Investments',
       html: miniPIAIntroductionTemplate.replace('[This will be personalized]', 'Giuseppe'),
       tags: {
         type: 'campaign-preview',
