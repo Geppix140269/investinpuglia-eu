@@ -12,8 +12,17 @@ export default function BookConsultationPage() {
   const [couponCode, setCouponCode] = useState('');
   const [couponApplied, setCouponApplied] = useState(false);
   const [couponError, setCouponError] = useState('');
-  const source = searchParams.get('source') || 'website';
-  const campaign = searchParams.get('campaign') || 'direct';
+  const source = searchParams?.get('source') || 'website';
+  const campaign = searchParams?.get('campaign') || 'direct';
+
+  // Check for coupon in URL params on mount
+  useEffect(() => {
+    const urlCoupon = searchParams?.get('coupon');
+    if (urlCoupon && urlCoupon.toUpperCase() === 'MINIPIA50') {
+      setCouponCode('MINIPIA50');
+      setCouponApplied(true);
+    }
+  }, [searchParams]);
 
   const consultationOptions = [
     {
