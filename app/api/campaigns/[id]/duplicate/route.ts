@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getScheduledCampaign, scheduleOneTimeCampaign } from '@/lib/email-campaigns/scheduler';
+import { Timestamp } from 'firebase/firestore';
 
 interface RouteParams {
   params: {
@@ -23,7 +24,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
       ...originalCampaign,
       name: `${originalCampaign.name} (Copy)`,
       status: 'scheduled',
-      scheduledAt: new Date(Date.now() + 24 * 60 * 60 * 1000), // Schedule for tomorrow
+      scheduledAt: Timestamp.fromDate(new Date(Date.now() + 24 * 60 * 60 * 1000)), // Schedule for tomorrow
       executions: [],
       totalSent: 0,
       lastRunAt: undefined,
