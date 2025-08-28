@@ -16,9 +16,9 @@ const miniPIAIntroductionTemplate = `
   <div style="max-width: 600px; margin: 0 auto; background: #ffffff;">
     
     <!-- Header -->
-    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 30px; text-align: center;">
-      <h1 style="color: white; margin: 0; font-size: 24px;">Unlock 50% Grant Funding for Your Italian Dream</h1>
-      <p style="color: #e0e7ff; margin: 10px 0 0 0;">EU Mini PIA Grants - Now Available for International Investors</p>
+    <div style="background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%); padding: 40px 30px; text-align: center;">
+      <h1 style="color: white; margin: 0; font-size: 28px; font-weight: 300; letter-spacing: 0.5px;">Access 50% Grant Funding for Your Italian Investment</h1>
+      <p style="color: #dbeafe; margin: 12px 0 0 0; font-size: 16px; font-weight: 300;">EU Mini PIA Grants | Regional Investment Program | Puglia, Italy</p>
     </div>
     
     <!-- Body -->
@@ -46,12 +46,12 @@ const miniPIAIntroductionTemplate = `
           <li>Manufacturing and technology ventures</li>
           <li>Historic property renovations (including Trulli)</li>
         </ul>
-        <div style="background: #fee2e2; border: 1px solid #ef4444; border-radius: 6px; padding: 10px; margin: 15px 0;">
-          <p style="margin: 5px 0; color: #991b1b; font-weight: bold;">
-            ⏰ URGENT: Mini PIA ends in 2027 - First Come, First Served!
+        <div style="background: #fef2f2; border-left: 3px solid #dc2626; padding: 12px 15px; margin: 15px 0;">
+          <p style="margin: 0; color: #7f1d1d; font-weight: 600; font-size: 14px;">
+            Important: Program Deadline 2027
           </p>
-          <p style="margin: 5px 0; color: #991b1b; font-size: 14px;">
-            Limited funds remaining • Applications processed in order received
+          <p style="margin: 5px 0 0 0; color: #991b1b; font-size: 13px;">
+            Limited funds remaining. Applications are processed in order of submission.
           </p>
         </div>
       </div>
@@ -61,8 +61,8 @@ const miniPIAIntroductionTemplate = `
       </p>
       
       <!-- REAL SUCCESS STORIES -->
-      <div style="background: #ecfdf5; border: 2px solid #10b981; border-radius: 8px; padding: 20px; margin: 20px 0;">
-        <h3 style="color: #064e3b; margin: 0 0 15px 0; text-align: center;">🏆 Recent Client Success Stories</h3>
+      <div style="background: #f8fffe; border: 1px solid #e0e7e6; border-radius: 4px; padding: 25px; margin: 25px 0;">
+        <h3 style="color: #1e293b; margin: 0 0 20px 0; text-align: center; font-size: 20px; font-weight: 500; letter-spacing: 0.3px;">Recent Client Success Stories</h3>
         
         <div style="background: white; border-radius: 6px; padding: 15px; margin-bottom: 12px;">
           <h4 style="color: #1e40af; margin: 0 0 8px 0;">Baglioni Hotel - Masseria Muzza, Otranto</h4>
@@ -70,7 +70,7 @@ const miniPIAIntroductionTemplate = `
             <li><strong>Investment:</strong> €8.5M</li>
             <li><strong>Mini PIA Grant Secured:</strong> €2.8M (33%)</li>
             <li><strong>Result:</strong> 40 luxury suites, spa & wellness center</li>
-            <li><strong>Status:</strong> ✅ Operational - 5-star luxury hotel</li>
+            <li><strong>Status:</strong> Operational - 5-star luxury hotel</li>
           </ul>
         </div>
         

@@ -30,7 +30,8 @@ import {
   List,
   ListOrdered,
   Quote,
-  Divider
+  Divide,
+  Mail
 } from 'lucide-react';
 
 interface EmailBlock {
@@ -392,7 +393,7 @@ export default function EmailTemplateBuilder({
               onClick={() => addBlock('divider')}
               className="w-full p-2 text-left hover:bg-gray-50 rounded flex items-center gap-2 text-sm"
             >
-              <Divider className="w-4 h-4" />
+              <Divide className="w-4 h-4" />
               Divider
             </button>
             
