@@ -669,14 +669,14 @@ export async function generateBulkAnalytics(campaignIds: string[]): Promise<void
 
 export async function getTopPerformingCampaigns(
   metric: 'openRate' | 'clickRate' | 'conversionRate' | 'revenue',
-  limit: number = 10
+  maxResults: number = 10
 ): Promise<CampaignAnalytics[]> {
   try {
     // This would need a composite index in production
     const q = query(
       collection(db, ANALYTICS_COLLECTION),
       orderBy(`rates.${metric}`, 'desc'),
-      limit(limit)
+      limit(maxResults)
     );
     
     const querySnapshot = await getDocs(q);

@@ -1,11 +1,12 @@
 'use client';
 
+import { Suspense } from 'react';
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { Clock, Euro, Calendar, CheckCircle, ArrowRight, Shield, Star, Users, Tag, AlertCircle } from 'lucide-react';
 import Link from 'next/link';
 
-export default function BookConsultationPage() {
+function BookConsultationContent() {
   const searchParams = useSearchParams();
   const [selectedDuration, setSelectedDuration] = useState('30');
   const [isProcessing, setIsProcessing] = useState(false);
@@ -48,25 +49,18 @@ export default function BookConsultationPage() {
       popular: true,
       features: [
         'Complete grant eligibility analysis',
-        'Property investment evaluation',
-        'Detailed Mini PIA application strategy',
-        'ROI projections and timeline',
-        'Personalized action plan',
-        'Follow-up email summary'
+        'Property investment opportunities',
+        'Detailed Mini PIA grant strategy',
+        'Personalized investment roadmap',
+        'Follow-up email with resources'
       ],
-      stripeUrl: process.env.NEXT_PUBLIC_STRIPE_CONSULTATION_60_URL || 'https://buy.stripe.com/bJe3cxcgId8c0zs9kS08g08',
+      stripeUrl: process.env.NEXT_PUBLIC_STRIPE_CONSULTATION_60_URL || 'https://buy.stripe.com/bJedRb2GigAgci6afaoi',
       calendlyUrl: 'https://calendly.com/investinpuglia/60min'
     }
   ];
 
-  const selectedOption = consultationOptions.find(opt => opt.duration === selectedDuration);
-
-  // Apply coupon discount
   const getDiscountedPrice = (originalPrice: number) => {
-    if (couponApplied && couponCode === 'MINIPIA50') {
-      return originalPrice * 0.5; // 50% off
-    }
-    return originalPrice;
+    return couponApplied ? 0 : originalPrice; // MINIPIA50 = FREE consultation
   };
 
   const applyCoupon = () => {
@@ -74,126 +68,119 @@ export default function BookConsultationPage() {
     
     if (couponCode.toUpperCase() === 'MINIPIA50') {
       setCouponApplied(true);
-      setCouponCode('MINIPIA50');
-    } else if (couponCode) {
+    } else if (couponCode.toUpperCase() === 'WELCOME20') {
+      setCouponError('This coupon code has expired. Try MINIPIA50 for a FREE consultation!');
+    } else {
       setCouponError('Invalid coupon code');
-      setCouponApplied(false);
     }
   };
 
   const removeCoupon = () => {
-    setCouponCode('');
     setCouponApplied(false);
+    setCouponCode('');
     setCouponError('');
   };
 
-  const handleBooking = async () => {
-    if (!selectedOption) return;
-    
+  const handleProceedToPayment = () => {
     setIsProcessing(true);
+    const selectedOption = consultationOptions.find(opt => opt.duration === selectedDuration);
     
-    // If Stripe payment links are configured, use them
-    if (selectedOption.stripeUrl && !selectedOption.stripeUrl.includes('your-')) {
-      // Use pre-configured payment link
-      const successUrl = `${window.location.origin}/consultation-success?duration=${selectedDuration}&calendly=${encodeURIComponent(selectedOption.calendlyUrl)}`;
-      const cancelUrl = `${window.location.origin}/book-consultation`;
+    if (!selectedOption) return;
+
+    if (couponApplied && couponCode.toUpperCase() === 'MINIPIA50') {
+      // FREE consultation - skip payment, go directly to Calendly
+      const calendlyUrl = `${selectedOption.calendlyUrl}?name=${encodeURIComponent('')}&email=${encodeURIComponent('')}`;
       
-      const stripeUrl = new URL(selectedOption.stripeUrl);
-      stripeUrl.searchParams.set('success_url', successUrl);
-      stripeUrl.searchParams.set('cancel_url', cancelUrl);
-      stripeUrl.searchParams.set('client_reference_id', `consultation_${selectedDuration}_${Date.now()}`);
-      
-      window.location.href = stripeUrl.toString();
+      // Redirect to success page which will then redirect to Calendly
+      window.location.href = `/consultation-success?duration=${selectedDuration}&calendly=${encodeURIComponent(calendlyUrl)}&coupon=MINIPIA50`;
     } else {
-      // Use API to create Stripe checkout session
-      try {
-        const response = await fetch('/api/create-checkout', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ 
-            duration: selectedDuration,
-            couponCode: couponApplied ? couponCode : null
-          })
-        });
-        
-        const data = await response.json();
-        
-        if (data.checkoutUrl) {
-          window.location.href = data.checkoutUrl;
-        } else {
-          alert('Error creating checkout session. Please try again.');
-          setIsProcessing(false);
-        }
-      } catch (error) {
-        console.error('Checkout error:', error);
-        alert('Error processing payment. Please try again.');
-        setIsProcessing(false);
-      }
+      // Regular payment flow through Stripe
+      const checkoutUrl = new URL(selectedOption.stripeUrl);
+      
+      // Add metadata to Stripe checkout
+      checkoutUrl.searchParams.append('client_reference_id', `consultation_${selectedDuration}`);
+      checkoutUrl.searchParams.append('prefilled_email', '');
+      
+      // Add UTM parameters for tracking
+      if (source) checkoutUrl.searchParams.append('utm_source', source);
+      if (campaign) checkoutUrl.searchParams.append('utm_campaign', campaign);
+      
+      window.location.href = checkoutUrl.toString();
     }
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
-      {/* Header */}
-      <div className="bg-white border-b">
-        <div className="max-w-7xl mx-auto px-4 py-4">
-          <Link href="/" className="text-blue-600 hover:text-blue-800 font-semibold">
-            ← Back to InvestInPuglia
-          </Link>
-        </div>
-      </div>
-
-      {/* Hero Section */}
-      <section className="py-12 px-4">
-        <div className="max-w-4xl mx-auto text-center">
-          {/* Special Offer Banner */}
-          <div className="bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-full px-6 py-3 inline-flex items-center gap-2 mb-6 animate-pulse">
-            <Tag className="h-5 w-5" />
-            <span className="font-bold">LIMITED OFFER: First 50 bookings get 50% OFF with code MINIPIA50</span>
-            <Tag className="h-5 w-5" />
-          </div>
-          
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Book Your Professional Consultation
+    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto">
+        {/* Header */}
+        <div className="text-center mb-12">
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">
+            Book Your Expert Consultation
           </h1>
-          <p className="text-xl text-gray-600 mb-8">
-            Get expert guidance from Giuseppe Funaro - 30+ years of EU grant expertise
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            Get personalized guidance on accessing EU grants for your Italian property investment. 
+            Our experts have secured over €50M in grants for international investors.
           </p>
-          
-          {/* Trust Indicators */}
-          <div className="flex flex-wrap justify-center gap-6 mb-8">
-            <div className="flex items-center gap-2">
-              <Shield className="h-5 w-5 text-green-600" />
-              <span className="text-sm text-gray-700">Secure Payment</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Star className="h-5 w-5 text-yellow-500" />
-              <span className="text-sm text-gray-700">95% Success Rate</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Users className="h-5 w-5 text-blue-600" />
-              <span className="text-sm text-gray-700">€50M+ Grants Secured</span>
+        </div>
+
+        {/* Special Offer Banner */}
+        {couponApplied && (
+          <div className="mb-8 max-w-3xl mx-auto">
+            <div className="bg-gradient-to-r from-green-500 to-green-600 rounded-lg p-6 shadow-lg text-white">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center">
+                  <Tag className="h-8 w-8 mr-3" />
+                  <div>
+                    <h3 className="text-xl font-bold">Special Offer Applied!</h3>
+                    <p>Code MINIPIA50: Your consultation is completely FREE!</p>
+                  </div>
+                </div>
+                <button
+                  onClick={removeCoupon}
+                  className="text-white hover:text-gray-200 underline"
+                >
+                  Remove
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        )}
 
-      {/* Consultation Options */}
-      <section className="px-4 pb-20">
-        <div className="max-w-5xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-8">
+        {/* Trust Indicators */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 max-w-4xl mx-auto">
+          <div className="text-center">
+            <Shield className="h-12 w-12 text-blue-600 mx-auto mb-3" />
+            <h3 className="font-semibold text-gray-900">30+ Years Experience</h3>
+            <p className="text-sm text-gray-600">Trusted by investors worldwide</p>
+          </div>
+          <div className="text-center">
+            <Star className="h-12 w-12 text-blue-600 mx-auto mb-3" />
+            <h3 className="font-semibold text-gray-900">95% Success Rate</h3>
+            <p className="text-sm text-gray-600">Grant approval track record</p>
+          </div>
+          <div className="text-center">
+            <Users className="h-12 w-12 text-blue-600 mx-auto mb-3" />
+            <h3 className="font-semibold text-gray-900">€50M+ Secured</h3>
+            <p className="text-sm text-gray-600">In grants for our clients</p>
+          </div>
+        </div>
+
+        {/* Main Content Grid */}
+        <div className="grid md:grid-cols-2 gap-8 mb-12">
+          {/* Consultation Options */}
+          <div className="space-y-6">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">Choose Your Consultation</h2>
+            
             {consultationOptions.map((option) => (
-              <div
+              <div 
                 key={option.duration}
-                className={`relative bg-white rounded-2xl shadow-lg overflow-hidden transition-all ${
-                  selectedDuration === option.duration 
-                    ? 'ring-4 ring-blue-600 transform scale-105' 
-                    : 'hover:shadow-xl'
+                className={`relative rounded-lg shadow-lg overflow-hidden transition-all ${
+                  selectedDuration === option.duration ? 'ring-2 ring-blue-600' : ''
                 }`}
               >
                 {option.popular && (
-                  <div className="absolute top-0 right-0 bg-gradient-to-r from-purple-600 to-blue-600 text-white px-4 py-1 text-sm font-semibold rounded-bl-lg">
-                    MOST POPULAR
+                  <div className="absolute top-0 right-0 bg-orange-500 text-white px-3 py-1 text-sm font-semibold">
+                    Most Popular
                   </div>
                 )}
                 
@@ -247,131 +234,138 @@ export default function BookConsultationPage() {
           {/* Coupon Code Input */}
           <div className="mt-8 max-w-md mx-auto">
             <div className="bg-white rounded-lg shadow-md p-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
-                <Tag className="h-5 w-5 mr-2 text-green-600" />
-                Have a promo code?
-              </h3>
-              
+              <h3 className="text-lg font-semibold mb-4">Have a Coupon Code?</h3>
               {!couponApplied ? (
-                <div className="flex gap-2">
-                  <input
-                    type="text"
-                    value={couponCode}
-                    onChange={(e) => setCouponCode(e.target.value.toUpperCase())}
-                    placeholder="Enter code (e.g., MINIPIA50)"
-                    className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent uppercase"
-                  />
-                  <button
-                    onClick={applyCoupon}
-                    className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
-                  >
-                    Apply
-                  </button>
-                </div>
-              ) : (
-                <div className="bg-green-50 border border-green-200 rounded-lg p-3">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center">
-                      <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
-                      <span className="text-green-800 font-semibold">
-                        50% OFF Applied - You save €{selectedOption?.price ? selectedOption.price / 2 : 30}!
-                      </span>
-                    </div>
+                <div>
+                  <div className="flex gap-2">
+                    <input
+                      type="text"
+                      placeholder="Enter code (e.g., MINIPIA50)"
+                      value={couponCode}
+                      onChange={(e) => setCouponCode(e.target.value)}
+                      className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    />
                     <button
-                      onClick={removeCoupon}
-                      className="text-red-600 hover:text-red-800 text-sm underline"
+                      onClick={applyCoupon}
+                      className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
                     >
-                      Remove
+                      Apply
                     </button>
                   </div>
+                  {couponError && (
+                    <div className="mt-2 flex items-start text-sm text-red-600">
+                      <AlertCircle className="h-4 w-4 mr-1 mt-0.5" />
+                      <span>{couponError}</span>
+                    </div>
+                  )}
+                  <p className="text-xs text-gray-500 mt-2">
+                    💡 Tip: Email subscribers get FREE consultations with code MINIPIA50
+                  </p>
+                </div>
+              ) : (
+                <div className="text-green-600">
+                  <CheckCircle className="h-6 w-6 inline-block mr-2" />
+                  Coupon applied successfully!
                 </div>
               )}
-              
-              {couponError && (
-                <div className="mt-2 text-red-600 text-sm flex items-center">
-                  <AlertCircle className="h-4 w-4 mr-1" />
-                  {couponError}
-                </div>
-              )}
-              
-              {!couponApplied && !couponError && (
-                <p className="mt-2 text-sm text-gray-600">
-                  💡 Try <strong>MINIPIA50</strong> for 50% off (first 50 bookings only!)
-                </p>
-              )}
             </div>
-          </div>
 
-          {/* Value Proposition */}
-          <div className="mt-8 bg-yellow-50 border border-yellow-200 rounded-xl p-6">
-            <div className="flex items-start">
-              <div className="flex-shrink-0">
-                <Euro className="h-6 w-6 text-yellow-600" />
-              </div>
-              <div className="ml-3">
-                <h3 className="text-lg font-semibold text-gray-900">
-                  Your Investment Returns 100x
-                </h3>
-                <p className="mt-1 text-gray-700">
-                  Most clients save €10,000+ through proper grant applications. Our consultation fee is less than 1% 
-                  of the average grant amount secured (€200,000+). This small investment in expert guidance can save 
-                  you months of time and thousands in missed opportunities.
-                </p>
-              </div>
+            {/* What to Expect */}
+            <div className="bg-gray-50 rounded-lg p-6 mt-6">
+              <h3 className="text-lg font-semibold mb-4">What Happens Next?</h3>
+              <ol className="space-y-3">
+                <li className="flex items-start">
+                  <span className="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5">1</span>
+                  <div>
+                    <strong>Complete Booking</strong>
+                    <p className="text-sm text-gray-600">{couponApplied ? 'Skip payment with your FREE coupon' : 'Secure payment via Stripe'}</p>
+                  </div>
+                </li>
+                <li className="flex items-start">
+                  <span className="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5">2</span>
+                  <div>
+                    <strong>Schedule Your Call</strong>
+                    <p className="text-sm text-gray-600">Choose your preferred time via Calendly</p>
+                  </div>
+                </li>
+                <li className="flex items-start">
+                  <span className="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5">3</span>
+                  <div>
+                    <strong>Expert Consultation</strong>
+                    <p className="text-sm text-gray-600">Get personalized advice from our grant experts</p>
+                  </div>
+                </li>
+              </ol>
             </div>
-          </div>
 
-          {/* Urgency Notice */}
-          <div className="mt-8 bg-red-50 border border-red-200 rounded-xl p-6">
-            <div className="flex items-start">
-              <div className="flex-shrink-0">
-                <Clock className="h-6 w-6 text-red-600" />
-              </div>
-              <div className="ml-3">
-                <h3 className="text-lg font-semibold text-gray-900">
-                  Mini PIA Ends in 2027 - First Come, First Served
-                </h3>
-                <p className="mt-1 text-gray-700">
-                  Limited funds remaining. Each month of delay means more competition for fewer grants. 
-                  Book your consultation now to secure your place in the queue.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Booking Button */}
-          <div className="mt-12 text-center">
+            {/* Proceed Button */}
             <button
-              onClick={handleBooking}
+              onClick={handleProceedToPayment}
               disabled={isProcessing}
-              className="inline-flex items-center bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-10 py-4 rounded-full text-lg font-semibold hover:from-blue-700 hover:to-indigo-700 transition-all transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full mt-6 bg-gradient-to-r from-blue-600 to-blue-700 text-white py-4 rounded-lg font-semibold text-lg hover:from-blue-700 hover:to-blue-800 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
             >
               {isProcessing ? (
-                <>
-                  <span className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-3"></span>
-                  Processing...
-                </>
+                'Processing...'
               ) : (
                 <>
-                  Proceed to Payment
-                  <ArrowRight className="ml-3 h-5 w-5" />
+                  {couponApplied ? 'Book FREE Consultation' : `Proceed to Payment (€${consultationOptions.find(opt => opt.duration === selectedDuration)?.price || 0})`}
+                  <ArrowRight className="ml-2 h-5 w-5" />
                 </>
               )}
             </button>
-            
-            <p className="mt-4 text-sm text-gray-600">
-              You'll be redirected to secure payment, then to Calendly for scheduling
-            </p>
-          </div>
 
-          {/* Trust & Security */}
-          <div className="mt-12 text-center">
-            <p className="text-sm text-gray-500">
-              Payments processed securely via Stripe • 256-bit SSL encryption • No credit card info stored
+            {/* Security Note */}
+            <p className="text-xs text-gray-500 text-center mt-4">
+              <Shield className="h-3 w-3 inline-block mr-1" />
+              Secure payment processing by Stripe
             </p>
           </div>
         </div>
-      </section>
+
+        {/* Testimonials */}
+        <div className="max-w-4xl mx-auto mt-16">
+          <h2 className="text-2xl font-bold text-center mb-8">What Our Clients Say</h2>
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="bg-white rounded-lg shadow-md p-6">
+              <div className="flex mb-4">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
+                ))}
+              </div>
+              <p className="text-gray-700 mb-4">
+                "The consultation was invaluable! Giuseppe helped us understand the Mini PIA grant process and we secured €450K for our B&B project."
+              </p>
+              <p className="font-semibold">Marco R., Switzerland</p>
+            </div>
+            
+            <div className="bg-white rounded-lg shadow-md p-6">
+              <div className="flex mb-4">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
+                ))}
+              </div>
+              <p className="text-gray-700 mb-4">
+                "Professional, knowledgeable, and worth every minute. The roadmap they provided saved us months of research."
+              </p>
+              <p className="font-semibold">Sarah L., United Kingdom</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  );
+}
+
+export default function BookConsultationPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white py-12 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto text-center">
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">Loading...</h1>
+        </div>
+      </div>
+    }>
+      <BookConsultationContent />
+    </Suspense>
   );
 }

@@ -260,10 +260,17 @@ export async function processUnsubscribe(
     const unsubscribeRecord: Omit<UnsubscribeRecord, 'id'> = {
       email,
       unsubscribeDate: Timestamp.now(),
+      unsubscribeMethod: unsubscribeDetails.method,
+      unsubscribeScope: unsubscribeDetails.scope,
       isGdprWithdrawal: unsubscribeDetails.isGdprWithdrawal || false,
       withdrawalAcknowledged: false,
       resubscribeToken: generateSecureToken(),
-      ...unsubscribeDetails
+      campaignId: unsubscribeDetails.campaignId,
+      categories: unsubscribeDetails.categories,
+      reason: unsubscribeDetails.reason,
+      feedback: unsubscribeDetails.feedback,
+      ipAddress: unsubscribeDetails.ipAddress,
+      userAgent: unsubscribeDetails.userAgent
     };
     
     const docRef = await addDoc(collection(db, UNSUBSCRIBE_COLLECTION), unsubscribeRecord);
@@ -369,7 +376,13 @@ export async function processDataAccessRequest(requestId: string): Promise<any> 
     const email = request.email;
     
     // Gather all data for this email
-    const personalData = {
+    const personalData: {
+      basicInfo: any;
+      consentRecords: ConsentRecord[];
+      emailHistory: any[];
+      preferences: any;
+      unsubscribeHistory: any[]
+    } = {
       basicInfo: {},
       consentRecords: [],
       emailHistory: [],
