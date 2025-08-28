@@ -8,6 +8,7 @@ import Navbar from '@/components/Navbar'
 import Script from 'next/script'
 import dynamic from 'next/dynamic'
 import { AuthProvider } from '@/contexts/AuthContext'
+import { Toaster } from 'react-hot-toast'
 
 // Lazy load the TrulloChatbot to avoid build errors if component doesn't exist yet
 const TrulloChatbotWrapper = dynamic(
@@ -296,6 +297,7 @@ export default function RootLayout({
           <main className="pt-16">{children}</main>
           <Footer />
           <TrulloChatbotWrapper />
+          <Toaster position="top-right" />
           <VisitorTracker />
         </AuthProvider>
       </body>
