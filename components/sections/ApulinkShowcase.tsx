@@ -74,10 +74,9 @@ const ApulinkShowcase = () => {
           </p>
           
           <p className="text-lg text-gray-600 max-w-4xl mx-auto">
-            We're excited to announce that Apulink.com is now fully operational, 
-            connecting foreign investors with Puglia's most trusted professionals. 
-            Our platform eliminates language barriers and bureaucratic complexities, 
-            making your investment journey seamless and secure.
+            Apulink.com is our upcoming platform designed to connect foreign investors 
+            with Puglia's trusted professionals. We're currently building our network 
+            to help eliminate language barriers and bureaucratic complexities.
           </p>
         </div>
 
@@ -153,18 +152,18 @@ const ApulinkShowcase = () => {
           </div>
         </div>
 
-        {/* Success Metrics */}
+        {/* Platform Goals */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
           <div className="text-center">
-            <div className="text-3xl font-bold text-blue-600 mb-2">500+</div>
-            <div className="text-sm text-gray-600">Verified Professionals</div>
+            <div className="text-3xl font-bold text-blue-600 mb-2">Growing</div>
+            <div className="text-sm text-gray-600">Professional Network</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold text-teal-600 mb-2">8</div>
-            <div className="text-sm text-gray-600">Languages Supported</div>
+            <div className="text-3xl font-bold text-teal-600 mb-2">6+</div>
+            <div className="text-sm text-gray-600">Languages Planned</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold text-green-600 mb-2">24/7</div>
+            <div className="text-3xl font-bold text-green-600 mb-2">Direct</div>
             <div className="text-sm text-gray-600">Client Support</div>
           </div>
           <div className="text-center">
@@ -179,8 +178,8 @@ const ApulinkShowcase = () => {
             Start Your Puglia Investment Journey Today
           </h3>
           <p className="text-lg mb-8 opacity-95 max-w-2xl mx-auto">
-            Join hundreds of international investors who have successfully established 
-            their presence in Puglia through Apulink's professional network.
+            Be among the first to access our growing network of professionals 
+            ready to help you establish your presence in Puglia.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a

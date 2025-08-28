@@ -20,7 +20,7 @@ export const siteConfig = {
   ],
   authors: [
     {
-      name: 'Giuseppe De Pasquale',
+      name: 'Giuseppe Funaro',
       url: 'https://investinpuglia.eu/about',
     },
   ],
@@ -178,5 +178,10 @@ export const pageMetadata = {
     title: 'Cookie Policy - Website Usage | InvestInPuglia',
     description: 'Cookie policy for InvestInPuglia.eu. How we use cookies to improve your experience and provide better grant advisory services.',
     keywords: ['cookie policy', 'website cookies', 'GDPR cookies'],
+  },
+  portfolio: {
+    title: 'Portfolio - InvestInPuglia Engineering Team | 30+ Years EU Grant Expertise',
+    description: 'Explore successful projects by InvestInPuglia Engineering Team. €50M+ in grants secured, 30+ years experience in Regional and EU grant programmes.',
+    keywords: ['investment portfolio', 'puglia projects', 'EU grant success', 'engineering team', 'hotel development', 'tourism investment', '30 years experience'],
   },
 }

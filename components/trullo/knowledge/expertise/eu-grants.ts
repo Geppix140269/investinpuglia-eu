@@ -15,7 +15,7 @@ export const euGrantsKnowledge: KnowledgeModule = {
 PIA TURISMO GRANT INFORMATION:
 
 Key Facts:
-- Up to 50% funding for tourism projects (MAX €2.25M)
+- Up to 50% funding for tourism projects (MAX €2.75M for Mini PIA)
 - Covers: Hotels, B&Bs, Agriturismos, Tourist facilities
 - Next deadline: Check with Giuseppe for current windows
 
@@ -45,7 +45,7 @@ IMPORTANT: For projects over €500k, always suggest immediate consultation - th
 INFORMAZIONI BANDO PIA TURISMO:
 
 Fatti Chiave:
-- Fino al 50% di finanziamento per progetti turistici (MAX €2,25M)
+- Fino al 50% di finanziamento per progetti turistici (MAX €2,75M per Mini PIA)
 - Copre: Hotel, B&B, Agriturismi, Strutture turistiche
 - Prossima scadenza: Verifica con Giuseppe
 

@@ -8,11 +8,14 @@ import { expertRoutingKnowledge } from './core/expert-directory';
 import { emailAutomationKnowledge } from './capabilities/email-automation';
 import { leadStorageKnowledge } from './capabilities/lead-storage';
 import { userRegistrationKnowledge } from './capabilities/user-registration';
+import { investiScopeKnowledge } from './capabilities/investiscope-calculator';
 import { authRequirementKnowledge } from './strategies/auth-requirement';
 import { ctaButtonsKnowledge } from './strategies/cta-buttons';
 import { leadCaptureStrategy } from './strategies/lead-capture';
 import { trustBuildingStrategy } from './strategies/trust-building';
 import { professionalRedirectStrategy } from './strategies/professional-redirect';
+import { salesExcellenceStrategy } from './strategies/sales-excellence';
+import { conversionOptimizationStrategy } from './strategies/conversion-optimization';
 import { euGrantsKnowledge } from './expertise/eu-grants';
 
 // Import the CORRECT system prompts
@@ -35,7 +38,12 @@ export class TrulloKnowledgeBase {
   constructor() {
     // Register ALL modules - HIGH PRIORITY FIRST
     this.registerModules([
-      // High priority strategies (these override others)
+      // ULTRA HIGH PRIORITY - Sales & Conversion
+      salesExcellenceStrategy, // TOP PRIORITY - We're here to SELL!
+      conversionOptimizationStrategy, // Convert every interaction
+      investiScopeKnowledge, // Our main tool - the calculator!
+      
+      // High priority strategies
       professionalRedirectStrategy,
       
       // Core
