@@ -29,6 +29,7 @@
         "dotenv": "^17.2.1",
         "firebase": "^12.1.0",
         "formidable": "^2.1.1",
+        "framer-motion": "^12.23.12",
         "groq": "^3.0.0",
         "jspdf": "^2.5.2",
         "lucide-react": "^0.309.0",
