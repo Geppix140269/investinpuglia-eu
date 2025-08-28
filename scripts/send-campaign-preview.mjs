@@ -60,6 +60,65 @@ const miniPIAIntroductionTemplate = `
         <strong>Why reach out now?</strong> The next application window closes soon, and preparation takes 4-6 weeks.
       </p>
       
+      <!-- REAL SUCCESS STORIES -->
+      <div style="background: #ecfdf5; border: 2px solid #10b981; border-radius: 8px; padding: 20px; margin: 20px 0;">
+        <h3 style="color: #064e3b; margin: 0 0 15px 0; text-align: center;">🏆 Recent Client Success Stories</h3>
+        
+        <div style="background: white; border-radius: 6px; padding: 15px; margin-bottom: 12px;">
+          <h4 style="color: #1e40af; margin: 0 0 8px 0;">Baglioni Hotel - Masseria Muzza, Otranto</h4>
+          <ul style="margin: 5px 0; padding-left: 20px; color: #374151;">
+            <li><strong>Investment:</strong> €8.5M</li>
+            <li><strong>Mini PIA Grant Secured:</strong> €2.8M (33%)</li>
+            <li><strong>Result:</strong> 40 luxury suites, spa & wellness center</li>
+            <li><strong>Status:</strong> ✅ Operational - 5-star luxury hotel</li>
+          </ul>
+        </div>
+        
+        <div style="background: white; border-radius: 6px; padding: 15px; margin-bottom: 12px;">
+          <h4 style="color: #1e40af; margin: 0 0 8px 0;">B&B Blue Otranto - Seafront Property</h4>
+          <ul style="margin: 5px 0; padding-left: 20px; color: #374151;">
+            <li><strong>Investment:</strong> €1.1M</li>
+            <li><strong>Mini PIA Grant Secured:</strong> €450K (41%)</li>
+            <li><strong>Result:</strong> 12 designer suites with sea views</li>
+            <li><strong>ROI:</strong> 25% annual through vacation rentals</li>
+          </ul>
+        </div>
+        
+        <div style="background: white; border-radius: 6px; padding: 15px; margin-bottom: 12px;">
+          <h4 style="color: #1e40af; margin: 0 0 8px 0;">Riva Marina Resort, Carovigno</h4>
+          <ul style="margin: 5px 0; padding-left: 20px; color: #374151;">
+            <li><strong>Investment:</strong> €9M</li>
+            <li><strong>PIA Turismo Grant:</strong> €3.1M (34%)</li>
+            <li><strong>Result:</strong> 442 rooms, private beach, 5 restaurants</li>
+            <li><strong>Jobs Created:</strong> 120+ seasonal positions</li>
+          </ul>
+        </div>
+        
+        <div style="background: white; border-radius: 6px; padding: 15px; margin-bottom: 12px;">
+          <h4 style="color: #1e40af; margin: 0 0 8px 0;">Masseria Santa Lucia, Ostuni</h4>
+          <ul style="margin: 5px 0; padding-left: 20px; color: #374151;">
+            <li><strong>Investment:</strong> €1.8M</li>
+            <li><strong>Mini PIA Grant:</strong> €680K (38%)</li>
+            <li><strong>Result:</strong> Luxury wedding venue (300 guests)</li>
+            <li><strong>Bookings:</strong> Fully booked 18 months ahead</li>
+          </ul>
+        </div>
+        
+        <div style="background: white; border-radius: 6px; padding: 15px;">
+          <h4 style="color: #1e40af; margin: 0 0 8px 0;">Cantieri Navali - Gruppo Jolly, Taranto</h4>
+          <ul style="margin: 5px 0; padding-left: 20px; color: #374151;">
+            <li><strong>Investment:</strong> €12M</li>
+            <li><strong>PIA Grant:</strong> €5.2M (43%)</li>
+            <li><strong>Result:</strong> 50,000 m² marine facility</li>
+            <li><strong>Impact:</strong> 200+ jobs created</li>
+          </ul>
+        </div>
+        
+        <p style="text-align: center; margin: 15px 0 5px 0; font-weight: bold; color: #065f46;">
+          Total Grants Secured for Clients: €15M+ in 2023-2024
+        </p>
+      </div>
+      
       <div style="background: #fefce8; border: 1px solid #facc15; border-radius: 8px; padding: 20px; margin: 20px 0;">
         <h3 style="color: #854d0e; margin: 0 0 10px 0;">Our Expertise at Your Service:</h3>
         <ul style="margin: 10px 0; padding-left: 20px;">
@@ -84,6 +143,17 @@ const miniPIAIntroductionTemplate = `
         <p style="font-size: 18px; margin: 0 0 15px 0; font-weight: bold;">
           Ready to Secure Your Mini PIA Grant?
         </p>
+        
+        <!-- SPECIAL OFFER BANNER -->
+        <div style="background: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%); border-radius: 8px; padding: 15px; margin: 15px 0;">
+          <p style="margin: 0; color: white; font-size: 20px; font-weight: bold;">
+            🎉 LIMITED TIME: 50% OFF First 50 Bookings! 🎉
+          </p>
+          <p style="margin: 8px 0 0 0; color: #fff9e6; font-size: 16px;">
+            Use code: <span style="background: rgba(255,255,255,0.3); padding: 3px 12px; border-radius: 4px; font-weight: bold; font-size: 18px;">MINIPIA50</span>
+          </p>
+        </div>
+        
         <p style="margin: 0 0 10px 0;">
           Professional consultation with Giuseppe Funaro<br>
           30+ years of grant expertise • 95% success rate
@@ -91,13 +161,16 @@ const miniPIAIntroductionTemplate = `
         <div style="background: white; border-radius: 6px; padding: 15px; margin: 15px 0;">
           <p style="margin: 5px 0; color: #4b5563;">
             <strong>Investment in Expert Guidance:</strong><br>
-            30 minutes: €60 | 1 hour: €100
+            <span style="text-decoration: line-through; color: #9ca3af;">Regular: €60 (30 min) | €100 (60 min)</span><br>
+            <span style="color: #ef4444; font-size: 20px; font-weight: bold;">
+              With MINIPIA50: €30 | €50
+            </span>
           </p>
-          <p style="margin: 10px 0 5px 0; font-size: 14px; color: #10b981; font-weight: bold;">
-            💡 Most clients recover this fee 100x through grant savings
+          <p style="margin: 10px 0 5px 0; font-size: 14px; color: #f59e0b; font-weight: bold;">
+            ⏰ Only 37 discounted spots remaining!
           </p>
         </div>
-        <a href="https://investinpuglia.eu/book-consultation?source=email&campaign=introduction" 
+        <a href="https://investinpuglia.eu/book-consultation?source=email&campaign=introduction&coupon=MINIPIA50" 
            style="display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
                   color: white; padding: 14px 32px; text-decoration: none; border-radius: 6px; 
                   font-weight: bold; margin-top: 10px;">
@@ -127,7 +200,8 @@ const miniPIAIntroductionTemplate = `
       
       <div style="background: #f9fafb; border-radius: 6px; padding: 15px; margin-top: 20px;">
         <p style="margin: 0; font-size: 14px; color: #6b7280; text-align: center;">
-          📞 +39 351 400 1402 | 📧 giuseppe@investinpuglia.eu | 🌐 investinpuglia.eu
+          📞 Italy: +39 351 400 1402 | UK: +44 1969 434469<br>
+          📧 g.funaro@investinpuglia.eu | 🌐 investinpuglia.eu
         </p>
       </div>
     </div>
@@ -160,7 +234,7 @@ async function sendCampaignPreview() {
     const { data, error } = await resend.emails.send({
       from: 'InvestInPuglia Campaign <onboarding@resend.dev>',
       to: ['g.funaro@1402celsius.com'],
-      subject: '[PREVIEW] Access 50% EU Grant Funding for Your Italian Investment',
+      subject: '[PREVIEW] 🎉 50% OFF Consultation + Access 50% EU Grant Funding',
       html: miniPIAIntroductionTemplate.replace('[This will be personalized]', 'Giuseppe'),
       tags: {
         type: 'campaign-preview',

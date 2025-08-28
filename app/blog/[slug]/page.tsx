@@ -161,7 +161,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
               Get expert guidance and unlock up to €2.25M in EU grants for your investment.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/classic" className="inline-flex items-center gap-2 bg-white text-emerald-700 px-8 py-4 rounded-full font-bold hover:bg-white/90 transition-all">
+              <Link href="/tools" className="inline-flex items-center gap-2 bg-white text-emerald-700 px-8 py-4 rounded-full font-bold hover:bg-white/90 transition-all">
                 Calculate Your Grant
               </Link>
               <Link href="/contact" className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md border-2 border-white/30 text-white px-8 py-4 rounded-full font-bold hover:bg-white/30 transition-all">

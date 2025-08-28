@@ -2,8 +2,8 @@ export const coldOutreachTemplates = [
   {
     id: 'introduction-mini-pia',
     name: 'Introduction - Mini PIA Grant Opportunity',
-    subject: 'Access 45% EU Grant Funding for Your Italian Investment',
-    preheader: 'Discover how Mini PIA grants can fund your Puglia property investment',
+    subject: '🎉 50% OFF Consultation + Access 50% EU Grant Funding for Your Italian Investment',
+    preheader: '💰 Limited Time: Save 50% with code MINIPIA50 - First 50 bookings only!',
     html: `
 <!DOCTYPE html>
 <html>
@@ -74,7 +74,7 @@ export const coldOutreachTemplates = [
         <strong>Free Tools to Get Started:</strong>
       </p>
       <ul style="margin-bottom: 20px;">
-        <li>🧮 <a href="https://apulink.com/calculators/classic" style="color: #3b82f6;">Investiscope Classic Calculator</a> - Calculate your grant eligibility instantly</li>
+        <li>🧮 <a href="https://investinpuglia.eu/tools" style="color: #3b82f6;">InvestiScope Calculator</a> - Calculate your grant eligibility instantly</li>
         <li>🤖 <a href="https://investinpuglia.eu" style="color: #3b82f6;">Meet Trullo</a> - Our AI assistant for immediate answers</li>
         <li>📊 <a href="https://investinpuglia.eu/portfolio" style="color: #3b82f6;">View Our Portfolio</a> - €50M+ in successful projects</li>
       </ul>
@@ -83,6 +83,17 @@ export const coldOutreachTemplates = [
         <p style="font-size: 18px; margin: 0 0 15px 0; font-weight: bold;">
           Ready to Secure Your Mini PIA Grant?
         </p>
+        
+        <!-- SPECIAL OFFER BANNER -->
+        <div style="background: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%); border-radius: 8px; padding: 15px; margin: 15px 0; animation: pulse 2s infinite;">
+          <p style="margin: 0; color: white; font-size: 18px; font-weight: bold;">
+            🎉 LIMITED TIME: 50% OFF First 50 Bookings! 🎉
+          </p>
+          <p style="margin: 5px 0 0 0; color: #fff9e6; font-size: 14px;">
+            Use code: <span style="background: rgba(255,255,255,0.3); padding: 2px 8px; border-radius: 4px; font-weight: bold;">MINIPIA50</span>
+          </p>
+        </div>
+        
         <p style="margin: 0 0 10px 0;">
           Professional consultation with Giuseppe Funaro<br>
           30+ years of grant expertise • 95% success rate
@@ -90,13 +101,16 @@ export const coldOutreachTemplates = [
         <div style="background: white; border-radius: 6px; padding: 15px; margin: 15px 0;">
           <p style="margin: 5px 0; color: #4b5563;">
             <strong>Investment in Expert Guidance:</strong><br>
-            30 minutes: €60 | 1 hour: €100
+            <span style="text-decoration: line-through; color: #9ca3af;">30 minutes: €60 | 1 hour: €100</span><br>
+            <span style="color: #ef4444; font-size: 18px; font-weight: bold;">
+              With MINIPIA50: €30 | €50
+            </span>
           </p>
-          <p style="margin: 10px 0 5px 0; font-size: 14px; color: #10b981; font-weight: bold;">
-            💡 Most clients recover this fee 100x through grant savings
+          <p style="margin: 10px 0 5px 0; font-size: 14px; color: #f59e0b; font-weight: bold;">
+            ⏰ Only 37 discounted spots remaining!
           </p>
         </div>
-        <a href="https://investinpuglia.eu/book-consultation?source=email&campaign=introduction" 
+        <a href="https://investinpuglia.eu/book-consultation?source=email&campaign=introduction&coupon=MINIPIA50" 
            style="display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
                   color: white; padding: 15px 30px; text-decoration: none; border-radius: 30px; 
                   font-weight: bold; font-size: 16px;">
@@ -222,7 +236,7 @@ export const coldOutreachTemplates = [
           Use our Investiscope Classic Calculator to see exactly how much grant funding you could receive 
           for your specific investment amount.
         </p>
-        <a href="https://apulink.com/calculators/classic" style="color: #7c3aed; font-weight: bold;">
+        <a href="https://investinpuglia.eu/tools" style="color: #7c3aed; font-weight: bold;">
           Calculate Your Grant →
         </a>
       </div>
@@ -360,7 +374,7 @@ export const coldOutreachTemplates = [
         <ul style="margin: 10px 0; padding-left: 20px;">
           <li>
             <strong>Investiscope Classic Calculator:</strong> Calculate your exact grant eligibility<br>
-            <a href="https://apulink.com/calculators/classic" style="color: #7c3aed;">Try it now →</a>
+            <a href="https://investinpuglia.eu/tools" style="color: #7c3aed;">Try it now →</a>
           </li>
           <li style="margin-top: 10px;">
             <strong>Trullo AI Assistant:</strong> Get instant answers about grants and properties<br>
@@ -478,7 +492,7 @@ export const coldOutreachTemplates = [
           <p style="margin: 5px 0;"><strong>✓ Get:</strong> Exact grant amount (up to 45%)</p>
         </div>
         <div style="text-align: center; margin: 20px 0;">
-          <a href="https://apulink.com/calculators/classic" 
+          <a href="https://investinpuglia.eu/tools" 
              style="display: inline-block; background: #10b981; color: white; padding: 12px 30px; 
                     text-decoration: none; border-radius: 25px; font-weight: bold;">
             Calculate Your Grant Now →
@@ -533,7 +547,7 @@ export const coldOutreachTemplates = [
         <ol style="margin: 10px 0; padding-left: 20px;">
           <li style="margin: 10px 0;">
             <strong>Calculate your grant</strong> using our Investiscope Classic<br>
-            <a href="https://apulink.com/calculators/classic" style="color: #7c3aed;">Go to calculator →</a>
+            <a href="https://investinpuglia.eu/tools" style="color: #7c3aed;">Go to calculator →</a>
           </li>
           <li style="margin: 10px 0;">
             <strong>Explore our portfolio</strong> of €50M+ successful projects<br>
@@ -561,7 +575,7 @@ export const coldOutreachTemplates = [
       <div style="border-top: 1px solid #e5e7eb; margin-top: 30px; padding-top: 20px;">
         <p style="font-size: 14px; color: #666;">
           <strong>Quick Links:</strong><br>
-          🧮 Calculator: <a href="https://apulink.com/calculators/classic" style="color: #3b82f6;">apulink.com/calculators/classic</a><br>
+          🧮 Calculator: <a href="https://investinpuglia.eu/tools" style="color: #3b82f6;">investinpuglia.eu/tools</a><br>
           🤖 AI Assistant: <a href="https://investinpuglia.eu" style="color: #3b82f6;">investinpuglia.eu</a><br>
           📊 Portfolio: <a href="https://investinpuglia.eu/portfolio" style="color: #3b82f6;">investinpuglia.eu/portfolio</a><br>
           📅 Book Call: <a href="https://calendly.com/investinpuglia/30min" style="color: #3b82f6;">calendly.com/investinpuglia/30min</a>
