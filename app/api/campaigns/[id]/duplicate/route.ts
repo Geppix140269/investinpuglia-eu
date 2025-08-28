@@ -20,15 +20,14 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
     }
     
     // Create duplicate with modified name and draft status
+    // Remove properties that are auto-generated or not allowed
+    const { id, type, executions, totalSent, createdAt, updatedAt, ...campaignData } = originalCampaign;
+    
     const duplicateId = await scheduleOneTimeCampaign({
-      ...originalCampaign,
+      ...campaignData,
       name: `${originalCampaign.name} (Copy)`,
       status: 'scheduled',
       scheduledAt: Timestamp.fromDate(new Date(Date.now() + 24 * 60 * 60 * 1000)), // Schedule for tomorrow
-      executions: [],
-      totalSent: 0,
-      lastRunAt: undefined,
-      nextRunAt: undefined
     });
     
     const duplicateCampaign = await getScheduledCampaign(duplicateId);
