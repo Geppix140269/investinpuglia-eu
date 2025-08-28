@@ -26,12 +26,12 @@ const miniPIAIntroductionTemplate = `
       <p style="font-size: 16px; margin-bottom: 20px;">Dear [This will be personalized],</p>
       
       <p style="font-size: 16px; margin-bottom: 20px;">
-        You may not know us yet, but we've been helping international investors access millions in EU grants for over 30 years.
+        You may not know us yet, but we specialize in helping international investors access EU grants for properties in Puglia.
       </p>
       
       <p style="font-size: 16px; margin-bottom: 20px;">
         <strong>Who we are:</strong> InvestInPuglia is a specialized advisory firm with a team of technical and business experts 
-        who have secured over €50M in Regional and EU grants for property investments in Puglia, Italy.
+        who help international investors navigate Regional and EU grant opportunities for property investments in Puglia, Italy.
       </p>
       
       <div style="background: #f0f9ff; border-left: 4px solid #3b82f6; padding: 20px; margin: 20px 0;">
@@ -60,72 +60,49 @@ const miniPIAIntroductionTemplate = `
         <strong>Why reach out now?</strong> The next application window closes soon, and preparation takes 4-6 weeks.
       </p>
       
-      <!-- REAL SUCCESS STORIES -->
+      <!-- What Mini PIA Can Fund -->
       <div style="background: #f8fffe; border: 1px solid #e0e7e6; border-radius: 4px; padding: 25px; margin: 25px 0;">
-        <h3 style="color: #1e293b; margin: 0 0 20px 0; text-align: center; font-size: 20px; font-weight: 500; letter-spacing: 0.3px;">Recent Client Success Stories</h3>
+        <h3 style="color: #1e293b; margin: 0 0 20px 0; text-align: center; font-size: 20px; font-weight: 500; letter-spacing: 0.3px;">Types of Projects Mini PIA Can Fund</h3>
         
         <div style="background: white; border-radius: 6px; padding: 15px; margin-bottom: 12px;">
-          <h4 style="color: #1e40af; margin: 0 0 8px 0;">Baglioni Hotel - Masseria Muzza, Otranto</h4>
+          <h4 style="color: #1e40af; margin: 0 0 8px 0;">Tourism Accommodations</h4>
           <ul style="margin: 5px 0; padding-left: 20px; color: #374151;">
-            <li><strong>Investment:</strong> €8.5M</li>
-            <li><strong>Mini PIA Grant Secured:</strong> €2.8M (33%)</li>
-            <li><strong>Result:</strong> 40 luxury suites, spa & wellness center</li>
-            <li><strong>Status:</strong> Operational - 5-star luxury hotel</li>
+            <li>Hotels and B&Bs</li>
+            <li>Agriturismo and rural hospitality</li>
+            <li>Vacation rental properties</li>
           </ul>
         </div>
         
         <div style="background: white; border-radius: 6px; padding: 15px; margin-bottom: 12px;">
-          <h4 style="color: #1e40af; margin: 0 0 8px 0;">B&B Blue Otranto - Seafront Property</h4>
+          <h4 style="color: #1e40af; margin: 0 0 8px 0;">Historic Property Renovations</h4>
           <ul style="margin: 5px 0; padding-left: 20px; color: #374151;">
-            <li><strong>Investment:</strong> €1.1M</li>
-            <li><strong>Mini PIA Grant Secured:</strong> €450K (41%)</li>
-            <li><strong>Result:</strong> 12 designer suites with sea views</li>
-            <li><strong>ROI:</strong> 25% annual through vacation rentals</li>
-          </ul>
-        </div>
-        
-        <div style="background: white; border-radius: 6px; padding: 15px; margin-bottom: 12px;">
-          <h4 style="color: #1e40af; margin: 0 0 8px 0;">Riva Marina Resort, Carovigno</h4>
-          <ul style="margin: 5px 0; padding-left: 20px; color: #374151;">
-            <li><strong>Investment:</strong> €9M</li>
-            <li><strong>PIA Turismo Grant:</strong> €3.1M (34%)</li>
-            <li><strong>Result:</strong> 442 rooms, private beach, 5 restaurants</li>
-            <li><strong>Jobs Created:</strong> 120+ seasonal positions</li>
-          </ul>
-        </div>
-        
-        <div style="background: white; border-radius: 6px; padding: 15px; margin-bottom: 12px;">
-          <h4 style="color: #1e40af; margin: 0 0 8px 0;">Masseria Santa Lucia, Ostuni</h4>
-          <ul style="margin: 5px 0; padding-left: 20px; color: #374151;">
-            <li><strong>Investment:</strong> €1.8M</li>
-            <li><strong>Mini PIA Grant:</strong> €680K (38%)</li>
-            <li><strong>Result:</strong> Luxury wedding venue (300 guests)</li>
-            <li><strong>Bookings:</strong> Fully booked 18 months ahead</li>
+            <li>Masseria conversions</li>
+            <li>Trulli restoration projects</li>
+            <li>Historic palazzo renovations</li>
           </ul>
         </div>
         
         <div style="background: white; border-radius: 6px; padding: 15px;">
-          <h4 style="color: #1e40af; margin: 0 0 8px 0;">Cantieri Navali - Gruppo Jolly, Taranto</h4>
+          <h4 style="color: #1e40af; margin: 0 0 8px 0;">Technology & Innovation</h4>
           <ul style="margin: 5px 0; padding-left: 20px; color: #374151;">
-            <li><strong>Investment:</strong> €12M</li>
-            <li><strong>PIA Grant:</strong> €5.2M (43%)</li>
-            <li><strong>Result:</strong> 50,000 m² marine facility</li>
-            <li><strong>Impact:</strong> 200+ jobs created</li>
+            <li>Digital services companies</li>
+            <li>Tech startups</li>
+            <li>Innovation centers</li>
           </ul>
         </div>
         
         <p style="text-align: center; margin: 15px 0 5px 0; font-weight: bold; color: #065f46;">
-          Total Grants Secured for Clients: €15M+ in 2023-2024
+          Grants available from €30,000 to €2.75 million at 50% funding rate
         </p>
       </div>
       
       <div style="background: #fafafa; border-left: 3px solid #1e40af; padding: 20px; margin: 25px 0;">
         <h3 style="color: #1e293b; margin: 0 0 15px 0; font-size: 18px; font-weight: 500;">Our Professional Services</h3>
         <ul style="margin: 0; padding-left: 20px; color: #475569; line-height: 1.8;">
-          <li style="margin-bottom: 8px;"><strong>Experience:</strong> Over 30 years in EU and Regional grant acquisition</li>
-          <li style="margin-bottom: 8px;"><strong>Success Rate:</strong> 95% grant approval rate</li>
-          <li style="margin-bottom: 8px;"><strong>Full Service:</strong> Complete application management from start to finish</li>
-          <li style="margin-bottom: 8px;"><strong>Due Diligence:</strong> Comprehensive property sourcing and evaluation</li>
+          <li style="margin-bottom: 8px;"><strong>Expert Guidance:</strong> Specialized knowledge in EU and Regional grant applications</li>
+          <li style="margin-bottom: 8px;"><strong>Full Service:</strong> Complete application support from start to finish</li>
+          <li style="margin-bottom: 8px;"><strong>Due Diligence:</strong> Comprehensive property analysis and evaluation</li>
+          <li style="margin-bottom: 8px;"><strong>Network:</strong> Strong relationships with local authorities and professionals</li>
           <li style="margin-bottom: 8px;"><strong>Digital Support:</strong> AI-powered assistant available 24/7</li>
         </ul>
       </div>
@@ -159,7 +136,7 @@ const miniPIAIntroductionTemplate = `
         
         <p style="margin: 0 0 15px 0; font-size: 16px;">
           <strong>30-Minute Professional Consultation</strong> with Giuseppe Funaro<br>
-          <span style="color: #6b7280;">30+ years of grant expertise • 95% success rate</span>
+          <span style="color: #6b7280;">Specialized expertise in Italian investment grants</span>
         </p>
         <div style="background: white; border-radius: 6px; padding: 20px; margin: 15px 0; border: 1px solid #e5e7eb;">
           <p style="margin: 0 0 15px 0; color: #1e293b; font-size: 17px; font-weight: 500; text-align: center;">

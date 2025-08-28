@@ -27,7 +27,7 @@ function ConsultationSuccessContent() {
     return () => clearInterval(timer);
   }, [calendlyUrl]);
 
-  const consultationType = duration === '60' ? '1-Hour Deep Dive' : '30-Minute Consultation';
+  const consultationType = '30-Minute Consultation';
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50 flex items-center justify-center px-4 sm:px-6 lg:px-8">

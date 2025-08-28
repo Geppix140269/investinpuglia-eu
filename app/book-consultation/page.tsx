@@ -31,7 +31,7 @@ function BookConsultationContent() {
       price: 60,
       title: '30-Minute Consultation',
       description: 'Perfect for initial assessment and grant eligibility check',
-      popular: false,
+      popular: true,
       features: [
         'Grant eligibility assessment',
         'Investment strategy overview',
@@ -40,22 +40,6 @@ function BookConsultationContent() {
       ],
       stripeUrl: process.env.NEXT_PUBLIC_STRIPE_CONSULTATION_30_URL || 'https://buy.stripe.com/bJe9AV0y03xCbe6cx408g07',
       calendlyUrl: 'https://calendly.com/investinpuglia/30min'
-    },
-    {
-      duration: '60',
-      price: 100,
-      title: '1-Hour Deep Dive',
-      description: 'Comprehensive consultation with detailed grant analysis',
-      popular: true,
-      features: [
-        'Complete grant eligibility analysis',
-        'Property investment opportunities',
-        'Detailed Mini PIA grant strategy',
-        'Personalized investment roadmap',
-        'Follow-up email with resources'
-      ],
-      stripeUrl: process.env.NEXT_PUBLIC_STRIPE_CONSULTATION_60_URL || 'https://buy.stripe.com/bJedRb2GigAgci6afaoi',
-      calendlyUrl: 'https://calendly.com/investinpuglia/60min'
     }
   ];
 
@@ -167,9 +151,9 @@ function BookConsultationContent() {
 
         {/* Main Content Grid */}
         <div className="grid md:grid-cols-2 gap-8 mb-12">
-          {/* Consultation Options */}
+          {/* Consultation Option */}
           <div className="space-y-6">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">Choose Your Consultation</h2>
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">Your Consultation Package</h2>
             
             {consultationOptions.map((option) => (
               <div 
@@ -216,16 +200,9 @@ function BookConsultationContent() {
                     ))}
                   </ul>
                   
-                  <button
-                    onClick={() => setSelectedDuration(option.duration)}
-                    className={`w-full py-3 px-6 rounded-lg font-semibold transition-all ${
-                      selectedDuration === option.duration
-                        ? 'bg-blue-600 text-white'
-                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                    }`}
-                  >
-                    {selectedDuration === option.duration ? 'Selected' : 'Select This Option'}
-                  </button>
+                  <div className="w-full py-3 px-6 rounded-lg font-semibold bg-blue-600 text-white text-center">
+                    ✓ Your Selected Package
+                  </div>
                 </div>
               </div>
             ))}
