@@ -1,7 +1,7 @@
 // app/industries/page.tsx
 // Fixed version using createClient directly
 
-import { Metadata } from 'next'
+import { generateMetadata, pageMetadata } from '@/lib/metadata'
 import Link from 'next/link'
 import { createClient } from '@sanity/client'
 import { groq } from 'next-sanity'
@@ -41,10 +41,12 @@ const industriesQuery = groq`*[_type == "industry" || _type == "industryPage"] |
   statistics
 }`
 
-export const metadata: Metadata = {
-  title: 'Industries for Investment in Puglia | Invest in Puglia',
-  description: 'Explore investment opportunities across key industries in Puglia: Tourism, Agriculture, Aerospace, Renewable Energy, Manufacturing, and more.',
-}
+export const metadata = generateMetadata({
+  title: pageMetadata.industries.title,
+  description: pageMetadata.industries.description,
+  keywords: pageMetadata.industries.keywords,
+  path: '/industries',
+})
 
 export default async function IndustriesPage() {
   const industries = await client.fetch<Industry[]>(industriesQuery)

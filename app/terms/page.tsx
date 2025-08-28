@@ -1,31 +1,13 @@
 ﻿// PATH: app/terms/page.tsx
-import { Metadata } from 'next'
+import { generateMetadata, pageMetadata } from '@/lib/metadata'
 import Icon from '@/lib/iconMappings'
 
-export const metadata: Metadata = {
-  title: 'Terms of Service | InvestInPuglia - Investment Advisory Agreement',
-  description: 'Read our terms of service for investment advisory and consultancy services in Puglia, Italy. Clear terms for property investment and business development services.',
-  keywords: 'terms of service, investment advisory terms, consultancy agreement, InvestInPuglia terms, service agreement Italy',
-  openGraph: {
-    title: 'Terms of Service - InvestInPuglia',
-    description: 'Terms and conditions for our investment advisory and consultancy services in Puglia, Italy.',
-    type: 'website',
-    locale: 'en_US',
-    alternateLocale: 'it_IT',
-    siteName: 'InvestInPuglia',
-  },
-  alternates: {
-    canonical: 'https://investinpuglia.eu/terms'
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-    },
-  },
-}
+export const metadata = generateMetadata({
+  title: pageMetadata.terms.title,
+  description: pageMetadata.terms.description,
+  keywords: pageMetadata.terms.keywords,
+  path: '/terms',
+})
 
 export default function TermsOfServicePage() {
   return (

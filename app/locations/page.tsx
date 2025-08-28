@@ -1,5 +1,5 @@
 ﻿// app/locations/page.tsx
-import { Metadata } from 'next'
+import { generateMetadata, pageMetadata } from '@/lib/metadata'
 import Link from 'next/link'
 import { createClient } from '@sanity/client'
 import { groq } from 'next-sanity'
@@ -29,10 +29,12 @@ const locationsQuery = groq`*[_type == "locationPage"] | order(city asc) {
   metaDescription
 }`
 
-export const metadata: Metadata = {
-  title: 'Investment Locations in Puglia | Invest in Puglia',
-  description: 'Explore prime investment locations across Puglia with up to 55% grants.',
-}
+export const metadata = generateMetadata({
+  title: pageMetadata.locations.title,
+  description: pageMetadata.locations.description,
+  keywords: pageMetadata.locations.keywords,
+  path: '/locations',
+})
 
 export default async function LocationsPage() {
   const locations = await client.fetch<Location[]>(locationsQuery)

@@ -1,41 +1,11 @@
-import { Metadata } from 'next'
+import { generateMetadata, pageMetadata } from '@/lib/metadata'
 
-export const metadata: Metadata = {
-  title: 'Investment Tools & Mini PIA Calculators | Grant Analysis Tools Puglia',
-  description: 'Free Mini PIA grant calculators and investment analysis tools. InvestiScope Classic & Light calculators for detailed grant projections. Professional ROI analysis for Puglia investments.',
-  keywords: [
-    'mini PIA calculator',
-    'investment calculator puglia',
-    'grant calculator italy',
-    'ROI calculator puglia',
-    'investiscope classic',
-    'investiscope light',
-    'PIA grant analysis tools',
-    'property investment calculator',
-    'EU grant calculator',
-    'puglia investment analysis'
-  ],
-  openGraph: {
-    title: 'Mini PIA Grant Calculators & Investment Analysis Tools | InvestInPuglia',
-    description: 'Free professional-grade calculators for Mini PIA grants and Puglia property investments. Instant ROI analysis and grant projections.',
-    type: 'website',
-    locale: 'en_US',
-    url: 'https://investinpuglia.eu/tools',
-    siteName: 'InvestInPuglia',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Investment Tools & Calculators | InvestInPuglia',
-    description: 'Free Mini PIA grant calculators. Professional investment analysis tools for Puglia properties.',
-  },
-  alternates: {
-    canonical: 'https://investinpuglia.eu/tools'
-  },
-  robots: {
-    index: true,
-    follow: true,
-  }
-}
+export const metadata = generateMetadata({
+  title: pageMetadata.tools.title,
+  description: pageMetadata.tools.description,
+  keywords: pageMetadata.tools.keywords,
+  path: '/tools',
+})
 
 export default function ToolsPage() {
   return (

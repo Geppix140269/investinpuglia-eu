@@ -1,34 +1,15 @@
-﻿import { Metadata } from 'next'
+﻿import { generateMetadata, pageMetadata } from '@/lib/metadata'
 import Icon from '@/lib/iconMappings'
 import WhyPuglia from '@/components/sections/WhyPuglia'
 import GrantInstitutions from '@/components/sections/GrantInstitutions'
 import SuccessStories from '@/components/sections/OurCommitment'
 
-export const metadata: Metadata = {
-  title: 'About InvestInPuglia | Property & Investment Advisory in Puglia, Italy',
-  description: 'Learn about InvestInPuglia, your trusted partner for property investment and business development in Puglia. Expert advisory services for international investors since 2024.',
-  keywords: 'Puglia investment advisor, Italian property consultant, business development Puglia, investment management Italy, real estate advisory Puglia',
-  openGraph: {
-    title: 'About InvestInPuglia - Your Investment Partner in Southern Italy',
-    description: 'Discover how InvestInPuglia helps international investors navigate property and business opportunities in Puglia with expert local knowledge and comprehensive advisory services.',
-    type: 'website',
-    locale: 'en_US',
-    url: 'https://investinpuglia.eu/about',
-    siteName: 'InvestInPuglia',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'About InvestInPuglia | Investment Advisory',
-    description: 'Expert investment advisory services for property and business opportunities in Puglia, Italy.',
-  },
-  alternates: {
-    canonical: 'https://investinpuglia.eu/about'
-  },
-  robots: {
-    index: true,
-    follow: true,
-  }
-}
+export const metadata = generateMetadata({
+  title: pageMetadata.about.title,
+  description: pageMetadata.about.description,
+  keywords: pageMetadata.about.keywords,
+  path: '/about',
+})
 
 export default function AboutPage() {
   return (

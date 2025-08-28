@@ -1,6 +1,12 @@
-'use client'
-
+import { generateMetadata, pageMetadata } from '@/lib/metadata'
 import PropertyInvestmentTimeline from '@/components/PropertyInvestmentTimeline'
+
+export const metadata = generateMetadata({
+  title: pageMetadata.investmentProcess.title,
+  description: pageMetadata.investmentProcess.description,
+  keywords: pageMetadata.investmentProcess.keywords,
+  path: '/investment-process',
+})
 
 
 export default function InvestmentProcessPage() {

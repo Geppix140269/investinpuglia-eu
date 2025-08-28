@@ -1,11 +1,13 @@
 ﻿// PATH: app/cookies/page.tsx
-import { Metadata } from 'next'
+import { generateMetadata, pageMetadata } from '@/lib/metadata'
 import Icon from '@/lib/iconMappings'
 
-export const metadata: Metadata = {
-  title: 'Cookie Policy | InvestInPuglia',
-  description: 'Learn about how InvestInPuglia uses cookies and similar technologies.',
-}
+export const metadata = generateMetadata({
+  title: pageMetadata.cookies.title,
+  description: pageMetadata.cookies.description,
+  keywords: pageMetadata.cookies.keywords,
+  path: '/cookies',
+})
 
 // Force dynamic rendering to avoid static generation timeout
 export const dynamic = 'force-dynamic'

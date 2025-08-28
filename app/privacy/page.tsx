@@ -1,31 +1,13 @@
 ﻿// PATH: app/privacy/page.tsx
-import { Metadata } from 'next'
+import { generateMetadata, pageMetadata } from '@/lib/metadata'
 import Icon from '@/lib/iconMappings'
 
-export const metadata: Metadata = {
-  title: 'Privacy Policy | InvestInPuglia - Data Protection & GDPR Compliance',
-  description: 'Read our comprehensive privacy policy. Learn how InvestInPuglia protects your personal data, ensures GDPR compliance, and maintains the highest standards of data security.',
-  keywords: 'privacy policy, GDPR compliance, data protection, InvestInPuglia privacy, personal data security, Italian privacy law',
-  openGraph: {
-    title: 'Privacy Policy - InvestInPuglia',
-    description: 'Our commitment to protecting your privacy and personal data in compliance with GDPR and Italian data protection laws.',
-    type: 'website',
-    locale: 'en_US',
-    alternateLocale: 'it_IT',
-    siteName: 'InvestInPuglia',
-  },
-  alternates: {
-    canonical: 'https://investinpuglia.eu/privacy'
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-    },
-  },
-}
+export const metadata = generateMetadata({
+  title: pageMetadata.privacy.title,
+  description: pageMetadata.privacy.description,
+  keywords: pageMetadata.privacy.keywords,
+  path: '/privacy',
+})
 
 export default function PrivacyPolicyPage() {
   return (

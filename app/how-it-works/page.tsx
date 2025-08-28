@@ -1,32 +1,13 @@
 // Path: app/how-it-works/page.tsx
-import type { Metadata } from 'next'
+import { generateMetadata, pageMetadata } from '@/lib/metadata'
 import Icon from '@/lib/iconMappings'
 
-export const metadata: Metadata = {
-  title: 'How It Works - Investment Process | InvestInPuglia',
-  description: 'Discover our step-by-step investment process in Puglia. From initial consultation to property acquisition and ongoing management.',
-  keywords: 'investment process, how to invest, Puglia property investment, investment steps, property consultation',
-  openGraph: {
-    title: 'How Our Investment Process Works | InvestInPuglia',
-    description: 'Simple, transparent process for investing in Puglia properties and businesses.',
-    type: 'website',
-    locale: 'en_US',
-    url: 'https://investinpuglia.eu/how-it-works',
-    siteName: 'InvestInPuglia',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'How It Works | InvestInPuglia',
-    description: 'Your journey to successful investment in Puglia starts here.',
-  },
-  alternates: {
-    canonical: 'https://investinpuglia.eu/how-it-works'
-  },
-  robots: {
-    index: true,
-    follow: true,
-  }
-}
+export const metadata = generateMetadata({
+  title: pageMetadata.howItWorks.title,
+  description: pageMetadata.howItWorks.description,
+  keywords: pageMetadata.howItWorks.keywords,
+  path: '/how-it-works',
+})
 
 export default function HowItWorksPage() {
   return (

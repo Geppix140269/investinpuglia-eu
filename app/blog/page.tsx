@@ -1,8 +1,16 @@
+import { generateMetadata, pageMetadata } from '@/lib/metadata'
 import { sanity } from '@/lib/sanity'
 import { getAllPosts } from '@/lib/queries'
 import { groq } from 'next-sanity'
 import Link from 'next/link'
 import Image from 'next/image'
+
+export const metadata = generateMetadata({
+  title: pageMetadata.blog.title,
+  description: pageMetadata.blog.description,
+  keywords: pageMetadata.blog.keywords,
+  path: '/blog',
+})
 
 const query = groq`
   *[_type == "post"] | order(publishedAt desc) {
