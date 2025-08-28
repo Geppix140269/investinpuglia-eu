@@ -27,7 +27,7 @@ export interface EmailEvent {
     deviceType?: 'desktop' | 'mobile' | 'tablet';
     location?: string;
     conversionValue?: number;
-    conversionType?: 'consultation' | 'property_inquiry' | 'download' | 'purchase';
+    conversionType?: 'consultation' | 'property_inquiry' | 'download' | 'purchase' | 'contract_signed' | 'payment_received';
   };
 }
 
