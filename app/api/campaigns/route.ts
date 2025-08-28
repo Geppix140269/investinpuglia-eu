@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getAllScheduledCampaigns, scheduleOneTimeCampaign } from '@/lib/email-campaigns/scheduler';
 import { getSegmentInvestors } from '@/lib/email-campaigns/segmentation';
 import { trackEmailEvent } from '@/lib/email-campaigns/analytics';
+import { Timestamp } from 'firebase/firestore';
 
 export async function GET(request: NextRequest) {
   try {
@@ -87,7 +88,7 @@ export async function POST(request: NextRequest) {
       targetSegments: targetSegments || [],
       excludeSegments,
       recipientCount,
-      scheduledAt: new Date(scheduledAt),
+      scheduledAt: Timestamp.fromDate(new Date(scheduledAt)),
       timezone: timezone || 'Europe/Rome',
       sendSettings: {
         respectUnsubscribe: true,
