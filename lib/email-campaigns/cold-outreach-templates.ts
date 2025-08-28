@@ -2,8 +2,8 @@ export const coldOutreachTemplates = [
   {
     id: 'introduction-mini-pia',
     name: 'Introduction - Mini PIA Grant Opportunity',
-    subject: '🎉 50% OFF Consultation + Access 50% EU Grant Funding for Your Italian Investment',
-    preheader: '💰 Limited Time: Save 50% with code MINIPIA50 - First 50 bookings only!',
+    subject: '🎁 FREE 30-Min Consultation + Access 50% EU Grant Funding for Your Italian Investment',
+    preheader: '💚 Exclusive Offer: FREE consultation with code MINIPIA50 - First 50 recipients only!',
     html: `
 <!DOCTYPE html>
 <html>
@@ -85,29 +85,37 @@ export const coldOutreachTemplates = [
         </p>
         
         <!-- SPECIAL OFFER BANNER -->
-        <div style="background: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%); border-radius: 8px; padding: 15px; margin: 15px 0; animation: pulse 2s infinite;">
-          <p style="margin: 0; color: white; font-size: 18px; font-weight: bold;">
-            🎉 LIMITED TIME: 50% OFF First 50 Bookings! 🎉
+        <div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-radius: 8px; padding: 20px; margin: 15px 0; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+          <p style="margin: 0; color: white; font-size: 22px; font-weight: bold;">
+            🎁 EXCLUSIVE: FREE 30-Minute Consultation! 🎁
           </p>
-          <p style="margin: 5px 0 0 0; color: #fff9e6; font-size: 14px;">
-            Use code: <span style="background: rgba(255,255,255,0.3); padding: 2px 8px; border-radius: 4px; font-weight: bold;">MINIPIA50</span>
+          <p style="margin: 10px 0 0 0; color: #f0fdf4; font-size: 16px;">
+            For email recipients ONLY with code: <span style="background: rgba(255,255,255,0.9); color: #059669; padding: 3px 12px; border-radius: 4px; font-weight: bold;">MINIPIA50</span>
+          </p>
+          <p style="margin: 6px 0 0 0; color: #d1fae5; font-size: 14px;">
+            Regular price: €60 → Your price: €0 (100% OFF!)
           </p>
         </div>
         
-        <p style="margin: 0 0 10px 0;">
-          Professional consultation with Giuseppe Funaro<br>
-          30+ years of grant expertise • 95% success rate
+        <p style="margin: 0 0 10px 0; font-size: 15px;">
+          <strong>30-Minute Professional Consultation</strong> with Giuseppe Funaro<br>
+          <span style="color: #6b7280; font-size: 14px;">30+ years of grant expertise • 95% success rate</span>
         </p>
-        <div style="background: white; border-radius: 6px; padding: 15px; margin: 15px 0;">
-          <p style="margin: 5px 0; color: #4b5563;">
-            <strong>Investment in Expert Guidance:</strong><br>
-            <span style="text-decoration: line-through; color: #9ca3af;">30 minutes: €60 | 1 hour: €100</span><br>
-            <span style="color: #ef4444; font-size: 18px; font-weight: bold;">
-              With MINIPIA50: €30 | €50
-            </span>
+        <div style="background: white; border-radius: 6px; padding: 15px; margin: 15px 0; border: 2px solid #10b981;">
+          <p style="margin: 5px 0; color: #064e3b; font-size: 16px; font-weight: bold;">
+            ✨ This Consultation is FREE for You! ✨
           </p>
-          <p style="margin: 10px 0 5px 0; font-size: 14px; color: #f59e0b; font-weight: bold;">
-            ⏰ Only 37 discounted spots remaining!
+          <p style="margin: 8px 0 5px 0; color: #4b5563;">
+            What you'll receive in 30 minutes:
+          </p>
+          <ul style="margin: 8px 0; padding-left: 20px; color: #374151; font-size: 14px;">
+            <li>Grant eligibility assessment (worth €500+)</li>
+            <li>Personalized investment strategy</li>
+            <li>Q&A on Mini PIA grants</li>
+            <li>Clear next steps roadmap</li>
+          </ul>
+          <p style="margin: 10px 0 5px 0; font-size: 14px; color: #dc2626; font-weight: bold;">
+            ⏰ First 50 recipients only - Limited availability!
           </p>
         </div>
         <a href="https://investinpuglia.eu/book-consultation?source=email&campaign=introduction&coupon=MINIPIA50" 

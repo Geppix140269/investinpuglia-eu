@@ -8,8 +8,8 @@ import Link from 'next/link';
 export default function ConsultationSuccessPage() {
   const searchParams = useSearchParams();
   const [countdown, setCountdown] = useState(5);
-  const duration = searchParams.get('duration') || '30';
-  const calendlyUrl = searchParams.get('calendly') || 'https://calendly.com/investinpuglia/30min';
+  const duration = searchParams?.get('duration') || '30';
+  const calendlyUrl = searchParams?.get('calendly') || 'https://calendly.com/investinpuglia/30min';
   
   useEffect(() => {
     // Auto-redirect to Calendly after countdown
