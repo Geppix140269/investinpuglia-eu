@@ -7,7 +7,7 @@ import {
   CheckCircle, Users, Building2, Award, Download,
   Phone, Mail, ChevronRight, Star
 } from 'lucide-react';
-import HeroVisual from '@/components/HeroVisual';
+import HeroVisual from '@/components/sections/HeroVisual';
 
 // Project data (in production, this would come from a database)
 const projectsData: Record<string, any> = {

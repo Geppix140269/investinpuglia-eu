@@ -238,6 +238,21 @@ export async function addTagToInvestor(investorId: string, tag: string): Promise
   }
 }
 
+// Update investor name
+export async function updateInvestorName(investorId: string, name: string): Promise<void> {
+  try {
+    const docRef = doc(db, COLLECTION_NAME, investorId);
+    await updateDoc(docRef, {
+      name: name,
+      updatedAt: serverTimestamp()
+    });
+    console.log(`Updated name for investor ${investorId}: ${name}`);
+  } catch (error) {
+    console.error('Error updating investor name:', error);
+    throw error;
+  }
+}
+
 // Remove tag from investor
 export async function removeTagFromInvestor(investorId: string, tag: string): Promise<void> {
   try {

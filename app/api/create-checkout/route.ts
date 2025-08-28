@@ -8,7 +8,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { duration = '30' } = body;
+    const { duration = '30', couponCode } = body;
 
     // Define consultation details
     const consultations = {
@@ -31,8 +31,8 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Invalid duration' }, { status: 400 });
     }
 
-    // Create Stripe checkout session
-    const session = await stripe.checkout.sessions.create({
+    // Build checkout session options
+    const sessionOptions: any = {
       payment_method_types: ['card'],
       line_items: [
         {
@@ -82,7 +82,17 @@ export async function POST(request: NextRequest) {
       
       // Customer email collection
       customer_email: body.email || undefined,
-    });
+    };
+
+    // Add discount if coupon code provided
+    if (couponCode && couponCode === 'MINIPIA50') {
+      sessionOptions.discounts = [{
+        coupon: 'MINIPIA50' // This must match the coupon ID in Stripe
+      }];
+    }
+
+    // Create the checkout session
+    const session = await stripe.checkout.sessions.create(sessionOptions);
 
     return NextResponse.json({ 
       checkoutUrl: session.url,

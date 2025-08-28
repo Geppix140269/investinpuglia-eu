@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
 import { coldOutreachTemplates } from '@/lib/email-campaigns/cold-outreach-templates';
+import { getPersonalizedGreeting } from '@/lib/email-utils/name-extractor';
 
 // Initialize Resend with your API key
 const resend = new Resend(process.env.RESEND_API_KEY);

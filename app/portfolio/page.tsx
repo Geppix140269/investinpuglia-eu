@@ -8,7 +8,7 @@ import {
   Euro, CheckCircle, Star, ArrowRight, Filter, Search,
   Briefcase, Hotel, Ship, Home, Factory, ChevronRight
 } from 'lucide-react';
-import HeroVisual from '@/components/HeroVisual';
+import HeroVisual from '@/components/sections/HeroVisual';
 
 const projects = [
   {

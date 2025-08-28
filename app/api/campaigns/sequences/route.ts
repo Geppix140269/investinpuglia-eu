@@ -141,11 +141,11 @@ export async function POST(request: NextRequest) {
       };
     }
     
-    const sequenceId = await createEmailSequence(sequenceConfig);
+    const newSequenceId = await createEmailSequence(sequenceConfig);
     
     return NextResponse.json({
       success: true,
-      sequenceId,
+      sequenceId: newSequenceId,
       message: 'Email sequence created successfully'
     });
     
