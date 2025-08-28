@@ -12,10 +12,37 @@ export async function POST(request: NextRequest) {
     const { 
       templateId = 'introduction-mini-pia',
       recipientEmail = 'g.funaro@1402celsius.com',
-      recipientName = 'Giuseppe'
+      recipientName = 'Giuseppe',
+      to,
+      subject,
+      html,
+      test = false,
+      campaignId,
+      tags
     } = body;
 
-    // Find the template
+    // Handle direct email sending (for campaign)
+    if (to && subject && html) {
+      // Direct send with provided content
+      const finalHtml = html.replace(/\[UnsubscribeLink\]/g, 
+        `https://investinpuglia.eu/unsubscribe?email=${encodeURIComponent(to)}`);
+      
+      const data = await resend.emails.send({
+        from: test ? 'InvestInPuglia Test <test@investinpuglia.eu>' : 'Giuseppe Funaro <giuseppe@investinpuglia.eu>',
+        to: test ? 'g.funaro@1402celsius.com' : to, // Send tests to Giuseppe
+        subject: test ? `[TEST] ${subject}` : subject,
+        html: finalHtml,
+        tags: tags ? [...tags, campaignId || 'manual'] : [campaignId || 'manual']
+      });
+      
+      return NextResponse.json({
+        success: true,
+        message: test ? 'Test email sent to Giuseppe' : 'Email sent successfully',
+        data: data
+      });
+    }
+    
+    // Template-based sending (original functionality)
     const template = coldOutreachTemplates.find(t => t.id === templateId);
     if (!template) {
       return NextResponse.json(
@@ -32,7 +59,7 @@ export async function POST(request: NextRequest) {
     
     // Send email using Resend
     const data = await resend.emails.send({
-      from: 'InvestInPuglia <invest@investinpuglia.eu>', // You need to verify this domain in Resend
+      from: 'Giuseppe Funaro <giuseppe@investinpuglia.eu>',
       to: recipientEmail,
       subject: template.subject.replace(/\[Name\]/g, recipientName),
       html: personalizedHtml,
