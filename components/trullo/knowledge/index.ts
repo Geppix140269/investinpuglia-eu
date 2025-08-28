@@ -16,6 +16,7 @@ import { trustBuildingStrategy } from './strategies/trust-building';
 import { professionalRedirectStrategy } from './strategies/professional-redirect';
 import { salesExcellenceStrategy } from './strategies/sales-excellence';
 import { conversionOptimizationStrategy } from './strategies/conversion-optimization';
+import { balancedEngagementStrategy } from './strategies/balanced-engagement';
 import { euGrantsKnowledge } from './expertise/eu-grants';
 
 // Import the CORRECT system prompts
@@ -38,31 +39,32 @@ export class TrulloKnowledgeBase {
   constructor() {
     // Register ALL modules - HIGH PRIORITY FIRST
     this.registerModules([
-      // ULTRA HIGH PRIORITY - Sales & Conversion
-      salesExcellenceStrategy, // TOP PRIORITY - We're here to SELL!
-      conversionOptimizationStrategy, // Convert every interaction
-      investiScopeKnowledge, // Our main tool - the calculator!
+      // HIGHEST PRIORITY - Balanced approach
+      balancedEngagementStrategy, // Override pushy tactics - be helpful first!
       
-      // High priority strategies
-      professionalRedirectStrategy,
-      
-      // Core
+      // Core personality and knowledge
       personalityKnowledge,
       expertRoutingKnowledge,
-      
-      // Capabilities
-      emailAutomationKnowledge,
-      leadStorageKnowledge,
-      userRegistrationKnowledge,
-      
-      // Expertise
+      investiScopeKnowledge, // Our calculator - mentioned naturally
       euGrantsKnowledge,
       
-      // Strategies
+      // Trust building before selling
+      trustBuildingStrategy,
+      professionalRedirectStrategy,
+      
+      // Capabilities (available but not pushed)
+      emailAutomationKnowledge,
+      leadStorageKnowledge, 
+      userRegistrationKnowledge,
+      
+      // Lower priority sales tactics (softened by balanced engagement)
+      leadCaptureStrategy,
+      conversionOptimizationStrategy,
+      salesExcellenceStrategy, // Still there but overridden by balanced approach
+      
+      // UI strategies
       authRequirementKnowledge,
       ctaButtonsKnowledge,
-      leadCaptureStrategy,
-      trustBuildingStrategy,
     ]);
 
     // Load Sanity modules on init

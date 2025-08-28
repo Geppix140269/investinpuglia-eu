@@ -96,7 +96,7 @@ export const coldOutreachTemplates = [
             💡 Most clients recover this fee 100x through grant savings
           </p>
         </div>
-        <a href="https://calendly.com/investinpuglia/30min" 
+        <a href="https://investinpuglia.eu/book-consultation?source=email&campaign=introduction" 
            style="display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
                   color: white; padding: 15px 30px; text-decoration: none; border-radius: 30px; 
                   font-weight: bold; font-size: 16px;">
@@ -233,7 +233,7 @@ export const coldOutreachTemplates = [
           Book a free 30-minute consultation with Giuseppe Funaro<br>
           30+ years of grant expertise at your service
         </p>
-        <a href="https://calendly.com/investinpuglia/30min" 
+        <a href="https://investinpuglia.eu/book-consultation?source=email&campaign=introduction" 
            style="display: inline-block; background: white; color: #667eea; padding: 15px 40px; 
                   text-decoration: none; border-radius: 30px; font-weight: bold; font-size: 16px;">
           Book Free Consultation →
@@ -388,7 +388,7 @@ export const coldOutreachTemplates = [
           Free 30-minute consultation with Giuseppe Funaro<br>
           Founder with 30+ years of EU grant expertise
         </p>
-        <a href="https://calendly.com/investinpuglia/30min" 
+        <a href="https://investinpuglia.eu/book-consultation?source=email&campaign=introduction" 
            style="display: inline-block; background: white; color: #667eea; padding: 15px 40px; 
                   text-decoration: none; border-radius: 30px; font-weight: bold; font-size: 16px;">
           Book Your Free Call →
@@ -541,7 +541,7 @@ export const coldOutreachTemplates = [
           </li>
           <li style="margin: 10px 0;">
             <strong>Book a free consultation</strong> with Giuseppe<br>
-            <a href="https://calendly.com/investinpuglia/30min" style="color: #7c3aed;">Schedule call →</a>
+            <a href="https://investinpuglia.eu/book-consultation?source=email&campaign=introduction" style="color: #7c3aed;">Schedule call →</a>
           </li>
         </ol>
       </div>
@@ -551,7 +551,7 @@ export const coldOutreachTemplates = [
         <p style="color: #e0e7ff; margin: 0 0 20px 0;">
           30-minute free consultation • No obligation • Expert guidance
         </p>
-        <a href="https://calendly.com/investinpuglia/30min" 
+        <a href="https://investinpuglia.eu/book-consultation?source=email&campaign=introduction" 
            style="display: inline-block; background: white; color: #667eea; padding: 15px 40px; 
                   text-decoration: none; border-radius: 30px; font-weight: bold; font-size: 16px;">
           Book Free Consultation →
