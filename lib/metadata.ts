@@ -105,13 +105,13 @@ export const pageMetadata = {
     keywords: ['PIA grants', 'Mini PIA Puglia', 'EU funding Italy', 'investment grants', 'Puglia opportunities'],
   },
   about: {
-    title: 'About Giuseppe De Pasquale - 30 Years PIA Grant Expertise | InvestInPuglia',
-    description: 'Meet Giuseppe De Pasquale, leading expert in PIA/Mini PIA grants with 30 years experience. Helped secure €9.9B in investments for Puglia in 2024.',
-    keywords: ['Giuseppe De Pasquale', 'PIA expert', 'grant consultant Italy', 'Puglia investment advisor'],
+    title: 'About Us - PIA Grant Experts & Investment Advisors | InvestInPuglia',
+    description: 'Meet our team of PIA/Mini PIA grant experts. Years of experience helping international investors access EU funding for Puglia investments.',
+    keywords: ['PIA experts', 'grant consultants Italy', 'Puglia investment advisors', 'EU funding specialists'],
   },
   services: {
     title: 'PIA Grant Advisory Services - Application to Approval | InvestInPuglia',
-    description: 'Complete PIA/Mini PIA grant advisory: eligibility assessment, application preparation, project management. 95% approval success rate.',
+    description: 'Complete PIA/Mini PIA grant advisory: eligibility assessment, application preparation, project management. Professional support throughout.',
     keywords: ['PIA grant services', 'grant application Italy', 'EU funding consultant', 'investment advisory Puglia'],
   },
   howItWorks: {
