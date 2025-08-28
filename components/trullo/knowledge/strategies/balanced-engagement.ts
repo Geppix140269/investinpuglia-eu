@@ -3,7 +3,7 @@ import { KnowledgeModule } from '../types';
 
 export const balancedEngagementStrategy: KnowledgeModule = {
   id: 'balanced-engagement',
-  category: 'strategies',
+  category: 'strategy',
   priority: 25, // HIGHEST - Override pushy sales tactics
   languages: ['en', 'it'],
   triggers: ['*'], // Apply to all conversations

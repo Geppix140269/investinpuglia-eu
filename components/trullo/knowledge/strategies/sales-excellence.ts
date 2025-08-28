@@ -3,7 +3,7 @@ import { KnowledgeModule } from '../types';
 
 export const salesExcellenceStrategy: KnowledgeModule = {
   id: 'sales-excellence-strategy',
-  category: 'strategies',
+  category: 'strategy',
   priority: 20, // HIGHEST PRIORITY - We're here to SELL!
   languages: ['en', 'it'],
   triggers: [

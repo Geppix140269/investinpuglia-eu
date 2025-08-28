@@ -3,7 +3,7 @@ import { KnowledgeModule } from '../types';
 
 export const conversionOptimizationStrategy: KnowledgeModule = {
   id: 'conversion-optimization',
-  category: 'strategies',
+  category: 'strategy',
   priority: 18, // Very high priority
   languages: ['en', 'it'],
   triggers: [
