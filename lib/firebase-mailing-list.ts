@@ -28,6 +28,11 @@ export interface InvestorContact {
   lastEmailSent?: any;
   emailsSent?: number;
   notes?: string;
+  // Name review fields
+  extractedName?: string;
+  confidence?: 'high' | 'medium' | 'low' | 'none';
+  isReviewed?: boolean;
+  lastModified?: any;
 }
 
 const COLLECTION_NAME = 'investor_mailing_list';
@@ -249,6 +254,69 @@ export async function updateInvestorName(investorId: string, name: string): Prom
     console.log(`Updated name for investor ${investorId}: ${name}`);
   } catch (error) {
     console.error('Error updating investor name:', error);
+    throw error;
+  }
+}
+
+// Name extraction and confidence utilities
+export function extractNameFromEmail(email: string): string {
+  const localPart = email.split('@')[0];
+  
+  // Remove common prefixes/suffixes
+  let cleanName = localPart
+    .replace(/^(info|admin|contact|hello|hi|support|sales|welcome|newsletter|no-reply|noreply)/i, '')
+    .replace(/\d+/g, '') // Remove numbers
+    .replace(/[._-]/g, ' ') // Replace separators with spaces
+    .trim();
+  
+  // Capitalize first letter of each word
+  if (cleanName) {
+    return cleanName
+      .split(' ')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join(' ');
+  }
+  
+  return '';
+}
+
+export function getNameConfidence(name: string): 'high' | 'medium' | 'low' | 'none' {
+  if (!name) return 'none';
+  
+  // High confidence: Looks like a real name
+  if (/^[A-Z][a-z]+ [A-Z][a-z]+$/.test(name)) return 'high';
+  if (/^[A-Z][a-z]+$/.test(name) && name.length > 2) return 'high';
+  
+  // Medium confidence: Could be a name
+  if (/^[A-Za-z]+ [A-Za-z]+$/.test(name)) return 'medium';
+  if (/^[A-Za-z]+$/.test(name) && name.length > 2) return 'medium';
+  
+  // Low confidence: Uncertain
+  if (name.length > 1) return 'low';
+  
+  return 'none';
+}
+
+// Update investor with name review data
+export async function updateInvestorWithNameReview(
+  investorId: string,
+  updates: {
+    name?: string;
+    extractedName?: string;
+    confidence?: 'high' | 'medium' | 'low' | 'none';
+    isReviewed?: boolean;
+  }
+): Promise<void> {
+  try {
+    const docRef = doc(db, COLLECTION_NAME, investorId);
+    await updateDoc(docRef, {
+      ...updates,
+      lastModified: serverTimestamp(),
+      updatedAt: serverTimestamp()
+    });
+    console.log(`Updated name review data for investor ${investorId}`);
+  } catch (error) {
+    console.error('Error updating investor name review data:', error);
     throw error;
   }
 }

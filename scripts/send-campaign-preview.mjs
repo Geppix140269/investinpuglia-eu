@@ -15,195 +15,205 @@ const miniPIAIntroductionTemplate = `
 <body style="margin: 0; padding: 0; font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
   <div style="max-width: 600px; margin: 0 auto; background: #ffffff;">
     
-    <!-- Header -->
-    <div style="background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%); padding: 40px 30px; text-align: center;">
-      <h1 style="color: white; margin: 0; font-size: 28px; font-weight: 300; letter-spacing: 0.5px;">Access 50% Grant Funding for Your Italian Investment</h1>
-      <p style="color: #dbeafe; margin: 12px 0 0 0; font-size: 16px; font-weight: 300;">EU Mini PIA Grants | Regional Investment Program | Puglia, Italy</p>
+    <!-- Modern Gradient Header -->
+    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 60px 30px; text-align: center; position: relative; overflow: hidden;">
+      <div style="position: absolute; top: -50%; right: -10%; width: 300px; height: 300px; background: rgba(255,255,255,0.1); border-radius: 50%;"></div>
+      <div style="position: absolute; bottom: -30%; left: -5%; width: 200px; height: 200px; background: rgba(255,255,255,0.08); border-radius: 50%;"></div>
+      <h1 style="color: white; margin: 0; font-size: 36px; font-weight: 700; letter-spacing: -0.5px; text-shadow: 0 2px 4px rgba(0,0,0,0.1); position: relative; z-index: 1;">Transform Your Italian Dream Into Reality</h1>
+      <div style="width: 60px; height: 4px; background: #fbbf24; margin: 20px auto;"></div>
+      <p style="color: #f3e8ff; margin: 0; font-size: 18px; font-weight: 400; position: relative; z-index: 1;">Unlock 50% EU Grant Funding for Puglia Investments</p>
     </div>
     
     <!-- Body -->
-    <div style="padding: 30px;">
-      <p style="font-size: 16px; margin-bottom: 20px;">Dear [This will be personalized],</p>
+    <div style="padding: 40px 30px;">
+      <!-- Personalized Greeting Card -->
+      <div style="background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%); border-radius: 12px; padding: 20px; margin-bottom: 30px; border-left: 4px solid #764ba2;">
+        <p style="font-size: 18px; margin: 0; color: #581c87; font-weight: 500;">Dear [This will be personalized],</p>
+      </div>
       
-      <p style="font-size: 16px; margin-bottom: 20px;">
-        You may not know us yet, but we specialize in helping international investors access EU grants for properties in Puglia.
-      </p>
-      
-      <p style="font-size: 16px; margin-bottom: 20px;">
-        <strong>Who we are:</strong> InvestInPuglia is a specialized advisory firm with a team of technical and business experts 
-        who help international investors navigate Regional and EU grant opportunities for property investments in Puglia, Italy.
-      </p>
-      
-      <div style="background: #f0f9ff; border-left: 4px solid #3b82f6; padding: 20px; margin: 20px 0;">
-        <h2 style="color: #1e40af; margin: 0 0 10px 0; font-size: 20px;">The Mini PIA Grant Opportunity</h2>
-        <p style="margin: 10px 0;">
-          The Mini PIA is an Italian Regional grant program offering <strong>50% non-refundable funding</strong> 
-          for property investments in Puglia - from €30,000 to €2.75 million.
+      <!-- Modern Intro Section -->
+      <div style="text-align: center; margin-bottom: 40px;">
+        <h2 style="color: #1e293b; font-size: 28px; font-weight: 600; margin: 0 0 15px 0; line-height: 1.3;">
+          Your Gateway to Italian Investment Success
+        </h2>
+        <p style="font-size: 18px; color: #64748b; line-height: 1.6; margin: 0;">
+          We're InvestInPuglia — your specialized partner in unlocking<br>
+          exclusive EU grant opportunities for premium properties in Southern Italy.
         </p>
-        <ul style="margin: 10px 0;">
-          <li>Hotels, B&Bs, and tourist accommodations</li>
-          <li>Restaurants and hospitality businesses</li>
-          <li>Manufacturing and technology ventures</li>
-          <li>Historic property renovations (including Trulli)</li>
-        </ul>
-        <div style="background: #fef2f2; border-left: 3px solid #dc2626; padding: 12px 15px; margin: 15px 0;">
-          <p style="margin: 0; color: #7f1d1d; font-weight: 600; font-size: 14px;">
-            Important: Program Deadline 2027
+      </div>
+      
+      <!-- Dynamic Grant Opportunity Card -->
+      <div style="background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%); border-radius: 16px; padding: 30px; margin: 30px 0; box-shadow: 0 10px 40px rgba(0,0,0,0.08); border: 1px solid #e2e8f0;">
+        <div style="text-align: center; margin-bottom: 25px;">
+          <h2 style="color: #764ba2; margin: 0; font-size: 24px; font-weight: 700;">MINI PIA GRANT PROGRAM</h2>
+          <div style="display: inline-block; background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); color: white; padding: 8px 20px; border-radius: 20px; margin-top: 10px; font-weight: 600; font-size: 14px; text-transform: uppercase; letter-spacing: 1px;">
+            50% Non-Refundable Funding
+          </div>
+        </div>
+        
+        <div style="display: flex; justify-content: space-around; text-align: center; margin: 25px 0;">
+          <div>
+            <p style="color: #764ba2; font-size: 32px; font-weight: 700; margin: 0;">€30K</p>
+            <p style="color: #94a3b8; font-size: 14px; margin: 5px 0 0 0;">Minimum</p>
+          </div>
+          <div style="width: 1px; background: #e2e8f0;"></div>
+          <div>
+            <p style="color: #764ba2; font-size: 32px; font-weight: 700; margin: 0;">€2.75M</p>
+            <p style="color: #94a3b8; font-size: 14px; margin: 5px 0 0 0;">Maximum</p>
+          </div>
+        </div>
+        
+        <!-- Urgent Notice -->
+        <div style="background: linear-gradient(135deg, #fef3c7 0%, #fed7aa 100%); border-radius: 12px; padding: 15px; margin-top: 20px; text-align: center;">
+          <p style="margin: 0; color: #92400e; font-weight: 600; font-size: 16px;">
+            Application Window Closing Soon
           </p>
-          <p style="margin: 5px 0 0 0; color: #991b1b; font-size: 13px;">
-            Limited funds remaining. Applications are processed in order of submission.
+          <p style="margin: 5px 0 0 0; color: #78350f; font-size: 14px;">
+            2027 Deadline • First-Come, First-Served Basis
           </p>
         </div>
       </div>
       
-      <p style="font-size: 16px; margin-bottom: 20px;">
-        <strong>Why reach out now?</strong> The next application window closes soon, and preparation takes 4-6 weeks.
-      </p>
-      
-      <!-- What Mini PIA Can Fund -->
-      <div style="background: #f8fffe; border: 1px solid #e0e7e6; border-radius: 4px; padding: 25px; margin: 25px 0;">
-        <h3 style="color: #1e293b; margin: 0 0 20px 0; text-align: center; font-size: 20px; font-weight: 500; letter-spacing: 0.3px;">Types of Projects Mini PIA Can Fund</h3>
-        
-        <div style="background: white; border-radius: 6px; padding: 15px; margin-bottom: 12px;">
-          <h4 style="color: #1e40af; margin: 0 0 8px 0;">Tourism Accommodations</h4>
-          <ul style="margin: 5px 0; padding-left: 20px; color: #374151;">
-            <li>Hotels and B&Bs</li>
-            <li>Agriturismo and rural hospitality</li>
-            <li>Vacation rental properties</li>
-          </ul>
-        </div>
-        
-        <div style="background: white; border-radius: 6px; padding: 15px; margin-bottom: 12px;">
-          <h4 style="color: #1e40af; margin: 0 0 8px 0;">Historic Property Renovations</h4>
-          <ul style="margin: 5px 0; padding-left: 20px; color: #374151;">
-            <li>Masseria conversions</li>
-            <li>Trulli restoration projects</li>
-            <li>Historic palazzo renovations</li>
-          </ul>
-        </div>
-        
-        <div style="background: white; border-radius: 6px; padding: 15px;">
-          <h4 style="color: #1e40af; margin: 0 0 8px 0;">Technology & Innovation</h4>
-          <ul style="margin: 5px 0; padding-left: 20px; color: #374151;">
-            <li>Digital services companies</li>
-            <li>Tech startups</li>
-            <li>Innovation centers</li>
-          </ul>
-        </div>
-        
-        <p style="text-align: center; margin: 15px 0 5px 0; font-weight: bold; color: #065f46;">
-          Grants available from €30,000 to €2.75 million at 50% funding rate
+      <!-- Urgency Banner -->
+      <div style="background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%); border-radius: 12px; padding: 20px; margin: 30px 0; text-align: center;">
+        <p style="color: white; font-size: 18px; margin: 0; font-weight: 500;">
+          Application preparation takes 4-6 weeks — Start your journey today!
         </p>
       </div>
       
-      <div style="background: #fafafa; border-left: 3px solid #1e40af; padding: 20px; margin: 25px 0;">
-        <h3 style="color: #1e293b; margin: 0 0 15px 0; font-size: 18px; font-weight: 500;">Our Professional Services</h3>
-        <ul style="margin: 0; padding-left: 20px; color: #475569; line-height: 1.8;">
-          <li style="margin-bottom: 8px;"><strong>Expert Guidance:</strong> Specialized knowledge in EU and Regional grant applications</li>
-          <li style="margin-bottom: 8px;"><strong>Full Service:</strong> Complete application support from start to finish</li>
-          <li style="margin-bottom: 8px;"><strong>Due Diligence:</strong> Comprehensive property analysis and evaluation</li>
-          <li style="margin-bottom: 8px;"><strong>Network:</strong> Strong relationships with local authorities and professionals</li>
-          <li style="margin-bottom: 8px;"><strong>Digital Support:</strong> AI-powered assistant available 24/7</li>
-        </ul>
-      </div>
-      
-      <p style="font-size: 16px; margin-bottom: 20px;">
-        <strong>Resources for Your Due Diligence:</strong>
-      </p>
-      <ul style="margin-bottom: 20px; line-height: 1.8;">
-        <li><a href="https://investinpuglia.eu/tools" style="color: #1e40af; text-decoration: none; border-bottom: 1px solid #93c5fd;"><strong>InvestiScope Calculator</strong></a> - Calculate your grant eligibility instantly</li>
-        <li><a href="https://investinpuglia.eu" style="color: #1e40af; text-decoration: none; border-bottom: 1px solid #93c5fd;"><strong>Investment Assistant Portal</strong></a> - Get immediate answers to your questions</li>
-        <li><a href="https://investinpuglia.eu/portfolio" style="color: #1e40af; text-decoration: none; border-bottom: 1px solid #93c5fd;"><strong>View Our Portfolio</strong></a> - Over €50M in successful projects</li>
-      </ul>
-      
-      <div style="background: #f3f4f6; border-radius: 8px; padding: 20px; margin: 20px 0; text-align: center;">
-        <p style="font-size: 18px; margin: 0 0 15px 0; font-weight: bold;">
-          Ready to Secure Your Mini PIA Grant?
-        </p>
+      <!-- Modern Project Categories -->
+      <div style="margin: 40px 0;">
+        <h3 style="color: #1e293b; margin: 0 0 25px 0; text-align: center; font-size: 24px; font-weight: 600;">Investment Opportunities</h3>
         
-        <!-- SPECIAL OFFER BANNER -->
-        <div style="background: linear-gradient(135deg, #1e40af 0%, #312e81 100%); border-radius: 8px; padding: 25px; margin: 15px 0; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-          <p style="margin: 0; color: white; font-size: 22px; font-weight: 500; text-align: center; letter-spacing: 0.5px;">
-            EXCLUSIVE OFFER: COMPLIMENTARY 30-MINUTE CONSULTATION
-          </p>
-          <p style="margin: 12px 0 0 0; color: #dbeafe; font-size: 17px; text-align: center;">
-            Email Recipients Only - Use Code: <span style="background: white; color: #1e40af; padding: 5px 16px; border-radius: 6px; font-weight: 600; font-size: 18px; letter-spacing: 1px;">MINIPIA50</span>
-          </p>
-          <p style="margin: 10px 0 0 0; color: #bfdbfe; font-size: 15px; text-align: center;">
-            Standard Consultation Fee: €60 | Your Investment: €0
-          </p>
+        <div style="background: linear-gradient(135deg, #ddd6fe 0%, #c7d2fe 100%); border-radius: 12px; padding: 20px; margin-bottom: 15px; border-left: 4px solid #7c3aed;">
+          <h4 style="color: #581c87; margin: 0 0 10px 0; font-size: 18px; font-weight: 600;">TOURISM & HOSPITALITY</h4>
+          <div style="color: #475569; line-height: 1.8;">
+            Luxury Hotels • Boutique B&Bs • Agriturismo Estates • Vacation Rentals
+          </div>
         </div>
         
-        <p style="margin: 0 0 15px 0; font-size: 16px;">
-          <strong>30-Minute Professional Consultation</strong> with Giuseppe Funaro<br>
-          <span style="color: #6b7280;">Specialized expertise in Italian investment grants</span>
-        </p>
-        <div style="background: white; border-radius: 6px; padding: 20px; margin: 15px 0; border: 1px solid #e5e7eb;">
-          <p style="margin: 0 0 15px 0; color: #1e293b; font-size: 17px; font-weight: 500; text-align: center;">
-            Complimentary Professional Consultation
-          </p>
-          <p style="margin: 0 0 12px 0; color: #475569; text-align: center;">
-            Your 30-minute session will include:
-          </p>
-          <ul style="margin: 10px 0; padding-left: 30px; color: #374151; line-height: 1.8;">
-            <li>Comprehensive grant eligibility assessment</li>
-            <li>Personalized investment strategy development</li>
-            <li>Expert guidance on Mini PIA grant applications</li>
-            <li>Clear roadmap for your investment journey</li>
-          </ul>
-          <p style="margin: 15px 0 0 0; font-size: 14px; color: #dc2626; text-align: center; font-weight: 500;">
-            LIMITED AVAILABILITY - First 50 Recipients Only
-          </p>
+        <div style="background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%); border-radius: 12px; padding: 20px; margin-bottom: 15px; border-left: 4px solid #ec4899;">
+          <h4 style="color: #831843; margin: 0 0 10px 0; font-size: 18px; font-weight: 600;">HERITAGE PROPERTIES</h4>
+          <div style="color: #475569; line-height: 1.8;">
+            Historic Masseria • Iconic Trulli • Palazzo Restorations • Cultural Sites
+          </div>
+        </div>
+        
+        <div style="background: linear-gradient(135deg, #cffafe 0%, #a5f3fc 100%); border-radius: 12px; padding: 20px; margin-bottom: 15px; border-left: 4px solid #0891b2;">
+          <h4 style="color: #164e63; margin: 0 0 10px 0; font-size: 18px; font-weight: 600;">INNOVATION & TECH</h4>
+          <div style="color: #475569; line-height: 1.8;">
+            Digital Ventures • Tech Startups • Innovation Hubs • Smart Solutions
+          </div>
+        </div>
+      </div>
+      
+      <!-- Modern Services Grid -->
+      <div style="margin: 40px 0;">
+        <h3 style="color: #1e293b; margin: 0 0 25px 0; text-align: center; font-size: 24px; font-weight: 600;">Why Choose InvestInPuglia</h3>
+        <div style="display: grid; gap: 15px;">
+          <div style="background: white; border-radius: 12px; padding: 15px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); border-left: 3px solid #667eea;">
+            <strong style="color: #4c1d95;">Expert Navigation</strong>
+            <p style="margin: 5px 0 0 0; color: #64748b; font-size: 14px;">Specialized knowledge in EU grant applications</p>
+          </div>
+          <div style="background: white; border-radius: 12px; padding: 15px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); border-left: 3px solid #ec4899;">
+            <strong style="color: #831843;">End-to-End Support</strong>
+            <p style="margin: 5px 0 0 0; color: #64748b; font-size: 14px;">From property search to grant approval</p>
+          </div>
+          <div style="background: white; border-radius: 12px; padding: 15px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); border-left: 3px solid #0891b2;">
+            <strong style="color: #164e63;">AI-Powered Platform</strong>
+            <p style="margin: 5px 0 0 0; color: #64748b; font-size: 14px;">24/7 intelligent assistant and calculators</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Modern Resource Cards -->
+      <div style="margin: 40px 0;">
+        <h3 style="color: #1e293b; margin: 0 0 20px 0; text-align: center; font-size: 20px; font-weight: 600;">Start Your Research Today</h3>
+        <div style="background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%); border-radius: 12px; padding: 20px;">
+          <a href="https://investinpuglia.eu/tools" style="display: block; margin-bottom: 15px; text-decoration: none;">
+            <div style="background: white; border-radius: 8px; padding: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); transition: all 0.3s;">
+              <strong style="color: #667eea; font-size: 16px;">InvestiScope Calculator</strong>
+              <p style="margin: 5px 0 0 0; color: #64748b; font-size: 14px;">Calculate your grant eligibility in 60 seconds</p>
+            </div>
+          </a>
+          <a href="https://investinpuglia.eu" style="display: block; margin-bottom: 15px; text-decoration: none;">
+            <div style="background: white; border-radius: 8px; padding: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); transition: all 0.3s;">
+              <strong style="color: #ec4899; font-size: 16px;">AI Investment Assistant</strong>
+              <p style="margin: 5px 0 0 0; color: #64748b; font-size: 14px;">Get instant answers to your investment questions</p>
+            </div>
+          </a>
+          <a href="https://investinpuglia.eu/portfolio" style="display: block; text-decoration: none;">
+            <div style="background: white; border-radius: 8px; padding: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); transition: all 0.3s;">
+              <strong style="color: #0891b2; font-size: 16px;">Success Stories</strong>
+              <p style="margin: 5px 0 0 0; color: #64748b; font-size: 14px;">Explore our portfolio of successful investments</p>
+            </div>
+          </a>
+        </div>
+      </div>
+      
+      <!-- Ultra-Modern CTA Section -->
+      <div style="background: linear-gradient(135deg, #1e293b 0%, #334155 100%); border-radius: 20px; padding: 40px 30px; margin: 40px 0; text-align: center; position: relative; overflow: hidden;">
+        <div style="position: absolute; top: 0; right: 0; width: 150px; height: 150px; background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); opacity: 0.1; border-radius: 50%; transform: translate(30%, -30%);"></div>
+        
+        <h2 style="color: white; margin: 0 0 20px 0; font-size: 28px; font-weight: 700; text-shadow: 0 2px 4px rgba(0,0,0,0.1);">Limited Time Offer</h2>
+        
+        <div style="background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); display: inline-block; padding: 4px; border-radius: 12px; margin-bottom: 20px;">
+          <div style="background: #1e293b; padding: 15px 30px; border-radius: 10px;">
+            <p style="margin: 0; color: #fbbf24; font-size: 24px; font-weight: 700; letter-spacing: -0.5px;">
+              FREE 30-MINUTE CONSULTATION
+            </p>
+            <p style="margin: 8px 0 0 0; color: white; font-size: 16px;">
+              Valued at €60 • Your Price: €0
+            </p>
+          </div>
+        </div>
+        
+        <div style="background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border-radius: 12px; padding: 20px; margin: 20px 0; border: 1px solid rgba(255,255,255,0.2);">
+          <p style="color: #fbbf24; font-size: 14px; margin: 0; text-transform: uppercase; letter-spacing: 2px; font-weight: 600;">Use Exclusive Code</p>
+          <p style="color: white; font-size: 32px; margin: 10px 0; font-weight: 700; letter-spacing: 3px;">MINIPIA50</p>
+          <p style="color: #cbd5e1; font-size: 14px; margin: 0;">Valid for first 50 recipients only</p>
         </div>
         <a href="https://investinpuglia.eu/book-consultation?source=email&campaign=introduction&coupon=MINIPIA50" 
-           style="display: inline-block; background: #1e40af; 
-                  color: white; padding: 16px 40px; text-decoration: none; border-radius: 6px; 
-                  font-weight: 500; margin-top: 10px; letter-spacing: 0.5px; 
-                  box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: all 0.3s;">
-          SCHEDULE YOUR CONSULTATION
+           style="display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+                  color: white; padding: 18px 50px; text-decoration: none; border-radius: 50px; 
+                  font-weight: 600; font-size: 16px; letter-spacing: 0.5px; 
+                  box-shadow: 0 10px 30px rgba(103, 126, 234, 0.3); transition: all 0.3s;
+                  text-transform: uppercase;">
+          Claim Your Free Session Now
         </a>
+        
+        <p style="color: #94a3b8; margin: 15px 0 0 0; font-size: 14px;">
+          No credit card required • 100% complimentary for email recipients
+        </p>
       </div>
       
-      <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb;">
-        <p style="font-size: 16px; margin-bottom: 20px;">
-          <strong>Why Choose InvestInPuglia?</strong>
-        </p>
-        <ul style="margin-bottom: 20px; line-height: 2; color: #374151;">
-          <li style="margin-bottom: 5px;"><strong>Direct relationships</strong> with regional grant authorities</li>
-          <li style="margin-bottom: 5px;"><strong>Complete end-to-end service</strong> from property search to grant approval</li>
-          <li style="margin-bottom: 5px;"><strong>Multi-lingual team</strong> (English, Italian, German, French, Spanish)</li>
-          <li style="margin-bottom: 5px;"><strong>No upfront fees</strong> for initial consultation</li>
-          <li style="margin-bottom: 5px;"><strong>Success-based pricing</strong> available for qualified projects</li>
-        </ul>
-      </div>
-      
-      <p style="font-size: 16px; margin-bottom: 20px;">
-        Best regards,<br>
-        <strong>Giuseppe Funaro</strong><br>
-        Founder & Lead Investment Consultant<br>
-        InvestInPuglia.eu
-      </p>
-      
-      <div style="background: #f9fafb; border-radius: 6px; padding: 20px; margin-top: 25px;">
-        <p style="margin: 0; font-size: 14px; color: #4b5563; text-align: center; line-height: 1.8;">
-          <strong>Italy:</strong> +39 351 400 1402 | <strong>UK:</strong> +44 1969 434469<br>
-          <strong>Email:</strong> g.funaro@investinpuglia.eu<br>
-          <strong>Web:</strong> investinpuglia.eu
-        </p>
+      <!-- Modern Signature -->
+      <div style="margin-top: 40px; text-align: center;">
+        <p style="font-size: 18px; margin: 0; color: #1e293b;">Looking forward to your success,</p>
+        <p style="font-size: 22px; margin: 10px 0; color: #764ba2; font-weight: 700;">Giuseppe Funaro</p>
+        <p style="font-size: 14px; margin: 0; color: #64748b;">Founder & Lead Investment Consultant</p>
+        <div style="width: 40px; height: 3px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); margin: 15px auto;"></div>
       </div>
     </div>
     
-    <!-- Footer -->
-    <div style="background: #1f2937; padding: 20px; text-align: center;">
-      <p style="margin: 0 0 10px 0; color: #9ca3af; font-size: 12px;">
-        This email was sent to you because you expressed interest in Italian property investment opportunities.
+    <!-- Modern Footer -->
+    <div style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); padding: 30px 20px; text-align: center;">
+      <div style="margin-bottom: 20px;">
+        <a href="tel:+393514001402" style="color: white; text-decoration: none; margin: 0 15px; font-size: 14px;">+39 351 400 1402</a>
+        <span style="color: #475569;">|</span>
+        <a href="mailto:g.funaro@investinpuglia.eu" style="color: white; text-decoration: none; margin: 0 15px; font-size: 14px;">g.funaro@investinpuglia.eu</a>
+        <span style="color: #475569;">|</span>
+        <a href="https://investinpuglia.eu" style="color: white; text-decoration: none; margin: 0 15px; font-size: 14px;">investinpuglia.eu</a>
+      </div>
+      <p style="margin: 0 0 15px 0; color: #94a3b8; font-size: 11px;">
+        InvestInPuglia.eu | 1402 Celsius Ltd | Puglia, Italy
       </p>
-      <p style="margin: 0; color: #9ca3af; font-size: 12px;">
-        InvestInPuglia.eu | 1402 Celsius Ltd | Puglia, Italy<br>
-        <a href="https://investinpuglia.eu/unsubscribe?email=[email]" style="color: #60a5fa; text-decoration: none;">
+      <p style="margin: 0; font-size: 11px;">
+        <a href="https://investinpuglia.eu/unsubscribe?email=[email]" style="color: #667eea; text-decoration: none;">
           Unsubscribe
-        </a> | 
-        <a href="https://investinpuglia.eu/privacy" style="color: #60a5fa; text-decoration: none;">
+        </a>
+        <span style="color: #475569;"> | </span>
+        <a href="https://investinpuglia.eu/privacy" style="color: #667eea; text-decoration: none;">
           Privacy Policy
         </a>
       </p>

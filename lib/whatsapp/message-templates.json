@@ -1,0 +1,188 @@
+{
+  "templates": [
+    {
+      "name": "welcome_message",
+      "category": "UTILITY",
+      "languages": {
+        "en": {
+          "header": "Welcome to InvestInPuglia 🇮🇹",
+          "body": "Hi {{1}}! I'm Trullo, your AI investment assistant. I can help you discover EU grants up to €2.25M and premium properties in Puglia. What interests you most?",
+          "footer": "Reply STOP to unsubscribe",
+          "buttons": [
+            {"type": "QUICK_REPLY", "text": "EU Grants"},
+            {"type": "QUICK_REPLY", "text": "Properties"},
+            {"type": "QUICK_REPLY", "text": "Book Call"}
+          ]
+        },
+        "it": {
+          "header": "Benvenuto su InvestInPuglia 🇮🇹",
+          "body": "Ciao {{1}}! Sono Trullo, il tuo assistente AI per gli investimenti. Posso aiutarti a scoprire contributi UE fino a €2.25M e proprietà esclusive in Puglia. Cosa ti interessa di più?",
+          "footer": "Rispondi STOP per cancellarti",
+          "buttons": [
+            {"type": "QUICK_REPLY", "text": "Contributi UE"},
+            {"type": "QUICK_REPLY", "text": "Proprietà"},
+            {"type": "QUICK_REPLY", "text": "Prenota Chiamata"}
+          ]
+        }
+      }
+    },
+    {
+      "name": "consultation_booking",
+      "category": "MARKETING",
+      "languages": {
+        "en": {
+          "header": "Book Your Strategy Call 📅",
+          "body": "{{1}}, ready to explore your investment opportunities? Book a 30-minute call with Giuseppe Funaro, our CEO:\n\n✅ Personalized grant assessment\n✅ Property recommendations\n✅ Investment roadmap\n\nSpecial price: €60 (valued at €150)",
+          "footer": "Limited slots available",
+          "buttons": [
+            {"type": "URL", "text": "Book Now", "url": "https://buy.stripe.com/bJe9AV0y03xCbe6cx408g07"}
+          ]
+        },
+        "it": {
+          "header": "Prenota la Tua Chiamata Strategica 📅",
+          "body": "{{1}}, pronto ad esplorare le tue opportunità di investimento? Prenota una chiamata di 30 minuti con Giuseppe Funaro, nostro CEO:\n\n✅ Valutazione contributi personalizzata\n✅ Raccomandazioni proprietà\n✅ Roadmap investimento\n\nPrezzo speciale: €60 (valore €150)",
+          "footer": "Posti limitati disponibili",
+          "buttons": [
+            {"type": "URL", "text": "Prenota Ora", "url": "https://buy.stripe.com/bJe9AV0y03xCbe6cx408g07"}
+          ]
+        }
+      }
+    },
+    {
+      "name": "property_alert",
+      "category": "MARKETING",
+      "languages": {
+        "en": {
+          "header": "New Property Match 🏡",
+          "body": "{{1}}, we found a property matching your criteria:\n\n📍 Location: {{2}}\n💰 Price: {{3}}\n📊 Grant Eligible: {{4}}\n🔑 Type: {{5}}\n\nWould you like to see more details?",
+          "footer": "InvestInPuglia.eu",
+          "buttons": [
+            {"type": "QUICK_REPLY", "text": "View Details"},
+            {"type": "QUICK_REPLY", "text": "Schedule Viewing"},
+            {"type": "QUICK_REPLY", "text": "Not Interested"}
+          ]
+        },
+        "it": {
+          "header": "Nuova Proprietà Trovata 🏡",
+          "body": "{{1}}, abbiamo trovato una proprietà che corrisponde ai tuoi criteri:\n\n📍 Posizione: {{2}}\n💰 Prezzo: {{3}}\n📊 Idonea Contributi: {{4}}\n🔑 Tipo: {{5}}\n\nVuoi vedere più dettagli?",
+          "footer": "InvestInPuglia.eu",
+          "buttons": [
+            {"type": "QUICK_REPLY", "text": "Vedi Dettagli"},
+            {"type": "QUICK_REPLY", "text": "Prenota Visita"},
+            {"type": "QUICK_REPLY", "text": "Non Interessato"}
+          ]
+        }
+      }
+    },
+    {
+      "name": "grant_calculator",
+      "category": "UTILITY",
+      "languages": {
+        "en": {
+          "header": "Your Grant Calculation 💰",
+          "body": "{{1}}, based on your investment of {{2}}:\n\n📊 Grant Amount: {{3}}\n🎯 Grant Rate: {{4}}%\n💶 Your Investment: {{5}}\n📈 Total Project Value: {{6}}\n\nWant to discuss this opportunity?",
+          "footer": "Calculation valid for 30 days",
+          "buttons": [
+            {"type": "QUICK_REPLY", "text": "Book Consultation"},
+            {"type": "QUICK_REPLY", "text": "See Requirements"},
+            {"type": "QUICK_REPLY", "text": "Calculate Again"}
+          ]
+        },
+        "it": {
+          "header": "Il Tuo Calcolo Contributi 💰",
+          "body": "{{1}}, basato sul tuo investimento di {{2}}:\n\n📊 Importo Contributo: {{3}}\n🎯 Tasso Contributo: {{4}}%\n💶 Tuo Investimento: {{5}}\n📈 Valore Totale Progetto: {{6}}\n\nVuoi discutere questa opportunità?",
+          "footer": "Calcolo valido per 30 giorni",
+          "buttons": [
+            {"type": "QUICK_REPLY", "text": "Prenota Consulenza"},
+            {"type": "QUICK_REPLY", "text": "Vedi Requisiti"},
+            {"type": "QUICK_REPLY", "text": "Ricalcola"}
+          ]
+        }
+      }
+    },
+    {
+      "name": "appointment_reminder",
+      "category": "UTILITY",
+      "languages": {
+        "en": {
+          "header": "Appointment Reminder 📅",
+          "body": "Hi {{1}}, this is a reminder about your consultation tomorrow at {{2}} with Giuseppe Funaro.\n\n📞 Meeting: Video Call\n📧 Link sent to: {{3}}\n📋 Please prepare any questions about your investment plans.\n\nNeed to reschedule?",
+          "footer": "InvestInPuglia Team",
+          "buttons": [
+            {"type": "QUICK_REPLY", "text": "Confirm"},
+            {"type": "QUICK_REPLY", "text": "Reschedule"},
+            {"type": "URL", "text": "Add to Calendar", "url": "{{4}}"}
+          ]
+        },
+        "it": {
+          "header": "Promemoria Appuntamento 📅",
+          "body": "Ciao {{1}}, questo è un promemoria per la tua consulenza domani alle {{2}} con Giuseppe Funaro.\n\n📞 Incontro: Videochiamata\n📧 Link inviato a: {{3}}\n📋 Prepara eventuali domande sui tuoi piani di investimento.\n\nDevi riprogrammare?",
+          "footer": "Team InvestInPuglia",
+          "buttons": [
+            {"type": "QUICK_REPLY", "text": "Conferma"},
+            {"type": "QUICK_REPLY", "text": "Riprogramma"},
+            {"type": "URL", "text": "Aggiungi al Calendario", "url": "{{4}}"}
+          ]
+        }
+      }
+    },
+    {
+      "name": "follow_up_sequence",
+      "category": "MARKETING",
+      "languages": {
+        "en": {
+          "header": "Investment Opportunity Update 📈",
+          "body": "Hi {{1}}, following up on your interest in Puglia investments.\n\n🆕 What's new:\n• {{2}} new properties added\n• Grant deadline: {{3}}\n• Success story: {{4}}\n\nWould you like to schedule a free consultation to discuss your options?",
+          "footer": "Reply STOP to unsubscribe",
+          "buttons": [
+            {"type": "QUICK_REPLY", "text": "Yes, Book Call"},
+            {"type": "QUICK_REPLY", "text": "Show Properties"},
+            {"type": "QUICK_REPLY", "text": "Maybe Later"}
+          ]
+        },
+        "it": {
+          "header": "Aggiornamento Opportunità 📈",
+          "body": "Ciao {{1}}, seguito al tuo interesse per gli investimenti in Puglia.\n\n🆕 Novità:\n• {{2}} nuove proprietà aggiunte\n• Scadenza contributi: {{3}}\n• Storia di successo: {{4}}\n\nVorresti programmare una consulenza gratuita per discutere le tue opzioni?",
+          "footer": "Rispondi STOP per cancellarti",
+          "buttons": [
+            {"type": "QUICK_REPLY", "text": "Sì, Prenota"},
+            {"type": "QUICK_REPLY", "text": "Mostra Proprietà"},
+            {"type": "QUICK_REPLY", "text": "Forse Dopo"}
+          ]
+        }
+      }
+    },
+    {
+      "name": "payment_confirmation",
+      "category": "UTILITY",
+      "languages": {
+        "en": {
+          "header": "Payment Confirmed ✅",
+          "body": "Thank you {{1}}! Your payment of €{{2}} has been received.\n\n📧 Receipt sent to: {{3}}\n📅 Consultation scheduled: {{4}}\n🔗 Meeting link will be sent 1 hour before\n\nGiuseppe looks forward to speaking with you!",
+          "footer": "InvestInPuglia.eu",
+          "buttons": []
+        },
+        "it": {
+          "header": "Pagamento Confermato ✅",
+          "body": "Grazie {{1}}! Il tuo pagamento di €{{2}} è stato ricevuto.\n\n📧 Ricevuta inviata a: {{3}}\n📅 Consulenza programmata: {{4}}\n🔗 Il link per l'incontro sarà inviato 1 ora prima\n\nGiuseppe non vede l'ora di parlare con te!",
+          "footer": "InvestInPuglia.eu",
+          "buttons": []
+        }
+      }
+    }
+  ],
+  "quick_replies": {
+    "investment_amount": {
+      "en": ["Under €200K", "€200K-€500K", "€500K-€1M", "Over €1M"],
+      "it": ["Sotto €200K", "€200K-€500K", "€500K-€1M", "Oltre €1M"]
+    },
+    "property_type": {
+      "en": ["Hotel", "B&B", "Restaurant", "Villa", "Manufacturing"],
+      "it": ["Hotel", "B&B", "Ristorante", "Villa", "Manifattura"]
+    },
+    "timeline": {
+      "en": ["Immediate", "3-6 months", "6-12 months", "Planning"],
+      "it": ["Immediato", "3-6 mesi", "6-12 mesi", "Pianificazione"]
+    }
+  }
+}
