@@ -75,11 +75,13 @@ export default function Navbar() {
             </a>
             
             {/* Mini PIA Dropdown */}
-            <div className="relative">
+            <div 
+              className="relative"
+              onMouseEnter={() => setMiniPiaDropdownOpen(true)}
+              onMouseLeave={() => setMiniPiaDropdownOpen(false)}
+            >
               <button
                 onClick={() => setMiniPiaDropdownOpen(!miniPiaDropdownOpen)}
-                onMouseEnter={() => setMiniPiaDropdownOpen(true)}
-                onMouseLeave={() => setMiniPiaDropdownOpen(false)}
                 className="text-gray-700 hover:text-gray-900 transition-colors font-medium flex items-center gap-1"
               >
                 Mini PIA
@@ -88,16 +90,16 @@ export default function Navbar() {
               
               {miniPiaDropdownOpen && (
                 <div 
-                  className="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 overflow-hidden"
-                  onMouseEnter={() => setMiniPiaDropdownOpen(true)}
-                  onMouseLeave={() => setMiniPiaDropdownOpen(false)}
+                  className="absolute top-full left-0 mt-0 pt-2 w-48"
                 >
-                  <Link href="/mini-pia-guide" className="block px-4 py-3 text-gray-700 hover:bg-purple-50 hover:text-purple-700 transition-colors">
-                    📚 Guide
-                  </Link>
-                  <Link href="/tools" className="block px-4 py-3 text-gray-700 hover:bg-purple-50 hover:text-purple-700 transition-colors border-t border-gray-100">
-                    🧮 Calculator
-                  </Link>
+                  <div className="bg-white rounded-lg shadow-lg border border-gray-200 overflow-hidden">
+                    <Link href="/mini-pia-guide" className="block px-4 py-3 text-gray-700 hover:bg-purple-50 hover:text-purple-700 transition-colors">
+                      📚 Guide
+                    </Link>
+                    <Link href="/tools" className="block px-4 py-3 text-gray-700 hover:bg-purple-50 hover:text-purple-700 transition-colors border-t border-gray-100">
+                      🧮 Calculator
+                    </Link>
+                  </div>
                 </div>
               )}
             </div>
