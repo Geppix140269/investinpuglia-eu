@@ -45,7 +45,7 @@ export default function PortfolioClient({ projects, pageSettings }: PortfolioCli
       icon: <Award className="h-6 w-6" />,
       title: "Licensed Engineer-Architect",
       description: "Registered with Lecce Order of Engineers (#1697) since 1995",
-      highlight: "110/110 Cum Laude"
+      highlight: "110/110"
     },
     {
       icon: <Shield className="h-6 w-6" />,
@@ -203,13 +203,13 @@ export default function PortfolioClient({ projects, pageSettings }: PortfolioCli
       icon: <Home className="h-8 w-8" />,
       projects: [
         {
-          name: "Castello di Noha",
+          name: "Nohasi Palace",
           location: "Noha, Galatina",
           value: "€1,300,000",
           grant: "Titolo II Turismo",
           status: "2019-2022",
-          description: "Castle restoration for tourist accommodation",
-          imageUrl: "/castello-noha.jpg"
+          description: "Historic palace restoration for tourist accommodation",
+          imageUrl: "/nohasi-palace.jpg"
         },
         {
           name: "Masseria San Giuseppe",
