@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://investinpuglia.eu/sitemap.xml
+
+User-agent: Googlebot
+Crawl-delay: 0
+
+User-agent: Bingbot
+Crawl-delay: 0
