@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   // Open Graph for Facebook, LinkedIn, WhatsApp
   openGraph: {
     title: 'Mini PIA Turismo: Get 45-55% Grants for Tourism Investments in Puglia',
-    description: '📘 Complete guide for foreign investors • Step-by-step process • Required documents • €2M max grant • Professional support available',
+    description: '📘 Complete guide for foreign investors • Step-by-step process • Required documents • €2.5M max grant • Professional support available',
     url: 'https://investinpuglia.eu/mini-pia-guide',
     siteName: 'InvestInPuglia',
     images: [
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Mini PIA Turismo Guide: 45-55% Grants for Tourism in Puglia',
-    description: 'Complete foreign investor guide to access €2M in non-refundable grants. Step-by-step process included.',
+    description: 'Complete foreign investor guide to access €2.5M in non-refundable grants. Step-by-step process included.',
     images: ['https://investinpuglia.eu/images/mini-pia-guide-twitter.jpg'],
   },
   
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
   // For WhatsApp and other apps
   other: {
     'og:whatsapp:title': '💰 Mini PIA: Get 45-55% Grants for Tourism in Puglia',
-    'og:whatsapp:description': 'Foreign investor? Access up to €2M in grants. Free guide here 👇',
+    'og:whatsapp:description': 'Foreign investor? Access up to €2.5M in grants. Free guide here 👇',
   }
 }
 
@@ -136,7 +136,7 @@ export default function MiniPIAGuidePage() {
   const requirements = [
     { title: "Company Structure", desc: "Italian registered entity (SRL, SPA, SNC) with Puglia headquarters" },
     { title: "Minimum Investment", desc: "€50,000 in eligible costs" },
-    { title: "Maximum Grant", desc: "€2,000,000 (45-55% of eligible costs)" },
+    { title: "Maximum Grant", desc: "€2,500,000 (50% of €5,000,000 eligible costs)" },
     { title: "Employment Creation", desc: "Minimum 3 ULA (full-time equivalent units)" },
     { title: "Project Duration", desc: "Complete within 18-24 months" },
     { title: "Operational Commitment", desc: "Maintain activity for minimum 5 years" }

@@ -23,39 +23,65 @@ export default function GrantInstitutions() {
           </div>
           
           <div className="bg-white/70 backdrop-blur-md rounded-3xl p-8 shadow-2xl border border-white/50">
-            <p className="text-center text-sm text-gray-600 mb-6 font-medium">
-              This grant opportunity is co-financed by:
+            <p className="text-center text-sm text-gray-600 mb-8 font-medium">
+              The Mini PIA program is co-financed and supported by the following institutional entities:
             </p>
             
-            <div className="flex flex-wrap items-center justify-center gap-12 mb-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center justify-items-center mb-10">
+              {/* European Union */}
               <div className="flex flex-col items-center">
-                <Image 
-                  src="/EN_co_fundedvertical_RGB_POS.png" 
-                  alt="Co-funded by the European Union" 
-                  width={120}
-                  height={96}
-                  className="h-24 w-auto mb-2"
+                <img 
+                  src="https://res.cloudinary.com/dusubfxgo/image/upload/v1756560841/png-clipart-member-state-of-the-european-union-germany-flag-of-europe-european-commission-european-union-energy-label-text-symmetry_ouit5f.png" 
+                  alt="European Union" 
+                  className="h-20 w-auto object-contain mb-3"
                 />
+                <p className="text-xs text-gray-600 text-center font-medium">European Union</p>
+                <p className="text-xs text-gray-500">Structural Funds</p>
               </div>
               
+              {/* Italian Republic */}
               <div className="flex flex-col items-center">
-                <Image 
-                  src="/regione_puglia-Photoroom.png" 
-                  alt="Regione Puglia" 
-                  width={100}
-                  height={80}
-                  className="h-20 w-auto mb-2"
+                <img 
+                  src="https://res.cloudinary.com/dusubfxgo/image/upload/v1756560841/Emblem_of_Italy.svg_pcuswm.png" 
+                  alt="Repubblica Italiana" 
+                  className="h-20 w-auto object-contain mb-3"
                 />
-                <p className="text-sm text-gray-600">Regione Puglia</p>
-                <p className="text-xs text-gray-500">POR Puglia 2014-2027</p>
+                <p className="text-xs text-gray-600 text-center font-medium">Repubblica Italiana</p>
+                <p className="text-xs text-gray-500">National Co-funding</p>
+              </div>
+              
+              {/* Coesione Italia */}
+              <div className="flex flex-col items-center">
+                <img 
+                  src="https://res.cloudinary.com/dusubfxgo/image/upload/v1756560841/coesione-italia_tmsc2c.png" 
+                  alt="Coesione Italia" 
+                  className="h-20 w-auto object-contain mb-3"
+                />
+                <p className="text-xs text-gray-600 text-center font-medium">Coesione Italia</p>
+                <p className="text-xs text-gray-500">2021-2027</p>
+              </div>
+              
+              {/* Regione Puglia */}
+              <div className="flex flex-col items-center">
+                <img 
+                  src="https://res.cloudinary.com/dusubfxgo/image/upload/v1756561192/regione_puglia-Photoroom_h2h5fb.png" 
+                  alt="Regione Puglia" 
+                  className="h-20 w-auto object-contain mb-3"
+                />
+                <p className="text-xs text-gray-600 text-center font-medium">Regione Puglia</p>
+                <p className="text-xs text-gray-500">POR Puglia</p>
               </div>
             </div>
             
-            <div className="border-t pt-6">
-              <p className="text-xs text-gray-500 text-center italic">
-                <strong>Disclaimer:</strong> Invest in Puglia™ is an independent private consultancy and is not 
-                affiliated with or endorsed by Regione Puglia or the European Union.
-              </p>
+            <div className="border-t border-gray-200 pt-6">
+              <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                <p className="text-xs text-gray-700 text-center">
+                  <strong className="text-gray-900">IMPORTANT DISCLAIMER:</strong> InvestInPuglia.eu is an independent private consultancy firm. 
+                  We are NOT affiliated with, endorsed by, or representing any of the institutional entities shown above. 
+                  We provide professional advisory services to help clients navigate public grant applications. 
+                  All institutional logos are shown solely to indicate the source of public funding programs.
+                </p>
+              </div>
             </div>
           </div>
         </div>

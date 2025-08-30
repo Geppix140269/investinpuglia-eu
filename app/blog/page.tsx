@@ -29,15 +29,37 @@ const query = groq`
 
 export default async function BlogPage() {
   const posts = await sanity.fetch(query)
+  
+  // Add static SEO blog posts
+  const seoPosts = [
+    {
+      _id: 'seo-1',
+      title: 'EU Grants 2024: Complete €2.25M Funding Guide',
+      slug: { current: 'eu-grants-2024-guide' },
+      publishedAt: '2024-01-26',
+      excerpt: 'Unlock 35-50% non-repayable EU grants up to €2.25M for Puglia tourism investments. Complete guide with eligibility and application process.',
+      mainImage: { asset: { url: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=800' } }
+    },
+    {
+      _id: 'seo-2', 
+      title: '7% Flat Tax Italy: Ultimate Guide for Foreign Investors',
+      slug: { current: '7-percent-flat-tax-italy' },
+      publishedAt: '2024-01-26',
+      excerpt: 'Save millions with Italy\'s 7% flat tax regime. Pay just 7% on all foreign income for 10 years in beautiful Puglia.',
+      mainImage: { asset: { url: 'https://images.unsplash.com/photo-1554224154-26032ffc0d07?w=800' } }
+    }
+  ]
+  
+  const allPosts = [...seoPosts, ...posts]
 
   return (
     <main className="max-w-7xl mx-auto px-6 py-12">
       <h1 className="text-5xl font-bold mb-10 text-center text-gray-900" style={{ fontFamily: "'Playfair Display', serif" }}>
-        InvestiScope Blog
+        Investment Insights & Guides
       </h1>
 
       <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
-        {posts.map((post: any) => (
+        {allPosts.map((post: any) => (
           <Link 
             href={`/blog/${post.slug.current}`} 
             key={post._id} 
