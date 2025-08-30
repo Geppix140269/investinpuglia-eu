@@ -8,6 +8,8 @@ import author from './author'
 import { locationPageType } from './locationPage'
 import { seoType } from './objects/seo'
 import { industryPageType } from './industryPage'
+import renovationProject from './renovationProject'
+import renovationPageSettings from './renovationPageSettings'
 
 export const schemaTypes = [
   post,
@@ -18,5 +20,7 @@ export const schemaTypes = [
   calculationResultType,
   locationPageType,
   seoType,
-  industryPageType
+  industryPageType,
+  renovationProject,
+  renovationPageSettings
 ]

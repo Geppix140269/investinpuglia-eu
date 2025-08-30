@@ -214,18 +214,42 @@ Our success rate: 95%!
 Get your personalized grant assessment: https://buy.stripe.com/bJe9AV0y03xCbe6cx408g07`;
   }
   
+  // Check if it's a greeting
+  if (lower.match(/^(hi|hello|hey|ciao|buongiorno|salve|hola|bonjour)$/i)) {
+    return `Ciao! I'm Trullo, your personal investment guide for Puglia! 🏛️ 
+
+Welcome to InvestInPuglia - your gateway to extraordinary opportunities in Italy's most beautiful region!
+
+I'm here to help you discover:
+✨ EU grants up to €2.25M (yes, really!)
+🏡 Stunning properties from €200K to €5M
+💰 35-50% non-repayable funding
+🎯 95% success rate on applications
+
+What brings you to Puglia today? Are you looking for:
+1️⃣ Investment properties
+2️⃣ Grant information
+3️⃣ Expert consultation
+
+Just tell me what interests you most, and let's make your Italian investment dream a reality! 🇮🇹`;
+  }
+  
   // Default helpful response
-  return `I understand you're asking about "${message}". 
+  return `Ciao! I'm Trullo, and I'm excited to help you with "${message}"! 🏛️
 
-I can help you with:
-• EU grants up to €2.25M (35-50% of investment)
-• Premium properties in Puglia
-• Investment strategies and ROI calculations
-• Complete application support
+While I process your specific question, here's what I can offer you right now:
 
-For a detailed answer to your specific question, I recommend booking a 30-minute consultation with our CEO Giuseppe Funaro for €60: https://buy.stripe.com/bJe9AV0y03xCbe6cx408g07
+🎯 **Immediate Actions:**
+• Book a strategy call with CEO Giuseppe: €60
+  👉 https://buy.stripe.com/bJe9AV0y03xCbe6cx408g07
 
-Or call directly: +39 351 400 1402`;
+• Browse available properties
+  👉 https://investinpuglia.eu/properties
+
+• Call directly for urgent matters
+  👉 +39 351 400 1402
+
+I'm here to make your Puglia investment journey amazing! How can I help you succeed today?`;
 }
 
 // Extract amount from message
