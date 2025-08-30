@@ -21,7 +21,7 @@ export interface Property {
     bathrooms?: number
     floors?: number
     yearBuilt?: number
-    condition?: 'new' | 'renovated' | 'to-renovate' | 'historic'
+    condition?: 'new' | 'renovated' | 'to-renovate' | 'historic' | 'partially-renovated'
   }
   description: {
     short: string

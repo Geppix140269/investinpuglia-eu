@@ -327,6 +327,112 @@ export const mockProperties: Property[] = [
     updatedAt: new Date('2024-01-22'),
     featured: false,
     status: 'available'
+  },
+  {
+    id: '5',
+    title: 'Trulli Complex with Development Potential - Noci',
+    slug: 'trulli-complex-noci-poltri',
+    type: 'historic',
+    price: 330000,
+    currency: 'EUR',
+    location: {
+      city: 'Noci',
+      province: 'Bari',
+      region: 'Puglia',
+      coordinates: {
+        lat: 40.7935,
+        lng: 17.1269
+      }
+    },
+    details: {
+      squareMeters: 350,
+      landSquareMeters: 3000,
+      floors: 1,
+      yearBuilt: 1800,
+      condition: 'partially-renovated'
+    },
+    description: {
+      short: 'Unique trulli complex between Alberobello and Noci - partially renovated with significant development potential for B&B or multiple residences.',
+      full: 'Exceptional investment opportunity in Contrada Poltri, strategically positioned between the UNESCO World Heritage site of Alberobello and the charming town of Noci. This remarkable property features a recently renovated trulli group alongside historic structures awaiting restoration, offering incredible flexibility for investors. The complex includes 5 additional trulli and 4 ancient stables (2 large, 2 small) ready for transformation.',
+      features: [
+        'Recently renovated trulli with modern amenities',
+        'Living room with wooden mezzanine',
+        'Fully equipped kitchen and large bathroom',
+        'Restored stable with original architectural features',
+        '5 additional trulli for restoration',
+        '4 historic stables for conversion',
+        'Climate control system installed in renovated section',
+        'Water cisterns on property',
+        'Electricity already connected',
+        '3,000 sqm of developable land'
+      ],
+      investmentPotential: 'Prime opportunity for B&B development with Mini PIA grant eligibility up to 55% funding. Potential to create 6-8 independent rental units generating €800-1,200 per unit weekly in peak season. Strategic location between two major tourist destinations ensures year-round rental demand.'
+    },
+    images: [
+      {
+        url: 'https://www.agenziadeitrulli.com/files/immobili/581/581_20241216095519_01.jpg',
+        alt: 'Trulli complex exterior view',
+        isPrimary: true
+      },
+      {
+        url: 'https://www.agenziadeitrulli.com/files/immobili/581/581_20241216095519_02.jpg',
+        alt: 'Renovated trulli entrance'
+      },
+      {
+        url: 'https://www.agenziadeitrulli.com/files/immobili/581/581_20241216095519_03.jpg',
+        alt: 'Interior living space with mezzanine'
+      },
+      {
+        url: 'https://www.agenziadeitrulli.com/files/immobili/581/581_20241216095519_04.jpg',
+        alt: 'Traditional stone architecture'
+      },
+      {
+        url: 'https://www.agenziadeitrulli.com/files/immobili/581/581_20241216095519_05.jpg',
+        alt: 'Restored stable interior'
+      },
+      {
+        url: 'https://www.agenziadeitrulli.com/files/immobili/581/581_20241216095519_06.jpg',
+        alt: 'Kitchen area'
+      },
+      {
+        url: 'https://www.agenziadeitrulli.com/files/immobili/581/581_20241216095519_07.jpg',
+        alt: 'Bathroom with modern fixtures'
+      },
+      {
+        url: 'https://www.agenziadeitrulli.com/files/immobili/581/581_20241216095519_08.jpg',
+        alt: 'Unrenovated trulli with potential'
+      },
+      {
+        url: 'https://www.agenziadeitrulli.com/files/immobili/581/581_20241216095519_09.jpg',
+        alt: 'Property grounds and landscape'
+      },
+      {
+        url: 'https://www.agenziadeitrulli.com/files/immobili/581/581_20241216095519_10.jpg',
+        alt: 'Additional structures for development'
+      }
+    ],
+    investment: {
+      potentialReturn: '35% annual ROI with Mini PIA grant for trulli restoration (55% funding)',
+      suggestedUse: ['Luxury B&B', 'Multiple Vacation Rentals', 'Boutique Hotel', 'Private Estate with Guest Houses'],
+      grants: ['Mini PIA Tourism (55% for trulli)', 'NRRP Historic Restoration', 'Regional Tourism Development Fund'],
+      zoning: 'Mixed use - residential/tourism'
+    },
+    amenities: [
+      'Partially renovated',
+      'Climate control',
+      'Water cisterns',
+      'Electricity connected',
+      'Development land',
+      'Original architectural features',
+      'Private grounds',
+      'Multiple structures'
+    ],
+    distanceToSea: 33,
+    distanceToAirport: 80,
+    createdAt: new Date('2024-12-30'),
+    updatedAt: new Date('2024-12-30'),
+    featured: true,
+    status: 'available'
   }
 ]
 
