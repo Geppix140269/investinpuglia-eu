@@ -1,656 +1,378 @@
 'use client'
 
 import Link from 'next/link'
-import PageSEOSection from '@/components/PageSEOSection'
+import { Building2, FileText, Briefcase, TrendingUp, Shield, Users, CheckCircle, ArrowRight, Star, Award } from 'lucide-react'
+import CloudinaryImage from '@/components/CloudinaryImage'
+import Navbar from '@/components/Navbar'
+import Footer from '@/components/Footer'
 
 export default function ServicesPage() {
+  const services = [
+    {
+      icon: <Building2 className="h-8 w-8" />,
+      title: "EU Grant Consulting",
+      price: "Success-Based",
+      description: "Access up to €2.25M in non-repayable grants",
+      features: [
+        "PIA Turismo grant applications",
+        "Business plan development",
+        "Technical documentation",
+        "Regional authority liaison",
+        "95% approval success rate"
+      ],
+      highlight: true
+    },
+    {
+      icon: <FileText className="h-8 w-8" />,
+      title: "Investment Advisory",
+      price: "€2,500/phase",
+      description: "Complete investment lifecycle management",
+      features: [
+        "Property search & evaluation",
+        "Due diligence coordination",
+        "Price negotiation",
+        "Legal support",
+        "Contract management"
+      ]
+    },
+    {
+      icon: <Briefcase className="h-8 w-8" />,
+      title: "Project Management",
+      price: "Milestone-Based",
+      description: "End-to-end project coordination",
+      features: [
+        "Technical team assembly",
+        "Permit acquisition",
+        "Construction oversight",
+        "Quality control",
+        "Timeline management"
+      ]
+    }
+  ]
+
   const phases = [
     {
-      phase: 1,
-      title: "Property Search & Planning",
-      icon: "🔍",
-      price: "€2,500",
+      number: "01",
+      title: "Discovery & Planning",
       duration: "2-4 weeks",
-      description: "Property evaluation, search, and initial project planning",
-      features: [
-        "Property evaluation based on client's criteria",
-        "Search properties by budget, location, and requirements",
-        "Market analysis and investment opportunity assessment",
-        "Basic business and project plan development",
-        "Timeline and milestone planning",
-        "Preparation for offer to seller",
-        "Full access to Apulink.com platform",
-        "Initial grant eligibility verification"
-      ],
-      stripeUrl: process.env.NEXT_PUBLIC_STRIPE_PHASE1_URL,
-      cta: "Start Property Search",
-      highlight: false
+      activities: [
+        "Property search based on criteria",
+        "Investment opportunity analysis",
+        "Grant eligibility assessment",
+        "Initial business plan"
+      ]
     },
     {
-      phase: 2,
-      title: "Negotiation & Due Diligence",
-      icon: "📊",
-      price: "€2,500",
+      number: "02", 
+      title: "Due Diligence",
       duration: "4-6 weeks",
-      description: "Property negotiation and comprehensive legal/technical support",
-      features: [
-        "Property price negotiation with sellers",
-        "Legal assistance for property assessment",
-        "Administrative support for all requirements",
-        "Virtual team of technical professionals",
-        "Architectural and structural evaluations",
-        "Due diligence coordination",
-        "Document preparation and review",
-        "Preliminary agreement preparation"
-      ],
-      stripeUrl: process.env.NEXT_PUBLIC_STRIPE_PHASE2_URL,
-      cta: "Begin Negotiation Support",
-      highlight: false
+      activities: [
+        "Legal assessment",
+        "Technical evaluation",
+        "Price negotiation",
+        "Document preparation"
+      ]
     },
     {
-      phase: 3,
-      title: "Preliminary Agreement",
-      icon: "✍️",
-      price: "€2,500",
+      number: "03",
+      title: "Contract & Closing",
       duration: "2-3 weeks",
-      description: "Signing of preliminary agreement with milestone-based approach",
-      features: [
-        "Preliminary agreement finalization",
-        "Legal review and notary coordination",
-        "Milestone planning agreed with client",
-        "Deposit and payment structuring",
-        "Risk assessment and mitigation",
-        "Contract registration support",
-        "Next phase planning and preparation"
-      ],
-      stripeUrl: process.env.NEXT_PUBLIC_STRIPE_PHASE3_URL,
-      cta: "Secure Preliminary Agreement",
-      highlight: false
+      activities: [
+        "Preliminary agreement",
+        "Deposit structuring",
+        "Notary coordination",
+        "Ownership transfer"
+      ]
+    },
+    {
+      number: "04",
+      title: "Grant Application",
+      duration: "8-12 weeks",
+      activities: [
+        "Complete application prep",
+        "CUP code acquisition",
+        "Regional approval",
+        "Funding disbursement"
+      ]
     }
   ]
 
   return (
-    <div className="min-h-screen bg-white pt-20">
+    <>
+      <Navbar />
+      
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-emerald-900 via-emerald-800 to-teal-700 text-white">
-        <div className="absolute inset-0 bg-black opacity-10"></div>
-        <div className="relative max-w-7xl mx-auto px-4 py-24 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h1 className="text-4xl md:text-6xl font-light mb-6 tracking-tight">
-              Project Coordination Services
+      <section className="relative bg-gradient-to-br from-indigo-900 via-purple-900 to-indigo-900 text-white py-24 overflow-hidden">
+        <div className="absolute inset-0 bg-black opacity-20"></div>
+        
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute -top-4 -right-4 w-72 h-72 bg-white rounded-full blur-3xl"></div>
+          <div className="absolute -bottom-8 -left-8 w-96 h-96 bg-purple-300 rounded-full blur-3xl"></div>
+        </div>
+        
+        <div className="relative container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center">
+            <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-purple-200 bg-clip-text text-transparent">
+              Investment Services
             </h1>
-            <p className="text-xl md:text-2xl text-emerald-100 max-w-4xl mx-auto font-light">
-              Structured, phased approach to your Puglia investment journey with transparent pricing and success-based partnership options
+            <p className="text-xl md:text-2xl text-purple-100 mb-8">
+              Comprehensive support for foreign investors accessing Puglia's €2.25M grant opportunities
             </p>
-            <div className="mt-8">
-              <Link 
-                href="/project-agreement"
-                className="inline-flex items-center text-emerald-200 hover:text-white transition-colors duration-200 font-medium"
-              >
-                View Project Management Agreement
-                <svg className="ml-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
-                </svg>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section - Moved to top for immediate visibility */}
-      <section className="bg-gradient-to-r from-emerald-600 to-teal-600 py-16">
-        <div className="max-w-4xl mx-auto text-center px-4">
-          <h2 className="text-3xl md:text-4xl font-light text-white mb-6">
-            Ready to Start Your Puglia Investment Journey?
-          </h2>
-          <p className="text-xl text-emerald-100 mb-8">
-            Begin with Phase 1 and discover the perfect property investment opportunity in Southern Italy
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link 
-              href="/sign-agreement"
-              className="inline-block bg-white text-emerald-700 py-4 px-8 rounded-lg font-semibold hover:shadow-xl transition-all duration-300 animate-pulse text-lg"
-            >
-              ✍️ Sign Agreement Online →
-            </Link>
-            <Link 
-              href="/project-agreement"
-              className="inline-block bg-emerald-700 text-white py-4 px-8 rounded-lg font-semibold hover:bg-emerald-800 transition-all duration-300"
-            >
-              📄 Review Full Terms First
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Value Proposition */}
-      <section className="py-12 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-            <div className="bg-white p-6 rounded-lg shadow-sm">
-              <div className="text-3xl font-light text-emerald-600 mb-2">€2.25M+</div>
-              <div className="text-sm text-gray-600">Available Grant Funding</div>
-            </div>
-            <div className="bg-white p-6 rounded-lg shadow-sm">
-              <div className="text-3xl font-light text-emerald-600 mb-2">7%</div>
-              <div className="text-sm text-gray-600">Flat Tax Rate for Foreign Investors</div>
-            </div>
-            <div className="bg-white p-6 rounded-lg shadow-sm">
-              <div className="text-3xl font-light text-emerald-600 mb-2">100%</div>
-              <div className="text-sm text-gray-600">Dashboard Access via InvestInPuglia.eu</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* À LA CARTE FLEXIBILITY BANNER */}
-      <section className="py-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-emerald-50 to-blue-50">
-        <div className="max-w-5xl mx-auto">
-          <div className="bg-white rounded-2xl shadow-xl p-8 border-2 border-emerald-500">
-            <div className="text-center mb-6">
-              <span className="inline-block bg-emerald-100 text-emerald-800 px-4 py-2 rounded-full text-sm font-bold mb-4">
-                🎯 FLEXIBLE À LA CARTE SERVICES
-              </span>
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                You're FREE to Use Only What You Need
-              </h2>
-              <p className="text-lg text-gray-700 max-w-3xl mx-auto">
-                No contracts, no obligations, no pressure. Choose your own path to property investment success.
-              </p>
-            </div>
             
-            <div className="grid md:grid-cols-3 gap-6">
+            {/* Key Value Props */}
+            <div className="grid grid-cols-3 gap-6 max-w-2xl mx-auto mt-12">
               <div className="text-center">
-                <div className="text-4xl mb-3">🚀</div>
-                <h3 className="font-bold text-gray-900 mb-2">Start & Stop Anytime</h3>
-                <p className="text-sm text-gray-600">
-                  Begin with Phase 1 for just €2,500. Not ready to continue? No problem - stop with no penalties.
-                </p>
+                <div className="text-3xl font-bold text-yellow-400">€20M+</div>
+                <div className="text-sm text-purple-200 mt-1">Grants Secured</div>
               </div>
               <div className="text-center">
-                <div className="text-4xl mb-3">🎨</div>
-                <h3 className="font-bold text-gray-900 mb-2">Mix & Match Services</h3>
-                <p className="text-sm text-gray-600">
-                  Already found a property? Skip to Phase 3. Need just negotiations? Use Phase 2 only.
-                </p>
+                <div className="text-3xl font-bold text-yellow-400">95%</div>
+                <div className="text-sm text-purple-200 mt-1">Success Rate</div>
               </div>
               <div className="text-center">
-                <div className="text-4xl mb-3">⏰</div>
-                <h3 className="font-bold text-gray-900 mb-2">Your Timeline</h3>
-                <p className="text-sm text-gray-600">
-                  Take breaks between phases. Move at your own pace. No rush, no expiry dates.
-                </p>
+                <div className="text-3xl font-bold text-yellow-400">29+</div>
+                <div className="text-sm text-purple-200 mt-1">Years Experience</div>
               </div>
-            </div>
-            
-            <div className="mt-6 p-4 bg-yellow-50 rounded-lg border border-yellow-200">
-              <p className="text-center text-sm text-gray-700">
-                <strong>Popular Flexibility Options:</strong> 
-                Phase 1 only (€2,500) | Skip to Phase 3 (€2,500) | Full journey (€7,500) | 
-                Take 6-month break between phases | Use for multiple properties
-              </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Phases Grid */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
+      {/* Service Cards */}
+      <section className="py-20 bg-gray-50">
+        <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-light text-gray-900 mb-4">
-              Phase 1: From Search to Preliminary Agreement
-            </h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              €7,500 total investment to secure your property with professional support at every step
-            </p>
-            <p className="text-sm text-emerald-600 mt-2">
-              Phase 1 (€2,500) → Phase 2 (€2,500) → Phase 3 (€2,500)
-            </p>
-            <p className="text-xs text-gray-500 mt-2 italic">
-              Remember: You can stop after any phase or skip phases as needed
+            <h2 className="text-3xl font-bold mb-4">Our Services</h2>
+            <p className="text-xl text-gray-600">
+              Tailored solutions for international investors
             </p>
           </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {phases.map((service, index) => (
+          
+          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {services.map((service, index) => (
               <div
                 key={index}
-                className={`relative bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden ${
-                  service.highlight ? 'ring-2 ring-emerald-500 transform lg:scale-105' : ''
+                className={`bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all p-8 ${
+                  service.highlight ? 'ring-2 ring-indigo-500 relative' : ''
                 }`}
               >
                 {service.highlight && (
-                  <div className="absolute -top-px left-0 right-0 h-1 bg-gradient-to-r from-emerald-400 to-teal-400"></div>
-                )}
-                {service.highlight && (
-                  <div className="absolute top-4 right-4">
-                    <span className="bg-emerald-500 text-white px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider">
-                      Most Popular
+                  <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                    <span className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-4 py-1 rounded-full text-sm font-semibold">
+                      MOST POPULAR
                     </span>
                   </div>
                 )}
                 
-                <div className="p-8">
-                  <div className="flex items-center justify-between mb-4">
-                    <div>
-                      <span className="text-sm text-gray-500 font-medium">Phase {service.phase}</span>
-                      <h3 className="text-2xl font-semibold text-gray-900 mt-1">{service.title}</h3>
-                    </div>
-                    <div className="text-4xl">{service.icon}</div>
-                  </div>
-
-                  <div className="mb-6">
-                    <p className="text-3xl font-light text-gray-900">{service.price}</p>
-                    <p className="text-sm text-gray-500 mt-2">Duration: {service.duration}</p>
-                  </div>
-
-                  <p className="text-gray-600 mb-6">
-                    {service.description}
-                  </p>
-                  
-                  <ul className="space-y-3 mb-8">
-                    {service.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-start">
-                        <svg className="w-5 h-5 mr-3 flex-shrink-0 mt-0.5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
-                        </svg>
-                        <span className="text-gray-700 text-sm">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  
-                  {index === 0 ? (
-                    <Link 
-                      href="/sign-agreement"
-                      className="block w-full text-center py-3 px-6 rounded-lg font-semibold transition-all duration-300 bg-emerald-600 text-white hover:bg-emerald-700 hover:shadow-lg animate-pulse"
-                    >
-                      Sign & Start Now →
-                    </Link>
-                  ) : service.stripeUrl ? (
-                    <a 
-                      href={service.stripeUrl}
-                      className={`block w-full text-center py-3 px-6 rounded-lg font-semibold transition-all duration-300 ${
-                        service.highlight 
-                          ? 'bg-emerald-600 text-white hover:bg-emerald-700 hover:shadow-lg' 
-                          : 'bg-gray-900 text-white hover:bg-gray-800'
-                      }`}
-                    >
-                      {service.cta} →
-                    </a>
-                  ) : (
-                    <Link 
-                      href="/contact"
-                      className="block w-full text-center py-3 px-6 rounded-lg font-semibold transition-all duration-300 bg-gradient-to-r from-emerald-600 to-teal-600 text-white hover:from-emerald-700 hover:to-teal-700 hover:shadow-lg"
-                    >
-                      {service.cta} →
-                    </Link>
-                  )}
-                </div>
+                <div className="text-indigo-600 mb-4">{service.icon}</div>
+                <h3 className="text-2xl font-bold mb-2">{service.title}</h3>
+                <p className="text-3xl font-light text-gray-900 mb-2">{service.price}</p>
+                <p className="text-gray-600 mb-6">{service.description}</p>
+                
+                <ul className="space-y-3 mb-8">
+                  {service.features.map((feature, idx) => (
+                    <li key={idx} className="flex items-start">
+                      <CheckCircle className="h-5 w-5 text-green-500 mr-2 flex-shrink-0 mt-0.5" />
+                      <span className="text-gray-700">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+                
+                <Link
+                  href="/contact"
+                  className={`block text-center py-3 px-6 rounded-lg font-semibold transition-all ${
+                    service.highlight
+                      ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white hover:shadow-lg'
+                      : 'bg-gray-900 text-white hover:bg-gray-800'
+                  }`}
+                >
+                  Get Started <ArrowRight className="inline-block ml-2 h-4 w-4" />
+                </Link>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Phase 2: Grant & Completion Section */}
-      <section className="py-20 bg-gradient-to-br from-emerald-50 to-teal-50">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Investment Process Timeline */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-light text-gray-900 mb-4">
-              Phase 2: Grant Approval to Final Deed
-            </h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto mb-2">
-              Performance-based milestones aligned with your project success
+            <h2 className="text-3xl font-bold mb-4">Investment Process</h2>
+            <p className="text-xl text-gray-600">
+              Clear, structured approach from property search to grant approval
             </p>
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-            {/* CUP Milestone */}
-            <div className="bg-white rounded-xl shadow-lg p-8">
-              <div className="flex items-center mb-4">
-                <span className="text-3xl mr-3">📋</span>
-                <h3 className="text-xl font-semibold text-gray-900">CUP Approval Milestone</h3>
-              </div>
-              <div className="mb-4">
-                <p className="text-2xl font-light text-emerald-600">€2,500</p>
-                <p className="text-sm text-gray-500 mt-1">Upon obtaining CUP from Regione Puglia</p>
-              </div>
-              <p className="text-gray-600 mb-4">
-                Securing the Codice Unico Progetto (CUP) - official grant approval from Regione Puglia
-              </p>
-              <ul className="space-y-2 text-sm text-gray-700">
-                <li className="flex items-start">
-                  <svg className="w-4 h-4 mr-2 flex-shrink-0 mt-0.5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  Complete grant application preparation
-                </li>
-                <li className="flex items-start">
-                  <svg className="w-4 h-4 mr-2 flex-shrink-0 mt-0.5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  Business plan finalization
-                </li>
-                <li className="flex items-start">
-                  <svg className="w-4 h-4 mr-2 flex-shrink-0 mt-0.5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  Technical documentation submission
-                </li>
-                <li className="flex items-start">
-                  <svg className="w-4 h-4 mr-2 flex-shrink-0 mt-0.5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  Regional authority liaison
-                </li>
-              </ul>
-            </div>
-
-            {/* Final Deed Milestone */}
-            <div className="bg-white rounded-xl shadow-lg p-8">
-              <div className="flex items-center mb-4">
-                <span className="text-3xl mr-3">🏡</span>
-                <h3 className="text-xl font-semibold text-gray-900">Final Deed & Negotiation Bonus</h3>
-              </div>
-              <div className="mb-4">
-                <p className="text-2xl font-light text-emerald-600">€2,500</p>
-                <p className="text-sm text-gray-500 mt-1">Upon final deed signature</p>
-                <p className="text-sm text-emerald-600 mt-2 font-medium">
-                  + 5% of savings negotiated (if any)
-                </p>
-              </div>
-              <p className="text-gray-600 mb-4">
-                Completion of property purchase with performance bonus for price negotiation
-              </p>
-              <ul className="space-y-2 text-sm text-gray-700">
-                <li className="flex items-start">
-                  <svg className="w-4 h-4 mr-2 flex-shrink-0 mt-0.5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  Final deed preparation
-                </li>
-                <li className="flex items-start">
-                  <svg className="w-4 h-4 mr-2 flex-shrink-0 mt-0.5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  Notary coordination
-                </li>
-                <li className="flex items-start">
-                  <svg className="w-4 h-4 mr-2 flex-shrink-0 mt-0.5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  Property registration
-                </li>
-                <li className="flex items-start">
-                  <svg className="w-4 h-4 mr-2 flex-shrink-0 mt-0.5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  Ownership transfer completion
-                </li>
-              </ul>
-              <div className="bg-emerald-50 p-3 rounded mt-4">
-                <p className="text-xs text-gray-700">
-                  <strong>Example:</strong> Property asking €500,000, negotiated to €450,000 = 
-                  €50,000 saved × 5% = €2,500 bonus
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Success Fee Section */}
-          <div className="bg-gradient-to-r from-purple-600 to-indigo-600 rounded-xl shadow-xl p-8 text-white">
-            <div className="text-center">
-              <span className="text-5xl mb-4 block">🎯</span>
-              <h3 className="text-2xl font-semibold mb-3">Success Fee on Grant Funding</h3>
-              <p className="text-4xl font-light mb-3">2.5%</p>
-              <p className="text-purple-100 mb-6">
-                Of the total grant amount received (up to €2.25M available)
-              </p>
-              <div className="bg-white/10 rounded-lg p-4 max-w-2xl mx-auto">
-                <p className="text-sm">
-                  <strong>Example:</strong> On a €500,000 grant approval, the success fee would be €12,500, 
-                  payable only after funds are received from Regione Puglia. This performance-based model 
-                  ensures our interests are fully aligned with your project success.
-                </p>
-              </div>
+          
+          <div className="max-w-5xl mx-auto">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {phases.map((phase, index) => (
+                <div key={index} className="relative">
+                  {index < phases.length - 1 && (
+                    <div className="hidden lg:block absolute top-8 left-full w-full h-0.5 bg-gradient-to-r from-indigo-300 to-purple-300 z-0"></div>
+                  )}
+                  
+                  <div className="bg-white rounded-xl border-2 border-gray-200 p-6 hover:border-indigo-500 hover:shadow-lg transition-all relative z-10">
+                    <div className="text-4xl font-bold text-indigo-600 mb-3">{phase.number}</div>
+                    <h3 className="text-xl font-bold mb-2">{phase.title}</h3>
+                    <p className="text-sm text-gray-500 mb-4">{phase.duration}</p>
+                    
+                    <ul className="space-y-2">
+                      {phase.activities.map((activity, idx) => (
+                        <li key={idx} className="text-sm text-gray-600 flex items-start">
+                          <span className="text-indigo-500 mr-2">•</span>
+                          {activity}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* Trust Indicators */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-light text-gray-900 text-center mb-12">
-            Your Investment Partner in Puglia
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
-            <div>
-              <div className="text-4xl font-light text-emerald-600 mb-3">30+</div>
-              <div className="text-sm text-gray-600">Years Executive Experience</div>
-            </div>
-            <div>
-              <div className="text-4xl font-light text-emerald-600 mb-3">€200M+</div>
-              <div className="text-sm text-gray-600">Operations Managed</div>
-            </div>
-            <div>
-              <div className="text-4xl font-light text-emerald-600 mb-3">ITC</div>
-              <div className="text-sm text-gray-600">Trade Council Member</div>
-            </div>
-            <div>
-              <div className="text-4xl font-light text-emerald-600 mb-3">100%</div>
-              <div className="text-sm text-gray-600">Success Rate</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* International Clients Section */}
-      <section className="py-16 bg-gradient-to-r from-blue-50 to-indigo-50">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-light text-gray-900 mb-8">
-            🌍 International Clients Welcome
-          </h2>
-          <div className="bg-white rounded-lg shadow-md p-8">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
-              <div className="text-center">
-                <span className="text-3xl mb-3 block">📱</span>
-                <p className="font-semibold mb-1">Digital Process</p>
-                <p className="text-sm text-gray-600">Sign from anywhere, no travel needed</p>
-              </div>
-              <div className="text-center">
-                <span className="text-3xl mb-3 block">⚖️</span>
-                <p className="font-semibold mb-1">English Law</p>
-                <p className="text-sm text-gray-600">UK company, English jurisdiction</p>
-              </div>
-              <div className="text-center">
-                <span className="text-3xl mb-3 block">💳</span>
-                <p className="font-semibold mb-1">Easy Payment</p>
-                <p className="text-sm text-gray-600">Stripe, cards, or bank transfer</p>
-              </div>
-            </div>
-            <div className="mt-6 pt-6 border-t">
-              <p className="text-sm text-gray-700 mb-4">
-                <strong>To get started:</strong> Email us your requirements, receive personalized agreement in 24h, sign digitally, pay €2,500 to begin
+      {/* Success Metrics */}
+      <section className="py-20 bg-gradient-to-br from-indigo-50 to-purple-50">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold mb-4">Proven Track Record</h2>
+              <p className="text-xl text-gray-600">
+                Leading foreign investment facilitation in Puglia since 1995
               </p>
-              <a 
-                href="mailto:info@investinpuglia.eu?subject=International%20Client%20Inquiry"
-                className="inline-flex items-center text-emerald-600 hover:text-emerald-700 font-medium"
-              >
-                Contact us to begin
-                <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
-                </svg>
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Platform Access Section */}
-      <section className="py-16 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-light text-gray-900 mb-6">
-            Full Dashboard Access Included
-          </h2>
-          <p className="text-lg text-gray-600 mb-8">
-            All service packages include complete access to the InvestInPuglia.eu platform, 
-            providing you with real-time project tracking, document management, and direct 
-            communication channels throughout your investment journey.
-          </p>
-          <div className="bg-emerald-50 rounded-lg p-6 border border-emerald-200">
-            <p className="text-gray-700">
-              <strong>Platform Features:</strong> Project timeline tracking • Document repository • 
-              Secure messaging • Grant application status • Financial projections • 
-              Compliance monitoring • Network access
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Total Investment Summary */}
-      <section className="py-16 bg-white">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-light text-gray-900 text-center mb-12">
-            Complete Investment Structure
-          </h2>
-          <div className="bg-gray-50 rounded-xl p-8 shadow-lg">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div>
-                <h3 className="font-semibold text-lg mb-4 text-gray-900">Initial Investment (Phase 1)</h3>
-                <ul className="space-y-3 text-sm">
-                  <li className="flex justify-between">
-                    <span className="text-gray-700">Property Search & Planning</span>
-                    <span className="font-semibold">€2,500</span>
-                  </li>
-                  <li className="flex justify-between">
-                    <span className="text-gray-700">Negotiation & Due Diligence</span>
-                    <span className="font-semibold">€2,500</span>
-                  </li>
-                  <li className="flex justify-between">
-                    <span className="text-gray-700">Preliminary Agreement</span>
-                    <span className="font-semibold">€2,500</span>
-                  </li>
-                  <li className="flex justify-between pt-3 border-t">
-                    <span className="text-gray-900 font-semibold">Total to Preliminary</span>
-                    <span className="font-bold text-emerald-600">€7,500</span>
-                  </li>
-                </ul>
-              </div>
-              
-              <div>
-                <h3 className="font-semibold text-lg mb-4 text-gray-900">Grant & Completion (Phase 2)</h3>
-                <ul className="space-y-3 text-sm">
-                  <li className="flex justify-between">
-                    <span className="text-gray-700">CUP Approval (Grant OK)</span>
-                    <span className="font-semibold">€2,500</span>
-                  </li>
-                  <li className="flex justify-between">
-                    <span className="text-gray-700">Final Deed Signature</span>
-                    <span className="font-semibold">€2,500</span>
-                  </li>
-                  <li className="flex justify-between">
-                    <span className="text-gray-700">Negotiation Bonus (5% of savings)</span>
-                    <span className="font-semibold">Variable</span>
-                  </li>
-                  <li className="flex justify-between">
-                    <span className="text-gray-700">Success Fee (2.5% of grant)</span>
-                    <span className="font-semibold">Variable</span>
-                  </li>
-                  <li className="flex justify-between pt-3 border-t">
-                    <span className="text-gray-900 font-semibold">Total Phase 2</span>
-                    <span className="font-bold text-emerald-600">€5,000 + Variables</span>
-                  </li>
-                </ul>
-              </div>
             </div>
             
-            <div className="mt-8 pt-6 border-t text-center">
-              <p className="text-lg font-light text-gray-700">
-                <span className="font-semibold text-2xl text-gray-900">€12,500</span> fixed fees + 
-                <span className="font-semibold text-2xl text-emerald-600"> 5%</span> negotiation bonus + 
-                <span className="font-semibold text-2xl text-purple-600"> 2.5%</span> grant success fee
-              </p>
-              <p className="text-sm text-gray-500 mt-2">
-                Example: €450,000 property (saved €50,000) + €500,000 grant = €2,500 negotiation bonus + €12,500 grant fee
-              </p>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="bg-white rounded-xl p-6 text-center shadow-lg">
+                <Award className="h-12 w-12 text-yellow-500 mx-auto mb-4" />
+                <div className="text-3xl font-bold text-gray-900 mb-2">50+</div>
+                <div className="text-gray-600">Hotels Developed</div>
+              </div>
+              
+              <div className="bg-white rounded-xl p-6 text-center shadow-lg">
+                <TrendingUp className="h-12 w-12 text-green-500 mx-auto mb-4" />
+                <div className="text-3xl font-bold text-gray-900 mb-2">€80M</div>
+                <div className="text-gray-600">Total Projects</div>
+              </div>
+              
+              <div className="bg-white rounded-xl p-6 text-center shadow-lg">
+                <Shield className="h-12 w-12 text-blue-500 mx-auto mb-4" />
+                <div className="text-3xl font-bold text-gray-900 mb-2">100%</div>
+                <div className="text-gray-600">Compliance Rate</div>
+              </div>
+              
+              <div className="bg-white rounded-xl p-6 text-center shadow-lg">
+                <Users className="h-12 w-12 text-purple-500 mx-auto mb-4" />
+                <div className="text-3xl font-bold text-gray-900 mb-2">200+</div>
+                <div className="text-gray-600">Happy Clients</div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Stripe Setup Instructions (Hidden in production) */}
-      {process.env.NODE_ENV === 'development' && (
-        <section className="bg-gray-900 text-white py-12">
-          <div className="max-w-4xl mx-auto px-4">
-            <h3 className="text-xl font-bold mb-4 text-yellow-400">📝 Stripe Payment Links Setup Instructions (Dev Only)</h3>
-            <div className="bg-gray-800 rounded-lg p-6 font-mono text-sm">
-              <p className="mb-4 text-green-400">To create payment links in Stripe:</p>
+      {/* Pricing Structure */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold mb-4">Transparent Pricing</h2>
+              <p className="text-xl text-gray-600">
+                Clear, milestone-based fee structure aligned with your success
+              </p>
+            </div>
+            
+            <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-8 shadow-xl">
+              <div className="grid md:grid-cols-2 gap-8">
+                <div>
+                  <h3 className="text-xl font-bold mb-4">Phase 1: Initial Investment</h3>
+                  <ul className="space-y-3">
+                    <li className="flex justify-between py-2 border-b border-gray-200">
+                      <span>Property Search</span>
+                      <span className="font-semibold">€2,500</span>
+                    </li>
+                    <li className="flex justify-between py-2 border-b border-gray-200">
+                      <span>Due Diligence</span>
+                      <span className="font-semibold">€2,500</span>
+                    </li>
+                    <li className="flex justify-between py-2 border-b border-gray-200">
+                      <span>Contract Support</span>
+                      <span className="font-semibold">€2,500</span>
+                    </li>
+                    <li className="flex justify-between py-2 font-bold text-lg">
+                      <span>Total Phase 1</span>
+                      <span className="text-indigo-600">€7,500</span>
+                    </li>
+                  </ul>
+                </div>
+                
+                <div>
+                  <h3 className="text-xl font-bold mb-4">Phase 2: Grant & Completion</h3>
+                  <ul className="space-y-3">
+                    <li className="flex justify-between py-2 border-b border-gray-200">
+                      <span>CUP Approval</span>
+                      <span className="font-semibold">€2,500</span>
+                    </li>
+                    <li className="flex justify-between py-2 border-b border-gray-200">
+                      <span>Final Deed</span>
+                      <span className="font-semibold">€2,500</span>
+                    </li>
+                    <li className="flex justify-between py-2 border-b border-gray-200">
+                      <span>Grant Success Fee</span>
+                      <span className="font-semibold">2.5%</span>
+                    </li>
+                    <li className="flex justify-between py-2 font-bold text-lg">
+                      <span>Total Phase 2</span>
+                      <span className="text-purple-600">€5,000+</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
               
-              <ol className="space-y-4 text-gray-300">
-                <li>
-                  <strong className="text-white">1. Go to Stripe Dashboard → Payment Links</strong>
-                  <br />Navigate to: stripe.com/dashboard/payment-links
-                </li>
-                
-                <li>
-                  <strong className="text-white">2. Create Phase 1 Link (€2,500):</strong>
-                  <br />• Click "New payment link"
-                  <br />• Add product: "Phase 1: Property Search & Planning"
-                  <br />• Set price: €2,500 (one-time)
-                  <br />• Add description from agreement
-                  <br />• Enable "Collect billing address"
-                  <br />• Enable "Collect phone number"
-                </li>
-                
-                <li>
-                  <strong className="text-white">3. Create Phase 2 Link (€2,500):</strong>
-                  <br />• Product: "Phase 2: Negotiation & Due Diligence"
-                  <br />• Price: €2,500 (one-time)
-                </li>
-                
-                <li>
-                  <strong className="text-white">4. Create Phase 3 Link (€2,500):</strong>
-                  <br />• Product: "Phase 3: Preliminary Agreement"
-                  <br />• Price: €2,500 (one-time)
-                </li>
-                
-                <li>
-                  <strong className="text-white">5. Update .env.local:</strong>
-                  <pre className="bg-black p-2 rounded mt-2 overflow-x-auto">
-{`NEXT_PUBLIC_STRIPE_PHASE1_URL=https://buy.stripe.com/[your_link_1]
-NEXT_PUBLIC_STRIPE_PHASE2_URL=https://buy.stripe.com/[your_link_2]
-NEXT_PUBLIC_STRIPE_PHASE3_URL=https://buy.stripe.com/[your_link_3]`}
-                  </pre>
-                </li>
-                
-                <li>
-                  <strong className="text-white">6. Optional: Add metadata to each link:</strong>
-                  <br />• phase: "1.1" / "1.2" / "1.3"
-                  <br />• service: "property_search" / "negotiation" / "preliminary"
-                  <br />• company: "1402_celsius_ltd"
-                </li>
-                
-                <li>
-                  <strong className="text-white">7. Configure success URL:</strong>
-                  <br />• Success: {process.env.NEXT_PUBLIC_BASE_URL}/dashboard
-                  <br />• Cancel: {process.env.NEXT_PUBLIC_BASE_URL}/services
-                </li>
-              </ol>
-              
-              <div className="mt-6 p-4 bg-yellow-900 rounded">
-                <p className="text-yellow-300">
-                  <strong>Note:</strong> For milestone payments (CUP/Final Deed), use Stripe Invoicing or manual bank transfers as these are triggered by specific events.
+              <div className="mt-8 p-6 bg-yellow-50 rounded-xl border border-yellow-200">
+                <p className="text-center">
+                  <Star className="inline-block h-5 w-5 text-yellow-500 mr-2" />
+                  <strong>Performance Bonus:</strong> 5% of any amount saved through negotiation
                 </p>
               </div>
             </div>
           </div>
-        </section>
-      )}
+        </div>
+      </section>
 
-      {/* FAQ Section with Internal Links for SEO */}
-      <PageSEOSection pageKey="services" />
-    </div>
+      {/* CTA Section */}
+      <section className="py-20 bg-gradient-to-br from-indigo-900 to-purple-900 text-white">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-4xl font-bold mb-6">Ready to Invest in Puglia?</h2>
+          <p className="text-xl text-indigo-100 mb-8 max-w-2xl mx-auto">
+            Join successful international investors who have transformed their vision into reality with our expert guidance
+          </p>
+          
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+              href="/sign-agreement"
+              className="inline-block bg-white text-indigo-900 py-4 px-8 rounded-lg font-semibold hover:shadow-2xl transition-all text-lg"
+            >
+              Sign Agreement Online
+            </Link>
+            <Link
+              href="/contact"
+              className="inline-block bg-indigo-800 text-white py-4 px-8 rounded-lg font-semibold hover:bg-indigo-700 transition-all text-lg"
+            >
+              Schedule Consultation
+            </Link>
+          </div>
+          
+          <p className="mt-8 text-indigo-200">
+            Or call us directly: +39 389 632 9001
+          </p>
+        </div>
+      </section>
+
+      <Footer />
+    </>
   )
 }
