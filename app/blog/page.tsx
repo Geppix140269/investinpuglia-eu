@@ -3,7 +3,7 @@ import { sanity } from '@/lib/sanity'
 import { getAllPosts } from '@/lib/queries'
 import { groq } from 'next-sanity'
 import Link from 'next/link'
-import Image from 'next/image'
+import { CloudinaryImage } from '@/components/CloudinaryImage'
 
 export const metadata = generateMetadata({
   title: pageMetadata.blog.title,
@@ -66,7 +66,7 @@ export default async function BlogPage() {
             className="group block rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300"
           >
             {post.mainImage?.asset?.url && (
-              <Image
+              <CloudinaryImage
                 src={post.mainImage.asset.url}
                 alt={post.title}
                 width={400}

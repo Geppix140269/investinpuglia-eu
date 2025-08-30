@@ -6,6 +6,7 @@ import PropertyFilterComponent from '@/components/properties/PropertyFilter'
 import { mockProperties } from '@/lib/properties/data'
 import { PropertyFilter } from '@/lib/properties/types'
 import { Building2, TrendingUp } from 'lucide-react'
+import PageSEOSection from '@/components/PageSEOSection'
 
 export default function PropertiesPage() {
   const [filters, setFilters] = useState<PropertyFilter>({})
@@ -159,6 +160,9 @@ export default function PropertiesPage() {
           </a>
         </div>
       </div>
+      
+      {/* FAQ Section with Internal Links for SEO */}
+      <PageSEOSection pageKey="properties" />
     </div>
   )
 }

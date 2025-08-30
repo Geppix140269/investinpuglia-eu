@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import Image from 'next/image'
+import { CloudinaryImage } from '@/components/CloudinaryImage'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import { formatCurrency, getCategoryDisplayName } from '@/lib/sanity/renovation'
@@ -181,7 +181,7 @@ export default function RenovationExpertiseClient({ pageSettings, projects }: Re
             {/* Baglioni Hotel */}
             <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 animate-on-scroll">
               <div className="h-64 relative">
-                <Image
+                <CloudinaryImage
                   src="/projects/baglioni-pool.jpg"
                   alt="Baglioni Hotel Masseria Muzza"
                   fill
@@ -214,7 +214,7 @@ export default function RenovationExpertiseClient({ pageSettings, projects }: Re
             {/* Riva Marina */}
             <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 animate-on-scroll">
               <div className="h-64 relative">
-                <Image
+                <CloudinaryImage
                   src="/projects/riva-marina-exterior.jpg"
                   alt="Riva Marina Resort"
                   fill
@@ -247,7 +247,7 @@ export default function RenovationExpertiseClient({ pageSettings, projects }: Re
             {/* Santa Lucia */}
             <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 animate-on-scroll">
               <div className="h-64 relative">
-                <Image
+                <CloudinaryImage
                   src="/projects/santa-lucia-wedding.jpg"
                   alt="Santa Lucia Estate"
                   fill

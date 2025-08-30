@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import Image from 'next/image'
 import Link from 'next/link'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
@@ -10,6 +9,16 @@ import {
   CheckCircle, Euro, Clock, Briefcase, Star, Shield,
   Home, FileCheck, Hammer, Target
 } from 'lucide-react'
+
+interface Project {
+  name: string
+  location: string
+  value: string
+  grant: string
+  status: string
+  description: string
+  imageUrl?: string
+}
 
 interface PortfolioClientProps {
   projects: any[]
@@ -65,12 +74,22 @@ export default function PortfolioClient({ projects, pageSettings }: PortfolioCli
       icon: <Star className="h-8 w-8" />,
       projects: [
         {
-          name: "Hotel Masseria Muzza",
+          name: "Baglioni Masseria Muzza",
           location: "Otranto",
           value: "€4,500,000",
           grant: "PIA Turismo Funded",
           status: "Completed 2015",
-          description: "Complete transformation into 5-star luxury hotel"
+          description: "17th century masseria transformed into Baglioni 5-star resort with spa",
+          imageUrl: "/baglioni-pool.jpg"
+        },
+        {
+          name: "Masseria Montelauro",
+          location: "Otranto",
+          value: "€3,800,000",
+          grant: "PIA Turismo Funded",
+          status: "Completed 2019",
+          description: "5-star luxury hotel with 30 suites, spa & fine dining restaurant",
+          imageUrl: "/montelauro.jpg"
         },
         {
           name: "Masseria Donna Menga",
@@ -78,7 +97,26 @@ export default function PortfolioClient({ projects, pageSettings }: PortfolioCli
           value: "€2,300,000",
           grant: "PIA Turismo Funded",
           status: "Completed 2024",
-          description: "Rural tourism excellence"
+          description: "Historic farmhouse to luxury rural tourism resort",
+          imageUrl: "/donna-menga.jpg"
+        },
+        {
+          name: "Hotel Koinè",
+          location: "Otranto",
+          value: "€1,850,000",
+          grant: "L.488 Funded",
+          status: "Completed 2018",
+          description: "Modern boutique hotel with spa and conference facilities",
+          imageUrl: "/hotel-koine.jpg"
+        },
+        {
+          name: "B&B Blue Otranto",
+          location: "Otranto",
+          value: "€950,000",
+          grant: "PSR Puglia",
+          status: "Completed 2020",
+          description: "Luxury B&B with pool and sea views",
+          imageUrl: "/blue-otranto.jpg"
         }
       ]
     },
@@ -87,20 +125,40 @@ export default function PortfolioClient({ projects, pageSettings }: PortfolioCli
       icon: <Building2 className="h-8 w-8" />,
       projects: [
         {
-          name: "VOI Hotels (Alpitour World)",
+          name: "VOI Alimini Resort",
           location: "Otranto",
           value: "€1,320,000",
-          grant: "Multiple phases",
+          grant: "Alpitour Group Investment",
           status: "2015-2019",
-          description: "Complete renovation of resort facilities"
+          description: "14-hectare resort renovation with 308 rooms for Alpitour's VOI Hotels",
+          imageUrl: "/drone-view.jpg"
         },
         {
-          name: "Le Cale d'Otranto (Italia Turismo)",
-          location: "Otranto",
+          name: "Le Cale d'Otranto",
+          location: "Torre Santo Stefano",
           value: "€3,000,000",
-          grant: "Phased development",
+          grant: "Futura Club Partnership",
           status: "2015-2019",
-          description: "Major tourist village restructuring"
+          description: "Gae Aulenti-designed beach resort in Lecce stone, adults-only luxury",
+          imageUrl: "/santa-lucia.jpg"
+        },
+        {
+          name: "Riva Marina Resort",
+          location: "Carovigno",
+          value: "€2,200,000",
+          grant: "PIA Turismo",
+          status: "Completed 2021",
+          description: "4-star beach resort with private beach and marina",
+          imageUrl: "/riva-marina.jpg"
+        },
+        {
+          name: "Hotel Pietra Verde",
+          location: "Marina di Ostuni",
+          value: "€1,600,000",
+          grant: "Titolo II",
+          status: "Completed 2019",
+          description: "Eco-friendly resort with sustainable architecture",
+          imageUrl: "/pietra-verde.jpg"
         }
       ]
     },
@@ -109,20 +167,40 @@ export default function PortfolioClient({ projects, pageSettings }: PortfolioCli
       icon: <Home className="h-8 w-8" />,
       projects: [
         {
-          name: "Castello di Noha",
-          location: "Galatina",
+          name: "Nohasi Palace",
+          location: "Noha, Galatina",
           value: "€1,300,000",
           grant: "Titolo II Turismo",
           status: "Completed 2022",
-          description: "Medieval castle to luxury accommodation"
+          description: "Historic palazzo & distillery to 5-star boutique hotel with spa",
+          imageUrl: "/donna-menga.jpg"
         },
         {
           name: "Masseria San Giuseppe",
           location: "Otranto",
           value: "€1,800,000",
-          grant: "Protected monument",
+          grant: "Heritage Protection Fund",
           status: "Completed 2008",
-          description: "D.Lgs. 42/04 protected heritage site"
+          description: "D.Lgs. 42/04 protected monument restoration",
+          imageUrl: "/baglioni-pool.jpg"
+        },
+        {
+          name: "Masseria Santa Lucia",
+          location: "Ostuni",
+          value: "€2,100,000",
+          grant: "PIA Turismo",
+          status: "Completed 2017",
+          description: "16th century masseria conversion to wedding venue",
+          imageUrl: "/santa-lucia.jpg"
+        },
+        {
+          name: "Masseria Furca",
+          location: "Nardò",
+          value: "€1,450,000",
+          grant: "PSR Puglia",
+          status: "Completed 2016",
+          description: "Rural heritage site to agriturismo with 20 rooms",
+          imageUrl: "/masseria-furca.jpg"
         }
       ]
     }
@@ -140,7 +218,7 @@ export default function PortfolioClient({ projects, pageSettings }: PortfolioCli
     <>
       <Navbar />
       
-      {/* Hero Section - Professional & Impressive */}
+      {/* Hero Section - InvestInPuglia Portfolio */}
       <section className="relative bg-gradient-to-br from-slate-900 via-indigo-900 to-slate-900 text-white py-20 overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0" style={{
@@ -151,21 +229,21 @@ export default function PortfolioClient({ projects, pageSettings }: PortfolioCli
         
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-5xl mx-auto">
-            {/* Professional Title */}
+            {/* InvestInPuglia Title */}
             <div className="text-center mb-8">
               <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full mb-6">
                 <Shield className="h-5 w-5 text-yellow-400" />
-                <span className="text-sm font-bold uppercase tracking-wider">Established 1995</span>
+                <span className="text-sm font-bold uppercase tracking-wider">Proven Excellence Since 1995</span>
               </div>
               
               <h1 className="text-5xl md:text-6xl font-bold mb-4">
-                Dott. Ing. Cataldo Russo
+                InvestInPuglia Portfolio
               </h1>
               <p className="text-xl md:text-2xl text-indigo-200 mb-2">
-                Engineer-Architect | Tourism Development Specialist
+                29 Years of Tourism Development Excellence
               </p>
               <p className="text-lg text-gray-300">
-                Order of Engineers, Province of Lecce - Reg. #1697
+                Led by our Chief Technical Officer - Dott. Ing. Cataldo Russo
               </p>
             </div>
             
@@ -200,13 +278,114 @@ export default function PortfolioClient({ projects, pageSettings }: PortfolioCli
         </div>
       </section>
 
+      {/* Team & Leadership */}
+      <section className="py-16 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold mb-4">Our Expert Team</h2>
+            <p className="text-xl text-gray-600">
+              Complete project delivery from concept to operation
+            </p>
+          </div>
+          
+          {/* Team Leadership */}
+          <div className="bg-white rounded-2xl shadow-xl p-8 mb-8">
+            <div className="grid md:grid-cols-3 gap-8 items-center">
+              {/* Cataldo's Photo */}
+              <div className="md:col-span-1">
+                <div className="relative">
+                  <div className="absolute inset-0 bg-gradient-to-r from-indigo-400 to-purple-400 rounded-full blur-2xl opacity-30"></div>
+                  <img
+                    src="/russo-photo.jpg"
+                    alt="Dott. Ing. Cataldo Russo"
+                    className="rounded-full w-48 h-48 mx-auto border-4 border-white shadow-xl object-cover"
+                  />
+                </div>
+              </div>
+              
+              {/* Cataldo's Info */}
+              <div className="md:col-span-2">
+                <h3 className="text-2xl font-bold mb-2">Dott. Ing. Cataldo Russo</h3>
+                <p className="text-indigo-600 font-semibold mb-3">Chief Technical Officer & Lead Engineer-Architect</p>
+                <div className="mb-4">
+                  <p className="text-sm font-semibold text-gray-700 mb-2">Cataldo's Professional Certifications:</p>
+                  <div className="flex flex-wrap gap-2">
+                    <span className="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm font-semibold">
+                      Order of Engineers Lecce #1697
+                    </span>
+                    <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-semibold">
+                      ITACA Protocol Certified
+                    </span>
+                    <span className="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm font-semibold">
+                      Fire Safety Specialist (L.818/84)
+                    </span>
+                    <span className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-semibold">
+                      D.Lgs 81/2008 Safety Coordinator
+                    </span>
+                  </div>
+                </div>
+                <p className="text-gray-700 mb-4">
+                  With nearly three decades of experience, <strong>Ing. Cataldo Russo</strong> personally leads our technical team in delivering 
+                  world-class tourism developments. His direct expertise in grant funding and regulatory compliance 
+                  has secured over €20 million in funding for international investors.
+                </p>
+                <div className="grid grid-cols-3 gap-4">
+                  <div>
+                    <div className="text-2xl font-bold text-indigo-600">29</div>
+                    <div className="text-sm text-gray-600">Cataldo's Years Experience</div>
+                  </div>
+                  <div>
+                    <div className="text-2xl font-bold text-indigo-600">50+</div>
+                    <div className="text-sm text-gray-600">Hotels by Cataldo</div>
+                  </div>
+                  <div>
+                    <div className="text-2xl font-bold text-indigo-600">95%</div>
+                    <div className="text-sm text-gray-600">Cataldo's Grant Success</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          {/* Supporting Team */}
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="bg-white rounded-xl p-6 shadow-lg">
+              <h3 className="font-bold text-lg mb-3">Cataldo's Team</h3>
+              <ul className="space-y-2 text-gray-700">
+                <li>• Arch. Wanda Barca - Heritage Restoration (La Sapienza Rome)</li>
+                <li>• Ing. Paolo Meleti - MEP Systems Specialist</li>
+                <li>• Ing. Matteo Pellegrino - Environmental Engineer</li>
+              </ul>
+            </div>
+            
+            <div className="bg-white rounded-xl p-6 shadow-lg">
+              <h3 className="font-bold text-lg mb-3">Cataldo's Technical Expertise</h3>
+              <ul className="space-y-2 text-gray-700">
+                <li>• Advanced structural engineering (seismic design certified)</li>
+                <li>• Bioclimatic architecture & energy efficiency (ITACA certified)</li>
+                <li>• Heritage restoration & conservation (D.Lgs. 42/04 specialist)</li>
+              </ul>
+            </div>
+            
+            <div className="bg-white rounded-xl p-6 shadow-lg">
+              <h3 className="font-bold text-lg mb-3">Services Led by Cataldo</h3>
+              <ul className="space-y-2 text-gray-700">
+                <li>• Complete design-build services (29 years experience)</li>
+                <li>• Construction supervision & safety (D.Lgs 81/2008 certified)</li>
+                <li>• Grant application & compliance (€20M+ secured)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Trust Indicators Section */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">Why International Investors Choose Russo</h2>
+            <h2 className="text-3xl font-bold mb-4">Why International Investors Choose InvestInPuglia</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Three decades of excellence in tourism development with proven grant funding expertise
+              Our technical team combines three decades of excellence with proven grant funding expertise
             </p>
           </div>
           
@@ -253,6 +432,17 @@ export default function PortfolioClient({ projects, pageSettings }: PortfolioCli
               <div className="grid md:grid-cols-2 gap-6">
                 {category.projects.map((project, projIndex) => (
                   <div key={projIndex} className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all">
+                    {/* Project Image */}
+                    <div className="relative h-48 bg-gradient-to-br from-indigo-100 to-purple-100">
+                      <img
+                        src={project.imageUrl || `/russo-photo.jpg`}
+                        alt={project.name}
+                        className="w-full h-full object-cover"
+                      />
+                      <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full">
+                        <span className="text-sm font-bold text-indigo-600">{project.status}</span>
+                      </div>
+                    </div>
                     <div className="p-6">
                       <div className="flex justify-between items-start mb-4">
                         <div>
@@ -308,11 +498,11 @@ export default function PortfolioClient({ projects, pageSettings }: PortfolioCli
           
           <div className="text-center mt-12">
             <p className="text-lg mb-6">
-              "Since most of my projects have successfully obtained funding (L.488, PIA Turismo, PSR, POIN), 
-              I have developed specific expertise in technical-administrative procedures for grants 
+              "Our team has successfully obtained funding through L.488, PIA Turismo, PSR, and POIN programs, 
+              developing specific expertise in technical-administrative procedures for grants 
               valued at approximately €20,000,000 in approved and completed projects."
             </p>
-            <p className="text-sm italic">- Dott. Ing. Cataldo Russo</p>
+            <p className="text-sm italic">- InvestInPuglia Technical Team</p>
           </div>
         </div>
       </section>
@@ -378,19 +568,79 @@ export default function PortfolioClient({ projects, pageSettings }: PortfolioCli
         </div>
       </section>
 
-      {/* Team & Capabilities */}
+      {/* Team & Leadership */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">Full-Service Development Team</h2>
+            <h2 className="text-3xl font-bold mb-4">Our Expert Team</h2>
             <p className="text-xl text-gray-600">
               Complete project delivery from concept to operation
             </p>
           </div>
           
+          {/* Team Leadership */}
+          <div className="bg-white rounded-2xl shadow-xl p-8 mb-8">
+            <div className="grid md:grid-cols-3 gap-8 items-center">
+              {/* Cataldo's Photo */}
+              <div className="md:col-span-1">
+                <div className="relative">
+                  <div className="absolute inset-0 bg-gradient-to-r from-indigo-400 to-purple-400 rounded-full blur-2xl opacity-30"></div>
+                  <img
+                    src="/russo-photo.jpg"
+                    alt="Dott. Ing. Cataldo Russo"
+                    className="rounded-full w-48 h-48 mx-auto border-4 border-white shadow-xl object-cover"
+                  />
+                </div>
+              </div>
+              
+              {/* Cataldo's Info */}
+              <div className="md:col-span-2">
+                <h3 className="text-2xl font-bold mb-2">Dott. Ing. Cataldo Russo</h3>
+                <p className="text-indigo-600 font-semibold mb-3">Chief Technical Officer & Lead Engineer-Architect</p>
+                <div className="mb-4">
+                  <p className="text-sm font-semibold text-gray-700 mb-2">Cataldo's Professional Certifications:</p>
+                  <div className="flex flex-wrap gap-2">
+                    <span className="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm font-semibold">
+                      Order of Engineers Lecce #1697
+                    </span>
+                    <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-semibold">
+                      ITACA Protocol Certified
+                    </span>
+                    <span className="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm font-semibold">
+                      Fire Safety Specialist (L.818/84)
+                    </span>
+                    <span className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-semibold">
+                      D.Lgs 81/2008 Safety Coordinator
+                    </span>
+                  </div>
+                </div>
+                <p className="text-gray-700 mb-4">
+                  With nearly three decades of experience, <strong>Ing. Cataldo Russo</strong> personally leads our technical team in delivering 
+                  world-class tourism developments. His direct expertise in grant funding and regulatory compliance 
+                  has secured over €20 million in funding for international investors.
+                </p>
+                <div className="grid grid-cols-3 gap-4">
+                  <div>
+                    <div className="text-2xl font-bold text-indigo-600">29</div>
+                    <div className="text-sm text-gray-600">Cataldo's Years Experience</div>
+                  </div>
+                  <div>
+                    <div className="text-2xl font-bold text-indigo-600">50+</div>
+                    <div className="text-sm text-gray-600">Hotels by Cataldo</div>
+                  </div>
+                  <div>
+                    <div className="text-2xl font-bold text-indigo-600">95%</div>
+                    <div className="text-sm text-gray-600">Cataldo's Grant Success</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          {/* Supporting Team */}
           <div className="grid md:grid-cols-3 gap-6">
             <div className="bg-white rounded-xl p-6 shadow-lg">
-              <h3 className="font-bold text-lg mb-3">Core Team</h3>
+              <h3 className="font-bold text-lg mb-3">Cataldo's Team</h3>
               <ul className="space-y-2 text-gray-700">
                 <li>• Arch. Wanda Barca - Heritage Restoration (La Sapienza Rome)</li>
                 <li>• Ing. Paolo Meleti - MEP Systems Specialist</li>
@@ -399,20 +649,20 @@ export default function PortfolioClient({ projects, pageSettings }: PortfolioCli
             </div>
             
             <div className="bg-white rounded-xl p-6 shadow-lg">
-              <h3 className="font-bold text-lg mb-3">Technical Capabilities</h3>
+              <h3 className="font-bold text-lg mb-3">Cataldo's Technical Expertise</h3>
               <ul className="space-y-2 text-gray-700">
-                <li>• Advanced structural engineering (seismic design)</li>
-                <li>• Bioclimatic architecture & energy efficiency</li>
-                <li>• Heritage restoration & conservation</li>
+                <li>• Advanced structural engineering (seismic design certified)</li>
+                <li>• Bioclimatic architecture & energy efficiency (ITACA certified)</li>
+                <li>• Heritage restoration & conservation (D.Lgs. 42/04 specialist)</li>
               </ul>
             </div>
             
             <div className="bg-white rounded-xl p-6 shadow-lg">
-              <h3 className="font-bold text-lg mb-3">Project Management</h3>
+              <h3 className="font-bold text-lg mb-3">Services Led by Cataldo</h3>
               <ul className="space-y-2 text-gray-700">
-                <li>• Complete design-build services</li>
-                <li>• Construction supervision & safety</li>
-                <li>• Grant application & compliance</li>
+                <li>• Complete design-build services (29 years experience)</li>
+                <li>• Construction supervision & safety (D.Lgs 81/2008 certified)</li>
+                <li>• Grant application & compliance (€20M+ secured)</li>
               </ul>
             </div>
           </div>
@@ -425,7 +675,7 @@ export default function PortfolioClient({ projects, pageSettings }: PortfolioCli
           <h2 className="text-4xl font-bold mb-4">Partner with Proven Excellence</h2>
           <p className="text-xl mb-8 text-indigo-100 max-w-3xl mx-auto">
             Join international investors who have successfully developed premium tourism properties in Puglia 
-            with Cataldo Russo's expertise
+            with InvestInPuglia's proven expertise
           </p>
           
           <div className="bg-white/10 backdrop-blur-sm rounded-xl p-8 max-w-2xl mx-auto mb-8">

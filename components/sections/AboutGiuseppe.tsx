@@ -1,5 +1,5 @@
 // components/sections/AboutGiuseppe.tsx
-import Image from 'next/image'
+import { CloudinaryImage } from '@/components/CloudinaryImage'
 import Icon from '@/lib/iconMappings'
 
 export default function AboutGiuseppe() {
@@ -25,7 +25,7 @@ export default function AboutGiuseppe() {
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="relative">
             <div className="absolute inset-0 bg-gradient-to-br from-purple-600 to-emerald-600 rounded-3xl transform rotate-3"></div>
-            <Image 
+            <CloudinaryImage 
               src="/Giuseppe Funaro 062025.png" 
               alt="Giuseppe Funaro - Property Investment Advisor Puglia" 
               width={400}

@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import PageSEOSection from '@/components/PageSEOSection'
 
 export default function ServicesPage() {
   const phases = [
@@ -647,6 +648,9 @@ NEXT_PUBLIC_STRIPE_PHASE3_URL=https://buy.stripe.com/[your_link_3]`}
           </div>
         </section>
       )}
+
+      {/* FAQ Section with Internal Links for SEO */}
+      <PageSEOSection pageKey="services" />
     </div>
   )
 }

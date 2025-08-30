@@ -3,7 +3,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { MapPin, Factory, ArrowRight, Shield } from 'lucide-react';
-import Image from 'next/image';
+import { CloudinaryImage } from '@/components/CloudinaryImage';
 
 const HeroVisual = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -223,13 +223,12 @@ const HeroVisual = () => {
                   href={type.link}
                   className="relative rounded-xl overflow-hidden shadow-lg"
                 >
-                  <img 
+                  <CloudinaryImage 
                     src={type.image} 
                     alt={type.name}
+                    width={400}
+                    height={112}
                     className="w-full h-28 object-cover"
-                    onError={(e) => {
-                      (e.target as HTMLImageElement).src = type.fallback;
-                    }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
                   <div className="absolute bottom-0 left-0 right-0 p-3 text-white">
@@ -396,7 +395,7 @@ const HeroVisual = () => {
                   className="w-full h-full object-cover scale-110"
                 >
                   <source src={heroVideos[currentVideoIndex]} type="video/mp4" />
-                  <Image 
+                  <CloudinaryImage 
                     src="/Hero_BG.jpg" 
                     alt="Puglia Investment Opportunities" 
                     fill
@@ -434,7 +433,7 @@ const HeroVisual = () => {
               <div className="flex gap-4 lg:animate-scroll w-max px-6">
                 {[...locations, ...locations].map((location, i) => (
                   <a key={i} href={location.link} className="inline-block flex-shrink-0 w-[250px] h-[150px] rounded-2xl overflow-hidden hover:scale-105 transition-transform">
-                    <img src={`/images/locations/${location.name.toLowerCase().replace(/ /g, '-')}-thumb.jpg`} alt={location.name} className="w-full h-full object-cover" />
+                    <CloudinaryImage src={`/images/locations/${location.name.toLowerCase().replace(/ /g, '-')}-thumb.jpg`} alt={location.name} width={250} height={150} className="w-full h-full object-cover" />
                   </a>
                 ))}
               </div>
@@ -466,13 +465,12 @@ const HeroVisual = () => {
                 }}
               >
                 <div className="h-[120px] relative overflow-hidden">
-                  <img 
+                  <CloudinaryImage 
                     src={project.image} 
                     alt={project.name}
+                    width={400}
+                    height={120}
                     className="w-full h-full object-cover"
-                    onError={(e) => {
-                      (e.target as HTMLImageElement).src = project.fallback;
-                    }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                 </div>
