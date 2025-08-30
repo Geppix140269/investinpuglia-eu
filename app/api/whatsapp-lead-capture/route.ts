@@ -163,6 +163,12 @@ async function captureWhatsAppLead(phoneNumber: string, name: string, message: s
     // Determine status
     const status = leadScore >= 60 ? 'hot' : leadScore >= 40 ? 'warm' : 'cold';
     
+    // Build interests array
+    const interests: string[] = [];
+    if (msgLower.includes('grant')) interests.push('EU Grants');
+    if (msgLower.includes('property')) interests.push('Property Investment');
+    if (msgLower.includes('hotel')) interests.push('Hotel Development');
+    
     // Store lead in Firebase whatsapp_leads collection
     const leadData = {
       phone_number: phoneNumber,
@@ -170,18 +176,13 @@ async function captureWhatsAppLead(phoneNumber: string, name: string, message: s
       language,
       lead_score: leadScore,
       status,
-      interests: [],
+      interests,
       tags: ['whatsapp', language],
       message_count: 1,
       last_interaction: new Date().toISOString(),
       created_at: new Date().toISOString(),
       total_interactions: 1
     };
-    
-    // Check for interests
-    if (msgLower.includes('grant')) leadData.interests.push('EU Grants');
-    if (msgLower.includes('property')) leadData.interests.push('Property Investment');
-    if (msgLower.includes('hotel')) leadData.interests.push('Hotel Development');
     
     // Use phone number as document ID for easy updates
     await setDoc(doc(db, 'whatsapp_leads', phoneNumber), leadData, { merge: true });
