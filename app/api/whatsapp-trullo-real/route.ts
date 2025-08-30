@@ -24,6 +24,15 @@ async function getRealTrulloResponse(message: string, phoneNumber: string, profi
     const snapshot = await getDocs(q);
     const history = snapshot.docs.map(doc => doc.data()).reverse();
     
+    // Analyze message for special handling
+    const messageLower = message.toLowerCase();
+    
+    // If user shares a URL they can't analyze
+    if (messageLower.includes('idealista.it') || messageLower.includes('immobile') || 
+        messageLower.includes('.pdf') || messageLower.includes('http')) {
+      return handleUrlMessage(message, history);
+    }
+    
     // Build conversation context
     const conversationHistory = history.map(h => ({
       role: h.sender === 'user' ? 'user' : 'assistant',
@@ -76,8 +85,14 @@ async function getOpenAIResponse(message: string, history: any[]) {
     
     if (!OPENAI_API_KEY) {
       console.log('No OpenAI key, using smart fallback');
-      return getSmartFallback(message);
+      return getSmartFallback(message, history);
     }
+
+    // Check if this is a continuation of conversation
+    const isFirstMessage = history.length === 0;
+    const hasRecentGreeting = history.slice(-5).some(h => 
+      h.content?.toLowerCase().includes('ciao') && h.content?.includes('trullo')
+    );
 
     const response = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
@@ -90,34 +105,34 @@ async function getOpenAIResponse(message: string, history: any[]) {
         messages: [
           {
             role: 'system',
-            content: `You are Trullo, the friendly and enthusiastic AI assistant for InvestInPuglia! 🏛️
+            content: `You are Trullo, an intelligent AI assistant for InvestInPuglia.
 
-Your personality:
-- Warm, welcoming, and excited to help
-- Professional but approachable
-- Use emojis appropriately (🏛️ 🏡 💰 ✨ 📊 🎯)
-- Start conversations with "Ciao! I'm Trullo" when greeting
+IMPORTANT RULES:
+1. NEVER repeat the same greeting if you've already introduced yourself in this conversation
+2. NEVER say "Ciao! I'm Trullo" if you've said it in the last 10 messages
+3. Be NATURAL - respond like a real person would, not a robot
+4. If someone sends a URL, acknowledge you can't open it and ask them to describe what they need
+5. Remember context from the conversation - don't reset every message
+6. Be helpful but not overly enthusiastic on every single message
+7. Match the tone of the user - if they're brief, be brief
 
-ALWAYS introduce yourself on first contact:
-"Ciao! I'm Trullo, your personal investment guide for Puglia! 🏛️ I'm here to help you discover amazing EU grants up to €2.25M and stunning properties in Italy's most beautiful region!"
+${isFirstMessage ? `First message - introduce yourself naturally:
+"Ciao! I'm Trullo 🏛️ Welcome to InvestInPuglia! I see you're interested in investment opportunities in Puglia. How can I help you today?"` : `Ongoing conversation - DO NOT introduce yourself again. Just answer naturally.`}
 
-Key Information:
+Key Information (use when relevant, not every message):
 - EU grants: 35-50% non-repayable (up to €2.25M)
 - CEO consultation: €60 with Giuseppe Funaro
-- Booking link: https://buy.stripe.com/bJe9AV0y03xCbe6cx408g07
-- Properties: Ostuni, Lecce, Polignano, Alberobello, Bari
+- Properties in: Ostuni, Lecce, Polignano, Alberobello, Bari
 - Investment range: €200K to €5M
-- Success rate: 95% grant approval
 - Phone: +39 351 400 1402
 
-Be enthusiastic about Puglia's opportunities! Make investors excited about the possibilities.
-Answer in the same language as the user's message.`
+Respond in the same language as the user. Be conversational, not scripted.`
           },
           ...history.slice(-10), // Last 10 messages for context
           { role: 'user', content: message }
         ],
-        max_tokens: 500,
-        temperature: 0.7
+        max_tokens: 300,
+        temperature: 0.8
       })
     });
 
@@ -135,31 +150,36 @@ Answer in the same language as the user's message.`
   }
 }
 
-// Enhance response with relevant links and CTAs
+// Enhance response with relevant links and CTAs (but be smart about it)
 function enhanceResponse(response: string, originalMessage: string) {
   const lower = originalMessage.toLowerCase();
+  const responseLower = response.toLowerCase();
   
-  // Add consultation link if discussing investment/budget
-  if ((lower.includes('invest') || lower.includes('budget') || lower.includes('grant')) 
+  // Don't add links if:
+  // 1. Response already has links
+  // 2. It's a simple greeting or acknowledgment
+  // 3. Response is already long
+  if (response.includes('http') || 
+      response.length < 100 || 
+      response.length > 400 ||
+      responseLower.includes('i see') ||
+      responseLower.includes('i notice') ||
+      responseLower.includes('i understand')) {
+    return response;
+  }
+  
+  // Only add consultation link if truly discussing investment details
+  if ((lower.includes('how much') || lower.includes('invest') || lower.includes('budget') || 
+       lower.includes('cost') || lower.includes('price')) 
       && !response.includes('stripe.com')) {
-    response += `\n\n💡 Ready to discuss your specific situation? Book a 30-minute consultation with our CEO Giuseppe for just €60: https://buy.stripe.com/bJe9AV0y03xCbe6cx408g07`;
-  }
-  
-  // Add property link if discussing properties
-  if (lower.includes('propert') && !response.includes('investinpuglia.eu/properties')) {
-    response += `\n\n🏡 View all available properties: https://investinpuglia.eu/properties`;
-  }
-  
-  // Add contact for immediate help
-  if (lower.includes('urgent') || lower.includes('now') || lower.includes('today')) {
-    response += `\n\n📞 Need immediate assistance? Call Giuseppe directly: +39 351 400 1402`;
+    response += `\n\n💡 Want personalized advice? Book a consultation: https://buy.stripe.com/bJe9AV0y03xCbe6cx408g07`;
   }
   
   return response;
 }
 
 // Smart fallback that actually tries to answer based on keywords
-function getSmartFallback(message: string): string {
+function getSmartFallback(message: string, history: any[] = []): string {
   const lower = message.toLowerCase();
   
   // Investment/budget questions
@@ -214,42 +234,35 @@ Our success rate: 95%!
 Get your personalized grant assessment: https://buy.stripe.com/bJe9AV0y03xCbe6cx408g07`;
   }
   
-  // Check if it's a greeting
+  // Check if it's a greeting and if we've already greeted
+  const hasGreeted = history.some(h => h.content?.includes('Trullo') && h.content?.includes('Welcome'));
+  
   if (lower.match(/^(hi|hello|hey|ciao|buongiorno|salve|hola|bonjour)$/i)) {
-    return `Ciao! I'm Trullo, your personal investment guide for Puglia! 🏛️ 
+    if (hasGreeted) {
+      // Already greeted, be natural
+      return `Hey there! What can I help you with regarding your Puglia investment plans?`;
+    }
+    return `Ciao! I'm Trullo 🏛️ Welcome to InvestInPuglia!
 
-Welcome to InvestInPuglia - your gateway to extraordinary opportunities in Italy's most beautiful region!
+I can help you with:
+• EU grants (35-50% non-repayable)
+• Property investments in Puglia
+• Consultation booking with our CEO
 
-I'm here to help you discover:
-✨ EU grants up to €2.25M (yes, really!)
-🏡 Stunning properties from €200K to €5M
-💰 35-50% non-repayable funding
-🎯 95% success rate on applications
-
-What brings you to Puglia today? Are you looking for:
-1️⃣ Investment properties
-2️⃣ Grant information
-3️⃣ Expert consultation
-
-Just tell me what interests you most, and let's make your Italian investment dream a reality! 🇮🇹`;
+What interests you most?`;
   }
   
-  // Default helpful response
-  return `Ciao! I'm Trullo, and I'm excited to help you with "${message}"! 🏛️
+  // Handle URLs that can't be opened
+  if (lower.includes('http://') || lower.includes('https://') || lower.includes('www.')) {
+    return `I see you've shared a link, but I can't open external URLs directly. Could you tell me what information you need from that page? I'd be happy to help with any questions about Puglia investments, EU grants, or available properties!`;
+  }
+  
+  // More natural default response
+  return `I understand you're asking about "${message}". 
 
-While I process your specific question, here's what I can offer you right now:
+Let me help you with that. Could you provide a bit more detail about what you're looking for? 
 
-🎯 **Immediate Actions:**
-• Book a strategy call with CEO Giuseppe: €60
-  👉 https://buy.stripe.com/bJe9AV0y03xCbe6cx408g07
-
-• Browse available properties
-  👉 https://investinpuglia.eu/properties
-
-• Call directly for urgent matters
-  👉 +39 351 400 1402
-
-I'm here to make your Puglia investment journey amazing! How can I help you succeed today?`;
+Meanwhile, if you need immediate assistance, you can book a consultation with our CEO Giuseppe (€60) or call us directly at +39 351 400 1402.`;
 }
 
 // Extract amount from message
@@ -262,6 +275,50 @@ function extractAmount(message: string): number {
     return num * multiplier;
   }
   return 0;
+}
+
+// Handle URL messages intelligently
+function handleUrlMessage(message: string, history: any[]): string {
+  const lower = message.toLowerCase();
+  
+  // Property listing URLs
+  if (lower.includes('idealista') || lower.includes('immobiliare')) {
+    return `I see you've shared a property listing! While I can't access external links directly, I'd love to help you evaluate this opportunity.
+
+Could you share:
+• Property location and type?
+• Asking price?
+• Size (sqm/rooms)?
+
+With this info, I can tell you:
+✓ What EU grants apply (35-50%)
+✓ Potential ROI
+✓ Similar properties we have
+
+Want to discuss this property with our CEO? Book here: https://buy.stripe.com/bJe9AV0y03xCbe6cx408g07`;
+  }
+  
+  // PDF documents
+  if (lower.includes('.pdf')) {
+    return `I notice you've shared a PDF document. I can't open files directly, but I can definitely help!
+
+Is this:
+• A property brochure?
+• An investment proposal?
+• Grant documentation?
+
+Let me know what's in the document and I'll provide specific guidance on EU grants and investment opportunities.`;
+  }
+  
+  // Generic URL
+  return `Thanks for sharing that link! I can't access external websites, but I'm here to help.
+
+Tell me what you found interesting on that page and I'll provide relevant information about:
+• EU grants for that type of project
+• Similar opportunities in our portfolio
+• Investment potential in Puglia
+
+What specifically caught your attention?`;
 }
 
 // Main webhook handler

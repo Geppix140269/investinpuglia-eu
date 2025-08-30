@@ -50,38 +50,6 @@ export default async function PortfolioPage() {
 function getDefaultProjects() {
   return [
     {
-      _id: '1',
-      title: 'Oasi Sarparea',
-      slug: { current: 'oasi-sarparea' },
-      category: 'eco-resort',
-      status: 'in-progress',
-      location: {
-        city: 'Nardò',
-        province: 'Lecce',
-        region: 'Puglia'
-      },
-      description: '41-hectare holistic wellness resort featuring 95,000 mc of luxury accommodations, spa facilities, and sustainable architecture integrated with Mediterranean nature.',
-      mainImage: '/projects/oasi-sarparea.jpg',
-      investment: {
-        amount: 45000000,
-        roi: 35,
-        timeline: 24,
-        completionYear: 2024
-      },
-      metrics: {
-        size: '41 hectares',
-        rooms: 150,
-        capacity: 300
-      },
-      features: [
-        'Holistic wellness center',
-        'Sustainable architecture',
-        'Mediterranean gardens',
-        'Spa facilities'
-      ],
-      architect: 'Engineer Architect Cataldo Russo'
-    },
-    {
       _id: '2',
       title: 'Baglioni Hotel Masseria Muzza',
       slug: { current: 'baglioni-hotel' },
