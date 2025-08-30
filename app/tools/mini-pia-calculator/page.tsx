@@ -104,10 +104,10 @@ export default function MiniPIACalculator() {
     const integratedPercent = (integratedTotal / totalEligible) * 100
     const integratedStatus = integratedPercent >= 5
     
-    // Grant and tax credit
+    // Grant calculation (removed tax credit)
     const miniPiaGrant = totalEligible * (grantRate / 100)
-    const taxCredit = totalEligible * 0.15
-    const totalBenefit = miniPiaGrant + taxCredit
+    const taxCredit = 0 // Tax credit removed - not part of package
+    const totalBenefit = miniPiaGrant
     
     // Non-eligible costs
     const agencyFees = propertyPurchase * (agencyRate / 100)
@@ -168,7 +168,6 @@ Total Non-Eligible Costs: ${formatCurrency(results.totalNonEligible)}
 MINI PIA BENEFITS
 =================
 Non-Refundable Grant: ${formatCurrency(results.miniPiaGrant)}
-Tax Credit (15%): ${formatCurrency(results.taxCredit)}
 Total Benefit: ${formatCurrency(results.totalBenefit)}
 
 YOUR NET INVESTMENT
@@ -209,7 +208,6 @@ Total Non-Eligible: ${formatCurrency(results.totalNonEligible)}
 
 MINI PIA BENEFITS
 Grant: ${formatCurrency(results.miniPiaGrant)}
-Tax Credit: ${formatCurrency(results.taxCredit)}
 Total Benefit: ${formatCurrency(results.totalBenefit)}
 
 NET INVESTMENT: ${formatCurrency(results.netInvestment)}
@@ -232,7 +230,7 @@ Contact: info@investinpuglia.eu`
             InvestiScope™ Classic
           </h1>
           <p className="text-xl text-purple-100 max-w-3xl mx-auto">
-            Advanced calculator for Mini PIA Turismo grants with detailed financial projections and ROI analysis
+            Advanced calculator for Mini PIA Turismo grants with detailed financial projections
           </p>
           
           {/* Currency Notice */}
@@ -544,10 +542,6 @@ Contact: info@investinpuglia.eu`
                   <p className="text-3xl font-bold text-green-300">{formatCurrency(results.miniPiaGrant)}</p>
                 </div>
                 
-                <div>
-                  <p className="text-sm opacity-90">Tax Credit (15%)</p>
-                  <p className="text-2xl font-bold text-blue-300">{formatCurrency(results.taxCredit)}</p>
-                </div>
                 
                 <div className="border-t border-white/20 pt-4">
                   <p className="text-sm opacity-90">Total Mini PIA Benefit</p>
