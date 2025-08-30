@@ -10,6 +10,56 @@ export const metadata: Metadata = {
   title: 'Mini PIA Turismo Guide for Foreign Investors | InvestInPuglia',
   description: 'Complete step-by-step guide for foreign investors to access Mini PIA Turismo grants in Puglia. 45-55% non-refundable grants for tourism investments.',
   keywords: 'Mini PIA Turismo, Puglia grants, tourism investment Italy, EU funding, foreign investor guide',
+  
+  // Open Graph for Facebook, LinkedIn, WhatsApp
+  openGraph: {
+    title: 'Mini PIA Turismo: Get 45-55% Grants for Tourism Investments in Puglia',
+    description: '📘 Complete guide for foreign investors • Step-by-step process • Required documents • €2M max grant • Professional support available',
+    url: 'https://investinpuglia.eu/mini-pia-guide',
+    siteName: 'InvestInPuglia',
+    images: [
+      {
+        url: 'https://investinpuglia.eu/images/mini-pia-guide-og.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Mini PIA Turismo Guide - 45-55% Grants for Tourism in Puglia',
+      }
+    ],
+    locale: 'en_US',
+    type: 'article',
+  },
+  
+  // Twitter Card
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Mini PIA Turismo Guide: 45-55% Grants for Tourism in Puglia',
+    description: 'Complete foreign investor guide to access €2M in non-refundable grants. Step-by-step process included.',
+    images: ['https://investinpuglia.eu/images/mini-pia-guide-twitter.jpg'],
+  },
+  
+  // Additional SEO
+  alternates: {
+    canonical: 'https://investinpuglia.eu/mini-pia-guide',
+  },
+  
+  // Robots and indexing
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  
+  // For WhatsApp and other apps
+  other: {
+    'og:whatsapp:title': '💰 Mini PIA: Get 45-55% Grants for Tourism in Puglia',
+    'og:whatsapp:description': 'Foreign investor? Access up to €2M in grants. Free guide here 👇',
+  }
 }
 
 export default function MiniPIAGuidePage() {
