@@ -1,18 +1,13 @@
-// WhatsApp Lead Capture API for InvestInPuglia
+// WhatsApp Lead Capture API for InvestInPuglia - FIREBASE VERSION
 import { NextRequest, NextResponse } from 'next/server';
 import twilio from 'twilio';
-import { createClient } from '@supabase/supabase-js';
+import { db } from '@/lib/firebase';
+import { collection, addDoc, query, where, orderBy, limit, getDocs, setDoc, doc, updateDoc } from 'firebase/firestore';
 
 // Initialize Twilio client
 const twilioClient = twilio(
   process.env.TWILIO_ACCOUNT_SID!,
   process.env.TWILIO_AUTH_TOKEN!
-);
-
-// Initialize Supabase
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
 );
 
 // Stripe consultation link
@@ -41,13 +36,17 @@ function detectLanguage(text: string): string {
 // Get Trullo AI response
 async function getTrulloResponse(message: string, language: string, phoneNumber: string) {
   try {
-    // Get conversation history
-    const { data: history } = await supabase
-      .from('whatsapp_conversations')
-      .select('*')
-      .eq('phone_number', phoneNumber)
-      .order('created_at', { ascending: false })
-      .limit(10);
+    // Get conversation history from Firebase
+    const conversationsRef = collection(db, 'whatsapp_conversations');
+    const q = query(
+      conversationsRef,
+      where('phone_number', '==', phoneNumber),
+      orderBy('created_at', 'desc'),
+      limit(10)
+    );
+    
+    const snapshot = await getDocs(q);
+    const history = snapshot.docs.map(doc => doc.data()).reverse();
 
     // Call Trullo API
     const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/trullo-message`, {
@@ -56,8 +55,8 @@ async function getTrulloResponse(message: string, language: string, phoneNumber:
       body: JSON.stringify({
         message,
         language,
-        conversationHistory: history?.map(h => ({
-          role: h.sender,
+        conversationHistory: history.map(h => ({
+          role: h.sender === 'user' ? 'user' : 'assistant',
           content: h.message
         })),
         source: 'whatsapp',
@@ -97,10 +96,10 @@ function generateFallbackResponse(message: string, language: string): string {
     : `Welcome to InvestInPuglia! I can help you with:\n💰 EU Grants up to €2.25M\n🏡 Properties in Puglia\n📊 ROI Calculations\n\nWhat's your investment budget?`;
 }
 
-// Store conversation in database
+// Store conversation in Firebase
 async function storeConversation(phoneNumber: string, message: string, sender: 'user' | 'bot', language: string) {
   try {
-    await supabase.from('whatsapp_conversations').insert({
+    await addDoc(collection(db, 'whatsapp_conversations'), {
       phone_number: phoneNumber,
       message,
       sender,
@@ -148,21 +147,46 @@ function formatWhatsAppMessage(text: string, options?: {
   return formattedText;
 }
 
-// Capture lead information
+// Capture lead information in Firebase
 async function captureWhatsAppLead(phoneNumber: string, name: string, message: string, language: string) {
   try {
-    // Store lead in database
-    await supabase.from('whatsapp_leads').insert({
+    // Calculate lead score
+    let leadScore = 20; // Base score
+    const msgLower = message.toLowerCase();
+    
+    // Score based on message content
+    if (msgLower.match(/\d+k|\d+m|€\d+/)) leadScore += 30;
+    if (msgLower.includes('grant')) leadScore += 20;
+    if (msgLower.includes('property') || msgLower.includes('hotel')) leadScore += 15;
+    if (msgLower.includes('ready') || msgLower.includes('now')) leadScore += 15;
+    
+    // Determine status
+    const status = leadScore >= 60 ? 'hot' : leadScore >= 40 ? 'warm' : 'cold';
+    
+    // Store lead in Firebase whatsapp_leads collection
+    const leadData = {
       phone_number: phoneNumber,
-      name,
+      whatsapp_name: name,
       language,
-      first_message: message,
-      has_investment_intent: checkForInvestmentIntent(message),
+      lead_score: leadScore,
+      status,
+      interests: [],
+      tags: ['whatsapp', language],
+      message_count: 1,
+      last_interaction: new Date().toISOString(),
       created_at: new Date().toISOString(),
-      source: 'whatsapp'
-    });
+      total_interactions: 1
+    };
+    
+    // Check for interests
+    if (msgLower.includes('grant')) leadData.interests.push('EU Grants');
+    if (msgLower.includes('property')) leadData.interests.push('Property Investment');
+    if (msgLower.includes('hotel')) leadData.interests.push('Hotel Development');
+    
+    // Use phone number as document ID for easy updates
+    await setDoc(doc(db, 'whatsapp_leads', phoneNumber), leadData, { merge: true });
 
-    console.log(`📝 Lead captured: ${name} (${phoneNumber})`);
+    console.log(`📝 Lead captured: ${name} (${phoneNumber}) - Score: ${leadScore}`);
   } catch (error) {
     console.error('Error capturing lead:', error);
   }
