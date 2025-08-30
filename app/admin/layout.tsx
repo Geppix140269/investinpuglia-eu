@@ -21,7 +21,9 @@ export default function AdminLayout({
 
   const navigation = [
     { name: 'Dashboard', href: '/admin', icon: Home },
+    { name: 'Pages', href: '/admin/pages', icon: FileText },
     { name: 'Blog', href: '/admin/blog', icon: FileText },
+    { name: 'Properties', href: '/admin/properties', icon: Home },
     { name: 'Mailing List', href: '/admin/mailing-list', icon: Users },
     { name: 'Review Names', href: '/admin/review-names', icon: UserCheck },
     { name: 'Email Campaign', href: '/admin/email-campaign', icon: Mail },
