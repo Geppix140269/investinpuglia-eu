@@ -1,7 +1,7 @@
 import { Resend } from 'resend';
 
 // Initialize Resend
-const RESEND_API_KEY = 're_WoQwLg5D_Lsgj238sCTppCyVVKoTxTc4R';
+const RESEND_API_KEY = process.env.RESEND_API_KEY || 'YOUR_RESEND_API_KEY';
 const resend = new Resend(RESEND_API_KEY);
 
 // Email template WITHOUT personalized names
