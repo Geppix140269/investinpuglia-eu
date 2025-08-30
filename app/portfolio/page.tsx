@@ -6,9 +6,8 @@ import Link from 'next/link';
 import { 
   Building2, Award, Users, TrendingUp, Calendar, MapPin, 
   Euro, CheckCircle, Star, ArrowRight, Filter, Search,
-  Briefcase, Hotel, Ship, Home, Factory, ChevronRight
+  Briefcase, Hotel, Ship, Home, Factory, ChevronRight, Heart
 } from 'lucide-react';
-import HeroVisual from '@/components/sections/HeroVisual';
 
 const projects = [
   {
@@ -144,9 +143,13 @@ export default function PortfolioPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900 text-white">
+      <section className="relative bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900 text-white overflow-hidden">
         <div className="absolute inset-0">
-          <HeroVisual />
+          {/* Clean geometric background pattern instead of HeroVisual */}
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute top-0 left-0 w-96 h-96 bg-blue-500 rounded-full filter blur-3xl"></div>
+            <div className="absolute bottom-0 right-0 w-96 h-96 bg-indigo-500 rounded-full filter blur-3xl"></div>
+          </div>
           <div className="absolute inset-0 bg-gradient-to-t from-blue-900/90 via-blue-900/70 to-transparent" />
         </div>
         
