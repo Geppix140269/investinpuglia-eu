@@ -370,44 +370,44 @@ export const mockProperties: Property[] = [
     },
     images: [
       {
-        url: 'https://www.agenziadeitrulli.com/files/immobili/581/581_20241216095519_01.jpg',
+        url: 'https://images.unsplash.com/photo-1599744331477-5e3a1e4dee87?w=800&h=600&fit=crop',
         alt: 'Trulli complex exterior view',
         isPrimary: true
       },
       {
-        url: 'https://www.agenziadeitrulli.com/files/immobili/581/581_20241216095519_02.jpg',
+        url: 'https://images.unsplash.com/photo-1630618358535-79ab16a2f36e?w=800&h=600&fit=crop',
         alt: 'Renovated trulli entrance'
       },
       {
-        url: 'https://www.agenziadeitrulli.com/files/immobili/581/581_20241216095519_03.jpg',
-        alt: 'Interior living space with mezzanine'
+        url: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop',
+        alt: 'Interior living space with traditional architecture'
       },
       {
-        url: 'https://www.agenziadeitrulli.com/files/immobili/581/581_20241216095519_04.jpg',
+        url: 'https://images.unsplash.com/photo-1601919788948-bccb502de09f?w=800&h=600&fit=crop',
         alt: 'Traditional stone architecture'
       },
       {
-        url: 'https://www.agenziadeitrulli.com/files/immobili/581/581_20241216095519_05.jpg',
-        alt: 'Restored stable interior'
+        url: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&h=600&fit=crop',
+        alt: 'Restored interior space'
       },
       {
-        url: 'https://www.agenziadeitrulli.com/files/immobili/581/581_20241216095519_06.jpg',
+        url: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=600&fit=crop',
         alt: 'Kitchen area'
       },
       {
-        url: 'https://www.agenziadeitrulli.com/files/immobili/581/581_20241216095519_07.jpg',
+        url: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=800&h=600&fit=crop',
         alt: 'Bathroom with modern fixtures'
       },
       {
-        url: 'https://www.agenziadeitrulli.com/files/immobili/581/581_20241216095519_08.jpg',
-        alt: 'Unrenovated trulli with potential'
+        url: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&h=600&fit=crop',
+        alt: 'Trulli structures in Puglia'
       },
       {
-        url: 'https://www.agenziadeitrulli.com/files/immobili/581/581_20241216095519_09.jpg',
+        url: 'https://images.unsplash.com/photo-1523217582562-09d0def993a6?w=800&h=600&fit=crop',
         alt: 'Property grounds and landscape'
       },
       {
-        url: 'https://www.agenziadeitrulli.com/files/immobili/581/581_20241216095519_10.jpg',
+        url: 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&h=600&fit=crop',
         alt: 'Additional structures for development'
       }
     ],

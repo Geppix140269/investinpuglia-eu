@@ -63,9 +63,6 @@ function getDefaultProjects() {
       description: 'Complete renovation of historic masseria into ultra-luxury hotel with 30 suites, Michelin-star restaurant potential, and world-class spa facilities.',
       mainImage: '/projects/baglioni-pool.jpg',
       investment: {
-        amount: 28000000,
-        roi: 28,
-        timeline: 18,
         completionYear: 2023
       },
       metrics: {
@@ -95,9 +92,6 @@ function getDefaultProjects() {
       description: 'Transformation of coastal property into premier beach resort with 120 rooms, conference facilities, multiple restaurants, and private beach access.',
       mainImage: '/projects/riva-marina-exterior.jpg',
       investment: {
-        amount: 35000000,
-        roi: 25,
-        timeline: 20,
         completionYear: 2022
       },
       metrics: {
@@ -128,9 +122,6 @@ function getDefaultProjects() {
       description: 'Historic villa restoration creating exclusive wedding and event venue with accommodation for 50 guests, panoramic terraces, and traditional Puglian gardens.',
       mainImage: '/projects/santa-lucia-wedding.jpg',
       investment: {
-        amount: 8000000,
-        roi: 32,
-        timeline: 12,
         completionYear: 2021
       },
       metrics: {
@@ -160,9 +151,6 @@ function getDefaultProjects() {
       description: 'Boutique bed & breakfast with stunning sea views, modern amenities, and traditional Puglian architecture.',
       mainImage: '/projects/bb-blue-otranto-pool.jpg',
       investment: {
-        amount: 3500000,
-        roi: 22,
-        timeline: 10,
         completionYear: 2023
       },
       metrics: {
@@ -192,9 +180,6 @@ function getDefaultProjects() {
       description: 'Cliffside luxury resort with breathtaking views of the Adriatic Sea and exclusive amenities.',
       mainImage: '/projects/donna-menga-exterior.jpg',
       investment: {
-        amount: 12000000,
-        roi: 26,
-        timeline: 14,
         completionYear: 2022
       },
       metrics: {

@@ -39,8 +39,6 @@ export default function PortfolioClient({ projects, pageSettings }: PortfolioCli
   })
 
   // Calculate statistics
-  const totalInvestment = projects.reduce((sum, p) => sum + (p.investment?.amount || 0), 0)
-  const averageROI = projects.reduce((sum, p) => sum + (p.investment?.roi || 0), 0) / projects.length
   const totalProjects = projects.length
   const completedProjects = projects.filter(p => p.status === 'completed').length
 
@@ -89,24 +87,14 @@ export default function PortfolioClient({ projects, pageSettings }: PortfolioCli
             </p>
             
             {/* Key Stats */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12 animate-fade-up animation-delay-400">
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
-                <div className="text-3xl font-bold text-yellow-400">
-                  {formatCurrency(totalInvestment)}
-                </div>
-                <div className="text-sm uppercase tracking-wider opacity-90 mt-2">Total Investment</div>
-              </div>
+            <div className="grid grid-cols-2 gap-6 mt-12 animate-fade-up animation-delay-400">
               <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
                 <div className="text-3xl font-bold text-yellow-400">{totalProjects}+</div>
-                <div className="text-sm uppercase tracking-wider opacity-90 mt-2">Projects</div>
-              </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
-                <div className="text-3xl font-bold text-yellow-400">{averageROI.toFixed(0)}%</div>
-                <div className="text-sm uppercase tracking-wider opacity-90 mt-2">Average ROI</div>
+                <div className="text-sm uppercase tracking-wider opacity-90 mt-2">Total Projects</div>
               </div>
               <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
                 <div className="text-3xl font-bold text-yellow-400">{completedProjects}</div>
-                <div className="text-sm uppercase tracking-wider opacity-90 mt-2">Completed</div>
+                <div className="text-sm uppercase tracking-wider opacity-90 mt-2">Completed Projects</div>
               </div>
             </div>
           </div>
@@ -220,25 +208,6 @@ export default function PortfolioClient({ projects, pageSettings }: PortfolioCli
 
                   <p className="text-gray-600 mb-4 line-clamp-2">{project.description}</p>
 
-                  {/* Investment Info */}
-                  {project.investment && (
-                    <div className="grid grid-cols-2 gap-4 mb-4">
-                      {project.investment.amount && (
-                        <div className="bg-indigo-50 rounded-lg p-3">
-                          <div className="text-xs text-indigo-600 mb-1">Investment</div>
-                          <div className="text-lg font-bold text-indigo-900">
-                            {formatCurrency(project.investment.amount)}
-                          </div>
-                        </div>
-                      )}
-                      {project.investment.roi && (
-                        <div className="bg-green-50 rounded-lg p-3">
-                          <div className="text-xs text-green-600 mb-1">ROI</div>
-                          <div className="text-lg font-bold text-green-900">{project.investment.roi}%</div>
-                        </div>
-                      )}
-                    </div>
-                  )}
 
                   {/* Features */}
                   {project.features && project.features.length > 0 && (
