@@ -4,6 +4,7 @@
 
 // Components
 import ExitIntentPopup from '@/components/ExitIntentPopup'
+import PageSEOSection from '@/components/PageSEOSection'
 
 // Sections
 import HeroVisual from '@/components/sections/HeroVisual'
@@ -37,6 +38,9 @@ export default function HomePage() {
       <ApulinkShowcase />
       <SuccessStories />
       <FAQ />
+      
+      {/* SEO FAQ Section with Internal Links */}
+      <PageSEOSection pageKey="home" />
       
       {/* Sign Agreement Banner moved to bottom */}
       <SignAgreementBanner />

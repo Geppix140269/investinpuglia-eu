@@ -10,6 +10,8 @@ import { seoType } from './objects/seo'
 import { industryPageType } from './industryPage'
 import renovationProject from './renovationProject'
 import renovationPageSettings from './renovationPageSettings'
+import faq from '../schemas/faq'
+import pageLinks from '../schemas/pageLinks'
 
 export const schemaTypes = [
   post,
@@ -22,5 +24,7 @@ export const schemaTypes = [
   seoType,
   industryPageType,
   renovationProject,
-  renovationPageSettings
+  renovationPageSettings,
+  faq,
+  pageLinks
 ]
