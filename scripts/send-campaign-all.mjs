@@ -3,12 +3,12 @@ import { initializeApp } from 'firebase/app';
 import { getFirestore, collection, getDocs } from 'firebase/firestore';
 
 // Initialize Resend
-const RESEND_API_KEY = 're_WoQwLg5D_Lsgj238sCTppCyVVKoTxTc4R';
+const RESEND_API_KEY = process.env.RESEND_API_KEY;
 const resend = new Resend(RESEND_API_KEY);
 
 // Initialize Firebase
 const firebaseConfig = {
-  apiKey: "AIzaSyD5W53Mh-RqugrgyaALsf4ERPKHNiEF4BM",
+  apiKey: process.env.FIREBASE_API_KEY,
   authDomain: "invest-in-puglia-eu.firebaseapp.com",
   projectId: "invest-in-puglia-eu",
   storageBucket: "invest-in-puglia-eu.firebasestorage.app",
