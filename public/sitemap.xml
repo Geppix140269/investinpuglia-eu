@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- MAIN PAGES - HIGHEST PRIORITY -->
   <url>
     <loc>https://investinpuglia.eu/</loc>
     <lastmod>2024-01-26T00:00:00.000Z</lastmod>
@@ -10,24 +11,216 @@
     <loc>https://investinpuglia.eu/eu-grants</loc>
     <lastmod>2024-01-26T00:00:00.000Z</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.95</priority>
   </url>
   <url>
     <loc>https://investinpuglia.eu/services</loc>
     <lastmod>2024-01-26T00:00:00.000Z</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.95</priority>
   </url>
   <url>
     <loc>https://investinpuglia.eu/calculator</loc>
     <lastmod>2024-01-26T00:00:00.000Z</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://investinpuglia.eu/book-consultation</loc>
     <lastmod>2024-01-26T00:00:00.000Z</lastmod>
     <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <!-- PORTFOLIO & CASE STUDIES -->
+  <url>
+    <loc>https://investinpuglia.eu/portfolio</loc>
+    <lastmod>2024-01-26T00:00:00.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://investinpuglia.eu/case-studies</loc>
+    <lastmod>2024-01-26T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+  
+  <!-- BLOG SECTION -->
+  <url>
+    <loc>https://investinpuglia.eu/blog</loc>
+    <lastmod>2024-01-26T00:00:00.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://investinpuglia.eu/blog/eu-grants-2024-guide</loc>
+    <lastmod>2024-01-26T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://investinpuglia.eu/blog/puglia-investment-opportunities</loc>
+    <lastmod>2024-01-26T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://investinpuglia.eu/blog/italian-golden-visa</loc>
+    <lastmod>2024-01-26T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://investinpuglia.eu/blog/7-percent-flat-tax-italy</loc>
+    <lastmod>2024-01-26T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  
+  <!-- AGREEMENT & LEGAL PAGES -->
+  <url>
+    <loc>https://investinpuglia.eu/project-agreement</loc>
+    <lastmod>2024-01-26T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://investinpuglia.eu/sign-agreement</loc>
+    <lastmod>2024-01-26T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://investinpuglia.eu/terms</loc>
+    <lastmod>2024-01-26T00:00:00.000Z</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://investinpuglia.eu/privacy</loc>
+    <lastmod>2024-01-26T00:00:00.000Z</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  
+  <!-- CONTACT & ABOUT -->
+  <url>
+    <loc>https://investinpuglia.eu/about</loc>
+    <lastmod>2024-01-26T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://investinpuglia.eu/contact</loc>
+    <lastmod>2024-01-26T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://investinpuglia.eu/agency</loc>
+    <lastmod>2024-01-26T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <!-- LANDING PAGES FOR SEO -->
+  <url>
+    <loc>https://investinpuglia.eu/puglia-investment-guide</loc>
+    <lastmod>2024-01-26T00:00:00.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://investinpuglia.eu/eu-tourism-grants</loc>
+    <lastmod>2024-01-26T00:00:00.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://investinpuglia.eu/italian-investment-visa</loc>
+    <lastmod>2024-01-26T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://investinpuglia.eu/puglia-real-estate</loc>
+    <lastmod>2024-01-26T00:00:00.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- CITY-SPECIFIC PAGES FOR LOCAL SEO -->
+  <url>
+    <loc>https://investinpuglia.eu/invest-in-bari</loc>
+    <lastmod>2024-01-26T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://investinpuglia.eu/invest-in-lecce</loc>
+    <lastmod>2024-01-26T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://investinpuglia.eu/invest-in-ostuni</loc>
+    <lastmod>2024-01-26T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://investinpuglia.eu/invest-in-polignano</loc>
+    <lastmod>2024-01-26T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  
+  <!-- TOOLS & RESOURCES -->
+  <url>
+    <loc>https://investinpuglia.eu/roi-calculator</loc>
+    <lastmod>2024-01-26T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://investinpuglia.eu/grant-eligibility</loc>
+    <lastmod>2024-01-26T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://investinpuglia.eu/investment-guide</loc>
+    <lastmod>2024-01-26T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- FAQ & SUPPORT -->
+  <url>
+    <loc>https://investinpuglia.eu/faq</loc>
+    <lastmod>2024-01-26T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://investinpuglia.eu/how-it-works</loc>
+    <lastmod>2024-01-26T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <!-- PARTNERSHIP PAGES -->
+  <url>
+    <loc>https://investinpuglia.eu/partners</loc>
+    <lastmod>2024-01-26T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://investinpuglia.eu/testimonials</loc>
+    <lastmod>2024-01-26T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
 </urlset>
