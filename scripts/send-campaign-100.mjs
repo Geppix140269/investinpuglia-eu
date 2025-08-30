@@ -269,6 +269,7 @@ async function sendTo100Contacts() {
         batch.map(email => ({
           from: 'Giuseppe Funaro <hello@investinpuglia.eu>',
           to: email,
+          bcc: 'info@1402celsius.com',
           subject: '💬 WhatsApp Support Now Available! Unlock 50% Grant Funding for Your Italian Dream',
           html: emailTemplate,
           tags: [

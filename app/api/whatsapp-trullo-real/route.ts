@@ -105,45 +105,60 @@ async function getOpenAIResponse(message: string, history: any[]) {
         messages: [
           {
             role: 'system',
-            content: `You are Trullo, the ENTHUSIASTIC and WARM investment advisor for InvestInPuglia! 🏛️
+            content: `You are Trullo, the ENTHUSIASTIC investment advisor for InvestInPuglia! 🏛️
 
-Your personality:
-- You're EXCITED about Puglia and its opportunities
-- You're WARM and WELCOMING like a Southern Italian host
-- You're HELPFUL and want to make dreams come true
-- You use emojis naturally (🏛️ 🏡 💰 ✨ 🌟 🇮🇹)
+**WHO WE ARE:**
+InvestInPuglia is a PREMIUM INVESTMENT ADVISORY FIRM specializing in EU grants and investment management for foreign investors in Puglia. We are NOT a property agency - we are strategic advisors!
 
-${isFirstMessage || history.length < 2 ? `FIRST GREETING - Be AMAZING:
+**WHAT WE DO:**
+We accompany and manage ALL aspects of investment projects from initial exploration to final delivery:
+• EU grant applications (35-50% non-repayable, up to €2.25M)
+• Investment strategy and planning
+• Legal and administrative support
+• Project management and coordination
+• Due diligence and negotiation
+• Complete end-to-end investment journey management
+
+**HOW WE WORK - Our Fee Structure:**
+• Fixed fees per phase: €2,500 for each milestone
+• Success-based fees: % on measurable deliverables
+• Phase 1: Property Search & Planning (€2,500)
+• Phase 2: Negotiation & Due Diligence (€2,500)
+• Phase 3: Preliminary Agreement (€2,500)
+• Grant Success Fee: Only charged when grants are approved
+• Full transparency - no hidden costs
+
+${isFirstMessage || history.length < 2 ? `FIRST GREETING - Professional but warm:
 "Ciao! Welcome to InvestInPuglia! 🏛️✨
 
-I'm Trullo, your personal guide to incredible investment opportunities in Puglia!
+I'm Trullo, your personal investment advisor for Puglia!
 
-Did you know you could get EU grants covering 35-50% of your investment (up to €2.25M)? 💰
+We're a premium advisory firm that helps foreign investors access incredible EU grants (35-50% non-repayable, up to €2.25M!) and manages every aspect of your investment journey.
 
-What brings you to beautiful Puglia today? Are you looking at properties, curious about grants, or ready to start your Italian dream? 🇮🇹"` : 
-`CONTINUING CONVERSATION - Stay warm but don't repeat the intro. Be natural and helpful.`}
+Unlike property agencies, we work as your strategic partner - from initial market exploration to final project delivery.
 
-KEY POINTS TO EMPHASIZE:
-✅ EU grants: 35-50% NON-REPAYABLE (this is HUGE!)
-✅ Up to €2.25M in funding
-✅ Properties from €200K to €5M
-✅ 95% grant approval success rate
-✅ CEO consultation just €60
+What stage of your investment journey are you at? 🇮🇹"` : 
+`CONTINUING CONVERSATION - Stay professional and helpful.`}
 
-ALWAYS:
-- Be enthusiastic about their interest
-- Make them feel special for choosing Puglia
-- Highlight the grant opportunity (it's incredible!)
-- Be genuinely helpful and caring
-- End with an engaging question or call to action
+**KEY MESSAGES:**
+✅ We're investment ADVISORS, not property agents
+✅ EU grants: 35-50% NON-REPAYABLE funding
+✅ Complete project management from start to finish
+✅ Transparent fee structure - €2,500 per phase
+✅ Success-based partnership approach
+✅ CEO consultation: €60 for personalized strategy
 
-NEVER:
-- Be cold or brief
-- Sound annoyed or robotic
-- Give one-line responses
-- Forget to mention the amazing opportunities
+**WHEN ASKED ABOUT PROPERTIES:**
+"While we're not a property agency, we help our clients identify and secure the best investment opportunities. Our Phase 1 service (€2,500) includes comprehensive property search based on your criteria, market analysis, and investment planning."
 
-Booking link: https://buy.stripe.com/bJe9AV0y03xCbe6cx408g07
+**ALWAYS:**
+- Emphasize our advisory and management role
+- Explain our end-to-end service model
+- Be transparent about fees
+- Highlight the EU grant opportunity
+- Position us as strategic partners, not brokers
+
+Consultation: https://buy.stripe.com/bJe9AV0y03xCbe6cx408g07
 Phone: +39 351 400 1402`
           },
           ...history.slice(-10), // Last 10 messages for context
@@ -260,22 +275,29 @@ Get your personalized grant assessment: https://buy.stripe.com/bJe9AV0y03xCbe6cx
       // Already greeted but still be warm!
       return `Hey! Great to hear from you again! 😊
 
-Have you had a chance to think about what type of property interests you? Or would you like me to explain more about those amazing EU grants?
+Have you had a chance to think about your investment goals in Puglia? 
 
-I'm here to help make your Puglia investment dream a reality! 🏛️`;
+As your investment advisors, we can help you:
+• Access EU grants (35-50% non-repayable!)
+• Navigate the entire investment process
+• Manage everything from search to delivery
+
+What aspect interests you most? 🏛️`;
     }
     return `Ciao! Welcome to InvestInPuglia! 🏛️✨
 
-I'm Trullo, your personal guide to incredible investment opportunities in Puglia!
+I'm Trullo, your personal investment advisor!
 
-Did you know you could get EU grants covering 35-50% of your investment (up to €2.25M)? 💰 That's money you NEVER have to pay back!
+We're a premium advisory firm that helps foreign investors access incredible EU grants (35-50% non-repayable, up to €2.25M!) and manages every aspect of your Puglia investment journey.
 
-What brings you to beautiful Puglia today? 
-🏡 Looking at properties?
-💰 Curious about grants?
-🌟 Ready to start your Italian dream?
+Unlike property agencies, we're your strategic partners from initial exploration to final project delivery.
 
-I'm excited to help you! 🇮🇹`;
+What brings you to Puglia today? 
+💰 Learning about EU grants?
+📊 Need investment advisory?
+🎯 Ready to start your project?
+
+How can we help you succeed? 🇮🇹`;
   }
   
   // Handle URLs that can't be opened
@@ -283,12 +305,18 @@ I'm excited to help you! 🇮🇹`;
     return `I see you've shared a link, but I can't open external URLs directly. Could you tell me what information you need from that page? I'd be happy to help with any questions about Puglia investments, EU grants, or available properties!`;
   }
   
-  // More natural default response
-  return `I understand you're asking about "${message}". 
+  // More professional default response
+  return `I understand you're interested in "${message}".
 
-Let me help you with that. Could you provide a bit more detail about what you're looking for? 
+As InvestInPuglia's investment advisors, we specialize in:
+• EU grant applications (35-50% funding)
+• Complete investment project management  
+• Strategic advisory from start to finish
 
-Meanwhile, if you need immediate assistance, you can book a consultation with our CEO Giuseppe (€60) or call us directly at +39 351 400 1402.`;
+Our services start at €2,500 per phase with full transparency.
+
+Would you like to discuss your investment goals? Book a €60 consultation:
+https://buy.stripe.com/bJe9AV0y03xCbe6cx408g07`;
 }
 
 // Extract amount from message
@@ -309,19 +337,23 @@ function handleUrlMessage(message: string, history: any[]): string {
   
   // Property listing URLs
   if (lower.includes('idealista') || lower.includes('immobiliare')) {
-    return `I see you've shared a property listing! While I can't access external links directly, I'd love to help you evaluate this opportunity.
+    return `I see you've found a property listing! 🏡
 
-Could you share:
-• Property location and type?
-• Asking price?
-• Size (sqm/rooms)?
+While I can't access external links, our advisory team can help evaluate this opportunity.
 
-With this info, I can tell you:
-✓ What EU grants apply (35-50%)
-✓ Potential ROI
-✓ Similar properties we have
+Share these details:
+• Location and property type
+• Asking price
+• Size and current condition
 
-Want to discuss this property with our CEO? Book here: https://buy.stripe.com/bJe9AV0y03xCbe6cx408g07`;
+Our Phase 1 service (€2,500) includes:
+✓ Professional property evaluation
+✓ EU grant eligibility (35-50%!)
+✓ ROI analysis and business plan
+✓ Negotiation strategy
+
+Want expert evaluation? Book a €60 consultation:
+https://buy.stripe.com/bJe9AV0y03xCbe6cx408g07`;
   }
   
   // PDF documents
