@@ -162,8 +162,8 @@ export default function PortfolioPage() {
               <span className="block text-3xl mt-3 text-blue-200">Portfolio of Excellence</span>
             </h1>
             
-            <p className="text-xl text-blue-100 mb-8 leading-relaxed">
-              Our expert team with over 30 years of experience in Regional and EU grant programmes 
+            <p className="text-xl text-blue-100 mb-8 leading-relaxed max-w-4xl">
+              Our team's combined experience of over 30 years in Regional and EU grant programmes 
               has successfully delivered transformative projects across Puglia, securing millions in funding 
               and creating sustainable investment opportunities.
             </p>
