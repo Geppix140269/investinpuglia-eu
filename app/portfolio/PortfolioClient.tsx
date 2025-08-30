@@ -103,20 +103,65 @@ export default function PortfolioClient({ projects, pageSettings }: PortfolioCli
         {
           name: "Hotel Koinè",
           location: "Otranto",
-          value: "€1,850,000",
-          grant: "L.488 Funded",
-          status: "Completed 2018",
-          description: "Modern boutique hotel with spa and conference facilities",
+          value: "€3,500,000",
+          grant: "Private Investment",
+          status: "2002-2006",
+          description: "Recreational structure transformation to tourist accommodation",
           imageUrl: "/hotel-koine.jpg"
         },
         {
-          name: "B&B Blue Otranto",
+          name: "Hotel Shantiland",
           location: "Otranto",
-          value: "€950,000",
-          grant: "PSR Puglia",
-          status: "Completed 2020",
-          description: "Luxury B&B with pool and sea views",
+          value: "€2,167,400",
+          grant: "PIA Turismo",
+          status: "In Progress 2022",
+          description: "New tourist accommodation development",
           imageUrl: "/blue-otranto.jpg"
+        },
+        {
+          name: "Hotel degli Haethey",
+          location: "Otranto",
+          value: "€2,500,000",
+          grant: "L.R. 8/98 + DPR 447/95",
+          status: "2001-2006",
+          description: "Hotel expansion and elevation project",
+          imageUrl: "/hotel-haethey.jpg"
+        },
+        {
+          name: "Hotel Bellavista",
+          location: "Otranto",
+          value: "€1,000,000",
+          grant: "Titolo II Turismo",
+          status: "2021-2022",
+          description: "Complete hotel renovation",
+          imageUrl: "/hotel-bellavista.webp"
+        },
+        {
+          name: "Hotel Basiliani",
+          location: "Otranto",
+          value: "€2,500,000",
+          grant: "Private Investment",
+          status: "2005-2009",
+          description: "New room block zone B construction",
+          imageUrl: "/hotel-basiliani.jpg"
+        },
+        {
+          name: "Hotel Petraria",
+          location: "Cannole",
+          value: "€5,500,000",
+          grant: "Private Investment",
+          status: "2002-2008",
+          description: "Tourist accommodation development",
+          imageUrl: "/hotel-petraria.jpg"
+        },
+        {
+          name: "Hotel Bellaria",
+          location: "Giurdignano",
+          value: "€2,000,000",
+          grant: "Private Investment",
+          status: "2004-2007",
+          description: "Tourist accommodation facility",
+          imageUrl: "/hotel-bellaria.jpg"
         }
       ]
     },
@@ -127,37 +172,37 @@ export default function PortfolioClient({ projects, pageSettings }: PortfolioCli
         {
           name: "VOI Alimini Resort",
           location: "Otranto",
-          value: "€1,320,000",
-          grant: "Alpitour Group Investment",
+          value: "€1,120,000",
+          grant: "Private Investment",
           status: "2015-2019",
-          description: "14-hectare resort renovation with 308 rooms for Alpitour's VOI Hotels",
+          description: "Reception, restaurant, pub, 32 rooms renovation, new spa, beach restaurant",
           imageUrl: "/drone-view.jpg"
         },
         {
-          name: "Le Cale d'Otranto",
-          location: "Torre Santo Stefano",
+          name: "Le Cale d'Otranto - Italia Turismo",
+          location: "Otranto",
           value: "€3,000,000",
-          grant: "Futura Club Partnership",
+          grant: "Private Investment",
           status: "2015-2019",
-          description: "Gae Aulenti-designed beach resort in Lecce stone, adults-only luxury",
+          description: "Complete renovation blocks A-B-C-D, Pyramid and Tower structures",
           imageUrl: "/santa-lucia.jpg"
         },
         {
-          name: "Riva Marina Resort",
-          location: "Carovigno",
-          value: "€2,200,000",
-          grant: "PIA Turismo",
-          status: "Completed 2021",
-          description: "4-star beach resort with private beach and marina",
+          name: "Hotel Masseria Muzza 5*",
+          location: "Otranto",
+          value: "€5,100,000",
+          grant: "PIA Turismo + Titolo II",
+          status: "2011-2023",
+          description: "5-star luxury masseria transformation and expansion",
           imageUrl: "/riva-marina.jpg"
         },
         {
           name: "Hotel Pietra Verde",
-          location: "Marina di Ostuni",
-          value: "€1,600,000",
-          grant: "Titolo II",
-          status: "Completed 2019",
-          description: "Eco-friendly resort with sustainable architecture",
+          location: "Otranto",
+          value: "€300,000",
+          grant: "Private Investment",
+          status: "2001-2002",
+          description: "Hotel restructuring project with architectural and structural work",
           imageUrl: "/pietra-verde.jpg"
         }
       ]
@@ -167,51 +212,51 @@ export default function PortfolioClient({ projects, pageSettings }: PortfolioCli
       icon: <Home className="h-8 w-8" />,
       projects: [
         {
-          name: "Nohasi Palace",
+          name: "Castello di Noha",
           location: "Noha, Galatina",
           value: "€1,300,000",
           grant: "Titolo II Turismo",
-          status: "Completed 2022",
-          description: "Historic palazzo & distillery to 5-star boutique hotel with spa",
+          status: "2019-2022",
+          description: "Castle restoration for tourist accommodation",
           imageUrl: "/donna-menga.jpg"
         },
         {
           name: "Masseria San Giuseppe",
           location: "Otranto",
-          value: "€1,800,000",
-          grant: "Heritage Protection Fund",
-          status: "Completed 2008",
-          description: "D.Lgs. 42/04 protected monument restoration",
+          value: "€2,600,000",
+          grant: "Titolo II Turismo",
+          status: "2005-2022",
+          description: "D.Lgs. 42/04 protected monument, spa and rooms",
           imageUrl: "/baglioni-pool.jpg"
         },
         {
-          name: "Masseria Santa Lucia",
-          location: "Ostuni",
-          value: "€2,100,000",
+          name: "Masseria Donna Menga",
+          location: "Nardò",
+          value: "€2,300,000",
           grant: "PIA Turismo",
-          status: "Completed 2017",
-          description: "16th century masseria conversion to wedding venue",
+          status: "2018-2024",
+          description: "Rural tourism facility development L.R. 20/98",
           imageUrl: "/santa-lucia.jpg"
         },
         {
-          name: "Masseria Furca",
-          location: "Nardò",
-          value: "€1,450,000",
-          grant: "PSR Puglia",
-          status: "Completed 2016",
-          description: "Rural heritage site to agriturismo with 20 rooms",
+          name: "Masseria Lu Furca",
+          location: "Otranto",
+          value: "€1,200,000",
+          grant: "Private Investment",
+          status: "2007-2024",
+          description: "Agriturismo development and expansion",
           imageUrl: "/masseria-furca.jpg"
         }
       ]
     }
   ]
 
-  // Financial expertise showcase
+  // Financial expertise showcase - From CV: "€20.000.000 di importo lavori, per progetti redatti ed approvati"
   const financialExpertise = [
-    { label: "PIA Turismo", amount: "€15M+", description: "Major tourism grants secured" },
-    { label: "Titolo II", amount: "€8M+", description: "Development funding obtained" },
-    { label: "PSR/POIN", amount: "€5M+", description: "Rural development funds" },
-    { label: "L.488", amount: "€3M+", description: "Investment law benefits" }
+    { label: "Total Grants", amount: "€20M", description: "Projects approved and funded" },
+    { label: "PIA Turismo", amount: "Multiple", description: "Tourism development grants" },
+    { label: "Titolo II", amount: "Multiple", description: "Business expansion funding" },
+    { label: "L.488/PSR", amount: "Multiple", description: "Investment & rural funds" }
   ]
 
   return (
@@ -247,15 +292,15 @@ export default function PortfolioClient({ projects, pageSettings }: PortfolioCli
               </p>
             </div>
             
-            {/* Impressive Stats Grid */}
+            {/* Impressive Stats Grid - Based on CV actual data */}
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mt-12">
               <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center">
-                <div className="text-2xl font-bold text-yellow-400">€95M+</div>
-                <div className="text-xs uppercase tracking-wider opacity-90 mt-1">Project Value</div>
+                <div className="text-2xl font-bold text-yellow-400">€80M+</div>
+                <div className="text-xs uppercase tracking-wider opacity-90 mt-1">Total Projects</div>
               </div>
               <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center">
-                <div className="text-2xl font-bold text-yellow-400">50+</div>
-                <div className="text-xs uppercase tracking-wider opacity-90 mt-1">Hotels Built</div>
+                <div className="text-2xl font-bold text-yellow-400">35+</div>
+                <div className="text-xs uppercase tracking-wider opacity-90 mt-1">Hotels/Resorts</div>
               </div>
               <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center">
                 <div className="text-2xl font-bold text-yellow-400">€20M</div>
@@ -263,15 +308,15 @@ export default function PortfolioClient({ projects, pageSettings }: PortfolioCli
               </div>
               <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center">
                 <div className="text-2xl font-bold text-yellow-400">29</div>
-                <div className="text-xs uppercase tracking-wider opacity-90 mt-1">Years Experience</div>
+                <div className="text-xs uppercase tracking-wider opacity-90 mt-1">Years Since 1995</div>
               </div>
               <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center">
-                <div className="text-2xl font-bold text-yellow-400">95%</div>
-                <div className="text-xs uppercase tracking-wider opacity-90 mt-1">Success Rate</div>
+                <div className="text-2xl font-bold text-yellow-400">D.Lgs 42/04</div>
+                <div className="text-xs uppercase tracking-wider opacity-90 mt-1">Heritage Expert</div>
               </div>
               <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center">
-                <div className="text-2xl font-bold text-yellow-400">35%</div>
-                <div className="text-xs uppercase tracking-wider opacity-90 mt-1">Avg. ROI</div>
+                <div className="text-2xl font-bold text-yellow-400">ITACA</div>
+                <div className="text-xs uppercase tracking-wider opacity-90 mt-1">Certified 2016</div>
               </div>
             </div>
           </div>
@@ -563,107 +608,6 @@ export default function PortfolioClient({ projects, pageSettings }: PortfolioCli
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Team & Leadership */}
-      <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">Our Expert Team</h2>
-            <p className="text-xl text-gray-600">
-              Complete project delivery from concept to operation
-            </p>
-          </div>
-          
-          {/* Team Leadership */}
-          <div className="bg-white rounded-2xl shadow-xl p-8 mb-8">
-            <div className="grid md:grid-cols-3 gap-8 items-center">
-              {/* Cataldo's Photo */}
-              <div className="md:col-span-1">
-                <div className="relative">
-                  <div className="absolute inset-0 bg-gradient-to-r from-indigo-400 to-purple-400 rounded-full blur-2xl opacity-30"></div>
-                  <img
-                    src="/russo-photo.jpg"
-                    alt="Dott. Ing. Cataldo Russo"
-                    className="rounded-full w-48 h-48 mx-auto border-4 border-white shadow-xl object-cover"
-                  />
-                </div>
-              </div>
-              
-              {/* Cataldo's Info */}
-              <div className="md:col-span-2">
-                <h3 className="text-2xl font-bold mb-2">Dott. Ing. Cataldo Russo</h3>
-                <p className="text-indigo-600 font-semibold mb-3">Chief Technical Officer & Lead Engineer-Architect</p>
-                <div className="mb-4">
-                  <p className="text-sm font-semibold text-gray-700 mb-2">Cataldo's Professional Certifications:</p>
-                  <div className="flex flex-wrap gap-2">
-                    <span className="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm font-semibold">
-                      Order of Engineers Lecce #1697
-                    </span>
-                    <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-semibold">
-                      ITACA Protocol Certified
-                    </span>
-                    <span className="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm font-semibold">
-                      Fire Safety Specialist (L.818/84)
-                    </span>
-                    <span className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-semibold">
-                      D.Lgs 81/2008 Safety Coordinator
-                    </span>
-                  </div>
-                </div>
-                <p className="text-gray-700 mb-4">
-                  With nearly three decades of experience, <strong>Ing. Cataldo Russo</strong> personally leads our technical team in delivering 
-                  world-class tourism developments. His direct expertise in grant funding and regulatory compliance 
-                  has secured over €20 million in funding for international investors.
-                </p>
-                <div className="grid grid-cols-3 gap-4">
-                  <div>
-                    <div className="text-2xl font-bold text-indigo-600">29</div>
-                    <div className="text-sm text-gray-600">Cataldo's Years Experience</div>
-                  </div>
-                  <div>
-                    <div className="text-2xl font-bold text-indigo-600">50+</div>
-                    <div className="text-sm text-gray-600">Hotels by Cataldo</div>
-                  </div>
-                  <div>
-                    <div className="text-2xl font-bold text-indigo-600">95%</div>
-                    <div className="text-sm text-gray-600">Cataldo's Grant Success</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          {/* Supporting Team */}
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="bg-white rounded-xl p-6 shadow-lg">
-              <h3 className="font-bold text-lg mb-3">Cataldo's Team</h3>
-              <ul className="space-y-2 text-gray-700">
-                <li>• Arch. Wanda Barca - Heritage Restoration (La Sapienza Rome)</li>
-                <li>• Ing. Paolo Meleti - MEP Systems Specialist</li>
-                <li>• Ing. Matteo Pellegrino - Environmental Engineer</li>
-              </ul>
-            </div>
-            
-            <div className="bg-white rounded-xl p-6 shadow-lg">
-              <h3 className="font-bold text-lg mb-3">Cataldo's Technical Expertise</h3>
-              <ul className="space-y-2 text-gray-700">
-                <li>• Advanced structural engineering (seismic design certified)</li>
-                <li>• Bioclimatic architecture & energy efficiency (ITACA certified)</li>
-                <li>• Heritage restoration & conservation (D.Lgs. 42/04 specialist)</li>
-              </ul>
-            </div>
-            
-            <div className="bg-white rounded-xl p-6 shadow-lg">
-              <h3 className="font-bold text-lg mb-3">Services Led by Cataldo</h3>
-              <ul className="space-y-2 text-gray-700">
-                <li>• Complete design-build services (29 years experience)</li>
-                <li>• Construction supervision & safety (D.Lgs 81/2008 certified)</li>
-                <li>• Grant application & compliance (€20M+ secured)</li>
-              </ul>
             </div>
           </div>
         </div>
