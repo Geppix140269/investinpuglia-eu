@@ -232,11 +232,11 @@ export default function PortfolioClient({ projects, pageSettings }: PortfolioCli
         {
           name: "Masseria Donna Menga",
           location: "Nardò",
-          value: "€2,300,000",
+          value: "€3,600,000",
           grant: "PIA Turismo",
           status: "2018-2024",
           description: "Rural tourism facility development L.R. 20/98",
-          imageUrl: "/santa-lucia.jpg"
+          imageUrl: "/donna-menga.jpg"
         },
         {
           name: "Masseria Lu Furca",
@@ -246,6 +246,24 @@ export default function PortfolioClient({ projects, pageSettings }: PortfolioCli
           status: "2007-2024",
           description: "Agriturismo development and expansion",
           imageUrl: "/masseria-furca.jpg"
+        },
+        {
+          name: "Torre Matta",
+          location: "Otranto",
+          value: "€600,000",
+          grant: "Public Works",
+          status: "Completed 2016",
+          description: "Historic tower restoration - Important public heritage project",
+          imageUrl: "/torre-matta.jpg"
+        },
+        {
+          name: "Hypogeum Palazzo",
+          location: "Otranto",
+          value: "€2,000,000",
+          grant: "Private Investment",
+          status: "Completed 2015",
+          description: "Hotel residence complex with underground archaeological area",
+          imageUrl: "/hypogeum.jpg"
         }
       ]
     }
