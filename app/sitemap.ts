@@ -125,68 +125,70 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ]
   
-  // Location index page
-  const locationPages = [
+  // Location pages (without /en prefix)
+  const locationPages = locations.length > 0 ? [
     {
-      url: `${baseUrl}/en/locations`,
+      url: `${baseUrl}/locations`,
       lastModified: new Date(),
-      priority: 0.9,
+      changeFrequency: 'weekly' as const,
+      priority: 0.8,
     },
     // Generate URLs for ALL locations
     ...locations.map((location) => ({
-      url: `${baseUrl}/en/locations/${location.slug.current}`,
+      url: `${baseUrl}/locations/${location.slug.current}`,
       lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
-      priority: 0.8,
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
     })),
-  ]
+  ] : []
   
-  // Industry index page
-  const industryPages = [
-    {
-      url: `${baseUrl}/en/industries`,
-      lastModified: new Date(),
-      priority: 0.9,
-    },
-    // Generate URLs for ALL industries
-    ...industries.map((industry) => ({
-      url: `${baseUrl}/en/industries/${industry.slug.current}`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
-      priority: 0.8,
-    })),
-  ]
-  
-  // Also add non-localized URLs if they exist
-  const nonLocalizedPages = [
+  // Industry pages (without /en prefix)
+  const industryPages = industries.length > 0 ? [
     {
       url: `${baseUrl}/industries`,
       lastModified: new Date(),
-      priority: 0.9,
+      changeFrequency: 'weekly' as const,
+      priority: 0.8,
     },
+    // Generate URLs for ALL industries
     ...industries.map((industry) => ({
       url: `${baseUrl}/industries/${industry.slug.current}`,
       lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
-      priority: 0.8,
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
     })),
-  ]
+  ] : []
   
-  // Insights pages (SEO-focused, high priority for AI crawlers)
-  const insightsPages = [
+  // Insights/Blog pages (SEO-focused, high priority for AI crawlers)
+  const insightsPages = insights.length > 0 ? [
     {
       url: `${baseUrl}/insights`,
       lastModified: new Date(),
       changeFrequency: 'daily' as const,
-      priority: 0.9,
+      priority: 0.8,
     },
     ...insights.map((post) => ({
       url: `${baseUrl}/insights/${post.slug.current}`,
-      lastModified: new Date(post.publishedAt),
+      lastModified: post.publishedAt ? new Date(post.publishedAt) : new Date(),
       changeFrequency: 'monthly' as const,
-      priority: 0.8,
+      priority: 0.7,
     })),
-  ]
+  ] : []
   
-  return [...staticPages, ...locationPages, ...industryPages, ...nonLocalizedPages, ...insightsPages]
+  // Blog pages (if different from insights)
+  const blogPages = insights.length > 0 ? insights.map((post) => ({
+    url: `${baseUrl}/blog/${post.slug.current}`,
+    lastModified: post.publishedAt ? new Date(post.publishedAt) : new Date(),
+    changeFrequency: 'monthly' as const,
+    priority: 0.7,
+  })) : []
+  
+  // Combine all pages and return
+  return [
+    ...staticPages,
+    ...locationPages,
+    ...industryPages,
+    ...insightsPages,
+    ...blogPages
+  ]
 }
