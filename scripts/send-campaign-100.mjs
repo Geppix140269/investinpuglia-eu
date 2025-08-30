@@ -87,6 +87,35 @@ const emailTemplate = `<!DOCTYPE html>
         </ul>
       </div>
       
+      <!-- NEW: Official Grant Institutions Section -->
+      <div style="background: linear-gradient(135deg, #0ea5e9 0%, #1e40af 100%); color: white; padding: 20px; border-radius: 8px; margin: 25px 0;">
+        <h3 style="margin: 0 0 15px 0; font-size: 18px;">🏛️ Official Grant Institutions We Work With</h3>
+        <p style="font-size: 14px; margin: 0 0 15px 0; opacity: 0.95;">
+          Our team has direct relationships with all major grant authorities:
+        </p>
+        <div style="background: rgba(255,255,255,0.1); border-radius: 6px; padding: 15px; margin: 15px 0;">
+          <div style="margin-bottom: 12px;">
+            <strong style="color: #fbbf24;">INVITALIA</strong> - National Agency for Development<br>
+            <span style="font-size: 13px; opacity: 0.9;">• PNRR Tourism Grants (40-50%)</span>
+          </div>
+          <div style="margin-bottom: 12px;">
+            <strong style="color: #fbbf24;">Puglia Sviluppo</strong> - Regional Development Agency<br>
+            <span style="font-size: 13px; opacity: 0.9;">• Mini PIA & Title II Grants (35-50%)</span>
+          </div>
+          <div style="margin-bottom: 12px;">
+            <strong style="color: #fbbf24;">Regione Puglia</strong> - Regional Government<br>
+            <span style="font-size: 13px; opacity: 0.9;">• NIDI, Tourism Enhancement, Rural Development</span>
+          </div>
+          <div style="margin-bottom: 12px;">
+            <strong style="color: #fbbf24;">European Commission</strong> - EU Funds<br>
+            <span style="font-size: 13px; opacity: 0.9;">• ERDF, ESF+, Horizon Europe Programs</span>
+          </div>
+        </div>
+        <p style="font-size: 13px; margin: 15px 0 0 0; text-align: center; opacity: 0.9;">
+          ✅ Registered Technical Partner | ✅ Accredited Advisory Firm | ✅ 95% Success Rate
+        </p>
+      </div>
+      
       <!-- Urgency Banner -->
       <div style="background: linear-gradient(135deg, #f59e0b 0%, #dc2626 100%); color: white; padding: 15px; border-radius: 8px; text-align: center; margin: 25px 0;">
         <p style="margin: 0; font-size: 16px; font-weight: 600;">⏰ URGENT: Mini PIA ends in 2027 - First Come, First Served!</p>

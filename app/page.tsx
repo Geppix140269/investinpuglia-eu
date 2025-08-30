@@ -16,7 +16,6 @@ import ApulinkShowcase from '@/components/sections/ApulinkShowcase'
 import TrulloSection from '@/components/sections/TrulloSection'
 import SuccessStories from '@/components/sections/OurCommitment'
 import FAQ from '@/components/sections/FAQ'
-import CTASection from '@/components/sections/CTASection'
 
 export default function HomePage() {
   return (
@@ -31,16 +30,13 @@ export default function HomePage() {
       {/* IMPORTANT: Grant Institutions with EU and Regione Puglia logos */}
       <GrantInstitutions />
       
-      <OpportunitySection />
-      <HowItWorks />
+      <WhyPuglia />
       <AboutGiuseppe />
       <Services />
-      <WhyPuglia />
       <TrulloSection />
       <ApulinkShowcase />
       <SuccessStories />
       <FAQ />
-      <CTASection />
       
       {/* Sign Agreement Banner moved to bottom */}
       <SignAgreementBanner />
