@@ -92,15 +92,6 @@ export default function PortfolioClient({ projects, pageSettings }: PortfolioCli
           imageUrl: "/montelauro.jpg"
         },
         {
-          name: "Masseria Donna Menga",
-          location: "Nardò",
-          value: "€2,300,000",
-          grant: "PIA Turismo Funded",
-          status: "Completed 2024",
-          description: "Historic farmhouse to luxury rural tourism resort",
-          imageUrl: "/donna-menga.jpg"
-        },
-        {
           name: "Hotel Koinè",
           location: "Otranto",
           value: "€3,500,000",
@@ -176,7 +167,7 @@ export default function PortfolioClient({ projects, pageSettings }: PortfolioCli
           grant: "Private Investment",
           status: "2015-2019",
           description: "Reception, restaurant, pub, 32 rooms renovation, new spa, beach restaurant",
-          imageUrl: "/drone-view.jpg"
+          imageUrl: "/voi-alimini.webp"
         },
         {
           name: "Le Cale d'Otranto - Italia Turismo",
@@ -194,7 +185,7 @@ export default function PortfolioClient({ projects, pageSettings }: PortfolioCli
           grant: "PIA Turismo + Titolo II",
           status: "2011-2023",
           description: "5-star luxury masseria transformation and expansion",
-          imageUrl: "/riva-marina.jpg"
+          imageUrl: "/masseria-muzza.jpg"
         },
         {
           name: "Hotel Pietra Verde",
@@ -218,7 +209,7 @@ export default function PortfolioClient({ projects, pageSettings }: PortfolioCli
           grant: "Titolo II Turismo",
           status: "2019-2022",
           description: "Castle restoration for tourist accommodation",
-          imageUrl: "/donna-menga.jpg"
+          imageUrl: "/castello-noha.jpg"
         },
         {
           name: "Masseria San Giuseppe",
