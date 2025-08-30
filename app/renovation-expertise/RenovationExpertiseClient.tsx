@@ -4,8 +4,14 @@ import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
+import { formatCurrency, getCategoryDisplayName } from '@/lib/sanity/renovation'
 
-export default function RenovationExpertiseClient() {
+interface RenovationExpertiseClientProps {
+  pageSettings: any
+  projects: any[]
+}
+
+export default function RenovationExpertiseClient({ pageSettings, projects }: RenovationExpertiseClientProps) {
   const [activeSliders, setActiveSliders] = useState<{[key: string]: number}>({
     masseria: 50,
     trulli: 50
