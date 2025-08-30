@@ -3,10 +3,12 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { ChevronDown } from 'lucide-react'
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('home')
+  const [miniPiaDropdownOpen, setMiniPiaDropdownOpen] = useState(false)
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
@@ -75,9 +77,33 @@ export default function Navbar() {
               Portfolio
             </a>
             
-            <a href="/tools" className="text-gray-700 hover:text-gray-900 transition-colors font-medium">
-              Tools
-            </a>
+            {/* Mini PIA Dropdown */}
+            <div className="relative">
+              <button
+                onClick={() => setMiniPiaDropdownOpen(!miniPiaDropdownOpen)}
+                onMouseEnter={() => setMiniPiaDropdownOpen(true)}
+                onMouseLeave={() => setMiniPiaDropdownOpen(false)}
+                className="text-gray-700 hover:text-gray-900 transition-colors font-medium flex items-center gap-1"
+              >
+                Mini PIA
+                <ChevronDown className={`h-4 w-4 transition-transform ${miniPiaDropdownOpen ? 'rotate-180' : ''}`} />
+              </button>
+              
+              {miniPiaDropdownOpen && (
+                <div 
+                  className="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 overflow-hidden"
+                  onMouseEnter={() => setMiniPiaDropdownOpen(true)}
+                  onMouseLeave={() => setMiniPiaDropdownOpen(false)}
+                >
+                  <Link href="/mini-pia-guide" className="block px-4 py-3 text-gray-700 hover:bg-purple-50 hover:text-purple-700 transition-colors">
+                    📚 Guide
+                  </Link>
+                  <Link href="/tools" className="block px-4 py-3 text-gray-700 hover:bg-purple-50 hover:text-purple-700 transition-colors border-t border-gray-100">
+                    🧮 Calculator
+                  </Link>
+                </div>
+              )}
+            </div>
             
             <a href="/agency" className="text-gray-700 hover:text-gray-900 transition-colors font-medium">
               Agencies
@@ -123,9 +149,17 @@ export default function Navbar() {
                 Portfolio
               </a>
               
-              <a href="/tools" className="text-gray-700 hover:text-gray-900 transition-colors font-medium py-2">
-                Tools
-              </a>
+              <div>
+                <div className="text-gray-700 font-medium py-2">Mini PIA</div>
+                <div className="ml-4 space-y-2 mt-2">
+                  <a href="/mini-pia-guide" className="block text-gray-600 hover:text-gray-900 transition-colors py-1">
+                    📚 Guide
+                  </a>
+                  <a href="/tools" className="block text-gray-600 hover:text-gray-900 transition-colors py-1">
+                    🧮 Calculator
+                  </a>
+                </div>
+              </div>
               
               <a href="/agency" className="text-gray-700 hover:text-gray-900 transition-colors font-medium py-2">
                 Agencies
