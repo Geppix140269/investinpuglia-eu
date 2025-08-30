@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     siteName: 'InvestInPuglia.eu',
     images: [
       {
-        url: 'https://investinpuglia.eu/images/og/agency-partnership.jpg',
+        url: 'https://investinpuglia.eu/og-agency.jpg',
         width: 1200,
         height: 630,
         alt: 'Partner with InvestInPuglia - List Your Mini PIA Properties',
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: '🏛️ Real Estate Agencies: List Your Mini PIA Properties',
     description: 'Join our exclusive network. Connect with 5,000+ international investors. Up to 55% grant funding for your clients.',
-    images: ['https://investinpuglia.eu/images/og/agency-partnership.jpg'],
+    images: ['https://investinpuglia.eu/og-agency.jpg'],
     creator: '@investinpuglia',
   },
   

@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     siteName: 'InvestInPuglia',
     images: [
       {
-        url: 'https://investinpuglia.eu/images/mini-pia-guide-og.jpg',
+        url: 'https://investinpuglia.eu/og-mini-pia-guide.jpg',
         width: 1200,
         height: 630,
         alt: 'Mini PIA Turismo Guide - 45-55% Grants for Tourism in Puglia',
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Mini PIA Turismo Guide: 45-55% Grants for Tourism in Puglia',
     description: 'Complete foreign investor guide to access €2.5M in non-refundable grants. Step-by-step process included.',
-    images: ['https://investinpuglia.eu/images/mini-pia-guide-twitter.jpg'],
+    images: ['https://investinpuglia.eu/og-mini-pia-guide.jpg'],
   },
   
   // Additional SEO

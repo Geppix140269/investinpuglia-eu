@@ -85,7 +85,7 @@ export const metadata: Metadata = {
     siteName: 'Invest in Puglia - PIA & Mini PIA Grant Advisory',
     images: [
       {
-        url: 'https://investinpuglia.eu/og-image.png',
+        url: 'https://investinpuglia.eu/og-home.jpg',
         width: 1200,
         height: 630,
         alt: 'PIA & Mini PIA Non-Refundable Grants - EU Co-Funded Puglia Regional Development Programmes',

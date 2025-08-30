@@ -3,12 +3,12 @@ import PortfolioClient from './PortfolioClient'
 import { getAllRenovationProjects, getRenovationPageSettings } from '@/lib/sanity/renovation'
 
 export const metadata: Metadata = {
-  title: 'Portfolio | Dott. Ing. Cataldo Russo - 29 Years Excellence | InvestInPuglia',
-  description: '35+ luxury hotels & resorts developed since 1995. €80M+ project value, €20M grants secured. VOI Alimini, Masseria Muzza 5*, Le Cale d\'Otranto. Chief Technical Officer with proven expertise.',
-  keywords: 'Cataldo Russo engineer, Puglia hotel development, luxury resort portfolio, PIA Turismo grants, Titolo II funding, VOI Hotels Alpitour, Masseria restoration Italy, Otranto hotels',
+  title: 'Investment Portfolio - 35+ Luxury Hotels & Resorts | InvestInPuglia',
+  description: 'Discover our portfolio: 35+ successfully developed hotels & resorts in Puglia. €80M+ in projects, €20M grants secured. VOI Alimini, Masseria Muzza 5*, Le Cale d\'Otranto. 29 years of proven excellence.',
+  keywords: 'Puglia hotel portfolio, luxury resort development, investment portfolio Italy, PIA Turismo grants, Titolo II funding, VOI Hotels Alpitour, Masseria restoration, Otranto hotels, tourism investment Puglia',
   openGraph: {
-    title: 'Dott. Ing. Cataldo Russo Portfolio - 35+ Hotels & Resorts',
-    description: '29 years developing luxury tourism in Puglia. €80M+ projects, €20M grants secured. View our complete portfolio.',
+    title: 'Investment Portfolio - 35+ Luxury Hotels & Resorts in Puglia',
+    description: 'View our impressive portfolio: €80M+ in successful projects, €20M grants secured. 29 years developing luxury tourism in Puglia.',
     url: 'https://investinpuglia.eu/portfolio',
     siteName: 'InvestInPuglia',
     images: [
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
         url: 'https://investinpuglia.eu/og-portfolio.jpg',
         width: 1200,
         height: 630,
-        alt: 'Luxury hotel portfolio by Cataldo Russo - InvestInPuglia',
+        alt: 'InvestInPuglia Portfolio - Luxury Hotels & Resorts Development',
       },
     ],
     locale: 'en_US',
@@ -24,8 +24,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Cataldo Russo Portfolio - 35+ Hotels & Resorts in Puglia',
-    description: '29 years developing luxury tourism. €80M+ projects, €20M grants secured.',
+    title: 'Portfolio: 35+ Hotels & Resorts Successfully Developed in Puglia',
+    description: '€80M+ projects completed, €20M grants secured. 29 years of excellence in tourism development.',
     images: ['https://investinpuglia.eu/og-portfolio.jpg'],
   },
   alternates: {

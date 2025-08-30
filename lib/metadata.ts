@@ -4,7 +4,7 @@ import { Metadata } from 'next'
 export const siteConfig = {
   name: 'InvestInPuglia.eu',
   url: 'https://investinpuglia.eu',
-  ogImage: 'https://investinpuglia.eu/images/og/default.jpg',
+  ogImage: 'https://investinpuglia.eu/og-home.jpg',
   description: 'Access EU-funded PIA & Mini PIA grants (30-55% non-refundable) for Puglia investments. Expert advisory for international investors. €30K-€5M range.',
   keywords: [
     'Mini PIA grants',

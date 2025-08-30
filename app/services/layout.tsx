@@ -5,6 +5,7 @@ export const metadata = generateMetadata({
   description: pageMetadata.services.description,
   keywords: pageMetadata.services.keywords,
   path: '/services',
+  image: 'https://investinpuglia.eu/og-services.jpg',
 })
 
 export default function ServicesLayout({

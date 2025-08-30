@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     siteName: 'InvestInPuglia',
     images: [
       {
-        url: 'https://investinpuglia.eu/images/calculator-og.jpg',
+        url: 'https://investinpuglia.eu/og-tools.jpg',
         width: 1200,
         height: 630,
         alt: 'Mini PIA Grant Calculator - Calculate Your 45-55% Tourism Grant',
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: '🧮 Mini PIA Calculator: Get Your Grant Amount in 30 Seconds',
     description: 'Free calculator for tourism investments in Puglia. See your 45-55% grant instantly. Max €2M available.',
-    images: ['https://investinpuglia.eu/images/calculator-twitter.jpg'],
+    images: ['https://investinpuglia.eu/og-tools.jpg'],
   },
   
   alternates: {
