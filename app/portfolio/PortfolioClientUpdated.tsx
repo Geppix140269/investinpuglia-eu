@@ -255,7 +255,7 @@ export default function PortfolioClient({ projects, pageSettings }: PortfolioCli
         }
       ]
     }
-  ];
+  ]
 
   return (
     <>
