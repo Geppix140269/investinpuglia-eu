@@ -19,38 +19,17 @@ const OG_HEIGHT = 630
 
 // Generate Cloudinary transformation URL for OG images
 export function generateOGImageUrl(config: OGImageConfig): string {
+  // For now, use simplified transformations without text overlays
+  // to ensure images display correctly
   const transformations: string[] = []
   
   // Base transformations for OG image optimization
   transformations.push(`w_${OG_WIDTH}`)
   transformations.push(`h_${OG_HEIGHT}`)
   transformations.push('c_fill')
+  transformations.push('g_auto')
   transformations.push('f_auto')
-  transformations.push('q_auto:best')
-  
-  // Add gradient overlay for better text readability
-  transformations.push('e_gradient_fade:symmetric,y_0.4')
-  
-  // Add watermark if requested
-  if (config.watermark !== false) {
-    // Text watermark with InvestInPuglia.eu branding
-    transformations.push('l_text:Arial_36_bold:InvestInPuglia.eu,co_rgb:FFFFFF,o_90')
-    transformations.push('g_south_east,x_30,y_30')
-  }
-  
-  // Add title overlay if provided
-  if (config.title) {
-    const encodedTitle = encodeURIComponent(config.title)
-    transformations.push(`l_text:Montserrat_72_bold:${encodedTitle},co_rgb:FFFFFF,w_900,c_fit`)
-    transformations.push('fl_layer_apply,g_center,y_-50')
-  }
-  
-  // Add description overlay if provided
-  if (config.description) {
-    const encodedDesc = encodeURIComponent(config.description.substring(0, 100))
-    transformations.push(`l_text:Arial_32:${encodedDesc},co_rgb:FFFFFF,w_800,c_fit,o_80`)
-    transformations.push('fl_layer_apply,g_center,y_50')
-  }
+  transformations.push('q_auto')
   
   // Construct the final URL
   const transformation = transformations.join(',')
