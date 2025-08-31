@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   description: 'Discover our portfolio: 35+ successfully developed hotels & resorts in Puglia. €80M+ in projects, €20M grants secured. VOI Alimini, Masseria Muzza 5*, Le Cale d\'Otranto. 29 years of proven excellence.',
   keywords: 'Puglia hotel portfolio, luxury resort development, investment portfolio Italy, PIA Turismo grants, Titolo II funding, VOI Hotels Alpitour, Masseria restoration, Otranto hotels, tourism investment Puglia',
   openGraph: {
-    title: 'Investment Portfolio - 35+ Luxury Hotels & Resorts in Puglia',
+    title: '30 Years of Excellence in Hospitality, Heritage & Urban Design',
     description: 'View our impressive portfolio: €80M+ in successful projects, €20M grants secured. 29 years developing luxury tourism in Puglia.',
     url: 'https://investinpuglia.eu/portfolio',
     siteName: 'InvestInPuglia',
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
         url: ogImageUrl,
         width: 1200,
         height: 630,
-        alt: 'InvestInPuglia Portfolio - Luxury Hotels & Resorts Development',
+        alt: '30 Years of Excellence in Hospitality, Heritage & Urban Design',
       },
     ],
     locale: 'en_US',
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Portfolio: 35+ Hotels & Resorts Successfully Developed in Puglia',
+    title: 'Transforming Puglia: Hotels, Masserie, and Landmark Restorations,
     description: '€80M+ projects completed, €20M grants secured. 29 years of excellence in tourism development.',
     images: [ogImageUrl],
   },
