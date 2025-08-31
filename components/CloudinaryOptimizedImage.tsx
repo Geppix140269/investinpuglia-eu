@@ -63,7 +63,7 @@ export function CloudinaryOptimizedImage({
   const [isLoading, setIsLoading] = useState(true);
 
   // Build transformations array
-  const transformations = [];
+  const transformations: any[] = [];
 
   // AI-powered optimizations
   if (removeBackground) {
@@ -159,7 +159,7 @@ export function CloudinaryOptimizedImage({
 
   return (
     <div className={`relative ${fill ? 'w-full h-full' : ''}`}>
-      <CldImage {...imageProps} />
+      <CldImage {...(imageProps as any)} />
       {isLoading && (
         <div className="absolute inset-0 bg-gray-200 animate-pulse rounded" />
       )}

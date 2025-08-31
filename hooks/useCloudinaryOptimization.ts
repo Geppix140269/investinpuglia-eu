@@ -6,7 +6,7 @@ import {
   generateSrcSet, 
   getPlaceholderUrl,
   CloudinaryOptimizationOptions 
-} from '@/lib/cloudinary';
+} from '@/lib/cloudinary-client';
 import { getDeviceType, DEVICE_OPTIMIZATIONS } from '@/lib/cloudinary-config';
 
 interface UseCloudinaryOptimizationProps {

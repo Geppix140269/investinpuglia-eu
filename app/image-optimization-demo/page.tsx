@@ -167,7 +167,7 @@ export default function ImageOptimizationDemo() {
                       alt={example.title}
                       width={400}
                       height={300}
-                      {...example.options}
+                      {...(example.options as any)}
                     />
                   </div>
                 </div>

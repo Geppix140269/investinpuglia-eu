@@ -57,8 +57,7 @@ const imageMap: Record<string, string> = {
   "/images/locations/lecce-thumb.jpg": "https://res.cloudinary.com/dusubfxgo/image/upload/f_auto,q_auto/investinpuglia/investinpuglia/images/locations/lecce-thumb",
   "/images/locations/polignano-a-mare-thumb.jpg": "https://res.cloudinary.com/dusubfxgo/image/upload/f_auto,q_auto/investinpuglia/investinpuglia/images/locations/polignano-a-mare-thumb",
   "/images/locations/taranto-thumb.jpg": "https://res.cloudinary.com/dusubfxgo/image/upload/f_auto,q_auto/investinpuglia/investinpuglia/images/locations/taranto-thumb",
-  "/images/locations/ostuni-thumb.jpg": "https://res.cloudinary.com/dusubfxgo/image/upload/f_auto,q_auto/investinpuglia/investinpuglia/images/locations/ostuni-thumb",
-  "/images/locations/trulli-alberobello.jpg": "https://res.cloudinary.com/dusubfxgo/image/upload/f_auto,q_auto/investinpuglia/investinpuglia/images/locations/trulli-alberobello"
+  "/images/locations/ostuni-thumb.jpg": "https://res.cloudinary.com/dusubfxgo/image/upload/f_auto,q_auto/investinpuglia/investinpuglia/images/locations/ostuni-thumb"
 };
 
 // Icon URLs with automatic optimization
