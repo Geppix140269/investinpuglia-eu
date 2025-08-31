@@ -9,6 +9,7 @@ import Script from 'next/script'
 import dynamic from 'next/dynamic'
 import { AuthProvider } from '@/contexts/AuthContext'
 import { Toaster } from 'react-hot-toast'
+import { PAGE_OG_IMAGES, generateOGImageUrl } from '@/lib/og-images'
 
 // Lazy load the TrulloChatbot to avoid build errors if component doesn't exist yet
 const TrulloChatbotWrapper = dynamic(
@@ -85,7 +86,12 @@ export const metadata: Metadata = {
     siteName: 'Invest in Puglia - PIA & Mini PIA Grant Advisory',
     images: [
       {
-        url: 'https://investinpuglia.eu/og-home.jpg',
+        url: generateOGImageUrl({
+          imageId: PAGE_OG_IMAGES.home.imageId,
+          title: PAGE_OG_IMAGES.home.title,
+          description: PAGE_OG_IMAGES.home.description,
+          watermark: true
+        }),
         width: 1200,
         height: 630,
         alt: 'PIA & Mini PIA Non-Refundable Grants - EU Co-Funded Puglia Regional Development Programmes',
@@ -98,7 +104,12 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'PIA & Mini PIA Non-Refundable Grants - Up to €2.75M',
     description: 'EU co-funded Puglia Regional Development programmes. Up to 55% non-refundable grants for international businesses. Expert PIA & Mini PIA advisory.',
-    images: ['https://investinpuglia.eu/og-image.png'],
+    images: [generateOGImageUrl({
+      imageId: PAGE_OG_IMAGES.home.imageId,
+      title: PAGE_OG_IMAGES.home.title,
+      description: PAGE_OG_IMAGES.home.description,
+      watermark: true
+    })],
     creator: '@investinpuglia'
   },
   alternates: {

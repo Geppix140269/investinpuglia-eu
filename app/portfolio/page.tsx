@@ -1,6 +1,14 @@
 import { Metadata } from 'next'
 import PortfolioClient from './PortfolioClientUpdated'
 import { getAllRenovationProjects, getRenovationPageSettings } from '@/lib/sanity/renovation'
+import { PAGE_OG_IMAGES, generateOGImageUrl } from '@/lib/og-images'
+
+const ogImageUrl = generateOGImageUrl({
+  imageId: PAGE_OG_IMAGES.portfolio.imageId,
+  title: PAGE_OG_IMAGES.portfolio.title,
+  description: PAGE_OG_IMAGES.portfolio.description,
+  watermark: true
+})
 
 export const metadata: Metadata = {
   title: 'Investment Portfolio - 35+ Luxury Hotels & Resorts | InvestInPuglia',
@@ -13,7 +21,7 @@ export const metadata: Metadata = {
     siteName: 'InvestInPuglia',
     images: [
       {
-        url: 'https://investinpuglia.eu/og-portfolio.jpg',
+        url: ogImageUrl,
         width: 1200,
         height: 630,
         alt: 'InvestInPuglia Portfolio - Luxury Hotels & Resorts Development',
@@ -26,7 +34,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Portfolio: 35+ Hotels & Resorts Successfully Developed in Puglia',
     description: '€80M+ projects completed, €20M grants secured. 29 years of excellence in tourism development.',
-    images: ['https://investinpuglia.eu/og-portfolio.jpg'],
+    images: [ogImageUrl],
   },
   alternates: {
     canonical: 'https://investinpuglia.eu/portfolio',
