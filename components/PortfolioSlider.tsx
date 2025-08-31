@@ -133,23 +133,29 @@ export default function PortfolioSlider() {
       <div className="container mx-auto px-4 relative z-10">
         {/* Section Header */}
         <div className="text-center mb-12">
+          <div className="inline-block bg-yellow-400 text-slate-900 px-6 py-2 rounded-full font-bold text-sm mb-6 uppercase tracking-wide">
+            Over 30 Years Experience
+          </div>
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Portfolio Showcase
+            Transforming Puglia: Hotels, Masserie & Landmark Restorations
           </h2>
           <p className="text-xl text-indigo-200 max-w-3xl mx-auto mb-2">
-            Projects Managed by Our Team Members Over 29 Years
+            Designing the Future, Restoring the Past
+          </p>
+          <p className="text-lg text-gray-300 max-w-2xl mx-auto mb-6">
+            Since 1995, shaping Puglia's tourism landscape through innovative hospitality projects and heritage preservation
           </p>
           <div className="flex justify-center gap-8 mt-6">
             <div className="text-center">
-              <div className="text-3xl font-bold text-yellow-400">€80M+</div>
+              <div className="text-3xl font-bold text-yellow-400">€100M+</div>
               <div className="text-sm text-indigo-200">Total Projects</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-yellow-400">35+</div>
+              <div className="text-3xl font-bold text-yellow-400">50+</div>
               <div className="text-sm text-indigo-200">Hotels & Resorts</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-yellow-400">€20M</div>
+              <div className="text-3xl font-bold text-yellow-400">€25M</div>
               <div className="text-sm text-indigo-200">Grants Secured</div>
             </div>
           </div>

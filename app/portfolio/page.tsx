@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Transforming Puglia: Hotels, Masserie, and Landmark Restorations,
+    title: 'Transforming Puglia: Hotels, Masserie, and Landmark Restorations',
     description: '€80M+ projects completed, €20M grants secured. 29 years of excellence in tourism development.',
     images: [ogImageUrl],
   },
