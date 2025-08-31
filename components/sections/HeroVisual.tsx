@@ -52,7 +52,7 @@ const HeroVisual = () => {
       name: 'Trulli & Historic',
       grant: '55%',
       max: 'up to €2.25M',
-      image: '/images/locations/trulli-alberobello.jpg',
+      image: '/images/industries/trulli-alberobello.jpg',
       fallback: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400"%3E%3Crect fill="%23f3e8ff" width="800" height="400"/%3E%3Ctext x="400" y="200" text-anchor="middle" font-size="24" fill="%239333ea"%3ETrulli Properties%3C/text%3E%3C/svg%3E',
       link: '/industries'
     },
@@ -92,10 +92,10 @@ const HeroVisual = () => {
   ];
 
   const stats = [
-    { value: '€9.9B', label: '2024 Investment', link: '/locations/invest-in-bari-bari' },
-    { value: '+66%', label: 'Year on Year', link: '/industries' },
-    { value: '95%', label: 'Approval Rate', link: '/how-it-works' },
-    { value: '30 Years', label: 'Experience', link: '/about' }
+    { value: '€9.9B', label: 'Foreign Investment', link: '/locations/invest-in-bari-bari' },
+    { value: '62%', label: 'Market Share', link: '/industries' },
+    { value: '+66%', label: 'YoY Growth', link: '/how-it-works' },
+    { value: '#4', label: 'Puglia Ranking', link: '/about' }
   ];
 
   // ADAPTIVE MOBILE DESIGN - COMPLETELY DIFFERENT LAYOUT
@@ -164,16 +164,16 @@ const HeroVisual = () => {
               {/* Stats Bar */}
               <div className="grid grid-cols-3 gap-4 mb-6">
                 <div className="text-center">
-                  <div className="text-2xl font-bold">€5M</div>
-                  <div className="text-xs opacity-80">Max Project</div>
+                  <div className="text-2xl font-bold">€9.9B</div>
+                  <div className="text-xs opacity-80">Foreign Investment</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl font-bold">95%</div>
-                  <div className="text-xs opacity-80">Success</div>
+                  <div className="text-2xl font-bold">62%</div>
+                  <div className="text-xs opacity-80">Market Share</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl font-bold">3yrs</div>
-                  <div className="text-xs opacity-80">Exit</div>
+                  <div className="text-2xl font-bold">+66%</div>
+                  <div className="text-xs opacity-80">Growth</div>
                 </div>
               </div>
               
@@ -205,9 +205,9 @@ const HeroVisual = () => {
               Puglia Investment Program
             </h2>
             <p className="text-gray-600 leading-relaxed">
-              The Mini PIA program provides 55% non-repayable grants on investments up to €5M. 
-              Your €2.25M contribution, combined with €2.75M in grant funding, creates a €5M 
-              project with full ownership retained by you.
+              Foreign investors represent 62% of Italy's €9.9B real estate market. The Mini PIA program 
+              provides 55% non-repayable grants up to €2.75M. Your €2.25M investment creates a €5M 
+              project. Puglia ranks #4 for foreign investment with +350% US buyer growth.
             </p>
           </div>
           
@@ -285,9 +285,9 @@ const HeroVisual = () => {
             <div className="flex justify-center items-center gap-4 text-xs text-gray-500">
               <span>Est. 2019</span>
               <span>•</span>
-              <span>€9.9B Invested</span>
+              <span>€9.9B Foreign Capital</span>
               <span>•</span>
-              <span>30+ Years</span>
+              <span>62% Market Share</span>
             </div>
           </div>
         </div>
@@ -328,10 +328,10 @@ const HeroVisual = () => {
           </div>
         </div>
 
-        {/* Professional Positioning */}
+        {/* Professional Positioning - Market Leader */}
         <div className={`text-center mb-8 transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
           <p className="text-xs uppercase tracking-[0.3em] text-gray-500">
-            International Procurement & Investment Advisory • Est. 2019
+            €9.9B Foreign Investment Market • 62% Market Share • +66% YoY Growth
           </p>
         </div>
 
@@ -340,14 +340,14 @@ const HeroVisual = () => {
           {/* Left Content */}
           <div className={`transition-all duration-1000 delay-[400ms] ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}>
             <h1 className="text-2xl sm:text-3xl lg:text-[2.5rem] font-light text-gray-900 mb-4 leading-tight">
-              Invest in Puglia's Future
+              Join €9.9B Foreign Investment Wave
             </h1>
             <div className="text-3xl lg:text-4xl xl:text-5xl font-bold bg-gradient-to-r from-purple-600 to-emerald-600 bg-clip-text text-transparent leading-tight mb-4">
               55% EU Grant Funding
-              <span className="block">Available Now</span>
+              <span className="block">62% Market Dominated by Foreign Investors</span>
             </div>
             <div className="text-lg sm:text-xl text-gray-600 font-medium mb-6">
-              Government-Backed Investment Opportunities
+              Puglia: #4 Most Requested Region • +350% US Buyers Growth
             </div>
             
             {/* URGENCY MESSAGE */}
@@ -358,25 +358,25 @@ const HeroVisual = () => {
             </div>
             
             <p className="text-sm sm:text-base text-gray-600 leading-relaxed mb-8">
-              The Mini PIA program provides 55% non-repayable grants on investments up to €5M. 
-              Your €2.25M contribution, combined with €2.75M in grant funding, creates a €5M project 
-              with full ownership retained by you. Build hotels, restaurants, manufacturing facilities, 
-              or restore historic properties with substantial government support.
+              Foreign investors now control 62% of Italy's €9.9B real estate market, with +66% YoY growth. 
+              Puglia ranks 4th among foreign investor destinations, with US buyers surging +350%. The Mini PIA 
+              program offers 55% non-repayable grants up to €2.75M. Your €2.25M investment leverages into a 
+              €5M project with full ownership. Join the foreign investment wave transforming Southern Italy.
             </p>
 
-            {/* Quick Stats */}
+            {/* Quick Stats - Updated with Market Data */}
             <div className="flex gap-8 mb-8">
               <div className="bg-gradient-to-br from-purple-50 to-purple-100/50 rounded-2xl p-4 flex-1 hover:scale-105 transition-transform cursor-pointer">
-                <div className="text-2xl font-bold text-purple-600">55%</div>
-                <div className="text-sm text-gray-600">Grant Coverage</div>
+                <div className="text-2xl font-bold text-purple-600">€9.9B</div>
+                <div className="text-sm text-gray-600">Foreign Capital</div>
               </div>
               <div className="bg-gradient-to-br from-emerald-50 to-emerald-100/50 rounded-2xl p-4 flex-1 hover:scale-105 transition-transform cursor-pointer">
-                <div className="text-2xl font-bold text-emerald-600">€2.75M</div>
-                <div className="text-sm text-gray-600">Max Grant</div>
+                <div className="text-2xl font-bold text-emerald-600">+66%</div>
+                <div className="text-sm text-gray-600">YoY Growth</div>
               </div>
               <div className="bg-gradient-to-br from-purple-50 to-purple-100/50 rounded-2xl p-4 flex-1 hover:scale-105 transition-transform cursor-pointer">
-                <div className="text-2xl font-bold text-purple-600">95%</div>
-                <div className="text-sm text-gray-600">Success Rate</div>
+                <div className="text-2xl font-bold text-purple-600">62%</div>
+                <div className="text-sm text-gray-600">Market Share</div>
               </div>
             </div>
           </div>
@@ -405,22 +405,22 @@ const HeroVisual = () => {
                 </video>
               </div>
               
-              {/* Floating Info Cards */}
+              {/* Floating Info Cards - Market Data */}
               <div className="absolute -top-5 -left-20 bg-white/95 px-6 py-4 rounded-[20px] shadow-lg animate-float z-10">
-                <div className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-emerald-600 bg-clip-text text-transparent">55%</div>
-                <div className="text-xs text-gray-600">Grant Coverage</div>
+                <div className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-emerald-600 bg-clip-text text-transparent">€9.9B</div>
+                <div className="text-xs text-gray-600">Foreign Investment</div>
               </div>
               <div className="absolute -top-5 -right-20 bg-white/95 px-6 py-4 rounded-[20px] shadow-lg animate-float-delayed-1 z-10">
-                <div className="text-2xl font-bold text-red-600">2027</div>
-                <div className="text-xs text-gray-600">Deadline</div>
+                <div className="text-2xl font-bold text-red-600">62%</div>
+                <div className="text-xs text-gray-600">Market Share</div>
               </div>
               <div className="absolute -bottom-10 -left-16 bg-white/95 px-6 py-4 rounded-[20px] shadow-lg animate-float-delayed-2 z-10">
-                <div className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-emerald-600 bg-clip-text text-transparent">95%</div>
-                <div className="text-xs text-gray-600">Success Rate</div>
+                <div className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-emerald-600 bg-clip-text text-transparent">+66%</div>
+                <div className="text-xs text-gray-600">YoY Growth</div>
               </div>
               <div className="absolute -bottom-10 -right-16 bg-white/95 px-6 py-4 rounded-[20px] shadow-lg animate-float-delayed-3 z-10">
-                <div className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-emerald-600 bg-clip-text text-transparent">€5M</div>
-                <div className="text-xs text-gray-600">Max Project</div>
+                <div className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-emerald-600 bg-clip-text text-transparent">#4</div>
+                <div className="text-xs text-gray-600">Puglia Ranking</div>
               </div>
             </div>
           </div>

@@ -51,6 +51,7 @@ const imageMap: Record<string, string> = {
   "/images/industries/manufacturing-puglia.jpg": "https://res.cloudinary.com/dusubfxgo/image/upload/f_auto,q_auto/investinpuglia/investinpuglia/images/industries/manufacturing-puglia",
   "/images/industries/restaurants-puglia.jpg": "https://res.cloudinary.com/dusubfxgo/image/upload/f_auto,q_auto/investinpuglia/investinpuglia/images/industries/restaurants-puglia",
   "/images/industries/trulli-alberobello.jpg": "https://res.cloudinary.com/dusubfxgo/image/upload/f_auto,q_auto/investinpuglia/investinpuglia/images/industries/trulli-alberobello",
+  "/images/locations/trulli-alberobello.jpg": "https://res.cloudinary.com/dusubfxgo/image/upload/f_auto,q_auto/investinpuglia/investinpuglia/images/locations/trulli-alberobello",
   "/images/locations/brindisi-thumb.jpg": "https://res.cloudinary.com/dusubfxgo/image/upload/f_auto,q_auto/investinpuglia/investinpuglia/images/locations/brindisi-thumb",
   "/images/locations/bari-thumb.jpg": "https://res.cloudinary.com/dusubfxgo/image/upload/f_auto,q_auto/investinpuglia/investinpuglia/images/locations/bari-thumb",
   "/images/locations/lecce-thumb.jpg": "https://res.cloudinary.com/dusubfxgo/image/upload/f_auto,q_auto/investinpuglia/investinpuglia/images/locations/lecce-thumb",

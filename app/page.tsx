@@ -5,17 +5,15 @@
 // Components
 import ExitIntentPopup from '@/components/ExitIntentPopup'
 import PageSEOSection from '@/components/PageSEOSection'
+import PortfolioSlider from '@/components/PortfolioSlider'
 
 // Sections
 import HeroVisual from '@/components/sections/HeroVisual'
-import SignAgreementBanner from '@/components/sections/SignAgreementBanner'
 import GrantInstitutions from '@/components/sections/GrantInstitutions'
 import WhyPuglia from '@/components/sections/WhyPuglia'
 import AboutGiuseppe from '@/components/sections/AboutGiuseppe'
 import Services from '@/components/sections/Services'
-import ApulinkShowcase from '@/components/sections/ApulinkShowcase'
-import TrulloSection from '@/components/sections/TrulloSection'
-import SuccessStories from '@/components/sections/OurCommitment'
+import AboutUsSummary from '@/components/sections/AboutUsSummary'
 import FAQ from '@/components/sections/FAQ'
 
 export default function HomePage() {
@@ -31,19 +29,17 @@ export default function HomePage() {
       {/* IMPORTANT: Grant Institutions with EU and Regione Puglia logos */}
       <GrantInstitutions />
       
+      {/* Portfolio Showcase - Prominent Section */}
+      <PortfolioSlider />
+      
       <WhyPuglia />
       <AboutGiuseppe />
       <Services />
-      <TrulloSection />
-      <ApulinkShowcase />
-      <SuccessStories />
+      <AboutUsSummary />
       <FAQ />
       
       {/* SEO FAQ Section with Internal Links */}
       <PageSEOSection pageKey="home" />
-      
-      {/* Sign Agreement Banner moved to bottom */}
-      <SignAgreementBanner />
     </>
   )
 }

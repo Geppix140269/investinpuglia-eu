@@ -88,15 +88,12 @@ export default function BeforeAfterSlider({
         className="absolute inset-0 overflow-hidden"
         style={{ width: `${sliderPosition}%` }}
       >
-        <div className="relative w-full h-full" style={{ width: `${(100 / sliderPosition) * 100}%` }}>
+        <div className="relative h-full" style={{ width: `${(100 / sliderPosition) * 100}%` }}>
           <Image
             src={beforeImage}
             alt={beforeLabel}
             fill
-            className="object-cover"
-            style={{ 
-              objectPosition: 'left center'
-            }}
+            className="object-cover object-left"
             priority
           />
           <div className="absolute top-4 left-4 bg-white/90 text-black px-3 py-1 rounded-full text-sm font-semibold">

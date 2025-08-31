@@ -9,6 +9,7 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('home')
   const [miniPiaDropdownOpen, setMiniPiaDropdownOpen] = useState(false)
+  const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false)
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
@@ -66,9 +67,47 @@ export default function Navbar() {
 
           {/* Desktop Navigation - Centered */}
           <div className="hidden md:flex items-center gap-8 absolute left-1/2 transform -translate-x-1/2">
-            <a href="/services" className="text-gray-700 hover:text-gray-900 transition-colors font-medium">
-              Services
+            <a href="/about" className="text-gray-700 hover:text-gray-900 transition-colors font-medium">
+              About Us
             </a>
+            
+            {/* Services Dropdown */}
+            <div 
+              className="relative"
+              onMouseEnter={() => setServicesDropdownOpen(true)}
+              onMouseLeave={() => setServicesDropdownOpen(false)}
+            >
+              <button
+                onClick={() => setServicesDropdownOpen(!servicesDropdownOpen)}
+                className="text-gray-700 hover:text-gray-900 transition-colors font-medium flex items-center gap-1"
+              >
+                Services
+                <ChevronDown className={`h-4 w-4 transition-transform ${servicesDropdownOpen ? 'rotate-180' : ''}`} />
+              </button>
+              
+              {servicesDropdownOpen && (
+                <div 
+                  className="absolute top-full left-0 mt-0 pt-2 w-56"
+                >
+                  <div className="bg-white rounded-lg shadow-lg border border-gray-200 overflow-hidden">
+                    <Link href="/services" className="block px-4 py-3 text-gray-700 hover:bg-purple-50 hover:text-purple-700 transition-colors">
+                      📋 All Services
+                    </Link>
+                    <div className="border-t border-gray-100">
+                      <div className="px-4 py-2 text-xs font-semibold text-gray-500 uppercase tracking-wider bg-gray-50">
+                        Tools
+                      </div>
+                      <Link href="/trullo" className="block px-4 py-3 text-gray-700 hover:bg-purple-50 hover:text-purple-700 transition-colors">
+                        🏠 Trullo Cost Calculator
+                      </Link>
+                      <Link href="/apulink" className="block px-4 py-3 text-gray-700 hover:bg-purple-50 hover:text-purple-700 transition-colors">
+                        🔗 Apulink Platform
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
             
             <a href="/portfolio" className="text-gray-700 hover:text-gray-900 transition-colors font-medium">
               Portfolio
@@ -140,9 +179,25 @@ export default function Navbar() {
         {isOpen && (
           <div className="md:hidden py-4 border-t border-gray-200">
             <div className="flex flex-col gap-4">
-              <a href="/services" className="text-gray-700 hover:text-gray-900 transition-colors font-medium py-2">
-                Services
+              <a href="/about" className="text-gray-700 hover:text-gray-900 transition-colors font-medium py-2">
+                About Us
               </a>
+              
+              <div>
+                <div className="text-gray-700 font-medium py-2">Services</div>
+                <div className="ml-4 space-y-2 mt-2">
+                  <a href="/services" className="block text-gray-600 hover:text-gray-900 transition-colors py-1">
+                    📋 All Services
+                  </a>
+                  <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider mt-2">Tools</div>
+                  <a href="/trullo" className="block text-gray-600 hover:text-gray-900 transition-colors py-1">
+                    🏠 Trullo Cost Calculator
+                  </a>
+                  <a href="/apulink" className="block text-gray-600 hover:text-gray-900 transition-colors py-1">
+                    🔗 Apulink Platform
+                  </a>
+                </div>
+              </div>
               
               <a href="/portfolio" className="text-gray-700 hover:text-gray-900 transition-colors font-medium py-2">
                 Portfolio
