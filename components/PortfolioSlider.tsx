@@ -12,7 +12,7 @@ const portfolioProjects = [
     value: "€5.1M",
     year: "2015-2023",
     description: "17th century masseria transformed into Baglioni 5-star luxury resort with world-class spa",
-    image: "/baglioni_masseria_muzza_gallery_601da4b9a3.jpg",
+    image: "/Cataldo's projects/baglioni_masseria_muzza.jpg",
     highlight: "PIA Turismo Funded"
   },
   {
@@ -22,7 +22,7 @@ const portfolioProjects = [
     value: "€1.2M",
     year: "2015-2019",
     description: "Complete renovation: reception, restaurants, spa, 32 rooms for international chain",
-    image: "/voi-alimini.webp",
+    image: "/Cataldo's projects/VOI Alimini Resort.jpg",
     highlight: "International Chain"
   },
   {
@@ -32,7 +32,7 @@ const portfolioProjects = [
     value: "€3M",
     year: "2015-2019",
     description: "Complete renovation of blocks A-B-C-D, Pyramid and Tower structures",
-    image: "/blue-otranto.jpg",
+    image: "/Cataldo's projects/Le Cale d'Otranto Beach Resort.jpg",
     highlight: "Italia Turismo"
   },
   {
@@ -42,7 +42,7 @@ const portfolioProjects = [
     value: "€2.5M",
     year: "2003-2006",
     description: "Hotel expansion and elevation project with modern amenities",
-    image: "/hotel-haethey.jpg",
+    image: "/Cataldo's projects/hotel haethey otranto.jpg",
     highlight: "Expansion Project"
   },
   {
@@ -52,7 +52,7 @@ const portfolioProjects = [
     value: "€3.8M",
     year: "2019",
     description: "5-star luxury hotel with 30 suites, spa & fine dining restaurant",
-    image: "/montelauro.jpg",
+    image: "/Cataldo's projects/masseria montelauro.jpeg",
     highlight: "PIA Turismo"
   },
   {
@@ -62,7 +62,7 @@ const portfolioProjects = [
     value: "€1.3M",
     year: "2022",
     description: "Historic palace restoration for luxury tourist accommodation",
-    image: "/nohasi-palace.jpg",
+    image: "/Cataldo's projects/nohasi palace hotel and spa.jpg",
     highlight: "Heritage Restoration"
   },
   {
@@ -72,7 +72,7 @@ const portfolioProjects = [
     value: "€600K",
     year: "2016",
     description: "Historic tower restoration - Important public heritage project",
-    image: "/torre-matta.jpg",
+    image: "/Cataldo's projects/Torre Matta.jpg",
     highlight: "Public Heritage"
   },
   {
@@ -82,7 +82,7 @@ const portfolioProjects = [
     value: "€2.3M",
     year: "2024",
     description: "Rural tourism facility development with modern luxury amenities",
-    image: "/donna-menga.jpg",
+    image: "/Cataldo's projects/Donna-Menga.webp",
     highlight: "Rural Tourism"
   }
 ]
@@ -134,10 +134,10 @@ export default function PortfolioSlider() {
         {/* Section Header */}
         <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Our Investment Portfolio
+            Portfolio Showcase
           </h2>
           <p className="text-xl text-indigo-200 max-w-3xl mx-auto mb-2">
-            29 Years of Excellence in Tourism Development
+            Projects Managed by Our Team Members Over 29 Years
           </p>
           <div className="flex justify-center gap-8 mt-6">
             <div className="text-center">
@@ -241,7 +241,7 @@ export default function PortfolioSlider() {
         {/* Bottom CTA */}
         <div className="text-center mt-12">
           <p className="text-lg text-indigo-200 mb-4">
-            Led by Dott. Ing. Cataldo Russo - 29 years of proven excellence
+            Technical expertise from team members with decades of experience
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link

@@ -82,7 +82,7 @@ export default function PortfolioClient({ projects, pageSettings }: PortfolioCli
           grant: "PIA Turismo",
           status: "In Progress 2022",
           description: "New tourist accommodation development",
-          imageUrl: "/baglioni-pool.jpg"
+          imageUrl: "https://res.cloudinary.com/dusubfxgo/image/upload/v1756631635/shantiland_tacrma.jpg"
         },
         {
           name: "Hotel degli Haethey",

@@ -315,23 +315,10 @@ const HeroVisual = () => {
       {/* Main Container */}
       <div className="relative max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-20">
         
-        {/* Top Alert */}
-        <div className={`text-center mb-8 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-5'}`}>
-          <div className="inline-flex items-center gap-2 backdrop-blur-xl bg-red-50 border border-red-300 px-6 py-3 rounded-full">
-            <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse" />
-            <span className="text-sm font-semibold text-red-700">
-              ⚠️ Mini PIA Program • 55% Grants
-            </span>
-            <span className="text-xs text-red-600 font-bold">
-              Until 2027 • First Come First Served!
-            </span>
-          </div>
-        </div>
-
-        {/* Professional Positioning - Market Leader */}
-        <div className={`text-center mb-8 transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
-          <p className="text-xs uppercase tracking-[0.3em] text-gray-500">
-            €9.9B Foreign Investment Market • 62% Market Share • +66% YoY Growth
+        {/* Elegant Header */}
+        <div className={`text-center mb-12 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-5'}`}>
+          <p className="text-sm uppercase tracking-[0.2em] text-gray-500 font-light">
+            Puglia Investment Program
           </p>
         </div>
 
@@ -339,44 +326,40 @@ const HeroVisual = () => {
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center mb-12">
           {/* Left Content */}
           <div className={`transition-all duration-1000 delay-[400ms] ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}>
-            <h1 className="text-2xl sm:text-3xl lg:text-[2.5rem] font-light text-gray-900 mb-4 leading-tight">
-              Join €9.9B Foreign Investment Wave
+            <h1 className="text-4xl lg:text-5xl xl:text-6xl font-light text-gray-900 mb-6 leading-tight">
+              Transform Your Investment
+              <span className="block text-3xl lg:text-4xl xl:text-5xl font-bold bg-gradient-to-r from-purple-600 to-emerald-600 bg-clip-text text-transparent mt-3">
+                With 55% EU Grants
+              </span>
             </h1>
-            <div className="text-3xl lg:text-4xl xl:text-5xl font-bold bg-gradient-to-r from-purple-600 to-emerald-600 bg-clip-text text-transparent leading-tight mb-4">
-              55% EU Grant Funding
-              <span className="block">62% Market Dominated by Foreign Investors</span>
-            </div>
-            <div className="text-lg sm:text-xl text-gray-600 font-medium mb-6">
-              Puglia: #4 Most Requested Region • +350% US Buyers Growth
+            <div className="text-xl lg:text-2xl text-gray-600 font-light mb-6">
+              Puglia's Premium Investment Program
             </div>
             
-            {/* URGENCY MESSAGE */}
-            <div className="bg-yellow-50 border-l-4 border-yellow-500 p-4 mb-6 rounded">
-              <p className="text-sm font-bold text-gray-900">
-                ⏰ LIMITED TIME - Funds allocated "a sportello" until 2027
-              </p>
+            {/* Subtle Time Notice */}
+            <div className="inline-flex items-center gap-2 text-sm text-gray-500 mb-6">
+              <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
+              <span>Program available until 2027</span>
             </div>
             
-            <p className="text-sm sm:text-base text-gray-600 leading-relaxed mb-8">
-              Foreign investors now control 62% of Italy's €9.9B real estate market, with +66% YoY growth. 
-              Puglia ranks 4th among foreign investor destinations, with US buyers surging +350%. The Mini PIA 
-              program offers 55% non-repayable grants up to €2.75M. Your €2.25M investment leverages into a 
-              €5M project with full ownership. Join the foreign investment wave transforming Southern Italy.
+            <p className="text-lg text-gray-600 leading-relaxed mb-8 font-light">
+              Leverage government grants to double your investment power. 
+              Transform €2.25M into a €5M project with full ownership.
             </p>
 
-            {/* Quick Stats - Updated with Market Data */}
-            <div className="flex gap-8 mb-8">
-              <div className="bg-gradient-to-br from-purple-50 to-purple-100/50 rounded-2xl p-4 flex-1 hover:scale-105 transition-transform cursor-pointer">
-                <div className="text-2xl font-bold text-purple-600">€9.9B</div>
-                <div className="text-sm text-gray-600">Foreign Capital</div>
+            {/* Elegant Stats */}
+            <div className="flex gap-12 mb-8">
+              <div>
+                <div className="text-3xl font-light text-gray-900">€5M</div>
+                <div className="text-sm text-gray-500">Project Value</div>
               </div>
-              <div className="bg-gradient-to-br from-emerald-50 to-emerald-100/50 rounded-2xl p-4 flex-1 hover:scale-105 transition-transform cursor-pointer">
-                <div className="text-2xl font-bold text-emerald-600">+66%</div>
-                <div className="text-sm text-gray-600">YoY Growth</div>
+              <div>
+                <div className="text-3xl font-light text-gray-900">55%</div>
+                <div className="text-sm text-gray-500">Grant Funding</div>
               </div>
-              <div className="bg-gradient-to-br from-purple-50 to-purple-100/50 rounded-2xl p-4 flex-1 hover:scale-105 transition-transform cursor-pointer">
-                <div className="text-2xl font-bold text-purple-600">62%</div>
-                <div className="text-sm text-gray-600">Market Share</div>
+              <div>
+                <div className="text-3xl font-light text-gray-900">2027</div>
+                <div className="text-sm text-gray-500">Program End</div>
               </div>
             </div>
           </div>
@@ -405,22 +388,12 @@ const HeroVisual = () => {
                 </video>
               </div>
               
-              {/* Floating Info Cards - Market Data */}
-              <div className="absolute -top-5 -left-20 bg-white/95 px-6 py-4 rounded-[20px] shadow-lg animate-float z-10">
-                <div className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-emerald-600 bg-clip-text text-transparent">€9.9B</div>
-                <div className="text-xs text-gray-600">Foreign Investment</div>
+              {/* Minimal Floating Cards */}
+              <div className="absolute -top-5 -left-20 bg-white/95 px-5 py-3 rounded-full shadow-lg animate-float z-10">
+                <div className="text-lg font-light text-gray-700">55% Grants</div>
               </div>
-              <div className="absolute -top-5 -right-20 bg-white/95 px-6 py-4 rounded-[20px] shadow-lg animate-float-delayed-1 z-10">
-                <div className="text-2xl font-bold text-red-600">62%</div>
-                <div className="text-xs text-gray-600">Market Share</div>
-              </div>
-              <div className="absolute -bottom-10 -left-16 bg-white/95 px-6 py-4 rounded-[20px] shadow-lg animate-float-delayed-2 z-10">
-                <div className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-emerald-600 bg-clip-text text-transparent">+66%</div>
-                <div className="text-xs text-gray-600">YoY Growth</div>
-              </div>
-              <div className="absolute -bottom-10 -right-16 bg-white/95 px-6 py-4 rounded-[20px] shadow-lg animate-float-delayed-3 z-10">
-                <div className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-emerald-600 bg-clip-text text-transparent">#4</div>
-                <div className="text-xs text-gray-600">Puglia Ranking</div>
+              <div className="absolute -bottom-10 -right-16 bg-white/95 px-5 py-3 rounded-full shadow-lg animate-float-delayed-2 z-10">
+                <div className="text-lg font-light text-gray-700">Until 2027</div>
               </div>
             </div>
           </div>
@@ -484,46 +457,24 @@ const HeroVisual = () => {
           </div>
         </div>
 
-        {/* CTA Buttons */}
-        <div className={`flex gap-6 items-center justify-center mb-12 transition-all duration-1000 delay-[800ms] ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <a 
-            href="/locations"
-            className="bg-gradient-to-r from-purple-600 to-emerald-600 text-white px-10 py-5 rounded-full font-semibold text-lg hover:shadow-2xl transition-all flex items-center gap-3"
-          >
-            Investment Locations
-            <MapPin className="w-5 h-5" />
-          </a>
-          <a 
-            href="/industries"
-            className="bg-gradient-to-r from-emerald-600 to-blue-600 text-white px-10 py-5 rounded-full font-semibold text-lg hover:shadow-2xl transition-all flex items-center gap-3"
-          >
-            Investment Industries
-            <Factory className="w-5 h-5" />
-          </a>
+        {/* Elegant CTA */}
+        <div className={`flex gap-6 items-center justify-center mb-16 transition-all duration-1000 delay-[800ms] ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           <a 
             href="https://calendly.com/investinpuglia/30min"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-white text-gray-900 border-2 border-gray-200 px-10 py-5 rounded-full font-semibold text-lg hover:border-purple-400 hover:shadow-xl transition-all flex items-center gap-3"
+            className="bg-gray-900 text-white px-12 py-4 rounded-full font-light text-lg hover:bg-gray-800 transition-all"
           >
-            Book Free Consultation
-            <ArrowRight className="w-5 h-5" />
+            Schedule Consultation
+          </a>
+          <a 
+            href="/locations"
+            className="text-gray-700 px-8 py-4 rounded-full font-light text-lg hover:text-gray-900 transition-all"
+          >
+            Explore Locations →
           </a>
         </div>
 
-        {/* Stats Grid */}
-        <div className={`grid grid-cols-4 gap-4 max-w-5xl mx-auto mb-12 transition-all duration-1000 delay-[1000ms] ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          {stats.map((stat, index) => (
-            <a
-              key={index}
-              href={stat.link}
-              className="bg-white/90 backdrop-blur-sm rounded-2xl p-6 text-center shadow-lg hover:shadow-xl transition-all hover:scale-105 hover:-translate-y-1 border border-white/50"
-            >
-              <div className="text-3xl font-bold text-gray-900 mb-1">{stat.value}</div>
-              <div className="text-sm text-gray-600">{stat.label}</div>
-            </a>
-          ))}
-        </div>
 
         {/* Location Quick Links */}
         <div className={`text-center transition-all duration-1000 delay-[1200ms] ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>

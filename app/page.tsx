@@ -12,6 +12,7 @@ import HeroVisual from '@/components/sections/HeroVisual'
 import GrantInstitutions from '@/components/sections/GrantInstitutions'
 import WhyPuglia from '@/components/sections/WhyPuglia'
 import AboutGiuseppe from '@/components/sections/AboutGiuseppe'
+import MeetTheTeam from '@/components/sections/MeetTheTeam'
 import Services from '@/components/sections/Services'
 import AboutUsSummary from '@/components/sections/AboutUsSummary'
 import FAQ from '@/components/sections/FAQ'
@@ -34,8 +35,7 @@ export default function HomePage() {
       
       <WhyPuglia />
       <AboutGiuseppe />
-      <Services />
-      <AboutUsSummary />
+      <MeetTheTeam />
       <FAQ />
       
       {/* SEO FAQ Section with Internal Links */}
