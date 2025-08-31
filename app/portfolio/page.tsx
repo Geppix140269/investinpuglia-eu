@@ -11,7 +11,7 @@ const ogImageUrl = generateOGImageUrl({
 })
 
 export const metadata: Metadata = {
-  title: 'Investment Portfolio - 35+ Luxury Hotels & Resorts | InvestInPuglia',
+  title: '30 Years of Excellence in Hospitality, Heritage & Urban Design | InvestInPuglia',
   description: 'Discover our portfolio: 35+ successfully developed hotels & resorts in Puglia. €80M+ in projects, €20M grants secured. VOI Alimini, Masseria Muzza 5*, Le Cale d\'Otranto. 29 years of proven excellence.',
   keywords: 'Puglia hotel portfolio, luxury resort development, investment portfolio Italy, PIA Turismo grants, Titolo II funding, VOI Hotels Alpitour, Masseria restoration, Otranto hotels, tourism investment Puglia',
   openGraph: {
