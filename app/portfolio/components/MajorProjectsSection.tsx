@@ -52,6 +52,8 @@ export default function MajorProjectsSection({ majorProjects }: MajorProjectsSec
                       width={600}
                       height={200}
                       className="w-full h-full object-cover"
+                      loading="lazy"
+                      sizes="(max-width: 768px) 100vw, 50vw"
                     />
                     <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full">
                       <span className="text-sm font-bold text-indigo-600">{project.status}</span>

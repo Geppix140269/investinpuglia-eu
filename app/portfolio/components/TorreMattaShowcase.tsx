@@ -16,6 +16,8 @@ export default function TorreMattaShowcase() {
                   width={600}
                   height={500}
                   className="w-full h-auto object-cover"
+                  loading="lazy"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
               </div>
               <div className="absolute -bottom-6 -right-6 bg-gradient-to-br from-amber-600 to-orange-600 text-white rounded-2xl p-6 shadow-xl max-w-xs">

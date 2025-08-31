@@ -31,7 +31,15 @@ const nextConfig = {
   // Performance optimizations
   swcMinify: true,
   experimental: {
-    optimizePackageImports: ['lucide-react', '@headlessui/react']
+    optimizePackageImports: ['lucide-react', '@headlessui/react'],
+    // Enable tree shaking for better bundle size
+    webVitalsAttribution: ['CLS', 'LCP']
+  },
+  // Enable modern builds for better performance
+  modularizeImports: {
+    'lucide-react': {
+      transform: 'lucide-react/dist/esm/icons/{{member}}'
+    }
   },
   async headers() {
     return [

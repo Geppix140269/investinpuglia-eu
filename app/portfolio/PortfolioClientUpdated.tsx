@@ -1,20 +1,37 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, Suspense, lazy } from 'react'
 import { Building2, Star, Home, Award, Shield, FileCheck, Briefcase } from 'lucide-react'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 
-// Import all section components
+// Eagerly load critical above-the-fold components
 import HeroSection from './components/HeroSection'
-import TeamSection from './components/TeamSection'
-import DonnaMengaShowcase from './components/DonnaMengaShowcase'
-import TorreMattaShowcase from './components/TorreMattaShowcase'
-import MajorProjectsSection from './components/MajorProjectsSection'
-import TrustIndicatorsSection from './components/TrustIndicatorsSection'
-import ShantilandSection from './components/ShantilandSection'
-import FinancedProjectsSection from './components/FinancedProjectsSection'
-import CTASection from './components/CTASection'
+import LazySection from './components/LazySection'
+import WebVitals from './components/WebVitals'
+import PerformanceOptimizer from './components/PerformanceOptimizer'
+
+// Lazy load non-critical components for better performance
+const TeamSection = lazy(() => import('./components/TeamSection'))
+const DonnaMengaShowcase = lazy(() => import('./components/DonnaMengaShowcase'))
+const TorreMattaShowcase = lazy(() => import('./components/TorreMattaShowcase'))
+const MajorProjectsSection = lazy(() => import('./components/MajorProjectsSection'))
+const TrustIndicatorsSection = lazy(() => import('./components/TrustIndicatorsSection'))
+const ShantilandSection = lazy(() => import('./components/ShantilandSection'))
+const FinancedProjectsSection = lazy(() => import('./components/FinancedProjectsSection'))
+const CTASection = lazy(() => import('./components/CTASection'))
+
+// Loading components for different section heights
+const SectionLoader = ({ height = "h-64" }: { height?: string }) => (
+  <div className={`${height} bg-gray-100 animate-pulse flex items-center justify-center`}>
+    <div className="text-gray-500 text-lg">Loading...</div>
+  </div>
+)
+
+const ProjectsLoader = () => <SectionLoader height="h-screen" />
+const ShowcaseLoader = () => <SectionLoader height="h-96" />
+const StandardLoader = () => <SectionLoader height="h-64" />
+const CompactLoader = () => <SectionLoader height="h-48" />
 
 interface Project {
   name: string
@@ -259,17 +276,43 @@ export default function PortfolioClient({ projects, pageSettings }: PortfolioCli
 
   return (
     <>
+      <WebVitals />
+      <PerformanceOptimizer />
       <Navbar />
       <main>
         <HeroSection stats={stats} />
-        <TeamSection />
-        <DonnaMengaShowcase />
-        <TorreMattaShowcase />
-        <MajorProjectsSection majorProjects={majorProjects} />
-        <TrustIndicatorsSection credentials={credentials} />
-        <ShantilandSection />
-        <FinancedProjectsSection financedProjects={financedProjects} />
-        <CTASection />
+        
+        <LazySection fallback={<CompactLoader />} rootMargin="50px">
+          <TeamSection />
+        </LazySection>
+        
+        <LazySection fallback={<ShowcaseLoader />} rootMargin="100px">
+          <DonnaMengaShowcase />
+        </LazySection>
+        
+        <LazySection fallback={<ShowcaseLoader />} rootMargin="100px">
+          <TorreMattaShowcase />
+        </LazySection>
+        
+        <LazySection fallback={<ProjectsLoader />} rootMargin="200px">
+          <MajorProjectsSection majorProjects={majorProjects} />
+        </LazySection>
+        
+        <LazySection fallback={<StandardLoader />} rootMargin="100px">
+          <TrustIndicatorsSection credentials={credentials} />
+        </LazySection>
+        
+        <LazySection fallback={<ShowcaseLoader />} rootMargin="100px">
+          <ShantilandSection />
+        </LazySection>
+        
+        <LazySection fallback={<StandardLoader />} rootMargin="50px">
+          <FinancedProjectsSection financedProjects={financedProjects} />
+        </LazySection>
+        
+        <LazySection fallback={<CompactLoader />} rootMargin="50px">
+          <CTASection />
+        </LazySection>
       </main>
       <Footer />
     </>

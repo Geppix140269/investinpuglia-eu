@@ -77,6 +77,7 @@ export default function BeforeAfterSlider({
           fill
           className="object-cover"
           priority
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 60vw"
         />
         <div className="absolute top-4 right-4 bg-black/70 text-white px-3 py-1 rounded-full text-sm font-semibold">
           {afterLabel}
@@ -94,7 +95,8 @@ export default function BeforeAfterSlider({
             alt={beforeLabel}
             fill
             className="object-cover object-left"
-            priority
+            loading="lazy"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 60vw"
           />
           <div className="absolute top-4 left-4 bg-white/90 text-black px-3 py-1 rounded-full text-sm font-semibold">
             {beforeLabel}
