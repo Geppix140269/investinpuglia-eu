@@ -1,5 +1,5 @@
 import { Metadata } from 'next'
-import PortfolioClient from './PortfolioClient'
+import PortfolioClient from './PortfolioClientUpdated'
 import { getAllRenovationProjects, getRenovationPageSettings } from '@/lib/sanity/renovation'
 
 export const metadata: Metadata = {

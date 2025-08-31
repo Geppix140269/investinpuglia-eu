@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 interface CloudinaryImageProps {
   src: string;
@@ -12,7 +12,12 @@ interface CloudinaryImageProps {
   priority?: boolean;
   fill?: boolean;
   sizes?: string;
-  quality?: number;
+  quality?: 'auto' | 'auto:best' | 'auto:good' | 'auto:eco' | 'auto:low' | number;
+  crop?: 'fill' | 'fit' | 'limit' | 'pad' | 'scale' | 'thumb';
+  gravity?: 'auto' | 'face' | 'faces' | 'center';
+  responsive?: boolean;
+  lazy?: boolean;
+  placeholder?: 'blur' | 'empty' | 'tracedSVG';
 }
 
 // Map local paths to Cloudinary URLs
@@ -96,56 +101,66 @@ export function CloudinaryImage({
   priority = false,
   fill = false,
   sizes,
-  quality = 75
+  quality = 'auto:best',
+  crop = 'fill',
+  gravity = 'auto',
+  responsive = true,
+  lazy = !priority,
+  placeholder = 'blur'
 }: CloudinaryImageProps) {
   const [isLoading, setIsLoading] = useState(true);
+  const [currentSrc, setCurrentSrc] = useState<string>('');
+  const [placeholderSrc, setPlaceholderSrc] = useState<string>('');
   
   // Get Cloudinary URL or use original
   const cloudinarySrc = imageMap[src] || iconMap[src] || src;
   
-  // Add responsive transformations for different screen sizes
-  const getOptimizedUrl = (baseUrl: string) => {
-    if (!baseUrl.includes('cloudinary.com')) return baseUrl;
-    
-    // Add responsive width parameter based on viewport
-    if (sizes) {
-      return baseUrl;
+  // Simple optimization for Cloudinary URLs
+  useEffect(() => {
+    if (cloudinarySrc.includes('cloudinary.com')) {
+      // Already a Cloudinary URL, use as is
+      setCurrentSrc(cloudinarySrc);
+    } else {
+      // Use local image
+      setCurrentSrc(cloudinarySrc);
     }
     
-    // Default optimization
-    return baseUrl;
+    // Generate simple placeholder
+    if (placeholder === 'blur' && lazy) {
+      setPlaceholderSrc('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgZmlsbD0iI2NjYyIvPjwvc3ZnPg==');
+    }
+  }, [cloudinarySrc, lazy, placeholder]);
+  
+  const imageProps = {
+    src: currentSrc || cloudinarySrc,
+    alt,
+    priority,
+    className: `
+      duration-700 ease-in-out
+      ${isLoading ? 'scale-110 blur-2xl grayscale' : 'scale-100 blur-0 grayscale-0'}
+    `,
+    onLoad: () => setIsLoading(false),
+    ...(placeholder === 'blur' && placeholderSrc && {
+      placeholder: 'blur' as const,
+      blurDataURL: placeholderSrc
+    }),
+    ...(lazy && !priority && { loading: 'lazy' as const })
   };
-  
-  const optimizedSrc = getOptimizedUrl(cloudinarySrc);
-  
+
   return (
     <div className={`relative ${className}`}>
       {fill ? (
         <Image
-          src={optimizedSrc}
-          alt={alt}
+          {...imageProps}
           fill
-          priority={priority}
-          sizes={sizes || "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"}
-          className={`
-            duration-700 ease-in-out
-            ${isLoading ? 'scale-110 blur-2xl grayscale' : 'scale-100 blur-0 grayscale-0'}
-          `}
-          onLoad={() => setIsLoading(false)}
+          sizes={sizes || "(max-width: 640px) 100vw, (max-width: 768px) 90vw, (max-width: 1024px) 80vw, (max-width: 1280px) 70vw, 60vw"}
         />
       ) : (
         <Image
-          src={optimizedSrc}
-          alt={alt}
-          width={width || 500}
-          height={height || 300}
-          priority={priority}
-          sizes={sizes}
-          className={`
-            duration-700 ease-in-out
-            ${isLoading ? 'scale-110 blur-2xl grayscale' : 'scale-100 blur-0 grayscale-0'}
-          `}
-          onLoad={() => setIsLoading(false)}
+          {...imageProps}
+          width={width || 800}
+          height={height || 600}
+          sizes={sizes || "(max-width: 640px) 100vw, (max-width: 768px) 90vw, (max-width: 1024px) 80vw, 70vw"}
         />
       )}
     </div>

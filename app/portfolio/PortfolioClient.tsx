@@ -2,12 +2,14 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
+import BeforeAfterSlider from '@/components/BeforeAfterSlider'
 import { 
   Building2, MapPin, Calendar, TrendingUp, Users, Award,
   CheckCircle, Euro, Clock, Briefcase, Star, Shield,
-  Home, FileCheck, Hammer, Target
+  Home, FileCheck, Hammer, Target, ArrowRight, Sparkles
 } from 'lucide-react'
 
 interface Project {
@@ -74,22 +76,31 @@ export default function PortfolioClient({ projects, pageSettings }: PortfolioCli
       icon: <Star className="h-8 w-8" />,
       projects: [
         {
-          name: "Baglioni Masseria Muzza",
+          name: "Hotel Shantiland",
           location: "Otranto",
-          value: "€4,500,000",
-          grant: "PIA Turismo Funded",
-          status: "Completed 2015",
-          description: "17th century masseria transformed into Baglioni 5-star resort with spa",
+          value: "€2,167,400",
+          grant: "PIA Turismo",
+          status: "In Progress 2022",
+          description: "New tourist accommodation development",
           imageUrl: "/baglioni-pool.jpg"
         },
         {
-          name: "Masseria Montelauro",
+          name: "Hotel degli Haethey",
           location: "Otranto",
-          value: "€3,800,000",
-          grant: "PIA Turismo Funded",
-          status: "Completed 2019",
-          description: "5-star luxury hotel with 30 suites, spa & fine dining restaurant",
-          imageUrl: "/montelauro.jpg"
+          value: "€2,500,000",
+          grant: "L.R. 8/98 + DPR 447/95",
+          status: "2001-2006",
+          description: "Hotel expansion and elevation project",
+          imageUrl: "/hotel-haethey.jpg"
+        },
+        {
+          name: "Masseria San Giuseppe",
+          location: "Otranto",
+          value: "€2,600,000",
+          grant: "Titolo II Turismo",
+          status: "2005-2022",
+          description: "D.Lgs. 42/04 protected monument, spa and rooms",
+          imageUrl: "/masseria-muzza.jpg"
         },
         {
           name: "Hotel Koinè",
@@ -101,22 +112,13 @@ export default function PortfolioClient({ projects, pageSettings }: PortfolioCli
           imageUrl: "/hotel-koine.jpg"
         },
         {
-          name: "Hotel Shantiland",
+          name: "Masseria Montelauro",
           location: "Otranto",
-          value: "€2,167,400",
-          grant: "PIA Turismo",
-          status: "In Progress 2022",
-          description: "New tourist accommodation development",
-          imageUrl: "/blue-otranto.jpg"
-        },
-        {
-          name: "Hotel degli Haethey",
-          location: "Otranto",
-          value: "€2,500,000",
-          grant: "L.R. 8/98 + DPR 447/95",
-          status: "2001-2006",
-          description: "Hotel expansion and elevation project",
-          imageUrl: "/hotel-haethey.jpg"
+          value: "€3,800,000",
+          grant: "PIA Turismo Funded",
+          status: "Completed 2019",
+          description: "5-star luxury hotel with 30 suites, spa & fine dining restaurant",
+          imageUrl: "/montelauro.jpg"
         },
         {
           name: "Hotel Bellavista",
@@ -176,16 +178,7 @@ export default function PortfolioClient({ projects, pageSettings }: PortfolioCli
           grant: "Private Investment",
           status: "2015-2019",
           description: "Complete renovation blocks A-B-C-D, Pyramid and Tower structures",
-          imageUrl: "/santa-lucia.jpg"
-        },
-        {
-          name: "Hotel Masseria Muzza 5*",
-          location: "Otranto",
-          value: "€5,100,000",
-          grant: "PIA Turismo + Titolo II",
-          status: "2011-2023",
-          description: "5-star luxury masseria transformation and expansion",
-          imageUrl: "/masseria-muzza.jpg"
+          imageUrl: "/blue-otranto.jpg"
         },
         {
           name: "Hotel Pietra Verde",
@@ -195,6 +188,15 @@ export default function PortfolioClient({ projects, pageSettings }: PortfolioCli
           status: "2001-2002",
           description: "Hotel restructuring project with architectural and structural work",
           imageUrl: "/pietra-verde.jpg"
+        },
+        {
+          name: "Baglioni Masseria Muzza 5*",
+          location: "Otranto",
+          value: "€4,500,000",
+          grant: "PIA Turismo + Titolo II",
+          status: "2011-2023",
+          description: "17th century masseria transformed into Baglioni 5-star resort with spa",
+          imageUrl: "/baglioni_masseria_muzza_gallery_601da4b9a3.jpg"
         }
       ]
     },
@@ -203,22 +205,13 @@ export default function PortfolioClient({ projects, pageSettings }: PortfolioCli
       icon: <Home className="h-8 w-8" />,
       projects: [
         {
-          name: "Nohasi Palace",
+          name: "Castello di Noha - Nohasi Palace",
           location: "Noha, Galatina",
           value: "€1,300,000",
           grant: "Titolo II Turismo",
           status: "2019-2022",
           description: "Historic palace restoration for tourist accommodation",
           imageUrl: "/nohasi-palace.jpg"
-        },
-        {
-          name: "Masseria San Giuseppe",
-          location: "Otranto",
-          value: "€2,600,000",
-          grant: "Titolo II Turismo",
-          status: "2005-2022",
-          description: "D.Lgs. 42/04 protected monument, spa and rooms",
-          imageUrl: "/baglioni-pool.jpg"
         },
         {
           name: "Masseria Donna Menga",
@@ -255,6 +248,15 @@ export default function PortfolioClient({ projects, pageSettings }: PortfolioCli
           status: "Completed 2015",
           description: "Hotel residence complex with underground archaeological area",
           imageUrl: "/hypogeum.jpg"
+        },
+        {
+          name: "Dimora di Giuseppe",
+          location: "Otranto",
+          value: "€800,000",
+          grant: "Private Investment",
+          status: "2018-2020",
+          description: "Historic building restoration for luxury accommodation",
+          imageUrl: "/dimora-giuseppe.jpg"
         }
       ]
     }
