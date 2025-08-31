@@ -5,8 +5,8 @@ import { PAGE_OG_IMAGES, generateOGImageUrl } from '@/lib/og-images'
 
 const ogImageUrl = generateOGImageUrl({
   imageId: PAGE_OG_IMAGES.portfolio.imageId,
-  title: PAGE_OG_IMAGES.portfolio.title,
-  description: PAGE_OG_IMAGES.portfolio.description,
+  title: '30 Years of Excellence in Hospitality & Heritage',
+  description: '€100M+ Projects, €25M Grants, 50+ Successful Developments',
   watermark: true
 })
 

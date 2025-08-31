@@ -57,55 +57,55 @@ export function generateOGImageUrl(config: OGImageConfig): string {
   return `${CLOUDINARY_BASE_URL}/${transformation}/${config.imageId}`
 }
 
-// Predefined OG images for main pages
+// Predefined OG images for main pages - Updated with working Cloudinary URLs
 export const PAGE_OG_IMAGES = {
   home: {
-    imageId: 'v1756631635/masseria_montelauro_brpq0h.jpg',
+    imageId: 'v1756663565/investinpuglia/og-images/masseria-montelauro.jpg',
     title: 'Invest in Puglia',
     description: 'Your Gateway to Italian Real Estate Investment'
   },
   portfolio: {
-    imageId: 'v1756631635/baglioni_masseria_muzza_uyfcbu.jpg',
-    title: 'Investment Portfolio',
-    description: '€95M+ Successfully Delivered Projects'
+    imageId: 'v1756663567/investinpuglia/og-images/baglioni-masseria-muzza.jpg',
+    title: '30 Years of Excellence',
+    description: '€100M+ in Projects, €25M Grants Secured'
   },
   services: {
-    imageId: 'v1756631635/donna_menga_after_aolqht.jpg',
+    imageId: 'v1756663570/investinpuglia/og-images/donna-menga.jpg',
     title: 'Our Services',
     description: 'Complete Investment Support from A to Z'
   },
   grants: {
-    imageId: 'v1756631635/nohasi_palace_hotel_spa_wkntzl.jpg',
+    imageId: 'v1756663573/investinpuglia/og-images/nohasi-palace.jpg',
     title: 'Grant Funding',
     description: 'Up to 50% Co-financing Available'
   },
   properties: {
-    imageId: 'v1756631635/le_cale_dotranto_beach_resort_ehc18o.jpg',
+    imageId: 'v1756663576/investinpuglia/og-images/le-cale-dotranto.jpg',
     title: 'Properties',
     description: 'Luxury Investment Opportunities'
   },
   about: {
-    imageId: 'v1756631635/dimora_san_giuseppe_vofhbv.jpg',
+    imageId: 'v1756663578/investinpuglia/og-images/dimora-san-giuseppe.jpg',
     title: 'About InvestInPuglia',
     description: '29 Years of Excellence in Real Estate'
   },
   contact: {
-    imageId: 'v1756631635/hotel_bellavista_i6lj5q.jpg',
+    imageId: 'v1756663582/investinpuglia/og-images/hotel-bellavista.jpg',
     title: 'Contact Us',
     description: 'Start Your Investment Journey Today'
   },
   puglia: {
-    imageId: 'v1756631635/torre_matta_kgzqrm.jpg',
+    imageId: 'v1756663589/investinpuglia/og-images/torre-matta.jpg',
     title: 'Discover Puglia',
     description: 'The Hidden Gem of Southern Italy'
   },
   legal: {
-    imageId: 'v1756631635/hotel_haethey_otranto_gcjxfu.jpg',
+    imageId: 'v1756663591/investinpuglia/og-images/hotel-haethey.jpg',
     title: 'Legal Framework',
     description: 'Navigate Italian Property Law with Confidence'
   },
   trullo: {
-    imageId: 'v1756631635/shantiland_tacrma.jpg',
+    imageId: 'v1756663594/investinpuglia/og-images/shantiland.jpg',
     title: 'Meet Trullo AI',
     description: 'Your 24/7 Investment Assistant'
   }
@@ -120,7 +120,7 @@ export function generatePropertyOGImage(property: {
 }): string {
   const imageId = property.imageUrl 
     ? property.imageUrl.replace('https://res.cloudinary.com/dusubfxgo/image/upload/', '')
-    : 'v1756631635/masseria_montelauro_brpq0h.jpg'
+    : 'v1756663565/investinpuglia/og-images/masseria-montelauro.jpg'
   
   return generateOGImageUrl({
     imageId,
@@ -139,7 +139,7 @@ export function generateBlogOGImage(post: {
 }): string {
   const imageId = post.featuredImage 
     ? post.featuredImage.replace('https://res.cloudinary.com/dusubfxgo/image/upload/', '')
-    : 'v1756631635/baglioni_masseria_muzza_uyfcbu.jpg'
+    : 'v1756663567/investinpuglia/og-images/baglioni-masseria-muzza.jpg'
   
   return generateOGImageUrl({
     imageId,

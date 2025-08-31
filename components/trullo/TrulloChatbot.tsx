@@ -55,8 +55,8 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
       if (!hasUserClosed && window.location.pathname === '/') {
         setTimeout(() => {
           setIsOpen(true);
-        }, 3000);
-      } else if (savedState === 'open') {
+        }, 8000); // Increased delay to 8 seconds
+      } else if (savedState === 'open' && !hasUserClosed) {
         setIsOpen(true);
       }
 
@@ -363,11 +363,11 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
             fixed z-50 bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden
             transition-all duration-300
             ${currentLang === 'ar' ? 'rtl' : 'ltr'}
-            ${isMobile ? 'inset-x-4 bottom-0 h-[70vh] rounded-b-none' : 'bottom-4 left-1/2 transform -translate-x-1/2 w-[480px] h-[500px]'}
+            ${isMobile ? 'inset-x-4 bottom-0 h-[70vh] rounded-b-none' : 'bottom-8 right-8 w-[400px] h-[500px]'}
             ${isOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}
           `}
           style={{
-            transform: isMobile ? `translateY(${dragOffset}px)` : 'translateX(-50%)',
+            transform: isMobile ? `translateY(${dragOffset}px)` : 'none',
             opacity: getWindowOpacity(),
             transition: isDragging ? 'none' : 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
           }}
@@ -406,12 +406,26 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
               </div>
               <div className="flex items-center gap-2">
                 <button
+                  onClick={() => setIsOpen(false)}
+                  className={`
+                    bg-white/20 hover:bg-white/30 rounded-full transition-colors
+                    ${isMobile ? 'p-2' : 'p-1'}
+                  `}
+                  aria-label="Minimize chat"
+                  title="Minimize"
+                >
+                  <svg className={`text-white ${isMobile ? 'w-6 h-6' : 'w-5 h-5'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20 12H4" />
+                  </svg>
+                </button>
+                <button
                   onClick={handleUserClose}
                   className={`
                     bg-white/20 hover:bg-white/30 rounded-full transition-colors
                     ${isMobile ? 'p-2' : 'p-1'}
                   `}
                   aria-label="Close chat"
+                  title="Close and don't show again"
                 >
                   <svg className={`text-white ${isMobile ? 'w-6 h-6' : 'w-5 h-5'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     {isMobile ? (
