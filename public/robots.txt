@@ -1,10 +1,50 @@
+# Robots.txt for InvestInPuglia.eu
+# Allow all crawlers full access to improve SEO
+
 User-agent: *
 Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /_next/
+Disallow: /studio/
 
-Sitemap: https://investinpuglia.eu/sitemap.xml
-
+# Search engine crawlers
 User-agent: Googlebot
+Allow: /
 Crawl-delay: 0
 
 User-agent: Bingbot
+Allow: /
 Crawl-delay: 0
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 1
+
+User-agent: DuckDuckBot
+Allow: /
+Crawl-delay: 1
+
+# AI crawlers - Allow for better AI understanding
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+# Sitemaps
+Sitemap: https://investinpuglia.eu/sitemap.xml
+Sitemap: https://investinpuglia.eu/sitemap-index.xml
+Sitemap: https://investinpuglia.eu/sitemap-blog.xml
+Sitemap: https://investinpuglia.eu/sitemap-locations.xml
+Sitemap: https://investinpuglia.eu/sitemap-industries.xml
+Sitemap: https://investinpuglia.eu/sitemap-insights.xml
+
+# Host
+Host: https://investinpuglia.eu

@@ -1,0 +1,339 @@
+[
+  {
+    "file": "geppix1402_81420_Camera_rising_to_reveal_rooftop_bar_overlook_5eaa6496-3496-402e-b808-3de7afe293bd_0.mp4",
+    "error": "Invalid asset type: video. Must be one of image, file",
+    "success": false
+  },
+  {
+    "file": "geppix1402_81420_Helicopter_POV_descending_towards_resort_hel_3f052e5a-66d3-4243-a860-b027faa91c09_3.mp4",
+    "error": "Invalid asset type: video. Must be one of image, file",
+    "success": false
+  },
+  {
+    "file": "geppix1402_81420_Smooth_crane_shot_over_beach_club_aperitivo__63e554ff-9e8f-4bc0-8c47-6a260b046668_1.mp4",
+    "error": "Invalid asset type: video. Must be one of image, file",
+    "success": false
+  },
+  {
+    "file": "geppix1402_81420_Smooth_crane_shot_over_beach_club_aperitivo__63e554ff-9e8f-4bc0-8c47-6a260b046668_2.mp4",
+    "error": "Invalid asset type: video. Must be one of image, file",
+    "success": false
+  },
+  {
+    "file": "geppix1402_81420_Smooth_crane_shot_over_beach_club_aperitivo__63e554ff-9e8f-4bc0-8c47-6a260b046668_3.mp4",
+    "error": "Invalid asset type: video. Must be one of image, file",
+    "success": false
+  },
+  {
+    "file": "geppix1402_81420_Aerial_orbit_around_cliff_beach_club_in_Poli_904a364f-6015-495e-992c-c36f28188b82_1.png",
+    "assetId": "image-618445455a3aa19d27ff77afaa44aa4b3307d9b3-1456x816-png",
+    "url": "https://cdn.sanity.io/images/trdbxmjo/production/618445455a3aa19d27ff77afaa44aa4b3307d9b3-1456x816.png",
+    "success": true
+  },
+  {
+    "file": "geppix1402_81420_Aerial_orbit_around_cliff_beach_club_in_Poli_904a364f-6015-495e-992c-c36f28188b82_2.png",
+    "assetId": "image-8e8cf85658c58f2e18fbfb43389b63de6275fb22-1456x816-png",
+    "url": "https://cdn.sanity.io/images/trdbxmjo/production/8e8cf85658c58f2e18fbfb43389b63de6275fb22-1456x816.png",
+    "success": true
+  },
+  {
+    "file": "geppix1402_81420_Aerial_orbit_around_cliff_beach_club_in_Poli_904a364f-6015-495e-992c-c36f28188b82_3.png",
+    "assetId": "image-d6d044657f0889b66731dc8f2baee1399a333edf-1456x816-png",
+    "url": "https://cdn.sanity.io/images/trdbxmjo/production/d6d044657f0889b66731dc8f2baee1399a333edf-1456x816.png",
+    "success": true
+  },
+  {
+    "file": "geppix1402_81420_Aerial_view_of_abandoned_building_on_Puglia__0c1f8464-2f84-42ac-8f41-0d429b4f8196_0.png",
+    "assetId": "image-3bef7a663d6765b621042142a82a8a87795d28ed-1456x816-png",
+    "url": "https://cdn.sanity.io/images/trdbxmjo/production/3bef7a663d6765b621042142a82a8a87795d28ed-1456x816.png",
+    "success": true
+  },
+  {
+    "file": "geppix1402_81420_Aerial_view_of_abandoned_building_on_Puglia__0c1f8464-2f84-42ac-8f41-0d429b4f8196_1.png",
+    "assetId": "image-bb69df4bdfa460ca3c626cef9a1ae80bfdbba7f8-1456x816-png",
+    "url": "https://cdn.sanity.io/images/trdbxmjo/production/bb69df4bdfa460ca3c626cef9a1ae80bfdbba7f8-1456x816.png",
+    "success": true
+  },
+  {
+    "file": "geppix1402_81420_Aerial_view_of_abandoned_building_on_Puglia__0c1f8464-2f84-42ac-8f41-0d429b4f8196_2 (1).png",
+    "assetId": "image-51d454593c340be496ba9545668a093f622eee63-1456x816-png",
+    "url": "https://cdn.sanity.io/images/trdbxmjo/production/51d454593c340be496ba9545668a093f622eee63-1456x816.png",
+    "success": true
+  },
+  {
+    "file": "geppix1402_81420_Aerial_view_of_abandoned_building_on_Puglia__0c1f8464-2f84-42ac-8f41-0d429b4f8196_2.png",
+    "assetId": "image-51d454593c340be496ba9545668a093f622eee63-1456x816-png",
+    "url": "https://cdn.sanity.io/images/trdbxmjo/production/51d454593c340be496ba9545668a093f622eee63-1456x816.png",
+    "success": true
+  },
+  {
+    "file": "geppix1402_81420_Aerial_view_of_abandoned_building_on_Puglia__0c1f8464-2f84-42ac-8f41-0d429b4f8196_3.png",
+    "assetId": "image-071996a20210768a69401b8e31bcc054f76b4690-1456x816-png",
+    "url": "https://cdn.sanity.io/images/trdbxmjo/production/071996a20210768a69401b8e31bcc054f76b4690-1456x816.png",
+    "success": true
+  },
+  {
+    "file": "geppix1402_81420_Aerial_view_of_long_table_dinner_in_olive_gr_bc53e248-6881-440b-98ae-6dc8ca73eb25_1.png",
+    "assetId": "image-9f8fd5d30650fc2af866603dbbcbea59bfac7ab3-1456x816-png",
+    "url": "https://cdn.sanity.io/images/trdbxmjo/production/9f8fd5d30650fc2af866603dbbcbea59bfac7ab3-1456x816.png",
+    "success": true
+  },
+  {
+    "file": "geppix1402_81420_Aerial_view_of_modern_beach_resort_on_Puglia_1e033058-96de-4e55-a742-32e53bf63f47_0.png",
+    "assetId": "image-78e6147848fdbf800fbfabeac05c7dc8547beb39-1456x816-png",
+    "url": "https://cdn.sanity.io/images/trdbxmjo/production/78e6147848fdbf800fbfabeac05c7dc8547beb39-1456x816.png",
+    "success": true
+  },
+  {
+    "file": "geppix1402_81420_Aerial_view_of_modern_beach_resort_on_Puglia_1e033058-96de-4e55-a742-32e53bf63f47_2.png",
+    "assetId": "image-5ac08d8620be04c316a16b95ae49fb1ca58535c9-1456x816-png",
+    "url": "https://cdn.sanity.io/images/trdbxmjo/production/5ac08d8620be04c316a16b95ae49fb1ca58535c9-1456x816.png",
+    "success": true
+  },
+  {
+    "file": "geppix1402_81420_Aerial_view_of_modern_beach_resort_on_Puglia_1e033058-96de-4e55-a742-32e53bf63f47_3.png",
+    "assetId": "image-463b18a936abb428ca62fc04cf9a47956b1e9db5-1456x816-png",
+    "url": "https://cdn.sanity.io/images/trdbxmjo/production/463b18a936abb428ca62fc04cf9a47956b1e9db5-1456x816.png",
+    "success": true
+  },
+  {
+    "file": "geppix1402_81420_Aerial_view_of_pool_party_at_resort_DJ_day_b_1d55819b-6a7c-42f6-baa5-37add9264a6e_3.png",
+    "assetId": "image-3c8fb7cfe9f3d05309699a082c2b25746501b135-1456x816-png",
+    "url": "https://cdn.sanity.io/images/trdbxmjo/production/3c8fb7cfe9f3d05309699a082c2b25746501b135-1456x816.png",
+    "success": true
+  },
+  {
+    "file": "geppix1402_81420_Camera_circling_outdoor_cooking_class_in_mas_7948c831-b95c-4df0-a1b7-3c8ec026ac97_0.png",
+    "assetId": "image-6c14cffce1e930409a87cdb3c652b8c9bdb345f2-1456x816-png",
+    "url": "https://cdn.sanity.io/images/trdbxmjo/production/6c14cffce1e930409a87cdb3c652b8c9bdb345f2-1456x816.png",
+    "success": true
+  },
+  {
+    "file": "geppix1402_81420_Camera_circling_outdoor_cooking_class_in_mas_7948c831-b95c-4df0-a1b7-3c8ec026ac97_1.png",
+    "assetId": "image-f5051d6fd130def16a8f89c1c2703e41ab9a2d99-1456x816-png",
+    "url": "https://cdn.sanity.io/images/trdbxmjo/production/f5051d6fd130def16a8f89c1c2703e41ab9a2d99-1456x816.png",
+    "success": true
+  },
+  {
+    "file": "geppix1402_81420_Camera_circling_outdoor_cooking_class_in_mas_7948c831-b95c-4df0-a1b7-3c8ec026ac97_2.png",
+    "assetId": "image-91f51779a4d948adfa985dbbb910c8e355366052-1456x816-png",
+    "url": "https://cdn.sanity.io/images/trdbxmjo/production/91f51779a4d948adfa985dbbb910c8e355366052-1456x816.png",
+    "success": true
+  },
+  {
+    "file": "geppix1402_81420_Camera_circling_outdoor_cooking_class_in_mas_7948c831-b95c-4df0-a1b7-3c8ec026ac97_3.png",
+    "assetId": "image-9cc1c5780cf8ccc90bdc537ceccc0d63e377c1cd-1456x816-png",
+    "url": "https://cdn.sanity.io/images/trdbxmjo/production/9cc1c5780cf8ccc90bdc537ceccc0d63e377c1cd-1456x816.png",
+    "success": true
+  },
+  {
+    "file": "geppix1402_81420_Camera_dollying_through_luxury_trulli_resort_ee4f1045-c662-465a-bfac-ab6a01626be4_3.png",
+    "assetId": "image-b3e126c02e67f5b2f584feba75b85157b7508446-1456x816-png",
+    "url": "https://cdn.sanity.io/images/trdbxmjo/production/b3e126c02e67f5b2f584feba75b85157b7508446-1456x816.png",
+    "success": true
+  },
+  {
+    "file": "geppix1402_81420_Camera_gliding_along_infinity_pool_edge_over_63235c90-8037-46fd-aaba-c877c98364a4_0.png",
+    "assetId": "image-10e34adf53c91f03afba4579c74d4261a2573e35-1456x816-png",
+    "url": "https://cdn.sanity.io/images/trdbxmjo/production/10e34adf53c91f03afba4579c74d4261a2573e35-1456x816.png",
+    "success": true
+  },
+  {
+    "file": "geppix1402_81420_Camera_gliding_along_infinity_pool_edge_over_63235c90-8037-46fd-aaba-c877c98364a4_1.png",
+    "assetId": "image-8eaaa1aaa01c25dfb0b92c2613b0bb6d231eec67-1456x816-png",
+    "url": "https://cdn.sanity.io/images/trdbxmjo/production/8eaaa1aaa01c25dfb0b92c2613b0bb6d231eec67-1456x816.png",
+    "success": true
+  },
+  {
+    "file": "geppix1402_81420_Camera_gliding_along_infinity_pool_edge_over_63235c90-8037-46fd-aaba-c877c98364a4_2.png",
+    "assetId": "image-0cac49e2fffff074f656abc6442baaf7a238a3fa-1456x816-png",
+    "url": "https://cdn.sanity.io/images/trdbxmjo/production/0cac49e2fffff074f656abc6442baaf7a238a3fa-1456x816.png",
+    "success": true
+  },
+  {
+    "file": "geppix1402_81420_Camera_gliding_along_infinity_pool_edge_over_63235c90-8037-46fd-aaba-c877c98364a4_3.png",
+    "assetId": "image-69d0c72e48937099754f96fe7a886f903246d5d5-1456x816-png",
+    "url": "https://cdn.sanity.io/images/trdbxmjo/production/69d0c72e48937099754f96fe7a886f903246d5d5-1456x816.png",
+    "success": true
+  },
+  {
+    "file": "geppix1402_81420_Camera_rising_to_reveal_rooftop_bar_overlook_3f241707-7104-400b-ab12-f30e7290effe_0.png",
+    "assetId": "image-a1d5083ba9ec8078369be66ca43ee3be13937abd-1456x816-png",
+    "url": "https://cdn.sanity.io/images/trdbxmjo/production/a1d5083ba9ec8078369be66ca43ee3be13937abd-1456x816.png",
+    "success": true
+  },
+  {
+    "file": "geppix1402_81420_Camera_rising_to_reveal_rooftop_bar_overlook_3f241707-7104-400b-ab12-f30e7290effe_1.png",
+    "assetId": "image-b5408a12905361554c1616023ec18bb784e1a86e-1456x816-png",
+    "url": "https://cdn.sanity.io/images/trdbxmjo/production/b5408a12905361554c1616023ec18bb784e1a86e-1456x816.png",
+    "success": true
+  },
+  {
+    "file": "geppix1402_81420_Camera_rising_to_reveal_rooftop_bar_overlook_3f241707-7104-400b-ab12-f30e7290effe_2.png",
+    "assetId": "image-9aa748029f9d9acfe42fbc7c5b3b25c494472515-1456x816-png",
+    "url": "https://cdn.sanity.io/images/trdbxmjo/production/9aa748029f9d9acfe42fbc7c5b3b25c494472515-1456x816.png",
+    "success": true
+  },
+  {
+    "file": "geppix1402_81420_Camera_rising_to_reveal_rooftop_bar_overlook_3f241707-7104-400b-ab12-f30e7290effe_3.png",
+    "assetId": "image-a0bb254acf6c163b078a195db3a80e2ea69750fe-1456x816-png",
+    "url": "https://cdn.sanity.io/images/trdbxmjo/production/a0bb254acf6c163b078a195db3a80e2ea69750fe-1456x816.png",
+    "success": true
+  },
+  {
+    "file": "geppix1402_81420_Camera_tracking_past_old_abandoned_trulli_ho_c5eee118-54fc-4210-bc60-6c6aeaf0c66e_0.png",
+    "assetId": "image-2746a28afb40a29427d4f65145b89b1d9855ea7c-1456x816-png",
+    "url": "https://cdn.sanity.io/images/trdbxmjo/production/2746a28afb40a29427d4f65145b89b1d9855ea7c-1456x816.png",
+    "success": true
+  },
+  {
+    "file": "geppix1402_81420_Camera_tracking_past_old_abandoned_trulli_ho_c5eee118-54fc-4210-bc60-6c6aeaf0c66e_1.png",
+    "assetId": "image-e3ae6e111091bd77c56165b1737cbafa6155a747-1456x816-png",
+    "url": "https://cdn.sanity.io/images/trdbxmjo/production/e3ae6e111091bd77c56165b1737cbafa6155a747-1456x816.png",
+    "success": true
+  },
+  {
+    "file": "geppix1402_81420_Camera_tracking_past_old_abandoned_trulli_ho_c5eee118-54fc-4210-bc60-6c6aeaf0c66e_2.png",
+    "assetId": "image-d3493451d5a891d81e2d976c64daf2ad4d66c113-1456x816-png",
+    "url": "https://cdn.sanity.io/images/trdbxmjo/production/d3493451d5a891d81e2d976c64daf2ad4d66c113-1456x816.png",
+    "success": true
+  },
+  {
+    "file": "geppix1402_81420_Camera_tracking_past_old_abandoned_trulli_ho_c5eee118-54fc-4210-bc60-6c6aeaf0c66e_3.png",
+    "assetId": "image-d0c03ec2486b926275c4082acd0bfc62b1d9fa56-1456x816-png",
+    "url": "https://cdn.sanity.io/images/trdbxmjo/production/d0c03ec2486b926275c4082acd0bfc62b1d9fa56-1456x816.png",
+    "success": true
+  },
+  {
+    "file": "geppix1402_81420_Camera_tracking_past_restored_luxury_trulli__6c7a3ff7-46d6-4c8d-aac8-2bf31bc1d484_0.png",
+    "assetId": "image-6ae8c1c364e6024a4d04ee82ce5ca36c2f621f07-1456x816-png",
+    "url": "https://cdn.sanity.io/images/trdbxmjo/production/6ae8c1c364e6024a4d04ee82ce5ca36c2f621f07-1456x816.png",
+    "success": true
+  },
+  {
+    "file": "geppix1402_81420_Camera_tracking_past_restored_luxury_trulli__6c7a3ff7-46d6-4c8d-aac8-2bf31bc1d484_1.png",
+    "assetId": "image-3b19c13f9eb083a41c5b0236a38aa9ee4d571edd-1456x816-png",
+    "url": "https://cdn.sanity.io/images/trdbxmjo/production/3b19c13f9eb083a41c5b0236a38aa9ee4d571edd-1456x816.png",
+    "success": true
+  },
+  {
+    "file": "geppix1402_81420_Camera_tracking_past_restored_luxury_trulli__6c7a3ff7-46d6-4c8d-aac8-2bf31bc1d484_2.png",
+    "assetId": "image-bf26beeb11b4f46c1ef76a076107fcf43f0a9f56-1456x816-png",
+    "url": "https://cdn.sanity.io/images/trdbxmjo/production/bf26beeb11b4f46c1ef76a076107fcf43f0a9f56-1456x816.png",
+    "success": true
+  },
+  {
+    "file": "geppix1402_81420_Camera_tracking_past_restored_luxury_trulli__6c7a3ff7-46d6-4c8d-aac8-2bf31bc1d484_3.png",
+    "assetId": "image-3b3aefae63672a56e46c76903dddb83a0ccb5a22-1456x816-png",
+    "url": "https://cdn.sanity.io/images/trdbxmjo/production/3b3aefae63672a56e46c76903dddb83a0ccb5a22-1456x816.png",
+    "success": true
+  },
+  {
+    "file": "geppix1402_81420_Dolly_through_vaulted_stone_wine_cellar_conv_cbe8e552-7ca5-494f-9cf4-a13f02269a62_0.png",
+    "assetId": "image-8ad2ff27377937d57497a1075f078b4c244a332f-1456x816-png",
+    "url": "https://cdn.sanity.io/images/trdbxmjo/production/8ad2ff27377937d57497a1075f078b4c244a332f-1456x816.png",
+    "success": true
+  },
+  {
+    "file": "geppix1402_81420_Dolly_through_vaulted_stone_wine_cellar_conv_cbe8e552-7ca5-494f-9cf4-a13f02269a62_1.png",
+    "assetId": "image-c11f70b38cda626f824fe808441adf2c2ff5b1f1-1456x816-png",
+    "url": "https://cdn.sanity.io/images/trdbxmjo/production/c11f70b38cda626f824fe808441adf2c2ff5b1f1-1456x816.png",
+    "success": true
+  },
+  {
+    "file": "geppix1402_81420_Dolly_through_vaulted_stone_wine_cellar_conv_cbe8e552-7ca5-494f-9cf4-a13f02269a62_2.png",
+    "assetId": "image-4f2928311f94d6fc0c5f1b6ebf053e8618f97ba8-1456x816-png",
+    "url": "https://cdn.sanity.io/images/trdbxmjo/production/4f2928311f94d6fc0c5f1b6ebf053e8618f97ba8-1456x816.png",
+    "success": true
+  },
+  {
+    "file": "geppix1402_81420_Dolly_through_vaulted_stone_wine_cellar_conv_cbe8e552-7ca5-494f-9cf4-a13f02269a62_3.png",
+    "assetId": "image-73e1405b6bbd622456586c9247b5e7c35ffc4bbd-1456x816-png",
+    "url": "https://cdn.sanity.io/images/trdbxmjo/production/73e1405b6bbd622456586c9247b5e7c35ffc4bbd-1456x816.png",
+    "success": true
+  },
+  {
+    "file": "geppix1402_81420_Slow_drone_descent_towards_masseria_pool_at__6f268b3c-e038-4911-90dd-046c6bc5df5e_1.png",
+    "assetId": "image-7b1a00c7a2d5f65771b9427ad59b1c28bafc0c18-1456x816-png",
+    "url": "https://cdn.sanity.io/images/trdbxmjo/production/7b1a00c7a2d5f65771b9427ad59b1c28bafc0c18-1456x816.png",
+    "success": true
+  },
+  {
+    "file": "geppix1402_81420_Slow_drone_descent_towards_masseria_pool_at__6f268b3c-e038-4911-90dd-046c6bc5df5e_2.png",
+    "assetId": "image-b2e3e8cdeb4c9b60639dffef1e8a8d804416e435-1456x816-png",
+    "url": "https://cdn.sanity.io/images/trdbxmjo/production/b2e3e8cdeb4c9b60639dffef1e8a8d804416e435-1456x816.png",
+    "success": true
+  },
+  {
+    "file": "geppix1402_81420_Slow_drone_descent_towards_masseria_pool_at__6f268b3c-e038-4911-90dd-046c6bc5df5e_3.png",
+    "assetId": "image-461a73ca47f7df03854dd329d2fea6df989d9f52-1456x816-png",
+    "url": "https://cdn.sanity.io/images/trdbxmjo/production/461a73ca47f7df03854dd329d2fea6df989d9f52-1456x816.png",
+    "success": true
+  },
+  {
+    "file": "geppix1402_81420_Slow_push_through_ancient_stone_archway_into_165a71f0-889a-43dc-810a-8ffc4f772894_0.png",
+    "assetId": "image-b370bebba7d8a9d4c30fcac3040b669d60df71fd-1456x816-png",
+    "url": "https://cdn.sanity.io/images/trdbxmjo/production/b370bebba7d8a9d4c30fcac3040b669d60df71fd-1456x816.png",
+    "success": true
+  },
+  {
+    "file": "geppix1402_81420_Slow_push_through_ancient_stone_archway_into_165a71f0-889a-43dc-810a-8ffc4f772894_1.png",
+    "assetId": "image-7c8435d4415cc32153500f3294b7276c1f5ec5f5-1456x816-png",
+    "url": "https://cdn.sanity.io/images/trdbxmjo/production/7c8435d4415cc32153500f3294b7276c1f5ec5f5-1456x816.png",
+    "success": true
+  },
+  {
+    "file": "geppix1402_81420_Slow_push_through_ancient_stone_archway_into_165a71f0-889a-43dc-810a-8ffc4f772894_2.png",
+    "assetId": "image-52961064aef2d0fe9c32fd888b1a863a9b43205e-1456x816-png",
+    "url": "https://cdn.sanity.io/images/trdbxmjo/production/52961064aef2d0fe9c32fd888b1a863a9b43205e-1456x816.png",
+    "success": true
+  },
+  {
+    "file": "geppix1402_81420_Slow_push_through_ancient_stone_archway_into_165a71f0-889a-43dc-810a-8ffc4f772894_3.png",
+    "assetId": "image-c41254717b16cbbab783c0747706d84e4ce18566-1456x816-png",
+    "url": "https://cdn.sanity.io/images/trdbxmjo/production/c41254717b16cbbab783c0747706d84e4ce18566-1456x816.png",
+    "success": true
+  },
+  {
+    "file": "geppix1402_81420_Smooth_crane_shot_over_beach_club_aperitivo__8e855f86-6ed0-48d9-9159-51da275d5345_2.png",
+    "assetId": "image-8230ae8f1407c879c7847c279119d9e0b6294b3d-1456x816-png",
+    "url": "https://cdn.sanity.io/images/trdbxmjo/production/8230ae8f1407c879c7847c279119d9e0b6294b3d-1456x816.png",
+    "success": true
+  },
+  {
+    "file": "geppix1402_81420_Smooth_crane_shot_over_beach_club_aperitivo__8e855f86-6ed0-48d9-9159-51da275d5345_3.png",
+    "assetId": "image-fac2280d82b4c76451ddce0098e1f7a316c936ca-1456x816-png",
+    "url": "https://cdn.sanity.io/images/trdbxmjo/production/fac2280d82b4c76451ddce0098e1f7a316c936ca-1456x816.png",
+    "success": true
+  },
+  {
+    "file": "geppix1402_81420_Tracking_shot_along_marina_boardwalk_restaur_8b4a0fc9-5e1f-4ced-90b7-f55d456a2abf_1.png",
+    "assetId": "image-7c2111e2bd9dd1fef51ecf190aabc079bec1ad2c-1456x816-png",
+    "url": "https://cdn.sanity.io/images/trdbxmjo/production/7c2111e2bd9dd1fef51ecf190aabc079bec1ad2c-1456x816.png",
+    "success": true
+  },
+  {
+    "file": "geppix1402_81420_Tracking_shot_along_marina_boardwalk_restaur_8b4a0fc9-5e1f-4ced-90b7-f55d456a2abf_3.png",
+    "assetId": "image-8fbf4bbd825d92a105796336d1844cde0175684a-1456x816-png",
+    "url": "https://cdn.sanity.io/images/trdbxmjo/production/8fbf4bbd825d92a105796336d1844cde0175684a-1456x816.png",
+    "success": true
+  },
+  {
+    "file": "geppix1402_81420_View_from_yacht_approaching_coastal_hotel_pr_70aef088-ccb2-444a-a462-dfd8f9cc7acb_2.png",
+    "assetId": "image-89da07a8ca215518b8fe7da8cd5845122487c7f9-1456x816-png",
+    "url": "https://cdn.sanity.io/images/trdbxmjo/production/89da07a8ca215518b8fe7da8cd5845122487c7f9-1456x816.png",
+    "success": true
+  },
+  {
+    "file": "geppix1402_81420_View_from_yacht_approaching_coastal_hotel_pr_70aef088-ccb2-444a-a462-dfd8f9cc7acb_3.png",
+    "assetId": "image-8973531f144e8f9e77ebf25a0ac58e7091cd563c-1456x816-png",
+    "url": "https://cdn.sanity.io/images/trdbxmjo/production/8973531f144e8f9e77ebf25a0ac58e7091cd563c-1456x816.png",
+    "success": true
+  },
+  {
+    "file": "HELICOPTER.png",
+    "assetId": "image-53f486e648da4a98abf01c88271f5b0d5b43b34d-1456x816-png",
+    "url": "https://cdn.sanity.io/images/trdbxmjo/production/53f486e648da4a98abf01c88271f5b0d5b43b34d-1456x816.png",
+    "success": true
+  }
+]

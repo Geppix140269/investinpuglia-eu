@@ -1,7 +1,9 @@
 import { Metadata } from 'next'
+import Script from 'next/script'
 import PortfolioClient from './PortfolioClientUpdated'
 import { getAllRenovationProjects, getRenovationPageSettings } from '@/lib/sanity/renovation'
 import { PAGE_OG_IMAGES, generateOGImageUrl } from '@/lib/og-images'
+import { generatePageMetadata, generateStructuredData, seoConfig } from '@/lib/seo-metadata'
 
 const ogImageUrl = generateOGImageUrl({
   imageId: PAGE_OG_IMAGES.portfolio.imageId,
@@ -10,36 +12,13 @@ const ogImageUrl = generateOGImageUrl({
   watermark: true
 })
 
-export const metadata: Metadata = {
-  title: '30 Years of Excellence in Hospitality, Heritage & Urban Design | InvestInPuglia',
-  description: 'Discover our portfolio: 35+ successfully developed hotels & resorts in Puglia. €80M+ in projects, €20M grants secured. VOI Alimini, Masseria Muzza 5*, Le Cale d\'Otranto. 29 years of proven excellence.',
-  keywords: 'Puglia hotel portfolio, luxury resort development, investment portfolio Italy, PIA Turismo grants, Titolo II funding, VOI Hotels Alpitour, Masseria restoration, Otranto hotels, tourism investment Puglia',
-  openGraph: {
-    title: '30 Years of Excellence in Hospitality, Heritage & Urban Design',
-    description: 'View our impressive portfolio: €80M+ in successful projects, €20M grants secured. 29 years developing luxury tourism in Puglia.',
-    url: 'https://investinpuglia.eu/portfolio',
-    siteName: 'InvestInPuglia',
-    images: [
-      {
-        url: ogImageUrl,
-        width: 1200,
-        height: 630,
-        alt: '30 Years of Excellence in Hospitality, Heritage & Urban Design',
-      },
-    ],
-    locale: 'en_US',
-    type: 'website',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Transforming Puglia: Hotels, Masserie, and Landmark Restorations',
-    description: '€80M+ projects completed, €20M grants secured. 29 years of excellence in tourism development.',
-    images: [ogImageUrl],
-  },
-  alternates: {
-    canonical: 'https://investinpuglia.eu/portfolio',
-  },
-}
+export const metadata: Metadata = generatePageMetadata({
+  title: seoConfig.portfolio.title,
+  description: seoConfig.portfolio.description,
+  keywords: seoConfig.portfolio.keywords,
+  path: '/portfolio',
+  image: ogImageUrl
+})
 
 export default async function PortfolioPage() {
   // Fetch all renovation projects from Sanity
@@ -51,7 +30,26 @@ export default async function PortfolioPage() {
   // If no projects from Sanity, use default data
   const projectsToDisplay = projects?.length > 0 ? projects : getDefaultProjects()
 
-  return <PortfolioClient projects={projectsToDisplay} pageSettings={pageSettings} />
+  // Generate structured data for SEO
+  const structuredData = generateStructuredData('portfolio', {
+    projectCount: projectsToDisplay.length,
+    projects: projectsToDisplay.slice(0, 10).map((p: any) => ({
+      name: p.title || p.name,
+      description: p.description,
+      slug: p.slug?.current || p._id
+    }))
+  })
+
+  return (
+    <>
+      <Script
+        id="portfolio-structured-data"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+      <PortfolioClient projects={projectsToDisplay} pageSettings={pageSettings} />
+    </>
+  )
 }
 
 // Default projects to show if Sanity has no data yet

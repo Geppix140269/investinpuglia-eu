@@ -2,7 +2,9 @@
   "permissions": {
     "allow": [
       "Bash(mv:*)",
-      "Bash(mkdir:*)"
+      "Bash(mkdir:*)",
+      "WebFetch(domain:res.cloudinary.com)",
+      "WebFetch(domain:res.cloudinary.com)"
     ],
     "deny": [],
     "ask": []

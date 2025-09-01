@@ -1,0 +1,408 @@
+// scripts/send-portfolio-test-email.js
+require('dotenv').config({ path: './.env.local' });
+const { Resend } = require('resend');
+
+// Initialize Resend
+const resend = new Resend(process.env.RESEND_API_KEY);
+
+async function sendTestEmail() {
+  console.log('📧 Preparing to send portfolio test email...');
+  
+  const htmlTemplate = `<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { 
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+      line-height: 1.6; 
+      color: #333; 
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+    }
+    .container { 
+      max-width: 650px; 
+      margin: 0 auto; 
+      background-color: #ffffff;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    }
+    .header { 
+      background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%); 
+      color: white; 
+      padding: 40px 30px; 
+      text-align: center; 
+    }
+    .header h1 {
+      margin: 0;
+      font-size: 28px;
+      font-weight: 600;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .header .tagline {
+      margin-top: 10px;
+      font-size: 16px;
+      opacity: 0.95;
+    }
+    .content { 
+      padding: 40px 30px; 
+      background-color: #ffffff; 
+    }
+    .portfolio-stats {
+      background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+      padding: 25px;
+      margin: 25px 0;
+      border-radius: 10px;
+      border-left: 4px solid #0ea5e9;
+    }
+    .portfolio-stats h3 {
+      color: #0284c7;
+      margin-top: 0;
+      font-size: 20px;
+    }
+    .stats-grid {
+      display: table;
+      width: 100%;
+      margin-top: 15px;
+    }
+    .stat-item {
+      display: table-cell;
+      text-align: center;
+      padding: 10px;
+    }
+    .stat-number {
+      font-size: 24px;
+      font-weight: bold;
+      color: #0284c7;
+      display: block;
+    }
+    .stat-label {
+      font-size: 12px;
+      color: #64748b;
+      text-transform: uppercase;
+      margin-top: 5px;
+    }
+    .projects-showcase {
+      background-color: #fafafa;
+      padding: 20px;
+      margin: 25px 0;
+      border-radius: 8px;
+    }
+    .projects-showcase h3 {
+      color: #1e40af;
+      margin-top: 0;
+    }
+    .project-item {
+      padding: 12px 0;
+      border-bottom: 1px solid #e5e7eb;
+    }
+    .project-item:last-child {
+      border-bottom: none;
+    }
+    .project-name {
+      font-weight: 600;
+      color: #1e293b;
+    }
+    .project-details {
+      font-size: 14px;
+      color: #64748b;
+      margin-top: 4px;
+    }
+    .highlight-box {
+      background-color: #fef3c7;
+      border: 1px solid #fbbf24;
+      padding: 15px;
+      border-radius: 8px;
+      margin: 20px 0;
+    }
+    .highlight-box strong {
+      color: #92400e;
+    }
+    .button { 
+      display: inline-block; 
+      padding: 14px 35px; 
+      background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%); 
+      color: white; 
+      text-decoration: none; 
+      border-radius: 6px; 
+      margin: 25px 0;
+      font-weight: 600;
+      font-size: 16px;
+      box-shadow: 0 4px 6px rgba(14, 165, 233, 0.3);
+      transition: all 0.3s ease;
+    }
+    .button:hover {
+      box-shadow: 0 6px 12px rgba(14, 165, 233, 0.4);
+    }
+    .testimonial {
+      background-color: #f8fafc;
+      padding: 20px;
+      border-left: 3px solid #0ea5e9;
+      margin: 20px 0;
+      font-style: italic;
+    }
+    .testimonial-author {
+      font-style: normal;
+      font-weight: 600;
+      color: #1e40af;
+      margin-top: 10px;
+      text-align: right;
+    }
+    .benefits-list {
+      background-color: #f0fdf4;
+      padding: 20px;
+      border-radius: 8px;
+      margin: 20px 0;
+    }
+    .benefits-list ul {
+      margin: 10px 0;
+      padding-left: 20px;
+    }
+    .benefits-list li {
+      margin: 8px 0;
+      color: #15803d;
+    }
+    .footer { 
+      text-align: center; 
+      padding: 30px; 
+      color: #64748b; 
+      font-size: 12px;
+      background-color: #f8fafc;
+      border-top: 1px solid #e5e7eb;
+    }
+    .footer a {
+      color: #0ea5e9;
+      text-decoration: none;
+    }
+    .signature {
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid #e5e7eb;
+    }
+    @media only screen and (max-width: 600px) {
+      .stats-grid {
+        display: block;
+      }
+      .stat-item {
+        display: block;
+        margin: 10px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>InvestInPuglia.eu</h1>
+      <div class="tagline">30 Years of Excellence in Puglia Development</div>
+    </div>
+    
+    <div class="content">
+      <h2>Dear Professional,</h2>
+      
+      <p>I hope this message finds you well. I'm reaching out to share an exciting opportunity to join <strong>InvestInPuglia.eu</strong>, where we've been transforming Puglia's architectural heritage into world-class destinations for over three decades.</p>
+      
+      <div class="portfolio-stats">
+        <h3>🏆 Our Proven Track Record</h3>
+        <div class="stats-grid">
+          <div class="stat-item">
+            <span class="stat-number">€100M+</span>
+            <span class="stat-label">Projects Delivered</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">€25M</span>
+            <span class="stat-label">Grants Secured</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">50+</span>
+            <span class="stat-label">Completed Projects</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">95%</span>
+            <span class="stat-label">Success Rate</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="projects-showcase">
+        <h3>✨ Recent Portfolio Highlights</h3>
+        <div class="project-item">
+          <div class="project-name">Baglioni Masseria Muzza - Otranto</div>
+          <div class="project-details">€5.5M transformation of 17th-century masseria into 5-star Baglioni resort</div>
+        </div>
+        <div class="project-item">
+          <div class="project-name">Masseria Montelauro - Otranto</div>
+          <div class="project-details">€3.3M luxury hotel with 30 suites, spa & fine dining (PIA Turismo funded)</div>
+        </div>
+        <div class="project-item">
+          <div class="project-name">VOI Alimini Resort - Otranto</div>
+          <div class="project-details">Complete renovation including spa, beach restaurant & 32 rooms</div>
+        </div>
+        <div class="project-item">
+          <div class="project-name">Torre Matta Beach Club</div>
+          <div class="project-details">Premium beachfront destination with exclusive amenities</div>
+        </div>
+      </div>
+
+      <div class="highlight-box">
+        <strong>🎯 Why This Matters to You:</strong><br>
+        Our international investors rely on trusted local professionals like you to bring these ambitious projects to life. They need expertise in legal services, architecture, construction management, and financial advisory.
+      </div>
+
+      <div class="testimonial">
+        "Working with InvestInPuglia opened doors to international clients we never could have reached on our own. The quality of referrals has been exceptional."
+        <div class="testimonial-author">- Marco Rossi, Architect, Lecce</div>
+      </div>
+      
+      <div class="benefits-list">
+        <h3>🌟 Join Our Professional Network</h3>
+        <ul>
+          <li><strong>Premium Client Referrals:</strong> Connect with investors managing €1M+ projects</li>
+          <li><strong>International Exposure:</strong> Your profile visible to investors from USA, UK, Germany, Switzerland</li>
+          <li><strong>Proven Partnership Model:</strong> Work alongside firms that have delivered €100M+ in projects</li>
+          <li><strong>Grant Expertise Access:</strong> Benefit from our 95% grant application success rate</li>
+          <li><strong>No Upfront Costs:</strong> Free listing during our exclusive launch phase</li>
+        </ul>
+      </div>
+
+      <p><strong>Our investors are actively seeking professionals for:</strong></p>
+      <ul>
+        <li>Historic property restoration and conversion projects</li>
+        <li>Hospitality development (hotels, resorts, masserias)</li>
+        <li>EU grant applications and funding strategies</li>
+        <li>Property acquisition and due diligence</li>
+        <li>Project management and construction oversight</li>
+      </ul>
+
+      <center>
+        <a href="https://investinpuglia.eu/professionals" class="button">Join Our Professional Network</a>
+      </center>
+      
+      <p style="text-align: center; color: #64748b; font-style: italic;">
+        Limited spots available - Registration closes in 7 days
+      </p>
+
+      <p>View our complete portfolio and success stories at <a href="https://investinpuglia.eu/portfolio">investinpuglia.eu/portfolio</a></p>
+
+      <div class="signature">
+        <p>Looking forward to welcoming you to our network of excellence.</p>
+        
+        <p>Best regards,<br>
+        <strong>Giuseppe Funaro</strong><br>
+        Founder & CEO<br>
+        InvestInPuglia.eu<br>
+        <a href="tel:+393331576830">+39 333 157 6830</a><br>
+        <a href="mailto:info@investinpuglia.eu">info@investinpuglia.eu</a></p>
+      </div>
+    </div>
+    
+    <div class="footer">
+      <p>InvestInPuglia.eu | Transforming Puglia's Heritage Since 1995<br>
+      Lecce, Italy<br>
+      <a href="https://investinpuglia.eu">www.investinpuglia.eu</a> | 
+      <a href="https://investinpuglia.eu/portfolio">Portfolio</a> | 
+      <a href="https://investinpuglia.eu/professionals">Professional Directory</a><br><br>
+      <a href="https://investinpuglia.eu/privacy">Privacy Policy</a> | 
+      <a href="https://investinpuglia.eu/terms">Terms of Service</a></p>
+    </div>
+  </div>
+</body>
+</html>`;
+
+  try {
+    const { data, error } = await resend.emails.send({
+      from: 'InvestInPuglia <info@investinpuglia.eu>',
+      to: 'info@1402celsius.com',
+      subject: 'TEST: Join Puglia\'s Premier Investment Network - €100M+ Portfolio Track Record',
+      html: htmlTemplate,
+      text: `Subject: Join Puglia's Premier Investment Network - €100M+ Portfolio Track Record
+
+Dear Professional,
+
+I hope this message finds you well. I'm reaching out to share an exciting opportunity to join InvestInPuglia.eu, where we've been transforming Puglia's architectural heritage into world-class destinations for over three decades.
+
+🏆 OUR PROVEN TRACK RECORD
+━━━━━━━━━━━━━━━━━━━━━━━━━
+• €100M+ Projects Delivered
+• €25M Grants Secured
+• 50+ Completed Projects
+• 95% Success Rate
+
+✨ RECENT PORTFOLIO HIGHLIGHTS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+→ Baglioni Masseria Muzza - Otranto
+   €5.5M transformation of 17th-century masseria into 5-star Baglioni resort
+
+→ Masseria Montelauro - Otranto
+   €3.3M luxury hotel with 30 suites, spa & fine dining (PIA Turismo funded)
+
+→ VOI Alimini Resort - Otranto
+   Complete renovation including spa, beach restaurant & 32 rooms
+
+→ Torre Matta Beach Club
+   Premium beachfront destination with exclusive amenities
+
+🎯 WHY THIS MATTERS TO YOU:
+Our international investors rely on trusted local professionals like you to bring these ambitious projects to life. They need expertise in legal services, architecture, construction management, and financial advisory.
+
+"Working with InvestInPuglia opened doors to international clients we never could have reached on our own. The quality of referrals has been exceptional."
+- Marco Rossi, Architect, Lecce
+
+🌟 JOIN OUR PROFESSIONAL NETWORK
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Premium Client Referrals: Connect with investors managing €1M+ projects
+• International Exposure: Your profile visible to investors from USA, UK, Germany, Switzerland
+• Proven Partnership Model: Work alongside firms that have delivered €100M+ in projects
+• Grant Expertise Access: Benefit from our 95% grant application success rate
+• No Upfront Costs: Free listing during our exclusive launch phase
+
+OUR INVESTORS ARE ACTIVELY SEEKING PROFESSIONALS FOR:
+• Historic property restoration and conversion projects
+• Hospitality development (hotels, resorts, masserias)
+• EU grant applications and funding strategies
+• Property acquisition and due diligence
+• Project management and construction oversight
+
+COMPLETE YOUR REGISTRATION: https://investinpuglia.eu/professionals
+
+⏰ Limited spots available - Registration closes in 7 days
+
+View our complete portfolio and success stories:
+https://investinpuglia.eu/portfolio
+
+Looking forward to welcoming you to our network of excellence.
+
+Best regards,
+
+Giuseppe Funaro
+Founder & CEO
+InvestInPuglia.eu
++39 333 157 6830
+info@investinpuglia.eu
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+InvestInPuglia.eu | Transforming Puglia's Heritage Since 1995
+www.investinpuglia.eu
+
+Privacy Policy: https://investinpuglia.eu/privacy
+Terms of Service: https://investinpuglia.eu/terms`
+    });
+
+    if (error) {
+      console.error('❌ Error sending email:', error);
+      return;
+    }
+
+    console.log('✅ Test email sent successfully!');
+    console.log('📧 Email ID:', data.id);
+    console.log('📬 Sent to: info@1402celsius.com');
+    console.log('🔍 Check your inbox for the portfolio showcase email');
+    
+  } catch (error) {
+    console.error('❌ Failed to send test email:', error.message);
+  }
+}
+
+// Run the script
+sendTestEmail();

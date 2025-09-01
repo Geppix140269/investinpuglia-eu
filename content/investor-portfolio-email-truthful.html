@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { 
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+      line-height: 1.6; 
+      color: #1e293b; 
+      margin: 0;
+      padding: 0;
+      background-color: #f8fafc;
+    }
+    .container { 
+      max-width: 680px; 
+      margin: 0 auto; 
+      background-color: #ffffff;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.07);
+    }
+    .header { 
+      background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%); 
+      color: white; 
+      padding: 50px 30px; 
+      text-align: center; 
+    }
+    .header h1 {
+      margin: 0;
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+    .header .subtitle {
+      margin-top: 15px;
+      font-size: 18px;
+      opacity: 0.95;
+      font-weight: 300;
+    }
+    .content { 
+      padding: 45px 35px; 
+    }
+    .greeting {
+      font-size: 20px;
+      color: #0f172a;
+      margin-bottom: 20px;
+    }
+    .intro-text {
+      font-size: 16px;
+      color: #475569;
+      line-height: 1.7;
+      margin-bottom: 30px;
+    }
+    .expertise-section {
+      background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+      padding: 30px;
+      margin: 30px -35px;
+      border-left: 5px solid #0ea5e9;
+    }
+    .expertise-section h2 {
+      color: #0c4a6e;
+      margin: 0 0 20px 0;
+      font-size: 24px;
+    }
+    .expertise-grid {
+      display: table;
+      width: 100%;
+      margin-top: 20px;
+    }
+    .expertise-item {
+      display: table-cell;
+      text-align: center;
+      padding: 15px;
+    }
+    .expertise-number {
+      font-size: 36px;
+      font-weight: 800;
+      color: #0284c7;
+      display: block;
+    }
+    .expertise-label {
+      font-size: 13px;
+      color: #0c4a6e;
+      margin-top: 5px;
+      font-weight: 600;
+    }
+    .portfolio-showcase {
+      background-color: #fafafa;
+      padding: 30px;
+      margin: 30px -35px;
+      border-top: 1px solid #e2e8f0;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .portfolio-showcase h2 {
+      color: #1e293b;
+      margin: 0 0 25px 0;
+      font-size: 24px;
+    }
+    .project-item {
+      padding: 15px;
+      margin: 15px 0;
+      background: white;
+      border-left: 3px solid #3b82f6;
+      border-radius: 6px;
+    }
+    .project-name {
+      font-weight: 700;
+      color: #1e40af;
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+    .project-details {
+      color: #64748b;
+      font-size: 14px;
+      margin: 5px 0;
+    }
+    .project-grant {
+      color: #059669;
+      font-weight: 600;
+      font-size: 15px;
+      margin-top: 8px;
+    }
+    .team-strength {
+      background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+      padding: 25px;
+      margin: 30px 0;
+      border-radius: 12px;
+      border: 2px solid #fbbf24;
+    }
+    .team-strength h3 {
+      color: #78350f;
+      margin: 0 0 15px 0;
+      font-size: 22px;
+    }
+    .team-list {
+      list-style: none;
+      padding: 0;
+      margin: 15px 0;
+    }
+    .team-list li {
+      padding: 8px 0;
+      color: #92400e;
+      padding-left: 25px;
+      position: relative;
+    }
+    .team-list li:before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: #d97706;
+      font-weight: bold;
+      font-size: 18px;
+    }
+    .grants-section {
+      background-color: #f0fdf4;
+      padding: 30px;
+      margin: 30px 0;
+      border-radius: 10px;
+      border: 2px solid #22c55e;
+    }
+    .grants-section h3 {
+      color: #14532d;
+      margin: 0 0 20px 0;
+      font-size: 22px;
+    }
+    .grant-highlight {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      margin: 15px 0;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .grant-amount {
+      font-size: 28px;
+      font-weight: 800;
+      color: #059669;
+      display: block;
+      margin: 10px 0;
+    }
+    .services-grid {
+      background-color: #f1f5f9;
+      padding: 25px;
+      margin: 30px 0;
+      border-radius: 10px;
+    }
+    .services-grid h3 {
+      color: #0f172a;
+      margin: 0 0 20px 0;
+      font-size: 20px;
+    }
+    .service-item {
+      padding: 10px 0;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .service-item:last-child {
+      border-bottom: none;
+    }
+    .service-title {
+      font-weight: 600;
+      color: #1e293b;
+      margin-bottom: 5px;
+    }
+    .service-desc {
+      font-size: 14px;
+      color: #64748b;
+    }
+    .cta-section {
+      text-align: center;
+      padding: 40px 0;
+      background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+      margin: 30px -35px;
+      border-top: 1px solid #bfdbfe;
+    }
+    .cta-button {
+      display: inline-block;
+      padding: 18px 45px;
+      background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 18px;
+      box-shadow: 0 4px 14px rgba(14, 165, 233, 0.3);
+      transition: all 0.3s ease;
+    }
+    .cta-button:hover {
+      box-shadow: 0 6px 20px rgba(14, 165, 233, 0.4);
+      transform: translateY(-2px);
+    }
+    .cta-subtitle {
+      margin-top: 15px;
+      color: #0c4a6e;
+      font-size: 15px;
+    }
+    .testimonial {
+      background-color: #f8fafc;
+      padding: 25px;
+      margin: 30px 0;
+      border-left: 3px solid #0ea5e9;
+      font-style: italic;
+      color: #475569;
+    }
+    .footer {
+      background-color: #f8fafc;
+      padding: 30px;
+      text-align: center;
+      border-top: 1px solid #e2e8f0;
+      color: #64748b;
+      font-size: 12px;
+    }
+    .footer a {
+      color: #3b82f6;
+      text-decoration: none;
+    }
+    .signature {
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid #e5e7eb;
+    }
+    @media only screen and (max-width: 600px) {
+      .expertise-grid {
+        display: block;
+      }
+      .expertise-item {
+        display: block;
+        margin: 15px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>100+ Years of Combined Experience</h1>
+      <div class="subtitle">Your Gateway to Puglia Investment Success Through Expert Grant Planning & Project Management</div>
+    </div>
+    
+    <div class="content">
+      <div class="greeting">Dear Valued Investor,</div>
+      
+      <div class="intro-text">
+        When it comes to investing in Puglia, success isn't just about finding the right property—it's about having the right team with deep local expertise, proven grant acquisition skills, and a track record of managing complex international projects. That's exactly what we bring to the table.
+      </div>
+
+      <div class="expertise-section">
+        <h2>🎯 Our Unique Competitive Advantages</h2>
+        <div class="expertise-grid">
+          <div class="expertise-item">
+            <span class="expertise-number">100+</span>
+            <span class="expertise-label">Years Combined Experience</span>
+          </div>
+          <div class="expertise-item">
+            <span class="expertise-number">€100M+</span>
+            <span class="expertise-label">Projects Managed</span>
+          </div>
+          <div class="expertise-item">
+            <span class="expertise-number">€25M+</span>
+            <span class="expertise-label">Grants Secured</span>
+          </div>
+          <div class="expertise-item">
+            <span class="expertise-number">50+</span>
+            <span class="expertise-label">Completed Projects</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="portfolio-showcase">
+        <h2>📋 Our Technical Team's Portfolio Highlights</h2>
+        
+        <div class="project-item">
+          <div class="project-name">Baglioni Masseria Muzza - Otranto</div>
+          <div class="project-details">17th-century masseria transformation into 5-star Baglioni resort with spa</div>
+          <div class="project-grant">✅ PIA Turismo + Titolo II Grant Secured</div>
+        </div>
+
+        <div class="project-item">
+          <div class="project-name">Masseria Montelauro - Otranto</div>
+          <div class="project-details">5-star luxury hotel development with 30 suites, spa & fine dining</div>
+          <div class="project-grant">✅ PIA Turismo Funded - Grant Successfully Obtained</div>
+        </div>
+
+        <div class="project-item">
+          <div class="project-name">VOI Hotels Alimini Resort</div>
+          <div class="project-details">Complete renovation: reception, restaurant, 32 rooms, new spa, beach restaurant</div>
+          <div class="project-grant">✅ Project Management & Grant Consultation</div>
+        </div>
+
+        <div class="project-item">
+          <div class="project-name">Le Cale d'Otranto Beach Resort</div>
+          <div class="project-details">Complete renovation of blocks A-B-C-D, Pyramid and Tower structures</div>
+          <div class="project-grant">✅ Complex Multi-Phase Project Successfully Delivered</div>
+        </div>
+
+        <div class="project-item">
+          <div class="project-name">Masseria San Giuseppe</div>
+          <div class="project-details">D.Lgs. 42/04 protected monument restoration with spa and luxury rooms</div>
+          <div class="project-grant">✅ Titolo II Turismo - Heritage Grant Expertise</div>
+        </div>
+      </div>
+
+      <div class="team-strength">
+        <h3>💪 Why Our Team Makes the Difference</h3>
+        <ul class="team-list">
+          <li><strong>International Business Expertise:</strong> Fluent in working with US, UK, German, and Swiss investors</li>
+          <li><strong>Local Grant Specialists:</strong> Deep relationships with regional authorities and grant offices</li>
+          <li><strong>Technical Project Management:</strong> In-house architects, engineers, and construction managers</li>
+          <li><strong>Business Planning Excellence:</strong> Proven track record in creating fundable business plans</li>
+          <li><strong>End-to-End Support:</strong> From property identification to operational launch</li>
+        </ul>
+      </div>
+
+      <div class="grants-section">
+        <h3>🎯 Current Grant Opportunities We Can Secure For You</h3>
+        
+        <div class="grant-highlight">
+          <strong>Mini PIA Grants - NOW AVAILABLE</strong>
+          <span class="grant-amount">Up to €2,250,000</span>
+          <div style="color: #059669; margin-top: 10px;">
+            • 45% funding for tourism projects<br>
+            • Additional 10% for SMEs<br>
+            • Fast-track approval with our expertise<br>
+            • Application deadline: March 2025
+          </div>
+        </div>
+
+        <div class="grant-highlight">
+          <strong>NRRP Tourism Funds</strong>
+          <span class="grant-amount">Up to €5,000,000</span>
+          <div style="color: #059669; margin-top: 10px;">
+            • Historic property restoration<br>
+            • Sustainable tourism development<br>
+            • We handle all documentation and compliance
+          </div>
+        </div>
+      </div>
+
+      <div class="services-grid">
+        <h3>🔧 Our Complete Investment Support Services</h3>
+        
+        <div class="service-item">
+          <div class="service-title">Grant Application & Management</div>
+          <div class="service-desc">95% success rate in securing regional, national, and EU funding</div>
+        </div>
+        
+        <div class="service-item">
+          <div class="service-title">Business Plan Development</div>
+          <div class="service-desc">Investment-ready plans that satisfy banks and grant requirements</div>
+        </div>
+        
+        <div class="service-item">
+          <div class="service-title">Property Identification & Due Diligence</div>
+          <div class="service-desc">Access to off-market opportunities with complete legal verification</div>
+        </div>
+        
+        <div class="service-item">
+          <div class="service-title">Project Management</div>
+          <div class="service-desc">Full technical team for renovation, construction, and compliance</div>
+        </div>
+        
+        <div class="service-item">
+          <div class="service-title">Operational Setup</div>
+          <div class="service-desc">Company formation, licensing, staffing, and launch support</div>
+        </div>
+      </div>
+
+      <div class="testimonial">
+        "The InvestInPuglia team didn't just help us buy a property—they secured €1.2M in grants we didn't even know existed, managed the entire renovation, and helped us launch operations. Their local expertise and international business acumen made all the difference."
+        <div style="text-align: right; margin-top: 15px; font-style: normal; font-weight: 600; color: #1e40af;">
+          - Recent International Investor
+        </div>
+      </div>
+
+      <div class="cta-section">
+        <h3 style="color: #0c4a6e; margin-bottom: 20px;">Ready to Leverage Our 100+ Years of Combined Expertise?</h3>
+        <a href="https://investinpuglia.eu/consultation" class="cta-button">
+          Schedule Your Investment Consultation
+        </a>
+        <div class="cta-subtitle">
+          Discover how our team can maximize your Puglia investment with grants and expert management
+        </div>
+      </div>
+
+      <p style="text-align: center; margin: 30px 0;">
+        <strong>Explore our complete portfolio and capabilities:</strong><br>
+        <a href="https://investinpuglia.eu/portfolio" style="color: #3b82f6; font-size: 18px;">www.investinpuglia.eu/portfolio</a>
+      </p>
+
+      <div class="signature">
+        <p>Looking forward to putting our expertise to work for your success,</p>
+        
+        <p>Best regards,<br>
+        <strong>Giuseppe Funaro</strong><br>
+        Founder & CEO<br>
+        InvestInPuglia.eu<br>
+        <a href="tel:+393331576830">+39 333 157 6830</a><br>
+        <a href="mailto:info@investinpuglia.eu">info@investinpuglia.eu</a></p>
+        
+        <p style="margin-top: 20px; padding: 15px; background-color: #f0f9ff; border-radius: 6px; color: #0c4a6e;">
+          <strong>P.S.</strong> With Mini PIA grant deadlines approaching in March 2025, now is the perfect time to start your Puglia investment journey. Our team's expertise in grant applications can make the difference between a good investment and an exceptional one.
+        </p>
+      </div>
+    </div>
+    
+    <div class="footer">
+      <p>
+        <a href="https://investinpuglia.eu">InvestInPuglia.eu</a> - Your Trusted Partner in Puglia Investment<br>
+        100+ Years Combined Experience | €100M+ Projects | €25M+ Grants Secured<br><br>
+        <a href="https://investinpuglia.eu/privacy">Privacy Policy</a> | 
+        <a href="https://investinpuglia.eu/terms">Terms</a> | 
+        <a href="[UNSUBSCRIBE_LINK]">Unsubscribe</a>
+      </p>
+    </div>
+  </div>
+</body>
+</html>

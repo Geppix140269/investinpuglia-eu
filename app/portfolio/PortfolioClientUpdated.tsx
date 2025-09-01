@@ -2,8 +2,7 @@
 
 import { useState, Suspense, lazy } from 'react'
 import { Building2, Star, Home, Award, Shield, FileCheck, Briefcase } from 'lucide-react'
-import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
+// Navbar and Footer are rendered in the main layout.tsx
 
 // Eagerly load critical above-the-fold components
 import HeroSection from './components/HeroSection'
@@ -278,7 +277,6 @@ export default function PortfolioClient({ projects, pageSettings }: PortfolioCli
     <>
       <WebVitals />
       <PerformanceOptimizer />
-      <Navbar />
       <main>
         <HeroSection stats={stats} />
         
@@ -314,7 +312,6 @@ export default function PortfolioClient({ projects, pageSettings }: PortfolioCli
           <CTASection />
         </LazySection>
       </main>
-      <Footer />
     </>
   )
 }
