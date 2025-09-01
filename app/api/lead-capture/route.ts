@@ -21,20 +21,23 @@ export async function POST(request: Request) {
       })
     }
     
-    // Insert new lead
-    const { data, error } = await supabase
-      .from('leads')
-      .insert([{
+    // Insert new lead using Firebase
+    let data;
+    try {
+      const docRef = await addDoc(collection(db, 'leads'), {
         name: body.name,
         email: body.email,
         source: body.source || 'website',
         created_at: new Date().toISOString()
-      }])
-      .select()
-      .single()
-    
-    if (error) {
-      console.error('Supabase error:', error)
+      })
+      
+      data = {
+        id: docRef.id,
+        name: body.name,
+        email: body.email
+      }
+    } catch (error) {
+      console.error('Firebase error:', error)
       return NextResponse.json(
         { error: 'Failed to save lead' },
         { status: 400 }

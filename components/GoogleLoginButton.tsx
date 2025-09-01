@@ -7,13 +7,14 @@ import { signInWithPopup } from 'firebase/auth'
 export default function GoogleLoginButton() {
   const handleGoogleLogin = async () => {
     try {
-      await signInWithPopup(auth, googleProvider)
-      options: {
-        redirectTo: `${window.location.origin}/auth/callback`,
-      },
-    })
-    
-    if (error) console.error('Error:', error)
+      const result = await signInWithPopup(auth, googleProvider)
+      // Redirect to callback if needed
+      if (result.user) {
+        window.location.href = `${window.location.origin}/auth/callback`
+      }
+    } catch (error) {
+      console.error('Error:', error)
+    }
   }
 
   return (
