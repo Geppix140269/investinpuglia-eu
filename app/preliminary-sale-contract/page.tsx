@@ -2,7 +2,7 @@
 "use client";
 
 import { useState } from "react";
-import { uploadFileToSupabase } from "@/lib/uploadFileToSupabase";
+import { uploadFileToFirebase } from "@/lib/uploadFileToFirebase";
 import { sendContractEmail } from "@/lib/sendContractEmail";
 import { generatePdfBlob } from "@/lib/generatePdfBlob";
 
@@ -43,7 +43,7 @@ export default function PreliminaryContractPage() {
     const { file, ...formWithoutFile } = form;
 
     const pdfBlob = generatePdfBlob(formWithoutFile);
-    const fileUrl = await uploadFileToSupabase(pdfBlob, `${form.buyerName}_preliminary_contract.pdf`);
+    const fileUrl = await uploadFileToFirebase(pdfBlob, `${form.buyerName}_preliminary_contract.pdf`);
 
     await sendContractEmail({
       to: form.email,

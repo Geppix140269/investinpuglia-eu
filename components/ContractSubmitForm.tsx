@@ -3,7 +3,7 @@
 
 import { useState } from 'react';
 import { generatePdfBlob } from '@/lib/generatePdfBlob';
-import { uploadFileToSupabase } from '@/lib/uploadFileToSupabase';
+import { uploadFileToFirebase } from '@/lib/uploadFileToFirebase';
 import { sendContractWithEmailJS } from '@/lib/sendContractWithEmailJS';
 
 export default function ContractSubmitForm() {
@@ -38,8 +38,8 @@ export default function ContractSubmitForm() {
       setStatus('Generating PDF...');
       const pdfBlob = generatePdfBlob(form);
 
-      setStatus('Uploading file to Supabase...');
-      const fileUrl = await uploadFileToSupabase(pdfBlob, `${form.buyerName}_contract.pdf`);
+      setStatus('Uploading file...');
+      const fileUrl = await uploadFileToFirebase(pdfBlob, `${form.buyerName}_contract.pdf`);
 
       setStatus('Sending email...');
       await sendContractWithEmailJS({

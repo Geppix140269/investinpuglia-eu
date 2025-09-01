@@ -1,28 +1,18 @@
-﻿// File: components/trullo/OAuthLogin.tsx
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+// File: components/trullo/OAuthLogin.tsx
+import { auth, googleProvider } from '@/lib/firebase';
+import { signInWithPopup } from 'firebase/auth';
 
 export default function OAuthLogin({ onSuccess }: { onSuccess: (email: string) => void }) {
-  const supabase = createClientComponentClient();
   
   const handleGoogleLogin = async () => {
-    const { data, error } = await supabase.auth.signInWithOAuth({
-      provider: 'google',
-      options: {
-        redirectTo: `${window.location.origin}/auth/callback`,
-        queryParams: {
-          access_type: 'offline',
-          prompt: 'consent'
-        }
+    try {
+      const result = await signInWithPopup(auth, googleProvider);
+      
+      if (result.user?.email) {
+        onSuccess(result.user.email);
       }
-    });
-    
-    if (!error && data) {
-      // Listen for auth state change
-      supabase.auth.onAuthStateChange((event, session) => {
-        if (event === 'SIGNED_IN' && session?.user?.email) {
-          onSuccess(session.user.email);
-        }
-      });
+    } catch (error) {
+      console.error('Google login error:', error);
     }
   };
   

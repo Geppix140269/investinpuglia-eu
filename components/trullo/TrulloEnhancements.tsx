@@ -311,13 +311,12 @@ export class FollowUpScheduler {
       automationTriggers: this.setupAutomationTriggers(userProfile)
     };
     
-    // Store in Supabase
-    const { data, error } = await supabase
-      .from('trullo_scheduled_followups')
-      .insert(followUpData);
-    
-    if (!error) {
-      console.log('Follow-up scheduled:', followUpData);
+    // Store in Firebase
+    try {
+      const docRef = await addDoc(collection(db, 'trullo_scheduled_followups'), followUpData);
+      console.log('Follow-up scheduled:', followUpData, 'with ID:', docRef.id);
+    } catch (error) {
+      console.error('Error scheduling follow-up:', error);
     }
     
     return followUpData;

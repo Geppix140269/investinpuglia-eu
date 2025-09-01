@@ -3,14 +3,8 @@
 
 import { createContext, useContext, useEffect, useState } from 'react'
 import { User, signInWithPopup, signOut, onAuthStateChanged } from 'firebase/auth'
-import { auth, googleProvider } from '@/lib/firebase'
-import { createClient } from '@supabase/supabase-js'
-
-// Initialize Supabase client for database operations
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-)
+import { auth, googleProvider, db } from '@/lib/firebase'
+import { doc, setDoc, serverTimestamp } from 'firebase/firestore'
 
 type AuthContextType = {
   user: User | null
@@ -32,27 +26,18 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
       setUser(firebaseUser)
       
-      // If user is logged in, sync with Supabase database
+      // If user is logged in, sync with Firebase Firestore
       if (firebaseUser) {
         try {
-          // Sync user data with Supabase (for your database operations)
-          const { error: dbError } = await supabase
-            .from('users')
-            .upsert({
-              id: firebaseUser.uid,
-              email: firebaseUser.email,
-              name: firebaseUser.displayName,
-              avatar_url: firebaseUser.photoURL,
-              provider: firebaseUser.providerData[0]?.providerId || 'google',
-              last_login: new Date().toISOString(),
-              updated_at: new Date().toISOString()
-            }, {
-              onConflict: 'id'
-            })
-          
-          if (dbError) {
-            console.error('Error syncing with database:', dbError)
-          }
+          // Sync user data with Firestore
+          await setDoc(doc(db, 'users', firebaseUser.uid), {
+            email: firebaseUser.email,
+            name: firebaseUser.displayName,
+            avatar_url: firebaseUser.photoURL,
+            provider: firebaseUser.providerData[0]?.providerId || 'google',
+            last_login: serverTimestamp(),
+            updated_at: serverTimestamp()
+          }, { merge: true })
         } catch (err) {
           console.error('Database sync error:', err)
         }
@@ -67,26 +52,21 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const signInWithGoogle = async () => {
     setError(null)
     try {
-      // This will show invest-in-puglia-eu.firebaseapp.com instead of Supabase URL!
+      // This will show invest-in-puglia-eu.firebaseapp.com
       const result = await signInWithPopup(auth, googleProvider)
       
-      // Additional sync with Supabase if needed
+      // Sync with Firebase Firestore
       if (result.user) {
-        const { error: dbError } = await supabase
-          .from('users')
-          .upsert({
-            id: result.user.uid,
+        try {
+          await setDoc(doc(db, 'users', result.user.uid), {
             email: result.user.email,
             name: result.user.displayName,
             avatar_url: result.user.photoURL,
             provider: 'google',
-            created_at: new Date().toISOString(),
-            updated_at: new Date().toISOString()
-          }, {
-            onConflict: 'id'
-          })
-        
-        if (dbError) {
+            created_at: serverTimestamp(),
+            updated_at: serverTimestamp()
+          }, { merge: true })
+        } catch (dbError) {
           console.error('Database error:', dbError)
         }
       }

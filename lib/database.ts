@@ -1,5 +1,6 @@
 // lib/database.ts
-import { createClient } from './supabase'
+import { db } from './firebase'
+import { collection, addDoc } from 'firebase/firestore'
 
 // Generate a simple session ID
 function getSessionId() {
@@ -21,17 +22,13 @@ export async function trackCTAClick(
   metadata?: Record<string, any>
 ) {
   try {
-    const supabase = createClient()
-    const { error } = await supabase
-      .from('cta_clicks')
-      .insert([{
-        variant,
-        location,
-        metadata,
-        user_agent: typeof window !== 'undefined' ? window.navigator.userAgent : null
-      }])
-    
-    if (error) throw error
+    await addDoc(collection(db, 'cta_clicks'), {
+      variant,
+      location,
+      metadata,
+      user_agent: typeof window !== 'undefined' ? window.navigator.userAgent : null,
+      created_at: new Date().toISOString()
+    })
   } catch (error) {
     console.error('Error tracking CTA click:', error)
   }
@@ -40,17 +37,13 @@ export async function trackCTAClick(
 // EXPORT THIS TOO
 export async function trackPageView(page_path: string) {
   try {
-    const supabase = createClient()
-    const { error } = await supabase
-      .from('page_views')
-      .insert([{
-        page_path,
-        session_id: getSessionId(),
-        referrer: typeof document !== 'undefined' ? document.referrer : null,
-        user_agent: typeof window !== 'undefined' ? window.navigator.userAgent : null
-      }])
-    
-    if (error) throw error
+    await addDoc(collection(db, 'page_views'), {
+      page_path,
+      session_id: getSessionId(),
+      referrer: typeof document !== 'undefined' ? document.referrer : null,
+      user_agent: typeof window !== 'undefined' ? window.navigator.userAgent : null,
+      created_at: new Date().toISOString()
+    })
   } catch (error) {
     console.error('Error tracking page view:', error)
   }

@@ -369,9 +369,9 @@ export async function submitFiscalCodeApplication(formData: AA4FormData) {
     
     const result = await response.json()
     
-    // If you're using Supabase Storage
+    // If you're using Firebase Storage
     if (result.id) {
-      const pdfUrl = await uploadPDFToSupabase(pdfBlob, result.id)
+      const pdfUrl = await uploadPDFToFirebase(pdfBlob, result.id)
       
       // Send confirmation email with PDF link
       if (typeof window !== 'undefined' && (window as any).emailjs) {
@@ -398,33 +398,27 @@ export async function submitFiscalCodeApplication(formData: AA4FormData) {
   }
 }
 
-// Upload PDF to Supabase Storage
-async function uploadPDFToSupabase(pdfBlob: Blob, applicationId: string): Promise<string> {
-  // This assumes you have Supabase client configured
-  const { createClient } = await import('@supabase/supabase-js')
-  
-  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
-  const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-  
-  const supabase = createClient(supabaseUrl, supabaseAnonKey)
+// Upload PDF to Firebase Storage
+async function uploadPDFToFirebase(pdfBlob: Blob, applicationId: string): Promise<string> {
+  const { storage } = await import('./firebase')
+  const { ref, uploadBytes, getDownloadURL } = await import('firebase/storage')
   
   const fileName = `fiscal-code-applications/${applicationId}/form-aa4-8.pdf`
+  const storageRef = ref(storage, fileName)
   
-  const { data, error } = await supabase.storage
-    .from('documents')
-    .upload(fileName, pdfBlob, {
-      contentType: 'application/pdf',
-      upsert: true
-    })
+  // Upload the file
+  const snapshot = await uploadBytes(storageRef, pdfBlob, {
+    contentType: 'application/pdf',
+    customMetadata: {
+      applicationId: applicationId,
+      uploadedAt: new Date().toISOString()
+    }
+  })
   
-  if (error) throw error
+  // Get the download URL
+  const downloadURL = await getDownloadURL(snapshot.ref)
   
-  // Get public URL
-  const { data: { publicUrl } } = supabase.storage
-    .from('documents')
-    .getPublicUrl(fileName)
-  
-  return publicUrl
+  return downloadURL
 }
 
 // Integration with your form component

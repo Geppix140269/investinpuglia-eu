@@ -8,9 +8,10 @@ export default function GoogleLoginButton() {
   const handleGoogleLogin = async () => {
     try {
       const result = await signInWithPopup(auth, googleProvider)
-      // Redirect to callback if needed
+      // User is now signed in - Firebase handles the session
       if (result.user) {
-        window.location.href = `${window.location.origin}/auth/callback`
+        // Optionally reload or navigate to dashboard
+        window.location.reload()
       }
     } catch (error) {
       console.error('Error:', error)

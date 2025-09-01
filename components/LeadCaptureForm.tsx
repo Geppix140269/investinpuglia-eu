@@ -29,32 +29,20 @@ export default function LeadCaptureForm({
     setMessage({ type: '', text: '' })
 
     try {
-      const supabase = createClient()
-      
-      // Insert lead into database
-      const { error } = await supabase
-        .from('leads')
-        .insert([{
-          name: formData.name,
-          email: formData.email,
-          source: source,
-          created_at: new Date().toISOString()
-        }])
-
-      if (error) throw error
-
-      // Send email notification via API
-      try {
-        await fetch('/api/lead-capture', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            ...formData,
-            source
-          })
+      // Send to API route which handles Firebase insertion and email
+      const response = await fetch('/api/lead-capture', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...formData,
+          source
         })
-      } catch (emailError) {
-        console.error('Email notification failed:', emailError)
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to subscribe')
       }
 
       setMessage({ type: 'success', text: 'Thank you for subscribing!' })
