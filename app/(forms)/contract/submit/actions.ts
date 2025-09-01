@@ -1,6 +1,15 @@
 'use server'
 
-import { uploadContractPDF } from '@/lib/supabase'
+// import { uploadContractPDF } from '@/lib/supabase' // Removed - using Firebase instead
+import { storage } from '@/lib/firebase'
+import { ref, uploadBytes } from 'firebase/storage'
+
+// Replacement for uploadContractPDF using Firebase
+async function uploadContractPDF(file: File, fileName: string) {
+  const storageRef = ref(storage, `contracts/${fileName}`)
+  const snapshot = await uploadBytes(storageRef, file)
+  return { path: snapshot.ref.fullPath }
+}
 import emailjs from '@emailjs/browser'
 
 // EmailJS Configuration

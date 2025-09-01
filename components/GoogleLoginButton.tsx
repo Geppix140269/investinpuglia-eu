@@ -1,13 +1,13 @@
 'use client'
 
-import { createClient } from '@/lib/supabase'
+// import { createClient } from '@/lib/supabase' // Removed - using Firebase instead
+import { auth, googleProvider } from '@/lib/firebase'
+import { signInWithPopup } from 'firebase/auth'
 
 export default function GoogleLoginButton() {
-  const supabase = createClient()
-
   const handleGoogleLogin = async () => {
-    const { error } = await supabase.auth.signInWithOAuth({
-      provider: 'google',
+    try {
+      await signInWithPopup(auth, googleProvider)
       options: {
         redirectTo: `${window.location.origin}/auth/callback`,
       },

@@ -1,18 +1,18 @@
 // app/api/lead-capture/route.ts
-import { createClient } from '@/lib/supabase'
+// import { createClient } from '@/lib/supabase' // Removed - using Firebase instead
 import { NextResponse } from 'next/server'
+import { db } from '@/lib/firebase'
+import { collection, query, where, getDocs, addDoc, updateDoc, doc } from 'firebase/firestore'
 
 export async function POST(request: Request) {
   try {
     const body = await request.json()
-    const supabase = createClient()
     
-    // Check if email already exists
-    const { data: existingLead } = await supabase
-      .from('leads')
-      .select('id')
-      .eq('email', body.email)
-      .single()
+    // Check if email already exists in Firebase
+    const leadsRef = collection(db, 'leads')
+    const q = query(leadsRef, where('email', '==', body.email))
+    const querySnapshot = await getDocs(q)
+    const existingLead = !querySnapshot.empty ? querySnapshot.docs[0] : null
     
     if (existingLead) {
       return NextResponse.json({ 

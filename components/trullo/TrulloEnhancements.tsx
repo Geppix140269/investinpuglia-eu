@@ -2,7 +2,9 @@
 // THIS IS AN ENHANCEMENT MODULE - Integrates with existing TrulloChatbot.tsx
 
 import { useState, useEffect } from 'react';
-import { supabase } from '@/lib/supabase';
+// import { supabase } from '@/lib/supabase'; // Removed - using Firebase instead
+import { db } from '@/lib/firebase';
+import { collection, addDoc, updateDoc, doc } from 'firebase/firestore';
 
 // ============================================
 // 1. SMART USER IDENTIFICATION & PROFILING
