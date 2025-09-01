@@ -10,7 +10,7 @@ import Link from 'next/link'
 
 export const metadata: Metadata = {
   title: 'About Us - Leadership Team | InvestInPuglia',
-  description: 'Meet the InvestInPuglia leadership team. Giuseppe Funaro (CEO), Dott. Ing. Cataldo Russo (CTO), Antonio Quarta (CFO). 29+ years of excellence in Italian real estate and tourism development.',
+  description: 'Meet the InvestInPuglia leadership team. Giuseppe Funaro (CEO), Dott. Ing. Cataldo Russo (CTO), Antonio Quarta (CFO), Sabine van Putten (Strategic Operations). 29+ years of excellence in Italian real estate and tourism development.',
   keywords: 'InvestInPuglia team, Giuseppe Funaro CEO, Cataldo Russo CTO, Antonio Quarta CFO, Puglia investment experts, Italian real estate team',
 }
 
@@ -59,7 +59,7 @@ export default function AboutPage() {
         "D.Lgs 81/2008 Safety Coordinator",
         "Seismic Design Specialist"
       ],
-      email: "cataldo@investinpuglia.eu"
+      email: "info@investinpuglia.eu"
     },
     {
       name: "Antonio Quarta",
@@ -78,7 +78,26 @@ export default function AboutPage() {
         "Managed portfolio with 35% average ROI",
         "Expert in Italian fiscal regulations"
       ],
-      email: "antonio@investinpuglia.eu"
+      email: "info@investinpuglia.eu"
+    },
+    {
+      name: "Sabine van Putten",
+      role: "Strategic Partnerships & Investment Relations",
+      image: "https://res.cloudinary.com/dusubfxgo/image/upload/c_fill,f_auto,g_face,h_800,q_auto:best,w_800/v1756749364/investinpuglia/team/investinpuglia/team/sabine-van-putten.jpg",
+      bio: "Multilingual executive with 20+ years of international experience, pioneering expertise in short-term rentals, and deep knowledge of property development and historical restoration across Mediterranean markets.",
+      expertise: [
+        "Property Development & Restoration",
+        "Hospitality & Short-term Rentals",
+        "International Business Development",
+        "Executive Operations Management"
+      ],
+      achievements: [
+        "Founded successful Mediterranean hospitality business",
+        "Pioneer in short-term rental market",
+        "20+ years C-level executive support",
+        "Fluent in 6 languages"
+      ],
+      email: "sabine.toelle@web.de"
     }
   ]
 

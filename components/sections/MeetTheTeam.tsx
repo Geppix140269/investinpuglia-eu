@@ -27,6 +27,18 @@ export default function MeetTheTeam() {
         "Grant Funding Applications",
         "Risk Management & Compliance"
       ]
+    },
+    {
+      name: "Sabine van Putten",
+      role: "Strategic Partnerships & Investment Relations",
+      description: "20+ years international executive experience combined with pioneering work in short-term rentals. Expert in property development, historical restoration, and hospitality operations across Mediterranean markets.",
+      image: "https://res.cloudinary.com/dusubfxgo/image/upload/c_fill,f_auto,g_face,h_800,q_auto:best,w_800/v1756749364/investinpuglia/team/investinpuglia/team/sabine-van-putten.jpg",
+      expertise: [
+        "Property Development & Restoration",
+        "Hospitality & Short-term Rentals",
+        "International Business Development",
+        "Multilingual (6 languages)"
+      ]
     }
   ]
 
@@ -45,16 +57,16 @@ export default function MeetTheTeam() {
             Meet <strong className="font-bold bg-gradient-to-r from-purple-600 to-emerald-600 bg-clip-text text-transparent">The Team</strong>
           </h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            Expert professionals with decades of proven success in Italian real estate and tourism development
+            Expert professionals with decades of proven success in Italian real estate, tourism development, and hospitality management
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
           {teamMembers.map((member, index) => (
             <div key={index} className="bg-gradient-to-br from-white to-gray-50 rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all border border-gray-100">
-              <div className="p-8">
-                <div className="flex items-start gap-6">
-                  <div className="relative flex-shrink-0">
+              <div className="p-6">
+                <div className="flex flex-col items-center text-center">
+                  <div className="relative flex-shrink-0 mb-4">
                     <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-white shadow-lg">
                       <CloudinaryImage
                         src={member.image}
@@ -66,12 +78,12 @@ export default function MeetTheTeam() {
                     </div>
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-2xl font-bold text-gray-900 mb-1">{member.name}</h3>
-                    <p className="text-purple-600 font-semibold text-lg mb-4">{member.role}</p>
+                    <h3 className="text-xl font-bold text-gray-900 mb-1">{member.name}</h3>
+                    <p className="text-purple-600 font-semibold text-base mb-3">{member.role}</p>
                     <p className="text-gray-600 text-sm leading-relaxed mb-4">
                       {member.description}
                     </p>
-                    <div className="space-y-2">
+                    <div className="space-y-2 text-left">
                       {member.expertise.map((item, i) => (
                         <div key={i} className="flex items-center gap-2">
                           <Icon name="CheckCircle" size={16} className="text-emerald-600 flex-shrink-0" />
@@ -88,7 +100,7 @@ export default function MeetTheTeam() {
 
         <div className="text-center mt-12">
           <p className="text-gray-600 mb-6">
-            Combined expertise of over 50 years in Italian real estate development
+            Combined expertise of over 70 years in international real estate development and hospitality
           </p>
           <a 
             href="https://calendly.com/investinpuglia/30min" 
