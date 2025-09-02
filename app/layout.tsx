@@ -32,6 +32,15 @@ const VisitorTracker = dynamic(
   }
 )
 
+// Lazy load the MetadataProvider for client-side metadata updates
+const MetadataProvider = dynamic(
+  () => import('@/components/MetadataProvider'),
+  {
+    ssr: false,
+    loading: () => null
+  }
+)
+
 const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
@@ -303,6 +312,7 @@ export default function RootLayout({
       </head>
       <body className={`${inter.className} font-sans antialiased`}>
         <AuthProvider>
+          <MetadataProvider />
           <Navbar />
 
           <main className="pt-16">{children}</main>

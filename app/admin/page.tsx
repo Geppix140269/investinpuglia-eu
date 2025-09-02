@@ -46,8 +46,36 @@ export default function AdminPage() {
   }
 
   return (
-    <div className="p-4 max-w-2xl mx-auto">
-      <h1 className="text-2xl font-bold mb-4">Create Blog Post</h1>
+    <div className="p-4 max-w-6xl mx-auto">
+      <div className="mb-8">
+        <h1 className="text-3xl font-bold mb-4">Admin Dashboard</h1>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+          <a
+            href="/admin/metadata"
+            className="block p-6 bg-white rounded-lg shadow hover:shadow-lg transition-shadow border border-gray-200"
+          >
+            <h2 className="text-xl font-semibold text-green-600 mb-2">Metadata Manager</h2>
+            <p className="text-gray-600">Manage page metadata, SEO tags, and OG images for all pages</p>
+          </a>
+          <a
+            href="/admin/blog"
+            className="block p-6 bg-white rounded-lg shadow hover:shadow-lg transition-shadow border border-gray-200"
+          >
+            <h2 className="text-xl font-semibold text-green-600 mb-2">Blog Manager</h2>
+            <p className="text-gray-600">Create and manage blog posts with Firebase</p>
+          </a>
+          <a
+            href="/studio"
+            className="block p-6 bg-white rounded-lg shadow hover:shadow-lg transition-shadow border border-gray-200"
+          >
+            <h2 className="text-xl font-semibold text-green-600 mb-2">Sanity Studio</h2>
+            <p className="text-gray-600">Advanced content management with Sanity CMS</p>
+          </a>
+        </div>
+      </div>
+      
+      <div className="bg-white rounded-lg shadow p-6">
+        <h2 className="text-2xl font-bold mb-4">Quick Post Creator</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <input type="text" placeholder="Title" value={title} onChange={e => setTitle(e.target.value)} className="w-full p-2 border rounded" required />
         <textarea placeholder="Body" value={body} onChange={e => setBody(e.target.value)} className="w-full p-2 border rounded h-40" required />
@@ -62,6 +90,7 @@ export default function AdminPage() {
           {submitting ? 'Submitting…' : 'Submit'}
         </button>
       </form>
+      </div>
     </div>
   )
 }

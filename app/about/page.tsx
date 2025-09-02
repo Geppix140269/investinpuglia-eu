@@ -1,4 +1,3 @@
-import { Metadata } from 'next'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import { 
@@ -7,11 +6,11 @@ import {
   Mail, Phone, Linkedin, Calendar, ArrowRight
 } from 'lucide-react'
 import Link from 'next/link'
+import { generatePageMetadata } from '@/lib/metadata-utils'
 
-export const metadata: Metadata = {
-  title: 'About Us - Leadership Team | InvestInPuglia',
-  description: 'Meet the InvestInPuglia leadership team. Giuseppe Funaro (CEO), Dott. Ing. Cataldo Russo (CTO), Antonio Quarta (CFO), Sabine van Putten (Strategic Operations). 29+ years of excellence in Italian real estate and tourism development.',
-  keywords: 'InvestInPuglia team, Giuseppe Funaro CEO, Cataldo Russo CTO, Antonio Quarta CFO, Puglia investment experts, Italian real estate team',
+// Dynamic metadata generation
+export async function generateMetadata() {
+  return await generatePageMetadata('/about')
 }
 
 export default function AboutPage() {

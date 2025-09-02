@@ -293,7 +293,14 @@ export async function GET(request: NextRequest) {
     const postsToPublish = snapshot.docs.map(doc => ({
       id: doc.id,
       ...doc.data()
-    }));
+    })) as Array<{
+      id: string;
+      content: string;
+      platforms: string[];
+      category: string;
+      hashtags: string[];
+      mediaUrl?: string;
+    }>;
 
     // Publish each scheduled post
     for (const post of postsToPublish) {

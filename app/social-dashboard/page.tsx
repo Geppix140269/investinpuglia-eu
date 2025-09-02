@@ -70,7 +70,12 @@ export default function SocialDashboard() {
   const [scheduledDate, setScheduledDate] = useState('');
   const [scheduledTime, setScheduledTime] = useState('');
   const [isPosting, setIsPosting] = useState(false);
-  const [analytics, setAnalytics] = useState<any>(null);
+  const [analytics, setAnalytics] = useState<{
+    followers: Record<string, number>;
+    engagement: Record<string, number>;
+    posts: Record<string, number>;
+    totalReach?: number;
+  } | null>(null);
 
   // Comprehensive content categories for 360-degree business view
   const contentCategories: ContentTemplate[] = [
@@ -206,17 +211,22 @@ export default function SocialDashboard() {
   const fetchAnalytics = async () => {
     // Simulate fetching analytics data
     setAnalytics({
-      totalReach: 45320,
-      engagement: 8.7,
       followers: {
         linkedin: 12450,
         facebook: 8320,
         instagram: 15670,
         twitter: 3420
       },
-      topPost: {
-        content: "Baglioni Hotel Masseria Muzza transformation...",
-        engagement: 1250
+      engagement: {
+        linkedin: 8.7,
+        facebook: 7.2,
+        instagram: 12.3,
+        twitter: 5.4
+      },
+      posts: {
+        published: 124,
+        scheduled: 18,
+        draft: 6
       }
     });
   };
@@ -354,8 +364,8 @@ export default function SocialDashboard() {
             <div className="bg-white p-4 rounded-lg shadow">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-gray-500">Total Reach</p>
-                  <p className="text-2xl font-bold">{analytics.totalReach.toLocaleString()}</p>
+                  <p className="text-sm text-gray-500">Published Posts</p>
+                  <p className="text-2xl font-bold">{analytics?.posts?.published || 0}</p>
                 </div>
                 <TrendingUp className="h-8 w-8 text-green-500" />
               </div>
@@ -363,8 +373,10 @@ export default function SocialDashboard() {
             <div className="bg-white p-4 rounded-lg shadow">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-gray-500">Engagement Rate</p>
-                  <p className="text-2xl font-bold">{analytics.engagement}%</p>
+                  <p className="text-sm text-gray-500">Avg Engagement</p>
+                  <p className="text-2xl font-bold">
+                    {analytics ? `${(Object.values(analytics.engagement).reduce((a, b) => a + b, 0) / Object.keys(analytics.engagement).length).toFixed(1)}%` : '0%'}
+                  </p>
                 </div>
                 <BarChart3 className="h-8 w-8 text-blue-500" />
               </div>
@@ -374,7 +386,7 @@ export default function SocialDashboard() {
                 <div>
                   <p className="text-sm text-gray-500">Total Followers</p>
                   <p className="text-2xl font-bold">
-                    {Object.values(analytics.followers).reduce((a: any, b: any) => a + b, 0).toLocaleString()}
+                    {analytics ? Object.values(analytics.followers).reduce((a, b) => a + b, 0).toLocaleString() : '0'}
                   </p>
                 </div>
                 <Users className="h-8 w-8 text-purple-500" />
@@ -384,7 +396,7 @@ export default function SocialDashboard() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-gray-500">Scheduled Posts</p>
-                  <p className="text-2xl font-bold">{posts.filter(p => p.status === 'scheduled').length}</p>
+                  <p className="text-2xl font-bold">{analytics ? analytics.posts.scheduled : posts.filter(p => p.status === 'scheduled').length}</p>
                 </div>
                 <Clock className="h-8 w-8 text-orange-500" />
               </div>
