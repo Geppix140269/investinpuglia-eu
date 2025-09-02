@@ -4,8 +4,8 @@
 import dynamic from 'next/dynamic'
 import { Suspense } from 'react'
 
-// Critical above-the-fold component - load immediately
-import HeroVisual from '@/components/sections/HeroVisual'
+// Critical above-the-fold component - lightweight version
+import HeroVisualLite from '@/components/sections/HeroVisualLite'
 
 // Lazy load all below-the-fold components
 const ExitIntentPopup = dynamic(() => import('@/components/ExitIntentPopup'), { 
@@ -51,8 +51,8 @@ export default function HomePage() {
         </Suspense>
       </div>
 
-      {/* Critical: Hero Section - loads immediately */}
-      <HeroVisual />
+      {/* Critical: Hero Section - lightweight version */}
+      <HeroVisualLite />
       
       {/* Below the fold - lazy loaded */}
       <Suspense fallback={<div className="h-32 bg-gray-50 animate-pulse" />}>

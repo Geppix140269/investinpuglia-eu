@@ -163,11 +163,30 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         
-        {/* Google Analytics - REAL GA4 MEASUREMENT ID */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-B6V5FJ4ECZ"></script>
+        {/* Defer Google Analytics to improve initial load */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-B6V5FJ4ECZ');`
+            __html: `
+              // Defer GA loading until after page load
+              if (typeof window !== 'undefined') {
+                window.addEventListener('load', function() {
+                  // Load GA after 1 second delay
+                  setTimeout(function() {
+                    var script = document.createElement('script');
+                    script.async = true;
+                    script.src = 'https://www.googletagmanager.com/gtag/js?id=G-B6V5FJ4ECZ';
+                    document.head.appendChild(script);
+                    
+                    script.onload = function() {
+                      window.dataLayer = window.dataLayer || [];
+                      function gtag(){dataLayer.push(arguments);}
+                      gtag('js', new Date());
+                      gtag('config', 'G-B6V5FJ4ECZ');
+                    };
+                  }, 1000);
+                });
+              }
+            `
           }}
         />
         
@@ -261,18 +280,32 @@ export default function RootLayout({
           }}
         />
 
-        {/* EmailJS SDK */}
-        <Script
-          src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
-          strategy="afterInteractive"
-        />
-        <Script id="emailjs-init" strategy="afterInteractive">
+        {/* Defer EmailJS SDK - load only when needed */}
+        <Script id="emailjs-loader" strategy="lazyOnload">
           {`
-            (function(){
-              if (typeof window !== 'undefined' && window.emailjs) {
-                window.emailjs.init("wKn1_xMCtZssdZzpb");
-              }
-            })();
+            // Load EmailJS only when user interacts with forms
+            function loadEmailJS() {
+              if (window.emailJSLoaded) return;
+              
+              var script = document.createElement('script');
+              script.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
+              script.onload = function() {
+                if (window.emailjs) {
+                  window.emailjs.init("wKn1_xMCtZssdZzpb");
+                  window.emailJSLoaded = true;
+                }
+              };
+              document.head.appendChild(script);
+            }
+            
+            // Load on first user interaction with any form
+            document.addEventListener('DOMContentLoaded', function() {
+              var forms = document.querySelectorAll('form, input, textarea');
+              forms.forEach(function(el) {
+                el.addEventListener('focus', loadEmailJS, { once: true });
+                el.addEventListener('click', loadEmailJS, { once: true });
+              });
+            });
           `}
         </Script>
 
