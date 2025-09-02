@@ -17,7 +17,7 @@ import toast from 'react-hot-toast';
 import { PencilIcon, TrashIcon, PlusIcon, PhotoIcon, EyeIcon, XMarkIcon } from '@heroicons/react/24/outline';
 
 export default function MetadataAdminPage() {
-  const { user } = useAuth();
+  const { user, loading: authLoading } = useAuth();
   const router = useRouter();
   const [metadata, setMetadata] = useState<PageMetadata[]>([]);
   const [loading, setLoading] = useState(true);
@@ -27,12 +27,15 @@ export default function MetadataAdminPage() {
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
 
   useEffect(() => {
+    // Wait for auth to finish loading
+    if (authLoading) return;
+    
     if (!user) {
       router.push('/login');
       return;
     }
     fetchMetadata();
-  }, [user, router]);
+  }, [user, authLoading, router]);
 
   const fetchMetadata = async () => {
     try {
@@ -162,6 +165,19 @@ export default function MetadataAdminPage() {
     setPreviewUrl(cloudinaryUrl);
   };
 
+  // Show loading while checking authentication
+  if (authLoading) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600 mx-auto"></div>
+          <p className="mt-4 text-gray-600">Checking authentication...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Show loading while fetching metadata
   if (loading && !isModalOpen) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">

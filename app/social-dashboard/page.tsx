@@ -60,7 +60,7 @@ interface ContentTemplate {
 }
 
 export default function SocialDashboard() {
-  const { user } = useAuth();
+  const { user, loading: authLoading } = useAuth();
   const router = useRouter();
   const [posts, setPosts] = useState<SocialPost[]>([]);
   const [activeTab, setActiveTab] = useState('compose');
@@ -186,6 +186,12 @@ export default function SocialDashboard() {
   ];
 
   useEffect(() => {
+    // Skip if still loading authentication
+    if (authLoading) {
+      console.log('Auth still loading...');
+      return;
+    }
+    
     // Allow access for logged in users - you can be more restrictive later
     if (!user) {
       console.log('No user found, redirecting to login');
@@ -199,7 +205,7 @@ export default function SocialDashboard() {
     
     fetchPosts();
     fetchAnalytics();
-  }, [user, router]);
+  }, [user, authLoading, router]);
 
   const fetchPosts = async () => {
     try {
@@ -337,6 +343,29 @@ export default function SocialDashboard() {
     setScheduledTime('');
     await handleSchedulePost();
   };
+
+  // Show loading state while checking authentication
+  if (authLoading) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+          <p className="mt-4 text-gray-600">Loading authentication...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // If not logged in and not loading, will redirect via useEffect
+  if (!user) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <p className="text-gray-600">Redirecting to login...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gray-50">
