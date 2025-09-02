@@ -339,9 +339,61 @@ export default function SocialDashboard() {
   };
 
   const handlePublishNow = async () => {
-    setScheduledDate('');
-    setScheduledTime('');
-    await handleSchedulePost();
+    if (!postContent || selectedPlatforms.length === 0) {
+      alert('Please write content and select at least one platform');
+      return;
+    }
+
+    setIsPosting(true);
+    try {
+      // Call the real API to post immediately
+      const response = await fetch('/api/social/real-post', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          content: postContent,
+          platforms: selectedPlatforms,
+          mediaUrl: null, // Add media upload functionality later
+          userId: user?.uid
+        })
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        // Save to Firebase for record keeping
+        await addDoc(collection(db, 'socialPosts'), {
+          content: postContent,
+          platforms: selectedPlatforms,
+          category: selectedCategory,
+          status: 'published',
+          publishedAt: serverTimestamp(),
+          createdAt: serverTimestamp(),
+          results: result.results,
+          errors: result.errors
+        });
+
+        // Reset form
+        setPostContent('');
+        setSelectedPlatforms([]);
+        
+        await fetchPosts();
+        
+        // Show detailed results
+        let message = `✅ Posted successfully to: ${Object.keys(result.results || {}).join(', ')}`;
+        if (result.errors && Object.keys(result.errors).length > 0) {
+          message += `\n\n❌ Failed platforms:\n${Object.entries(result.errors).map(([platform, error]) => `${platform}: ${error}`).join('\n')}`;
+        }
+        alert(message);
+      } else {
+        alert(`Failed to post: ${result.message}\n\n${Object.entries(result.errors || {}).map(([platform, error]) => `${platform}: ${error}`).join('\n')}`);
+      }
+    } catch (error) {
+      console.error('Error publishing post:', error);
+      alert('Failed to publish post. Check console for details.');
+    } finally {
+      setIsPosting(false);
+    }
   };
 
   // Show loading state while checking authentication
@@ -382,6 +434,13 @@ export default function SocialDashboard() {
             </div>
             <div className="flex items-center space-x-4">
               <span className="text-sm text-gray-500">Logged in as: {user?.email}</span>
+              <button
+                onClick={() => router.push('/social-settings')}
+                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center space-x-2"
+              >
+                <Settings className="h-4 w-4" />
+                <span>Settings</span>
+              </button>
               <button
                 onClick={() => router.push('/admin')}
                 className="px-4 py-2 bg-gray-100 rounded-lg hover:bg-gray-200"

@@ -31,10 +31,17 @@ const nextConfig = {
   // Performance optimizations
   swcMinify: true,
   experimental: {
-    optimizePackageImports: ['lucide-react', '@headlessui/react'],
+    optimizePackageImports: ['lucide-react', '@headlessui/react', 'recharts', 'framer-motion'],
     // Enable tree shaking for better bundle size
-    webVitalsAttribution: ['CLS', 'LCP']
+    webVitalsAttribution: ['CLS', 'LCP', 'FCP', 'TTFB'],
+    // Optimize CSS
+    optimizeCss: true
   },
+  // Performance monitoring
+  poweredByHeader: false,
+  reactStrictMode: true,
+  // Optimize production builds
+  productionBrowserSourceMaps: false,
   // Enable modern builds for better performance
   modularizeImports: {
     'lucide-react': {
@@ -43,6 +50,58 @@ const nextConfig = {
   },
   async headers() {
     return [
+      // Cache static assets
+      {
+        source: '/:path*',
+        headers: [
+          {
+            key: 'X-DNS-Prefetch-Control',
+            value: 'on'
+          },
+          {
+            key: 'X-XSS-Protection',
+            value: '1; mode=block'
+          },
+          {
+            key: 'X-Frame-Options',
+            value: 'SAMEORIGIN'
+          },
+          {
+            key: 'X-Content-Type-Options',
+            value: 'nosniff'
+          }
+        ],
+      },
+      // Cache images
+      {
+        source: '/images/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      // Cache fonts
+      {
+        source: '/fonts/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      // Static files
+      {
+        source: '/_next/static/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
       {
         source: '/sitemap.xml',
         headers: [

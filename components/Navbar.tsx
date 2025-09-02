@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { CloudinaryImage } from '@/components/CloudinaryImage'
 import { ChevronDown } from 'lucide-react'
 
@@ -57,9 +58,13 @@ export default function Navbar() {
           {/* Logo - Left aligned */}
           <div className="flex-shrink-0">
             <Link href="/" className="flex items-center group">
-              <img
+              <Image
                 src="/Logo_InvestInPuglia_Morph.png"
                 alt="Invest in Puglia"
+                width={180}
+                height={48}
+                priority
+                quality={90}
                 className="h-10 md:h-12 w-auto object-contain opacity-90 group-hover:opacity-100 transition-opacity duration-200"
               />
             </Link>
