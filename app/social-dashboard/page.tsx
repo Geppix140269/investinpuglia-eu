@@ -186,10 +186,17 @@ export default function SocialDashboard() {
   ];
 
   useEffect(() => {
-    if (!user || !user.email?.startsWith('g.funaro@')) {
-      router.push('/');
+    // Allow access for logged in users - you can be more restrictive later
+    if (!user) {
+      console.log('No user found, redirecting to login');
+      router.push('/login');
       return;
     }
+    
+    // Optional: Add specific email check if needed
+    // For now, allow any logged in user to access
+    console.log('User logged in:', user.email);
+    
     fetchPosts();
     fetchAnalytics();
   }, [user, router]);
