@@ -157,6 +157,12 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${playfairDisplay.variable}`}>
       <head>
+        {/* Preconnect to critical domains for faster loading */}
+        <link rel="preconnect" href="https://res.cloudinary.com" />
+        <link rel="dns-prefetch" href="https://res.cloudinary.com" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        
         {/* Google Analytics - REAL GA4 MEASUREMENT ID */}
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-B6V5FJ4ECZ"></script>
         <script

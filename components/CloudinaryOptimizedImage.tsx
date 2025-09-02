@@ -144,16 +144,15 @@ export function CloudinaryOptimizedImage({
     responsive: true,
     // Enable automatic format selection
     rawTransformations: [
-      'f_auto',
-      'q_auto:best',
-      'dpr_auto',
-      'w_auto',
-      'c_limit',
-      'fl_progressive',
-      'fl_immutable_cache',
-      'fl_lossy',
-      'fl_any_format',
-      'fl_animated'
+      'f_auto', // Auto format (WebP/AVIF where supported)
+      'q_auto', // Auto quality (better than q_auto:best for performance)
+      'dpr_auto', // Auto DPR for retina
+      'w_auto:breakpoints', // Responsive breakpoints
+      'c_limit', // Maintain aspect ratio
+      'fl_progressive', // Progressive loading
+      'fl_immutable_cache', // Better caching
+      'fl_lossy', // Lossy compression for smaller files
+      'fl_any_format' // Allow any format for best optimization
     ].join(',')
   };
 
