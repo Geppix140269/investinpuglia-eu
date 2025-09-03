@@ -51,16 +51,16 @@ const HeroVideoRotator = () => {
     };
   }, [videoLoaded]);
 
-  // Rotate videos every 8 seconds for better demo
+  // Rotate videos every 8 seconds on both desktop and mobile
   useEffect(() => {
-    if (!videoLoaded || isMobile) return;
+    if (!videoLoaded) return;
     
     const interval = setInterval(() => {
       setCurrentVideoIndex((prev) => (prev + 1) % videos.length);
     }, 8000);
     
     return () => clearInterval(interval);
-  }, [videoLoaded, isMobile, videos.length]);
+  }, [videoLoaded, videos.length]);
 
   // Handle video end to switch to next
   const handleVideoEnd = () => {
@@ -74,47 +74,62 @@ const HeroVideoRotator = () => {
     { value: '30+', label: 'Years International Experience' }
   ];
 
-  // Mobile version
+  // Mobile version with proper messaging
   if (isMobile) {
     return (
-      <section className="relative min-h-screen bg-gradient-to-br from-purple-900 via-purple-800 to-indigo-900">
+      <section className="relative min-h-screen bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900">
+        {/* Video background for mobile */}
         <div className="absolute inset-0">
-          <Image
-            src="https://res.cloudinary.com/dusubfxgo/image/upload/f_auto,q_auto,w_1200,c_limit,fl_progressive/v1756236779/investinpuglia/properties/generic/trulli-alberobello.jpg"
-            alt="Puglia Investment"
-            fill
-            priority
-            className="object-cover opacity-50"
-            sizes="100vw"
-          />
+          <video
+            key={currentVideoIndex}
+            autoPlay
+            muted
+            playsInline
+            loop
+            className="absolute inset-0 w-full h-full object-cover opacity-70"
+            poster="https://res.cloudinary.com/dusubfxgo/image/upload/f_auto,q_auto,w_800/v1756236779/investinpuglia/properties/generic/trulli-alberobello.jpg"
+          >
+            <source src={videos[currentVideoIndex].url} type="video/mp4" />
+          </video>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent" />
         </div>
         
         <div className="relative z-10 min-h-screen flex items-center">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
             <div className="text-white space-y-6">
               <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 text-sm">
-                <Shield className="w-4 h-4 text-yellow-400" />
-                <span className="font-medium">Italian Excellence • International Experience</span>
+                <Shield className="w-4 h-4 text-green-400" />
+                <span className="font-medium">EU Grants Available • Local Expertise</span>
               </div>
               
-              <h1 className="text-5xl md:text-6xl font-bold">
-                Elite Advisory
-                <span className="block text-2xl md:text-3xl mt-2 text-purple-200">
-                  For Serious Investors Only
+              <h1 className="text-4xl sm:text-5xl font-bold">
+                Transform Your Italian
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-400">
+                  Property Dreams Into Reality
                 </span>
               </h1>
               
-              <p className="text-xl text-purple-100 max-w-lg">
-                Holistic investment consulting from property assessment to grant financing. Projects above €1M only.
+              <p className="text-lg text-gray-100 max-w-lg">
+                Access up to 55% EU grant funding with our local Italian team. We handle everything from property search to renovation and grant applications.
               </p>
               
-              <div className="grid grid-cols-2 gap-4 max-w-lg">
-                {stats.map((stat, idx) => (
-                  <div key={idx} className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
-                    <div className="text-2xl font-bold">{stat.value}</div>
-                    <div className="text-sm text-purple-200">{stat.label}</div>
-                  </div>
-                ))}
+              <div className="grid grid-cols-2 gap-3 max-w-lg">
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3">
+                  <div className="text-2xl font-bold text-green-400">55%</div>
+                  <div className="text-xs text-gray-200">Grant Funding</div>
+                </div>
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3">
+                  <div className="text-2xl font-bold text-green-400">€150M+</div>
+                  <div className="text-xs text-gray-200">Projects Managed</div>
+                </div>
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3">
+                  <div className="text-2xl font-bold text-green-400">100%</div>
+                  <div className="text-xs text-gray-200">Italian Team</div>
+                </div>
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3">
+                  <div className="text-2xl font-bold text-green-400">30+</div>
+                  <div className="text-xs text-gray-200">Years Experience</div>
+                </div>
               </div>
               
               <div className="flex flex-col sm:flex-row gap-4">
@@ -202,19 +217,19 @@ const HeroVideoRotator = () => {
             {/* Left Content */}
             <div className="text-white space-y-8">
               <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm rounded-full px-4 py-2">
-                <Shield className="w-4 h-4 text-yellow-400" />
-                <span className="font-medium">Italian Excellence • International Experience</span>
+                <Shield className="w-4 h-4 text-green-400" />
+                <span className="font-medium">55% EU Grant Funding Available</span>
               </div>
               
               <div>
                 <h1 className="text-5xl lg:text-6xl font-bold mb-4">
-                  Your Trusted Italian Partners
-                  <span className="block text-3xl lg:text-4xl mt-2 text-purple-200">
-                    From Vision to Success
+                  Your Gateway to
+                  <span className="block text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-400">
+                    Italian Property Investment
                   </span>
                 </h1>
-                <p className="text-xl text-purple-100">
-                  Exclusive holistic advisory for investments above €1M. We are NOT real estate agents - we orchestrate your entire investment journey.
+                <p className="text-xl text-gray-100">
+                  We're your complete Italian investment team - from finding the perfect property to securing EU grants and managing renovations. All with local expertise and international professionalism.
                 </p>
               </div>
               
@@ -239,7 +254,7 @@ const HeroVideoRotator = () => {
                   href="/how-it-works"
                   className="inline-flex items-center gap-2 bg-white text-purple-900 px-6 py-3 rounded-full font-semibold hover:bg-purple-50 transition-colors"
                 >
-                  Qualify for Our Services
+                  See How It Works
                   <ArrowRight className="w-5 h-5" />
                 </Link>
               </div>
