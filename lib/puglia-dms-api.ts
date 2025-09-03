@@ -54,7 +54,7 @@ export class DMSAuthenticator {
       if (response.data.token) {
         this.token = response.data.token;
         this.tokenExpiry = new Date(Date.now() + 3600000); // 1 hour
-        return this.token;
+        return this.token!;
       }
 
       throw new Error('No token received');
@@ -84,7 +84,7 @@ export class DMSAuthenticator {
       if (response.data.token) {
         this.token = response.data.token;
         this.tokenExpiry = new Date(Date.now() + 3600000);
-        return this.token;
+        return this.token!;
       }
 
       throw new Error('API key authentication failed');

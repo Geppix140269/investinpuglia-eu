@@ -6,38 +6,44 @@ export default function LocationsIndustries() {
     {
       name: 'Bari',
       description: 'Capital city & business hub',
+      image: 'https://res.cloudinary.com/dusubfxgo/image/upload/f_auto,q_auto,w_600,h_400,c_fill/investinpuglia/investinpuglia/images/locations/bari-thumb',
       link: '/locations/bari',
       stats: '+63.5% growth'
     },
     {
       name: 'Lecce', 
       description: 'Baroque jewel of the South',
+      image: 'https://res.cloudinary.com/dusubfxgo/image/upload/f_auto,q_auto,w_600,h_400,c_fill/investinpuglia/investinpuglia/images/locations/lecce-thumb',
       link: '/locations/lecce',
       stats: 'UNESCO Heritage'
     },
     {
       name: 'Ostuni',
-      description: 'The White City premium market', 
+      description: 'The White City premium market',
+      image: 'https://res.cloudinary.com/dusubfxgo/image/upload/f_auto,q_auto,w_600,h_400,c_fill/investinpuglia/investinpuglia/images/locations/ostuni-thumb', 
       link: '/locations/ostuni',
       stats: '+250% value growth'
     },
     {
-      name: 'Monopoli',
+      name: 'Polignano a Mare',
       description: 'Luxury coastal destination',
-      link: '/locations/monopoli',
+      image: 'https://res.cloudinary.com/dusubfxgo/image/upload/f_auto,q_auto,w_600,h_400,c_fill/investinpuglia/investinpuglia/images/locations/polignano-a-mare-thumb',
+      link: '/locations/polignano',
       stats: '€400k-1M+ market'
     },
     {
       name: 'Valle d\'Itria',
       description: 'Trulli heritage region',
+      image: 'https://res.cloudinary.com/dusubfxgo/image/upload/f_auto,q_auto,w_600,h_400,c_fill/investinpuglia/investinpuglia/images/locations/trulli-alberobello',
       link: '/locations/valle-ditria',
       stats: 'Unique properties'
     },
     {
-      name: 'Salento Coast',
-      description: 'Premier beach destinations',
-      link: '/locations/salento',
-      stats: 'Tourism hotspot'
+      name: 'Brindisi',
+      description: 'Strategic port city',
+      image: 'https://res.cloudinary.com/dusubfxgo/image/upload/f_auto,q_auto,w_600,h_400,c_fill/investinpuglia/investinpuglia/images/locations/brindisi-thumb',
+      link: '/locations/brindisi',
+      stats: 'Tourism gateway'
     }
   ];
 
@@ -114,13 +120,19 @@ export default function LocationsIndustries() {
                 href={location.link}
                 className="group relative bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1"
               >
-                <div className="bg-gradient-to-br from-purple-100 to-emerald-100 h-48 relative">
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
+                <div className="relative h-48 overflow-hidden bg-gray-200">
+                  <img 
+                    src={location.image}
+                    alt={location.name}
+                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
                   <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full">
                     <span className="text-xs font-bold text-purple-600">{location.stats}</span>
                   </div>
                   <div className="absolute bottom-4 left-4">
-                    <MapPin className="w-8 h-8 text-white/80" />
+                    <MapPin className="w-8 h-8 text-white drop-shadow-lg" />
                   </div>
                 </div>
                 <div className="p-6">

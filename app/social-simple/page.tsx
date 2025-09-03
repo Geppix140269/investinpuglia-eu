@@ -13,7 +13,7 @@ export default function SocialSimple() {
       return;
     }
 
-    const posts = [];
+    const posts: string[] = [];
 
     // Twitter - THIS WORKS RIGHT NOW
     const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(content + '\n\n#InvestInPuglia #RealEstate')}`;

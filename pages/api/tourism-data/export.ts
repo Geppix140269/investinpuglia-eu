@@ -73,7 +73,7 @@ async function fetchTourismData(params: any) {
 function generateCSV(data: any): string {
   try {
     // Flatten data structure for CSV
-    const flatData = [];
+    const flatData: any[] = [];
     
     // Add summary data
     data.summary.forEach((item: any) => {

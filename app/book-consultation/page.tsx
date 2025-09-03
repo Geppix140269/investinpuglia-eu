@@ -94,9 +94,7 @@ function BookConsultationContent() {
             {consultationOptions.map((option) => (
               <div 
                 key={option.duration}
-                className={`relative rounded-lg shadow-lg overflow-hidden transition-all ${
-                  selectedDuration === option.duration ? 'ring-2 ring-blue-600' : ''
-                }`}
+                className="relative rounded-lg shadow-lg overflow-hidden transition-all ring-2 ring-blue-600"
               >
                 {option.popular && (
                   <div className="absolute top-0 right-0 bg-orange-500 text-white px-3 py-1 text-sm font-semibold">
