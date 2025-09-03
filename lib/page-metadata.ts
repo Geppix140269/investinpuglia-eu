@@ -200,13 +200,13 @@ export const PAGE_METADATA: Record<string, PageMetadata> = {
     category: 'legal'
   },
 
-  // Agency
-  '/agency': {
-    title: 'Partner Agencies | Collaborate for Mutual Success',
-    description: 'Join our agency partner network. Earn commissions, access exclusive properties, co-marketing opportunities. Growing together in Italian real estate.',
-    keywords: ['agency partners', 'collaboration', 'commission', 'partnership', 'referral program'],
+  // Professional Network
+  '/join-network': {
+    title: 'Join Our Professional Network | International Investment Experts',
+    description: 'Join an exclusive network of internationally-minded professionals serving foreign investors in Puglia. Share knowledge, access clients, grow together.',
+    keywords: ['professional network', 'international investors', 'property investment', 'Puglia experts', 'business partnerships'],
     ogImage: 'geppix1402_81420_Business_partnership_handshake_with_Italian__1f2f3f4a-1c2f-4e09-9d6f-3f1f1c1c0e81_0.png',
-    ogImageAlt: 'Business partnership and collaboration opportunities',
+    ogImageAlt: 'International professional network for Puglia investments',
     category: 'about'
   },
 

@@ -39,52 +39,52 @@ export function generateOGImageUrl(config: OGImageConfig): string {
 // Predefined OG images for main pages - Updated with working Cloudinary URLs
 export const PAGE_OG_IMAGES = {
   home: {
-    imageId: 'v1756663565/investinpuglia/og-images/masseria-montelauro.jpg',
+    imageId: 'v1756639022/geppix1402_81420_Aerial_view_of_modern_beach_resort_on_Puglia_1e033058-96de-4e55-a742-32e53bf63f47_2_yq1umi.png',
     title: 'Invest in Puglia',
     description: 'Your Gateway to Italian Real Estate Investment'
   },
   portfolio: {
-    imageId: 'v1756663567/investinpuglia/og-images/baglioni-masseria-muzza.jpg',
+    imageId: 'v1756639032/geppix1402_81420_Camera_dollying_through_luxury_trulli_resort_ee4f1045-c662-465a-bfac-ab6a01626be4_3_wl8iev.png',
     title: '30 Years of Excellence',
     description: '€100M+ in Projects, €25M Grants Secured'
   },
   services: {
-    imageId: 'v1756663570/investinpuglia/og-images/donna-menga.jpg',
+    imageId: 'v1756639035/geppix1402_81420_Camera_gliding_along_infinity_pool_edge_over_63235c90-8037-46fd-aaba-c877c98364a4_0_x2qhgb.png',
     title: 'Our Services',
     description: 'Complete Investment Support from A to Z'
   },
   grants: {
-    imageId: 'v1756663573/investinpuglia/og-images/nohasi-palace.jpg',
+    imageId: 'v1756639041/geppix1402_81420_Camera_rising_to_reveal_rooftop_bar_overlook_3f241707-7104-400b-ab12-f30e7290effe_0_do2m44.png',
     title: 'Grant Funding',
     description: 'Up to 50% Co-financing Available'
   },
   properties: {
-    imageId: 'v1756663576/investinpuglia/og-images/le-cale-dotranto.jpg',
+    imageId: 'v1756639068/geppix1402_81420_Slow_drone_descent_towards_masseria_pool_at__6f268b3c-e038-4911-90dd-046c6bc5df5e_3_v9yiby.png',
     title: 'Properties',
     description: 'Luxury Investment Opportunities'
   },
   about: {
-    imageId: 'v1756663578/investinpuglia/og-images/dimora-san-giuseppe.jpg',
+    imageId: 'v1756642525/geppix1402_81420_Slow_push_through_ancient_stone_archway_into_165a71f0-889a-43dc-810a-8ffc4f772894_1_bhjbvk.png',
     title: 'About InvestInPuglia',
     description: '29 Years of Excellence in Real Estate'
   },
   contact: {
-    imageId: 'v1756663582/investinpuglia/og-images/hotel-bellavista.jpg',
+    imageId: 'v1756642553/geppix1402_81420_Slow_push_through_ancient_stone_archway_into_165a71f0-889a-43dc-810a-8ffc4f772894_2_kcfa8x.png',
     title: 'Contact Us',
     description: 'Start Your Investment Journey Today'
   },
   puglia: {
-    imageId: 'v1756663589/investinpuglia/og-images/torre-matta.jpg',
+    imageId: 'v1756639022/geppix1402_81420_Aerial_view_of_modern_beach_resort_on_Puglia_1e033058-96de-4e55-a742-32e53bf63f47_2_yq1umi.png',
     title: 'Discover Puglia',
     description: 'The Hidden Gem of Southern Italy'
   },
   legal: {
-    imageId: 'v1756663591/investinpuglia/og-images/hotel-haethey.jpg',
+    imageId: 'v1756639032/geppix1402_81420_Camera_dollying_through_luxury_trulli_resort_ee4f1045-c662-465a-bfac-ab6a01626be4_3_wl8iev.png',
     title: 'Legal Framework',
     description: 'Navigate Italian Property Law with Confidence'
   },
   trullo: {
-    imageId: 'v1756663594/investinpuglia/og-images/shantiland.jpg',
+    imageId: 'v1756639041/geppix1402_81420_Camera_rising_to_reveal_rooftop_bar_overlook_3f241707-7104-400b-ab12-f30e7290effe_0_do2m44.png',
     title: 'Meet Trullo AI',
     description: 'Your 24/7 Investment Assistant'
   }

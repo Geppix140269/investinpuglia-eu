@@ -145,8 +145,8 @@ export default function Navbar() {
               )}
             </div>
             
-            <a href="/agency" className="text-gray-700 hover:text-gray-900 transition-colors font-medium">
-              Agencies
+            <a href="/join-network" className="text-gray-700 hover:text-gray-900 transition-colors font-medium">
+              Join Our Network
             </a>
           </div>
 
@@ -212,8 +212,8 @@ export default function Navbar() {
                 </div>
               </div>
               
-              <a href="/agency" className="text-gray-700 hover:text-gray-900 transition-colors font-medium py-2">
-                Agencies
+              <a href="/join-network" className="text-gray-700 hover:text-gray-900 transition-colors font-medium py-2">
+                Join Our Network
               </a>
               
               <Link 
