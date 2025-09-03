@@ -39,7 +39,7 @@ export default function JoinNetwork() {
       color: 'from-blue-500 to-indigo-600'
     },
     {
-      icon: Users,
+      icon: Briefcase,
       title: 'Referral Partnerships',
       description: 'Earn competitive commissions through our transparent referral program',
       color: 'from-emerald-500 to-teal-600'
