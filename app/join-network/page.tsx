@@ -13,7 +13,6 @@ import {
   Check,
   Star,
   Building,
-  HandshakeIcon,
   Network
 } from 'lucide-react';
 import Navbar from '@/components/Navbar';
@@ -40,7 +39,7 @@ export default function JoinNetwork() {
       color: 'from-blue-500 to-indigo-600'
     },
     {
-      icon: HandshakeIcon,
+      icon: Users,
       title: 'Referral Partnerships',
       description: 'Earn competitive commissions through our transparent referral program',
       color: 'from-emerald-500 to-teal-600'
