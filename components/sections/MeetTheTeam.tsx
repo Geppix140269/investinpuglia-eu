@@ -34,15 +34,14 @@ export default function MeetTheTeam() {
     {
       name: "Avv. Marco Magaraggia",
       role: "Legal Counsel - Italian & International Law",
-      description: "Founder of italian-lawyer.eu, specializing in Italian real estate law, foreign investments, and international taxation. Expert in navigating Italian bureaucracy and ensuring compliance for foreign investors.",
-      image: "https://res.cloudinary.com/dusubfxgo/image/upload/c_fill,f_auto,g_face,h_800,q_auto:best,w_800/v1756889855/investinpuglia/team/marco-magaraggia.jpg",
+      description: "Specializing in Italian real estate law, foreign investments, and international taxation. Expert in navigating Italian bureaucracy and ensuring compliance for foreign investors.",
+      image: "https://res.cloudinary.com/dusubfxgo/image/upload/c_fill,f_auto,g_face,h_800,q_auto:best,w_800/v1756898400/investinpuglia/team/marco-magaraggia-professional.jpg",
       expertise: [
         "Italian Real Estate Law",
         "International Tax Optimization",
         "Foreign Investment Compliance",
         "Contract Negotiation & Due Diligence"
-      ],
-      website: "https://italian-lawyer.eu"
+      ]
     }
   ]
 
