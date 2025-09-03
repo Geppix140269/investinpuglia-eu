@@ -1,28 +1,41 @@
-// components/sections/HeroVisualLite.tsx
 'use client'
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { MapPin, ArrowRight, Shield } from 'lucide-react';
 
-// Lightweight Hero with minimal JavaScript and optimized video loading
-const HeroVisualLite = () => {
+const HeroVideoRotator = () => {
+  const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  
+  // Your three MIDJOURNEY videos with names
+  const videos = [
+    {
+      url: 'https://res.cloudinary.com/dusubfxgo/video/upload/v1756888562/investinpuglia/hero-videos/beach-club.mp4',
+      name: 'Beach Club Aperitivo'
+    },
+    {
+      url: 'https://res.cloudinary.com/dusubfxgo/video/upload/v1756888546/investinpuglia/hero-videos/rooftop-bar.mp4',
+      name: 'Rooftop Bar View'
+    },
+    {
+      url: 'https://res.cloudinary.com/dusubfxgo/video/upload/v1756888555/investinpuglia/hero-videos/helicopter-pov.mp4',
+      name: 'Helicopter Arrival'
+    }
+  ];
   
   useEffect(() => {
-    // Simple mobile check
     setIsMobile(window.innerWidth < 768);
     
-    // Load video after 2 seconds or on user interaction
     const loadVideo = () => {
       if (!videoLoaded) {
         setVideoLoaded(true);
       }
     };
     
-    // Load video on user interaction
     const events = ['scroll', 'touchstart', 'mousemove'];
     const handleInteraction = () => {
       loadVideo();
@@ -30,15 +43,29 @@ const HeroVisualLite = () => {
     };
     
     events.forEach(e => window.addEventListener(e, handleInteraction, { once: true, passive: true }));
-    
-    // Or load after delay
-    const timer = setTimeout(loadVideo, 2000);
+    const timer = setTimeout(loadVideo, 1000);
     
     return () => {
       clearTimeout(timer);
       events.forEach(e => window.removeEventListener(e, handleInteraction));
     };
   }, [videoLoaded]);
+
+  // Rotate videos every 8 seconds for better demo
+  useEffect(() => {
+    if (!videoLoaded || isMobile) return;
+    
+    const interval = setInterval(() => {
+      setCurrentVideoIndex((prev) => (prev + 1) % videos.length);
+    }, 8000);
+    
+    return () => clearInterval(interval);
+  }, [videoLoaded, isMobile, videos.length]);
+
+  // Handle video end to switch to next
+  const handleVideoEnd = () => {
+    setCurrentVideoIndex((prev) => (prev + 1) % videos.length);
+  };
 
   const stats = [
     { value: '100+', label: 'Years Combined Expertise' },
@@ -47,11 +74,10 @@ const HeroVisualLite = () => {
     { value: '30+', label: 'Years International Experience' }
   ];
 
-  // Mobile version - static image only, no video
+  // Mobile version
   if (isMobile) {
     return (
       <section className="relative min-h-screen bg-gradient-to-br from-purple-900 via-purple-800 to-indigo-900">
-        {/* Optimized Cloudinary background image */}
         <div className="absolute inset-0">
           <Image
             src="https://res.cloudinary.com/dusubfxgo/image/upload/f_auto,q_auto,w_1200,c_limit,fl_progressive/v1756236779/investinpuglia/properties/generic/trulli-alberobello.jpg"
@@ -114,10 +140,10 @@ const HeroVisualLite = () => {
     );
   }
 
-  // Desktop version - with lazy-loaded video
+  // Desktop with rotating videos
   return (
     <section className="relative min-h-screen bg-gradient-to-br from-purple-900 via-purple-800 to-indigo-900">
-      {/* Placeholder image while video loads */}
+      {/* Placeholder while loading */}
       <div className="absolute inset-0">
         <Image
           src="https://res.cloudinary.com/dusubfxgo/image/upload/f_auto,q_auto,w_100,c_limit,e_blur:1000/v1756236779/investinpuglia/properties/generic/trulli-alberobello.jpg"
@@ -129,20 +155,45 @@ const HeroVisualLite = () => {
         />
       </div>
       
-      {/* Lazy loaded video - Beautiful MIDJOURNEY beach club scene */}
+      {/* Single video element with changing source */}
       {videoLoaded && (
         <video
+          key={currentVideoIndex}
+          ref={videoRef}
           className="absolute inset-0 w-full h-full object-cover opacity-60"
           autoPlay
           muted
-          loop
+          loop={false}
           playsInline
+          onEnded={handleVideoEnd}
+          src={videos[currentVideoIndex].url}
         >
-          <source 
-            src="https://res.cloudinary.com/dusubfxgo/video/upload/v1756888562/investinpuglia/hero-videos/beach-club.mp4" 
-            type="video/mp4" 
-          />
+          <source src={videos[currentVideoIndex].url} type="video/mp4" />
         </video>
+      )}
+
+      {/* Video indicator with names */}
+      {videoLoaded && (
+        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20">
+          <div className="bg-black/50 backdrop-blur-sm rounded-full px-4 py-2 mb-2 text-white text-sm">
+            Now Playing: {videos[currentVideoIndex].name}
+          </div>
+          <div className="flex gap-2 justify-center">
+            {videos.map((video, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentVideoIndex(index)}
+                className={`w-2 h-2 rounded-full transition-all ${
+                  index === currentVideoIndex 
+                    ? 'bg-white w-8' 
+                    : 'bg-white/50 hover:bg-white/75'
+                }`}
+                title={video.name}
+                aria-label={`Switch to ${video.name}`}
+              />
+            ))}
+          </div>
+        </div>
       )}
       
       <div className="relative z-10 min-h-screen flex items-center">
@@ -194,7 +245,7 @@ const HeroVisualLite = () => {
               </div>
             </div>
             
-            {/* Right Content - Simple list instead of complex components */}
+            {/* Right Content */}
             <div className="space-y-6">
               <h3 className="text-white text-lg font-semibold">Our Holistic Services</h3>
               
@@ -240,4 +291,4 @@ const HeroVisualLite = () => {
   );
 };
 
-export default HeroVisualLite;
+export default HeroVideoRotator;

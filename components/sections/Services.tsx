@@ -1,4 +1,7 @@
 // Path: components/sections/Services.tsx
+'use client'
+
+import Link from 'next/link'
 import Icon from '@/lib/iconMappings'
 import { CloudinaryImage } from '@/components/CloudinaryImage'
 
@@ -84,15 +87,13 @@ export default function Services() {
           <p className="text-gray-600 mb-4">
             Working with trusted professionals who have delivered results for decades
           </p>
-          <a 
-            href="https://calendly.com/investinpuglia/30min" 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-600 to-emerald-600 text-white px-8 py-3 rounded-full font-semibold hover:shadow-2xl transition-all"
+          <Link 
+            href="/consultation"
+            className="inline-flex items-center gap-2 bg-gradient-to-r from-green-500 to-green-600 text-white px-8 py-4 rounded-full font-bold hover:from-green-600 hover:to-green-700 transition-all transform hover:scale-105 shadow-2xl"
           >
-            Schedule a Consultation
+            FREE Expert Consultation
             <Icon name="ArrowRight" size={20} />
-          </a>
+          </Link>
         </div>
       </div>
     </section>

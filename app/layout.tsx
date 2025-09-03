@@ -10,6 +10,7 @@ import dynamic from 'next/dynamic'
 import { AuthProvider } from '@/contexts/AuthContext'
 import { Toaster } from 'react-hot-toast'
 import { PAGE_OG_IMAGES, generateOGImageUrl } from '@/lib/og-images'
+import { generatePageMetadata } from './layout-metadata'
 
 // Lazy load the TrulloChatbot to avoid build errors if component doesn't exist yet
 const TrulloChatbotWrapper = dynamic(

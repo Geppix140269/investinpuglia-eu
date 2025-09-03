@@ -1,6 +1,8 @@
 ﻿// app/contact/page.tsx
 'use client'
 
+import Link from 'next/link'
+
 export default function ContactPage() {
   return (
     <>
@@ -38,15 +40,13 @@ export default function ContactPage() {
             
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-5 justify-center animate-fadeIn animation-delay-400">
-              <a 
-                href="https://calendly.com/investinpuglia/30min" 
+              <Link 
+                href="/consultation"
                 className="inline-flex items-center gap-3 bg-gradient-to-r from-green-600 to-green-700 text-white px-10 py-5 rounded-full text-lg font-bold hover:-translate-y-1 hover:shadow-2xl transition-all duration-300"
-                target="_blank"
-                rel="noopener noreferrer"
               >
-                Book Strategy Call
-                <span className="text-2xl">â†’</span>
-              </a>
+                FREE Expert Consultation
+                <span className="text-2xl">â†'</span>
+              </Link>
               <a 
                 href="mailto:info@investinpuglia.eu" 
                 className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-md border-2 border-white/30 text-white px-10 py-5 rounded-full text-lg font-bold hover:bg-white/20 transition-all duration-300"
@@ -99,14 +99,12 @@ export default function ContactPage() {
                 Book a free 30-minute strategy call to discuss your property investment goals and grant opportunities.
               </p>
               
-              <a 
-                href="https://calendly.com/investinpuglia/30min" 
+              <Link 
+                href="/consultation"
                 className="inline-block bg-gradient-to-r from-green-600 to-green-700 text-white px-8 py-4 rounded-xl font-bold hover:shadow-2xl hover:-translate-y-1 transition-all w-full text-center"
-                target="_blank"
-                rel="noopener noreferrer"
               >
-                Book Strategy Call â†’
-              </a>
+                FREE Expert Consultation â†'
+              </Link>
               
               <p className="text-sm text-gray-600 mt-4">
                 Average response time: Within 24 hours

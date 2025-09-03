@@ -11,20 +11,20 @@ export default function GrantInstitutions() {
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
             <div className="inline-block bg-gradient-to-r from-purple-600 to-emerald-600 text-white px-6 py-2 rounded-full text-sm font-semibold mb-4 shadow-lg">
-              FUNDING PROGRAM AFFILIATION
+              OUR GRANT EXPERTISE
             </div>
             <h2 className="text-3xl md:text-4xl font-light text-gray-900 mb-4">
-              Grant Source <strong className="font-bold">Institutions</strong>
+              Beyond Mini PIA <strong className="font-bold">Full Spectrum Funding</strong>
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Invest in Puglia™ is your trusted connection to verified local professionals who ensure 
-              your grant applications succeed and your projects avoid the common pitfalls that cost time and money.
+              With 100+ years of combined project financing expertise, we secure grants beyond Mini PIA. 
+              Our established relationships with funding authorities ensure your applications succeed where others fail.
             </p>
           </div>
           
           <div className="bg-white/70 backdrop-blur-md rounded-3xl p-8 shadow-2xl border border-white/50">
             <p className="text-center text-sm text-gray-600 mb-8 font-medium">
-              The Mini PIA program is co-financed and supported by the following institutional entities:
+              We navigate ALL EU and regional funding programs, including but not limited to Mini PIA:
             </p>
             
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center justify-items-center mb-10">
@@ -76,10 +76,10 @@ export default function GrantInstitutions() {
             <div className="border-t border-gray-200 pt-6">
               <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
                 <p className="text-xs text-gray-700 text-center">
-                  <strong className="text-gray-900">IMPORTANT DISCLAIMER:</strong> InvestInPuglia.eu is an independent private consultancy firm. 
-                  We are NOT affiliated with, endorsed by, or representing any of the institutional entities shown above. 
-                  We provide professional advisory services to help clients navigate public grant applications. 
-                  All institutional logos are shown solely to indicate the source of public funding programs.
+                  <strong className="text-gray-900">PROFESSIONAL DISTINCTION:</strong> InvestInPuglia.eu is an elite advisory firm with demonstrable expertise. 
+                  Our team's 30+ years of international experience and LOCAL Italian network gives us unmatched access to funding opportunities. 
+                  We work with projects above €1M only - it's a privilege to have us orchestrate your investment journey. 
+                  All institutional logos shown indicate the funding sources we expertly navigate for our clients.
                 </p>
               </div>
             </div>

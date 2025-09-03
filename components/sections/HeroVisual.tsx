@@ -2,6 +2,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { MapPin, Factory, ArrowRight, Shield } from 'lucide-react';
 import { CloudinaryImage } from '@/components/CloudinaryImage';
 
@@ -179,12 +180,10 @@ const HeroVisual = () => {
               
               {/* CTA Button */}
               <a 
-                href="https://calendly.com/investinpuglia/30min"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block w-full bg-white text-black py-4 rounded-2xl font-bold text-center text-lg shadow-2xl"
+                href="/consultation"
+                className="block w-full bg-white text-black py-4 rounded-2xl font-bold text-center text-lg shadow-2xl animate-pulse"
               >
-                Book Free Consultation →
+                FREE Expert Consultation →
               </a>
             </div>
           </div>
@@ -459,14 +458,12 @@ const HeroVisual = () => {
 
         {/* Elegant CTA */}
         <div className={`flex gap-6 items-center justify-center mb-16 transition-all duration-1000 delay-[800ms] ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <a 
-            href="https://calendly.com/investinpuglia/30min"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-gray-900 text-white px-12 py-4 rounded-full font-light text-lg hover:bg-gray-800 transition-all"
+          <Link 
+            href="/consultation"
+            className="bg-gradient-to-r from-green-500 to-green-600 text-white px-12 py-4 rounded-full font-bold text-lg hover:from-green-600 hover:to-green-700 transition-all transform hover:scale-105 shadow-xl"
           >
-            Schedule Consultation
-          </a>
+            FREE Expert Consultation
+          </Link>
           <a 
             href="/locations"
             className="text-gray-700 px-8 py-4 rounded-full font-light text-lg hover:text-gray-900 transition-all"

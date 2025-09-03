@@ -118,14 +118,12 @@ export default function FeaturedProperty() {
                   View Full Details
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
-                <a
-                  href="https://calendly.com/investinpuglia/30min"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex-1 bg-white border-2 border-purple-600 text-purple-600 px-6 py-3 rounded-lg font-semibold text-center hover:bg-purple-50 transition-all"
+                <Link
+                  href="/consultation"
+                  className="flex-1 bg-white border-2 border-green-600 text-green-600 px-6 py-3 rounded-lg font-semibold text-center hover:bg-green-50 transition-all"
                 >
-                  Schedule Consultation
-                </a>
+                  FREE Consultation
+                </Link>
               </div>
 
               {/* Browse More */}

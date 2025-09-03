@@ -300,14 +300,12 @@ export default function PropertyDetailClient({ property }: { property: Property 
             and explore financing options, including available EU grants.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a 
-              href="https://calendly.com/investinpuglia/30min"
+            <Link 
+              href="/consultation"
               className="inline-block bg-white text-purple-600 px-8 py-3 rounded-full font-semibold hover:shadow-lg transition-all transform hover:scale-105"
-              target="_blank"
-              rel="noopener noreferrer"
             >
-              Schedule Consultation →
-            </a>
+              FREE Expert Consultation →
+            </Link>
             <a 
               href="/contact"
               className="inline-block bg-purple-500 text-white px-8 py-3 rounded-full font-semibold hover:bg-purple-400 transition-all"

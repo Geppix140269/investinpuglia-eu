@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import { Award, Building2, Globe2, Languages, ArrowRight, TrendingUp, Euro, Users, MapPin, Shield } from 'lucide-react';
 
 export default function HeroSection() {
@@ -113,13 +114,13 @@ export default function HeroSection() {
 
         {/* CTA Buttons - More prominent */}
         <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 justify-center mb-16 px-4 sm:px-0">
-          <button 
-            onClick={() => window.location.href = 'https://calendly.com/investinpuglia/30min'}
-            className="group bg-gradient-to-r from-purple-600 to-emerald-600 text-white px-8 sm:px-10 py-4 sm:py-5 rounded-full font-semibold hover:shadow-2xl transition-all text-lg hover:scale-105 w-full sm:w-auto inline-flex items-center justify-center gap-3"
+          <Link
+            href="/consultation"
+            className="group bg-gradient-to-r from-green-500 to-green-600 text-white px-8 sm:px-10 py-4 sm:py-5 rounded-full font-bold hover:shadow-2xl transition-all text-lg hover:scale-105 w-full sm:w-auto inline-flex items-center justify-center gap-3"
           >
-            Book Executive Consultation
+            FREE Expert Consultation
             <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-          </button>
+          </Link>
           <button
             onClick={() => window.location.href = '/tools'}
             className="bg-white/80 backdrop-blur-sm text-gray-900 border-2 border-gray-200 px-8 sm:px-10 py-4 sm:py-5 rounded-full font-semibold hover:shadow-xl hover:border-purple-300 transition-all text-lg hover:scale-105 w-full sm:w-auto text-center"

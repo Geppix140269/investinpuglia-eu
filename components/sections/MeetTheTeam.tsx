@@ -1,4 +1,7 @@
 // components/sections/MeetTheTeam.tsx
+'use client'
+
+import Link from 'next/link'
 import { CloudinaryImage } from '@/components/CloudinaryImage'
 import Icon from '@/lib/iconMappings'
 
@@ -7,7 +10,7 @@ export default function MeetTheTeam() {
     {
       name: "Dott. Ing. Cataldo Russo",
       role: "Chief Technical Officer",
-      description: "Licensed Engineer-Architect with 29 years of experience. Successfully delivered 50+ hotel and resort projects worth €95M+, securing €20M in grants. Registered with Lecce Order of Engineers (#1697) since 1995.",
+      description: "Licensed Italian Engineer-Architect with 29 years of demonstrable experience. Successfully delivered 50+ hotel and resort projects worth €95M+, securing €20M in grants. LOCAL connections built over decades.",
       image: "/russo-photo.jpg",
       expertise: [
         "Architectural & Engineering Design",
@@ -19,7 +22,7 @@ export default function MeetTheTeam() {
     {
       name: "Antonio Quarta",
       role: "Chief Financial Officer",
-      description: "Seasoned financial executive with extensive experience in real estate finance and investment structuring. Ensures financial excellence and optimal returns for all InvestInPuglia projects.",
+      description: "Italian financial executive with demonstrable track record in €150M+ project financing. Expert in navigating EU grants beyond Mini PIA. Deep LOCAL banking and institutional relationships.",
       image: "https://res.cloudinary.com/dusubfxgo/image/upload/c_fill,f_auto,g_face,h_800,q_auto:best,w_800/v1756629855/investinpuglia/team/antonio-quarta-cfo.jpg",
       expertise: [
         "Financial Structuring & Modeling",
@@ -29,16 +32,17 @@ export default function MeetTheTeam() {
       ]
     },
     {
-      name: "Sabine van Putten",
-      role: "Strategic Partnerships & Investment Relations",
-      description: "20+ years international executive experience combined with pioneering work in short-term rentals. Expert in property development, historical restoration, and hospitality operations across Mediterranean markets.",
-      image: "https://res.cloudinary.com/dusubfxgo/image/upload/c_fill,f_auto,g_face,h_800,q_auto:best,w_800/v1756749364/investinpuglia/team/investinpuglia/team/sabine-van-putten.jpg",
+      name: "Avv. Marco Magaraggia",
+      role: "Legal Counsel - Italian & International Law",
+      description: "Founder of italian-lawyer.eu, specializing in Italian real estate law, foreign investments, and international taxation. Expert in navigating Italian bureaucracy and ensuring compliance for foreign investors.",
+      image: "https://res.cloudinary.com/dusubfxgo/image/upload/c_fill,f_auto,g_face,h_800,q_auto:best,w_800/v1756889855/investinpuglia/team/marco-magaraggia.jpg",
       expertise: [
-        "Property Development & Restoration",
-        "Hospitality & Short-term Rentals",
-        "International Business Development",
-        "Multilingual (6 languages)"
-      ]
+        "Italian Real Estate Law",
+        "International Tax Optimization",
+        "Foreign Investment Compliance",
+        "Contract Negotiation & Due Diligence"
+      ],
+      website: "https://italian-lawyer.eu"
     }
   ]
 
@@ -51,13 +55,14 @@ export default function MeetTheTeam() {
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-600 to-emerald-600 text-white px-5 py-2 rounded-full text-sm font-semibold mb-6 shadow-lg">
             <Icon name="Users" size={20} />
-            OUR TEAM
+            100+ YEARS COMBINED EXPERTISE
           </div>
           <h2 className="text-3xl md:text-5xl font-light text-gray-900 mb-4">
-            Meet <strong className="font-bold bg-gradient-to-r from-purple-600 to-emerald-600 bg-clip-text text-transparent">The Team</strong>
+            The REAL <strong className="font-bold bg-gradient-to-r from-purple-600 to-emerald-600 bg-clip-text text-transparent">Italian Experts</strong>
           </h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            Expert professionals with decades of proven success in Italian real estate, tourism development, and hospitality management
+            Italians with 30+ years international experience. Our network is LOCAL, our expertise is REAL, 
+            and working with us is a privilege reserved for serious investors.
           </p>
         </div>
 
@@ -91,6 +96,19 @@ export default function MeetTheTeam() {
                         </div>
                       ))}
                     </div>
+                    {(member as any).website && (
+                      <div className="mt-4 pt-4 border-t border-gray-100">
+                        <a 
+                          href={(member as any).website} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 text-purple-600 hover:text-purple-700 font-medium text-sm"
+                        >
+                          <Icon name="Globe" size={16} />
+                          Visit Website
+                        </a>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
@@ -100,17 +118,19 @@ export default function MeetTheTeam() {
 
         <div className="text-center mt-12">
           <p className="text-gray-600 mb-6">
-            Combined expertise of over 70 years in international real estate development and hospitality
+            <strong>100+ years of combined expertise</strong> in project management and financing. 
+            We are the REAL thing - not improvised consultants.
           </p>
-          <a 
-            href="https://calendly.com/investinpuglia/30min" 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-600 to-emerald-600 text-white px-8 py-4 rounded-full font-semibold text-lg hover:shadow-2xl transition-all"
+          <Link 
+            href="/consultation"
+            className="inline-flex items-center gap-2 bg-gradient-to-r from-green-500 to-green-600 text-white px-8 py-4 rounded-full font-bold text-lg hover:from-green-600 hover:to-green-700 transition-all transform hover:scale-105 shadow-2xl"
           >
-            Schedule Team Consultation
+            FREE Expert Consultation
             <Icon name="ArrowRight" size={20} />
-          </a>
+          </Link>
+          <p className="text-sm text-gray-500 mt-3">
+            Start with our FREE consultation - no payment required
+          </p>
         </div>
       </div>
     </section>

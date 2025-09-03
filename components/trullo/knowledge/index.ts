@@ -17,6 +17,7 @@ import { professionalRedirectStrategy } from './strategies/professional-redirect
 import { salesExcellenceStrategy } from './strategies/sales-excellence';
 import { conversionOptimizationStrategy } from './strategies/conversion-optimization';
 import { balancedEngagementStrategy } from './strategies/balanced-engagement';
+import { consultationFlowStrategy } from './strategies/consultation-flow';
 import { euGrantsKnowledge } from './expertise/eu-grants';
 
 // Import the CORRECT system prompts
@@ -39,7 +40,10 @@ export class TrulloKnowledgeBase {
   constructor() {
     // Register ALL modules - HIGH PRIORITY FIRST
     this.registerModules([
-      // HIGHEST PRIORITY - Balanced approach
+      // HIGHEST PRIORITY - Consultation flow for FREE consultations
+      consultationFlowStrategy, // New consultation questionnaire flow
+      
+      // Balanced approach
       balancedEngagementStrategy, // Override pushy tactics - be helpful first!
       
       // Core personality and knowledge

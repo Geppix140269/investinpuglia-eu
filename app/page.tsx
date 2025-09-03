@@ -4,8 +4,8 @@
 import dynamic from 'next/dynamic'
 import { Suspense } from 'react'
 
-// Critical above-the-fold component - lightweight version
-import HeroVisualLite from '@/components/sections/HeroVisualLite'
+// Critical above-the-fold component - with video rotation
+import HeroVideoRotator from '@/components/sections/HeroVideoRotator'
 
 // Lazy load all below-the-fold components
 const ExitIntentPopup = dynamic(() => import('@/components/ExitIntentPopup'), { 
@@ -41,6 +41,8 @@ const PageSEOSection = dynamic(() => import('@/components/PageSEOSection'), {
   loading: () => null
 })
 
+import LocationsIndustries from '@/components/sections/LocationsIndustries'
+
 export default function HomePage() {
   return (
     <>
@@ -51,33 +53,39 @@ export default function HomePage() {
         </Suspense>
       </div>
 
-      {/* Critical: Hero Section - lightweight version */}
-      <HeroVisualLite />
+      {/* Critical: Hero Section - with rotating videos */}
+      <HeroVideoRotator />
       
-      {/* Below the fold - lazy loaded */}
-      <Suspense fallback={<div className="h-32 bg-gray-50 animate-pulse" />}>
-        <GrantInstitutions />
-      </Suspense>
-      
+      {/* Transforming Puglia - Our Best Advertisement */}
       <Suspense fallback={<div className="h-96 bg-gray-50 animate-pulse" />}>
         <PortfolioSlider />
       </Suspense>
       
       <Suspense fallback={<div className="h-96 bg-gray-50 animate-pulse" />}>
-        <WhyPuglia />
-      </Suspense>
-
-      <Suspense fallback={<div className="h-96 bg-gray-50 animate-pulse" />}>
         <AboutGiuseppe />
       </Suspense>
 
+      {/* The REAL Experts */}
       <Suspense fallback={<div className="h-96 bg-gray-50 animate-pulse" />}>
         <MeetTheTeam />
+      </Suspense>
+      
+      {/* Why Work With Us */}
+      <Suspense fallback={<div className="h-96 bg-gray-50 animate-pulse" />}>
+        <WhyPuglia />
+      </Suspense>
+      
+      {/* Beyond Mini PIA - moved below */}
+      <Suspense fallback={<div className="h-32 bg-gray-50 animate-pulse" />}>
+        <GrantInstitutions />
       </Suspense>
 
       <Suspense fallback={<div className="h-96 bg-gray-50 animate-pulse" />}>
         <FAQ />
       </Suspense>
+      
+      {/* Locations and Industries Gallery - before footer */}
+      <LocationsIndustries />
       
       {/* SEO Section - low priority, lazy loaded */}
       <Suspense fallback={null}>

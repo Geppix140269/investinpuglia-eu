@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { TrendingUp, Euro, Users, MapPin, ArrowRight, CheckCircle, Globe, Building, Shield, Award, Clock, Zap, ChevronRight, Hotel, Home, Utensils, Factory } from 'lucide-react';
 
 const HeroExecutive = () => {
@@ -258,13 +259,13 @@ const HeroExecutive = () => {
           </div>
           
           {/* Seconda riga - Book Consultation */}
-          <button 
-            onClick={() => window.open('https://calendly.com/investinpuglia/30min', '_blank')}
-            className="bg-white text-gray-900 border-2 border-gray-200 px-10 py-5 rounded-full font-semibold text-lg hover:border-purple-400 hover:shadow-xl transition-all flex items-center justify-center gap-3"
+          <Link
+            href="/consultation"
+            className="bg-white text-gray-900 border-2 border-gray-200 px-10 py-5 rounded-full font-semibold text-lg hover:border-green-400 hover:shadow-xl transition-all flex items-center justify-center gap-3"
           >
-            Book Free Consultation
+            FREE Expert Consultation
             <ArrowRight className="w-5 h-5" />
-          </button>
+          </Link>
         </div>
 
         {/* Who's Investing - Social Proof */}

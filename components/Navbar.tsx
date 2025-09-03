@@ -152,14 +152,12 @@ export default function Navbar() {
 
           {/* CTA Button - Right aligned */}
           <div className="hidden md:block ml-auto">
-            <a 
-              href="https://calendly.com/investinpuglia/30min"
-              className="bg-gradient-to-r from-purple-600 to-emerald-600 text-white px-5 py-2.5 rounded-full font-semibold transition-all hover:shadow-lg hover:scale-105 transform duration-200"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link 
+              href="/consultation"
+              className="bg-gradient-to-r from-purple-600 to-emerald-600 text-white px-5 py-2.5 rounded-full font-semibold transition-all hover:shadow-lg hover:scale-105 transform duration-200 animate-pulse"
             >
-              Book Strategy Call →
-            </a>
+              FREE Consultation →
+            </Link>
           </div>
 
           {/* Mobile menu button */}
@@ -218,14 +216,12 @@ export default function Navbar() {
                 Agencies
               </a>
               
-              <a 
-                href="https://calendly.com/investinpuglia/30min"
+              <Link 
+                href="/consultation"
                 className="bg-gradient-to-r from-purple-600 to-emerald-600 text-white px-5 py-3 rounded-full font-semibold text-center"
-                target="_blank"
-                rel="noopener noreferrer"
               >
-                Book Strategy Call →
-              </a>
+                FREE Consultation →
+              </Link>
             </div>
           </div>
         )}

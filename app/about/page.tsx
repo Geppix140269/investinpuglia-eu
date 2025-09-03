@@ -80,23 +80,24 @@ export default function AboutPage() {
       email: "info@investinpuglia.eu"
     },
     {
-      name: "Sabine van Putten",
-      role: "Strategic Partnerships & Investment Relations",
-      image: "https://res.cloudinary.com/dusubfxgo/image/upload/c_fill,f_auto,g_face,h_800,q_auto:best,w_800/v1756749364/investinpuglia/team/investinpuglia/team/sabine-van-putten.jpg",
-      bio: "Multilingual executive with 20+ years of international experience, pioneering expertise in short-term rentals, and deep knowledge of property development and historical restoration across Mediterranean markets.",
+      name: "Avv. Marco Magaraggia",
+      role: "Legal Counsel - Italian & International Law",
+      image: "https://res.cloudinary.com/dusubfxgo/image/upload/c_fill,f_auto,g_face,h_800,q_auto:best,w_800/v1756889855/investinpuglia/team/marco-magaraggia.jpg",
+      bio: "Founder of italian-lawyer.eu, specializing in Italian real estate law, foreign investments, and international taxation. Marco ensures all investments comply with Italian regulations while optimizing tax structures for international clients.",
       expertise: [
-        "Property Development & Restoration",
-        "Hospitality & Short-term Rentals",
-        "International Business Development",
-        "Executive Operations Management"
+        "Italian Real Estate Law",
+        "International Tax Optimization",
+        "Foreign Investment Compliance",
+        "Contract Negotiation & Due Diligence"
       ],
       achievements: [
-        "Founded successful Mediterranean hospitality business",
-        "Pioneer in short-term rental market",
-        "20+ years C-level executive support",
-        "Fluent in 6 languages"
+        "Founded italian-lawyer.eu platform",
+        "Advised on €100M+ in foreign investments",
+        "Expert in Italian bureaucracy navigation",
+        "Multilingual legal services (EN/IT/DE)"
       ],
-      email: "sabine.toelle@web.de"
+      email: "info@italian-lawyer.eu",
+      website: "https://italian-lawyer.eu"
     }
   ]
 

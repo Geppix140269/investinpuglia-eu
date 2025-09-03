@@ -44,10 +44,10 @@ function ConsultationSuccessContent() {
           {/* Success Message */}
           <div className="text-center mb-8">
             <h1 className="text-4xl font-bold text-gray-900 mb-4">
-              Payment Successful!
+              Qualification Complete!
             </h1>
             <p className="text-xl text-gray-600 mb-2">
-              Your {consultationType} has been confirmed.
+              Your FREE {consultationType} is ready to be scheduled.
             </p>
             <div className="inline-flex items-center justify-center bg-blue-50 text-blue-700 px-4 py-2 rounded-full">
               <Calendar className="h-5 w-5 mr-2" />

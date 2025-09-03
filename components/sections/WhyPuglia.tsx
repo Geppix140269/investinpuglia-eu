@@ -1,4 +1,7 @@
+'use client'
+
 import React from 'react';
+import Link from 'next/link';
 import { ArrowRight, TrendingUp, Globe2, CheckCircle, BarChart3, MapPin } from 'lucide-react';
 
 export default function WhyPugliaSection() {
@@ -20,15 +23,15 @@ export default function WhyPugliaSection() {
           </div>
           
           <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-            Why Puglia Outperforms
+            Why Work With Us
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-emerald-600 mt-2">
-              Every Other Italian Market
+              The REAL Italian Advantage
             </span>
           </h2>
           
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            While Milan struggles with 3% returns and Rome faces oversaturation, 
-            Puglia delivers 18.7% ROI with 74% foreign demand growth in just 4 years.
+            We are Italian professionals with over 30 years of international experience. 
+            Our unmatched local network and 100+ years of combined project expertise set us apart.
           </p>
         </div>
 
@@ -41,27 +44,27 @@ export default function WhyPugliaSection() {
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             <div className="bg-gradient-to-br from-purple-50 to-purple-100/50 rounded-2xl p-6">
-              <div className="text-4xl font-bold text-purple-700 mb-2">€9.9B</div>
-              <div className="text-sm font-semibold text-purple-600 mb-1">Total Investment Volume</div>
-              <div className="text-xs text-gray-600">+66% YoY Growth</div>
+              <div className="text-4xl font-bold text-purple-700 mb-2">€150M+</div>
+              <div className="text-sm font-semibold text-purple-600 mb-1">Projects Managed</div>
+              <div className="text-xs text-gray-600">Demonstrable track record</div>
             </div>
             
             <div className="bg-gradient-to-br from-emerald-50 to-emerald-100/50 rounded-2xl p-6">
-              <div className="text-4xl font-bold text-emerald-700 mb-2">62%</div>
-              <div className="text-sm font-semibold text-emerald-600 mb-1">Foreign Capital Share</div>
-              <div className="text-xs text-gray-600">Highest in Italy</div>
+              <div className="text-4xl font-bold text-emerald-700 mb-2">€1M+</div>
+              <div className="text-sm font-semibold text-emerald-600 mb-1">Minimum Investment</div>
+              <div className="text-xs text-gray-600">We work exclusively with serious investors</div>
             </div>
             
             <div className="bg-gradient-to-br from-purple-50 to-purple-100/50 rounded-2xl p-6">
-              <div className="text-4xl font-bold text-purple-700 mb-2">+350%</div>
-              <div className="text-sm font-semibold text-purple-600 mb-1">US Investor Growth</div>
-              <div className="text-xs text-gray-600">In Puglia specifically</div>
+              <div className="text-4xl font-bold text-purple-700 mb-2">100+</div>
+              <div className="text-sm font-semibold text-purple-600 mb-1">Years Combined Expertise</div>
+              <div className="text-xs text-gray-600">Project management & financing</div>
             </div>
             
             <div className="bg-gradient-to-br from-emerald-50 to-emerald-100/50 rounded-2xl p-6">
-              <div className="text-4xl font-bold text-emerald-700 mb-2">4th</div>
-              <div className="text-sm font-semibold text-emerald-600 mb-1">Most Requested Region</div>
-              <div className="text-xs text-gray-600">By international buyers</div>
+              <div className="text-4xl font-bold text-emerald-700 mb-2">55%</div>
+              <div className="text-sm font-semibold text-emerald-600 mb-1">Grant Funding Available</div>
+              <div className="text-xs text-gray-600">Non-refundable EU co-funding</div>
             </div>
           </div>
         </div>
@@ -72,49 +75,49 @@ export default function WhyPugliaSection() {
           <div>
             <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
               <Globe2 className="w-6 h-6 text-purple-600" />
-              Who's Buying & Why
+              Our Comprehensive Services
             </h3>
             
             <div className="space-y-4 mb-8">
               <div className="bg-white/60 backdrop-blur-sm rounded-xl p-4 border border-gray-100">
                 <div className="flex justify-between items-start mb-2">
-                  <span className="text-lg font-semibold text-gray-900">🇺🇸 Americans</span>
-                  <span className="text-sm font-bold text-purple-600">29.9% of market</span>
+                  <span className="text-lg font-semibold text-gray-900">Property Assessment</span>
+                  <span className="text-sm font-bold text-purple-600">Expert Due Diligence</span>
                 </div>
-                <p className="text-sm text-gray-600">Now #1 foreign buyers, up from 5% in 2023</p>
+                <p className="text-sm text-gray-600">We are NOT real estate agents - we provide independent assessment</p>
               </div>
               
               <div className="bg-white/60 backdrop-blur-sm rounded-xl p-4 border border-gray-100">
                 <div className="flex justify-between items-start mb-2">
-                  <span className="text-lg font-semibold text-gray-900">🇬🇧 British</span>
-                  <span className="text-sm font-bold text-purple-600">9.8% of market</span>
+                  <span className="text-lg font-semibold text-gray-900">Grant Financing</span>
+                  <span className="text-sm font-bold text-purple-600">Beyond Mini PIA</span>
                 </div>
-                <p className="text-sm text-gray-600">Returning post-Brexit for value opportunities</p>
+                <p className="text-sm text-gray-600">Access to full spectrum of EU and regional funding programs</p>
               </div>
               
               <div className="bg-white/60 backdrop-blur-sm rounded-xl p-4 border border-gray-100">
                 <div className="flex justify-between items-start mb-2">
-                  <span className="text-lg font-semibold text-gray-900">🇩🇪 Germans</span>
-                  <span className="text-sm font-bold text-purple-600">9.6% of market</span>
+                  <span className="text-lg font-semibold text-gray-900">Project Management</span>
+                  <span className="text-sm font-bold text-purple-600">End-to-End</span>
                 </div>
-                <p className="text-sm text-gray-600">+250% growth, seeking coastal properties</p>
+                <p className="text-sm text-gray-600">From concept through completion with local contractors</p>
               </div>
             </div>
 
             <div className="bg-gradient-to-r from-purple-100 to-emerald-100 rounded-xl p-6">
-              <h4 className="font-semibold text-gray-900 mb-3">Investment Sweet Spot</h4>
+              <h4 className="font-semibold text-gray-900 mb-3">Why We're Different</h4>
               <div className="space-y-2 text-sm">
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-emerald-600" />
-                  <span>60% seek properties under €250k</span>
+                  <span>Work with ALL prestigious real estate agencies</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-emerald-600" />
-                  <span>Average search budget: €423k</span>
+                  <span>LOCAL network built over decades</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-emerald-600" />
-                  <span>Prefer 120+ sqm restored properties</span>
+                  <span>It's a privilege to work with us</span>
                 </div>
               </div>
             </div>
@@ -124,40 +127,40 @@ export default function WhyPugliaSection() {
           <div>
             <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
               <MapPin className="w-6 h-6 text-emerald-600" />
-              2024-2025 Investment Hotspots
+              Our Local Network Advantage
             </h3>
             
             <div className="space-y-4">
               <div className="bg-gradient-to-r from-purple-600 to-purple-700 text-white rounded-xl p-5">
                 <div className="flex justify-between items-start mb-2">
-                  <h4 className="text-xl font-bold">Bari Province</h4>
-                  <span className="bg-white/20 px-3 py-1 rounded-full text-sm">+63.5%</span>
+                  <h4 className="text-xl font-bold">Real Estate Partners</h4>
+                  <span className="bg-white/20 px-3 py-1 rounded-full text-sm">Exclusive</span>
                 </div>
-                <p className="text-sm opacity-90">Capital access, international airport, business hub</p>
+                <p className="text-sm opacity-90">Access to ALL prestigious agencies - not just one</p>
               </div>
               
               <div className="bg-white border-2 border-purple-200 rounded-xl p-5">
                 <div className="flex justify-between items-start mb-2">
-                  <h4 className="text-xl font-bold text-gray-900">Ostuni</h4>
-                  <span className="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-sm font-semibold">+250%</span>
+                  <h4 className="text-xl font-bold text-gray-900">Government Relations</h4>
+                  <span className="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-sm font-semibold">Established</span>
                 </div>
-                <p className="text-sm text-gray-600">From €200k • "White City" premium brand</p>
+                <p className="text-sm text-gray-600">Direct access to grant authorities and approvals</p>
               </div>
               
               <div className="bg-white border-2 border-emerald-200 rounded-xl p-5">
                 <div className="flex justify-between items-start mb-2">
-                  <h4 className="text-xl font-bold text-gray-900">Monopoli</h4>
-                  <span className="bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-sm font-semibold">Premium</span>
+                  <h4 className="text-xl font-bold text-gray-900">Construction & Development</h4>
+                  <span className="bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-sm font-semibold">Vetted</span>
                 </div>
-                <p className="text-sm text-gray-600">€400k-1M+ • Luxury coastal market</p>
+                <p className="text-sm text-gray-600">Trusted contractors and project managers</p>
               </div>
               
               <div className="bg-white border-2 border-purple-200 rounded-xl p-5">
                 <div className="flex justify-between items-start mb-2">
-                  <h4 className="text-xl font-bold text-gray-900">Valle d'Itria</h4>
-                  <span className="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-sm font-semibold">Trulli</span>
+                  <h4 className="text-xl font-bold text-gray-900">Legal & Financial</h4>
+                  <span className="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-sm font-semibold">Expert</span>
                 </div>
-                <p className="text-sm text-gray-600">Unique properties • International appeal</p>
+                <p className="text-sm text-gray-600">International tax optimization and compliance</p>
               </div>
             </div>
           </div>
@@ -166,19 +169,22 @@ export default function WhyPugliaSection() {
         {/* Bottom CTA */}
         <div className="mt-16 text-center bg-gradient-to-r from-purple-50 to-emerald-50 rounded-3xl p-12">
           <h3 className="text-3xl font-bold text-gray-900 mb-4">
-            The Window Is Open Now
+            Work With The REAL Experts
           </h3>
           <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-            With supply constraints and increasing demand, Puglia's premium properties 
-            are appreciating rapidly. Smart money is moving fast.
+            We are Italians with international expertise. Our track record speaks for itself.
+            This is a privilege reserved for serious investors only.
           </p>
-          <button 
-            onClick={() => window.location.href = 'https://calendly.com/investinpuglia/30min'}
-            className="group px-10 py-5 bg-gradient-to-r from-purple-600 to-emerald-600 text-white font-semibold text-lg rounded-full hover:shadow-2xl transition-all inline-flex items-center gap-3"
+          <Link
+            href="/consultation"
+            className="group px-10 py-5 bg-gradient-to-r from-green-500 to-green-600 text-white font-bold text-lg rounded-full hover:from-green-600 hover:to-green-700 transition-all transform hover:scale-105 shadow-2xl inline-flex items-center gap-3"
           >
-            Book a Strategy Call
+            FREE Expert Consultation
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-          </button>
+          </Link>
+          <p className="text-sm text-gray-500 mt-3">
+            Start with our FREE consultation - no payment required
+          </p>
         </div>
       </div>
     </section>
