@@ -33,7 +33,7 @@ export async function POST(request: NextRequest) {
     const profiles = await profilesResponse.json();
 
     // Post to each profile
-    const results = [];
+    const results: any[] = [];
     for (const profile of profiles) {
       const postResponse = await fetch(
         `https://api.bufferapp.com/1/updates/create.json`,
