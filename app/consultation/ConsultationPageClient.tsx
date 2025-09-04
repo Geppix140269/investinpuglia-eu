@@ -104,18 +104,18 @@ export default function ConsultationPageClient() {
             30-Minute Strategic Session with Our Grant Experts
           </p>
           
-          {/* Main CTAs */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          {/* Main CTA */}
+          <div className="flex flex-col items-center">
             <button
               onClick={() => setShowQuestionnaire(true)}
-              className="bg-gradient-to-r from-green-600 to-green-700 text-white px-10 py-5 rounded-full font-bold text-xl hover:shadow-xl transition-all inline-flex items-center gap-3"
+              className="bg-gradient-to-r from-green-600 to-green-700 text-white px-10 py-5 rounded-full font-bold text-xl hover:shadow-xl transition-all flex items-center justify-center gap-3"
             >
               <Calendar className="h-7 w-7" />
               Start Booking Process
               <ArrowRight className="h-6 w-6" />
             </button>
             
-            <p className="text-gray-200 text-sm">
+            <p className="mt-3 text-sm text-gray-600">
               Quick 2-minute questionnaire required before scheduling
             </p>
           </div>
@@ -126,25 +126,6 @@ export default function ConsultationPageClient() {
         </div>
       </section>
 
-      {/* Prominent Booking Banner */}
-      <section className="py-8 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-green-500 to-green-600">
-        <div className="max-w-4xl mx-auto text-center text-white">
-          <h2 className="text-3xl font-bold mb-4">
-            ⚡ Book Your FREE Consultation Call NOW!
-          </h2>
-          <p className="text-xl mb-6">
-            Direct access to EU grant experts - Schedule your 30-minute call immediately
-          </p>
-          <button
-            onClick={() => setShowQuestionnaire(true)}
-            className="inline-flex items-center bg-white text-green-600 px-12 py-5 rounded-full font-bold text-xl hover:shadow-xl transition-all gap-3"
-          >
-            <MessageSquare className="h-7 w-7" />
-            Complete Questionnaire & Book
-            <ChevronRight className="h-6 w-6" />
-          </button>
-        </div>
-      </section>
 
       {/* Value Proposition */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
@@ -163,11 +144,6 @@ export default function ConsultationPageClient() {
               </div>
             ))}
           </div>
-          
-          {/* CTA after value props */}
-          <div className="text-center mt-12">
-            <ConsultationCTA variant="primary" />
-          </div>
         </div>
       </section>
 
@@ -175,7 +151,7 @@ export default function ConsultationPageClient() {
       <section className="py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl font-bold text-center mb-12">
-            2 Simple Steps to Your FREE Consultation
+            Simple 3-Step Process
           </h2>
           <div className="space-y-8">
             <div className="flex items-start">
@@ -183,17 +159,10 @@ export default function ConsultationPageClient() {
                 1
               </div>
               <div>
-                <h3 className="text-xl font-semibold mb-2">Book Your Call (30 seconds)</h3>
-                <p className="text-gray-600 mb-3">
-                  Click the button below to access our calendar and choose your preferred time slot. 
-                  Available times include mornings, afternoons, and evenings to accommodate all time zones.
+                <h3 className="text-xl font-semibold mb-2">Complete Quick Questionnaire</h3>
+                <p className="text-gray-600">
+                  Answer a few questions about your investment goals and budget (2 minutes)
                 </p>
-                <button
-                  onClick={() => setShowQuestionnaire(true)}
-                  className="inline-flex items-center text-blue-600 font-bold hover:underline"
-                >
-                  Start questionnaire →
-                </button>
               </div>
             </div>
             
@@ -202,28 +171,24 @@ export default function ConsultationPageClient() {
                 2
               </div>
               <div>
-                <h3 className="text-xl font-semibold mb-2">Join Your FREE Expert Call</h3>
+                <h3 className="text-xl font-semibold mb-2">Schedule Your Call</h3>
                 <p className="text-gray-600">
-                  Join your 30-minute video or phone consultation with our grant specialists 
-                  for personalized advice and clear next steps. 100% FREE, no obligations.
+                  Choose your preferred time slot via Calendly after completing the questionnaire
                 </p>
               </div>
             </div>
-          </div>
-          
-          {/* Direct booking CTA */}
-          <div className="text-center mt-12">
-            <button
-              onClick={() => setShowQuestionnaire(true)}
-              className="bg-gradient-to-r from-green-600 to-green-700 text-white px-10 py-4 rounded-full font-bold text-lg hover:shadow-xl transition-all inline-flex items-center gap-3"
-            >
-              <MessageSquare className="h-6 w-6" />
-              Start FREE Consultation Process
-              <ArrowRight className="h-6 w-6" />
-            </button>
-            <p className="mt-4 text-sm text-gray-600">
-              2-minute questionnaire required to ensure we prepare for your specific needs
-            </p>
+            
+            <div className="flex items-start">
+              <div className="bg-green-600 text-white rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold mr-6 flex-shrink-0">
+                3
+              </div>
+              <div>
+                <h3 className="text-xl font-semibold mb-2">Get Expert Guidance</h3>
+                <p className="text-gray-600">
+                  Join your FREE 30-minute consultation with our grant specialists
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -260,11 +225,6 @@ export default function ConsultationPageClient() {
                 <span>Clear next steps and timeline for your investment</span>
               </li>
             </ul>
-            
-            {/* CTA in the middle of content */}
-            <div className="text-center mt-8">
-              <ConsultationCTA variant="secondary" text="Schedule Your FREE Call" />
-            </div>
           </div>
         </div>
       </section>
@@ -288,11 +248,6 @@ export default function ConsultationPageClient() {
                 <div className="text-sm text-gray-500">{testimonial.location}</div>
               </div>
             ))}
-          </div>
-          
-          {/* CTA after testimonials */}
-          <div className="text-center mt-12">
-            <ConsultationCTA variant="hero" />
           </div>
         </div>
       </section>
@@ -373,14 +328,6 @@ export default function ConsultationPageClient() {
                 Please specify your preference when booking.
               </p>
             </div>
-          </div>
-          
-          {/* Final CTA in FAQ */}
-          <div className="text-center mt-12">
-            <p className="text-lg font-semibold text-gray-700 mb-4">
-              Don't miss this opportunity for FREE expert advice!
-            </p>
-            <ConsultationCTA />
           </div>
         </div>
       </section>
