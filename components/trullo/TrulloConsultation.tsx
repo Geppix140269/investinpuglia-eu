@@ -28,7 +28,7 @@ export default function TrulloConsultation() {
       };
 
       // Handle qualification completion
-      window.trullo.onQualificationComplete = (qualificationData) => {
+      window.trullo.onQualificationComplete = async (qualificationData) => {
         console.log('Qualification complete:', qualificationData);
         
         // Store qualification data
@@ -36,17 +36,40 @@ export default function TrulloConsultation() {
           localStorage.setItem('consultation-qualification', JSON.stringify(qualificationData));
           localStorage.setItem('consultation-questions-answered', 'true');
           
-          // Check if qualified (budget >= €200K and timeline <= 12 months)
-          const isQualified = 
-            qualificationData.budget !== 'Still determining budget' &&
-            qualificationData.timeline !== 'Just exploring options';
-          
-          if (isQualified) {
-            // Redirect to Calendly with pre-filled data
+          try {
+            // Send data to API for database storage and email notification
+            const response = await fetch('/api/consultation-submission', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                ...qualificationData,
+                source: new URLSearchParams(window.location.search).get('source') || 'website',
+                campaign: new URLSearchParams(window.location.search).get('campaign') || 'direct',
+                timestamp: new Date().toISOString()
+              })
+            });
+            
+            const result = await response.json();
+            
+            if (result.success) {
+              if (result.qualified) {
+                // Redirect to Calendly for qualified leads
+                redirectToCalendly(qualificationData);
+              } else {
+                // Show nurture message for non-qualified leads
+                showNurtureOptions();
+              }
+            } else {
+              console.error('Failed to submit consultation data:', result.error);
+              // Still redirect to Calendly as fallback
+              redirectToCalendly(qualificationData);
+            }
+          } catch (error) {
+            console.error('Error submitting consultation data:', error);
+            // Still redirect to Calendly as fallback
             redirectToCalendly(qualificationData);
-          } else {
-            // Show nurture message
-            showNurtureOptions();
           }
         }
       };

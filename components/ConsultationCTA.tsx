@@ -23,14 +23,16 @@ export default function ConsultationCTA({
             <h3 className="text-xl font-bold mb-2">Get Your FREE Expert Consultation</h3>
             <p className="text-white/90">Discover how to access €200K-€2M in EU grants for your investment</p>
           </div>
-          <Link 
-            href="/consultation"
+          <a 
+            href="https://calendly.com/investinpuglia/30min"
+            target="_blank"
+            rel="noopener noreferrer"
             className="bg-white text-blue-600 px-6 py-3 rounded-full font-bold hover:shadow-lg transition-all inline-flex items-center gap-2 animate-pulse"
           >
             <MessageSquare className="h-5 w-5" />
             Start Now
             <ArrowRight className="h-4 w-4" />
-          </Link>
+          </a>
         </div>
       </div>
     )

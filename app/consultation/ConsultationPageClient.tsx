@@ -269,6 +269,10 @@ export default function ConsultationPageClient() {
             <p className="mt-6 text-blue-100">
               Takes only 3-5 minutes • No payment required • Instant scheduling
             </p>
+            
+            <p className="text-sm text-blue-200 mt-2">
+              Or call directly: +39 351 400 1402
+            </p>
           </div>
         </section>
 
