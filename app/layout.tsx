@@ -12,12 +12,9 @@ import { Toaster } from 'react-hot-toast'
 import { PAGE_OG_IMAGES, generateOGImageUrl } from '@/lib/og-images'
 import { generatePageMetadata } from './layout-metadata'
 
-// Lazy load the TrulloChatbot to avoid build errors if component doesn't exist yet
-const TrulloChatbotWrapper = dynamic(
-  () => import('@/components/TrulloChatbotWrapper').catch(() => {
-    // Return empty component if file doesn't exist
-    return { default: () => null }
-  }),
+// Lazy load the FloatingConsultationCTA
+const FloatingConsultationCTA = dynamic(
+  () => import('@/components/FloatingConsultationCTA'),
   {
     ssr: false,
     loading: () => null
@@ -357,7 +354,7 @@ export default function RootLayout({
 
           <main className="pt-16">{children}</main>
           <Footer />
-          <TrulloChatbotWrapper />
+          <FloatingConsultationCTA />
           <Toaster position="top-right" />
           <VisitorTracker />
         </AuthProvider>

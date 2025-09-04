@@ -1,36 +1,13 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Phone, Video, Calendar, CheckCircle, ArrowRight, MessageSquare, Target, Clock, Shield, Users, Star, ChevronRight } from 'lucide-react';
-import Link from 'next/link';
-import Script from 'next/script';
-import TrulloConsultation from '@/components/trullo/TrulloConsultation';
+import PreBookingQuestionnaire from '@/components/PreBookingQuestionnaire';
+import ConsultationCTA from '@/components/ConsultationCTA';
 
 export default function ConsultationPageClient() {
-  const [showTrullo, setShowTrullo] = useState(false);
-  const [questionsAnswered, setQuestionsAnswered] = useState(false);
-
-  useEffect(() => {
-    // Check if user has already answered questions
-    const answered = localStorage.getItem('consultation-questions-answered');
-    if (answered === 'true') {
-      setQuestionsAnswered(true);
-    }
-
-    // Trigger Trullo to open after a delay
-    const timer = setTimeout(() => {
-      if (!questionsAnswered) {
-        setShowTrullo(true);
-        // Open Trullo chatbot with consultation context
-        if (window.trullo) {
-          window.trullo.open();
-          window.trullo.sendMessage('I\'m interested in booking a consultation');
-        }
-      }
-    }, 3000);
-
-    return () => clearTimeout(timer);
-  }, [questionsAnswered]);
+  const [showQuestionnaire, setShowQuestionnaire] = useState(false);
+  const [questionnaireComplete, setQuestionnaireComplete] = useState(false);
 
   const consultationObjectives = [
     {
@@ -76,281 +53,370 @@ export default function ConsultationPageClient() {
     }
   ];
 
-  const handleStartQuestionnaire = () => {
-    setShowTrullo(true);
-    // Open Trullo with consultation context
-    if (window.trullo) {
-      window.trullo.open();
-      window.trullo.sendMessage('I want to book a FREE consultation');
-    }
+  const handleQuestionnaireComplete = (data: any) => {
+    setQuestionnaireComplete(true);
+    setShowQuestionnaire(false);
   };
 
-  return (
-    <>
-      <TrulloConsultation />
-      <Script
-        id="trullo-script"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{
-          __html: `
-            window.trulloConfig = {
-              context: 'consultation',
-              autoOpen: false,
-              initialMessage: 'consultation_inquiry'
-            };
-          `
-        }}
-      />
-      
-      <div className="min-h-screen bg-gradient-to-b from-blue-50 via-white to-blue-50">
-        {/* Hero Section */}
-        <section className="py-20 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-7xl mx-auto text-center">
-            <h1 className="text-5xl font-bold text-gray-900 mb-6">
-              FREE Expert Consultation
+  if (showQuestionnaire) {
+    return (
+      <div className="min-h-screen bg-gradient-to-b from-blue-50 via-white to-blue-50 py-20 px-4">
+        <div className="max-w-2xl mx-auto">
+          <div className="text-center mb-8">
+            <h1 className="text-3xl font-bold text-gray-900 mb-4">
+              Quick Pre-Consultation Questionnaire
             </h1>
-            <p className="text-2xl text-gray-600 max-w-3xl mx-auto mb-4">
-              Unlock €200K-€2M in EU Grants for Your Italian Property Investment
-            </p>
-            <p className="text-lg text-blue-600 font-semibold">
-              30-Minute Strategic Session with Our Grant Experts
+            <p className="text-lg text-gray-600">
+              Help us prepare for your FREE consultation by answering a few quick questions
             </p>
           </div>
-        </section>
-
-        {/* Value Proposition */}
-        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
-          <div className="max-w-7xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-12">
-              What You'll Achieve in Your Consultation
-            </h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {consultationObjectives.map((objective, index) => (
-                <div key={index} className="text-center">
-                  <div className="bg-blue-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
-                    <objective.icon className="h-10 w-10 text-blue-600" />
-                  </div>
-                  <h3 className="text-xl font-semibold mb-2">{objective.title}</h3>
-                  <p className="text-gray-600">{objective.description}</p>
-                </div>
-              ))}
-            </div>
+          
+          <PreBookingQuestionnaire 
+            onComplete={handleQuestionnaireComplete}
+            calendlyUrl="https://calendly.com/investinpuglia/30min"
+          />
+          
+          <div className="text-center mt-6">
+            <button
+              onClick={() => setShowQuestionnaire(false)}
+              className="text-gray-500 underline hover:text-gray-700"
+            >
+              Back to consultation info
+            </button>
           </div>
-        </section>
+        </div>
+      </div>
+    );
+  }
 
-        {/* Process Section */}
-        <section className="py-16 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-12">
-              Simple 3-Step Process
-            </h2>
-            <div className="space-y-8">
-              <div className="flex items-start">
-                <div className="bg-blue-600 text-white rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold mr-6 flex-shrink-0">
-                  1
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold mb-2">Answer Quick Questions</h3>
-                  <p className="text-gray-600">
-                    Our intelligent chatbot Trullo will guide you through a brief questionnaire 
-                    to understand your investment goals and grant eligibility (3-5 minutes)
-                  </p>
-                </div>
-              </div>
-              
-              <div className="flex items-start">
-                <div className="bg-blue-600 text-white rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold mr-6 flex-shrink-0">
-                  2
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold mb-2">Schedule Your Free Call</h3>
-                  <p className="text-gray-600">
-                    Choose your preferred time slot via Calendly - available times include 
-                    mornings, afternoons, and evenings to accommodate all time zones
-                  </p>
-                </div>
-              </div>
-              
-              <div className="flex items-start">
-                <div className="bg-blue-600 text-white rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold mr-6 flex-shrink-0">
-                  3
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold mb-2">Get Expert Guidance</h3>
-                  <p className="text-gray-600">
-                    Join your 30-minute video or phone consultation with our grant specialists 
-                    for personalized advice and clear next steps
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Pre-Consultation Questions Preview */}
-        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-12">
-              What We'll Discuss
-            </h2>
-            <div className="bg-blue-50 rounded-xl p-8">
-              <p className="text-lg text-gray-700 mb-6">
-                To make the most of your consultation, we'll need to understand:
-              </p>
-              <ul className="space-y-3">
-                <li className="flex items-start">
-                  <CheckCircle className="h-5 w-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
-                  <span>Your investment timeline and budget range</span>
-                </li>
-                <li className="flex items-start">
-                  <CheckCircle className="h-5 w-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
-                  <span>Type of property you're interested in (residential, commercial, hospitality)</span>
-                </li>
-                <li className="flex items-start">
-                  <CheckCircle className="h-5 w-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
-                  <span>Your business plan or investment objectives</span>
-                </li>
-                <li className="flex items-start">
-                  <CheckCircle className="h-5 w-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
-                  <span>Previous experience with property investment or grants</span>
-                </li>
-                <li className="flex items-start">
-                  <CheckCircle className="h-5 w-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
-                  <span>Preferred location in Puglia and specific requirements</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </section>
-
-        {/* Testimonials */}
-        <section className="py-16 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-12">
-              Success Stories from Our Consultations
-            </h2>
-            <div className="grid md:grid-cols-3 gap-8">
-              {testimonials.map((testimonial, index) => (
-                <div key={index} className="bg-white rounded-lg shadow-lg p-6">
-                  <div className="flex mb-4">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
-                    ))}
-                  </div>
-                  <p className="text-gray-700 mb-4 italic">"{testimonial.text}"</p>
-                  <div className="font-semibold">{testimonial.name}</div>
-                  <div className="text-sm text-gray-500">{testimonial.location}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* CTA Section */}
-        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-blue-600 to-blue-700">
-          <div className="max-w-4xl mx-auto text-center text-white">
-            <h2 className="text-4xl font-bold mb-6">
-              Ready to Start Your Investment Journey?
-            </h2>
-            <p className="text-xl mb-8">
-              Your FREE consultation is just a few questions away. Let's discuss how 
-              EU grants can transform your Italian property investment.
-            </p>
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-blue-50 via-white to-blue-50">
+      {/* Hero Section with Direct CTA */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto text-center">
+          <h1 className="text-5xl font-bold text-gray-900 mb-6">
+            FREE Expert Consultation
+          </h1>
+          <p className="text-2xl text-gray-600 max-w-3xl mx-auto mb-4">
+            Unlock €200K-€2M in EU Grants for Your Italian Property Investment
+          </p>
+          <p className="text-lg text-blue-600 font-semibold mb-8">
+            30-Minute Strategic Session with Our Grant Experts
+          </p>
+          
+          {/* Main CTAs */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <a
+              href="https://calendly.com/investinpuglia/30min"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-gradient-to-r from-green-600 to-green-700 text-white px-10 py-5 rounded-full font-bold text-xl hover:shadow-2xl hover:scale-105 transition-all inline-flex items-center gap-3 animate-pulse"
+            >
+              <Calendar className="h-7 w-7" />
+              Book Your 30-Minute Call NOW
+              <ArrowRight className="h-6 w-6" />
+            </a>
             
             <button
-              onClick={handleStartQuestionnaire}
-              className="inline-flex items-center bg-white text-blue-600 px-10 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition-all transform hover:scale-105 shadow-xl"
+              onClick={() => setShowQuestionnaire(true)}
+              className="bg-white text-blue-600 border-2 border-blue-600 px-8 py-4 rounded-full font-bold text-lg hover:bg-blue-50 transition-all inline-flex items-center gap-2"
             >
-              <MessageSquare className="mr-3 h-6 w-6" />
-              Start Free Consultation Process
-              <ChevronRight className="ml-2 h-6 w-6" />
+              <MessageSquare className="h-6 w-6" />
+              Complete Pre-Booking Questionnaire
             </button>
-            
-            <p className="mt-6 text-blue-100">
-              Takes only 3-5 minutes • No payment required • Instant scheduling
-            </p>
-            
-            <p className="text-sm text-blue-200 mt-2">
-              Or call directly: +39 351 400 1402
-            </p>
           </div>
-        </section>
+          
+          <p className="mt-6 text-gray-600">
+            <span className="font-bold text-green-600">100% FREE</span> • No payment required • Limited slots available
+          </p>
+        </div>
+      </section>
 
-        {/* FAQ Section */}
-        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-12">
-              Frequently Asked Questions
-            </h2>
-            <div className="space-y-6">
-              <div>
-                <h3 className="text-xl font-semibold mb-2">
-                  Is the consultation really free?
-                </h3>
-                <p className="text-gray-600">
-                  Yes! We offer a complimentary 30-minute consultation to help you understand 
-                  your grant eligibility and investment opportunities. There's no obligation to proceed.
-                </p>
+      {/* Prominent Booking Banner */}
+      <section className="py-8 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-green-500 to-green-600">
+        <div className="max-w-4xl mx-auto text-center text-white">
+          <h2 className="text-3xl font-bold mb-4">
+            ⚡ Book Your FREE Consultation Call NOW!
+          </h2>
+          <p className="text-xl mb-6">
+            Direct access to EU grant experts - Schedule your 30-minute call immediately
+          </p>
+          <a
+            href="https://calendly.com/investinpuglia/30min"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center bg-white text-green-600 px-12 py-5 rounded-full font-bold text-xl hover:shadow-2xl hover:scale-105 transition-all gap-3"
+          >
+            <Phone className="h-7 w-7" />
+            Book Your Call NOW
+            <ChevronRight className="h-6 w-6" />
+          </a>
+        </div>
+      </section>
+
+      {/* Value Proposition */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-3xl font-bold text-center mb-12">
+            What You'll Achieve in Your FREE Consultation
+          </h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {consultationObjectives.map((objective, index) => (
+              <div key={index} className="text-center">
+                <div className="bg-blue-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
+                  <objective.icon className="h-10 w-10 text-blue-600" />
+                </div>
+                <h3 className="text-xl font-semibold mb-2">{objective.title}</h3>
+                <p className="text-gray-600">{objective.description}</p>
               </div>
-              
-              <div>
-                <h3 className="text-xl font-semibold mb-2">
-                  What if I'm not ready to invest immediately?
-                </h3>
-                <p className="text-gray-600">
-                  That's perfectly fine! Many clients consult with us months before making their 
-                  investment. We'll help you understand the timeline and prepare for when you're ready.
-                </p>
+            ))}
+          </div>
+          
+          {/* CTA after value props */}
+          <div className="text-center mt-12">
+            <ConsultationCTA variant="primary" />
+          </div>
+        </div>
+      </section>
+
+      {/* Simple Process */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl font-bold text-center mb-12">
+            2 Simple Steps to Your FREE Consultation
+          </h2>
+          <div className="space-y-8">
+            <div className="flex items-start">
+              <div className="bg-green-600 text-white rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold mr-6 flex-shrink-0">
+                1
               </div>
-              
               <div>
-                <h3 className="text-xl font-semibold mb-2">
-                  Do I need to have a specific property in mind?
-                </h3>
-                <p className="text-gray-600">
-                  No, we can discuss general investment strategies and grant opportunities. 
-                  However, if you have specific properties in mind, we can provide more targeted advice.
+                <h3 className="text-xl font-semibold mb-2">Book Your Call (30 seconds)</h3>
+                <p className="text-gray-600 mb-3">
+                  Click the button below to access our calendar and choose your preferred time slot. 
+                  Available times include mornings, afternoons, and evenings to accommodate all time zones.
                 </p>
+                <a
+                  href="https://calendly.com/investinpuglia/30min"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center text-blue-600 font-bold hover:underline"
+                >
+                  Book directly via Calendly →
+                </a>
               </div>
-              
+            </div>
+            
+            <div className="flex items-start">
+              <div className="bg-green-600 text-white rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold mr-6 flex-shrink-0">
+                2
+              </div>
               <div>
-                <h3 className="text-xl font-semibold mb-2">
-                  What languages are consultations available in?
-                </h3>
+                <h3 className="text-xl font-semibold mb-2">Join Your FREE Expert Call</h3>
                 <p className="text-gray-600">
-                  Our consultations are available in English, Italian, German, and French. 
-                  Please specify your preference when booking.
+                  Join your 30-minute video or phone consultation with our grant specialists 
+                  for personalized advice and clear next steps. 100% FREE, no obligations.
                 </p>
               </div>
             </div>
           </div>
-        </section>
-
-        {/* Contact Alternative */}
-        <section className="py-12 px-4 sm:px-6 lg:px-8 bg-gray-50">
-          <div className="max-w-4xl mx-auto text-center">
-            <p className="text-gray-600 mb-4">
-              Prefer to speak with someone immediately?
+          
+          {/* Direct booking CTA */}
+          <div className="text-center mt-12">
+            <a
+              href="https://calendly.com/investinpuglia/30min"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-gradient-to-r from-green-600 to-green-700 text-white px-12 py-5 rounded-full font-bold text-xl hover:shadow-2xl hover:scale-105 transition-all inline-flex items-center gap-3 animate-pulse"
+            >
+              <Calendar className="h-7 w-7" />
+              Book Your FREE 30-Minute Call NOW
+              <ArrowRight className="h-6 w-6" />
+            </a>
+            <p className="mt-4 text-sm text-gray-600">
+              Or optionally{' '}
+              <button
+                onClick={() => setShowQuestionnaire(true)}
+                className="text-blue-600 underline hover:text-blue-700"
+              >
+                complete our pre-booking questionnaire first
+              </button>
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="tel:+393514001402"
-                className="inline-flex items-center justify-center px-6 py-3 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 transition"
-              >
-                <Phone className="mr-2 h-5 w-5" />
-                Call: +39 351 400 1402
-              </a>
-              <a
-                href="mailto:g.funaro@investinpuglia.eu"
-                className="inline-flex items-center justify-center px-6 py-3 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 transition"
-              >
-                <MessageSquare className="mr-2 h-5 w-5" />
-                Email: g.funaro@investinpuglia.eu
-              </a>
+          </div>
+        </div>
+      </section>
+
+      {/* What We'll Discuss */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl font-bold text-center mb-12">
+            What We'll Discuss in Your FREE Call
+          </h2>
+          <div className="bg-blue-50 rounded-xl p-8">
+            <p className="text-lg text-gray-700 mb-6">
+              To maximize your consultation value, we'll cover:
+            </p>
+            <ul className="space-y-3">
+              <li className="flex items-start">
+                <CheckCircle className="h-5 w-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                <span>Your investment timeline and budget range</span>
+              </li>
+              <li className="flex items-start">
+                <CheckCircle className="h-5 w-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                <span>Type of property you're interested in (residential, commercial, hospitality)</span>
+              </li>
+              <li className="flex items-start">
+                <CheckCircle className="h-5 w-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                <span>Available EU grants and your eligibility (€200K-€2M)</span>
+              </li>
+              <li className="flex items-start">
+                <CheckCircle className="h-5 w-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                <span>Your business plan or investment objectives</span>
+              </li>
+              <li className="flex items-start">
+                <CheckCircle className="h-5 w-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                <span>Clear next steps and timeline for your investment</span>
+              </li>
+            </ul>
+            
+            {/* CTA in the middle of content */}
+            <div className="text-center mt-8">
+              <ConsultationCTA variant="secondary" text="Schedule Your FREE Call" />
             </div>
           </div>
-        </section>
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl font-bold text-center mb-12">
+            Success Stories from Our FREE Consultations
+          </h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            {testimonials.map((testimonial, index) => (
+              <div key={index} className="bg-white rounded-lg shadow-lg p-6">
+                <div className="flex mb-4">
+                  {[...Array(testimonial.rating)].map((_, i) => (
+                    <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
+                  ))}
+                </div>
+                <p className="text-gray-700 mb-4 italic">"{testimonial.text}"</p>
+                <div className="font-semibold">{testimonial.name}</div>
+                <div className="text-sm text-gray-500">{testimonial.location}</div>
+              </div>
+            ))}
+          </div>
+          
+          {/* CTA after testimonials */}
+          <div className="text-center mt-12">
+            <ConsultationCTA variant="hero" />
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA Section */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-blue-600 to-blue-700">
+        <div className="max-w-4xl mx-auto text-center text-white">
+          <h2 className="text-4xl font-bold mb-6">
+            Ready to Unlock €200K-€2M in EU Grants?
+          </h2>
+          <p className="text-xl mb-8">
+            Your FREE 30-minute consultation is just one click away. 
+            Get expert advice that could transform your Italian property investment.
+          </p>
+          
+          <a
+            href="https://calendly.com/investinpuglia/30min"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center bg-white text-blue-600 px-12 py-5 rounded-full font-bold text-xl hover:shadow-2xl hover:scale-105 transition-all gap-3 animate-pulse"
+          >
+            <Calendar className="h-7 w-7" />
+            Book Your FREE Call NOW
+            <ChevronRight className="h-6 w-6" />
+          </a>
+          
+          <p className="mt-6 text-blue-100">
+            ⚡ Limited slots available • 100% FREE • No payment required
+          </p>
+          
+          <p className="text-sm text-blue-200 mt-4">
+            Prefer to call directly? +39 351 400 1402
+          </p>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-3xl font-bold text-center mb-12">
+            Frequently Asked Questions
+          </h2>
+          <div className="space-y-6">
+            <div>
+              <h3 className="text-xl font-semibold mb-2">
+                Is the consultation really free?
+              </h3>
+              <p className="text-gray-600">
+                Yes! We offer a complimentary 30-minute consultation to help you understand 
+                your grant eligibility and investment opportunities. There's no obligation to proceed.
+              </p>
+            </div>
+            
+            <div>
+              <h3 className="text-xl font-semibold mb-2">
+                How do I book my consultation?
+              </h3>
+              <p className="text-gray-600">
+                Simply click any "Book Your Call NOW" button on this page. You'll be taken directly 
+                to our Calendly scheduling page where you can choose your preferred time slot.
+              </p>
+            </div>
+            
+            <div>
+              <h3 className="text-xl font-semibold mb-2">
+                Do I need to prepare anything?
+              </h3>
+              <p className="text-gray-600">
+                No preparation is required! However, if you'd like to help us prepare for your call, 
+                you can optionally complete our pre-booking questionnaire. This is not mandatory.
+              </p>
+            </div>
+            
+            <div>
+              <h3 className="text-xl font-semibold mb-2">
+                What languages are consultations available in?
+              </h3>
+              <p className="text-gray-600">
+                Our consultations are available in English, Italian, German, and French. 
+                Please specify your preference when booking.
+              </p>
+            </div>
+          </div>
+          
+          {/* Final CTA in FAQ */}
+          <div className="text-center mt-12">
+            <p className="text-lg font-semibold text-gray-700 mb-4">
+              Don't miss this opportunity for FREE expert advice!
+            </p>
+            <ConsultationCTA />
+          </div>
+        </div>
+      </section>
+
+      {/* Sticky Bottom CTA for Mobile */}
+      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4 shadow-lg lg:hidden z-50">
+        <a
+          href="https://calendly.com/investinpuglia/30min"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="w-full bg-gradient-to-r from-green-600 to-green-700 text-white py-4 rounded-full font-bold text-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
+        >
+          <Phone className="h-6 w-6" />
+          Book FREE Call NOW
+        </a>
       </div>
-    </>
+    </div>
   );
 }
