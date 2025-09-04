@@ -319,6 +319,9 @@ export async function POST(request: NextRequest) {
 
 function determineQualification(budget: string, timeline: string): boolean {
   const qualifiedBudgets = [
+    '€250K-€500K',
+    '€500K-€1M', 
+    'Over €1M',
     '€200,000 - €500,000',
     '€500,000 - €1,000,000',
     '€1,000,000 - €2,000,000',
@@ -326,6 +329,9 @@ function determineQualification(budget: string, timeline: string): boolean {
   ];
   
   const qualifiedTimelines = [
+    'Immediate (0-3 months)',
+    'Short-term (3-6 months)',
+    'Medium-term (6-12 months)',
     'Within 3 months',
     '3-6 months',
     '6-12 months'
@@ -335,16 +341,19 @@ function determineQualification(budget: string, timeline: string): boolean {
 }
 
 function getbudgetColor(budget: string): string {
-  if (budget.includes('Over €2,000,000')) return '#4caf50';
-  if (budget.includes('€1,000,000')) return '#8bc34a';
-  if (budget.includes('€500,000')) return '#ff9800';
-  if (budget.includes('€200,000')) return '#ff9800';
+  if (budget.includes('Over') && (budget.includes('€1M') || budget.includes('€2,000,000'))) return '#4caf50';
+  if (budget.includes('€1M') || budget.includes('€1,000,000')) return '#8bc34a';
+  if (budget.includes('€500K') || budget.includes('€500,000')) return '#ff9800';
+  if (budget.includes('€250K') || budget.includes('€200,000')) return '#ff9800';
+  if (budget.includes('€100K')) return '#ffc107';
   return '#9e9e9e';
 }
 
 function getTimelineColor(timeline: string): string {
-  if (timeline.includes('Within 3 months')) return '#f44336';
-  if (timeline.includes('3-6 months')) return '#ff9800';
-  if (timeline.includes('6-12 months')) return '#ffc107';
+  if (timeline.includes('Immediate') || timeline.includes('Within 3 months') || timeline.includes('0-3 months')) return '#f44336';
+  if (timeline.includes('Short-term') || timeline.includes('3-6 months')) return '#ff9800';
+  if (timeline.includes('Medium-term') || timeline.includes('6-12 months')) return '#ffc107';
+  if (timeline.includes('Long-term') || timeline.includes('12+ months')) return '#9e9e9e';
+  if (timeline.includes('Just exploring')) return '#9e9e9e';
   return '#9e9e9e';
 }

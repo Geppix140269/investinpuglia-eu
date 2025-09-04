@@ -5,7 +5,8 @@
       "Bash(mkdir:*)",
       "WebFetch(domain:res.cloudinary.com)",
       "WebFetch(domain:res.cloudinary.com)",
-      "Read(C:\\Users\\gfuna\\Dropbox\\PC\\Desktop\\BUSINESS\\Mare e Trulli International\\People\\SABINE/**)"
+      "Read(C:\\Users\\gfuna\\Dropbox\\PC\\Desktop\\BUSINESS\\Mare e Trulli International\\People\\SABINE/**)",
+      "Read(/C:\\Development\\investinpuglia-live\\lib/**)"
     ],
     "deny": [],
     "ask": []
