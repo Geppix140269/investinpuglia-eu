@@ -178,7 +178,7 @@ export async function POST(request: NextRequest) {
           </div>
         </div>
       `,
-      replyTo: email
+      reply_to: email
     });
 
     // Send confirmation email to user
