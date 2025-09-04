@@ -341,7 +341,6 @@ export function generateAIOptimizedMetadata(page: keyof typeof enhancedPageMetad
     verification: {
       google: 'your-google-verification',
       yandex: 'your-yandex-verification',
-      bing: 'your-bing-verification',
     },
   }
 }
@@ -400,8 +399,8 @@ export const industryMetadata = {
 }
 
 // Schema.org structured data for rich snippets
-export function generateEnhancedStructuredData(type: string, data?: any) {
-  const baseOrg = {
+export function generateEnhancedStructuredData(type: string, data?: any): any {
+  const baseOrg: any = {
     "@context": "https://schema.org",
     "@type": "InvestmentAdvisoryService",
     "@id": "https://investinpuglia.eu/#organization",
@@ -459,7 +458,7 @@ export function generateEnhancedStructuredData(type: string, data?: any) {
   }
   
   // Add specific schema based on page type
-  const schemas = [baseOrg]
+  const schemas: any[] = [baseOrg]
   
   if (type === 'home') {
     schemas.push({

@@ -159,12 +159,15 @@ export const metadata: Metadata = {
   // Verification codes
   verification: {
     google: 'your-google-verification-code',
-    bing: 'your-bing-verification-code',
     yandex: 'your-yandex-verification-code',
+    // Note: 'bing' verification should be added via meta tag in other section
   },
   
   // Additional metadata for AI assistants
   other: {
+    // Search engine verification
+    'msvalidate.01': 'your-bing-verification-code', // Bing verification
+    
     // Perplexity AI specific
     'perplexity:title': 'Italian Investment Opportunities with EU Grants',
     'perplexity:description': 'Expert Italian investment advisory with access to EU grants up to €2.75M',
