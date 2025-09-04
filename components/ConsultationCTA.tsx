@@ -1,6 +1,7 @@
 'use client'
 
 import { MessageSquare, Calendar, ArrowRight, Phone } from 'lucide-react'
+import { useRouter } from 'next/navigation'
 
 interface ConsultationCTAProps {
   variant?: 'primary' | 'secondary' | 'inline' | 'banner' | 'hero'
@@ -10,11 +11,15 @@ interface ConsultationCTAProps {
 
 export default function ConsultationCTA({ 
   variant = 'primary', 
-  text = 'Book Your 30-Minute Call NOW',
+  text = 'Book Your FREE Consultation',
   className = ''
 }: ConsultationCTAProps) {
+  const router = useRouter()
   
-  const calendlyUrl = 'https://calendly.com/investinpuglia/30min?utm_source=website&utm_medium=cta&utm_campaign=free_consultation'
+  const handleClick = () => {
+    // Navigate to consultation page which has the mandatory questionnaire
+    router.push('/consultation')
+  }
   
   if (variant === 'hero') {
     return (
@@ -22,16 +27,14 @@ export default function ConsultationCTA({
         <div className="text-center">
           <h2 className="text-3xl font-bold mb-3">Book Your FREE 30-Minute Consultation NOW!</h2>
           <p className="text-xl mb-6 text-white/95">Get Expert Advice on EU Grants Worth €200K-€2M</p>
-          <a 
-            href={calendlyUrl}
-            target="_blank"
-            rel="noopener noreferrer"
+          <button 
+            onClick={handleClick}
             className="inline-flex items-center bg-white text-green-600 px-10 py-4 rounded-full font-bold text-lg hover:shadow-xl transition-all gap-3"
           >
-            <Phone className="h-6 w-6" />
-            Book Your Call NOW
+            <MessageSquare className="h-6 w-6" />
+            Start Booking Process
             <ArrowRight className="h-5 w-5" />
-          </a>
+          </button>
           <p className="mt-4 text-white/90">⚡ Limited Slots Available - 100% FREE</p>
         </div>
       </div>
@@ -46,16 +49,14 @@ export default function ConsultationCTA({
             <h3 className="text-xl font-bold mb-2">Book FREE Consultation - 30 Minutes That Could Save You €200K+</h3>
             <p className="text-white/90">Direct access to EU grant experts - Schedule your call NOW</p>
           </div>
-          <a 
-            href={calendlyUrl}
-            target="_blank"
-            rel="noopener noreferrer"
+          <button 
+            onClick={handleClick}
             className="bg-white text-blue-600 px-8 py-4 rounded-full font-bold text-lg hover:shadow-lg transition-all inline-flex items-center gap-2"
           >
-            <Calendar className="h-6 w-6" />
-            Book Your Call NOW
+            <MessageSquare className="h-6 w-6" />
+            {text}
             <ArrowRight className="h-5 w-5" />
-          </a>
+          </button>
         </div>
       </div>
     )
@@ -63,45 +64,39 @@ export default function ConsultationCTA({
   
   if (variant === 'inline') {
     return (
-      <a 
-        href={calendlyUrl}
-        target="_blank"
-        rel="noopener noreferrer"
+      <button 
+        onClick={handleClick}
         className={`text-blue-600 hover:text-blue-700 font-bold underline inline-flex items-center gap-2 ${className}`}
       >
         <Calendar className="h-5 w-5" />
         {text}
         <ArrowRight className="h-4 w-4" />
-      </a>
+      </button>
     )
   }
   
   if (variant === 'secondary') {
     return (
-      <a 
-        href={calendlyUrl}
-        target="_blank"
-        rel="noopener noreferrer"
+      <button 
+        onClick={handleClick}
         className={`bg-white text-blue-600 border-2 border-blue-600 px-8 py-4 rounded-full font-bold text-lg hover:bg-blue-600 hover:text-white transition-all inline-flex items-center gap-2 ${className}`}
       >
-        <Phone className="h-6 w-6" />
+        <MessageSquare className="h-6 w-6" />
         {text}
         <ArrowRight className="h-5 w-5" />
-      </a>
+      </button>
     )
   }
   
   // Primary variant (default)
   return (
-    <a 
-      href={calendlyUrl}
-      target="_blank"
-      rel="noopener noreferrer"
+    <button 
+      onClick={handleClick}
       className={`bg-gradient-to-r from-green-600 to-green-700 text-white px-8 py-4 rounded-full font-bold text-lg hover:shadow-lg transition-all inline-flex items-center gap-3 ${className}`}
     >
-      <Phone className="h-6 w-6" />
+      <MessageSquare className="h-6 w-6" />
       {text}
       <ArrowRight className="h-5 w-5" />
-    </a>
+    </button>
   )
 }

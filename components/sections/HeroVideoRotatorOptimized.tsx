@@ -136,15 +136,13 @@ const HeroVideoRotatorOptimized = () => {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-            <a
-              href="https://calendly.com/investinpuglia/30min?utm_source=website&utm_medium=hero&utm_campaign=free_consultation"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/consultation"
               className="bg-gradient-to-r from-green-500 to-green-600 text-white px-8 py-4 rounded-full text-lg font-bold hover:shadow-xl transition-all transform flex items-center justify-center gap-2"
             >
-              Book Your 30-Minute Call NOW
+              Book FREE Consultation
               <ArrowRight className="w-6 h-6" />
-            </a>
+            </Link>
             <Link
               href="/mini-pia-guide"
               className="bg-white/10 backdrop-blur-sm text-white border-2 border-white/30 px-8 py-4 rounded-lg text-lg font-bold hover:bg-white/20 transition-all flex items-center justify-center gap-2"

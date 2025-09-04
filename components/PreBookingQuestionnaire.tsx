@@ -14,6 +14,7 @@ interface QuestionnaireData {
   businessPlan: string
   experience: string
   referralSource: string
+  referenceId?: string
 }
 
 interface PreBookingQuestionnaireProps {
@@ -63,34 +64,39 @@ export default function PreBookingQuestionnaire({
       
       const result = await response.json()
       
-      // Store qualification data
-      localStorage.setItem('consultation-qualification', JSON.stringify(formData))
+      // Store qualification data with reference ID
+      localStorage.setItem('consultation-qualification', JSON.stringify({
+        ...formData,
+        referenceId: result.referenceId,
+        submittedAt: new Date().toISOString()
+      }))
       localStorage.setItem('consultation-qualified', 'true')
       
       // Build Calendly URL with pre-filled data
+      // Note: Calendly has limited support for custom fields via URL
+      // The main data is already sent via email to admin
       const calendlyUrlWithData = new URL(calendlyUrl)
       calendlyUrlWithData.searchParams.append('name', formData.name)
       calendlyUrlWithData.searchParams.append('email', formData.email)
-      calendlyUrlWithData.searchParams.append('utm_source', 'website')
-      calendlyUrlWithData.searchParams.append('utm_medium', 'pre-booking-form')
-      calendlyUrlWithData.searchParams.append('utm_campaign', 'free_consultation')
       
-      // Add answers as custom questions
-      calendlyUrlWithData.searchParams.append('a1', `Budget: ${formData.budget}`)
-      calendlyUrlWithData.searchParams.append('a2', `Timeline: ${formData.timeline}`)
-      calendlyUrlWithData.searchParams.append('a3', `Property: ${formData.propertyType}`)
-      calendlyUrlWithData.searchParams.append('a4', `Location: ${formData.location}`)
+      // Add reference ID so admin can match booking with questionnaire
+      const questionText = `REF: ${result.referenceId} | Budget: ${formData.budget} | Timeline: ${formData.timeline} | Property: ${formData.propertyType}`
+      calendlyUrlWithData.searchParams.append('a1', questionText)
+      
+      // Show success and redirect
+      alert(`✅ Thank you! Your information has been received.\n\nReference ID: ${result.referenceId}\n\nYou'll now be redirected to schedule your FREE consultation.`)
       
       // Redirect to Calendly
-      window.open(calendlyUrlWithData.toString(), '_blank')
+      window.location.href = calendlyUrlWithData.toString()
       
       if (onComplete) {
-        onComplete(formData)
+        onComplete({...formData, referenceId: result.referenceId})
       }
     } catch (error) {
       console.error('Error submitting questionnaire:', error)
+      alert('There was an error submitting your information, but you can still book your consultation.')
       // Still redirect to Calendly even if submission fails
-      window.open(calendlyUrl, '_blank')
+      window.location.href = calendlyUrl
     } finally {
       setIsSubmitting(false)
     }
