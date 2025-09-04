@@ -25,35 +25,38 @@ export async function POST(request: NextRequest) {
       timestamp = new Date().toISOString()
     } = data;
 
-    // Save to Firestore database
-    const consultationRef = await db.collection('consultation_submissions').add({
+    // Save to Firestore database with all fields
+    const consultationData = {
       name,
       email,
-      phone,
+      phone: phone || '',
       budget,
       timeline,
       propertyType,
-      location,
-      businessPlan,
-      grantExperience,
-      questionsForUs,
+      location: location || '',
+      businessPlan: businessPlan || data.businessPlan || '',
+      experience: data.experience || grantExperience || '',
+      referralSource: data.referralSource || '',
+      questionsForUs: questionsForUs || '',
       source: source || 'website',
       campaign: campaign || 'direct',
       status: 'new',
       qualified: determineQualification(budget, timeline),
       createdAt: timestamp,
       updatedAt: timestamp
-    });
+    };
+    
+    const consultationRef = await db.collection('consultation_submissions').add(consultationData);
 
     // Determine if qualified
     const isQualified = determineQualification(budget, timeline);
     
-    // Send notification email to admin
+    // Send detailed notification email to admin
     await resend.emails.send({
       from: 'InvestInPuglia <info@1402celsius.com>',
-      to: ['info@investinpuglia.eu'],
+      to: ['info@investinpuglia.eu', 'g.funaro@investinpuglia.eu'],
       cc: ['info@1402celsius.com'],
-      subject: `${isQualified ? '🟢 QUALIFIED' : '🟡 NURTURE'} Consultation Request - ${name}`,
+      subject: `${isQualified ? '🟢 QUALIFIED' : '🟡 NURTURE'} Consultation Request - ${name} [REF: ${consultationRef.id}]`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 20px; border-radius: 10px 10px 0 0;">
@@ -125,9 +128,14 @@ export async function POST(request: NextRequest) {
                 ${businessPlan || 'Not provided'}
               </div>
               
-              <p><strong>Grant Experience:</strong></p>
+              <p><strong>Experience:</strong></p>
               <div style="background: #f5f5f5; padding: 15px; border-radius: 5px; margin: 10px 0;">
-                ${grantExperience || 'No previous experience'}
+                ${consultationData.experience || 'Not specified'}
+              </div>
+              
+              <p><strong>How they found us:</strong></p>
+              <div style="background: #f5f5f5; padding: 15px; border-radius: 5px; margin: 10px 0;">
+                ${consultationData.referralSource || 'Not specified'}
               </div>
               
               <p><strong>Questions for Us:</strong></p>
@@ -168,11 +176,21 @@ export async function POST(request: NextRequest) {
               `}
             </div>
 
-            <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #e0e0e0;">
-              <p style="color: #666; font-size: 12px;">
-                Source: ${source || 'website'} | Campaign: ${campaign || 'direct'}<br>
-                Submitted: ${new Date(timestamp).toLocaleString()}<br>
+            <div style="background: #fffbf0; padding: 20px; border-radius: 8px; margin: 20px 0; border: 2px solid #f59e0b;">
+              <h3 style="color: #92400e; margin-top: 0;">📋 REFERENCE INFORMATION</h3>
+              <p style="font-size: 18px; font-weight: bold; color: #92400e;">
                 Reference ID: ${consultationRef.id}
+              </p>
+              <p style="color: #666; font-size: 14px; margin-top: 10px;">
+                Source: ${source || 'website'}<br>
+                Campaign: ${campaign || 'direct'}<br>
+                Submitted: ${new Date(timestamp).toLocaleString()}
+              </p>
+              <p style="margin-top: 15px;">
+                <a href="https://investinpuglia.eu/admin/consultations" 
+                   style="background: #667eea; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block;">
+                  View in Dashboard
+                </a>
               </p>
             </div>
           </div>

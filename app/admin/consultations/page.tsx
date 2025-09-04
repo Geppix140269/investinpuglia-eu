@@ -17,6 +17,8 @@ interface ConsultationSubmission {
   propertyType: string;
   location: string;
   businessPlan?: string;
+  experience?: string;
+  referralSource?: string;
   grantExperience?: string;
   questionsForUs?: string;
   source: string;
@@ -77,8 +79,9 @@ export default function ConsultationsAdmin() {
   };
 
   const exportToCSV = () => {
-    const headers = ['Name', 'Email', 'Phone', 'Budget', 'Timeline', 'Property Type', 'Location', 'Qualified', 'Status', 'Date'];
+    const headers = ['Reference ID', 'Name', 'Email', 'Phone', 'Budget', 'Timeline', 'Property Type', 'Location', 'Experience', 'Source', 'Qualified', 'Status', 'Date'];
     const rows = filteredSubmissions.map(s => [
+      s.id,
       s.name,
       s.email,
       s.phone || '',
@@ -86,6 +89,8 @@ export default function ConsultationsAdmin() {
       s.timeline,
       s.propertyType,
       s.location,
+      s.experience || '',
+      s.referralSource || '',
       s.qualified ? 'Yes' : 'No',
       s.status,
       format(new Date(s.createdAt), 'yyyy-MM-dd HH:mm')
@@ -198,6 +203,7 @@ export default function ConsultationsAdmin() {
               <thead>
                 <tr className="bg-gray-50 border-b">
                   <th className="text-left p-4">Date</th>
+                  <th className="text-left p-4">Ref ID</th>
                   <th className="text-left p-4">Name</th>
                   <th className="text-left p-4">Contact</th>
                   <th className="text-left p-4">Budget</th>
@@ -211,6 +217,11 @@ export default function ConsultationsAdmin() {
                   <tr key={submission.id} className="border-b hover:bg-gray-50">
                     <td className="p-4">
                       {format(new Date(submission.createdAt), 'MMM dd, HH:mm')}
+                    </td>
+                    <td className="p-4">
+                      <span className="text-xs font-mono bg-gray-100 px-2 py-1 rounded">
+                        {submission.id.slice(0, 8)}
+                      </span>
                     </td>
                     <td className="p-4">
                       <div className="font-semibold">{submission.name}</div>
@@ -324,9 +335,16 @@ export default function ConsultationsAdmin() {
                   </div>
 
                   <div className="col-span-2">
-                    <h3 className="font-semibold text-gray-600 mb-2">Grant Experience</h3>
+                    <h3 className="font-semibold text-gray-600 mb-2">Investment Experience</h3>
                     <div className="bg-gray-50 p-3 rounded">
-                      {selectedSubmission.grantExperience || 'No previous experience'}
+                      {selectedSubmission.experience || selectedSubmission.grantExperience || 'Not specified'}
+                    </div>
+                  </div>
+                  
+                  <div className="col-span-2">
+                    <h3 className="font-semibold text-gray-600 mb-2">How They Found Us</h3>
+                    <div className="bg-gray-50 p-3 rounded">
+                      {selectedSubmission.referralSource || 'Not specified'}
                     </div>
                   </div>
 
@@ -338,11 +356,16 @@ export default function ConsultationsAdmin() {
                   </div>
 
                   <div className="col-span-2">
-                    <h3 className="font-semibold text-gray-600 mb-2">Tracking</h3>
-                    <div className="space-y-1 text-sm">
-                      <div><strong>Source:</strong> {selectedSubmission.source}</div>
-                      <div><strong>Campaign:</strong> {selectedSubmission.campaign}</div>
-                      <div><strong>Submitted:</strong> {format(new Date(selectedSubmission.createdAt), 'PPpp')}</div>
+                    <h3 className="font-semibold text-gray-600 mb-2">Reference & Tracking</h3>
+                    <div className="bg-yellow-50 p-3 rounded border border-yellow-200">
+                      <div className="text-lg font-bold text-yellow-900 mb-2">
+                        Reference ID: {selectedSubmission.id}
+                      </div>
+                      <div className="space-y-1 text-sm">
+                        <div><strong>Source:</strong> {selectedSubmission.source}</div>
+                        <div><strong>Campaign:</strong> {selectedSubmission.campaign}</div>
+                        <div><strong>Submitted:</strong> {format(new Date(selectedSubmission.createdAt), 'PPpp')}</div>
+                      </div>
                     </div>
                   </div>
                 </div>

@@ -170,10 +170,10 @@ export default function AdminDashboard() {
     },
     { 
       icon: MessageSquare, 
-      label: 'Consultations', 
+      label: '📋 CONSULTATIONS', 
       href: '/admin/consultations', 
-      color: 'bg-cyan-500',
-      description: 'View Trullo submissions'
+      color: 'bg-red-600',
+      description: 'View questionnaire submissions & leads'
     },
   ];
 
