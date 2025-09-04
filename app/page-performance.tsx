@@ -1,6 +1,5 @@
-// app/page.tsx
-'use client'
-
+// app/page-performance.tsx
+import { Metadata } from 'next'
 import dynamic from 'next/dynamic'
 import { Suspense } from 'react'
 import Script from 'next/script'
@@ -59,7 +58,18 @@ const PageSEOSection = dynamic(() => import('@/components/PageSEOSection'), {
   ssr: false
 })
 
-export default function HomePage() {
+export const metadata: Metadata = {
+  title: 'Italian Property Investment with EU Grants | InvestInPuglia.eu',
+  description: 'Transform Puglia properties into EU grant-funded gold. Access €200K-€2.75M in Mini PIA grants with expert guidance.',
+  keywords: 'Italian property investment, EU grants Italy, Mini PIA grant, Puglia real estate, foreign investment Italy',
+  openGraph: {
+    title: 'Italian Property Investment with EU Grants | InvestInPuglia.eu',
+    description: 'Transform Puglia properties into EU grant-funded gold. Access €200K-€2.75M in Mini PIA grants.',
+    images: ['https://res.cloudinary.com/dusubfxgo/image/upload/f_auto,q_auto/v1756888562/investinpuglia/og-image.jpg'],
+  }
+}
+
+export default function PerformantHomePage() {
   return (
     <>
       {/* Preload critical fonts */}
