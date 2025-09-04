@@ -1,5 +1,5 @@
 # Robots.txt for InvestInPuglia.eu
-# Allow all crawlers full access to improve SEO
+# Optimized for maximum SEO visibility and AI assistant crawling
 
 User-agent: *
 Allow: /
@@ -7,6 +7,12 @@ Disallow: /api/
 Disallow: /admin/
 Disallow: /_next/
 Disallow: /studio/
+Disallow: /dashboard/
+Disallow: /test/
+Disallow: /test-*
+Disallow: /login
+Disallow: /sign-agreement/
+Disallow: /agreement/
 
 # Search engine crawlers
 User-agent: Googlebot
@@ -36,6 +42,25 @@ User-agent: Claude-Web
 Allow: /
 
 User-agent: CCBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Anthropic-AI
+Allow: /
+
+# Social media crawlers
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+User-agent: WhatsApp
 Allow: /
 
 # Sitemaps
