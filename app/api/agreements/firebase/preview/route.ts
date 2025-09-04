@@ -70,7 +70,7 @@ Giuseppe Funaro, Founder & Investment Consultant
 Via [Address]
 Bari, Puglia, Italy
 Email: info@investinpuglia.eu
-Phone: +39 351 901 2974
+Phone: +39 351 400 1402
 
 CLIENT:
 ${formData.clientName}

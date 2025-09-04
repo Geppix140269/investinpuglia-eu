@@ -360,7 +360,7 @@ function generateComprehensiveContent(params) {
       style: 'normal',
       children: [{
         _type: 'span',
-        text: `Ready to explore investment opportunities in ${location ? location.name : 'Puglia'}? Contact Giuseppe Funaro today for a free consultation. With our expertise and local knowledge, we'll help you navigate the Italian investment landscape and maximize your returns through available grants and incentives.\n\nEmail: info@investinpuglia.eu\nPhone: +39 351 901 2974\nWebsite: www.investinpuglia.eu\n\nOffice Hours: Monday-Friday 9:00-18:00 CET\nWe accommodate ${nationality.adjective} time zones for virtual consultations.`
+        text: `Ready to explore investment opportunities in ${location ? location.name : 'Puglia'}? Contact Giuseppe Funaro today for a free consultation. With our expertise and local knowledge, we'll help you navigate the Italian investment landscape and maximize your returns through available grants and incentives.\n\nEmail: info@investinpuglia.eu\nPhone: +39 351 400 1402\nWebsite: www.investinpuglia.eu\n\nOffice Hours: Monday-Friday 9:00-18:00 CET\nWe accommodate ${nationality.adjective} time zones for virtual consultations.`
       }]
     }
   ];

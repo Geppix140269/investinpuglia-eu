@@ -100,7 +100,7 @@ export async function GET(request: NextRequest) {
           style: 'normal',
           children: [{
             _type: 'span',
-            text: 'Ready to invest in Puglia? Contact Giuseppe Funaro for expert guidance: Email: info@investinpuglia.eu | Phone: +39 351 901 2974 | Website: www.investinpuglia.eu | Office: Bari, Puglia, Italy. Virtual consultations available for US time zones.'
+            text: 'Ready to invest in Puglia? Contact Giuseppe Funaro for expert guidance: Email: info@investinpuglia.eu | Phone: +39 351 400 1402 | Website: www.investinpuglia.eu | Office: Bari, Puglia, Italy. Virtual consultations available for US time zones.'
           }]
         }
       ]

@@ -109,7 +109,7 @@ export const EMAIL_TEMPLATES: { [key: string]: Omit<EmailTemplate, 'id' | 'creat
                 Founder & Investment Director<br>
                 InvestInPuglia<br>
                 📞 Direct: +39 080 123 4567<br>
-                📧 giuseppe@investinpuglia.com
+                📧 info@investinpuglia.eu
             </div>
         </div>
         

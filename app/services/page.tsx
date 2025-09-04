@@ -367,7 +367,7 @@ export default function ServicesPage() {
           </div>
           
           <p className="mt-8 text-indigo-200">
-            Or call us directly: +39 389 632 9001
+            Or call us directly: +39 351 400 1402
           </p>
         </div>
       </section>

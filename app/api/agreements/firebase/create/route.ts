@@ -310,7 +310,7 @@ async function sendClientNotification(email: string, name: string, token: string
           <p style="margin: 0;"><strong>Giuseppe Funaro</strong></p>
           <p style="margin: 5px 0;">Founder & Investment Consultant</p>
           <p style="margin: 5px 0;">Invest in Puglia</p>
-          <p style="margin: 5px 0;">📞 +39 351 901 2974</p>
+          <p style="margin: 5px 0;">📞 +39 351 400 1402</p>
           <p style="margin: 5px 0;">✉️ info@investinpuglia.eu</p>
         </div>
       </div>

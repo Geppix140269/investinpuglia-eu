@@ -102,7 +102,7 @@ export default function ContactClient() {
               </div>
               <h3 className="font-semibold text-stone-800 mb-2">Email</h3>
               <p className="text-stone-600">
-                <a href="mailto:info@investinpuglia.com" className="hover:text-olive">info@investinpuglia.com</a>
+                <a href="mailto:info@investinpuglia.eu" className="hover:text-olive">info@investinpuglia.eu</a>
               </p>
               <p className="text-sm text-stone-500 mt-1">Response within 24 hours</p>
             </div>

@@ -393,7 +393,7 @@ export default function AboutPage() {
               <div>
                 <p><strong>Address:</strong> 20-22 Wenlock Road, N1 7GU, London, United Kingdom</p>
                 <p><strong>Email:</strong> info@investinpuglia.eu</p>
-                <p><strong>Phone:</strong> +39 347 533 0647</p>
+                <p><strong>Phone:</strong> +39 351 400 1402</p>
               </div>
             </div>
           </div>
@@ -415,10 +415,10 @@ export default function AboutPage() {
               Schedule Free Consultation
             </Link>
             <a
-              href="tel:+393475330647"
+              href="tel:+393514001402"
               className="border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-slate-900 transition-all"
             >
-              Call: +39 347 533 0647
+              Call: +39 351 400 1402
             </a>
           </div>
         </div>

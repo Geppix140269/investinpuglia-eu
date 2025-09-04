@@ -108,7 +108,7 @@ export default function PortfolioCTA() {
                 </div>
               </div>
               <div className="text-left space-y-2">
-                <div className="text-emerald-400 text-xl font-semibold">invest@investinpuglia.com</div>
+                <div className="text-emerald-400 text-xl font-semibold">info@investinpuglia.eu</div>
                 <div className="text-slate-400 text-sm">Response within 24 hours</div>
               </div>
             </div>

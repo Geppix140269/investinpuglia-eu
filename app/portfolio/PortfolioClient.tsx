@@ -658,10 +658,10 @@ export default function PortfolioClient({ projects, pageSettings }: PortfolioCli
               Schedule Investment Consultation
             </Link>
             <a
-              href="tel:+393475330647"
+              href="tel:+393514001402"
               className="border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-indigo-900 transition-all"
             >
-              Call: +39 347 533 0647
+              Call: +39 351 400 1402
             </a>
           </div>
         </div>
