@@ -110,7 +110,7 @@ export default function ConsultationPageClient() {
               href="https://calendly.com/investinpuglia/30min"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-gradient-to-r from-green-600 to-green-700 text-white px-10 py-5 rounded-full font-bold text-xl hover:shadow-2xl hover:scale-105 transition-all inline-flex items-center gap-3 animate-pulse"
+              className="bg-gradient-to-r from-green-600 to-green-700 text-white px-8 py-4 rounded-full font-bold text-lg hover:shadow-xl transition-all inline-flex items-center gap-3"
             >
               <Calendar className="h-7 w-7" />
               Book Your 30-Minute Call NOW
@@ -227,7 +227,7 @@ export default function ConsultationPageClient() {
               href="https://calendly.com/investinpuglia/30min"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-gradient-to-r from-green-600 to-green-700 text-white px-12 py-5 rounded-full font-bold text-xl hover:shadow-2xl hover:scale-105 transition-all inline-flex items-center gap-3 animate-pulse"
+              className="bg-gradient-to-r from-green-600 to-green-700 text-white px-10 py-4 rounded-full font-bold text-lg hover:shadow-xl transition-all inline-flex items-center gap-3"
             >
               <Calendar className="h-7 w-7" />
               Book Your FREE 30-Minute Call NOW
@@ -330,7 +330,7 @@ export default function ConsultationPageClient() {
             href="https://calendly.com/investinpuglia/30min"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center bg-white text-blue-600 px-12 py-5 rounded-full font-bold text-xl hover:shadow-2xl hover:scale-105 transition-all gap-3 animate-pulse"
+            className="inline-flex items-center bg-white text-blue-600 px-10 py-4 rounded-full font-bold text-lg hover:shadow-xl transition-all gap-3"
           >
             <Calendar className="h-7 w-7" />
             Book Your FREE Call NOW

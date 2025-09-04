@@ -18,7 +18,7 @@ export default function BookConsultationPage() {
       <div className="max-w-2xl mx-auto text-center">
         <div className="bg-white rounded-2xl shadow-2xl p-12">
           <div className="mb-8">
-            <Calendar className="h-20 w-20 text-green-600 mx-auto animate-pulse" />
+            <Calendar className="h-20 w-20 text-green-600 mx-auto" />
           </div>
           
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
@@ -41,7 +41,7 @@ export default function BookConsultationPage() {
           
           <a
             href="https://calendly.com/investinpuglia/30min?utm_source=website&utm_medium=booking_page&utm_campaign=free_consultation"
-            className="inline-flex items-center bg-gradient-to-r from-green-600 to-green-700 text-white px-10 py-4 rounded-full font-bold text-lg hover:shadow-xl hover:scale-105 transition-all gap-3 animate-pulse"
+            className="inline-flex items-center bg-gradient-to-r from-green-600 to-green-700 text-white px-10 py-4 rounded-full font-bold text-lg hover:shadow-xl transition-all gap-3"
           >
             <Phone className="h-6 w-6" />
             Book Your Call NOW

@@ -120,7 +120,7 @@ const HeroVideoRotatorOptimized = () => {
       )}
 
       {/* Content Overlay */}
-      <div className="relative z-10 flex flex-col justify-center items-center min-h-[600px] md:min-h-screen px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 flex flex-col justify-center items-center min-h-[600px] md:min-h-screen px-4 sm:px-6 lg:px-8 py-20 md:py-0">
         <div className="max-w-6xl mx-auto text-center">
           {/* Main Heading */}
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
@@ -140,7 +140,7 @@ const HeroVideoRotatorOptimized = () => {
               href="https://calendly.com/investinpuglia/30min?utm_source=website&utm_medium=hero&utm_campaign=free_consultation"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-gradient-to-r from-green-500 to-green-600 text-white px-10 py-5 rounded-full text-xl font-bold hover:shadow-2xl hover:scale-105 transition-all transform animate-pulse flex items-center justify-center gap-2"
+              className="bg-gradient-to-r from-green-500 to-green-600 text-white px-8 py-4 rounded-full text-lg font-bold hover:shadow-xl transition-all transform flex items-center justify-center gap-2"
             >
               Book Your 30-Minute Call NOW
               <ArrowRight className="w-6 h-6" />
