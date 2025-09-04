@@ -168,6 +168,13 @@ export default function AdminDashboard() {
       color: 'bg-emerald-500',
       description: 'Manage listings'
     },
+    { 
+      icon: MessageSquare, 
+      label: 'Consultations', 
+      href: '/admin/consultations', 
+      color: 'bg-cyan-500',
+      description: 'View Trullo submissions'
+    },
   ];
 
   return (
