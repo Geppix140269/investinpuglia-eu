@@ -33,7 +33,9 @@ const nextConfig = {
   experimental: {
     optimizePackageImports: ['lucide-react', '@headlessui/react', 'recharts', 'framer-motion'],
     // Enable tree shaking for better bundle size
-    webVitalsAttribution: ['CLS', 'LCP', 'FCP', 'TTFB']
+    webVitalsAttribution: ['CLS', 'LCP', 'FCP', 'TTFB', 'FID', 'INP'],
+    // Optimize CSS
+    optimizeCss: true
   },
   // Performance monitoring
   poweredByHeader: false,

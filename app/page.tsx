@@ -7,57 +7,85 @@ import Script from 'next/script'
 
 // Only load critical above-the-fold content immediately
 import HeroVideoRotatorOptimized from '@/components/sections/HeroVideoRotatorOptimized'
+import { VideoErrorBoundary } from '@/components/ErrorBoundary'
 
 // Loading skeleton component
 const LoadingSkeleton = () => (
   <div className="h-96 bg-gradient-to-br from-gray-100 to-gray-200 animate-pulse" />
 )
 
-// Lazy load ALL other components with loading states
-const PortfolioSlider = dynamic(() => import('@/components/PortfolioSlider'), {
-  loading: () => <LoadingSkeleton />,
-  ssr: true
-})
+// Lazy load ALL other components with loading states and optimized chunking
+const PortfolioSlider = dynamic(
+  () => import(/* webpackChunkName: "portfolio" */ '@/components/PortfolioSlider'),
+  {
+    loading: () => <LoadingSkeleton />,
+    ssr: true
+  }
+)
 
-const AboutGiuseppe = dynamic(() => import('@/components/sections/AboutGiuseppe'), {
-  loading: () => <LoadingSkeleton />,
-  ssr: false // Client-side only for non-critical content
-})
+const AboutGiuseppe = dynamic(
+  () => import(/* webpackChunkName: "about" */ '@/components/sections/AboutGiuseppe'),
+  {
+    loading: () => <LoadingSkeleton />,
+    ssr: false // Client-side only for non-critical content
+  }
+)
 
-const MeetTheTeam = dynamic(() => import('@/components/sections/MeetTheTeam'), {
-  loading: () => <LoadingSkeleton />,
-  ssr: false
-})
+const MeetTheTeam = dynamic(
+  () => import(/* webpackChunkName: "team" */ '@/components/sections/MeetTheTeam'),
+  {
+    loading: () => <LoadingSkeleton />,
+    ssr: false
+  }
+)
 
-const WhyPuglia = dynamic(() => import('@/components/sections/WhyPuglia'), {
-  loading: () => <LoadingSkeleton />,
-  ssr: false
-})
+const WhyPuglia = dynamic(
+  () => import(/* webpackChunkName: "why-puglia" */ '@/components/sections/WhyPuglia'),
+  {
+    loading: () => <LoadingSkeleton />,
+    ssr: false
+  }
+)
 
-const GrantInstitutions = dynamic(() => import('@/components/sections/GrantInstitutions'), {
-  loading: () => <LoadingSkeleton />,
-  ssr: false
-})
+const GrantInstitutions = dynamic(
+  () => import(/* webpackChunkName: "grants" */ '@/components/sections/GrantInstitutions'),
+  {
+    loading: () => <LoadingSkeleton />,
+    ssr: false
+  }
+)
 
-const FAQ = dynamic(() => import('@/components/sections/FAQ'), {
-  loading: () => <LoadingSkeleton />,
-  ssr: false
-})
+const FAQ = dynamic(
+  () => import(/* webpackChunkName: "faq" */ '@/components/sections/FAQ'),
+  {
+    loading: () => <LoadingSkeleton />,
+    ssr: false
+  }
+)
 
-const LocationsIndustries = dynamic(() => import('@/components/sections/LocationsIndustries'), {
-  loading: () => <LoadingSkeleton />,
-  ssr: false
-})
+const LocationsIndustries = dynamic(
+  () => import(/* webpackChunkName: "locations" */ '@/components/sections/LocationsIndustries'),
+  {
+    loading: () => <LoadingSkeleton />,
+    ssr: false
+  }
+)
 
-const ExitIntentPopup = dynamic(() => import('@/components/ExitIntentPopup'), { 
-  ssr: false,
-  loading: () => null 
-})
+const ExitIntentPopup = dynamic(
+  () => import(/* webpackChunkName: "exit-intent" */ '@/components/ExitIntentPopup'),
+  { 
+    ssr: false,
+    loading: () => null 
+  }
+)
 
-const PageSEOSection = dynamic(() => import('@/components/PageSEOSection'), {
-  loading: () => null,
-  ssr: false
-})
+const PageSEOSection = dynamic(
+  () => import(/* webpackChunkName: "seo" */ '@/components/PageSEOSection'),
+  {
+    loading: () => null,
+    ssr: false
+  }
+)
 
 export default function HomePage() {
   return (
@@ -75,8 +103,10 @@ export default function HomePage() {
       <link rel="dns-prefetch" href="https://res.cloudinary.com" />
       <link rel="preconnect" href="https://res.cloudinary.com" />
       
-      {/* Critical: Hero Section - Optimized */}
-      <HeroVideoRotatorOptimized />
+      {/* Critical: Hero Section - Optimized with Error Boundary */}
+      <VideoErrorBoundary>
+        <HeroVideoRotatorOptimized />
+      </VideoErrorBoundary>
       
       {/* Portfolio Slider - High priority but lazy */}
       <Suspense fallback={<LoadingSkeleton />}>

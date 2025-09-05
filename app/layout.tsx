@@ -135,7 +135,9 @@ export const metadata: Metadata = {
     }
   },
   verification: {
-    google: '', // Add your actual Google Search Console verification code here
+    google: 'your-google-verification-code', // Replace with actual verification code
+    bing: 'your-bing-verification-code', // Replace with actual Bing verification code
+    yandex: 'your-yandex-verification-code' // Replace with actual Yandex verification code
   },
   robots: {
     index: true,

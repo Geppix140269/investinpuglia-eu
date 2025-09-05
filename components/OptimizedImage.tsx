@@ -1,8 +1,7 @@
-// components/OptimizedImage.tsx
-'use client';
+'use client'
 
 import Image from 'next/image';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 interface OptimizedImageProps {
   src: string;
@@ -11,121 +10,151 @@ interface OptimizedImageProps {
   height?: number;
   priority?: boolean;
   className?: string;
-  fill?: boolean;
   sizes?: string;
   quality?: number;
-  placeholder?: 'blur' | 'empty';
-  blurDataURL?: string;
-  loading?: 'lazy' | 'eager';
-  onLoad?: () => void;
+  objectFit?: 'cover' | 'contain' | 'fill' | 'none' | 'scale-down';
+  cloudinaryTransforms?: string;
 }
 
-export default function OptimizedImage({
+const OptimizedImage: React.FC<OptimizedImageProps> = ({
   src,
   alt,
   width,
   height,
   priority = false,
   className = '',
-  fill = false,
-  sizes,
+  sizes = '100vw',
   quality = 75,
-  placeholder = 'blur',
-  blurDataURL,
-  loading = 'lazy',
-  onLoad
-}: OptimizedImageProps) {
-  const [imgSrc, setImgSrc] = useState(src);
-  const [isLoading, setIsLoading] = useState(true);
+  objectFit = 'cover',
+  cloudinaryTransforms = 'f_auto,q_auto:eco'
+}) => {
+  const [isInView, setIsInView] = useState(false);
+  const [hasLoaded, setHasLoaded] = useState(false);
+  const imageRef = useRef<HTMLDivElement>(null);
 
-  // Generate blur placeholder if not provided
-  const defaultBlurDataURL = 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCwAA8A/9k=';
-
-  // Handle Cloudinary URLs - optimize them
-  const optimizeCloudinaryUrl = (url: string) => {
+  // Optimize Cloudinary URLs
+  const getOptimizedUrl = (url: string) => {
     if (url.includes('cloudinary.com')) {
-      // Extract the base URL and image ID
       const parts = url.split('/upload/');
       if (parts.length === 2) {
-        // Add optimization parameters
-        const optimizations = [
-          'f_auto', // Auto format (WebP where supported)
-          'q_auto', // Auto quality
-          'dpr_auto', // Auto DPR for retina
-          'c_limit', // Limit to specified dimensions
-          width ? `w_${width}` : '',
-          height ? `h_${height}` : ''
+        // Add responsive transformations
+        const responsiveTransforms = [
+          cloudinaryTransforms,
+          'c_limit',
+          'dpr_auto',
+          'w_auto'
         ].filter(Boolean).join(',');
         
-        return `${parts[0]}/upload/${optimizations}/${parts[1]}`;
+        return `${parts[0]}/upload/${responsiveTransforms}/${parts[1]}`;
       }
     }
     return url;
   };
 
-  // Handle local images
-  const isLocalImage = src.startsWith('/');
-  const optimizedSrc = isLocalImage ? src : optimizeCloudinaryUrl(src);
+  // Generate blur placeholder
+  const getBlurDataUrl = (url: string) => {
+    if (url.includes('cloudinary.com')) {
+      const parts = url.split('/upload/');
+      if (parts.length === 2) {
+        return `${parts[0]}/upload/w_20,h_20,c_limit,e_blur:1000,f_auto,q_auto:low/${parts[1]}`;
+      }
+    }
+    // Default blur placeholder
+    return 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQ...';
+  };
 
-  // Generate srcSet for responsive images
+  // Intersection Observer for lazy loading
+  useEffect(() => {
+    if (priority || !imageRef.current) {
+      setIsInView(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsInView(true);
+            observer.disconnect();
+          }
+        });
+      },
+      {
+        rootMargin: '50px',
+        threshold: 0.01
+      }
+    );
+
+    observer.observe(imageRef.current);
+
+    return () => observer.disconnect();
+  }, [priority]);
+
+  const optimizedSrc = getOptimizedUrl(src);
+  const blurDataURL = getBlurDataUrl(src);
+
+  // Generate responsive sizes for Cloudinary
   const generateSrcSet = () => {
-    if (!width || !isLocalImage) return undefined;
+    if (!src.includes('cloudinary.com')) return undefined;
     
-    const widths = [320, 640, 768, 1024, 1280, 1536];
-    return widths
-      .filter(w => w <= (width || 1920))
-      .map(w => `${optimizedSrc} ${w}w`)
-      .join(', ');
+    const widths = [320, 640, 768, 1024, 1280, 1536, 1920];
+    return widths.map(w => {
+      const url = src.replace('/upload/', `/upload/w_${w},c_limit,f_auto,q_auto:eco/`);
+      return `${url} ${w}w`;
+    }).join(', ');
   };
 
-  // Handle image error
-  const handleError = () => {
-    // Fallback to original src or a placeholder
-    setImgSrc('/images/placeholder.jpg');
-  };
-
-  if (fill) {
+  if (!isInView && !priority) {
     return (
-      <div className={`relative ${className}`}>
-        <Image
-          src={optimizedSrc}
-          alt={alt}
-          fill
-          sizes={sizes || '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'}
-          quality={quality}
-          priority={priority}
-          placeholder={placeholder}
-          blurDataURL={blurDataURL || defaultBlurDataURL}
-          loading={priority ? 'eager' : loading}
-          onLoad={() => {
-            setIsLoading(false);
-            onLoad?.();
-          }}
-          onError={handleError}
-          className={`object-cover ${isLoading ? 'animate-pulse bg-gray-200' : ''}`}
-        />
-      </div>
+      <div 
+        ref={imageRef}
+        className={`bg-gray-200 animate-pulse ${className}`}
+        style={{ 
+          width: width || '100%', 
+          height: height || 'auto',
+          aspectRatio: width && height ? `${width}/${height}` : undefined
+        }}
+        aria-label={`Loading ${alt}`}
+      />
     );
   }
 
   return (
-    <Image
-      src={optimizedSrc}
-      alt={alt}
-      width={width || 800}
-      height={height || 600}
-      sizes={sizes}
-      quality={quality}
-      priority={priority}
-      placeholder={placeholder}
-      blurDataURL={blurDataURL || defaultBlurDataURL}
-      loading={priority ? 'eager' : loading}
-      onLoad={() => {
-        setIsLoading(false);
-        onLoad?.();
-      }}
-      onError={handleError}
-      className={`${className} ${isLoading ? 'animate-pulse bg-gray-200' : ''}`}
-    />
+    <div ref={imageRef} className={`relative ${className}`}>
+      {width && height ? (
+        <Image
+          src={optimizedSrc}
+          alt={alt}
+          width={width}
+          height={height}
+          priority={priority}
+          quality={quality}
+          sizes={sizes}
+          placeholder="blur"
+          blurDataURL={blurDataURL}
+          className={`${hasLoaded ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300`}
+          onLoad={() => setHasLoaded(true)}
+          style={{ objectFit }}
+          srcSet={generateSrcSet()}
+        />
+      ) : (
+        <Image
+          src={optimizedSrc}
+          alt={alt}
+          fill
+          priority={priority}
+          quality={quality}
+          sizes={sizes}
+          placeholder="blur"
+          blurDataURL={blurDataURL}
+          className={`${hasLoaded ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300`}
+          onLoad={() => setHasLoaded(true)}
+          style={{ objectFit }}
+          srcSet={generateSrcSet()}
+        />
+      )}
+    </div>
   );
-}
+};
+
+export default OptimizedImage;
