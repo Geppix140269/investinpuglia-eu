@@ -12,9 +12,9 @@ import { Toaster } from 'react-hot-toast'
 import { PAGE_OG_IMAGES, generateOGImageUrl } from '@/lib/og-images'
 import { generatePageMetadata } from './layout-metadata'
 
-// Lazy load the TrulloChatbot to avoid build errors if component doesn't exist yet
-const TrulloChatbotWrapper = dynamic(
-  () => import('@/components/TrulloChatbotWrapper').catch(() => {
+// Lazy load the Enhanced TrulloChatbot with WhatsApp integration
+const TrulloEnhanced = dynamic(
+  () => import('@/components/TrulloEnhanced').catch(() => {
     // Return empty component if file doesn't exist
     return { default: () => null }
   }),
@@ -357,7 +357,7 @@ export default function RootLayout({
 
           <main className="pt-16">{children}</main>
           <Footer />
-          <TrulloChatbotWrapper />
+          <TrulloEnhanced />
           <Toaster position="top-right" />
           <VisitorTracker />
         </AuthProvider>
