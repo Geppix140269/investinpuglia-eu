@@ -140,7 +140,7 @@ export async function POST(req: NextRequest) {
         }
       ],
       temperature: 0.7,
-      max_tokens: 300 // Keep responses concise for WhatsApp
+      max_tokens: 400 // Slightly increased for complete responses
     });
 
     const aiResponse = completion.choices[0].message.content || 
@@ -149,14 +149,19 @@ export async function POST(req: NextRequest) {
     // Format response for WhatsApp
     const formattedResponse = formatWhatsAppMessage(aiResponse);
 
-    // Add quick reply suggestions
-    const quickReplies = language === 'en' 
-      ? '\n\n📞 *Quick Actions:*\n1️⃣ Book Consultation\n2️⃣ Learn about PIA Grants\n3️⃣ View Properties\n4️⃣ Speak to Human'
-      : language === 'it'
-      ? '\n\n📞 *Azioni Rapide:*\n1️⃣ Prenota Consulenza\n2️⃣ Info Sovvenzioni PIA\n3️⃣ Vedi Proprietà\n4️⃣ Parla con Umano'
+    // Only add quick replies for initial greeting or when specifically helpful
+    const isGreeting = messageBody.toLowerCase().match(/^(hi|hello|ciao|hola|bonjour)/);
+    const quickReplies = isGreeting && language === 'en' 
+      ? '\n\n📞 Reply with:\n1 - Book Consultation\n2 - PIA Grants Info\n3 - View Properties\n4 - Human Support'
+      : isGreeting && language === 'it'
+      ? '\n\n📞 Rispondi con:\n1 - Prenota Consulenza\n2 - Info Sovvenzioni\n3 - Vedi Proprietà\n4 - Supporto Umano'
       : '';
 
-    const finalMessage = formattedResponse + quickReplies;
+    // WhatsApp has a 1600 character limit per message
+    let finalMessage = formattedResponse;
+    if (quickReplies && (formattedResponse.length + quickReplies.length) < 1500) {
+      finalMessage = formattedResponse + quickReplies;
+    }
 
     // Send response via Twilio
     await twilioClient.messages.create({
