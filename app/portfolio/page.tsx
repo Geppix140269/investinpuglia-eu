@@ -3,7 +3,7 @@ import Script from 'next/script'
 import PortfolioClient from './PortfolioClientUpdated'
 import { getAllRenovationProjects, getRenovationPageSettings } from '@/lib/sanity/renovation'
 import { PAGE_OG_IMAGES, generateOGImageUrl } from '@/lib/og-images'
-import { generatePageMetadata, generateStructuredData, seoConfig } from '@/lib/seo-metadata'
+import { generateMetadata } from '@/lib/seo-metadata'
 
 const ogImageUrl = generateOGImageUrl({
   imageId: PAGE_OG_IMAGES.portfolio.imageId,
@@ -12,13 +12,17 @@ const ogImageUrl = generateOGImageUrl({
   watermark: true
 })
 
-export const metadata: Metadata = generatePageMetadata({
-  title: seoConfig.portfolio.title,
-  description: seoConfig.portfolio.description,
-  keywords: seoConfig.portfolio.keywords,
-  path: '/portfolio',
-  image: ogImageUrl
-})
+export const metadata: Metadata = {
+  title: 'Portfolio - 30 Years of Hospitality & Heritage Excellence | Invest in Puglia',
+  description: '€100M+ in projects managed, €25M in grants secured, 50+ successful developments. Explore our portfolio of luxury hotels, heritage restorations, and investment projects in Puglia.',
+  keywords: 'puglia portfolio, hotel renovations italy, heritage restoration projects, luxury hotel development, investment portfolio puglia',
+  openGraph: {
+    title: '30 Years of Excellence in Hospitality & Heritage',
+    description: '€100M+ Projects, €25M Grants, 50+ Successful Developments',
+    url: 'https://investinpuglia.eu/portfolio',
+    images: [ogImageUrl]
+  }
+}
 
 export default async function PortfolioPage() {
   // Fetch all renovation projects from Sanity
@@ -31,14 +35,18 @@ export default async function PortfolioPage() {
   const projectsToDisplay = projects?.length > 0 ? projects : getDefaultProjects()
 
   // Generate structured data for SEO
-  const structuredData = generateStructuredData('portfolio', {
-    projectCount: projectsToDisplay.length,
-    projects: projectsToDisplay.slice(0, 10).map((p: any) => ({
-      name: p.title || p.name,
-      description: p.description,
-      slug: p.slug?.current || p._id
-    }))
-  })
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'Portfolio - Investment Projects in Puglia',
+    description: 'Our portfolio of successful hotel renovations and heritage restoration projects',
+    numberOfItems: projectsToDisplay.length,
+    provider: {
+      '@type': 'Organization',
+      name: 'Invest in Puglia',
+      url: 'https://investinpuglia.eu'
+    }
+  }
 
   return (
     <>
