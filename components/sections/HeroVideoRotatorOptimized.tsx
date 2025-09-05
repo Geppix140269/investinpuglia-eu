@@ -160,7 +160,6 @@ const HeroVideoRotatorOptimized = () => {
           className="absolute inset-0 w-full h-full object-cover"
           poster={videos[currentVideoIndex].poster}
           onError={handleVideoError}
-          loading="lazy"
         >
           <source src={videos[currentVideoIndex].url} type="video/mp4" />
         </video>

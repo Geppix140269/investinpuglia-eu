@@ -93,16 +93,6 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
   const optimizedSrc = getOptimizedUrl(src);
   const blurDataURL = getBlurDataUrl(src);
 
-  // Generate responsive sizes for Cloudinary
-  const generateSrcSet = () => {
-    if (!src.includes('cloudinary.com')) return undefined;
-    
-    const widths = [320, 640, 768, 1024, 1280, 1536, 1920];
-    return widths.map(w => {
-      const url = src.replace('/upload/', `/upload/w_${w},c_limit,f_auto,q_auto:eco/`);
-      return `${url} ${w}w`;
-    }).join(', ');
-  };
 
   if (!isInView && !priority) {
     return (
@@ -135,7 +125,6 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
           className={`${hasLoaded ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300`}
           onLoad={() => setHasLoaded(true)}
           style={{ objectFit }}
-          srcSet={generateSrcSet()}
         />
       ) : (
         <Image
@@ -150,7 +139,6 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
           className={`${hasLoaded ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300`}
           onLoad={() => setHasLoaded(true)}
           style={{ objectFit }}
-          srcSet={generateSrcSet()}
         />
       )}
     </div>
