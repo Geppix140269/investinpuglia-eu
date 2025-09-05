@@ -121,17 +121,19 @@ export default function TrulloEnhanced() {
   const [isTyping, setIsTyping] = useState(false);
   const [showLanguageMenu, setShowLanguageMenu] = useState(false);
   const [hasInteracted, setHasInteracted] = useState(false);
+  const [authLoading, setAuthLoading] = useState(true);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   // Check authentication
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setUser(user);
+      setAuthLoading(false);
     });
     return () => unsubscribe();
   }, []);
 
-  // Auto-open after delay
+  // Auto-open after delay - wait for auth to be checked
   useEffect(() => {
     const timer = setTimeout(() => {
       if (!hasInteracted && !isOpen) {
@@ -140,7 +142,7 @@ export default function TrulloEnhanced() {
       }
     }, 5000);
     return () => clearTimeout(timer);
-  }, []);
+  }, [user]); // Re-run when user state changes
 
   // Detect language
   useEffect(() => {
@@ -165,9 +167,11 @@ export default function TrulloEnhanced() {
       sender: 'trullo',
       timestamp: new Date()
     };
+    
     setMessages([welcomeMsg]);
-
-    if (!user) {
+    
+    // Only show login prompt if auth has loaded AND user is not logged in
+    if (!authLoading && !user) {
       setTimeout(() => {
         const loginMsg: Message = {
           id: (Date.now() + 1).toString(),

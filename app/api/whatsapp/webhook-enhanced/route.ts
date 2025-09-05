@@ -24,78 +24,41 @@ const supabase = process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.SUPABASE_SE
     )
   : null;
 
-// Comprehensive system prompt for detailed information gathering
-const SYSTEM_PROMPT = `You are Trullo, the friendly and professional AI assistant for Invest in Puglia. 
+// System prompt for efficient information gathering
+const SYSTEM_PROMPT = `You are Trullo, the AI assistant for Invest in Puglia.
 
-YOUR PRIMARY GOAL: Build trust and gather comprehensive information about the user's investment intentions.
+CRITICAL RULES:
+1. Keep responses SHORT (2-3 sentences max)
+2. NEVER repeat questions already answered
+3. REMEMBER everything the user told you
+4. Ask ONE clear question at a time
+5. Be friendly but EFFICIENT
 
-CONVERSATION STYLE:
-- Be warm, friendly, and conversational
-- Show genuine interest in their plans
-- Be detailed and thorough in your responses
-- Make users feel safe and valued
-- Use their name once you know it
+YOUR GOAL: Quickly gather key information:
+- Name (if not known)
+- Email (if not known)
+- Budget range
+- Timeline
+- Property type interest
+- Location preference
 
-INFORMATION TO GATHER (progressively, not all at once):
-1. Personal Information:
-   - Full name
-   - Email address (if not from registration)
-   - Phone number (already have from WhatsApp)
-   - Country of residence
-   - Nationality
-   - Language preference
+CONVERSATION FLOW:
+- Greet briefly
+- Ask for missing information ONLY
+- Skip questions if you already have the answer
+- Provide quick, useful answers
+- After 5-7 exchanges, offer to connect with Giuseppe
 
-2. Investment Profile:
-   - Investment budget range
-   - Investment timeline (when they plan to invest)
-   - Investment purpose (personal use, rental, business)
-   - Previous investment experience in Italy
-   - Familiarity with EU grants
+NEVER:
+- Write long paragraphs
+- Ask for information you already have
+- Repeat yourself
+- Be overly chatty
 
-3. Specific Interests:
-   - Property type (residential, commercial, tourism, agricultural)
-   - Preferred locations in Puglia
-   - Specific cities or areas of interest
-   - Size requirements
-   - Must-have features
-
-4. Business Details (if applicable):
-   - Company name
-   - Industry sector
-   - Number of employees
-   - Annual revenue
-   - Expansion plans
-
-5. Grant Eligibility:
-   - Interest in PIA/Mini PIA grants
-   - Business plan status
-   - Job creation potential
-   - Innovation aspects
-   - Environmental sustainability plans
-
-QUESTIONING STRATEGY:
-- Start with easy, non-threatening questions
-- Build rapport before asking financial details
-- Use open-ended questions to encourage detailed responses
-- Acknowledge and validate their responses
-- Share relevant success stories and examples
-- Provide valuable information while gathering data
-
-IMPORTANT RULES:
-1. NEVER rush the conversation
-2. ALWAYS provide detailed, valuable answers
-3. Make the conversation feel natural, not like an interrogation
-4. Store ALL information shared by the user
-5. Remember context from previous messages
-6. Only suggest contacting Giuseppe or booking consultation AFTER gathering sufficient information
-
-FINAL ACTIONS (only after comprehensive discussion):
-When you have gathered sufficient information, offer:
-1. "I can arrange a personal call with Giuseppe Funaro, our founder"
-2. "Book a detailed consultation to discuss your specific needs"
-3. "I'll send you a comprehensive information package"
-
-Remember: The goal is to understand their complete situation before offering next steps.`;
+ALWAYS:
+- Check what you already know before asking
+- Be direct and helpful
+- Move the conversation forward`;
 
 // Track conversation state
 interface UserSession {
@@ -117,8 +80,47 @@ interface UserSession {
   collectedData: Record<string, any>;
 }
 
-// Store session in memory (in production, use Redis or database)
+// Store session in memory as cache
 const sessions = new Map<string, UserSession>();
+
+// Load session from database
+async function loadSession(phoneNumber: string): Promise<UserSession | null> {
+  if (!supabase) return null;
+  
+  try {
+    const { data, error } = await supabase
+      .from('whatsapp_conversations')
+      .select('*')
+      .eq('phone_number', phoneNumber)
+      .order('timestamp', { ascending: false })
+      .limit(1);
+    
+    if (error || !data || data.length === 0) return null;
+    
+    const latest = data[0];
+    return {
+      phoneNumber,
+      name: latest.user_name,
+      email: latest.email,
+      country: latest.country,
+      budget: latest.budget,
+      timeline: latest.timeline,
+      propertyType: latest.property_type,
+      location: latest.location,
+      purpose: latest.purpose,
+      companyName: latest.company_name,
+      industry: latest.industry,
+      grantInterest: latest.grant_interest,
+      conversationStage: latest.conversation_stage || 'greeting',
+      messagesCount: latest.messages_count || 0,
+      lastMessage: new Date(latest.timestamp),
+      collectedData: latest.collected_data || {}
+    };
+  } catch (error) {
+    console.error('Error loading session:', error);
+    return null;
+  }
+}
 
 // Language detection
 function detectLanguage(text: string): string {
@@ -179,6 +181,24 @@ async function saveConversationData(session: UserSession, message: string, respo
 // Extract information from user messages
 function extractInformation(message: string, session: UserSession): Partial<UserSession> {
   const updates: Partial<UserSession> = {};
+  const lowerMessage = message.toLowerCase();
+  
+  // Extract name (when people say "I'm X", "My name is X", "This is X", etc.)
+  if (!session.name) {
+    const namePatterns = [
+      /(?:i'?m|i am|my name is|this is|name's?|call me)\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)/i,
+      /^([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)\s+here/i,
+      /^([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)$/  // Just a name by itself
+    ];
+    
+    for (const pattern of namePatterns) {
+      const match = message.match(pattern);
+      if (match && match[1] && match[1].length > 1) {
+        updates.name = match[1].trim();
+        break;
+      }
+    }
+  }
   
   // Extract email
   const emailMatch = message.match(/\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b/);
@@ -215,36 +235,34 @@ function extractInformation(message: string, session: UserSession): Partial<User
 
 // Determine conversation stage and next questions
 function getConversationContext(session: UserSession): string {
-  let context = `\nCurrent information about the user:\n`;
+  let context = `\nYOU ALREADY KNOW:\n`;
   
-  if (session.name) context += `- Name: ${session.name}\n`;
-  if (session.email) context += `- Email: ${session.email}\n`;
-  if (session.country) context += `- Country: ${session.country}\n`;
-  if (session.budget) context += `- Budget: ${session.budget}\n`;
-  if (session.timeline) context += `- Timeline: ${session.timeline}\n`;
-  if (session.propertyType) context += `- Property Type: ${session.propertyType}\n`;
-  if (session.location) context += `- Location Interest: ${session.location}\n`;
-  if (session.purpose) context += `- Purpose: ${session.purpose}\n`;
+  if (session.name) context += `Name: ${session.name}\n`;
+  if (session.email) context += `Email: ${session.email}\n`;
+  if (session.country) context += `Country: ${session.country}\n`;
+  if (session.budget) context += `Budget: ${session.budget}\n`;
+  if (session.timeline) context += `Timeline: ${session.timeline}\n`;
+  if (session.propertyType) context += `Property: ${session.propertyType}\n`;
+  if (session.location) context += `Location: ${session.location}\n`;
   
-  context += `\nConversation stage: ${session.conversationStage}\n`;
-  context += `Messages exchanged: ${session.messagesCount}\n`;
+  context += `\nMessages: ${session.messagesCount}\n`;
   
-  // Suggest what information to gather next
-  if (!session.name) {
-    context += `\nNext: Ask for their name in a friendly way.`;
-  } else if (!session.email) {
-    context += `\nNext: Ask for their email to send detailed information.`;
-  } else if (!session.budget) {
-    context += `\nNext: Explore their investment capacity and budget range.`;
-  } else if (!session.propertyType) {
-    context += `\nNext: Understand what type of property or business they're interested in.`;
-  } else if (!session.timeline) {
-    context += `\nNext: Understand their investment timeline.`;
-  } else if (!session.location) {
-    context += `\nNext: Explore which areas of Puglia interest them most.`;
-  } else if (session.messagesCount > 10) {
-    context += `\nNext: You have gathered good information. Consider offering to connect them with Giuseppe or book a consultation.`;
+  // What's missing?
+  const missing: string[] = [];
+  if (!session.name) missing.push('name');
+  if (!session.email) missing.push('email');
+  if (!session.budget) missing.push('budget');
+  if (!session.propertyType) missing.push('property type');
+  if (!session.timeline) missing.push('timeline');
+  
+  if (missing.length > 0) {
+    context += `\nSTILL NEED: ${missing.join(', ')}\n`;
+    context += `Ask for ONE of these (the most important first).`;
+  } else if (session.messagesCount >= 7) {
+    context += `\nAll key info collected. Offer to connect with Giuseppe.`;
   }
+  
+  context += `\nREMEMBER: Never ask for information you already have!`;
   
   return context;
 }
@@ -280,14 +298,30 @@ export async function POST(req: NextRequest) {
     const phoneNumber = from.replace('whatsapp:', '');
     console.log(`📱 WhatsApp message from ${profileName} (${phoneNumber}): ${messageBody}`);
 
-    // Get or create session
-    let session = sessions.get(phoneNumber) || {
-      phoneNumber,
-      conversationStage: 'greeting' as const,
-      messagesCount: 0,
-      lastMessage: new Date(),
-      collectedData: {}
-    };
+    // Get session from cache or load from database
+    let session = sessions.get(phoneNumber);
+    
+    if (!session) {
+      // Try to load from database
+      const loadedSession = await loadSession(phoneNumber);
+      
+      if (!loadedSession) {
+        // Create new session
+        session = {
+          phoneNumber,
+          conversationStage: 'greeting' as const,
+          messagesCount: 0,
+          lastMessage: new Date(),
+          collectedData: {}
+        };
+      } else {
+        session = loadedSession;
+        console.log(`Loaded existing session for ${phoneNumber} with ${session.messagesCount} messages`);
+      }
+      
+      // Cache the session
+      sessions.set(phoneNumber, session);
+    }
 
     // Update session with extracted information
     const extractedInfo = extractInformation(messageBody, session);
@@ -329,8 +363,8 @@ export async function POST(req: NextRequest) {
           content: messageBody 
         }
       ],
-      temperature: 0.7,
-      max_tokens: 1000 // Allow detailed responses
+      temperature: 0.3, // Lower for more focused responses
+      max_tokens: 150 // Short responses only
     });
 
     const aiResponse = completion.choices[0].message.content || 
