@@ -110,7 +110,7 @@ const translations = {
   }
 };
 
-const WHATSAPP_NUMBER = '+393514001402'; // Your WhatsApp Business number
+const WHATSAPP_NUMBER = '447862140269'; // Twilio WhatsApp Business number
 
 export default function TrulloEnhanced() {
   const [isOpen, setIsOpen] = useState(false);
