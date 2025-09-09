@@ -5,26 +5,39 @@ export async function middleware(request: NextRequest) {
   const url = request.nextUrl.clone()
   const hostname = request.headers.get('host') || ''
   
-  // Domain-based routing for mini PIA focused content
-  const miniPiaDomains = [
-    'investiscope.net',
-    'www.investiscope.net',
-    'in-puglia.com',
-    'www.in-puglia.com',
-    'inpuglia.eu',
-    'www.inpuglia.eu'
-  ]
+  // Domain-specific routing based on positioning
   
-  // Check if the request is from a mini PIA domain
-  if (miniPiaDomains.some(domain => hostname.includes(domain))) {
-    // If not already on /minipia path, rewrite to it
-    if (!url.pathname.startsWith('/minipia') && !url.pathname.startsWith('/admin')) {
-      // Handle root path
+  // Investment Analysis Focus - investiscope.net
+  if (hostname.includes('investiscope.net')) {
+    if (!url.pathname.startsWith('/investiscope') && !url.pathname.startsWith('/admin')) {
       if (url.pathname === '/') {
-        url.pathname = '/minipia'
+        url.pathname = '/investiscope'
       } else {
-        // Handle other paths by prepending /minipia
-        url.pathname = `/minipia${url.pathname}`
+        url.pathname = `/investiscope${url.pathname}`
+      }
+      return NextResponse.rewrite(url)
+    }
+  }
+  
+  // Lifestyle/Living Focus - in-puglia.com
+  if (hostname.includes('in-puglia.com')) {
+    if (!url.pathname.startsWith('/lifestyle') && !url.pathname.startsWith('/admin')) {
+      if (url.pathname === '/') {
+        url.pathname = '/lifestyle'
+      } else {
+        url.pathname = `/lifestyle${url.pathname}`
+      }
+      return NextResponse.rewrite(url)
+    }
+  }
+  
+  // Local Expertise Focus - inpuglia.eu
+  if (hostname.includes('inpuglia.eu') && !hostname.includes('investinpuglia.eu')) {
+    if (!url.pathname.startsWith('/local') && !url.pathname.startsWith('/admin')) {
+      if (url.pathname === '/') {
+        url.pathname = '/local'
+      } else {
+        url.pathname = `/local${url.pathname}`
       }
       return NextResponse.rewrite(url)
     }

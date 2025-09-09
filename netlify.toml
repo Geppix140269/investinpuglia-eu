@@ -9,30 +9,44 @@
 [[plugins]]
   package = "@netlify/plugin-nextjs"
 
-# Redirects for domain-based routing
-# Route investiscope.net to mini PIA content
+# Domain-specific routing based on unique positioning
+
+# investiscope.net - Investment Analysis & Due Diligence Focus
 [[redirects]]
   from = "https://investiscope.net/*"
-  to = "/minipia/:splat"
+  to = "/investiscope/:splat"
   status = 200
   force = true
 
 [[redirects]]
   from = "https://www.investiscope.net/*"
-  to = "/minipia/:splat"
+  to = "/investiscope/:splat"
   status = 200
   force = true
 
-# Alternative: in-puglia.com for mini PIA
+# in-puglia.com - Lifestyle & Living in Puglia Focus
 [[redirects]]
   from = "https://in-puglia.com/*"
-  to = "/minipia/:splat"
+  to = "/lifestyle/:splat"
   status = 200
   force = true
 
 [[redirects]]
   from = "https://www.in-puglia.com/*"
-  to = "/minipia/:splat"
+  to = "/lifestyle/:splat"
+  status = 200
+  force = true
+
+# inpuglia.eu - Local Expertise & Network Focus
+[[redirects]]
+  from = "https://inpuglia.eu/*"
+  to = "/local/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "https://www.inpuglia.eu/*"
+  to = "/local/:splat"
   status = 200
   force = true
 
