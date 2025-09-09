@@ -351,18 +351,8 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error('WhatsApp webhook error:', error);
     
-    // Send error notification but don't fail the webhook
-    try {
-      if (body.From) {
-        await twilioClient.messages.create({
-          body: "I apologize for the technical issue. Please contact Giuseppe directly at +39 XXX XXX XXXX or email info@investinpuglia.eu",
-          from: process.env.TWILIO_WHATSAPP_NUMBER,
-          to: body.From
-        });
-      }
-    } catch (twilioError) {
-      console.error('Failed to send error message:', twilioError);
-    }
+    // Don't try to access body in error handler as it may not be defined
+    // Just log the error and return success to prevent webhook retries
     
     return NextResponse.json({ error: 'Processing failed' }, { status: 200 }); // Return 200 to prevent retries
   }
