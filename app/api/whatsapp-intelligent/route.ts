@@ -128,7 +128,7 @@ async function generateIntelligentResponse(
     
     // Check for common misconceptions
     const lowerMessage = message.toLowerCase();
-    let correction = null;
+    let correction: string | null = null;
     
     if (lowerMessage.includes('property') && lowerMessage.includes('sale')) {
       correction = CORRECTIONS.properties;
