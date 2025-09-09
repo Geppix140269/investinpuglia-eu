@@ -1,0 +1,79 @@
+# Netlify Configuration
+# Main domain: investinpuglia.eu - Trust-centered positioning
+# Secondary domains can point to /minipia route for grant-focused content
+
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+# Redirects for domain-based routing
+# Route investiscope.net to mini PIA content
+[[redirects]]
+  from = "https://investiscope.net/*"
+  to = "/minipia/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "https://www.investiscope.net/*"
+  to = "/minipia/:splat"
+  status = 200
+  force = true
+
+# Alternative: in-puglia.com for mini PIA
+[[redirects]]
+  from = "https://in-puglia.com/*"
+  to = "/minipia/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "https://www.in-puglia.com/*"
+  to = "/minipia/:splat"
+  status = 200
+  force = true
+
+# Main domain uses new trust-centered positioning
+[[redirects]]
+  from = "https://investinpuglia.eu/*"
+  to = "/:splat"
+  status = 200
+
+# Also handle www versions
+[[redirects]]
+  from = "https://www.investinpuglia.eu/*"
+  to = "/:splat"
+  status = 200
+
+# Headers for security and performance
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+
+# Cache static assets
+[[headers]]
+  for = "/_next/static/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400, s-maxage=86400"
+
+# Environment variables (add your actual values in Netlify dashboard)
+[build.environment]
+  NEXT_PUBLIC_SITE_URL = "https://investinpuglia.eu"

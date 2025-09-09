@@ -1,33 +1,55 @@
-// app/page.tsx
-// New Trust-Centered Positioning - Main InvestInPuglia Domain
+// app/minipia/page.tsx
+// This is the original Mini PIA focused version for secondary domain
 'use client'
 
 import dynamic from 'next/dynamic'
 import { Suspense } from 'react'
 import Script from 'next/script'
 
-// Import new trust-centered components
-import HeroSectionTrustCentered from '@/components/sections/HeroSection_TrustCentered'
-import OpportunitySectionProtection from '@/components/sections/OpportunitySection_Protection'
-import HowItWorksClientJourney from '@/components/sections/HowItWorks_ClientJourney'
-import InvestmentProtectionFee from '@/components/sections/InvestmentProtectionFee'
+// Only load critical above-the-fold content immediately
+import HeroVideoRotatorOptimized from '@/components/sections/HeroVideoRotatorOptimized'
+import { VideoErrorBoundary } from '@/components/ErrorBoundary'
 
 // Loading skeleton component
 const LoadingSkeleton = () => (
   <div className="h-96 bg-gradient-to-br from-gray-100 to-gray-200 animate-pulse" />
 )
 
-// Keep some existing components that still fit the new positioning
+// Lazy load ALL other components with loading states and optimized chunking
+const PortfolioSlider = dynamic(
+  () => import(/* webpackChunkName: "portfolio" */ '@/components/PortfolioSlider'),
+  {
+    loading: () => <LoadingSkeleton />,
+    ssr: true
+  }
+)
+
 const AboutGiuseppe = dynamic(
   () => import(/* webpackChunkName: "about" */ '@/components/sections/AboutGiuseppe'),
+  {
+    loading: () => <LoadingSkeleton />,
+    ssr: false // Client-side only for non-critical content
+  }
+)
+
+const MeetTheTeam = dynamic(
+  () => import(/* webpackChunkName: "team" */ '@/components/sections/MeetTheTeam'),
   {
     loading: () => <LoadingSkeleton />,
     ssr: false
   }
 )
 
-const OurCommitment = dynamic(
-  () => import(/* webpackChunkName: "commitment" */ '@/components/sections/OurCommitment'),
+const WhyPuglia = dynamic(
+  () => import(/* webpackChunkName: "why-puglia" */ '@/components/sections/WhyPuglia'),
+  {
+    loading: () => <LoadingSkeleton />,
+    ssr: false
+  }
+)
+
+const GrantInstitutions = dynamic(
+  () => import(/* webpackChunkName: "grants" */ '@/components/sections/GrantInstitutions'),
   {
     loading: () => <LoadingSkeleton />,
     ssr: false
@@ -42,8 +64,8 @@ const FAQ = dynamic(
   }
 )
 
-const CTASection = dynamic(
-  () => import(/* webpackChunkName: "cta" */ '@/components/sections/CTASection'),
+const LocationsIndustries = dynamic(
+  () => import(/* webpackChunkName: "locations" */ '@/components/sections/LocationsIndustries'),
   {
     loading: () => <LoadingSkeleton />,
     ssr: false
@@ -66,7 +88,7 @@ const PageSEOSection = dynamic(
   }
 )
 
-export default function HomePage() {
+export default function MiniPIAPage() {
   return (
     <>
       {/* Preload critical fonts */}
@@ -82,36 +104,44 @@ export default function HomePage() {
       <link rel="dns-prefetch" href="https://res.cloudinary.com" />
       <link rel="preconnect" href="https://res.cloudinary.com" />
       
-      {/* NEW: Trust-Centered Hero Section */}
-      <HeroSectionTrustCentered />
+      {/* Critical: Hero Section - Optimized with Error Boundary */}
+      <VideoErrorBoundary>
+        <HeroVideoRotatorOptimized />
+      </VideoErrorBoundary>
       
-      {/* NEW: Investment Protection Focus */}
-      <OpportunitySectionProtection />
+      {/* Portfolio Slider - High priority but lazy */}
+      <Suspense fallback={<LoadingSkeleton />}>
+        <PortfolioSlider />
+      </Suspense>
       
-      {/* NEW: Client Journey (No Video Calls) */}
-      <HowItWorksClientJourney />
-      
-      {/* About Giuseppe - Still relevant, emphasizes personal approach */}
+      {/* About Section - Medium priority */}
       <Suspense fallback={<LoadingSkeleton />}>
         <AboutGiuseppe />
       </Suspense>
-      
-      {/* NEW: Investment Protection Fee Explanation */}
-      <InvestmentProtectionFee />
-      
-      {/* Our Commitment - Still fits with personal guarantees */}
+
+      {/* Team Section - Medium priority */}
       <Suspense fallback={<LoadingSkeleton />}>
-        <OurCommitment />
+        <MeetTheTeam />
+      </Suspense>
+      
+      {/* Why Puglia - Low priority */}
+      <Suspense fallback={<LoadingSkeleton />}>
+        <WhyPuglia />
+      </Suspense>
+      
+      {/* Grant Institutions - Low priority */}
+      <Suspense fallback={<LoadingSkeleton />}>
+        <GrantInstitutions />
       </Suspense>
 
-      {/* FAQ - Updated to address trust concerns */}
+      {/* FAQ - Low priority */}
       <Suspense fallback={<LoadingSkeleton />}>
         <FAQ />
       </Suspense>
       
-      {/* CTA Section */}
+      {/* Locations - Very low priority */}
       <Suspense fallback={<LoadingSkeleton />}>
-        <CTASection />
+        <LocationsIndustries />
       </Suspense>
       
       {/* Exit Intent - Only on desktop, non-critical */}
