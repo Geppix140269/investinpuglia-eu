@@ -4,6 +4,13 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { MapPin, ArrowRight, Shield } from 'lucide-react';
+import { getHeroVideos, type HeroVideo } from '@/lib/sanity/heroVideos';
+
+interface VideoData {
+  url: string;
+  poster: string;
+  name: string;
+}
 
 const HeroVideoRotatorOptimized = () => {
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
@@ -12,30 +19,57 @@ const HeroVideoRotatorOptimized = () => {
   const [showVideo, setShowVideo] = useState(false);
   const [videoError, setVideoError] = useState(false);
   const [isReducedMotion, setIsReducedMotion] = useState(false);
+  const [videos, setVideos] = useState<VideoData[]>([]);
+  const [loading, setLoading] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
   
-  // Your three MIDJOURNEY videos with names
-  const videos = [
+  // Fallback videos if Sanity fails
+  const fallbackVideos: VideoData[] = [
     {
       url: 'https://res.cloudinary.com/dusubfxgo/video/upload/v1756888562/investinpuglia/hero-videos/beach-club.mp4',
       poster: 'https://res.cloudinary.com/dusubfxgo/image/upload/f_auto,q_auto:low,w_1920,h_1080,c_limit/v1756888562/investinpuglia/hero-videos/beach-club.jpg',
-      placeholderImage: 'https://res.cloudinary.com/dusubfxgo/image/upload/f_auto,q_auto:low,w_20,h_12,c_limit,e_blur:1000/v1756888562/investinpuglia/hero-videos/beach-club.jpg',
       name: 'Beach Club Aperitivo'
     },
     {
       url: 'https://res.cloudinary.com/dusubfxgo/video/upload/v1756888546/investinpuglia/hero-videos/rooftop-bar.mp4',
       poster: 'https://res.cloudinary.com/dusubfxgo/image/upload/f_auto,q_auto:low,w_1920,h_1080,c_limit/v1756888546/investinpuglia/hero-videos/rooftop-bar.jpg',
-      placeholderImage: 'https://res.cloudinary.com/dusubfxgo/image/upload/f_auto,q_auto:low,w_20,h_12,c_limit,e_blur:1000/v1756888546/investinpuglia/hero-videos/rooftop-bar.jpg',
       name: 'Rooftop Bar View'
     },
     {
       url: 'https://res.cloudinary.com/dusubfxgo/video/upload/v1756888555/investinpuglia/hero-videos/helicopter-pov.mp4',
       poster: 'https://res.cloudinary.com/dusubfxgo/image/upload/f_auto,q_auto:low,w_1920,h_1080,c_limit/v1756888555/investinpuglia/hero-videos/helicopter-pov.jpg',
-      placeholderImage: 'https://res.cloudinary.com/dusubfxgo/image/upload/f_auto,q_auto:low,w_20,h_12,c_limit,e_blur:1000/v1756888555/investinpuglia/hero-videos/helicopter-pov.jpg',
       name: 'Helicopter Arrival'
     }
   ];
+
+  // Fetch videos from Sanity
+  useEffect(() => {
+    const fetchVideos = async () => {
+      try {
+        const sanityVideos = await getHeroVideos();
+        
+        if (sanityVideos && sanityVideos.length > 0) {
+          const formattedVideos: VideoData[] = sanityVideos.map((video: HeroVideo) => ({
+            url: video.video.asset.url,
+            poster: video.poster.asset.url,
+            name: video.name
+          }));
+          setVideos(formattedVideos);
+        } else {
+          console.warn('No videos found in Sanity, using fallback videos');
+          setVideos(fallbackVideos);
+        }
+      } catch (error) {
+        console.error('Error fetching videos from Sanity:', error);
+        setVideos(fallbackVideos);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchVideos();
+  }, []);
 
   useEffect(() => {
     setIsMobile(window.innerWidth < 768);
@@ -63,14 +97,14 @@ const HeroVideoRotatorOptimized = () => {
 
   // Rotate videos every 8 seconds on both desktop and mobile
   useEffect(() => {
-    if (!videoLoaded) return;
+    if (!videoLoaded || loading || videos.length === 0) return;
     
     const interval = setInterval(() => {
       setCurrentVideoIndex((prev) => (prev + 1) % videos.length);
     }, 8000);
     
     return () => clearInterval(interval);
-  }, [videoLoaded, videos.length]);
+  }, [videoLoaded, videos.length, loading]);
 
   // Handle video end to switch to next
   const handleVideoEnd = () => {
@@ -83,6 +117,36 @@ const HeroVideoRotatorOptimized = () => {
     { value: '€1M+', label: 'Minimum Investment' },
     { value: '30+', label: 'Years International Experience' }
   ];
+
+  // Show loading state or fallback if no videos
+  if (loading || videos.length === 0) {
+    return (
+      <section className="relative min-h-screen bg-gradient-to-br from-purple-900 via-purple-800 to-indigo-900">
+        <div className="absolute inset-0">
+          <Image
+            src="https://res.cloudinary.com/dusubfxgo/image/upload/f_auto,q_auto,w_100,c_limit,e_blur:1000/v1756236779/investinpuglia/properties/generic/trulli-alberobello.jpg"
+            alt=""
+            fill
+            priority
+            className="object-cover opacity-50"
+            sizes="100vw"
+          />
+        </div>
+        <div className="relative z-10 min-h-screen flex items-center justify-center">
+          <div className="text-white text-center">
+            {loading ? (
+              <div className="animate-pulse">
+                <div className="w-16 h-16 border-4 border-white/30 border-t-white rounded-full animate-spin mx-auto mb-4"></div>
+                <p>Loading videos...</p>
+              </div>
+            ) : (
+              <p>No videos available</p>
+            )}
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   // Mobile version with proper messaging
   if (isMobile) {

@@ -12,6 +12,7 @@ import renovationProject from './renovationProject'
 import renovationPageSettings from './renovationPageSettings'
 import faq from '../schemas/faq'
 import pageLinks from '../schemas/pageLinks'
+import heroVideo from './heroVideo'
 
 export const schemaTypes = [
   post,
@@ -26,5 +27,6 @@ export const schemaTypes = [
   renovationProject,
   renovationPageSettings,
   faq,
-  pageLinks
+  pageLinks,
+  heroVideo
 ]
