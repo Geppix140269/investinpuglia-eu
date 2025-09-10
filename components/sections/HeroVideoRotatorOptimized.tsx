@@ -15,106 +15,66 @@ const HeroVideoRotatorOptimized = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
   
-  // Optimized video URLs with adaptive quality based on connection speed
-  const getVideoQuality = () => {
-    if (typeof window !== 'undefined' && 'connection' in navigator) {
-      const connection = (navigator as any).connection;
-      if (connection?.effectiveType === '4g' && !connection?.saveData) {
-        return 'q_auto:good';
-      }
-    }
-    return 'q_auto:eco'; // Lower quality for better performance
-  };
-
+  // Your three MIDJOURNEY videos with names
   const videos = [
     {
-      url: `https://res.cloudinary.com/dusubfxgo/video/upload/${getVideoQuality()},f_auto,so_0,eo_10/v1756888562/investinpuglia/hero-videos/beach-club.mp4`,
+      url: 'https://res.cloudinary.com/dusubfxgo/video/upload/v1756888562/investinpuglia/hero-videos/beach-club.mp4',
       poster: 'https://res.cloudinary.com/dusubfxgo/image/upload/f_auto,q_auto:low,w_1920,h_1080,c_limit/v1756888562/investinpuglia/hero-videos/beach-club.jpg',
       placeholderImage: 'https://res.cloudinary.com/dusubfxgo/image/upload/f_auto,q_auto:low,w_20,h_12,c_limit,e_blur:1000/v1756888562/investinpuglia/hero-videos/beach-club.jpg',
       name: 'Beach Club Aperitivo'
     },
     {
-      url: `https://res.cloudinary.com/dusubfxgo/video/upload/${getVideoQuality()},f_auto,so_0,eo_10/v1756888546/investinpuglia/hero-videos/rooftop-bar.mp4`,
+      url: 'https://res.cloudinary.com/dusubfxgo/video/upload/v1756888546/investinpuglia/hero-videos/rooftop-bar.mp4',
       poster: 'https://res.cloudinary.com/dusubfxgo/image/upload/f_auto,q_auto:low,w_1920,h_1080,c_limit/v1756888546/investinpuglia/hero-videos/rooftop-bar.jpg',
       placeholderImage: 'https://res.cloudinary.com/dusubfxgo/image/upload/f_auto,q_auto:low,w_20,h_12,c_limit,e_blur:1000/v1756888546/investinpuglia/hero-videos/rooftop-bar.jpg',
       name: 'Rooftop Bar View'
     },
     {
-      url: `https://res.cloudinary.com/dusubfxgo/video/upload/${getVideoQuality()},f_auto,so_0,eo_10/v1756888555/investinpuglia/hero-videos/helicopter-pov.mp4`,
+      url: 'https://res.cloudinary.com/dusubfxgo/video/upload/v1756888555/investinpuglia/hero-videos/helicopter-pov.mp4',
       poster: 'https://res.cloudinary.com/dusubfxgo/image/upload/f_auto,q_auto:low,w_1920,h_1080,c_limit/v1756888555/investinpuglia/hero-videos/helicopter-pov.jpg',
       placeholderImage: 'https://res.cloudinary.com/dusubfxgo/image/upload/f_auto,q_auto:low,w_20,h_12,c_limit,e_blur:1000/v1756888555/investinpuglia/hero-videos/helicopter-pov.jpg',
       name: 'Helicopter Arrival'
     }
   ];
 
-  // Initialize mobile and motion preference states
   useEffect(() => {
-    const checkMobile = () => window.innerWidth < 768;
-    const checkMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    setIsMobile(window.innerWidth < 768);
     
-    setIsMobile(checkMobile());
-    setIsReducedMotion(checkMotion());
-    
-    const handleResize = () => setIsMobile(checkMobile());
-    window.addEventListener('resize', handleResize);
-    
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  // Intersection Observer for lazy loading video
-  useEffect(() => {
-    if (!sectionRef.current || isMobile || isReducedMotion) return;
-    
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && !showVideo) {
-            setShowVideo(true);
-            setVideoLoaded(true);
-            observer.disconnect();
-          }
-        });
-      },
-      {
-        threshold: 0.25,
-        rootMargin: '50px'
+    const loadVideo = () => {
+      if (!videoLoaded) {
+        setVideoLoaded(true);
       }
-    );
+    };
     
-    observer.observe(sectionRef.current);
+    const events = ['scroll', 'touchstart', 'mousemove'];
+    const handleInteraction = () => {
+      loadVideo();
+      events.forEach(e => window.removeEventListener(e, handleInteraction));
+    };
     
-    return () => observer.disconnect();
-  }, [isMobile, isReducedMotion, showVideo]);
+    events.forEach(e => window.addEventListener(e, handleInteraction, { once: true, passive: true }));
+    const timer = setTimeout(loadVideo, 1000);
+    
+    return () => {
+      clearTimeout(timer);
+      events.forEach(e => window.removeEventListener(e, handleInteraction));
+    };
+  }, [videoLoaded]);
 
-  // Preload next video for smoother transitions
-  const preloadNextVideo = useCallback(() => {
-    if (!showVideo || videoError) return;
-    
-    const nextIndex = (currentVideoIndex + 1) % videos.length;
-    const link = document.createElement('link');
-    link.rel = 'prefetch';
-    link.href = videos[nextIndex].url;
-    link.as = 'video';
-    document.head.appendChild(link);
-  }, [currentVideoIndex, showVideo, videoError]);
-
-  // Rotate videos every 15 seconds (increased for better performance)
+  // Rotate videos every 8 seconds on both desktop and mobile
   useEffect(() => {
-    if (!videoLoaded || videoError || isReducedMotion) return;
+    if (!videoLoaded) return;
     
     const interval = setInterval(() => {
       setCurrentVideoIndex((prev) => (prev + 1) % videos.length);
-      preloadNextVideo();
-    }, 15000);
+    }, 8000);
     
     return () => clearInterval(interval);
-  }, [videoLoaded, videos.length, videoError, isReducedMotion, preloadNextVideo]);
+  }, [videoLoaded, videos.length]);
 
-  // Handle video errors gracefully
-  const handleVideoError = () => {
-    console.warn('Video failed to load, falling back to image');
-    setVideoError(true);
-    setShowVideo(false);
+  // Handle video end to switch to next
+  const handleVideoEnd = () => {
+    setCurrentVideoIndex((prev) => (prev + 1) % videos.length);
   };
 
   const stats = [
@@ -124,120 +84,234 @@ const HeroVideoRotatorOptimized = () => {
     { value: '30+', label: 'Years International Experience' }
   ];
 
-  // Optimized placeholder with blur-up effect
-  const renderPlaceholder = () => (
-    <div className="absolute inset-0 w-full h-full">
-      <Image
-        src={videos[currentVideoIndex].poster}
-        alt="Puglia Investment Opportunity"
-        fill
-        className="object-cover"
-        priority
-        quality={isMobile ? 60 : 75}
-        sizes="100vw"
-        placeholder="blur"
-        blurDataURL={videos[currentVideoIndex].placeholderImage}
-      />
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-900/70 via-blue-800/70 to-indigo-900/70" />
-    </div>
-  );
+  // Mobile version with proper messaging
+  if (isMobile) {
+    return (
+      <section className="relative min-h-screen bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900">
+        {/* Video background for mobile */}
+        <div className="absolute inset-0">
+          <video
+            key={currentVideoIndex}
+            autoPlay
+            muted
+            playsInline
+            loop
+            className="absolute inset-0 w-full h-full object-cover opacity-70"
+            poster="https://res.cloudinary.com/dusubfxgo/image/upload/f_auto,q_auto,w_800/v1756236779/investinpuglia/properties/generic/trulli-alberobello.jpg"
+          >
+            <source src={videos[currentVideoIndex].url} type="video/mp4" />
+          </video>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent" />
+        </div>
+        
+        <div className="relative z-10 min-h-screen flex items-center">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+            <div className="text-white space-y-6">
+              <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 text-sm">
+                <Shield className="w-4 h-4 text-green-400" />
+                <span className="font-medium">EU Grants Available • Local Expertise</span>
+              </div>
+              
+              <h1 className="text-4xl sm:text-5xl font-bold">
+                Transform Your Italian
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-400">
+                  Property Dreams Into Reality
+                </span>
+              </h1>
+              
+              <p className="text-lg text-gray-100 max-w-lg">
+                Access up to 55% EU grant funding with our local Italian team. We handle everything from property search to renovation and grant applications.
+              </p>
+              
+              <div className="grid grid-cols-2 gap-3 max-w-lg">
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3">
+                  <div className="text-2xl font-bold text-green-400">55%</div>
+                  <div className="text-xs text-gray-200">Grant Funding</div>
+                </div>
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3">
+                  <div className="text-2xl font-bold text-green-400">€150M+</div>
+                  <div className="text-xs text-gray-200">Projects Managed</div>
+                </div>
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3">
+                  <div className="text-2xl font-bold text-green-400">100%</div>
+                  <div className="text-xs text-gray-200">Italian Team</div>
+                </div>
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3">
+                  <div className="text-2xl font-bold text-green-400">30+</div>
+                  <div className="text-xs text-gray-200">Years Experience</div>
+                </div>
+              </div>
+              
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Link
+                  href="/consultation"
+                  className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-green-500 to-green-600 text-white px-8 py-4 rounded-full font-bold hover:from-green-600 hover:to-green-700 transition-all transform hover:scale-105 shadow-xl text-lg"
+                >
+                  FREE Expert Consultation
+                  <ArrowRight className="w-5 h-5" />
+                </Link>
+                <Link
+                  href="/how-it-works"
+                  className="inline-flex items-center justify-center gap-2 bg-white text-purple-900 px-6 py-3 rounded-full font-semibold hover:bg-purple-50 transition-colors"
+                >
+                  Qualify Your Project
+                  <ArrowRight className="w-5 h-5" />
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
+  // Desktop with rotating videos
   return (
-    <section 
-      ref={sectionRef}
-      className="relative min-h-[600px] md:min-h-screen bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900 overflow-hidden"
-      style={{ contentVisibility: 'auto', containIntrinsicSize: '100vw 100vh' }}
-    >
-      {/* Background Video/Image with error handling */}
-      {!isMobile && !isReducedMotion && showVideo && !videoError ? (
+    <section className="relative min-h-screen bg-gradient-to-br from-purple-900 via-purple-800 to-indigo-900">
+      {/* Placeholder while loading */}
+      <div className="absolute inset-0">
+        <Image
+          src="https://res.cloudinary.com/dusubfxgo/image/upload/f_auto,q_auto,w_100,c_limit,e_blur:1000/v1756236779/investinpuglia/properties/generic/trulli-alberobello.jpg"
+          alt=""
+          fill
+          priority
+          className="object-cover opacity-50"
+          sizes="100vw"
+        />
+      </div>
+      
+      {/* Single video element with changing source */}
+      {videoLoaded && (
         <video
-          ref={videoRef}
           key={currentVideoIndex}
+          ref={videoRef}
+          className="absolute inset-0 w-full h-full object-cover opacity-60"
           autoPlay
           muted
-          loop
+          loop={false}
           playsInline
-          className="absolute inset-0 w-full h-full object-cover"
-          poster={videos[currentVideoIndex].poster}
-          onError={handleVideoError}
+          onEnded={handleVideoEnd}
+          src={videos[currentVideoIndex].url}
         >
           <source src={videos[currentVideoIndex].url} type="video/mp4" />
         </video>
-      ) : (
-        renderPlaceholder()
       )}
 
-      {/* Content Overlay with optimized animations */}
-      <div className="relative z-10 flex flex-col justify-center items-center min-h-[600px] md:min-h-screen px-4 sm:px-6 lg:px-8 py-20 md:py-0">
-        <div className="max-w-6xl mx-auto text-center">
-          {/* Main Heading with reduced animation */}
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight animate-fade-in">
-            Transform Puglia Properties into
-            <span className="block text-yellow-400 mt-2">EU Grant-Funded Gold</span>
-          </h1>
-          
-          {/* Subheading */}
-          <p className="text-lg sm:text-xl md:text-2xl text-white/90 mb-8 max-w-3xl mx-auto animate-fade-in-delay">
-            Unlock €200K-€2.75M in Mini PIA Grants for Your Italian Investment.
-            Expert Guidance from Application to Profit.
-          </p>
-
-          {/* Optimized CTA Buttons - Reduced to 2 primary actions */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-            <Link
-              href="/consultation"
-              className="bg-gradient-to-r from-green-500 to-green-600 text-white px-8 py-4 rounded-full text-lg font-bold hover:shadow-xl transition-shadow transform flex items-center justify-center gap-2 will-change-transform"
-              prefetch={true}
-            >
-              Book FREE Consultation
-              <ArrowRight className="w-6 h-6" />
-            </Link>
-            <Link
-              href="/mini-pia-guide"
-              className="bg-white/10 backdrop-blur-sm text-white border-2 border-white/30 px-8 py-4 rounded-lg text-lg font-bold hover:bg-white/20 transition-colors flex items-center justify-center gap-2"
-              prefetch={true}
-            >
-              <Shield className="w-5 h-5" />
-              Mini PIA Guide
-            </Link>
+      {/* Video indicator with names */}
+      {videoLoaded && (
+        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20">
+          <div className="bg-black/50 backdrop-blur-sm rounded-full px-4 py-2 mb-2 text-white text-sm">
+            Now Playing: {videos[currentVideoIndex].name}
           </div>
-
-          {/* Stats Grid with lazy rendering */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
-            {stats.map((stat, index) => (
-              <div
+          <div className="flex gap-2 justify-center">
+            {videos.map((video, index) => (
+              <button
                 key={index}
-                className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20 animate-fade-in-up"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <div className="text-2xl md:text-3xl font-bold text-yellow-400">{stat.value}</div>
-                <div className="text-xs md:text-sm text-white/80">{stat.label}</div>
-              </div>
+                onClick={() => setCurrentVideoIndex(index)}
+                className={`w-2 h-2 rounded-full transition-all ${
+                  index === currentVideoIndex 
+                    ? 'bg-white w-8' 
+                    : 'bg-white/50 hover:bg-white/75'
+                }`}
+                title={video.name}
+                aria-label={`Switch to ${video.name}`}
+              />
             ))}
           </div>
         </div>
-      </div>
-
-      {/* Video Name Indicator - Only show when video is playing */}
-      {showVideo && !isMobile && !isReducedMotion && !videoError && (
-        <div className="absolute bottom-8 left-8 z-20">
-          <div className="bg-black/50 backdrop-blur-sm rounded-lg px-4 py-2">
-            <p className="text-white text-sm flex items-center gap-2">
-              <MapPin className="w-4 h-4" />
-              {videos[currentVideoIndex].name}
-            </p>
+      )}
+      
+      <div className="relative z-10 min-h-screen flex items-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12">
+            {/* Left Content */}
+            <div className="text-white space-y-8">
+              <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm rounded-full px-4 py-2">
+                <Shield className="w-4 h-4 text-green-400" />
+                <span className="font-medium">55% EU Grant Funding Available</span>
+              </div>
+              
+              <div>
+                <h1 className="text-5xl lg:text-6xl font-bold mb-4">
+                  Your Gateway to
+                  <span className="block text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-400">
+                    Italian Property Investment
+                  </span>
+                </h1>
+                <p className="text-xl text-gray-100">
+                  We're your complete Italian investment team - from finding the perfect property to securing EU grants and managing renovations. All with local expertise and international professionalism.
+                </p>
+              </div>
+              
+              <div className="grid grid-cols-2 gap-4">
+                {stats.map((stat, idx) => (
+                  <div key={idx} className="bg-white/10 backdrop-blur-sm rounded-lg p-4 hover:bg-white/20 transition-colors">
+                    <div className="text-2xl font-bold">{stat.value}</div>
+                    <div className="text-sm text-purple-200">{stat.label}</div>
+                  </div>
+                ))}
+              </div>
+              
+              <div className="flex gap-4">
+                <Link
+                  href="/consultation"
+                  className="inline-flex items-center gap-2 bg-gradient-to-r from-green-500 to-green-600 text-white px-8 py-4 rounded-full font-bold hover:from-green-600 hover:to-green-700 transition-all transform hover:scale-105 shadow-xl text-lg"
+                >
+                  FREE Expert Consultation
+                  <ArrowRight className="w-5 h-5" />
+                </Link>
+                <Link
+                  href="/how-it-works"
+                  className="inline-flex items-center gap-2 bg-white text-purple-900 px-6 py-3 rounded-full font-semibold hover:bg-purple-50 transition-colors"
+                >
+                  See How It Works
+                  <ArrowRight className="w-5 h-5" />
+                </Link>
+              </div>
+            </div>
+            
+            {/* Right Content */}
+            <div className="space-y-6">
+              <h3 className="text-white text-lg font-semibold">Our Holistic Services</h3>
+              
+              <div className="space-y-3">
+                <Link href="/industries" className="block bg-white/10 backdrop-blur-sm rounded-lg p-4 hover:bg-white/20 transition-colors">
+                  <div className="flex justify-between items-center text-white">
+                    <span className="font-medium">Property Assessment & Due Diligence</span>
+                    <span className="text-yellow-400">Expert Analysis</span>
+                  </div>
+                </Link>
+                
+                <Link href="/industries" className="block bg-white/10 backdrop-blur-sm rounded-lg p-4 hover:bg-white/20 transition-colors">
+                  <div className="flex justify-between items-center text-white">
+                    <span className="font-medium">Grant Financing (Mini PIA & Beyond)</span>
+                    <span className="text-yellow-400">Up to 55%</span>
+                  </div>
+                </Link>
+                
+                <Link href="/industries" className="block bg-white/10 backdrop-blur-sm rounded-lg p-4 hover:bg-white/20 transition-colors">
+                  <div className="flex justify-between items-center text-white">
+                    <span className="font-medium">Project Management & Execution</span>
+                    <span className="text-yellow-400">End-to-End</span>
+                  </div>
+                </Link>
+                
+                <Link href="/industries" className="block bg-white/10 backdrop-blur-sm rounded-lg p-4 hover:bg-white/20 transition-colors">
+                  <div className="flex justify-between items-center text-white">
+                    <span className="font-medium">Local Network & Partnerships</span>
+                    <span className="text-yellow-400">Exclusive Access</span>
+                  </div>
+                </Link>
+              </div>
+              
+              <div className="flex items-center gap-2 text-white/80 text-sm">
+                <MapPin className="w-4 h-4" />
+                <span>Working with Puglia's most prestigious real estate agencies & developers</span>
+              </div>
+            </div>
           </div>
         </div>
-      )}
-
-      {/* Performance monitoring for dev */}
-      {process.env.NODE_ENV === 'development' && (
-        <div className="absolute top-4 right-4 z-30 bg-black/50 text-white text-xs p-2 rounded">
-          Video: {showVideo ? 'Active' : 'Inactive'} | 
-          Mobile: {isMobile ? 'Yes' : 'No'} |
-          Motion: {isReducedMotion ? 'Reduced' : 'Normal'}
-        </div>
-      )}
+      </div>
     </section>
   );
 };

@@ -98,17 +98,49 @@ async function getConversationState(phoneNumber: string): Promise<ConversationSt
 // Get full conversation history
 async function getFullConversationHistory(phoneNumber: string) {
   try {
-    const conversationQuery = query(
-      collection(db, 'whatsapp_conversations'),
-      where('phone_number', '==', phoneNumber),
-      orderBy('created_at', 'asc')
-    );
-    
-    const snapshot = await getDocs(conversationQuery);
-    return snapshot.docs.map(doc => ({
-      role: doc.data().role,
-      content: doc.data().message
-    }));
+    // First try with orderBy
+    try {
+      const conversationQuery = query(
+        collection(db, 'whatsapp_conversations'),
+        where('phone_number', '==', phoneNumber),
+        orderBy('created_at', 'asc')
+      );
+      
+      const snapshot = await getDocs(conversationQuery);
+      return snapshot.docs.map(doc => ({
+        role: doc.data().role,
+        content: doc.data().message
+      }));
+    } catch (indexError: any) {
+      // If index doesn't exist, fallback to simple query without orderBy
+      if (indexError.code === 'failed-precondition') {
+        console.log('Index not created yet, using fallback query');
+        const conversationQuery = query(
+          collection(db, 'whatsapp_conversations'),
+          where('phone_number', '==', phoneNumber)
+        );
+        
+        const snapshot = await getDocs(conversationQuery);
+        // Sort manually after fetching
+        const messages = snapshot.docs.map(doc => ({
+          role: doc.data().role,
+          content: doc.data().message,
+          created_at: doc.data().created_at
+        }));
+        
+        // Sort by created_at if it exists
+        messages.sort((a, b) => {
+          if (!a.created_at || !b.created_at) return 0;
+          return a.created_at.seconds - b.created_at.seconds;
+        });
+        
+        return messages.map(m => ({
+          role: m.role,
+          content: m.content
+        }));
+      }
+      throw indexError;
+    }
   } catch (error) {
     console.error('Error fetching history:', error);
     return [];
