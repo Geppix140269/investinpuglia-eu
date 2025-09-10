@@ -576,6 +576,89 @@ export async function POST(request: NextRequest) {
         alertLevel = 'alert';
         break;
 
+      case 'whatsapp_new_conversation':
+        message = `📱 <b>NEW WHATSAPP CONVERSATION</b>\n\n` +
+                 `📞 Phone Number: <code>${data.phone_number}</code>\n` +
+                 `💬 First Message: "${data.first_message}"\n` +
+                 `🎯 Stage: ${data.stage}\n` +
+                 `🌐 Language: ${data.language}\n` +
+                 `⏰ Started: ${new Date(data.timestamp).toLocaleString()}\n` +
+                 `📱 Platform: ${data.platform}\n\n` +
+                 `🔍 <b>Next Steps:</b>\n` +
+                 `• Monitor conversation development\n` +
+                 `• Watch for budget/timeline mentions\n` +
+                 `• Guide toward consultation booking`;
+        
+        alertLevel = 'normal';
+        break;
+        
+      case 'whatsapp_conversation_update':
+        message = `📱 <b>WHATSAPP UPDATE</b>\n\n` +
+                 `📞 Phone: <code>${data.phone_number}</code>\n` +
+                 `🎯 Stage: ${data.stage}\n` +
+                 `📊 Messages: ${data.message_count}\n`;
+        
+        // Add context if available
+        if (data.context) {
+          if (data.context.name) message += `👤 Name: ${data.context.name}\n`;
+          if (data.context.budget) message += `💰 Budget: ${data.context.budget}\n`;
+          if (data.context.investment_type) message += `🏗️ Type: ${data.context.investment_type}\n`;
+          if (data.context.timeline) message += `⏰ Timeline: ${data.context.timeline}\n`;
+        }
+        
+        message += `\n💬 <b>Latest Exchange:</b>\n` +
+                  `👤 User: "${data.latest_message}"\n` +
+                  `🤖 Trullo: "${data.bot_response.substring(0, 150)}${data.bot_response.length > 150 ? '...' : ''}"\n\n`;
+        
+        // Show conversation progress
+        if (data.conversation_history && data.conversation_history.length > 2) {
+          message += `📝 <b>Recent History (${data.conversation_history.length} messages):</b>\n<code>`;
+          data.conversation_history.slice(-4).forEach((msg: any, idx: number) => {
+            const role = msg.role === 'user' ? 'U' : 'T';
+            const content = msg.content.substring(0, 50) + (msg.content.length > 50 ? '...' : '');
+            message += `${role}: ${content}\n`;
+          });
+          message += `</code>`;
+        }
+        
+        // Determine if this is getting hot
+        if (data.stage === 'interested' || data.stage === 'booking') {
+          alertLevel = 'warning';
+          message += `\n⚡ <b>HEATING UP!</b> Stage: ${data.stage}`;
+        }
+        
+        break;
+        
+      case 'whatsapp_hot_lead':
+        message = `🔥 <b>WHATSAPP HOT LEAD ALERT!</b>\n\n` +
+                 `📞 Phone: <code>${data.phone_number}</code>\n` +
+                 `🎯 Stage: ${data.stage}\n` +
+                 `🔥 Reason: ${data.reason}\n` +
+                 `⏰ Time: ${new Date(data.timestamp).toLocaleString()}\n\n`;
+        
+        // Add context details
+        if (data.context) {
+          message += `📋 <b>Lead Details:</b>\n`;
+          if (data.context.name) message += `👤 Name: ${data.context.name}\n`;
+          if (data.context.budget) message += `💰 Budget: ${data.context.budget}\n`;
+          if (data.context.investment_type) message += `🏗️ Interest: ${data.context.investment_type}\n`;
+          if (data.context.timeline) message += `⏰ Timeline: ${data.context.timeline}\n`;
+          if (data.context.grant_interest) message += `🎯 Grants: Yes\n`;
+          if (data.context.topics_discussed) {
+            message += `💬 Topics: ${data.context.topics_discussed.join(', ')}\n`;
+          }
+        }
+        
+        message += `\n🚨 <b>ACTION REQUIRED:</b>\n` +
+                  `• Immediate WhatsApp follow-up recommended\n` +
+                  `• Consider personal call from Giuseppe\n` +
+                  `• Prepare consultation booking link\n` +
+                  `• Priority: HIGH\n\n` +
+                  `📱 Reply directly to: ${data.phone_number}`;
+        
+        alertLevel = 'alert';
+        break;
+
       case 'daily_summary':
         message = generateDailySummary();
         break;

@@ -368,6 +368,19 @@ export async function GET(request: NextRequest) {
   return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
 }
 
+// Send Telegram notification for WhatsApp activity
+async function sendTelegramWhatsAppNotification(type: string, data: any) {
+  try {
+    await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || 'https://investinpuglia.eu'}/api/trullo-telegram`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ type, data })
+    });
+  } catch (error) {
+    console.error('Failed to send Telegram notification:', error);
+  }
+}
+
 // Handle incoming messages
 export async function POST(request: NextRequest) {
   try {
@@ -379,6 +392,9 @@ export async function POST(request: NextRequest) {
       
       // Get conversation state
       const state = await getConversationState(phoneNumber);
+      
+      // Check if this is a new WhatsApp conversation
+      const isNewConversation = state.message_count === 0;
       
       // Store user message
       await storeMessage(phoneNumber, incomingMessage, 'user', {
@@ -405,13 +421,50 @@ export async function POST(request: NextRequest) {
         to: phoneNumber
       });
       
-      // Track hot leads
+      // Send Telegram notifications
+      if (isNewConversation) {
+        // New WhatsApp conversation started
+        await sendTelegramWhatsAppNotification('whatsapp_new_conversation', {
+          phone_number: phoneNumber,
+          first_message: incomingMessage,
+          stage: state.stage,
+          language: state.language,
+          timestamp: new Date().toISOString(),
+          platform: 'WhatsApp'
+        });
+      } else {
+        // Existing conversation update
+        const conversationHistory = await getFullConversationHistory(phoneNumber);
+        await sendTelegramWhatsAppNotification('whatsapp_conversation_update', {
+          phone_number: phoneNumber,
+          latest_message: incomingMessage,
+          bot_response: response,
+          stage: state.stage,
+          context: state.context,
+          message_count: state.message_count + 1,
+          conversation_history: conversationHistory.slice(-6), // Last 6 messages
+          timestamp: new Date().toISOString(),
+          platform: 'WhatsApp'
+        });
+      }
+      
+      // Track hot leads and send special alerts
       if (state.stage === 'booking' || state.context.budget) {
         await addDoc(collection(db, 'whatsapp_hot_leads'), {
           phone_number: phoneNumber,
           stage: state.stage,
           context: state.context,
           created_at: serverTimestamp()
+        });
+        
+        // Send hot lead alert
+        await sendTelegramWhatsAppNotification('whatsapp_hot_lead', {
+          phone_number: phoneNumber,
+          stage: state.stage,
+          context: state.context,
+          reason: state.context.budget ? 'Budget mentioned' : 'Reached booking stage',
+          timestamp: new Date().toISOString(),
+          platform: 'WhatsApp'
         });
       }
       

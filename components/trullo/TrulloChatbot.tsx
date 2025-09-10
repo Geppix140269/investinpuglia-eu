@@ -496,8 +496,8 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
                 isTyping={isTyping}
               />
 
-              {/* Authentication Overlay - ALWAYS VISIBLE WHEN NOT AUTHENTICATED */}
-              {!isAuthenticated && (
+              {/* Authentication Overlay - SHOW AFTER 3 MESSAGES OR ON DEMAND */}
+              {!isAuthenticated && messages.length > 6 && (
                 <div className="absolute inset-0 bg-white/98 backdrop-blur-sm flex items-center justify-center z-20 rounded-2xl">
                   <div className="text-center p-8 max-w-sm">
                     <div className="mb-6">
@@ -567,7 +567,7 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
                 <button
                   onClick={() => setShowMessageForm(true)}
                   className="w-full px-3 py-2 text-sm bg-purple-100 text-purple-700 rounded-lg hover:bg-purple-200 transition-all flex items-center justify-center gap-2"
-                  disabled={!isAuthenticated}
+                  disabled={false}
                 >
                   📝 {t.leaveMessage || 'Leave a Message'}
                 </button>
@@ -577,7 +577,7 @@ export default function TrulloChatbot({ language = 'en' }: TrulloChatbotProps) {
                 language={currentLang}
                 isTyping={isTyping}
                 onSend={sendMessage}
-                disabled={!isAuthenticated}
+                disabled={false}
               />
 
               {isMobile && (

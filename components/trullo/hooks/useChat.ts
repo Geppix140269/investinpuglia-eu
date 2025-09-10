@@ -138,10 +138,9 @@ export function useChat(isOpen: boolean, language: Language): UseChatReturn {
   const sendMessage = useCallback(async (input: string) => {
     if (!input.trim() || isTyping) return;
 
-    // CHECK AUTHENTICATION BEFORE ALLOWING MESSAGES
+    // Allow messages without authentication - authentication provides enhanced features
     if (!authState.isAuthenticated) {
-      console.log('User not authenticated, blocking message');
-      return;
+      console.log('User not authenticated, providing basic service');
     }
 
     const userMessage: Message = {
