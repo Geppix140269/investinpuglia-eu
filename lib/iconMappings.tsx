@@ -217,13 +217,13 @@ export default function Icon({
   const iconPath = iconMap[name] || '/icon/alert.png' // Using alert.png as default fallback
   
   return (
-    <Image
+    <img
       src={iconPath}
       alt={alt || name}
       width={size}
       height={size}
       className={className}
-      priority={true} // Add priority to prevent loading issues
+      style={{ width: size, height: size }}
     />
   )
 }
