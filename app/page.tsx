@@ -23,13 +23,6 @@ const PortfolioSlider = dynamic(
   }
 )
 
-const AboutGiuseppe = dynamic(
-  () => import(/* webpackChunkName: "about" */ '@/components/sections/AboutGiuseppe'),
-  {
-    loading: () => <LoadingSkeleton />,
-    ssr: false // Client-side only for non-critical content
-  }
-)
 
 const MeetTheTeam = dynamic(
   () => import(/* webpackChunkName: "team" */ '@/components/sections/MeetTheTeam'),
@@ -113,10 +106,6 @@ export default function HomePage() {
         <PortfolioSlider />
       </Suspense>
       
-      {/* About Section - Medium priority */}
-      <Suspense fallback={<LoadingSkeleton />}>
-        <AboutGiuseppe />
-      </Suspense>
 
       {/* Team Section - Medium priority */}
       <Suspense fallback={<LoadingSkeleton />}>
