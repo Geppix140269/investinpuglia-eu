@@ -214,7 +214,12 @@ export default function Icon({
   className = '', 
   alt = '' 
 }: IconProps) {
-  const iconPath = iconMap[name] || '/icon/alert.png' // Using alert.png as default fallback
+  const iconPath = iconMap[name] || '/icon/alert.png'
+  
+  // Debug logging
+  if (typeof window !== 'undefined') {
+    console.log(`Icon ${name} -> ${iconPath}`)
+  }
   
   return (
     <img
@@ -224,6 +229,15 @@ export default function Icon({
       height={size}
       className={className}
       style={{ width: size, height: size }}
+      onError={(e) => {
+        console.error(`Failed to load icon: ${iconPath}`)
+        e.currentTarget.src = '/icon/alert.png'
+      }}
+      onLoad={() => {
+        if (typeof window !== 'undefined') {
+          console.log(`Successfully loaded: ${iconPath}`)
+        }
+      }}
     />
   )
 }
