@@ -48,6 +48,12 @@ export const heroVideoType = defineType({
           { title: 'About Section', value: 'about' },
           { title: 'Portfolio Background', value: 'portfolio' },
           { title: 'Services Section', value: 'services' },
+          { title: 'Why Puglia', value: 'why-puglia' },
+          { title: 'How It Works', value: 'how-it-works' },
+          { title: 'Opportunity Section', value: 'opportunity' },
+          { title: 'Team Section', value: 'team' },
+          { title: 'Trullo Section', value: 'trullo' },
+          { title: 'FAQ Section', value: 'faq' },
           { title: 'Testimonials', value: 'testimonials' },
           { title: 'Footer', value: 'footer' }
         ]

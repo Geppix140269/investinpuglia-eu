@@ -177,9 +177,8 @@ const HeroVideoRotatorOptimized = () => {
               </div>
               
               <h1 className="text-4xl sm:text-5xl font-bold">
-                Transform Your Italian
-                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-400">
-                  Property Dreams Into Reality
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-green-400 via-white to-red-500">
+                  Transform Your Italian Property Dreams Into Reality
                 </span>
               </h1>
               
@@ -297,9 +296,8 @@ const HeroVideoRotatorOptimized = () => {
               
               <div>
                 <h1 className="text-5xl lg:text-6xl font-bold mb-4">
-                  Your Gateway to
-                  <span className="block text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-400">
-                    Italian Property Investment
+                  <span className="block text-transparent bg-clip-text bg-gradient-to-r from-green-400 via-white to-red-500">
+                    Your Gateway to Italian Property Investment
                   </span>
                 </h1>
                 <p className="text-xl text-gray-100">

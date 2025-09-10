@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
 import { CloudinaryImage } from '@/components/CloudinaryImage'
 import { ChevronDown } from 'lucide-react'
 
@@ -58,14 +57,25 @@ export default function Navbar() {
           {/* Logo - Left aligned */}
           <div className="flex-shrink-0">
             <Link href="/" className="flex items-center group">
-              <Image
+              <img
                 src="/Logo_InvestInPuglia_Morph.png"
                 alt="Invest in Puglia"
                 width={180}
                 height={48}
-                priority
-                quality={90}
                 className="h-10 md:h-12 w-auto object-contain opacity-90 group-hover:opacity-100 transition-opacity duration-200"
+                onError={(e) => {
+                  console.error('Logo failed to load:', e);
+                  // Fallback text if image fails
+                  const target = e.target as HTMLImageElement;
+                  target.style.display = 'none';
+                  const parent = target.parentElement;
+                  if (parent && !parent.querySelector('.logo-fallback')) {
+                    const fallback = document.createElement('span');
+                    fallback.textContent = 'InvestInPuglia';
+                    fallback.className = 'logo-fallback font-bold text-lg text-purple-600';
+                    parent.appendChild(fallback);
+                  }
+                }}
               />
             </Link>
           </div>
