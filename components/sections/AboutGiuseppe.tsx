@@ -18,7 +18,7 @@ export default function AboutGiuseppe() {
             Meet <strong className="font-bold bg-gradient-to-r from-purple-600 to-emerald-600 bg-clip-text text-transparent">Giuseppe Funaro</strong>
           </h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            Your strategic partner in Italian property investment success
+            Coordinator of this initiative and your guide to Italian property investment success
           </p>
         </div>
         
@@ -53,7 +53,7 @@ export default function AboutGiuseppe() {
               <p className="text-lg text-gray-700 mb-6">
                 After 35+ years in international business, I've seen too many investors lose fortunes 
                 due to language barriers, cultural misunderstandings, and working with the wrong people. 
-                That's why I've built a network of only the most trusted, proven professionals in Puglia.
+                As coordinator of this initiative, I've built a network of only the most trusted, independent professionals in Puglia.
               </p>
               
               <div className="space-y-4 mb-8">
@@ -85,11 +85,11 @@ export default function AboutGiuseppe() {
               
               <div className="bg-gradient-to-r from-purple-100 to-emerald-100 rounded-2xl p-6 border border-white/50 shadow-lg">
                 <p className="text-sm text-gray-600 italic mb-2">
-                  "I don't just give advice - I connect you with the exact professionals who have 
+                  "As coordinator, I don't just give advice - I connect you with the exact independent professionals who have 
                   successfully completed similar projects. Your success is guaranteed because you're 
                   working with proven experts, not taking chances."
                 </p>
-                <p className="text-sm font-semibold text-gray-800">— Giuseppe Funaro</p>
+                <p className="text-sm font-semibold text-gray-800">— Giuseppe Funaro, Coordinator</p>
               </div>
             </div>
           </div>

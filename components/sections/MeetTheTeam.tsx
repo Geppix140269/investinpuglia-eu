@@ -6,42 +6,45 @@ import { CloudinaryImage } from '@/components/CloudinaryImage'
 import Icon from '@/lib/iconMappings'
 
 export default function MeetTheTeam() {
-  const teamMembers = [
+  const coreTeam = [
+    {
+      name: "Giuseppe Funaro",
+      role: "Founder & Client Representative",
+      description: "With 35+ years in international business, I represent foreign clients in all aspects of Italian property investment. My role is to ensure clear communication, manage expectations, and coordinate all project phases from initial consultation to completion.",
+      image: "/Giuseppe Funaro 062025.png",
+      expertise: [
+        "Foreign Client Representation",
+        "Project Coordination & Management", 
+        "Cross-Cultural Communication",
+        "Investment Strategy Guidance"
+      ]
+    },
     {
       name: "Dott. Ing. Cataldo Russo",
-      role: "Chief Technical Officer",
-      description: "Licensed Italian Engineer-Architect with 29 years of demonstrable experience. Successfully delivered 50+ hotel and resort projects worth €95M+, securing €20M in grants. LOCAL connections built over decades.",
+      role: "Technical Partner & Chief Engineer",
+      description: "Licensed Italian Engineer-Architect with 29 years of demonstrable experience. Cataldo creates and manages all technical aspects of projects - from initial design through construction completion. Successfully delivered 50+ hotel and resort projects worth €95M+.",
       image: "/russo-photo.jpg",
       expertise: [
         "Architectural & Engineering Design",
-        "Grant Funding (€20M+ secured)",
+        "Technical Project Management",
         "Heritage Restoration",
-        "ITACA Protocol Certified"
+        "Grant Applications (€20M+ secured)"
       ]
-    },
+    }
+  ]
+
+  const suggestedPartners = [
     {
       name: "Antonio Quarta",
-      role: "Chief Financial Officer",
-      description: "Italian financial executive with demonstrable track record in €150M+ project financing. Expert in navigating EU grants beyond Mini PIA. Deep LOCAL banking and institutional relationships.",
-      image: "https://res.cloudinary.com/dusubfxgo/image/upload/c_fill,f_auto,g_face,h_800,q_auto:best,w_800/v1756629855/investinpuglia/team/antonio-quarta-cfo.jpg",
-      expertise: [
-        "Financial Structuring & Modeling",
-        "Investment Analysis & Due Diligence",
-        "Grant Funding Applications",
-        "Risk Management & Compliance"
-      ]
+      role: "Suggested Financial Partner",
+      description: "Independent financial executive with track record in €150M+ project financing. Expert in Mini PIA grants and EU funding navigation. Available when specialized financial structuring is required.",
+      expertise: ["Mini PIA Grant Applications", "EU Funding Navigation", "Financial Structuring"]
     },
     {
       name: "Avv. Marco Magaraggia",
-      role: "Legal Counsel - Italian & International Law",
-      description: "Specializing in Italian real estate law, foreign investments, and international taxation. Expert in navigating Italian bureaucracy and ensuring compliance for foreign investors.",
-      image: "https://res.cloudinary.com/dusubfxgo/image/upload/c_fill,f_auto,g_face,h_800,q_auto:best,w_800/v1756908802/Marco_Magaraggia_italian_laywer_lecce_puglia_biznf1.webp",
-      expertise: [
-        "Italian Real Estate Law",
-        "International Tax Optimization",
-        "Foreign Investment Compliance",
-        "Contract Negotiation & Due Diligence"
-      ]
+      role: "Suggested Legal Partner",
+      description: "Independent legal professional specializing in Italian real estate law for foreign buyers. English-speaking lawyer with expertise in property purchase assistance and compliance for international investors.",
+      expertise: ["Property Purchase Legal Assistance", "Foreign Buyer Compliance", "International Tax Guidance"]
     }
   ]
 
@@ -57,16 +60,16 @@ export default function MeetTheTeam() {
             100+ YEARS COMBINED EXPERTISE
           </div>
           <h2 className="text-3xl md:text-5xl font-light text-gray-900 mb-4">
-            The REAL <strong className="font-bold bg-gradient-to-r from-purple-600 to-emerald-600 bg-clip-text text-transparent">Italian Experts</strong>
+            Meet Our <strong className="font-bold bg-gradient-to-r from-purple-600 to-emerald-600 bg-clip-text text-transparent">Core Team</strong>
           </h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            Italians with 30+ years international experience. Our network is LOCAL, our expertise is REAL, 
-            and working with us is a privilege reserved for serious investors.
+            Giuseppe and Cataldo work together as the core team - Giuseppe handles all client relations and project coordination, 
+            while Cataldo manages the technical and engineering aspects of every project.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-          {teamMembers.map((member, index) => (
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto mb-16">
+          {coreTeam.map((member, index) => (
             <div key={index} className="bg-gradient-to-br from-white to-gray-50 rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all border border-gray-100">
               <div className="p-6">
                 <div className="flex flex-col items-center text-center">
@@ -116,9 +119,36 @@ export default function MeetTheTeam() {
         </div>
 
         <div className="text-center mt-12">
-          <p className="text-gray-600 mb-6">
-            <strong>100+ years of combined expertise</strong> in project management and financing. 
-            We are the REAL thing - not improvised consultants.
+          <div className="mb-12">
+            <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">
+              Suggested <strong className="bg-gradient-to-r from-purple-600 to-emerald-600 bg-clip-text text-transparent">Professional Partners</strong>
+            </h3>
+            <p className="text-gray-600 mb-8 text-center max-w-4xl mx-auto">
+              These English-speaking professionals are available when specialized services are needed. 
+              They work independently and charge their own fees based on project requirements.
+            </p>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+              {suggestedPartners.map((partner, index) => (
+                <div key={index} className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl p-6 border border-gray-200">
+                  <h4 className="text-lg font-bold text-gray-900 mb-2">{partner.name}</h4>
+                  <p className="text-purple-600 font-semibold text-sm mb-3">{partner.role}</p>
+                  <p className="text-gray-600 text-sm mb-4">{partner.description}</p>
+                  <div className="space-y-1">
+                    {partner.expertise.map((item, i) => (
+                      <div key={i} className="flex items-center gap-2">
+                        <Icon name="CheckCircle" size={14} className="text-emerald-600 flex-shrink-0" />
+                        <span className="text-xs text-gray-700">{item}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          
+          <p className="text-gray-600 mb-6 text-center">
+            <strong>35+ years of combined core team experience</strong> - Giuseppe coordinates your project while Cataldo handles all technical execution.
           </p>
           <Link 
             href="/consultation"
