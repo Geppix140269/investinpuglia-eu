@@ -214,12 +214,41 @@ export default function Icon({
   className = '', 
   alt = '' 
 }: IconProps) {
-  const iconPath = iconMap[name] || '/icon/alert.png'
-  
-  // Debug logging
-  if (typeof window !== 'undefined') {
-    console.log(`Icon ${name} -> ${iconPath}`)
+  // Simple fallbacks for most common icons to bypass any path issues
+  const simpleIcons: Record<string, string> = {
+    'phone': '📱',
+    'mail': '✉️', 
+    'Check': '✅',
+    'CheckCircle': '✅',
+    'Users': '👥',
+    'User': '👤',
+    'Settings': '⚙️',
+    'Bell': '🔔',
+    'Search': '🔍',
+    'ArrowRight': '→',
+    'ExternalLink': '↗️'
   }
+  
+  // If we have a simple emoji fallback, use it
+  if (simpleIcons[name]) {
+    return (
+      <span 
+        className={className}
+        style={{ 
+          fontSize: size, 
+          width: size, 
+          height: size,
+          display: 'inline-block',
+          lineHeight: '1'
+        }}
+      >
+        {simpleIcons[name]}
+      </span>
+    )
+  }
+  
+  // Otherwise try the PNG file
+  const iconPath = iconMap[name] || '/icon/alert.png'
   
   return (
     <img
@@ -231,11 +260,12 @@ export default function Icon({
       style={{ width: size, height: size }}
       onError={(e) => {
         console.error(`Failed to load icon: ${iconPath}`)
-        e.currentTarget.src = '/icon/alert.png'
-      }}
-      onLoad={() => {
-        if (typeof window !== 'undefined') {
-          console.log(`Successfully loaded: ${iconPath}`)
+        // Replace with a generic emoji as ultimate fallback
+        const target = e.target as HTMLImageElement
+        const parent = target.parentElement
+        if (parent) {
+          parent.innerHTML = '❓'
+          parent.style.fontSize = size + 'px'
         }
       }}
     />
