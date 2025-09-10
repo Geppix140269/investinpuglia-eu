@@ -20,13 +20,18 @@ export interface HeroVideo {
       url: string
     }
   }
+  section: string
   order: number
   isActive: boolean
   description?: string
 }
 
 export async function getHeroVideos(): Promise<HeroVideo[]> {
-  const query = `*[_type == "heroVideo" && isActive == true] | order(order asc) {
+  return getVideosBySection('hero')
+}
+
+export async function getVideosBySection(section: string): Promise<HeroVideo[]> {
+  const query = `*[_type == "heroVideo" && isActive == true && section == $section] | order(order asc) {
     _id,
     title,
     name,
@@ -37,6 +42,34 @@ export async function getHeroVideos(): Promise<HeroVideo[]> {
     "poster": poster.asset->{
       url
     },
+    section,
+    order,
+    isActive,
+    description
+  }`
+
+  try {
+    const videos = await sanity.fetch<HeroVideo[]>(query, { section })
+    return videos || []
+  } catch (error) {
+    console.error(`Error fetching videos for section ${section}:`, error)
+    return []
+  }
+}
+
+export async function getAllVideos(): Promise<HeroVideo[]> {
+  const query = `*[_type == "heroVideo" && isActive == true] | order(section asc, order asc) {
+    _id,
+    title,
+    name,
+    "video": video.asset->{
+      url,
+      metadata
+    },
+    "poster": poster.asset->{
+      url
+    },
+    section,
     order,
     isActive,
     description
@@ -46,7 +79,7 @@ export async function getHeroVideos(): Promise<HeroVideo[]> {
     const videos = await sanity.fetch<HeroVideo[]>(query)
     return videos || []
   } catch (error) {
-    console.error('Error fetching hero videos:', error)
+    console.error('Error fetching all videos:', error)
     return []
   }
 }

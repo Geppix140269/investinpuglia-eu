@@ -98,11 +98,137 @@ Since your videos are already in Cloudinary, you can:
 3. Verify Cloudinary transformations are applied
 4. Consider adding video compression settings
 
+## Using Videos in Other Sections
+
+### Option 1: Reusable VideoSection Component
+Use the new `VideoSection` component anywhere:
+
+```tsx
+import VideoSection from '@/components/VideoSection';
+
+// Simple video background
+<VideoSection 
+  section="about" 
+  className="relative w-full h-96"
+>
+  <div className="flex items-center justify-center h-full">
+    <h2 className="text-white text-4xl font-bold">About Section</h2>
+  </div>
+</VideoSection>
+
+// Portfolio background with rotation
+<VideoSection 
+  section="portfolio" 
+  className="relative w-full h-screen"
+  showIndicators={true}
+  rotationInterval={10000}
+  loop={true}
+>
+  <YourPortfolioContent />
+</VideoSection>
+
+// Services section with manual controls
+<VideoSection 
+  section="services" 
+  className="relative w-full h-64"
+  autoPlay={false}
+  controls={true}
+  showIndicators={false}
+/>
+```
+
+### Option 2: Direct Query in Components
+```tsx
+import { getVideosBySection } from '@/lib/sanity/heroVideos';
+
+const MyComponent = () => {
+  const [videos, setVideos] = useState([]);
+  
+  useEffect(() => {
+    const fetchVideos = async () => {
+      const aboutVideos = await getVideosBySection('about');
+      setVideos(aboutVideos);
+    };
+    fetchVideos();
+  }, []);
+  
+  // Use videos however you want
+};
+```
+
+### Available Sections
+The schema now supports these predefined sections:
+- `hero` (existing hero section)
+- `about` (About section videos)
+- `portfolio` (Portfolio background videos)
+- `services` (Services section videos)
+- `testimonials` (Testimonials background)
+- `footer` (Footer area videos)
+
+## Examples of Use Cases
+
+### 1. Hero Section (Current)
+- **3-4 rotating videos** showcasing luxury lifestyle
+- **8-second intervals** with smooth transitions
+- **Mobile optimization** with different layouts
+
+### 2. Portfolio Section Background
+```tsx
+<VideoSection 
+  section="portfolio" 
+  className="relative w-full min-h-screen"
+  showIndicators={true}
+  rotationInterval={12000}
+>
+  <PortfolioGrid />
+</VideoSection>
+```
+
+### 3. About Section with Single Loop Video
+```tsx
+<VideoSection 
+  section="about" 
+  className="relative w-full h-96"
+  loop={true}
+  rotationInterval={0} // No rotation
+>
+  <AboutContent />
+</VideoSection>
+```
+
+### 4. Services Section with Manual Control
+```tsx
+<VideoSection 
+  section="services" 
+  className="relative w-full h-64"
+  autoPlay={false}
+  controls={true}
+  muted={false}
+/>
+```
+
+## Performance Benefits
+
+### Before (Hardcoded URLs)
+- ❌ Videos hardcoded in components
+- ❌ No easy content management
+- ❌ Requires developer to change videos
+- ❌ No optimization control
+
+### After (Sanity + Cloudinary)
+- ✅ Dynamic video loading from Sanity
+- ✅ Automatic Cloudinary optimization
+- ✅ Easy content management through Studio
+- ✅ A/B testing capabilities
+- ✅ Performance monitoring
+- ✅ Reusable across sections
+
 ## Next Steps
 
 1. **Add current videos to Sanity Studio** (you'll need to do this manually)
-2. **Remove fallback videos** once Sanity is populated
-3. **Add more videos** as needed through Sanity
-4. **Set up video analytics** through Sanity insights
+2. **Set section = "hero"** for existing videos
+3. **Add videos for other sections** as needed
+4. **Use VideoSection component** in other parts of the site
+5. **Remove fallback videos** once Sanity is fully populated
 
-The system is now ready for Sanity-managed videos while maintaining the current functionality during the transition!
+The system is now ready for Sanity-managed videos across your entire site!

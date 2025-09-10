@@ -38,6 +38,24 @@ export const heroVideoType = defineType({
       validation: Rule => Rule.required()
     }),
     defineField({
+      name: 'section',
+      title: 'Section',
+      type: 'string',
+      description: 'Which section this video belongs to',
+      options: {
+        list: [
+          { title: 'Hero', value: 'hero' },
+          { title: 'About Section', value: 'about' },
+          { title: 'Portfolio Background', value: 'portfolio' },
+          { title: 'Services Section', value: 'services' },
+          { title: 'Testimonials', value: 'testimonials' },
+          { title: 'Footer', value: 'footer' }
+        ]
+      },
+      initialValue: 'hero',
+      validation: Rule => Rule.required()
+    }),
+    defineField({
       name: 'order',
       title: 'Display Order',
       type: 'number',
