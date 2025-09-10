@@ -25,7 +25,9 @@ export const iconMap: Record<string, string> = {
   
   // Communication Icons
   'Mail': '/icon/mail.png',
+  'mail': '/icon/mail.png', // lowercase for footer
   'Phone': '/icon/smartphone.png',
+  'phone': '/icon/smartphone.png', // lowercase for footer
   'MessageCircle': '/icon/whatsapp.png',
   'Calendar': '/icon/calendar.png',
   
