@@ -8,20 +8,21 @@ import Image from 'next/image'
 // All files are lowercase in the directory
 export const iconMap: Record<string, string> = {
   // Common UI Icons
-  'Menu': '/icon/hammer.png', // Using hammer as menu fallback
+  'Menu': '/icon/Hammer.png', // Using hammer as menu fallback
   'X': '/icon/alert.png', // Temporary fallback
-  'ChevronDown': '/icon/triangularflag.png', // Temporary fallback
-  'ChevronRight': '/icon/triangularflag.png', // Temporary fallback
-  'ArrowRight': '/icon/triangularflag.png', // Temporary fallback
-  'ArrowDown': '/icon/triangularflag.png', // Temporary fallback
-  'ExternalLink': '/icon/upwardarrow.png',
+  'ChevronDown': '/icon/triangularFlag.png', // Temporary fallback
+  'ChevronRight': '/icon/triangularFlag.png', // Temporary fallback
+  'ArrowRight': '/icon/triangularFlag.png', // Temporary fallback
+  'ArrowDown': '/icon/triangularFlag.png', // Temporary fallback
+  'ExternalLink': '/icon/UpwardArrow.png',
   
   // Form & Input Icons
   'Check': '/icon/check.png',
+  'CheckCircle': '/icon/check.png',
   'AlertCircle': '/icon/alert.png',
   'AlertTriangle': '/icon/alert.png',
-  'Info': '/icon/speechbubble.png',
-  'Search': '/icon/magnifyingglass.png',
+  'Info': '/icon/SpeechBubble.png',
+  'Search': '/icon/MagnifyingGlass.png',
   
   // Communication Icons
   'Mail': '/icon/mail.png',
@@ -33,58 +34,58 @@ export const iconMap: Record<string, string> = {
   
   // Business & Finance Icons
   'Calculator': '/icon/calculator.png',
-  'DollarSign': '/icon/euro.png',
-  'Euro': '/icon/euro.png',
+  'DollarSign': '/icon/Euro.png',
+  'Euro': '/icon/Euro.png',
   'TrendingUp': '/icon/chart.png',
   'BarChart3': '/icon/chart.png',
   'PieChart': '/icon/chart.png',
-  'Banknote': '/icon/euro.png',
+  'Banknote': '/icon/Euro.png',
   
   // Location & Property Icons
-  'MapPin': '/icon/mappin.png',
-  'Home': '/icon/trullohouse.png',
-  'Building': '/icon/villa.png',
-  'Building2': '/icon/housearrowup.png',
+  'MapPin': '/icon/MapPin.png',
+  'Home': '/icon/TrulloHouse.png',
+  'Building': '/icon/Villa.png',
+  'Building2': '/icon/HouseArrowUP.png',
   
   // People & User Icons
-  'User': '/icon/user.png',
-  'Users': '/icon/user.png', // Using single user as fallback
-  'UserCheck': '/icon/user.png',
+  'User': '/icon/User.png',
+  'Users': '/icon/User.png', // Using single user as fallback
+  'UserCheck': '/icon/User.png',
   
   // Tools & Features Icons
-  'Settings': '/icon/gear.png',
-  'Wrench': '/icon/hammer.png',
+  'Settings': '/icon/Gear.png',
+  'Wrench': '/icon/Hammer.png',
   'FileText': '/icon/document.png',
   'Globe': '/icon/globe.png',
-  'Shield': '/icon/shield.png',
+  'Shield': '/icon/Shield.png',
   'Award': '/icon/crown.png',
   'Trophy': '/icon/crown.png',
-  'Target': '/icon/magnifyingglass.png', // Using magnifying glass as target fallback
+  'Target': '/icon/MagnifyingGlass.png', // Using magnifying glass as target fallback
   'Sparkles': '/icon/crown.png', // Using crown as sparkles fallback
   'Star': '/icon/crown.png', // Using crown as star fallback
   'Heart': '/icon/crown.png', // Using crown as heart fallback
   'ThumbsUp': '/icon/check.png', // Using check as thumbs up fallback
   'Gift': '/icon/crown.png',
-  'Bell': '/icon/bell.png',
-  'Clock': '/icon/speedometer.png',
-  'Eye': '/icon/magnifyingglass.png',
-  'Download': '/icon/triangularflag.png', // Temporary fallback
-  'Upload': '/icon/upwardarrow.png',
-  'RefreshCw': '/icon/gear.png', // Using gear as refresh fallback
-  'Zap': '/icon/speedometer.png',
-  'Lock': '/icon/lockkeyhole.png',
-  'Unlock': '/icon/lockkeyhole.png',
-  'Key': '/icon/lockkeyhole.png',
-  'CreditCard': '/icon/euro.png',
-  'ShoppingCart': '/icon/euro.png', // Using euro as cart fallback
-  'Package': '/icon/housearrowup.png', // Using house as package fallback
-  'Truck': '/icon/speedometer.png', // Using speedometer as truck fallback
-  'Compass': '/icon/mappin.png',
-  'Flag': '/icon/triangularflag.png',
-  'Bookmark': '/icon/triangularflag.png',
-  'Tag': '/icon/triangularflag.png',
-  'Hash': '/icon/gear.png',
-  'Link': '/icon/magnifyingglass.png',
+  'Bell': '/icon/Bell.png',
+  'Clock': '/icon/Speedometer.png',
+  'Eye': '/icon/MagnifyingGlass.png',
+  'Download': '/icon/triangularFlag.png', // Temporary fallback
+  'Upload': '/icon/UpwardArrow.png',
+  'RefreshCw': '/icon/Gear.png', // Using gear as refresh fallback
+  'Zap': '/icon/Speedometer.png',
+  'Lock': '/icon/LockKeyhole.png',
+  'Unlock': '/icon/LockKeyhole.png',
+  'Key': '/icon/LockKeyhole.png',
+  'CreditCard': '/icon/Euro.png',
+  'ShoppingCart': '/icon/Euro.png', // Using euro as cart fallback
+  'Package': '/icon/HouseArrowUP.png', // Using house as package fallback
+  'Truck': '/icon/Speedometer.png', // Using speedometer as truck fallback
+  'Compass': '/icon/MapPin.png',
+  'Flag': '/icon/triangularFlag.png',
+  'Bookmark': '/icon/triangularFlag.png',
+  'Tag': '/icon/triangularFlag.png',
+  'Hash': '/icon/Gear.png',
+  'Link': '/icon/MagnifyingGlass.png',
   'Paperclip': '/icon/document.png',
   'Filter': '/icon/gear.png',
   'SortAsc': '/icon/chart.png',
@@ -111,21 +112,21 @@ export const iconMap: Record<string, string> = {
   'Maximize': '/icon/upwardarrow.png',
   'Minimize': '/icon/triangularflag.png',
   'Move': '/icon/gear.png',
-  'ChevronUp': '/icon/upwardarrow.png',
-  'ChevronLeft': '/icon/triangularflag.png',
-  'ChevronsUp': '/icon/upwardarrow.png',
-  'ChevronsDown': '/icon/triangularflag.png',
-  'ChevronsLeft': '/icon/triangularflag.png',
-  'ChevronsRight': '/icon/triangularflag.png',
-  'ArrowUp': '/icon/upwardarrow.png',
-  'ArrowLeft': '/icon/triangularflag.png',
-  'ArrowUpRight': '/icon/upwardarrow.png',
-  'ArrowDownRight': '/icon/triangularflag.png',
-  'ArrowDownLeft': '/icon/triangularflag.png',
-  'ArrowUpLeft': '/icon/upwardarrow.png',
-  'RotateCw': '/icon/gear.png',
-  'RotateCcw': '/icon/gear.png',
-  'HelpCircle': '/icon/speechbubble.png',
+  'ChevronUp': '/icon/UpwardArrow.png',
+  'ChevronLeft': '/icon/triangularFlag.png',
+  'ChevronsUp': '/icon/UpwardArrow.png',
+  'ChevronsDown': '/icon/triangularFlag.png',
+  'ChevronsLeft': '/icon/triangularFlag.png',
+  'ChevronsRight': '/icon/triangularFlag.png',
+  'ArrowUp': '/icon/UpwardArrow.png',
+  'ArrowLeft': '/icon/triangularFlag.png',
+  'ArrowUpRight': '/icon/UpwardArrow.png',
+  'ArrowDownRight': '/icon/triangularFlag.png',
+  'ArrowDownLeft': '/icon/triangularFlag.png',
+  'ArrowUpLeft': '/icon/UpwardArrow.png',
+  'RotateCw': '/icon/Gear.png',
+  'RotateCcw': '/icon/Gear.png',
+  'HelpCircle': '/icon/SpeechBubble.png',
   'AlertOctagon': '/icon/alert.png',
   'Handshake': '/icon/user.png',
   'ClipboardList': '/icon/document.png',
