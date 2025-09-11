@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     siteName: 'InvestInPuglia.eu',
     images: [
       {
-        url: 'https://investinpuglia.eu/og-images/property-calculator.png',
+        url: 'https://investinpuglia.eu/icon/calculator.png',
         width: 1200,
         height: 630,
         alt: 'Italy Property Costs Calculator'
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Italy Property Costs Calculator - Foreign Buyer Guide',
     description: 'Calculate all costs for buying property in Italy. Complete breakdown for foreign investors.',
-    images: ['https://investinpuglia.eu/og-images/property-calculator.png']
+    images: ['https://investinpuglia.eu/icon/calculator.png']
   },
   alternates: {
     canonical: 'https://investinpuglia.eu/property-calculator'

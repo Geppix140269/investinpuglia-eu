@@ -112,6 +112,9 @@ export default function Navbar() {
                       <div className="px-4 py-2 text-xs font-semibold text-gray-500 uppercase tracking-wider bg-gray-50">
                         Tools
                       </div>
+                      <Link href="/property-calculator" className="block px-4 py-3 text-gray-700 hover:bg-purple-50 hover:text-purple-700 transition-colors">
+                        🏠 Property Calculator
+                      </Link>
                       <Link href="/apulink" className="block px-4 py-3 text-gray-700 hover:bg-purple-50 hover:text-purple-700 transition-colors">
                         🔗 Apulink Platform
                       </Link>
@@ -200,6 +203,9 @@ export default function Navbar() {
                     📋 All Services
                   </a>
                   <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider mt-2">Tools</div>
+                  <a href="/property-calculator" className="block text-gray-600 hover:text-gray-900 transition-colors py-1">
+                    🏠 Property Calculator
+                  </a>
                   <a href="/apulink" className="block text-gray-600 hover:text-gray-900 transition-colors py-1">
                     🔗 Apulink Platform
                   </a>
