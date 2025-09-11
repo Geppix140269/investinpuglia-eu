@@ -15,6 +15,14 @@ const LoadingSkeleton = () => (
 )
 
 // Lazy load ALL other components with loading states and optimized chunking
+const PropertyCalculatorTeaser = dynamic(
+  () => import(/* webpackChunkName: "calculator-teaser" */ '@/components/sections/PropertyCalculatorTeaser'),
+  {
+    loading: () => <LoadingSkeleton />,
+    ssr: true
+  }
+)
+
 const PortfolioSlider = dynamic(
   () => import(/* webpackChunkName: "portfolio" */ '@/components/PortfolioSlider'),
   {
@@ -100,6 +108,11 @@ export default function HomePage() {
       <VideoErrorBoundary>
         <HeroVideoRotatorOptimized />
       </VideoErrorBoundary>
+      
+      {/* Property Calculator Teaser - High priority conversion tool */}
+      <Suspense fallback={<LoadingSkeleton />}>
+        <PropertyCalculatorTeaser />
+      </Suspense>
       
       {/* Portfolio Slider - High priority but lazy */}
       <Suspense fallback={<LoadingSkeleton />}>

@@ -659,6 +659,49 @@ export async function POST(request: NextRequest) {
         alertLevel = 'alert';
         break;
 
+      case 'property_calculation':
+        message = `🏠 <b>HIGH-VALUE PROPERTY CALCULATION</b>\n\n` +
+                 `💰 Property Value: €${data.propertyValue.toLocaleString()}\n` +
+                 `🏢 Property Type: ${data.propertyType.charAt(0).toUpperCase() + data.propertyType.slice(1)}\n` +
+                 `🌍 Buyer Type: ${data.buyerType === 'eu' ? 'EU Resident' : 'Non-EU Resident'}\n` +
+                 `💸 Total Costs: €${data.totalCosts.toLocaleString()}\n` +
+                 `📧 User Email: ${data.userEmail}\n` +
+                 `⏰ Calculated: ${new Date(data.timestamp).toLocaleString()}\n\n` +
+                 `🎯 <b>Follow-up Opportunity:</b>\n` +
+                 `• High-value property interest\n` +
+                 `• Potential for consultation booking\n` +
+                 `• Consider reaching out with custom advice\n\n` +
+                 `<a href="https://investinpuglia.eu/property-calculator">View Calculator</a>`;
+        
+        alertLevel = 'normal';
+        break;
+
+      case 'calculator_registration':
+        message = `🧮 <b>NEW CALCULATOR REGISTRATION</b>\n\n` +
+                 `👤 <b>Contact Details:</b>\n` +
+                 `• Name: ${data.name}\n` +
+                 `• Email: ${data.email}\n` +
+                 `• Phone: ${data.phone}\n` +
+                 `• Country: ${data.country}\n` +
+                 `• Preferred Contact: ${data.preferredContact === 'email' ? '📧 Email' : '📱 WhatsApp'}\n\n` +
+                 `🏠 <b>Property Interest:</b>\n` +
+                 `• Value: €${data.calculationData.propertyValue.toLocaleString()}\n` +
+                 `• Type: ${data.calculationData.propertyType.charAt(0).toUpperCase() + data.calculationData.propertyType.slice(1)}\n` +
+                 `• Buyer: ${data.calculationData.buyerType === 'eu' ? 'EU Resident' : 'Non-EU Resident'}\n` +
+                 `• First Home: ${data.calculationData.isFirstHome ? 'Yes' : 'No'}\n` +
+                 `• Size: ${data.calculationData.propertySize} sqm\n` +
+                 `• Mortgage: ${data.calculationData.needsMortgage ? `Yes (€${data.calculationData.mortgageAmount.toLocaleString()})` : 'No'}\n\n` +
+                 `🎯 <b>Lead Score: ${data.leadScore}/100</b>\n` +
+                 `⏰ Registered: ${new Date(data.timestamp).toLocaleString()}\n\n` +
+                 `🚀 <b>Follow-up Actions:</b>\n` +
+                 `• Send detailed property investment guide\n` +
+                 `• ${data.leadScore > 70 ? 'HIGH PRIORITY: Call within 2 hours' : data.leadScore > 40 ? 'Follow up within 24 hours' : 'Add to nurture campaign'}\n` +
+                 `• Consider EU grant eligibility consultation\n\n` +
+                 `📧 Contact: ${data.email}`;
+        
+        alertLevel = data.leadScore > 70 ? 'alert' : data.leadScore > 40 ? 'warning' : 'normal';
+        break;
+
       case 'daily_summary':
         message = generateDailySummary();
         break;
