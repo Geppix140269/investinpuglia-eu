@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic'
+
 import { NextRequest, NextResponse } from 'next/server';
 import { 
   getAllEmailSequences,
@@ -9,7 +11,7 @@ import {
 
 export async function GET(request: NextRequest) {
   try {
-    const { searchParams } = new URL(request.url);
+    const { searchParams } = request.nextUrl;
     const status = searchParams.get('status') as any;
     
     const sequences = await getAllEmailSequences(status);
