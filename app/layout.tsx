@@ -135,7 +135,7 @@ export const metadata: Metadata = {
     }
   },
   verification: {
-    google: 'your-google-verification-code' // Replace with actual verification code
+    google: process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION || 'google-site-verification=pending' // Add your Google verification code to .env.local
   },
   robots: {
     index: true,
@@ -275,6 +275,49 @@ export default function RootLayout({
                     "query-input": "required name=search_term_string"
                   },
                   "inLanguage": ["en", "it", "de", "fr", "es"]
+                },
+                {
+                  "@type": "FinancialProduct",
+                  "@id": "https://investinpuglia.eu/#pia-grants",
+                  "name": "PIA & Mini PIA Grants",
+                  "description": "Non-refundable EU co-funded grants up to €2.75M for businesses in Puglia. 55% funding coverage for tourism, manufacturing, technology, and agriculture sectors.",
+                  "category": "Government Grant",
+                  "provider": {
+                    "@id": "https://investinpuglia.eu/#organization"
+                  },
+                  "feesAndCommissionsSpecification": "Success-based advisory fees, no upfront costs",
+                  "interestRate": "0% - Non-refundable grants",
+                  "amount": {
+                    "@type": "MonetaryAmount",
+                    "currency": "EUR",
+                    "minValue": "50000",
+                    "maxValue": "2750000"
+                  },
+                  "areaServed": {
+                    "@type": "Place",
+                    "name": "Puglia, Italy"
+                  },
+                  "applicationDeadline": "Ongoing applications throughout 2024-2027 programming period",
+                  "eligibilityRequirements": "International businesses, SMEs, tourism operators, manufacturers"
+                },
+                {
+                  "@type": "GovernmentService",
+                  "@id": "https://investinpuglia.eu/#grant-advisory",
+                  "name": "PIA Grant Advisory Services",
+                  "description": "Expert consultation for PIA Turismo, Mini PIA, and Puglia Regional Development Fund applications",
+                  "provider": {
+                    "@id": "https://investinpuglia.eu/#organization"
+                  },
+                  "serviceType": "Business Consulting",
+                  "areaServed": {
+                    "@type": "Place",
+                    "name": "Puglia, Italy"
+                  },
+                  "audience": {
+                    "@type": "Audience",
+                    "audienceType": "International Businesses"
+                  },
+                  "availableLanguage": ["English", "Italian", "German", "French", "Spanish"]
                 }
               ]
             })
