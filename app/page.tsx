@@ -109,25 +109,25 @@ export default function HomePage() {
         <HeroVideoRotatorOptimized />
       </VideoErrorBoundary>
       
-      {/* Property Calculator Teaser - High priority conversion tool */}
-      <Suspense fallback={<LoadingSkeleton />}>
-        <PropertyCalculatorTeaser />
-      </Suspense>
-      
       {/* Portfolio Slider - High priority but lazy */}
       <Suspense fallback={<LoadingSkeleton />}>
         <PortfolioSlider />
       </Suspense>
-      
+
 
       {/* Team Section - Medium priority */}
       <Suspense fallback={<LoadingSkeleton />}>
         <MeetTheTeam />
       </Suspense>
-      
-      {/* Why Puglia - Low priority */}
+
+      {/* Why Puglia - Medium priority */}
       <Suspense fallback={<LoadingSkeleton />}>
         <WhyPuglia />
+      </Suspense>
+
+      {/* Property Calculator Teaser - After establishing credibility and opportunity */}
+      <Suspense fallback={<LoadingSkeleton />}>
+        <PropertyCalculatorTeaser />
       </Suspense>
       
       {/* Grant Institutions - Low priority */}
