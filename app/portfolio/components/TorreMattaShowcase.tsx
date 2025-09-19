@@ -11,7 +11,7 @@ export default function TorreMattaShowcase() {
             <div className="relative">
               <div className="rounded-2xl overflow-hidden shadow-2xl">
                 <Image
-                  src="/Cataldo%27s%20projects/Torre%20Matta.jpg"
+                  src="https://res.cloudinary.com/dusubfxgo/image/upload/v1756663589/investinpuglia/og-images/torre-matta.jpg"
                   alt="Torre Matta - Otranto Castle Underground"
                   width={600}
                   height={500}
