@@ -75,7 +75,7 @@ function getDefaultProjects() {
         region: 'Puglia'
       },
       description: 'Complete renovation of historic masseria into ultra-luxury hotel with 30 suites, Michelin-star restaurant potential, and world-class spa facilities.',
-      mainImage: '/projects/baglioni-pool.jpg',
+      mainImage: 'https://res.cloudinary.com/dusubfxgo/image/upload/f_auto,q_auto/investinpuglia/investinpuglia/projects/baglioni-pool',
       investment: {
         completionYear: 2023
       },
@@ -104,7 +104,7 @@ function getDefaultProjects() {
         region: 'Puglia'
       },
       description: 'Transformation of coastal property into premier beach resort with 120 rooms, conference facilities, multiple restaurants, and private beach access.',
-      mainImage: '/projects/riva-marina-exterior.jpg',
+      mainImage: 'https://res.cloudinary.com/dusubfxgo/image/upload/f_auto,q_auto/investinpuglia/investinpuglia/projects/riva-marina-exterior',
       investment: {
         completionYear: 2022
       },
@@ -134,7 +134,7 @@ function getDefaultProjects() {
         region: 'Puglia'
       },
       description: 'Historic villa restoration creating exclusive wedding and event venue with accommodation for 50 guests, panoramic terraces, and traditional Puglian gardens.',
-      mainImage: '/projects/santa-lucia-wedding.jpg',
+      mainImage: 'https://res.cloudinary.com/dusubfxgo/image/upload/f_auto,q_auto/investinpuglia/investinpuglia/projects/santa-lucia-wedding',
       investment: {
         completionYear: 2021
       },
@@ -163,7 +163,7 @@ function getDefaultProjects() {
         region: 'Puglia'
       },
       description: 'Boutique bed & breakfast with stunning sea views, modern amenities, and traditional Puglian architecture.',
-      mainImage: '/projects/bb-blue-otranto-pool.jpg',
+      mainImage: 'https://res.cloudinary.com/dusubfxgo/image/upload/f_auto,q_auto/investinpuglia/investinpuglia/projects/bb-blue-otranto-pool',
       investment: {
         completionYear: 2023
       },
@@ -192,7 +192,7 @@ function getDefaultProjects() {
         region: 'Puglia'
       },
       description: 'Cliffside luxury resort with breathtaking views of the Adriatic Sea and exclusive amenities.',
-      mainImage: '/projects/donna-menga-exterior.jpg',
+      mainImage: 'https://res.cloudinary.com/dusubfxgo/image/upload/f_auto,q_auto/investinpuglia/investinpuglia/projects/donna-menga-exterior',
       investment: {
         completionYear: 2022
       },
