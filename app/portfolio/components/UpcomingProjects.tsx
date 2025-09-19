@@ -58,7 +58,7 @@ export default function UpcomingProjects() {
               {/* Premium Hero Image */}
               <div className="relative h-[600px] overflow-hidden rounded-t-3xl">
                 <Image
-                  src="/Cataldo's projects/shantiland.png"
+                  src="/Cataldo%27s%20projects/shantiland.png"
                   alt="Hotel Shantiland - Luxury Wellness Resort"
                   fill
                   className="object-cover"

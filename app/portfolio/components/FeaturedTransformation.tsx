@@ -51,8 +51,8 @@ export default function FeaturedTransformation() {
               <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-emerald-50/20 pointer-events-none" />
               
               <BeforeAfterSlider
-                beforeImage="/Cataldo's projects/Donna Menga Before.webp"
-                afterImage="/Cataldo's projects/Donna-Menga.webp"
+                beforeImage="/Cataldo%27s%20projects/Donna%20Menga%20Before.webp"
+                afterImage="/Cataldo%27s%20projects/Donna-Menga.webp"
                 beforeLabel="2018 - Abandoned Heritage"
                 afterLabel="2024 - Ultra-Luxury Resort"
                 height={600}

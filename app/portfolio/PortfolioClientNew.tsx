@@ -47,8 +47,8 @@ export default function PortfolioClientNew({ projects = [], pageSettings }: Port
     grant: "PIA Turismo Funded",
     year: "2024",
     description: "Complete transformation of a historic masseria into a luxury rural tourism destination, preserving authentic Puglian architecture while introducing modern luxury amenities.",
-    beforeImage: "/Cataldo's projects/Donna Menga Before.webp",
-    afterImage: "/Cataldo's projects/Donna-Menga.webp",
+    beforeImage: "/Cataldo%27s%20projects/Donna%20Menga%20Before.webp",
+    afterImage: "/Cataldo%27s%20projects/Donna-Menga.webp",
     stats: {
       rooms: "15 Luxury Suites",
       area: "4,500 sqm",
@@ -75,7 +75,7 @@ export default function PortfolioClientNew({ projects = [], pageSettings }: Port
     grant: "Heritage Preservation Fund",
     status: "Completed 2016",
     description: "Exceptional restoration of Otranto Castle's underground chambers, transforming forgotten medieval spaces into a cultural heritage site. This project showcases our expertise in preserving historical authenticity while creating functional modern spaces.",
-    imageUrl: "/Cataldo's projects/Torre Matta.jpg",
+    imageUrl: "/Cataldo%27s%20projects/Torre%20Matta.jpg",
     category: "heritage",
     year: "2016",
     achievements: [
@@ -104,7 +104,7 @@ export default function PortfolioClientNew({ projects = [], pageSettings }: Port
       grant: "PIA Turismo",
       status: "Completed 2023",
       description: "5-star luxury hotel with 30 suites",
-      imageUrl: "/Cataldo's projects/baglioni_masseria_muzza.jpg",
+      imageUrl: "/Cataldo%27s%20projects/baglioni_masseria_muzza.jpg",
       category: "luxury",
       year: "2023",
       features: ["30 Suites", "Michelin Restaurant", "World-class Spa"]
@@ -116,7 +116,7 @@ export default function PortfolioClientNew({ projects = [], pageSettings }: Port
       value: "€650K",
       status: "2015-2019",
       description: "Reception, restaurants, SPA, rooms for Alpitour World",
-      imageUrl: "/Cataldo's projects/VOI Alimini Resort.jpg",
+      imageUrl: "/Cataldo%27s%20projects/VOI%20Alimini%20Resort.jpg",
       category: "resort",
       year: "2019",
       features: ["Beach Access", "Multiple Pools", "Entertainment"]
@@ -129,7 +129,7 @@ export default function PortfolioClientNew({ projects = [], pageSettings }: Port
       grant: "Heritage Fund",
       status: "Completed 2022",
       description: "Castle restoration & luxury hotel spa conversion",
-      imageUrl: "/Cataldo's projects/nohasi palace hotel and spa.jpg",
+      imageUrl: "/Cataldo%27s%20projects/nohasi%20palace%20hotel%20and%20spa.jpg",
       category: "heritage",
       year: "2022",
       features: ["Historic Castle", "Luxury Spa", "Fine Dining"]
@@ -142,7 +142,7 @@ export default function PortfolioClientNew({ projects = [], pageSettings }: Port
       grant: "Titolo II Turismo",
       status: "Completed 2022",
       description: "Complete renovation with sea view terraces",
-      imageUrl: "/Cataldo's projects/Hotel-Bellavista.webp",
+      imageUrl: "/Cataldo%27s%20projects/Hotel-Bellavista.webp",
       category: "luxury",
       year: "2022",
       features: ["Sea Views", "Modern Amenities", "Beach Club"]
@@ -155,7 +155,7 @@ export default function PortfolioClientNew({ projects = [], pageSettings }: Port
       grant: "Italia Turismo",
       status: "2015-2019",
       description: "Beach resort restoration and upgrades",
-      imageUrl: "/Cataldo's projects/Le Cale d'Otranto Beach Resort.jpg",
+      imageUrl: "/Cataldo%27s%20projects/Le%20Cale%20d%27Otranto%20Beach%20Resort.jpg",
       category: "resort",
       year: "2019",
       features: ["Private Beach", "Water Sports", "Beach Bar"]
@@ -167,7 +167,7 @@ export default function PortfolioClientNew({ projects = [], pageSettings }: Port
       value: "€1M",
       status: "Completed 2014",
       description: "Historic palazzo renovation in old town",
-      imageUrl: "/Cataldo's projects/Palazzo Spinola Gallipoli.jpg",
+      imageUrl: "/Cataldo%27s%20projects/Palazzo%20Spinola%20Gallipoli.jpg",
       category: "heritage",
       year: "2014",
       features: ["Historic Center", "Luxury Suites", "Rooftop Terrace"]
@@ -179,7 +179,7 @@ export default function PortfolioClientNew({ projects = [], pageSettings }: Port
       value: "€2M",
       status: "Completed 2007",
       description: "New hospitality structure with modern design",
-      imageUrl: "/Cataldo's projects/Residence Bellaria giurdignano.jpg",
+      imageUrl: "/Cataldo%27s%20projects/Residence%20Bellaria%20giurdignano.jpg",
       category: "luxury",
       year: "2007",
       features: ["Modern Design", "Pool Area", "Garden Suites"]
@@ -191,7 +191,7 @@ export default function PortfolioClientNew({ projects = [], pageSettings }: Port
       value: "€2.5M",
       status: "Completed 2009",
       description: "New room block and facilities expansion",
-      imageUrl: "/Cataldo's projects/Basiliani.jpg",
+      imageUrl: "/Cataldo%27s%20projects/Basiliani.jpg",
       category: "luxury",
       year: "2009",
       features: ["CDSHotels Chain", "Conference Center", "Wellness Area"]
@@ -203,7 +203,7 @@ export default function PortfolioClientNew({ projects = [], pageSettings }: Port
       value: "€1.2M",
       status: "Completed 2023",
       description: "Boutique bed & breakfast with stunning sea views",
-      imageUrl: "/Cataldo's projects/Blue_Otranto.jpg",
+      imageUrl: "/Cataldo%27s%20projects/Blue_Otranto.jpg",
       category: "boutique",
       year: "2023",
       features: ["Sea Views", "Infinity Pool", "Design Rooms"]
@@ -215,7 +215,7 @@ export default function PortfolioClientNew({ projects = [], pageSettings }: Port
       value: "€1.3M",
       status: "2022-2024",
       description: "Sports facilities, pools, pub & restaurant",
-      imageUrl: "/Cataldo's projects/country club alimini.jpg",
+      imageUrl: "/Cataldo%27s%20projects/country%20club%20alimini.jpg",
       category: "resort",
       year: "2024",
       features: ["Sports Complex", "Multiple Pools", "Restaurant & Pub"]
@@ -228,7 +228,7 @@ export default function PortfolioClientNew({ projects = [], pageSettings }: Port
       grant: "Listed Building Fund",
       status: "Completed 2008",
       description: "Historic masseria restoration & hotel conversion",
-      imageUrl: "/Cataldo's projects/dimora san giuseppe.jpg",
+      imageUrl: "/Cataldo%27s%20projects/dimora%20san%20giuseppe.jpg",
       category: "heritage",
       year: "2008",
       features: ["Protected Monument", "Traditional Architecture", "Garden Oasis"]
@@ -240,7 +240,7 @@ export default function PortfolioClientNew({ projects = [], pageSettings }: Port
       value: "€500K",
       status: "Completed 2023",
       description: "Charming B&B conversion with rural charm",
-      imageUrl: "/Cataldo's projects/don gerolamo.jpg",
+      imageUrl: "/Cataldo%27s%20projects/don%20gerolamo.jpg",
       category: "boutique",
       year: "2023",
       features: ["Rural Setting", "Authentic Charm", "Local Cuisine"]
@@ -252,7 +252,7 @@ export default function PortfolioClientNew({ projects = [], pageSettings }: Port
       value: "€2.5M",
       status: "2003-2006",
       description: "Hotel expansion and elevation project",
-      imageUrl: "/Cataldo's projects/hotel haethey otranto.jpg",
+      imageUrl: "/Cataldo%27s%20projects/hotel%20haethey%20otranto.jpg",
       category: "luxury",
       year: "2006",
       features: ["City Center", "Rooftop Pool", "Panoramic Views"]
@@ -264,7 +264,7 @@ export default function PortfolioClientNew({ projects = [], pageSettings }: Port
       value: "€5.5M",
       status: "Completed 2008",
       description: "New tourist structure with resort facilities",
-      imageUrl: "/Cataldo's projects/hotel petraria cannole.jpg",
+      imageUrl: "/Cataldo%27s%20projects/hotel%20petraria%20cannole.jpg",
       category: "resort",
       year: "2008",
       features: ["Large Resort", "Event Spaces", "Wellness Center"]
@@ -277,7 +277,7 @@ export default function PortfolioClientNew({ projects = [], pageSettings }: Port
       grant: "Titolo II Turismo",
       status: "Completed 2023",
       description: "Upgrade & expansion of existing structure",
-      imageUrl: "/Cataldo's projects/hotel torcito resort cannole.jpeg",
+      imageUrl: "/Cataldo%27s%20projects/hotel%20torcito%20resort%20cannole.jpeg",
       category: "resort",
       year: "2023",
       features: ["Modern Upgrade", "Pool Complex", "Restaurant"]
@@ -289,7 +289,7 @@ export default function PortfolioClientNew({ projects = [], pageSettings }: Port
       value: "€3.3M",
       status: "2003-ongoing",
       description: "Conversion to hospitality with continuous expansion",
-      imageUrl: "/Cataldo's projects/masseria montelauro.jpeg",
+      imageUrl: "/Cataldo%27s%20projects/masseria%20montelauro.jpeg",
       category: "heritage",
       year: "2006",
       features: ["Historic Masseria", "Ongoing Development", "Agricultural Tourism"]
@@ -301,7 +301,7 @@ export default function PortfolioClientNew({ projects = [], pageSettings }: Port
       value: "€1.2M",
       status: "2003-2017",
       description: "Camping facilities with SPA & quality upgrade",
-      imageUrl: "/Cataldo's projects/camping mulino d'acqua otranto.jpg",
+      imageUrl: "/Cataldo%27s%20projects/camping%20mulino%20d%27acqua%20otranto.jpg",
       category: "eco",
       year: "2017",
       features: ["Eco Camping", "Spa Facilities", "Nature Integration"]
@@ -313,7 +313,7 @@ export default function PortfolioClientNew({ projects = [], pageSettings }: Port
       value: "€2.8M",
       status: "Completed",
       description: "Traditional masseria conversion to boutique hotel",
-      imageUrl: "/Cataldo's projects/masseria-furca.jpg",
+      imageUrl: "/Cataldo%27s%20projects/masseria-furca.jpg",
       category: "heritage",
       year: "2020",
       features: ["Boutique Hotel", "Traditional Style", "Pool & Gardens"]
@@ -485,7 +485,7 @@ export default function PortfolioClientNew({ projects = [], pageSettings }: Port
                 <div className="relative">
                   <div className="rounded-2xl overflow-hidden shadow-2xl">
                     <Image
-                      src="/Cataldo's projects/Torre Matta.jpg"
+                      src="/Cataldo%27s%20projects/Torre%20Matta.jpg"
                       alt="Torre Matta - Otranto Castle Underground"
                       width={600}
                       height={500}

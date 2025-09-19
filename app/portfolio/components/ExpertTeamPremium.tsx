@@ -62,7 +62,7 @@ export default function ExpertTeamPremium() {
                   <div className="relative w-80 h-80 mx-auto mb-8 rounded-3xl overflow-hidden shadow-2xl ring-4 ring-amber-400/50">
                     <div className="absolute inset-0 bg-gradient-to-br from-amber-400/20 to-transparent z-10" />
                     <Image
-                      src="/Cataldo's projects/Donna-Menga.webp"
+                      src="/Cataldo%27s%20projects/Donna-Menga.webp"
                       alt="Dott. Ing. Cataldo Russo - Chief Executive Advisor"
                       fill
                       className="object-cover"

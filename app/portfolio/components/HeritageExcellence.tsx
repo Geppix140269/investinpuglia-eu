@@ -55,7 +55,7 @@ export default function HeritageExcellence() {
               
               <div className="relative rounded-2xl overflow-hidden shadow-2xl ring-4 ring-amber-400/30">
                 <Image
-                  src="/Cataldo's projects/Torre Matta.jpg"
+                  src="/Cataldo%27s%20projects/Torre%20Matta.jpg"
                   alt="Torre Matta Heritage Restoration"
                   width={800}
                   height={600}
