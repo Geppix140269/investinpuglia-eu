@@ -23,8 +23,8 @@ export default function DonnaMengaShowcase() {
           {/* Before/After Slider */}
           <div className="mb-12 rounded-2xl overflow-hidden shadow-2xl">
             <BeforeAfterSlider
-              beforeImage="/Cataldo%27s%20projects/Donna%20Menga%20Before.webp"
-              afterImage="/Cataldo%27s%20projects/Donna-Menga.webp"
+              beforeImage="https://res.cloudinary.com/dusubfxgo/image/upload/v1758322694/Donna_Menga_Before_s1zzx4.webp"
+              afterImage="https://res.cloudinary.com/dusubfxgo/image/upload/v1756663570/investinpuglia/og-images/donna-menga.jpg"
               beforeLabel="Before Renovation"
               afterLabel="After Transformation"
               height={600}

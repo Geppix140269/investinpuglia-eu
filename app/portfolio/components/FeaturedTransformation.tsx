@@ -51,8 +51,8 @@ export default function FeaturedTransformation() {
               <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-emerald-50/20 pointer-events-none" />
               
               <BeforeAfterSlider
-                beforeImage="/Cataldo%27s%20projects/Donna%20Menga%20Before.webp"
-                afterImage="/Cataldo%27s%20projects/Donna-Menga.webp"
+                beforeImage="https://res.cloudinary.com/dusubfxgo/image/upload/v1758322694/Donna_Menga_Before_s1zzx4.webp"
+                afterImage="https://res.cloudinary.com/dusubfxgo/image/upload/v1756663570/investinpuglia/og-images/donna-menga.jpg"
                 beforeLabel="2018 - Abandoned Heritage"
                 afterLabel="2024 - Ultra-Luxury Resort"
                 height={600}
