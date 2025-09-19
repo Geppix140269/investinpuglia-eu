@@ -102,7 +102,7 @@ export default function PortfolioClient({ projects, pageSettings }: PortfolioCli
           grant: "Titolo II Turismo",
           status: "2005-2022",
           description: "D.Lgs. 42/04 protected monument, spa and rooms",
-          imageUrl: "https://res.cloudinary.com/dusubfxgo/image/upload/f_auto,q_auto/investinpuglia/investinpuglia/og-image"
+          imageUrl: "/Cataldo%27s%20projects/dimora%20san%20giuseppe.jpg"
         },
         {
           name: "Hotel Bellavista",
@@ -111,7 +111,7 @@ export default function PortfolioClient({ projects, pageSettings }: PortfolioCli
           grant: "Titolo II Turismo",
           status: "2021-2022",
           description: "Complete hotel renovation",
-          imageUrl: "https://res.cloudinary.com/dusubfxgo/image/upload/f_auto,q_auto/investinpuglia/investinpuglia/og-image"
+          imageUrl: "/Cataldo%27s%20projects/Hotel-Bellavista.webp"
         },
         {
           name: "Masseria Montelauro",
@@ -120,7 +120,7 @@ export default function PortfolioClient({ projects, pageSettings }: PortfolioCli
           grant: "PIA Turismo Funded",
           status: "Completed 2019",
           description: "5-star luxury hotel with 30 suites, spa & fine dining restaurant",
-          imageUrl: "https://res.cloudinary.com/dusubfxgo/image/upload/f_auto,q_auto/investinpuglia/investinpuglia/og-image"
+          imageUrl: "/Cataldo%27s%20projects/masseria%20montelauro.jpeg"
         },
         {
           name: "Hotel Basiliani",
@@ -129,7 +129,7 @@ export default function PortfolioClient({ projects, pageSettings }: PortfolioCli
           grant: "Private Investment",
           status: "2005-2009",
           description: "New room block zone B construction",
-          imageUrl: "https://res.cloudinary.com/dusubfxgo/image/upload/f_auto,q_auto/investinpuglia/investinpuglia/og-image"
+          imageUrl: "/Cataldo%27s%20projects/Basiliani.jpg"
         },
         {
           name: "Hotel Petraria",
@@ -138,7 +138,7 @@ export default function PortfolioClient({ projects, pageSettings }: PortfolioCli
           grant: "Private Investment",
           status: "2002-2008",
           description: "Tourist accommodation development",
-          imageUrl: "https://res.cloudinary.com/dusubfxgo/image/upload/f_auto,q_auto/investinpuglia/investinpuglia/og-image"
+          imageUrl: "/Cataldo%27s%20projects/hotel%20petraria%20cannole.jpg"
         },
         {
           name: "Hotel Bellaria",
@@ -147,7 +147,7 @@ export default function PortfolioClient({ projects, pageSettings }: PortfolioCli
           grant: "Private Investment",
           status: "2004-2007",
           description: "Tourist accommodation facility",
-          imageUrl: "https://res.cloudinary.com/dusubfxgo/image/upload/f_auto,q_auto/investinpuglia/investinpuglia/og-image"
+          imageUrl: "/Cataldo%27s%20projects/Residence%20Bellaria%20giurdignano.jpg"
         },
         {
           name: "Hotel Koinè",
@@ -156,7 +156,7 @@ export default function PortfolioClient({ projects, pageSettings }: PortfolioCli
           grant: "Private Investment",
           status: "2002-2006",
           description: "Recreational structure transformation to tourist accommodation",
-          imageUrl: "https://res.cloudinary.com/dusubfxgo/image/upload/f_auto,q_auto/investinpuglia/investinpuglia/og-image"
+          imageUrl: "/hotel-koine.jpg"
         },
         {
           name: "Hotel degli Haethey",
@@ -165,7 +165,7 @@ export default function PortfolioClient({ projects, pageSettings }: PortfolioCli
           grant: "L.R. 8/98 + DPR 447/95",
           status: "2001-2006",
           description: "Hotel expansion and elevation project",
-          imageUrl: "https://res.cloudinary.com/dusubfxgo/image/upload/f_auto,q_auto/investinpuglia/investinpuglia/og-image"
+          imageUrl: "/Cataldo%27s%20projects/hotel%20haethey%20otranto.jpg"
         }
       ]
     },
@@ -180,7 +180,7 @@ export default function PortfolioClient({ projects, pageSettings }: PortfolioCli
           grant: "PIA Turismo + Titolo II",
           status: "2011-2023",
           description: "17th century masseria transformed into Baglioni 5-star resort with spa",
-          imageUrl: "https://res.cloudinary.com/dusubfxgo/image/upload/f_auto,q_auto/investinpuglia/investinpuglia/projects/baglioni-pool"
+          imageUrl: "/Cataldo%27s%20projects/baglioni_masseria_muzza.jpg"
         },
         {
           name: "VOI Hotels (Alpitour World)",
@@ -189,7 +189,7 @@ export default function PortfolioClient({ projects, pageSettings }: PortfolioCli
           grant: "Private Investment",
           status: "2015-2019",
           description: "Reception, restaurant, pub, 32 rooms renovation, new spa, beach restaurant",
-          imageUrl: "https://res.cloudinary.com/dusubfxgo/image/upload/f_auto,q_auto/investinpuglia/investinpuglia/og-image"
+          imageUrl: "/Cataldo%27s%20projects/VOI%20Alimini%20Resort.jpg"
         },
         {
           name: "Le Cale d'Otranto (Italia Turismo)",
@@ -198,7 +198,7 @@ export default function PortfolioClient({ projects, pageSettings }: PortfolioCli
           grant: "Private Investment",
           status: "2015-2019",
           description: "Complete renovation blocks A-B-C-D, Pyramid and Tower structures",
-          imageUrl: "https://res.cloudinary.com/dusubfxgo/image/upload/f_auto,q_auto/investinpuglia/investinpuglia/og-image"
+          imageUrl: "/Cataldo%27s%20projects/Le%20Cale%20d%27Otranto%20Beach%20Resort.jpg"
         },
         {
           name: "Hotel Pietra Verde",
@@ -207,7 +207,7 @@ export default function PortfolioClient({ projects, pageSettings }: PortfolioCli
           grant: "Private Investment",
           status: "2001-2002",
           description: "Hotel restructuring project with architectural and structural work",
-          imageUrl: "https://res.cloudinary.com/dusubfxgo/image/upload/f_auto,q_auto/investinpuglia/investinpuglia/og-image"
+          imageUrl: "/pietra-verde.jpg"
         }
       ]
     },
@@ -222,7 +222,7 @@ export default function PortfolioClient({ projects, pageSettings }: PortfolioCli
           grant: "PIA Turismo",
           status: "2018-2024",
           description: "Rural tourism facility development L.R. 20/98",
-          imageUrl: "https://res.cloudinary.com/dusubfxgo/image/upload/f_auto,q_auto/investinpuglia/investinpuglia/projects/donna-menga-exterior"
+          imageUrl: "/Cataldo%27s%20projects/Donna-Menga.webp"
         },
         {
           name: "Masseria Furca",
@@ -231,7 +231,7 @@ export default function PortfolioClient({ projects, pageSettings }: PortfolioCli
           grant: "Private Investment",
           status: "2007-2024",
           description: "Agriturismo development and expansion",
-          imageUrl: "https://res.cloudinary.com/dusubfxgo/image/upload/f_auto,q_auto/investinpuglia/investinpuglia/og-image"
+          imageUrl: "/Cataldo%27s%20projects/masseria-furca.jpg"
         },
         {
           name: "Castello di Noha - Nohasi Palace",
@@ -240,7 +240,7 @@ export default function PortfolioClient({ projects, pageSettings }: PortfolioCli
           grant: "Titolo II Turismo",
           status: "2019-2022",
           description: "Historic palace restoration for tourist accommodation",
-          imageUrl: "https://res.cloudinary.com/dusubfxgo/image/upload/f_auto,q_auto/investinpuglia/investinpuglia/og-image"
+          imageUrl: "/Cataldo%27s%20projects/nohasi%20palace%20hotel%20and%20spa.jpg"
         },
         {
           name: "Dimora San Giuseppe",
@@ -249,7 +249,7 @@ export default function PortfolioClient({ projects, pageSettings }: PortfolioCli
           grant: "Private Investment",
           status: "2018-2020",
           description: "Historic building restoration for luxury accommodation",
-          imageUrl: "https://res.cloudinary.com/dusubfxgo/image/upload/f_auto,q_auto/investinpuglia/investinpuglia/og-image"
+          imageUrl: "/Cataldo%27s%20projects/dimora%20san%20giuseppe.jpg"
         },
         {
           name: "Torre Matta",
@@ -258,7 +258,7 @@ export default function PortfolioClient({ projects, pageSettings }: PortfolioCli
           grant: "Public Works",
           status: "Completed 2016",
           description: "Historic tower restoration - Important public heritage project",
-          imageUrl: "https://res.cloudinary.com/dusubfxgo/image/upload/f_auto,q_auto/investinpuglia/investinpuglia/og-image"
+          imageUrl: "/Cataldo%27s%20projects/Torre%20Matta.jpg"
         },
         {
           name: "Underground Hypogeum Complex",
@@ -267,7 +267,7 @@ export default function PortfolioClient({ projects, pageSettings }: PortfolioCli
           grant: "Private Investment",
           status: "Completed 2015",
           description: "Hotel residence complex with underground archaeological area",
-          imageUrl: "https://res.cloudinary.com/dusubfxgo/image/upload/f_auto,q_auto/investinpuglia/investinpuglia/og-image"
+          imageUrl: "/hypogeum.jpg"
         }
       ]
     }
