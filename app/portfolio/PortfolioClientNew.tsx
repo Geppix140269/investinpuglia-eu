@@ -75,7 +75,7 @@ export default function PortfolioClientNew({ projects = [], pageSettings }: Port
     grant: "Heritage Preservation Fund",
     status: "Completed 2016",
     description: "Exceptional restoration of Otranto Castle's underground chambers, transforming forgotten medieval spaces into a cultural heritage site. This project showcases our expertise in preserving historical authenticity while creating functional modern spaces.",
-    imageUrl: "/Cataldo%27s%20projects/Torre%20Matta.jpg",
+    imageUrl: "https://res.cloudinary.com/dusubfxgo/image/upload/v1756663589/investinpuglia/og-images/torre-matta.jpg",
     category: "heritage",
     year: "2016",
     achievements: [
@@ -485,7 +485,7 @@ export default function PortfolioClientNew({ projects = [], pageSettings }: Port
                 <div className="relative">
                   <div className="rounded-2xl overflow-hidden shadow-2xl">
                     <Image
-                      src="/Cataldo%27s%20projects/Torre%20Matta.jpg"
+                      src="https://res.cloudinary.com/dusubfxgo/image/upload/v1756663589/investinpuglia/og-images/torre-matta.jpg"
                       alt="Torre Matta - Otranto Castle Underground"
                       width={600}
                       height={500}
