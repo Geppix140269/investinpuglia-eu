@@ -254,6 +254,83 @@ export default function MiniPIAGuidePage() {
         </div>
       </section>
 
+      {/* Example Properties */}
+      <section className="py-16 bg-gradient-to-br from-blue-50 to-purple-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-center mb-4">Example: Mini PIA Eligible Property</h2>
+          <p className="text-center text-gray-600 mb-12">Real investment opportunity showcasing Mini PIA grant potential</p>
+
+          <div className="bg-white rounded-2xl shadow-xl overflow-hidden max-w-4xl mx-auto">
+            <div className="md:flex">
+              <div className="md:w-1/2">
+                <img
+                  src="https://res.cloudinary.com/dusubfxgo/image/upload/v1756236762/investinpuglia/properties/palazzo-palmariggi/palazzo-exterior.jpg"
+                  alt="Palazzo Palmariggi exterior"
+                  className="w-full h-64 md:h-full object-cover"
+                />
+              </div>
+              <div className="md:w-1/2 p-8">
+                <div className="flex items-center gap-2 mb-4">
+                  <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-semibold">
+                    Mini PIA Eligible
+                  </span>
+                  <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-semibold">
+                    Historic Property
+                  </span>
+                </div>
+
+                <h3 className="text-2xl font-bold mb-3 text-gray-900">Palazzo Palmariggi</h3>
+                <div className="flex items-center gap-2 mb-4 text-gray-600">
+                  <Home className="h-4 w-4" />
+                  <span>Palmariggi, Lecce - 8km from Adriatic Sea</span>
+                </div>
+
+                <p className="text-gray-700 mb-6">
+                  Historic palazzo from the early 1900s featuring authentic Salento-style vaulted ceilings
+                  and elegant coffered ceilings. Perfect for luxury hospitality conversion with significant
+                  heritage value and tourism potential.
+                </p>
+
+                <div className="grid grid-cols-2 gap-4 mb-6">
+                  <div className="bg-gray-50 p-4 rounded-lg">
+                    <div className="text-lg font-bold text-gray-900">€950,000</div>
+                    <div className="text-sm text-gray-600">Investment Cost</div>
+                  </div>
+                  <div className="bg-green-50 p-4 rounded-lg">
+                    <div className="text-lg font-bold text-green-800">€475,000</div>
+                    <div className="text-sm text-gray-600">Potential Grant (50%)</div>
+                  </div>
+                </div>
+
+                <div className="space-y-3 mb-6">
+                  <div className="flex items-center gap-3">
+                    <CheckCircle className="h-5 w-5 text-green-500" />
+                    <span className="text-sm">Historical significance: Former noble family residence</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <CheckCircle className="h-5 w-5 text-green-500" />
+                    <span className="text-sm">Authentic architectural details intact</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <CheckCircle className="h-5 w-5 text-green-500" />
+                    <span className="text-sm">Prime location near Adriatic coastline</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <CheckCircle className="h-5 w-5 text-green-500" />
+                    <span className="text-sm">Ideal for boutique hotel or luxury B&B</span>
+                  </div>
+                </div>
+
+                <Link href="/properties/palazzo-palmariggi" className="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-6 py-3 rounded-full font-semibold hover:shadow-lg transition-all inline-flex items-center gap-2">
+                  View Full Details
+                  <ChevronRight className="h-4 w-4" />
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Critical Success Factors */}
       <section className="py-16 bg-gradient-to-br from-purple-50 to-emerald-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
