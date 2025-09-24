@@ -34,7 +34,7 @@ export const mockProperties: Property[] = [
         '5,000 sqm buildable land',
         'Minutes from Adriatic beaches'
       ],
-      investmentPotential: 'Ideal for conversion into luxury boutique hotel with 20-30 rooms. Growing tourism market with potential €5,000-10,000/week vacation rental income.'
+      investmentPotential: 'Ideal for conversion into luxury boutique hotel with 20-30 rooms. Growing tourism market with potential €200-400/night room rates during peak season.'
     },
     images: [
       {
