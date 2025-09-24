@@ -292,12 +292,16 @@ export default function MiniPIAGuidePage() {
                 </p>
 
                 <div className="grid grid-cols-2 gap-4 mb-6">
-                  <div className="bg-gray-50 p-4 rounded-lg">
-                    <div className="text-lg font-bold text-gray-900">€3,010,000</div>
+                  <div className="bg-gray-50 p-4 rounded-lg relative">
+                    <div className="text-xs text-gray-500 line-through mb-1">€3,010,000</div>
+                    <div className="text-lg font-bold text-red-600">€2,810,000</div>
                     <div className="text-sm text-gray-600">Total Investment Cost</div>
+                    <div className="absolute -top-2 -right-2 bg-red-500 text-white px-2 py-1 rounded-full text-xs font-bold">
+                      GREAT DEAL!
+                    </div>
                   </div>
                   <div className="bg-green-50 p-4 rounded-lg">
-                    <div className="text-lg font-bold text-green-800">€1,505,000</div>
+                    <div className="text-lg font-bold text-green-800">€1,405,000</div>
                     <div className="text-sm text-gray-600">Potential Grant (50%)</div>
                   </div>
                 </div>
