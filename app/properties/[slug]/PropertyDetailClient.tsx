@@ -127,10 +127,27 @@ export default function PropertyDetailClient({ property }: { property: Property 
                 </span>
               </div>
               <div className="mt-6 lg:mt-0 text-right">
-                <div className="text-4xl font-bold text-purple-600 mb-2">
-                  {formatPrice(property.price)}
+                <div className="relative">
+                  {property.slug === 'palazzo-palmariggi' && (
+                    <div className="text-xl text-gray-500 line-through mb-1">
+                      €1,450,000
+                    </div>
+                  )}
+                  <div className="text-4xl font-bold text-red-600 mb-2">
+                    {formatPrice(property.price)}
+                  </div>
+                  {property.slug === 'palazzo-palmariggi' && (
+                    <div className="absolute -top-2 -right-2 bg-red-500 text-white px-3 py-1 rounded-full text-xs font-bold animate-pulse">
+                      GREAT DEAL!
+                    </div>
+                  )}
                 </div>
                 <p className="text-gray-600">€{(property.price / property.details.squareMeters).toFixed(0)} per m²</p>
+                {property.slug === 'palazzo-palmariggi' && (
+                  <p className="text-emerald-600 font-semibold text-sm mt-1">
+                    💰 Save €200,000!
+                  </p>
+                )}
               </div>
             </div>
 
