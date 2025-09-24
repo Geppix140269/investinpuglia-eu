@@ -393,18 +393,18 @@ export default function ProjectAgreementPage() {
                       </tr>
                       <tr>
                         <td className="border border-gray-300 px-4 py-2">Milestone 1: Preliminary Agreement Signing</td>
-                        <td className="border border-gray-300 px-4 py-2">€5,000</td>
-                        <td className="border border-gray-300 px-4 py-2">Due upon preliminary contract execution</td>
+                        <td className="border border-gray-300 px-4 py-2">TBD*</td>
+                        <td className="border border-gray-300 px-4 py-2">Based on project complexity</td>
                       </tr>
                       <tr>
                         <td className="border border-gray-300 px-4 py-2">Milestone 2: CUP Preparation & Technical Planning</td>
-                        <td className="border border-gray-300 px-4 py-2">€5,000</td>
-                        <td className="border border-gray-300 px-4 py-2">Due upon obtaining Grant CUP code</td>
+                        <td className="border border-gray-300 px-4 py-2">TBD*</td>
+                        <td className="border border-gray-300 px-4 py-2">Based on project complexity</td>
                       </tr>
                       <tr>
                         <td className="border border-gray-300 px-4 py-2">Milestone 3: Bank Financing Package</td>
-                        <td className="border border-gray-300 px-4 py-2">€5,000</td>
-                        <td className="border border-gray-300 px-4 py-2">Due upon financing approval</td>
+                        <td className="border border-gray-300 px-4 py-2">TBD*</td>
+                        <td className="border border-gray-300 px-4 py-2">Based on project complexity</td>
                       </tr>
                       <tr className="bg-purple-50">
                         <td className="border border-gray-300 px-4 py-2 font-semibold" colSpan={3}>Additional Services (Project-Based)</td>
@@ -435,11 +435,14 @@ export default function ProjectAgreementPage() {
                   <div className="bg-gray-50 p-4 rounded-lg mt-4">
                     <p className="text-sm font-semibold text-gray-700">Total Investment Summary:</p>
                     <ul className="text-sm text-gray-600 mt-2 space-y-1">
-                      <li>• Engagement Fee: €5,000 (upfront - property identification to offer acceptance)</li>
-                      <li>• Milestone 1: €5,000 (Preliminary Agreement Signing)</li>
-                      <li>• Milestone 2: €5,000 (CUP Preparation and Technical Planning)</li>
-                      <li>• Milestone 3: €5,000 (Bank Financing Package)</li>
+                      <li>• Fixed Engagement Fee: €5,000 (property identification to offer acceptance)</li>
+                      <li>• Milestone payments: Tailored to project complexity and size</li>
+                      <li>• Additional services: Quoted separately based on requirements</li>
+                      <li>• Performance fees: 5% negotiation bonus + 2.5% grant success fee</li>
                     </ul>
+                    <p className="text-xs text-gray-500 mt-2 italic">
+                      *TBD = To Be Determined based on individual project assessment
+                    </p>
                     <p className="text-xs text-gray-500 mt-2 italic">
                       Example: €50,000 saved on purchase = €2,500 bonus | €500,000 grant = €12,500 fee
                     </p>

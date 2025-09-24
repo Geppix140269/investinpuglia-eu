@@ -28,12 +28,12 @@ export default function ServicesPage() {
       price: "€5,000 + Project-Based",
       description: "Complete investment lifecycle management",
       features: [
-        "€5,000 engagement fee",
+        "€5,000 fixed engagement fee",
         "Property search & evaluation",
         "Due diligence coordination",
         "Price negotiation",
-        "Legal support - tailored to project",
-        "Contract management - tailored to project"
+        "Milestone payments based on project complexity",
+        "All services tailored to project size"
       ]
     },
     {

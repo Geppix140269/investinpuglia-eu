@@ -306,8 +306,9 @@ export default function SignAgreementPage() {
                   <ul className="list-disc pl-5 space-y-2 text-gray-700">
                     <li>Service Provider: 1402 CELSIUS LTD (UK Company)</li>
                     <li>Services: Project coordination for property search, negotiation, and grant applications</li>
-                    <li>Engagement Fee: €5,000 (Property Search & Initial Advisory)</li>
-                    <li>Additional Services: Tailored to project requirements</li>
+                    <li>Fixed Engagement Fee: €5,000 (Property Search & Initial Advisory)</li>
+                    <li>Milestone Payments: Based on project complexity and size</li>
+                    <li>Additional Services: Tailored pricing per project requirements</li>
                     <li>Governing Law: England and Wales</li>
                     <li>Dispute Resolution: CEDR mediation, LCIA arbitration</li>
                     <li>Confidentiality: All information protected under UK GDPR</li>
