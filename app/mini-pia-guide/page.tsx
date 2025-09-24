@@ -297,8 +297,8 @@ export default function MiniPIAGuidePage() {
                     <div className="text-sm text-gray-600">Total Investment Cost</div>
                   </div>
                   <div className="bg-green-50 p-4 rounded-lg">
-                    <div className="text-lg font-bold text-green-800">€1,405,000</div>
-                    <div className="text-sm text-gray-600">Potential Grant (50%)</div>
+                    <div className="text-lg font-bold text-green-800">€780,000</div>
+                    <div className="text-sm text-gray-600">Potential Grant (50% of renovation)</div>
                   </div>
                 </div>
 
