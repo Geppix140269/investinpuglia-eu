@@ -387,26 +387,31 @@ export default function ProjectAgreementPage() {
                         <td className="border border-gray-300 px-4 py-2 font-semibold" colSpan={3}>Stage 1: Search to Preliminary Agreement</td>
                       </tr>
                       <tr>
-                        <td className="border border-gray-300 px-4 py-2">Phase 1.1: Property Search & Planning</td>
-                        <td className="border border-gray-300 px-4 py-2">€1,500</td>
+                        <td className="border border-gray-300 px-4 py-2">Engagement Fee: Property Search & Initial Advisory</td>
+                        <td className="border border-gray-300 px-4 py-2">€5,000</td>
                         <td className="border border-gray-300 px-4 py-2">Due upon agreement execution</td>
                       </tr>
                       <tr>
-                        <td className="border border-gray-300 px-4 py-2">Phase 1.2: Negotiation & Due Diligence</td>
-                        <td className="border border-gray-300 px-4 py-2">€3,500</td>
-                        <td className="border border-gray-300 px-4 py-2">Due upon phase commencement</td>
+                        <td className="border border-gray-300 px-4 py-2">Milestone 1: Preliminary Agreement Signing</td>
+                        <td className="border border-gray-300 px-4 py-2">€5,000</td>
+                        <td className="border border-gray-300 px-4 py-2">Due upon preliminary contract execution</td>
                       </tr>
                       <tr>
-                        <td className="border border-gray-300 px-4 py-2">Phase 1.3: Preliminary Agreement</td>
-                        <td className="border border-gray-300 px-4 py-2">€2,500</td>
-                        <td className="border border-gray-300 px-4 py-2">Due before preliminary signing</td>
+                        <td className="border border-gray-300 px-4 py-2">Milestone 2: CUP Preparation & Technical Planning</td>
+                        <td className="border border-gray-300 px-4 py-2">€5,000</td>
+                        <td className="border border-gray-300 px-4 py-2">Due upon obtaining Grant CUP code</td>
+                      </tr>
+                      <tr>
+                        <td className="border border-gray-300 px-4 py-2">Milestone 3: Bank Financing Package</td>
+                        <td className="border border-gray-300 px-4 py-2">€5,000</td>
+                        <td className="border border-gray-300 px-4 py-2">Due upon financing approval</td>
                       </tr>
                       <tr className="bg-purple-50">
-                        <td className="border border-gray-300 px-4 py-2 font-semibold" colSpan={3}>Stage 2: Grant Application to Final Deed</td>
+                        <td className="border border-gray-300 px-4 py-2 font-semibold" colSpan={3}>Additional Services (Project-Based)</td>
                       </tr>
                       <tr>
-                        <td className="border border-gray-300 px-4 py-2">Phase 2.1: CUP Approval</td>
-                        <td className="border border-gray-300 px-4 py-2">€2,500</td>
+                        <td className="border border-gray-300 px-4 py-2">Performance Fees</td>
+                        <td className="border border-gray-300 px-4 py-2">Variable</td>
                         <td className="border border-gray-300 px-4 py-2">Due upon CUP obtainment</td>
                       </tr>
                       <tr>
@@ -430,9 +435,10 @@ export default function ProjectAgreementPage() {
                   <div className="bg-gray-50 p-4 rounded-lg mt-4">
                     <p className="text-sm font-semibold text-gray-700">Total Investment Summary:</p>
                     <ul className="text-sm text-gray-600 mt-2 space-y-1">
-                      <li>• Stage 1 Total: €7,500 (from search to preliminary agreement)</li>
-                      <li>• Stage 2 Total: €5,000 + 5% negotiation bonus + 2.5% grant success fee</li>
-                      <li>• Complete Project: €12,500 fixed + performance-based fees</li>
+                      <li>• Engagement Fee: €5,000 (upfront - property identification to offer acceptance)</li>
+                      <li>• Milestone 1: €5,000 (Preliminary Agreement Signing)</li>
+                      <li>• Milestone 2: €5,000 (CUP Preparation and Technical Planning)</li>
+                      <li>• Milestone 3: €5,000 (Bank Financing Package)</li>
                     </ul>
                     <p className="text-xs text-gray-500 mt-2 italic">
                       Example: €50,000 saved on purchase = €2,500 bonus | €500,000 grant = €12,500 fee

@@ -25,14 +25,15 @@ export default function ServicesPage() {
     {
       icon: <FileText className="h-8 w-8" />,
       title: "Investment Advisory",
-      price: "€2,500/phase",
+      price: "€5,000 + Project-Based",
       description: "Complete investment lifecycle management",
       features: [
+        "€5,000 engagement fee",
         "Property search & evaluation",
         "Due diligence coordination",
         "Price negotiation",
-        "Legal support",
-        "Contract management"
+        "Legal support - tailored to project",
+        "Contract management - tailored to project"
       ]
     },
     {
