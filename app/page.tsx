@@ -31,6 +31,14 @@ const PortfolioSlider = dynamic(
   }
 )
 
+const PalazzoOpportunity = dynamic(
+  () => import(/* webpackChunkName: "palazzo-opportunity" */ '@/components/sections/PalazzoOpportunity'),
+  {
+    loading: () => <LoadingSkeleton />,
+    ssr: true
+  }
+)
+
 
 const MeetTheTeam = dynamic(
   () => import(/* webpackChunkName: "team" */ '@/components/sections/MeetTheTeam'),
@@ -114,6 +122,10 @@ export default function HomePage() {
         <PortfolioSlider />
       </Suspense>
 
+      {/* Palazzo Palmariggi Opportunity - Featured Deal */}
+      <Suspense fallback={<LoadingSkeleton />}>
+        <PalazzoOpportunity />
+      </Suspense>
 
       {/* Team Section - Medium priority */}
       <Suspense fallback={<LoadingSkeleton />}>
