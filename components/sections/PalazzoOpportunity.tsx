@@ -68,8 +68,8 @@ export default function PalazzoOpportunity() {
                   <div className="text-sm text-gray-600">Purchase Price</div>
                 </div>
                 <div className="bg-emerald-50 p-4 rounded-lg text-center">
-                  <div className="text-2xl font-bold text-emerald-600">€780,000</div>
-                  <div className="text-sm text-gray-600">Mini PIA Grant (50% renovation)</div>
+                  <div className="text-2xl font-bold text-emerald-600">€1,405,000</div>
+                  <div className="text-sm text-gray-600">Mini PIA Grant (50%)</div>
                 </div>
               </div>
 
