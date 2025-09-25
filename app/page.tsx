@@ -39,13 +39,6 @@ const PalazzoOpportunity = dynamic(
   }
 )
 
-const PalazzoRobertini = dynamic(
-  () => import(/* webpackChunkName: "palazzo-robertini" */ '@/components/sections/PalazzoRobertini'),
-  {
-    loading: () => <LoadingSkeleton />,
-    ssr: true
-  }
-)
 
 
 const MeetTheTeam = dynamic(
@@ -135,10 +128,6 @@ export default function HomePage() {
         <PalazzoOpportunity />
       </Suspense>
 
-      {/* Palazzo Robertini - Historic 16th Century Investment */}
-      <Suspense fallback={<LoadingSkeleton />}>
-        <PalazzoRobertini />
-      </Suspense>
 
       {/* Team Section - Medium priority */}
       <Suspense fallback={<LoadingSkeleton />}>
