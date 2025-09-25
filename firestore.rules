@@ -2,33 +2,63 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    
+
     // Helper functions
     function isAuthenticated() {
       return request.auth != null;
     }
-    
+
     function isAdmin() {
-      return isAuthenticated() && 
+      return isAuthenticated() &&
         request.auth.token.email == 'info@investinpuglia.eu' ||
         request.auth.token.email == 'giuseppe@investinpuglia.eu';
     }
-    
+
     function hasValidToken(token) {
       return resource != null && resource.data.access_token == token;
     }
-    
+
+    // PALAZZO ROBERTINI CONFIDENTIALITY AGREEMENTS
+    // High-security collections for legal compliance
+
+    // Confidentiality Agreements Collection
+    // Only server-side operations (Firebase Admin SDK) can read/write
+    match /confidentiality_agreements/{agreementId} {
+      // Deny all client access - only server-side operations allowed
+      allow read, write: if false;
+    }
+
+    // Phone Agreements Index Collection
+    match /phone_agreements/{phoneNumber} {
+      // Deny all client access - only server-side operations allowed
+      allow read, write: if false;
+    }
+
+    // OTP Sessions Collection
+    match /otp_sessions/{sessionId} {
+      // Only allow server-side operations
+      allow read, write: if false;
+    }
+
+    // Audit Log Collection (for legal compliance)
+    match /audit_logs/{logId} {
+      // Only server operations can write audit logs
+      allow read, write: if false;
+    }
+
+    // EXISTING COLLECTIONS (Legacy)
+
     // Agreements collection
     match /agreements/{agreementId} {
       // Anyone can read if they have the correct token (verified at API level)
       allow read: if true;
-      
+
       // Allow creation from anyone (API handles security)
       allow create: if true;
-      
+
       // Allow updates from API (authenticated) or admin
       allow update: if true;
-      
+
       // Only admins can delete
       allow delete: if isAdmin();
     }
