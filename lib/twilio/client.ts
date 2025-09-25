@@ -126,16 +126,44 @@ export async function sendAppointmentConfirmation(
   );
 }
 
-// Send OTP verification
+// Send OTP verification with SMS fallback
 export async function sendOTPMessage(phoneNumber: string, otp: string) {
-  return sendWhatsAppTemplate(
+  // First try WhatsApp template
+  const whatsappResult = await sendWhatsAppTemplate(
     phoneNumber,
     TWILIO_CONFIG.TEMPLATES.OTP!,
     {
       '1': otp,
-      '2': '10' // Minutes until expiry
+      '2': '5' // Minutes until expiry
     }
   );
+
+  // If WhatsApp fails, try regular SMS
+  if (!whatsappResult.success) {
+    console.warn('⚠️ WhatsApp OTP failed, trying SMS fallback');
+    return sendSMSOTP(phoneNumber, otp);
+  }
+
+  return whatsappResult;
+}
+
+// Send OTP via regular SMS (fallback)
+export async function sendSMSOTP(phoneNumber: string, otp: string) {
+  try {
+    const formattedPhone = formatWhatsAppNumber(phoneNumber);
+
+    const message = await twilioClient.messages.create({
+      from: TWILIO_CONFIG.PHONE_NUMBER,
+      to: formattedPhone,
+      body: `Your Palazzo Robertini access code is: ${otp}\n\nThis code expires in 5 minutes.\n\nInvestInPuglia.eu`
+    });
+
+    console.log('✅ SMS OTP sent:', message.sid);
+    return { success: true, messageId: message.sid };
+  } catch (error) {
+    console.error('❌ SMS OTP error:', error);
+    return { success: false, error };
+  }
 }
 
 // Check if we can send a message (24-hour window check)
