@@ -1,26 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { formatWhatsAppNumber } from '@/lib/twilio/client'
-
-// Import the same OTP store from send-otp route
-// In production, this should be a shared Redis/database store
-declare global {
-  var palazzoRobertiniOTPStore: Map<string, {
-    otp: string
-    expiresAt: number
-    attempts: number
-  }> | undefined
-}
-
-// Use global to persist across hot reloads in development
-const otpStore = globalThis.palazzoRobertiniOTPStore ?? new Map<string, {
-  otp: string
-  expiresAt: number
-  attempts: number
-}>()
-
-if (process.env.NODE_ENV === 'development') {
-  globalThis.palazzoRobertiniOTPStore = otpStore
-}
+import { otpStore, cleanupExpiredOTPs } from '@/lib/otp-store'
 
 export async function POST(request: NextRequest) {
   try {

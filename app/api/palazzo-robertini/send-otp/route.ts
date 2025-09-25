@@ -1,22 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { sendOTPMessage, formatWhatsAppNumber } from '@/lib/twilio/client'
-
-// In-memory store for OTPs (in production, use Redis or database)
-const otpStore = new Map<string, {
-  otp: string
-  expiresAt: number
-  attempts: number
-}>()
-
-// Clean up expired OTPs every 10 minutes
-setInterval(() => {
-  const now = Date.now()
-  for (const [phone, data] of otpStore.entries()) {
-    if (data.expiresAt < now) {
-      otpStore.delete(phone)
-    }
-  }
-}, 10 * 60 * 1000)
+import { otpStore, cleanupExpiredOTPs } from '@/lib/otp-store'
 
 function generateOTP(): string {
   return Math.floor(100000 + Math.random() * 900000).toString()
