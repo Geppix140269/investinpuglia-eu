@@ -167,7 +167,7 @@ export default function Navbar() {
           <div className="hidden md:block ml-auto">
             <Link 
               href="/consultation"
-              className="bg-gradient-to-r from-purple-600 to-emerald-600 text-white px-5 py-2.5 rounded-full font-semibold transition-all hover:shadow-lg hover:scale-105 transform duration-200 animate-pulse"
+              className="bg-gradient-to-r from-purple-600 to-emerald-600 text-white px-5 py-2.5 rounded-full font-semibold transition-all hover:shadow-lg hover:scale-105 transform duration-200"
             >
               FREE Consultation →
             </Link>

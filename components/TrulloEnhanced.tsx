@@ -280,7 +280,7 @@ export default function TrulloEnhanced() {
             setHasInteracted(true);
             if (messages.length === 0) addWelcomeMessage();
           }}
-          className="bg-gradient-to-r from-green-500 to-green-600 text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-all duration-300 animate-pulse"
+          className="bg-gradient-to-r from-green-500 to-green-600 text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-all duration-300"
         >
           <MessageCircle className="w-8 h-8" />
         </button>

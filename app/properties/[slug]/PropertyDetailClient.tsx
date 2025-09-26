@@ -133,11 +133,11 @@ export default function PropertyDetailClient({ property }: { property: Property 
                       €1,450,000
                     </div>
                   )}
-                  <div className="text-4xl font-bold text-red-600 mb-2">
+                  <div className="text-4xl font-bold text-purple-600 mb-2">
                     {formatPrice(property.price)}
                   </div>
                   {property.slug === 'palazzo-palmariggi' && (
-                    <div className="absolute -top-2 -right-2 bg-red-500 text-white px-3 py-1 rounded-full text-xs font-bold animate-pulse">
+                    <div className="absolute -top-2 -right-2 bg-emerald-500 text-white px-3 py-1 rounded-full text-xs font-bold">
                       GREAT DEAL!
                     </div>
                   )}
