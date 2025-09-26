@@ -148,7 +148,7 @@ export default function ExclusiveProperty() {
               {/* CTA Button */}
               <div className="space-y-4">
                 <Link
-                  href="/exclusive/palazzo-robertini"
+                  href="/exclusive/project-heritage-16"
                   className="block w-full bg-gradient-to-r from-yellow-500 to-yellow-400 text-black px-6 py-4 rounded-xl font-bold text-center hover:shadow-xl transition-all transform hover:scale-105 flex items-center justify-center gap-2"
                 >
                   <Shield className="w-5 h-5" />

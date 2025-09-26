@@ -145,7 +145,7 @@ export default function PalazzoRobertini() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <div className="flex items-center justify-center gap-4 mb-6">
-            <div className="inline-block bg-orange-500 text-white px-6 py-2 rounded-full font-bold text-sm uppercase tracking-wide animate-pulse">
+            <div className="inline-block bg-orange-500 text-white px-6 py-2 rounded-full font-bold text-sm uppercase tracking-wide">
               Historic Palace Investment
             </div>
             <div className="inline-flex items-center gap-2 bg-green-500 text-white px-4 py-2 rounded-full font-semibold text-sm">
@@ -217,7 +217,7 @@ export default function PalazzoRobertini() {
                 </span>
               </div>
               <div className="absolute top-6 right-6">
-                <span className="bg-orange-500 text-white px-4 py-2 rounded-full text-sm font-semibold animate-pulse">
+                <span className="bg-orange-500 text-white px-4 py-2 rounded-full text-sm font-semibold">
                   NOBLE PALACE!
                 </span>
               </div>
@@ -284,10 +284,10 @@ export default function PalazzoRobertini() {
 
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link
-                  href="/properties/palazzo-robertini-leuzzi"
+                  href="/consultation"
                   className="flex-1 bg-gradient-to-r from-amber-600 to-orange-600 text-white px-6 py-3 rounded-lg font-semibold text-center hover:shadow-lg transition-all transform hover:scale-105 flex items-center justify-center gap-2"
                 >
-                  View Full Details
+                  Request Information
                   <ArrowRight className="h-4 w-4" />
                 </Link>
                 <Link

@@ -9,7 +9,7 @@ export default function PalazzoOpportunity() {
     <section className="py-20 bg-gradient-to-br from-emerald-50 to-blue-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <div className="inline-block bg-red-500 text-white px-6 py-2 rounded-full font-bold text-sm mb-6 uppercase tracking-wide animate-pulse">
+          <div className="inline-block bg-emerald-600 text-white px-6 py-2 rounded-full font-bold text-sm mb-6 uppercase tracking-wide">
             Featured Mini PIA Opportunity
           </div>
           <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900">
@@ -42,7 +42,7 @@ export default function PalazzoOpportunity() {
                 </span>
               </div>
               <div className="absolute top-6 right-6">
-                <span className="bg-red-500 text-white px-4 py-2 rounded-full text-sm font-semibold animate-pulse">
+                <span className="bg-emerald-600 text-white px-4 py-2 rounded-full text-sm font-semibold">
                   GREAT DEAL!
                 </span>
               </div>
