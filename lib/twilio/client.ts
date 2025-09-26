@@ -151,6 +151,7 @@ export async function sendOTPMessage(phoneNumber: string, otp: string) {
 export async function sendSMSOTP(phoneNumber: string, otp: string) {
   try {
     const formattedPhone = formatWhatsAppNumber(phoneNumber);
+    console.log(`📱 Attempting SMS OTP to: ${formattedPhone} (from: ${phoneNumber})`);
 
     const message = await twilioClient.messages.create({
       from: TWILIO_CONFIG.PHONE_NUMBER,
@@ -158,11 +159,29 @@ export async function sendSMSOTP(phoneNumber: string, otp: string) {
       body: `Your Palazzo Robertini access code is: ${otp}\n\nThis code expires in 5 minutes.\n\nInvestInPuglia.eu`
     });
 
-    console.log('✅ SMS OTP sent:', message.sid);
+    console.log(`✅ SMS OTP sent successfully:`, {
+      sid: message.sid,
+      to: formattedPhone,
+      status: message.status,
+      direction: message.direction
+    });
+
     return { success: true, messageId: message.sid };
-  } catch (error) {
-    console.error('❌ SMS OTP error:', error);
-    return { success: false, error };
+  } catch (error: any) {
+    console.error(`❌ SMS OTP error for ${phoneNumber}:`, {
+      error: error.message,
+      code: error.code,
+      moreInfo: error.moreInfo,
+      status: error.status
+    });
+
+    // Return more specific error information
+    return {
+      success: false,
+      error: error.message || error,
+      errorCode: error.code,
+      errorDetails: error.moreInfo
+    };
   }
 }
 
@@ -179,32 +198,57 @@ export async function canSendMessage(phoneNumber: string): Promise<boolean> {
   }
 }
 
-// Validate WhatsApp number format
+// Validate and format international phone numbers
 export function formatWhatsAppNumber(phone: string): string {
-  // Remove any spaces, dashes, or special characters
+  // Remove any spaces, dashes, parentheses, and dots
   let cleaned = phone.replace(/[\s\-\(\)\.]/g, '');
-  
-  // Add country code if missing
-  if (!cleaned.startsWith('+')) {
-    // Default to Italy if no country code
-    if (cleaned.startsWith('3')) {
-      cleaned = '+39' + cleaned;
-    } else if (cleaned.startsWith('44')) {
-      cleaned = '+' + cleaned;
-    } else if (cleaned.startsWith('0')) {
-      // Italian landline
-      cleaned = '+39' + cleaned.substring(1);
+
+  // If already has country code, validate and return
+  if (cleaned.startsWith('+')) {
+    return cleaned;
+  }
+
+  // Handle numbers without country code
+  if (cleaned.startsWith('00')) {
+    // International format starting with 00, replace with +
+    return '+' + cleaned.substring(2);
+  }
+
+  // Country-specific formatting
+  if (cleaned.startsWith('44')) {
+    // UK number starting with country code (without +)
+    return '+' + cleaned;
+  } else if (cleaned.startsWith('0')) {
+    // Numbers starting with 0 - could be UK or Italian
+    if (cleaned.length === 11 && cleaned.startsWith('07')) {
+      // UK mobile number format: 07xxxxxxxxx
+      return '+44' + cleaned.substring(1);
+    } else if (cleaned.length >= 10 && cleaned.length <= 11 && cleaned.startsWith('0')) {
+      // Italian number starting with 0
+      return '+39' + cleaned.substring(1);
     } else {
-      // Assume UK number if starts with 7
-      if (cleaned.startsWith('7')) {
-        cleaned = '+44' + cleaned;
-      } else {
-        cleaned = '+39' + cleaned; // Default to Italy
-      }
+      // Default to Italian for other 0-prefixed numbers
+      return '+39' + cleaned.substring(1);
+    }
+  } else if (cleaned.startsWith('7') && cleaned.length === 10) {
+    // UK mobile without leading 0: 7xxxxxxxxx
+    return '+44' + cleaned;
+  } else if (cleaned.startsWith('3') && cleaned.length === 10) {
+    // Italian mobile: 3xxxxxxxxx
+    return '+39' + cleaned;
+  } else if (cleaned.length >= 10) {
+    // For other formats, try to detect country by length and pattern
+    if (cleaned.length === 10 && (cleaned.startsWith('7') || cleaned.startsWith('8'))) {
+      // Likely UK mobile
+      return '+44' + cleaned;
+    } else {
+      // Default to Italian
+      return '+39' + cleaned;
     }
   }
-  
-  return cleaned;
+
+  // If we can't determine, default to Italian with country code
+  return '+39' + cleaned;
 }
 
 export default twilioClient;
