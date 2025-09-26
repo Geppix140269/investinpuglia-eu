@@ -21,8 +21,8 @@ interface SignatureData {
 
 export default function OTPVerification({
   onVerificationSuccess,
-  title = "Access Palazzo Robertini",
-  subtitle = "Enter your phone number to receive access code via SMS"
+  title = "Access Exclusive Historic Property",
+  subtitle = "Enter your phone number to receive confidential access code via SMS"
 }: OTPVerificationProps) {
   const [step, setStep] = useState<'phone' | 'agreement' | 'otp'>('phone')
   const [phoneNumber, setPhoneNumber] = useState('')

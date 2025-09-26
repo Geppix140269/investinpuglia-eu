@@ -156,7 +156,7 @@ export async function sendSMSOTP(phoneNumber: string, otp: string) {
     const message = await twilioClient.messages.create({
       from: TWILIO_CONFIG.PHONE_NUMBER,
       to: formattedPhone,
-      body: `Your Palazzo Robertini access code is: ${otp}\n\nThis code expires in 5 minutes.\n\nInvestInPuglia.eu`
+      body: `Your exclusive property access code is: ${otp}\n\nThis code expires in 5 minutes.\n\nInvestInPuglia.eu`
     });
 
     console.log(`✅ SMS OTP sent successfully:`, {

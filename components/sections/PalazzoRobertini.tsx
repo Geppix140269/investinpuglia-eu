@@ -154,10 +154,10 @@ export default function PalazzoRobertini() {
             </div>
           </div>
           <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900">
-            Palazzo Robertini-Leuzzi - 16th Century Nobility
+            Noble Historic Palazzo - 16th Century Heritage
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-2">
-            Late 15th Century Historic Palace in Galatina Historic Center
+            Late 15th Century Historic Palace in Southern Italy Historic Center
           </p>
           <p className="text-lg text-gray-500 max-w-2xl mx-auto">
             Exceptional noble residence with 17th century baroque features - Perfect for luxury boutique hotel

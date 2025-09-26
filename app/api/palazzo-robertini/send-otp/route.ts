@@ -52,14 +52,14 @@ export async function POST(request: NextRequest) {
     const result = await sendOTPMessage(formattedPhone, otp)
 
     if (result.success) {
-      console.log(`✅ Palazzo Robertini OTP sent to ${formattedPhone}: ${otp}`)
+      console.log(`✅ Exclusive Property OTP sent to ${formattedPhone}: ${otp}`)
 
       return NextResponse.json({
         message: 'OTP sent successfully',
         success: true
       })
     } else {
-      console.error('❌ Failed to send Palazzo Robertini OTP:', result.error)
+      console.error('❌ Failed to send Exclusive Property OTP:', result.error)
 
       // Clean up failed OTP from store
       otpStore.delete(formattedPhone)
@@ -71,7 +71,7 @@ export async function POST(request: NextRequest) {
     }
 
   } catch (error) {
-    console.error('❌ Palazzo Robertini OTP API error:', error)
+    console.error('❌ Exclusive Property OTP API error:', error)
     return NextResponse.json(
       { message: 'Internal server error' },
       { status: 500 }

@@ -29,7 +29,7 @@ export default function ConfidentialityAgreement({
 
   const agreementText = `
 CONFIDENTIALITY AND NON-DISCLOSURE AGREEMENT
-For Palazzo Robertini-Leuzzi Property Information
+For Exclusive Historic Property Information
 
 EFFECTIVE DATE: ${new Date().toLocaleDateString('en-GB')}
 AGREEMENT VERSION: 1.0
@@ -43,7 +43,7 @@ DISCLOSER: InvestInPuglia.eu, a company operating under Italian law, with regist
 RECIPIENT: The individual accessing this information via mobile number ${phoneNumber} ("Recipient")
 
 RECITALS:
-WHEREAS, Company owns exclusive marketing rights and detailed information regarding Palazzo Robertini-Leuzzi, a historic 16th-century palace located in Galatina, Italy ("Property");
+WHEREAS, Company owns exclusive marketing rights and detailed information regarding a historic 16th-century noble palazzo located in Southern Italy ("Property");
 
 WHEREAS, the Property information includes but is not limited to: pricing, architectural details, investment projections, renovation plans, historical documentation, financial models, and strategic positioning ("Confidential Information");
 
@@ -194,7 +194,7 @@ LEGAL NOTICE: This is a legally binding agreement. Your mobile number ${phoneNum
           </div>
           <div className="flex-1">
             <h2 className="text-2xl font-bold text-gray-900">Confidentiality Agreement</h2>
-            <p className="text-gray-600">Required for Palazzo Robertini access</p>
+            <p className="text-gray-600">Required for exclusive property access</p>
           </div>
           <div className="flex items-center gap-2 bg-green-50 px-3 py-1 rounded-full">
             <Phone className="w-4 h-4 text-green-600" />

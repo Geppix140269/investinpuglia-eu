@@ -64,7 +64,7 @@ export async function POST(request: NextRequest) {
     // OTP is valid - clean up and grant access
     otpStore.delete(formattedPhone)
 
-    console.log(`✅ Palazzo Robertini access granted to ${formattedPhone}`)
+    console.log(`✅ Exclusive Property access granted to ${formattedPhone}`)
 
     // In production, you might want to:
     // 1. Create a session token
@@ -79,7 +79,7 @@ export async function POST(request: NextRequest) {
     })
 
   } catch (error) {
-    console.error('❌ Palazzo Robertini OTP verification error:', error)
+    console.error('❌ Exclusive Property OTP verification error:', error)
     return NextResponse.json(
       { message: 'Internal server error' },
       { status: 500 }
