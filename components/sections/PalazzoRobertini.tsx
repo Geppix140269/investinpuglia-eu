@@ -135,8 +135,8 @@ export default function PalazzoRobertini() {
     return (
       <OTPVerification
         onVerificationSuccess={handleVerificationSuccess}
-        title="Access Palazzo Robertini"
-        subtitle="This exclusive 16th century palace requires SMS verification to view details"
+        title="Access Exclusive Historic Property"
+        subtitle="This confidential noble residence requires SMS verification to view details"
       />
     )
   }
