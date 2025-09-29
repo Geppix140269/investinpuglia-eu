@@ -27,6 +27,16 @@ const HeroVideoRotatorOptimized = () => {
   // Fallback videos if Sanity fails
   const fallbackVideos: VideoData[] = [
     {
+      url: 'https://res.cloudinary.com/dusubfxgo/video/upload/v1759170284/geppix1402_81420_Luxury_Masseria_Hotel_AFTER__Drone_footage_a_6ee2bd3a-89ac-4bfb-a632-da8fe2d1b53a_0_qioxeb.mp4',
+      poster: 'https://res.cloudinary.com/dusubfxgo/image/upload/f_auto,q_auto:low,w_1920,h_1080,c_limit/v1759170284/geppix1402_81420_Luxury_Masseria_Hotel_AFTER__Drone_footage_a_6ee2bd3a-89ac-4bfb-a632-da8fe2d1b53a_0_qioxeb.jpg',
+      name: 'Luxury Masseria Hotel'
+    },
+    {
+      url: 'https://res.cloudinary.com/dusubfxgo/video/upload/v1759170286/geppix1402_81420_Slow_drone_descent_towards_masseria_pool_at__43c0b5ca-59f3-43dd-82f1-5a9f498e6369_0_yuu5cw.mp4',
+      poster: 'https://res.cloudinary.com/dusubfxgo/image/upload/f_auto,q_auto:low,w_1920,h_1080,c_limit/v1759170286/geppix1402_81420_Slow_drone_descent_towards_masseria_pool_at__43c0b5ca-59f3-43dd-82f1-5a9f498e6369_0_yuu5cw.jpg',
+      name: 'Masseria Pool Descent'
+    },
+    {
       url: 'https://res.cloudinary.com/dusubfxgo/video/upload/v1756888562/investinpuglia/hero-videos/beach-club.mp4',
       poster: 'https://res.cloudinary.com/dusubfxgo/image/upload/f_auto,q_auto:low,w_1920,h_1080,c_limit/v1756888562/investinpuglia/hero-videos/beach-club.jpg',
       name: 'Beach Club Aperitivo'
