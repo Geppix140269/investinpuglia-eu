@@ -37,6 +37,16 @@ const HeroVideoRotatorOptimized = () => {
       name: 'Masseria Pool Descent'
     },
     {
+      url: 'https://res.cloudinary.com/dusubfxgo/video/upload/v1759170638/geppix1402_81420_A_small_industrial_plant_in_Puglia_converted_60942fcf-1f0a-4134-9b92-c536ca399b63_1_y0kruj.mp4',
+      poster: 'https://res.cloudinary.com/dusubfxgo/image/upload/f_auto,q_auto:low,w_1920,h_1080,c_limit/v1759170638/geppix1402_81420_A_small_industrial_plant_in_Puglia_converted_60942fcf-1f0a-4134-9b92-c536ca399b63_1_y0kruj.jpg',
+      name: 'Industrial Conversion Project'
+    },
+    {
+      url: 'https://res.cloudinary.com/dusubfxgo/video/upload/v1759170634/geppix1402_81420_A_small_industrial_plant_in_Puglia_converted_7ac04e16-2aa2-4e4c-9c6a-e88911a57e93_1_sjppvw.mp4',
+      poster: 'https://res.cloudinary.com/dusubfxgo/image/upload/f_auto,q_auto:low,w_1920,h_1080,c_limit/v1759170634/geppix1402_81420_A_small_industrial_plant_in_Puglia_converted_7ac04e16-2aa2-4e4c-9c6a-e88911a57e93_1_sjppvw.jpg',
+      name: 'Industrial Development'
+    },
+    {
       url: 'https://res.cloudinary.com/dusubfxgo/video/upload/v1756888562/investinpuglia/hero-videos/beach-club.mp4',
       poster: 'https://res.cloudinary.com/dusubfxgo/image/upload/f_auto,q_auto:low,w_1920,h_1080,c_limit/v1756888562/investinpuglia/hero-videos/beach-club.jpg',
       name: 'Beach Club Aperitivo'
