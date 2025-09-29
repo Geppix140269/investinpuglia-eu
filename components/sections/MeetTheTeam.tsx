@@ -64,10 +64,10 @@ export default function MeetTheTeam() {
         location: "Lecce"
       },
       {
-        name: "Giorgio Caracciolo",
-        role: "Legal Expert - Real Estate Law",
-        description: "Experienced legal professional specializing in Italian real estate law and property transactions. Provides comprehensive legal support for international property investors.",
-        expertise: ["Real Estate Transactions", "Property Law", "Investment Legal Support", "Due Diligence"],
+        name: "CG Giorgio Caracciolo",
+        role: "Consulente del Lavoro - Labor & Employment Law",
+        description: "Certified Labor Consultant (Consulente del Lavoro) specializing in employment law, labor relations, and business consulting. Provides expert guidance on Italian employment regulations for international businesses.",
+        expertise: ["Labor Law & Employment Relations", "Business Consulting", "Employment Compliance", "International Business Setup"],
         website: "https://giorgiocaracciolo.it",
         image: "https://res.cloudinary.com/dusubfxgo/image/upload/v1759129953/Screenshot_2025-09-29_085846_zcz9kn.png"
       }
