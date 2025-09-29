@@ -68,14 +68,17 @@ export default function AboutPage() {
         role: "Chartered Accountant - Grant Financing Specialist",
         bio: "Independent financial executive with track record in €150M+ project financing. Expert in Mini PIA grants and EU funding navigation. Available when specialized financial structuring is required.",
         expertise: ["Mini PIA Grant Applications", "EU Funding Navigation", "Financial Structuring", "Tax Optimization"],
-        email: "info@investinpuglia.eu"
+        email: "info@investinpuglia.eu",
+        image: "https://res.cloudinary.com/dusubfxgo/image/upload/v1759136529/antonio_quarta_ws6wj8.jpg"
       },
       {
         name: "Maurizio Deta",
-        role: "Chartered Accountant - Grant Financing Specialist",
-        bio: "Specialized chartered accountant with extensive experience in grant financing and EU funding programs. Expert in financial structuring for tourism and real estate development projects.",
-        expertise: ["EU Grant Applications", "Financial Project Structuring", "Tax Planning", "Funding Compliance"],
-        email: "info@investinpuglia.eu"
+        role: "Chartered Accountant - Financial & Tax Advisor",
+        bio: "Seasoned financial consultant and chartered accountant with nearly 30 years of experience guiding businesses and public institutions through complex financial and regulatory landscapes. Based in Lecce, he specializes in corporate finance, taxation, and banking strategy, with particular focus on debt restructuring, incentive funding, and insolvency procedures. Known for his calm precision and strategic insight, Maurizio bridges private and public sectors, helping organizations unlock growth through clear financial planning and expertly managed funding pathways.",
+        expertise: ["Corporate Finance & Taxation", "Debt Restructuring", "Incentive Funding", "Banking Strategy", "Credit Securitisation", "Project Planning"],
+        email: "info@investinpuglia.eu",
+        image: "https://res.cloudinary.com/dusubfxgo/image/upload/v1759136664/Screenshot_2025-09-29_110324_mvumlf.png",
+        location: "Lecce"
       }
     ],
     legalExperts: [
@@ -85,7 +88,8 @@ export default function AboutPage() {
         bio: "Independent legal professional specializing in Italian real estate law for foreign buyers. English-speaking lawyer with expertise in property purchase assistance and compliance for international investors.",
         expertise: ["Property Purchase Legal Assistance", "Foreign Buyer Compliance", "International Tax Guidance"],
         email: "info@italian-lawyer.eu",
-        website: "https://italian-lawyer.eu"
+        website: "https://italian-lawyer.eu",
+        image: "https://res.cloudinary.com/dusubfxgo/image/upload/v1756908802/Marco_Magaraggia_italian_laywer_lecce_puglia_biznf1.webp"
       },
       {
         name: "Notaio Riccardo Pellegrino",
@@ -479,6 +483,17 @@ export default function AboutPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
                 {partnerCategories.charteredAccountants.map((partner, index) => (
                   <div key={index} className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6 border border-blue-200">
+                    {partner.image && (
+                      <div className="flex justify-center mb-4">
+                        <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-white shadow-lg">
+                          <img
+                            src={partner.image}
+                            alt={partner.name}
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                      </div>
+                    )}
                     <h5 className="text-lg font-bold text-gray-900 mb-2">{partner.name}</h5>
                     <p className="text-blue-600 font-semibold text-sm mb-3">{partner.role}</p>
                     <p className="text-gray-600 text-sm mb-4">{partner.bio}</p>
@@ -499,6 +514,14 @@ export default function AboutPage() {
                         Contact
                       </a>
                     </div>
+                    {partner.location && (
+                      <div className="mt-2 text-center">
+                        <span className="inline-flex items-center gap-1 text-gray-500 text-xs">
+                          <Globe className="h-3 w-3" />
+                          {partner.location}
+                        </span>
+                      </div>
+                    )}
                   </div>
                 ))}
               </div>
