@@ -10,7 +10,9 @@
         "generate-seo": "node scripts/generate-seo-content.js",
         "generate-ai-content": "node scripts/generate-ai-optimized-content.js",
         "convert-blog-posts": "node scripts/convert-blog-posts.js",
-        "upload-to-sanity": "node scripts/upload-to-sanity.js"
+        "upload-to-sanity": "node scripts/upload-to-sanity.js",
+        "debug-sanity": "node scripts/debug-sanity-posts.js",
+        "auto-add-images": "node scripts/auto-add-images-to-posts.js"
     },
     "dependencies": {
         "@emailjs/browser": "^3.11.0",
