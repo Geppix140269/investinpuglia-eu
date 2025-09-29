@@ -134,8 +134,8 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
       <div className="max-w-none">
         {article.body && (
           <PortableText
-            value={article.body}
-            components={{
+              value={article.body}
+              components={{
               block: {
                 h1: ({children}) => <h1 className="text-4xl font-bold mt-12 mb-6 text-gray-900">{children}</h1>,
                 h2: ({children}) => <h2 className="text-3xl font-bold mt-10 mb-4 text-gray-900">{children}</h2>,
