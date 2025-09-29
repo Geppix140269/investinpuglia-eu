@@ -131,30 +131,50 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
       />
 
       {/* Article Body */}
-      <div className="prose prose-lg max-w-none">
+      <div className="max-w-none">
         {article.body && (
-          <PortableText 
+          <PortableText
             value={article.body}
             components={{
-              // You can customize how different elements are rendered
               block: {
-                h2: ({children}) => <h2 className="text-2xl font-bold mt-8 mb-4">{children}</h2>,
-                h3: ({children}) => <h3 className="text-xl font-bold mt-6 mb-3">{children}</h3>,
-                normal: ({children}) => <p className="mb-4">{children}</p>,
+                h1: ({children}) => <h1 className="text-4xl font-bold mt-12 mb-6 text-gray-900">{children}</h1>,
+                h2: ({children}) => <h2 className="text-3xl font-bold mt-10 mb-4 text-gray-900">{children}</h2>,
+                h3: ({children}) => <h3 className="text-2xl font-semibold mt-8 mb-3 text-gray-800">{children}</h3>,
+                h4: ({children}) => <h4 className="text-xl font-semibold mt-6 mb-2 text-gray-800">{children}</h4>,
+                h5: ({children}) => <h5 className="text-lg font-semibold mt-4 mb-2 text-gray-700">{children}</h5>,
+                h6: ({children}) => <h6 className="text-base font-semibold mt-3 mb-2 text-gray-700">{children}</h6>,
+                normal: ({children}) => <p className="text-lg leading-relaxed mb-6 text-gray-700">{children}</p>,
+                blockquote: ({children}) => <blockquote className="border-l-4 border-blue-500 pl-6 my-6 text-lg italic text-gray-800 bg-blue-50 py-4 rounded-r-lg">{children}</blockquote>,
               },
               marks: {
+                strong: ({children}) => <strong className="font-bold text-gray-900">{children}</strong>,
+                em: ({children}) => <em className="italic text-gray-800">{children}</em>,
+                code: ({children}) => <code className="bg-gray-100 px-2 py-1 rounded text-sm font-mono text-red-600">{children}</code>,
                 link: ({children, value}) => {
-                  const rel = !value.href.startsWith('/') ? 'noreferrer noopener' : undefined
+                  const rel = !value?.href?.startsWith('/') ? 'noreferrer noopener' : undefined
                   return (
-                    <a 
-                      href={value.href} 
+                    <a
+                      href={value?.href}
                       rel={rel}
-                      className="text-blue-600 hover:underline"
+                      target={value?.href?.startsWith('http') ? '_blank' : undefined}
+                      className="text-blue-600 font-semibold hover:text-blue-800 underline decoration-blue-300 hover:decoration-blue-500 transition-colors"
                     >
                       {children}
                     </a>
                   )
                 },
+              },
+              list: {
+                bullet: ({children}) => <ul className="list-disc list-outside mb-6 space-y-3 text-lg leading-relaxed ml-6">{children}</ul>,
+                number: ({children}) => <ol className="list-decimal list-outside mb-6 space-y-3 text-lg leading-relaxed ml-6">{children}</ol>,
+              },
+              listItem: {
+                bullet: ({children}) => <li className="mb-2 pl-2">{children}</li>,
+                number: ({children}) => <li className="mb-2 pl-2">{children}</li>,
+              },
+              types: {
+                // Handle any custom block types if needed
+                break: () => <br className="my-4" />,
               },
             }}
           />
