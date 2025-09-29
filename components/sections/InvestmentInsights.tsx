@@ -69,76 +69,118 @@ export default function InvestmentInsights() {
           </p>
         </div>
 
-        {/* Professional Coming Soon Preview */}
-        <div className="text-center py-12">
-          <div className="inline-flex items-center justify-center w-20 h-20 bg-blue-100 rounded-full mb-6">
-            <TrendingUp className="h-10 w-10 text-blue-600" />
-          </div>
+        {/* Blog Posts Grid */}
+        {posts.length > 0 ? (
+          <>
+            <div className="grid md:grid-cols-3 gap-8 mb-12">
+              {posts.map((post) => (
+                <article
+                  key={post._id}
+                  className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 group"
+                >
+                  <Link href={`/insights/${post.slug.current}`}>
+                    <div className="relative h-48 overflow-hidden">
+                      {post.mainImage?.asset?.url ? (
+                        <img
+                          src={post.mainImage.asset.url}
+                          alt={post.mainImage.alt || post.title}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
+                      ) : (
+                        <div className="w-full h-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+                          <FileText className="h-16 w-16 text-white opacity-50" />
+                        </div>
+                      )}
 
-          <h3 className="text-3xl font-bold text-gray-900 mb-4">
-            Premium Investment Intelligence
-            <br />
-            <span className="text-blue-600">Under Development</span>
-          </h3>
+                      {/* Category Badge */}
+                      {post.categories && post.categories.length > 0 && (
+                        <div className="absolute top-4 left-4">
+                          <span className="bg-white/90 text-gray-800 px-3 py-1 rounded-full text-sm font-semibold backdrop-blur-sm">
+                            {post.categories[0].title}
+                          </span>
+                        </div>
+                      )}
+                    </div>
+                  </Link>
 
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto mb-8">
-            We're crafting comprehensive, data-driven insights specifically for sophisticated international investors
-            seeking €200K-€2M opportunities in Puglia. Each piece will be meticulously researched and tailored for decision-makers.
-          </p>
+                  <div className="p-6">
+                    {/* Meta Info */}
+                    <div className="flex items-center text-sm text-gray-500 mb-3">
+                      <Calendar className="h-4 w-4 mr-2" />
+                      {formatDate(post.publishedAt)}
+                      <span className="mx-2">•</span>
+                      <Clock className="h-4 w-4 mr-1" />
+                      5 min read
+                    </div>
 
-          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-8">
-            <div className="bg-white p-8 rounded-2xl shadow-lg border-l-4 border-yellow-500">
-              <div className="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <FileText className="h-8 w-8 text-yellow-600" />
-              </div>
-              <h4 className="text-xl font-bold text-gray-900 mb-3">EU Grant Mastery</h4>
-              <p className="text-gray-600 mb-4">Complete analysis of Mini PIA, industrial grants, and tourism funding with real case studies and financial projections.</p>
-              <span className="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm font-semibold">Coming Soon</span>
+                    {/* Title */}
+                    <h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2 group-hover:text-blue-600 transition-colors">
+                      <Link href={`/insights/${post.slug.current}`}>
+                        {post.title}
+                      </Link>
+                    </h3>
+
+                    {/* Excerpt */}
+                    {post.excerpt && (
+                      <p className="text-gray-600 mb-4 line-clamp-3">
+                        {post.excerpt}
+                      </p>
+                    )}
+
+                    {/* Read More Link */}
+                    <Link
+                      href={`/insights/${post.slug.current}`}
+                      className="inline-flex items-center text-blue-600 font-semibold hover:text-blue-700 transition-colors group"
+                    >
+                      Read Full Analysis
+                      <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                    </Link>
+                  </div>
+                </article>
+              ))}
             </div>
 
-            <div className="bg-white p-8 rounded-2xl shadow-lg border-l-4 border-green-500">
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <TrendingUp className="h-8 w-8 text-green-600" />
-              </div>
-              <h4 className="text-xl font-bold text-gray-900 mb-3">Market Intelligence</h4>
-              <p className="text-gray-600 mb-4">Detailed ROI analysis, market trends, and competitive positioning data for Puglia's most promising sectors.</p>
-              <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-semibold">Coming Soon</span>
+            {/* View All Button */}
+            <div className="text-center">
+              <Link
+                href="/insights"
+                className="inline-flex items-center bg-blue-600 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-blue-700 hover:shadow-xl transition-all"
+              >
+                <BookOpen className="h-6 w-6 mr-3" />
+                Explore All Insights
+                <ArrowRight className="ml-3 h-6 w-6" />
+              </Link>
+
+              <p className="mt-4 text-gray-600">
+                Strategic intelligence to maximize your investment success
+              </p>
+            </div>
+          </>
+        ) : (
+          /* No Posts State */
+          <div className="text-center py-12">
+            <div className="inline-flex items-center justify-center w-20 h-20 bg-blue-100 rounded-full mb-6">
+              <TrendingUp className="h-10 w-10 text-blue-600" />
             </div>
 
-            <div className="bg-white p-8 rounded-2xl shadow-lg border-l-4 border-purple-500">
-              <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <BookOpen className="h-8 w-8 text-purple-600" />
-              </div>
-              <h4 className="text-xl font-bold text-gray-900 mb-3">Success Blueprints</h4>
-              <p className="text-gray-600 mb-4">Real investor case studies with complete financial breakdowns, timelines, and lessons learned.</p>
-              <span className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-semibold">Coming Soon</span>
-            </div>
-          </div>
+            <h3 className="text-2xl font-bold text-gray-900 mb-4">
+              Investment Insights Loading
+            </h3>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/insights"
-              className="inline-flex items-center bg-blue-600 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-blue-700 hover:shadow-xl transition-all"
-            >
-              <BookOpen className="h-6 w-6 mr-3" />
-              Explore Intelligence Hub
-              <ArrowRight className="ml-3 h-6 w-6" />
-            </Link>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-8">
+              Your published investment insights will appear here once they're live on the platform.
+            </p>
 
             <Link
               href="/consultation"
               className="inline-flex items-center bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-8 py-4 rounded-lg font-bold text-lg hover:shadow-xl hover:scale-105 transition-all"
             >
               <Calendar className="h-6 w-6 mr-3" />
-              Get Instant Insights
+              Get Personalized Insights Now
               <ArrowRight className="ml-3 h-6 w-6" />
             </Link>
           </div>
-
-          <p className="mt-6 text-gray-600">
-            🎯 Why wait for published content when you can get personalized intelligence today?
-          </p>
-        </div>
+        )}
 
         {/* CTA Section */}
         <div className="mt-16 bg-gradient-to-r from-blue-600 to-blue-700 rounded-2xl p-8 lg:p-12 text-white text-center">

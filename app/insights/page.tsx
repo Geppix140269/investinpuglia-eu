@@ -143,169 +143,190 @@ export default async function InsightsPage() {
         </div>
       </section>
 
-      {/* Professional Coming Soon Section */}
-      <section id="insights" className="py-20 px-4 sm:px-6 lg:px-8">
+      {/* Blog Posts Section */}
+      <section id="insights" className="py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center bg-blue-100 text-blue-800 px-6 py-3 rounded-full text-sm font-semibold mb-8">
-              <svg className="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              Exclusive Content Coming Soon
+          {featuredPost && (
+            <div className="mb-16">
+              <h2 className="text-3xl font-bold text-gray-900 mb-8 flex items-center">
+                <span className="bg-blue-600 w-1 h-8 mr-4"></span>
+                Featured Investment Intelligence
+              </h2>
+              <article className="bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 group">
+                <div className="grid md:grid-cols-2">
+                  {featuredPost.mainImage && (
+                    <Link href={`/insights/${featuredPost.slug.current}`} className="relative overflow-hidden">
+                      <img
+                        src={urlFor(featuredPost.mainImage).width(1200).height(800).url()}
+                        alt={featuredPost.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    </Link>
+                  )}
+                  <div className="p-8 md:p-12 flex flex-col justify-center">
+                    {featuredPost.categories && (
+                      <div className="flex gap-2 mb-4">
+                        {featuredPost.categories.map((category: any) => (
+                          <span key={category.title} className="text-xs font-semibold text-blue-600 uppercase tracking-wider bg-blue-50 px-3 py-1 rounded-full">
+                            {category.title}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+
+                    <h3 className="text-3xl font-bold mb-4 group-hover:text-blue-600 transition-colors">
+                      <Link href={`/insights/${featuredPost.slug.current}`}>
+                        {featuredPost.title}
+                      </Link>
+                    </h3>
+
+                    <p className="text-gray-600 mb-6 text-lg line-clamp-3">
+                      {featuredPost.excerpt || featuredPost.autoExcerpt}
+                    </p>
+
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        {featuredPost.author?.image && (
+                          <img
+                            src={urlFor(featuredPost.author.image).width(40).height(40).url()}
+                            alt={featuredPost.author.name}
+                            className="w-10 h-10 rounded-full"
+                          />
+                        )}
+                        <div className="text-sm">
+                          <p className="font-medium text-gray-900">{featuredPost.author?.name || 'Giuseppe Funaro'}</p>
+                          <p className="text-gray-500">{new Date(featuredPost.publishedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</p>
+                        </div>
+                      </div>
+                      {featuredPost.readTime && (
+                        <span className="text-sm text-gray-500">{featuredPost.readTime} min read</span>
+                      )}
+                    </div>
+
+                    <div className="mt-6">
+                      <Link
+                        href={`/insights/${featuredPost.slug.current}`}
+                        className="inline-flex items-center bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+                      >
+                        Read Full Analysis
+                        <svg className="ml-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              </article>
             </div>
+          )}
 
-            <h2 className="text-5xl font-bold text-gray-900 mb-8">
-              Premium Investment Intelligence
-              <br />
-              <span className="text-blue-600">Under Development</span>
-            </h2>
+          {otherPosts.length > 0 && (
+            <>
+              <h2 className="text-3xl font-bold text-gray-900 mb-8 flex items-center">
+                <span className="bg-blue-600 w-1 h-8 mr-4"></span>
+                Latest Investment Insights
+              </h2>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+                {otherPosts.map((post: any) => (
+                  <article
+                    key={post._id}
+                    className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group"
+                  >
+                    {post.mainImage && (
+                      <Link href={`/insights/${post.slug.current}`} className="relative block overflow-hidden h-48">
+                        <img
+                          src={urlFor(post.mainImage).width(800).height(450).url()}
+                          alt={post.title}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                      </Link>
+                    )}
 
-            <p className="text-xl text-gray-600 max-w-4xl mx-auto mb-12 leading-relaxed">
-              We're crafting comprehensive, data-driven insights that will transform how sophisticated investors
-              approach opportunities in Puglia. Each piece will be meticulously researched and tailored for
-              international decision-makers seeking €200K-€2M opportunities.
+                    <div className="p-6">
+                      {post.categories && (
+                        <div className="flex gap-2 mb-3">
+                          {post.categories.slice(0, 2).map((category: any) => (
+                            <span key={category.title} className="text-xs font-semibold text-blue-600 uppercase tracking-wider bg-blue-50 px-2 py-1 rounded-full">
+                              {category.title}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+
+                      <h3 className="text-xl font-bold mb-3 line-clamp-2 group-hover:text-blue-600 transition-colors">
+                        <Link href={`/insights/${post.slug.current}`}>
+                          {post.title}
+                        </Link>
+                      </h3>
+
+                      <p className="text-gray-600 mb-4 line-clamp-3 text-sm">
+                        {post.excerpt || post.autoExcerpt}
+                      </p>
+
+                      <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
+                        <div className="flex items-center gap-2">
+                          {post.author?.image && (
+                            <img
+                              src={urlFor(post.author.image).width(24).height(24).url()}
+                              alt={post.author.name}
+                              className="w-6 h-6 rounded-full"
+                            />
+                          )}
+                          <span>{post.author?.name || 'Giuseppe Funaro'}</span>
+                        </div>
+                        {post.readTime && (
+                          <span>{post.readTime} min</span>
+                        )}
+                      </div>
+
+                      <Link
+                        href={`/insights/${post.slug.current}`}
+                        className="inline-flex items-center text-blue-600 font-semibold hover:text-blue-700 transition-colors text-sm"
+                      >
+                        Read More
+                        <svg className="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                      </Link>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </>
+          )}
+
+          {posts.length === 0 && (
+            <div className="text-center py-20">
+              <div className="inline-flex items-center justify-center w-20 h-20 bg-blue-100 rounded-full mb-6">
+                <svg className="w-10 h-10 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+                </svg>
+              </div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-2">Investment Insights Loading</h3>
+              <p className="text-gray-500">Your published insights will appear here shortly.</p>
+            </div>
+          )}
+
+          {/* CTA Section */}
+          <div className="mt-20 bg-gradient-to-r from-blue-600 to-blue-700 rounded-2xl p-8 md:p-12 text-white text-center">
+            <h3 className="text-3xl font-bold mb-4">Get Personalized Investment Intelligence</h3>
+            <p className="text-blue-100 mb-8 max-w-2xl mx-auto text-lg">
+              Ready to apply these insights to your specific investment goals? Book a FREE consultation
+              with our experts for personalized guidance worth €thousands in strategic value.
             </p>
-          </div>
-
-          {/* Coming Soon Content Preview */}
-          <div className="grid lg:grid-cols-2 gap-12 mb-20">
-            <div className="space-y-8">
-              <div className="bg-white rounded-2xl shadow-lg p-8 border-l-4 border-yellow-500">
-                <div className="flex items-center mb-4">
-                  <div className="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center mr-4">
-                    <svg className="h-6 w-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
-                    </svg>
-                  </div>
-                  <h3 className="text-2xl font-bold text-gray-900">EU Grant Mastery</h3>
-                </div>
-                <p className="text-gray-600 mb-4">
-                  Complete analysis of Mini PIA, industrial grants, and tourism funding opportunities with real case studies and financial projections.
-                </p>
-                <div className="flex items-center text-sm text-gray-500">
-                  <span className="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full">Coming Soon</span>
-                </div>
-              </div>
-
-              <div className="bg-white rounded-2xl shadow-lg p-8 border-l-4 border-green-500">
-                <div className="flex items-center mb-4">
-                  <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4">
-                    <svg className="h-6 w-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                    </svg>
-                  </div>
-                  <h3 className="text-2xl font-bold text-gray-900">Market Intelligence</h3>
-                </div>
-                <p className="text-gray-600 mb-4">
-                  Detailed ROI analysis, market trends, and competitive positioning data for Puglia's most promising sectors.
-                </p>
-                <div className="flex items-center text-sm text-gray-500">
-                  <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full">Coming Soon</span>
-                </div>
-              </div>
-
-              <div className="bg-white rounded-2xl shadow-lg p-8 border-l-4 border-purple-500">
-                <div className="flex items-center mb-4">
-                  <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mr-4">
-                    <svg className="h-6 w-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                    </svg>
-                  </div>
-                  <h3 className="text-2xl font-bold text-gray-900">Success Blueprints</h3>
-                </div>
-                <p className="text-gray-600 mb-4">
-                  Real investor case studies with complete financial breakdowns, timelines, and lessons learned from 30+ years of experience.
-                </p>
-                <div className="flex items-center text-sm text-gray-500">
-                  <span className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full">Coming Soon</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="lg:pl-8">
-              <div className="bg-gradient-to-br from-blue-600 to-purple-700 rounded-3xl p-10 text-white">
-                <div className="text-center mb-8">
-                  <div className="w-20 h-20 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <svg className="h-10 w-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                    </svg>
-                  </div>
-                  <h3 className="text-3xl font-bold mb-4">Get Instant Access</h3>
-                  <p className="text-blue-100 mb-8 text-lg">
-                    Why wait for published insights when you can get personalized intelligence today?
-                    Book a FREE consultation and receive custom analysis tailored to your specific investment goals.
-                  </p>
-                </div>
-
-                <div className="space-y-4 mb-8">
-                  <div className="flex items-center">
-                    <svg className="h-6 w-6 text-green-300 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span className="text-blue-100">30-minute strategic session with Giuseppe Funaro</span>
-                  </div>
-                  <div className="flex items-center">
-                    <svg className="h-6 w-6 text-green-300 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span className="text-blue-100">Custom grant eligibility assessment</span>
-                  </div>
-                  <div className="flex items-center">
-                    <svg className="h-6 w-6 text-green-300 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span className="text-blue-100">Personalized investment roadmap</span>
-                  </div>
-                  <div className="flex items-center">
-                    <svg className="h-6 w-6 text-green-300 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span className="text-blue-100">Access to exclusive deal flow</span>
-                  </div>
-                </div>
-
-                <a
-                  href="/consultation"
-                  className="block w-full bg-white text-blue-600 text-center py-4 px-8 rounded-full font-bold text-lg hover:shadow-2xl hover:scale-105 transition-all duration-300"
-                >
-                  Book FREE Consultation Now →
-                </a>
-
-                <p className="text-center text-blue-200 text-sm mt-4">
-                  🎯 100% FREE • No obligations • Limited slots available
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Executive Summary Preview */}
-          <div className="bg-white rounded-3xl shadow-2xl p-12 text-center">
-            <h3 className="text-3xl font-bold text-gray-900 mb-6">
-              What Makes Our Intelligence Different?
-            </h3>
-
-            <div className="grid md:grid-cols-4 gap-8 max-w-5xl mx-auto">
-              <div className="text-center">
-                <div className="text-4xl font-bold text-blue-600 mb-2">30+</div>
-                <p className="text-gray-600">Years Experience</p>
-              </div>
-              <div className="text-center">
-                <div className="text-4xl font-bold text-green-600 mb-2">€50M+</div>
-                <p className="text-gray-600">Grants Secured</p>
-              </div>
-              <div className="text-center">
-                <div className="text-4xl font-bold text-purple-600 mb-2">200+</div>
-                <p className="text-gray-600">Successful Projects</p>
-              </div>
-              <div className="text-center">
-                <div className="text-4xl font-bold text-orange-600 mb-2">15</div>
-                <p className="text-gray-600">Countries Served</p>
-              </div>
-            </div>
-
-            <p className="text-xl text-gray-600 mt-8 max-w-3xl mx-auto">
-              Every insight is backed by real market data, successful implementations, and
-              deep relationships with EU institutions and Italian authorities.
+            <a
+              href="/consultation"
+              className="inline-flex items-center bg-white text-blue-600 px-8 py-4 rounded-full font-bold text-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
+            >
+              <svg className="h-6 w-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+              </svg>
+              Book FREE Expert Consultation
+            </a>
+            <p className="mt-4 text-blue-200 text-sm">
+              ⚡ 30-minute session • 100% FREE • No obligations • Expert analysis worth €5,000+
             </p>
           </div>
         </div>
