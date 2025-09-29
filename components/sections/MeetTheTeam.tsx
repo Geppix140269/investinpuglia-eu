@@ -61,7 +61,7 @@ export default function MeetTheTeam() {
       {
         name: "Maurizio Deta",
         role: "Chartered Accountant - Financial & Tax Advisor",
-        description: "Seasoned financial consultant and chartered accountant with nearly 30 years of experience guiding businesses and public institutions through complex financial and regulatory landscapes. Based in Lecce, he specializes in corporate finance, taxation, and banking strategy, with particular focus on debt restructuring, incentive funding, and insolvency procedures. Known for his calm precision and strategic insight, Maurizio bridges private and public sectors, helping organizations unlock growth through clear financial planning and expertly managed funding pathways.",
+        description: "Seasoned financial consultant and chartered accountant with nearly 30 years of experience in corporate finance, taxation, and banking strategy. Based in Lecce, he specializes in debt restructuring, incentive funding, and insolvency procedures for both private and public sector clients.",
         expertise: ["Corporate Finance & Taxation", "Debt Restructuring", "Incentive Funding", "Banking Strategy", "Credit Securitisation", "Project Planning"],
         image: "https://res.cloudinary.com/dusubfxgo/image/upload/v1759136664/Screenshot_2025-09-29_110324_mvumlf.png",
         location: "Lecce",
