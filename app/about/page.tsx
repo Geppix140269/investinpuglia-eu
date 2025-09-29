@@ -42,7 +42,7 @@ export default function AboutPage() {
         "EU Grant Specialist",
         "Industrial Project Development"
       ],
-      email: "giuseppe@investinpuglia.eu",
+      email: "g.funaro@investinpuglia.eu",
       affiliations: [
         {
           name: "Capitalimprese",
@@ -92,7 +92,8 @@ export default function AboutPage() {
         bio: "Independent financial executive with track record in €150M+ project financing. Expert in Mini PIA grants and EU funding navigation. Available when specialized financial structuring is required.",
         expertise: ["Mini PIA Grant Applications", "EU Funding Navigation", "Financial Structuring", "Tax Optimization"],
         email: "info@investinpuglia.eu",
-        image: "https://res.cloudinary.com/dusubfxgo/image/upload/v1759136529/antonio_quarta_ws6wj8.jpg"
+        image: "https://res.cloudinary.com/dusubfxgo/image/upload/v1759136529/antonio_quarta_ws6wj8.jpg",
+        keyFactor: "Fluent in English"
       },
       {
         name: "Maurizio Deta",
@@ -101,16 +102,18 @@ export default function AboutPage() {
         expertise: ["Corporate Finance & Taxation", "Debt Restructuring", "Incentive Funding", "Banking Strategy", "Credit Securitisation", "Project Planning"],
         email: "info@investinpuglia.eu",
         image: "https://res.cloudinary.com/dusubfxgo/image/upload/v1759136664/Screenshot_2025-09-29_110324_mvumlf.png",
-        location: "Lecce"
+        location: "Lecce",
+        keyFactor: "Tax Expert"
       },
       {
         name: "Giorgio Caracciolo",
         role: "Chartered Accountant - Business & Financial Advisor",
-        bio: "Experienced chartered accountant specializing in business consulting, financial advisory, and accounting services for international businesses. Provides comprehensive financial guidance and regulatory compliance support for foreign investors in Italy.",
-        expertise: ["Business Consulting", "Financial Advisory", "Accounting Services", "International Business Setup", "Tax Compliance", "Financial Planning"],
+        bio: "Experienced chartered accountant with 40+ years specializing in business consulting, financial advisory, and industrial projects. Provides comprehensive financial guidance and regulatory compliance support for international businesses investing in Italy.",
+        expertise: ["Business Consulting", "Financial Advisory", "Industrial Project Development", "International Business Setup", "Tax Compliance", "Financial Planning"],
         email: "info@investinpuglia.eu",
         website: "https://giorgiocaracciolo.it",
-        image: "https://res.cloudinary.com/dusubfxgo/image/upload/v1759129953/Screenshot_2025-09-29_085846_zcz9kn.png"
+        image: "https://res.cloudinary.com/dusubfxgo/image/upload/v1759129953/Screenshot_2025-09-29_085846_zcz9kn.png",
+        keyFactor: "40+ Years Experience & Industrial Projects"
       }
     ],
     legalExperts: [
@@ -540,9 +543,9 @@ export default function AboutPage() {
                 <Briefcase className="h-5 w-5 text-blue-600" />
                 Chartered Accountants - Financial & Business Specialists
               </h4>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto justify-items-center">
                 {partnerCategories.charteredAccountants.map((partner, index) => (
-                  <div key={index} className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6 border border-blue-200">
+                  <div key={index} className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6 border border-blue-200 w-full max-w-sm">
                     {partner.image && (
                       <div className="flex justify-center mb-4">
                         <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-white shadow-lg">
@@ -555,7 +558,12 @@ export default function AboutPage() {
                       </div>
                     )}
                     <h5 className="text-lg font-bold text-gray-900 mb-2">{partner.name}</h5>
-                    <p className="text-blue-600 font-semibold text-sm mb-3">{partner.role}</p>
+                    <p className="text-blue-600 font-semibold text-sm mb-2">{partner.role}</p>
+                    {(partner as any).keyFactor && (
+                      <div className="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-xs font-semibold mb-3 inline-block">
+                        ⭐ {(partner as any).keyFactor}
+                      </div>
+                    )}
                     <p className="text-gray-600 text-sm mb-4">{partner.bio}</p>
                     <div className="space-y-1 mb-4">
                       {partner.expertise.map((item, i) => (
@@ -662,11 +670,11 @@ export default function AboutPage() {
                   <div key={index} className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-6 border border-green-200">
                     {partner.image && (
                       <div className="flex justify-center mb-4">
-                        <div className="w-32 h-16 flex items-center justify-center bg-white rounded-lg shadow-sm">
+                        <div className="w-40 h-20 flex items-center justify-center bg-transparent rounded-lg p-2">
                           <img
                             src={partner.image}
                             alt={partner.name}
-                            className="max-w-full max-h-full object-contain"
+                            className="max-w-full max-h-full object-contain filter drop-shadow-lg"
                           />
                         </div>
                       </div>
