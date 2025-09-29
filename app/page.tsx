@@ -49,6 +49,14 @@ const MeetTheTeam = dynamic(
   }
 )
 
+const InvestmentInsights = dynamic(
+  () => import(/* webpackChunkName: "insights" */ '@/components/sections/InvestmentInsights'),
+  {
+    loading: () => <LoadingSkeleton />,
+    ssr: false
+  }
+)
+
 const WhyPuglia = dynamic(
   () => import(/* webpackChunkName: "why-puglia" */ '@/components/sections/WhyPuglia'),
   {
@@ -132,6 +140,11 @@ export default function HomePage() {
       {/* Team Section - Medium priority */}
       <Suspense fallback={<LoadingSkeleton />}>
         <MeetTheTeam />
+      </Suspense>
+
+      {/* Investment Insights - Latest blog posts */}
+      <Suspense fallback={<LoadingSkeleton />}>
+        <InvestmentInsights />
       </Suspense>
 
       {/* Why Puglia - Medium priority */}

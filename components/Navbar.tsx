@@ -127,7 +127,11 @@ export default function Navbar() {
             <a href="/portfolio" className="text-gray-700 hover:text-gray-900 transition-colors font-medium">
               Portfolio
             </a>
-            
+
+            <a href="/insights" className="text-gray-700 hover:text-gray-900 transition-colors font-medium">
+              Investment Insights
+            </a>
+
             {/* Mini PIA Dropdown */}
             <div 
               className="relative"
@@ -215,7 +219,11 @@ export default function Navbar() {
               <a href="/portfolio" className="text-gray-700 hover:text-gray-900 transition-colors font-medium py-2">
                 Portfolio
               </a>
-              
+
+              <a href="/insights" className="text-gray-700 hover:text-gray-900 transition-colors font-medium py-2">
+                Investment Insights
+              </a>
+
               <div>
                 <div className="text-gray-700 font-medium py-2">Mini PIA</div>
                 <div className="ml-4 space-y-2 mt-2">
