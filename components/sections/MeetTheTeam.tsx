@@ -33,20 +33,55 @@ export default function MeetTheTeam() {
     }
   ]
 
-  const suggestedPartners = [
-    {
-      name: "Antonio Quarta",
-      role: "Suggested Financial Partner",
-      description: "Independent financial executive with track record in €150M+ project financing. Expert in Mini PIA grants and EU funding navigation. Available when specialized financial structuring is required.",
-      expertise: ["Mini PIA Grant Applications", "EU Funding Navigation", "Financial Structuring"]
-    },
-    {
-      name: "Avv. Marco Magaraggia",
-      role: "Suggested Legal Partner",
-      description: "Independent legal professional specializing in Italian real estate law for foreign buyers. English-speaking lawyer with expertise in property purchase assistance and compliance for international investors.",
-      expertise: ["Property Purchase Legal Assistance", "Foreign Buyer Compliance", "International Tax Guidance"]
-    }
-  ]
+  const partnerCategories = {
+    charteredAccountants: [
+      {
+        name: "Antonio Quarta",
+        role: "Chartered Accountant - Grant Financing Specialist",
+        description: "Independent financial executive with track record in €150M+ project financing. Expert in Mini PIA grants and EU funding navigation. Available when specialized financial structuring is required.",
+        expertise: ["Mini PIA Grant Applications", "EU Funding Navigation", "Financial Structuring", "Tax Optimization"]
+      },
+      {
+        name: "Maurizio Deta",
+        role: "Chartered Accountant - Grant Financing Specialist",
+        description: "Specialized chartered accountant with extensive experience in grant financing and EU funding programs. Expert in financial structuring for tourism and real estate development projects.",
+        expertise: ["EU Grant Applications", "Financial Project Structuring", "Tax Planning", "Funding Compliance"]
+      }
+    ],
+    legalExperts: [
+      {
+        name: "Avv. Marco Magaraggia",
+        role: "Legal Expert - Real Estate Law (Preferred Partner)",
+        description: "Independent legal professional specializing in Italian real estate law for foreign buyers. English-speaking lawyer with expertise in property purchase assistance and compliance for international investors.",
+        expertise: ["Property Purchase Legal Assistance", "Foreign Buyer Compliance", "International Tax Guidance"],
+        website: "https://italian-lawyer.eu"
+      },
+      {
+        name: "Notaio Riccardo Pellegrino",
+        role: "Legal Expert - Notary Services Lecce (Preferred Partner)",
+        description: "Experienced notary based in Lecce specializing in real estate transactions and property law. Provides essential notarial services for property purchases and legal documentation.",
+        expertise: ["Property Transaction Notarization", "Legal Documentation", "Title Verification", "Contract Authentication"],
+        location: "Lecce"
+      },
+      {
+        name: "Giorgio Caracciolo",
+        role: "Legal Expert - Real Estate Law",
+        description: "Experienced legal professional specializing in Italian real estate law and property transactions. Provides comprehensive legal support for international property investors.",
+        expertise: ["Real Estate Transactions", "Property Law", "Investment Legal Support", "Due Diligence"],
+        website: "https://giorgiocaracciolo.it",
+        image: "https://res.cloudinary.com/dusubfxgo/image/upload/v1759129953/Screenshot_2025-09-29_085846_zcz9kn.png"
+      }
+    ],
+    bankingPartners: [
+      {
+        name: "Intesa San Paolo",
+        role: "Preferred Banking Partner",
+        description: "Italy's leading banking group providing specialized services for international investors. Expert in bank account opening procedures and project financing for real estate investments.",
+        expertise: ["Bank Account Opening", "Project Financing", "International Banking Services", "Investment Loans"],
+        type: "institution"
+      }
+    ]
+  }
 
   return (
     <section className="py-20 bg-white relative overflow-hidden">
@@ -121,29 +156,120 @@ export default function MeetTheTeam() {
         <div className="text-center mt-12">
           <div className="mb-12">
             <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">
-              Suggested <strong className="bg-gradient-to-r from-purple-600 to-emerald-600 bg-clip-text text-transparent">Professional Partners</strong>
+              Our <strong className="bg-gradient-to-r from-purple-600 to-emerald-600 bg-clip-text text-transparent">Professional Partners</strong>
             </h3>
             <p className="text-gray-600 mb-8 text-center max-w-4xl mx-auto">
-              These English-speaking professionals are available when specialized services are needed. 
+              Specialized professionals organized by expertise area. These English-speaking professionals are available when specialized services are needed.
               They work independently and charge their own fees based on project requirements.
             </p>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-              {suggestedPartners.map((partner, index) => (
-                <div key={index} className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl p-6 border border-gray-200">
-                  <h4 className="text-lg font-bold text-gray-900 mb-2">{partner.name}</h4>
-                  <p className="text-purple-600 font-semibold text-sm mb-3">{partner.role}</p>
-                  <p className="text-gray-600 text-sm mb-4">{partner.description}</p>
-                  <div className="space-y-1">
-                    {partner.expertise.map((item, i) => (
-                      <div key={i} className="flex items-center gap-2">
-                        <Icon name="CheckCircle" size={14} className="text-emerald-600 flex-shrink-0" />
-                        <span className="text-xs text-gray-700">{item}</span>
-                      </div>
-                    ))}
+
+            {/* Chartered Accountants Section */}
+            <div className="mb-10">
+              <h4 className="text-xl font-bold text-gray-800 mb-4 flex items-center justify-center gap-2">
+                <Icon name="Calculator" size={20} className="text-blue-600" />
+                Chartered Accountants - Grant Financing Specialists
+              </h4>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                {partnerCategories.charteredAccountants.map((partner, index) => (
+                  <div key={index} className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6 border border-blue-200">
+                    <h5 className="text-lg font-bold text-gray-900 mb-2">{partner.name}</h5>
+                    <p className="text-blue-600 font-semibold text-sm mb-3">{partner.role}</p>
+                    <p className="text-gray-600 text-sm mb-4">{partner.description}</p>
+                    <div className="space-y-1">
+                      {partner.expertise.map((item, i) => (
+                        <div key={i} className="flex items-center gap-2">
+                          <Icon name="CheckCircle" size={14} className="text-emerald-600 flex-shrink-0" />
+                          <span className="text-xs text-gray-700">{item}</span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
+            </div>
+
+            {/* Legal Experts Section */}
+            <div className="mb-10">
+              <h4 className="text-xl font-bold text-gray-800 mb-4 flex items-center justify-center gap-2">
+                <Icon name="Scale" size={20} className="text-purple-600" />
+                Legal Experts - Real Estate Law
+              </h4>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+                {partnerCategories.legalExperts.map((partner, index) => (
+                  <div key={index} className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-6 border border-purple-200">
+                    {partner.image && (
+                      <div className="flex justify-center mb-4">
+                        <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-white shadow-lg">
+                          <CloudinaryImage
+                            src={partner.image}
+                            alt={partner.name}
+                            width={80}
+                            height={80}
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                      </div>
+                    )}
+                    <h5 className="text-lg font-bold text-gray-900 mb-2">{partner.name}</h5>
+                    <p className="text-purple-600 font-semibold text-sm mb-3">{partner.role}</p>
+                    <p className="text-gray-600 text-sm mb-4">{partner.description}</p>
+                    <div className="space-y-1 mb-4">
+                      {partner.expertise.map((item, i) => (
+                        <div key={i} className="flex items-center gap-2">
+                          <Icon name="CheckCircle" size={14} className="text-emerald-600 flex-shrink-0" />
+                          <span className="text-xs text-gray-700">{item}</span>
+                        </div>
+                      ))}
+                    </div>
+                    {partner.website && (
+                      <div className="mt-4 pt-4 border-t border-gray-100">
+                        <a
+                          href={partner.website}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 text-purple-600 hover:text-purple-700 font-medium text-sm"
+                        >
+                          <Icon name="Globe" size={16} />
+                          Visit Website
+                        </a>
+                      </div>
+                    )}
+                    {partner.location && (
+                      <div className="mt-2">
+                        <span className="inline-flex items-center gap-1 text-gray-500 text-xs">
+                          <Icon name="MapPin" size={12} />
+                          {partner.location}
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Banking Partners Section */}
+            <div className="mb-10">
+              <h4 className="text-xl font-bold text-gray-800 mb-4 flex items-center justify-center gap-2">
+                <Icon name="Building2" size={20} className="text-green-600" />
+                Banking Partners
+              </h4>
+              <div className="grid grid-cols-1 gap-6 max-w-2xl mx-auto">
+                {partnerCategories.bankingPartners.map((partner, index) => (
+                  <div key={index} className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-6 border border-green-200">
+                    <h5 className="text-lg font-bold text-gray-900 mb-2">{partner.name}</h5>
+                    <p className="text-green-600 font-semibold text-sm mb-3">{partner.role}</p>
+                    <p className="text-gray-600 text-sm mb-4">{partner.description}</p>
+                    <div className="space-y-1">
+                      {partner.expertise.map((item, i) => (
+                        <div key={i} className="flex items-center gap-2">
+                          <Icon name="CheckCircle" size={14} className="text-emerald-600 flex-shrink-0" />
+                          <span className="text-xs text-gray-700">{item}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
           
