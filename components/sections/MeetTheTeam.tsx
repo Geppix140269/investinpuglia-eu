@@ -49,6 +49,14 @@ export default function MeetTheTeam() {
         expertise: ["Corporate Finance & Taxation", "Debt Restructuring", "Incentive Funding", "Banking Strategy", "Credit Securitisation", "Project Planning"],
         image: "https://res.cloudinary.com/dusubfxgo/image/upload/v1759136664/Screenshot_2025-09-29_110324_mvumlf.png",
         location: "Lecce"
+      },
+      {
+        name: "Giorgio Caracciolo",
+        role: "Chartered Accountant - Business & Financial Advisor",
+        description: "Experienced chartered accountant specializing in business consulting, financial advisory, and accounting services for international businesses. Provides comprehensive financial guidance and regulatory compliance support for foreign investors in Italy.",
+        expertise: ["Business Consulting", "Financial Advisory", "Accounting Services", "International Business Setup", "Tax Compliance", "Financial Planning"],
+        website: "https://giorgiocaracciolo.it",
+        image: "https://res.cloudinary.com/dusubfxgo/image/upload/v1759129953/Screenshot_2025-09-29_085846_zcz9kn.png"
       }
     ],
     legalExperts: [
@@ -66,14 +74,6 @@ export default function MeetTheTeam() {
         description: "Experienced notary based in Lecce specializing in real estate transactions and property law. Provides essential notarial services for property purchases and legal documentation.",
         expertise: ["Property Transaction Notarization", "Legal Documentation", "Title Verification", "Contract Authentication"],
         location: "Lecce"
-      },
-      {
-        name: "CG Giorgio Caracciolo",
-        role: "Consulente del Lavoro - Labor & Employment Law",
-        description: "Certified Labor Consultant (Consulente del Lavoro) specializing in employment law, labor relations, and business consulting. Provides expert guidance on Italian employment regulations for international businesses.",
-        expertise: ["Labor Law & Employment Relations", "Business Consulting", "Employment Compliance", "International Business Setup"],
-        website: "https://giorgiocaracciolo.it",
-        image: "https://res.cloudinary.com/dusubfxgo/image/upload/v1759129953/Screenshot_2025-09-29_085846_zcz9kn.png"
       }
     ],
     bankingPartners: [
@@ -82,7 +82,8 @@ export default function MeetTheTeam() {
         role: "Preferred Banking Partner",
         description: "Italy's leading banking group providing specialized services for international investors. Expert in bank account opening procedures and project financing for real estate investments.",
         expertise: ["Bank Account Opening", "Project Financing", "International Banking Services", "Investment Loans"],
-        type: "institution"
+        type: "institution",
+        image: "https://res.cloudinary.com/dusubfxgo/image/upload/v1759138773/intesa-sanpaolo-vector-logo_qpripe.png"
       }
     ]
   }
@@ -171,9 +172,9 @@ export default function MeetTheTeam() {
             <div className="mb-10">
               <h4 className="text-xl font-bold text-gray-800 mb-4 flex items-center justify-center gap-2">
                 <Icon name="Calculator" size={20} className="text-blue-600" />
-                Chartered Accountants - Grant Financing Specialists
+                Chartered Accountants - Financial & Business Specialists
               </h4>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
                 {partnerCategories.charteredAccountants.map((partner, index) => (
                   <div key={index} className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6 border border-blue-200">
                     {partner.image && (
@@ -281,6 +282,19 @@ export default function MeetTheTeam() {
               <div className="grid grid-cols-1 gap-6 max-w-2xl mx-auto">
                 {partnerCategories.bankingPartners.map((partner, index) => (
                   <div key={index} className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-6 border border-green-200">
+                    {partner.image && (
+                      <div className="flex justify-center mb-4">
+                        <div className="w-32 h-16 flex items-center justify-center bg-white rounded-lg shadow-sm">
+                          <CloudinaryImage
+                            src={partner.image}
+                            alt={partner.name}
+                            width={120}
+                            height={60}
+                            className="max-w-full max-h-full object-contain"
+                          />
+                        </div>
+                      </div>
+                    )}
                     <h5 className="text-lg font-bold text-gray-900 mb-2">{partner.name}</h5>
                     <p className="text-green-600 font-semibold text-sm mb-3">{partner.role}</p>
                     <p className="text-gray-600 text-sm mb-4">{partner.description}</p>
