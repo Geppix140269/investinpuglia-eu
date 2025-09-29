@@ -9,14 +9,29 @@ export default function MeetTheTeam() {
   const coreTeam = [
     {
       name: "Giuseppe Funaro",
-      role: "Founder & Client Representative",
-      description: "With 35+ years in international business, I represent foreign clients in all aspects of Italian property investment. My role is to ensure clear communication, manage expectations, and coordinate all project phases from initial consultation to completion.",
+      role: "Founder & Business Development Director",
+      description: "With 35+ years in international business, I represent foreign clients in all aspects of Italian investment projects. As Business Development Director of Capitalimprese and full member of the International Trade Council, I specialize in tourism development, industrial projects, and commercial ventures. My role is to ensure clear communication, manage expectations, and coordinate all project phases from initial consultation to completion.",
       image: "/Giuseppe Funaro 062025.png",
       expertise: [
         "Foreign Client Representation",
-        "Project Coordination & Management", 
-        "Cross-Cultural Communication",
-        "Investment Strategy Guidance"
+        "Industrial & Commercial Project Development",
+        "Tourism Development Projects",
+        "EU Grant Applications & Management",
+        "International Business Strategy",
+        "Cross-Cultural Communication"
+      ],
+      affiliations: [
+        {
+          name: "Capitalimprese",
+          role: "Business Development Director",
+          website: "https://capitalimprese.it",
+          logo: "https://res.cloudinary.com/dusubfxgo/image/upload/v1759139352/capitalimprese_text_byzfue.png"
+        },
+        {
+          name: "International Trade Council",
+          role: "Full Member",
+          logo: "https://res.cloudinary.com/dusubfxgo/image/upload/v1759139412/ITC_zb3kum.png"
+        }
       ]
     },
     {
@@ -130,7 +145,7 @@ export default function MeetTheTeam() {
                     <p className="text-gray-600 text-sm leading-relaxed mb-4">
                       {member.description}
                     </p>
-                    <div className="space-y-2 text-left">
+                    <div className="space-y-2 text-left mb-4">
                       {member.expertise.map((item, i) => (
                         <div key={i} className="flex items-center gap-2">
                           <Icon name="CheckCircle" size={16} className="text-emerald-600 flex-shrink-0" />
@@ -138,6 +153,43 @@ export default function MeetTheTeam() {
                         </div>
                       ))}
                     </div>
+                    {(member as any).affiliations && (
+                      <div className="mb-4">
+                        <h4 className="font-semibold text-gray-900 mb-3">Professional Affiliations</h4>
+                        <div className="space-y-3">
+                          {(member as any).affiliations.map((affiliation: any, i: number) => (
+                            <div key={i} className="bg-gray-50 rounded-lg p-3 border border-gray-200">
+                              <div className="flex items-center gap-3">
+                                <div className="w-12 h-12 flex items-center justify-center bg-white rounded-lg shadow-sm">
+                                  <CloudinaryImage
+                                    src={affiliation.logo}
+                                    alt={affiliation.name}
+                                    width={40}
+                                    height={40}
+                                    className="max-w-full max-h-full object-contain"
+                                  />
+                                </div>
+                                <div className="flex-1">
+                                  <h5 className="font-medium text-gray-900 text-sm">{affiliation.name}</h5>
+                                  <p className="text-xs text-gray-600">{affiliation.role}</p>
+                                  {affiliation.website && (
+                                    <a
+                                      href={affiliation.website}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className="inline-flex items-center gap-1 text-purple-600 hover:text-purple-700 text-xs mt-1"
+                                    >
+                                      <Icon name="Globe" size={12} />
+                                      Website
+                                    </a>
+                                  )}
+                                </div>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
                     {(member as any).website && (
                       <div className="mt-4 pt-4 border-t border-gray-100">
                         <a 

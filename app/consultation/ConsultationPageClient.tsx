@@ -13,22 +13,22 @@ export default function ConsultationPageClient() {
     {
       icon: Target,
       title: 'Grant Eligibility Assessment',
-      description: 'Discover which EU grants you qualify for and potential funding amounts'
+      description: 'Discover which EU grants you qualify for tourism, industrial, or commercial projects'
     },
     {
       icon: Shield,
       title: 'Investment Strategy Review',
-      description: 'Get personalized advice on property investment opportunities in Puglia'
+      description: 'Get personalized advice on tourism development, industrial projects, and commercial ventures in Puglia'
     },
     {
       icon: Users,
       title: 'Expert Guidance',
-      description: 'Direct access to our grant specialists with 30+ years of experience'
+      description: 'Direct access to our specialists with 30+ years experience in industrial and tourism projects'
     },
     {
       icon: Clock,
       title: 'Fast-Track Process',
-      description: 'Learn how to expedite your grant application and approval timeline'
+      description: 'Learn how to expedite your grant application and approval timeline for any project type'
     }
   ];
 

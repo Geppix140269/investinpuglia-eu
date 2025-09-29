@@ -17,22 +17,45 @@ export default function AboutPage() {
   const coreTeam = [
     {
       name: "Giuseppe Funaro",
-      role: "Founder & Client Representative",
+      role: "Founder & Business Development Director",
       image: "/Giuseppe Funaro 062025.png",
-      bio: "With 35+ years in international business, Giuseppe represents foreign clients in all aspects of Italian property investment. His role is to ensure clear communication, manage expectations, and coordinate all project phases from initial consultation to completion.",
+      bio: "With 35+ years in international business, Giuseppe represents foreign clients in all aspects of Italian investment projects. As Business Development Director of Capitalimprese and full member of the International Trade Council, he specializes in tourism development, industrial projects, and commercial ventures. His role is to ensure clear communication, manage expectations, and coordinate all project phases from initial consultation to completion.",
       expertise: [
         "Foreign Client Representation",
-        "Project Coordination & Management",
-        "Cross-Cultural Communication",
-        "Investment Strategy Guidance"
+        "Industrial & Commercial Project Development",
+        "Tourism Development Projects",
+        "International Business Strategy",
+        "EU Grant Applications & Management",
+        "Cross-Cultural Communication"
       ],
       achievements: [
         "35+ years international business experience",
-        "Specializes in foreign client representation",
-        "Coordinates all project phases",
-        "Ensures clear client communication"
+        "Business Development Director at Capitalimprese",
+        "Full Member of International Trade Council",
+        "Specializes in industrial & commercial grants",
+        "Tourism development expertise",
+        "Coordinates multi-million euro projects"
       ],
-      email: "giuseppe@investinpuglia.eu"
+      credentials: [
+        "Business Development Director - Capitalimprese",
+        "International Trade Council - Full Member",
+        "EU Grant Specialist",
+        "Industrial Project Development"
+      ],
+      email: "giuseppe@investinpuglia.eu",
+      affiliations: [
+        {
+          name: "Capitalimprese",
+          role: "Business Development Director",
+          website: "https://capitalimprese.it",
+          logo: "https://res.cloudinary.com/dusubfxgo/image/upload/v1759139352/capitalimprese_text_byzfue.png"
+        },
+        {
+          name: "International Trade Council",
+          role: "Full Member",
+          logo: "https://res.cloudinary.com/dusubfxgo/image/upload/v1759139412/ITC_zb3kum.png"
+        }
+      ]
     },
     {
       name: "Dott. Ing. Cataldo Russo",
@@ -444,6 +467,42 @@ export default function AboutPage() {
                               <span key={i} className="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-xs font-semibold">
                                 {credential}
                               </span>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                      {(member as any).affiliations && (
+                        <div className="mb-6">
+                          <h4 className="font-bold text-lg mb-3 text-slate-900">Professional Affiliations</h4>
+                          <div className="space-y-4">
+                            {(member as any).affiliations.map((affiliation: any, i: number) => (
+                              <div key={i} className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                                <div className="flex items-center gap-4">
+                                  <div className="w-16 h-16 flex items-center justify-center bg-white rounded-lg shadow-sm">
+                                    <img
+                                      src={affiliation.logo}
+                                      alt={affiliation.name}
+                                      className="max-w-full max-h-full object-contain"
+                                    />
+                                  </div>
+                                  <div className="flex-1">
+                                    <h5 className="font-semibold text-gray-900">{affiliation.name}</h5>
+                                    <p className="text-sm text-gray-600">{affiliation.role}</p>
+                                    {affiliation.website && (
+                                      <a
+                                        href={affiliation.website}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="inline-flex items-center gap-1 text-indigo-600 hover:text-indigo-800 text-sm mt-1"
+                                      >
+                                        <Globe className="h-3 w-3" />
+                                        Visit Website
+                                      </a>
+                                    )}
+                                  </div>
+                                </div>
+                              </div>
                             ))}
                           </div>
                         </div>

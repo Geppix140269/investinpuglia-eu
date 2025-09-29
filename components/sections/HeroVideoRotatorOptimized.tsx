@@ -178,12 +178,12 @@ const HeroVideoRotatorOptimized = () => {
               
               <h1 className="text-4xl sm:text-5xl font-bold">
                 <span className="block text-transparent bg-clip-text bg-gradient-to-r from-green-400 via-white to-red-500">
-                  Transform Your Italian Property Dreams Into Reality
+                  Transform Your Italian Investment Vision Into Reality
                 </span>
               </h1>
-              
+
               <p className="text-lg text-gray-100 max-w-lg">
-                Access up to 55% EU grant funding with our local Italian team. We handle everything from property search to renovation and grant applications.
+                Access up to 55% EU grant funding with our local Italian team. We specialize in tourism development, industrial projects, and commercial ventures with comprehensive grant applications and project management.
               </p>
               
               <div className="grid grid-cols-2 gap-3 max-w-lg">

@@ -208,7 +208,7 @@ export default function PreBookingQuestionnaire({
             
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Property Type Interest *
+                Project Type Interest *
               </label>
               <select
                 value={formData.propertyType}
@@ -216,12 +216,16 @@ export default function PreBookingQuestionnaire({
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 required
               >
-                <option value="">Select property type</option>
-                <option value="Residential">Residential</option>
-                <option value="Commercial">Commercial</option>
-                <option value="Hospitality (Hotel/B&B)">Hospitality (Hotel/B&B)</option>
-                <option value="Agricultural/Rural">Agricultural/Rural</option>
-                <option value="Mixed-use">Mixed-use</option>
+                <option value="">Select project type</option>
+                <option value="Tourism/Hospitality (Hotel/B&B/Resort)">Tourism/Hospitality (Hotel/B&B/Resort)</option>
+                <option value="Industrial/Manufacturing">Industrial/Manufacturing</option>
+                <option value="Commercial/Retail">Commercial/Retail</option>
+                <option value="Residential Development">Residential Development</option>
+                <option value="Agricultural/Agritech">Agricultural/Agritech</option>
+                <option value="Technology/Innovation Hub">Technology/Innovation Hub</option>
+                <option value="Mixed-use Development">Mixed-use Development</option>
+                <option value="Renewable Energy Project">Renewable Energy Project</option>
+                <option value="Logistics/Distribution">Logistics/Distribution</option>
                 <option value="Undecided">Undecided</option>
               </select>
             </div>
