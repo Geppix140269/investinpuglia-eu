@@ -139,18 +139,18 @@ export default function ExclusiveOpportunitiesCarousel() {
       isConfidential: true
     },
     {
-      id: 'borgo-materdomini',
-      title: 'Borgo Materdomini',
-      subtitle: 'Exclusive Estate Investment',
-      description: 'Exclusive historic estate property in Puglia. A rare opportunity to acquire a significant heritage property with exceptional investment potential.',
+      id: 'project-estate-19',
+      title: 'Project Estate-19',
+      subtitle: 'Exclusive Historic Estate',
+      description: 'Confidential historic estate property in Puglia. A rare opportunity to acquire a significant heritage property with exceptional investment potential. Full property details available upon confidentiality agreement execution.',
       image: 'https://res.cloudinary.com/dusubfxgo/image/upload/v1758822064/strada_vista_hhbya2.png',
       price: 'Upon Request',
       priceLabel: 'Investment',
       stats: [
         {
           icon: Building,
-          value: 'TBD',
-          label: 'Total Area'
+          value: 'Disclosed',
+          label: 'Upon NDA'
         },
         {
           icon: Shield,
@@ -164,14 +164,14 @@ export default function ExclusiveOpportunitiesCarousel() {
         }
       ],
       highlights: [
-        'Exceptional heritage property in prime location',
+        'Exceptional heritage estate in prime location',
         'Perfect for luxury hospitality development',
         'Located in high-growth tourism area',
-        'Full details available upon verification'
+        'Full details available upon signed confidentiality agreement'
       ],
       cta: {
         primary: {
-          text: 'Verify & Access Details',
+          text: 'Sign NDA & Access Details',
           href: '/consultation'
         },
         secondary: {
@@ -180,7 +180,7 @@ export default function ExclusiveOpportunitiesCarousel() {
         }
       },
       badges: [
-        { text: 'Exclusive Estate', color: 'purple' },
+        { text: 'Project Estate-19', color: 'purple' },
         { text: 'CONFIDENTIAL', color: 'red' }
       ],
       isConfidential: true
