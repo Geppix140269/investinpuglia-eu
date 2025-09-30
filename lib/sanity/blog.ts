@@ -45,7 +45,12 @@ export async function getAllBlogPosts(): Promise<BlogPost[]> {
           name,
           image
         },
-        mainImage,
+        mainImage{
+          asset->{
+            url
+          },
+          alt
+        },
         categories[]->{
           title,
           slug
@@ -74,7 +79,12 @@ export async function getLatestBlogPosts(count: number = 3): Promise<BlogPost[]>
           name,
           image
         },
-        mainImage,
+        mainImage{
+          asset->{
+            url
+          },
+          alt
+        },
         categories[]->{
           title,
           slug
@@ -103,7 +113,12 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
           name,
           image
         },
-        mainImage,
+        mainImage{
+          asset->{
+            url
+          },
+          alt
+        },
         categories[]->{
           title,
           slug
@@ -135,7 +150,12 @@ export async function getRelatedBlogPosts(currentPostId: string, categoryIds: st
             name,
             image
           },
-          mainImage,
+          mainImage{
+            asset->{
+              url
+            },
+            alt
+          },
           categories[]->{
             title,
             slug
@@ -157,7 +177,12 @@ export async function getRelatedBlogPosts(currentPostId: string, categoryIds: st
           name,
           image
         },
-        mainImage,
+        mainImage{
+          asset->{
+            url
+          },
+          alt
+        },
         categories[]->{
           title,
           slug
@@ -186,7 +211,12 @@ export async function getBlogPostsByCategory(categorySlug: string): Promise<Blog
           name,
           image
         },
-        mainImage,
+        mainImage{
+          asset->{
+            url
+          },
+          alt
+        },
         categories[]->{
           title,
           slug
