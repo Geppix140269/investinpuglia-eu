@@ -123,7 +123,6 @@ export default function AboutPage() {
         bio: "Independent legal professional specializing in Italian real estate law for foreign buyers. English-speaking lawyer with expertise in property purchase assistance and compliance for international investors.",
         expertise: ["Property Purchase Legal Assistance", "Foreign Buyer Compliance", "International Tax Guidance"],
         email: "info@italian-lawyer.eu",
-        website: "https://italian-lawyer.eu",
         image: "https://res.cloudinary.com/dusubfxgo/image/upload/v1756908802/Marco_Magaraggia_italian_laywer_lecce_puglia_biznf1.webp"
       },
       {
