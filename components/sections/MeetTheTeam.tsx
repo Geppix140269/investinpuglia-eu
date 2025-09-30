@@ -91,17 +91,38 @@ export default function MeetTheTeam() {
         role: "Legal Expert - Notary Services Lecce (Preferred Partner)",
         description: "Experienced notary based in Lecce specializing in real estate transactions and property law. Provides essential notarial services for property purchases and legal documentation.",
         expertise: ["Property Transaction Notarization", "Legal Documentation", "Title Verification", "Contract Authentication"],
-        location: "Lecce"
+        location: "Lecce",
+        image: "https://res.cloudinary.com/dusubfxgo/image/upload/v1759206138/Screenshot_2025-09-30_062113_lhxsfv.png"
       }
     ],
-    bankingPartners: [
+    recommendedBanks: [
       {
         name: "Intesa San Paolo",
-        role: "Preferred Banking Partner",
-        description: "Italy's leading banking group providing specialized services for international investors. Expert in bank account opening procedures and project financing for real estate investments.",
+        role: "Recommended Banking Institution",
+        description: "Italy's leading banking group offering specialized services for international investors. We recommend them for bank account opening procedures and project financing for real estate investments in Italy.",
         expertise: ["Bank Account Opening", "Project Financing", "International Banking Services", "Investment Loans"],
         type: "institution",
         image: "https://res.cloudinary.com/dusubfxgo/image/upload/v1759138773/intesa-sanpaolo-vector-logo_qpripe.png"
+      }
+    ],
+    strategicPartners: [
+      {
+        name: "Ger Rottink",
+        company: "NEXUS Capital Architects",
+        role: "Founder / CEO - Strategic Investment Partner",
+        description: "30 years of Expertise in structured Finance, VC and PE Capital. European RE Development / total Project Management / Engineering. Strategic Investment advisors specializing in bridging and advising investments from The Netherlands in Italy.",
+        expertise: [
+          "Structured Financing",
+          "European RE Development",
+          "Project Management & Engineering",
+          "Exit Strategy Advisors",
+          "EU Tax, Legal and Notarial Advisors",
+          "Bridging Dutch-Italian Investments"
+        ],
+        image: "https://res.cloudinary.com/dusubfxgo/image/upload/v1759206413/image_qdvlvv.png",
+        companyLogo: "https://res.cloudinary.com/dusubfxgo/image/upload/v1759206912/Screenshot_2025-09-30_063420-Photoroom_wkb4hx.png",
+        companyDescription: "Navigating your finance with accuracy & precision. Overall Project Management. Advisors in (EU) Tax, legal and Notarial matters. RE Development. Civil Engineering. Project Management. Structured Financing. Exit strategy advisors. Local experts in Tax, Legal and Notarial expertise Italy. RE specialists with in-house disciplines / expertise.",
+        type: "strategic"
       }
     ]
   }
@@ -333,14 +354,18 @@ export default function MeetTheTeam() {
               </div>
             </div>
 
-            {/* Banking Partners Section */}
+            {/* Recommended Banks Section */}
             <div className="mb-10">
               <h4 className="text-xl font-bold text-gray-800 mb-4 flex items-center justify-center gap-2">
                 <Icon name="Building2" size={20} className="text-green-600" />
-                Banking Partners
+                Recommended Banking Institutions
               </h4>
+              <p className="text-center text-gray-600 mb-4 text-sm max-w-2xl mx-auto">
+                Based on our experience, we recommend the following banking institutions for international investors in Italy.
+                We are not affiliated with or partners of these institutions.
+              </p>
               <div className="grid grid-cols-1 gap-6 max-w-2xl mx-auto">
-                {partnerCategories.bankingPartners.map((partner, index) => (
+                {partnerCategories.recommendedBanks.map((partner, index) => (
                   <div key={index} className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-6 border border-green-200">
                     {partner.image && (
                       <div className="flex justify-center mb-4">
@@ -365,6 +390,94 @@ export default function MeetTheTeam() {
                           <span className="text-xs text-gray-700">{item}</span>
                         </div>
                       ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Strategic Partners Section - International Investor Network */}
+            <div className="mb-10">
+              <h4 className="text-xl font-bold text-gray-800 mb-4 flex items-center justify-center gap-2">
+                <Icon name="TrendingUp" size={20} className="text-purple-600" />
+                Strategic Investment Partners
+              </h4>
+              <p className="text-center text-gray-600 mb-6 max-w-3xl mx-auto">
+                Our strategic partners specialize in connecting international investors with Italian investment opportunities.
+                They provide comprehensive support from initial structuring through project completion.
+              </p>
+              <div className="grid grid-cols-1 gap-6 max-w-4xl mx-auto">
+                {partnerCategories.strategicPartners.map((partner, index) => (
+                  <div key={index} className="bg-gradient-to-br from-purple-50 to-indigo-100 rounded-xl p-8 border border-purple-200 shadow-lg">
+                    <div className="grid md:grid-cols-3 gap-6 items-start">
+                      {/* Left: Profile */}
+                      <div className="flex flex-col items-center text-center">
+                        {partner.image && (
+                          <div className="mb-4">
+                            <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-white shadow-lg">
+                              <CloudinaryImage
+                                src={partner.image}
+                                alt={partner.name}
+                                width={128}
+                                height={128}
+                                className="w-full h-full object-cover"
+                              />
+                            </div>
+                          </div>
+                        )}
+                        <h5 className="text-xl font-bold text-gray-900 mb-2">{partner.name}</h5>
+                        <p className="text-purple-600 font-semibold text-sm mb-3">{partner.role}</p>
+
+                        {(partner as any).companyLogo && (
+                          <div className="mt-4 mb-3">
+                            <div className="bg-white rounded-lg p-3 shadow-md">
+                              <CloudinaryImage
+                                src={(partner as any).companyLogo}
+                                alt={(partner as any).company}
+                                width={120}
+                                height={60}
+                                className="max-w-full max-h-full object-contain"
+                              />
+                            </div>
+                          </div>
+                        )}
+                        <p className="text-sm font-semibold text-gray-700">{(partner as any).company}</p>
+                      </div>
+
+                      {/* Middle: Description */}
+                      <div className="md:col-span-2">
+                        <div className="mb-4">
+                          <h6 className="font-semibold text-gray-900 mb-2">About {partner.name}</h6>
+                          <p className="text-gray-600 text-sm mb-4">{partner.description}</p>
+                        </div>
+
+                        <div className="mb-4">
+                          <h6 className="font-semibold text-gray-900 mb-2">Expertise</h6>
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                            {partner.expertise.map((item, i) => (
+                              <div key={i} className="flex items-center gap-2">
+                                <Icon name="CheckCircle" size={14} className="text-emerald-600 flex-shrink-0" />
+                                <span className="text-xs text-gray-700">{item}</span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+
+                        {(partner as any).companyDescription && (
+                          <div className="bg-white/50 rounded-lg p-4 border border-purple-200 mt-4">
+                            <h6 className="font-semibold text-gray-900 mb-2">About {(partner as any).company}</h6>
+                            <p className="text-xs text-gray-600 leading-relaxed">{(partner as any).companyDescription}</p>
+                          </div>
+                        )}
+
+                        <div className="mt-4 bg-purple-100 rounded-lg p-3 border border-purple-300">
+                          <p className="text-sm text-purple-800 font-medium">
+                            <Icon name="Users" size={16} className="inline mr-2" />
+                            <strong>Partnership Role:</strong> NEXUS Capital Architects works with our team to source and connect international
+                            investors, particularly from the Netherlands, with premium Italian investment opportunities.
+                          </p>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 ))}

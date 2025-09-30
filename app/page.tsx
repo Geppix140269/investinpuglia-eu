@@ -31,8 +31,8 @@ const PortfolioSlider = dynamic(
   }
 )
 
-const PalazzoOpportunity = dynamic(
-  () => import(/* webpackChunkName: "palazzo-opportunity" */ '@/components/sections/PalazzoOpportunity'),
+const ExclusiveOpportunitiesCarousel = dynamic(
+  () => import(/* webpackChunkName: "opportunities-carousel" */ '@/components/sections/ExclusiveOpportunitiesCarousel'),
   {
     loading: () => <LoadingSkeleton />,
     ssr: true
@@ -131,9 +131,9 @@ export default function HomePage() {
         <PortfolioSlider />
       </Suspense>
 
-      {/* Palazzo Palmariggi Opportunity - Featured Deal */}
+      {/* Exclusive Investment Opportunities Carousel - Featured Deals */}
       <Suspense fallback={<LoadingSkeleton />}>
-        <PalazzoOpportunity />
+        <ExclusiveOpportunitiesCarousel />
       </Suspense>
 
 
