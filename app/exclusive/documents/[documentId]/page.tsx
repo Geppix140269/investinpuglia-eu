@@ -42,6 +42,7 @@ export default function ExclusiveDocumentPage() {
   const documentId = params?.documentId as string
   const [isVerified, setIsVerified] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
+  const [sendingEmail, setSendingEmail] = useState(false)
 
   const document = DOCUMENTS[documentId]
 
@@ -59,15 +60,39 @@ export default function ExclusiveDocumentPage() {
     setIsLoading(false)
   }, [documentId])
 
-  const handleVerificationSuccess = () => {
+  const handleVerificationSuccess = async (userData?: { fullName: string; email: string; phoneNumber: string }) => {
     // Store access in session storage (24 hour expiry)
     const accessData = {
       verified: true,
       verifiedAt: Date.now(),
       expiresAt: Date.now() + (24 * 60 * 60 * 1000),
-      documentId
+      documentId,
+      userData
     }
     sessionStorage.setItem(`document-access-${documentId}`, JSON.stringify(accessData))
+
+    // Send confirmation email if user data provided
+    if (userData && document) {
+      setSendingEmail(true)
+      try {
+        await fetch('/api/documents/confirm-access', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            fullName: userData.fullName,
+            email: userData.email,
+            phoneNumber: userData.phoneNumber,
+            documentTitle: document.title,
+            documentId: document.id
+          })
+        })
+      } catch (error) {
+        console.error('Failed to send confirmation email:', error)
+      } finally {
+        setSendingEmail(false)
+      }
+    }
+
     setIsVerified(true)
   }
 
@@ -117,7 +142,20 @@ export default function ExclusiveDocumentPage() {
         onVerificationSuccess={handleVerificationSuccess}
         title="Access Confidential Document"
         subtitle={`Verification required to view: ${document.title}`}
+        requireUserInfo={true}
       />
+    )
+  }
+
+  // Show loading state while sending email
+  if (sendingEmail) {
+    return (
+      <section className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center">
+        <div className="text-center text-white">
+          <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-emerald-500 mx-auto mb-4"></div>
+          <p className="text-lg">Sending confidentiality confirmation...</p>
+        </div>
+      </section>
     )
   }
 

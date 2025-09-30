@@ -5,9 +5,10 @@ import { Phone, MessageSquare, Lock, Check, AlertCircle, Loader2 } from 'lucide-
 import ConfidentialityAgreement from './ConfidentialityAgreement'
 
 interface OTPVerificationProps {
-  onVerificationSuccess: () => void
+  onVerificationSuccess: (userData?: { fullName: string; email: string; phoneNumber: string }) => void
   title?: string
   subtitle?: string
+  requireUserInfo?: boolean
 }
 
 interface SignatureData {
@@ -22,9 +23,12 @@ interface SignatureData {
 export default function OTPVerification({
   onVerificationSuccess,
   title = "Access Exclusive Historic Property",
-  subtitle = "Enter your phone number to receive confidential access code via SMS"
+  subtitle = "Enter your phone number to receive confidential access code via SMS",
+  requireUserInfo = false
 }: OTPVerificationProps) {
-  const [step, setStep] = useState<'phone' | 'agreement' | 'otp'>('phone')
+  const [step, setStep] = useState<'userInfo' | 'phone' | 'agreement' | 'otp'>(requireUserInfo ? 'userInfo' : 'phone')
+  const [fullName, setFullName] = useState('')
+  const [email, setEmail] = useState('')
   const [phoneNumber, setPhoneNumber] = useState('')
   const [otp, setOtp] = useState('')
   const [loading, setLoading] = useState(false)
@@ -151,7 +155,11 @@ export default function OTPVerification({
       if (response.ok) {
         setSuccess('Access granted!')
         setTimeout(() => {
-          onVerificationSuccess()
+          if (requireUserInfo) {
+            onVerificationSuccess({ fullName, email, phoneNumber: phoneNumber.replace(/\s/g, '') })
+          } else {
+            onVerificationSuccess()
+          }
         }, 1000)
       } else {
         setError(result.message || 'Invalid or expired OTP')
@@ -161,6 +169,24 @@ export default function OTPVerification({
     } finally {
       setLoading(false)
     }
+  }
+
+  const handleUserInfoSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!fullName.trim() || !email.trim()) {
+      setError('Please fill in all required fields')
+      return
+    }
+
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(email)) {
+      setError('Please enter a valid email address')
+      return
+    }
+
+    setError('')
+    setStep('phone')
   }
 
   const formatTime = (seconds: number) => {
@@ -218,6 +244,59 @@ export default function OTPVerification({
           <h2 className="text-2xl font-bold text-gray-900 mb-2">{title}</h2>
           <p className="text-gray-600">{subtitle}</p>
         </div>
+
+        {step === 'userInfo' && (
+          <form onSubmit={handleUserInfoSubmit}>
+            <div className="mb-4">
+              <label htmlFor="fullName" className="block text-sm font-medium text-gray-700 mb-2">
+                Full Name *
+              </label>
+              <input
+                type="text"
+                id="fullName"
+                value={fullName}
+                onChange={(e) => setFullName(e.target.value)}
+                placeholder="John Doe"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
+                required
+              />
+            </div>
+
+            <div className="mb-6">
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                Email Address *
+              </label>
+              <input
+                type="email"
+                id="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="john@example.com"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
+                required
+              />
+              <p className="text-xs text-gray-500 mt-1">
+                You'll receive a confidentiality confirmation at this email
+              </p>
+            </div>
+
+            {error && (
+              <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg flex items-center gap-2">
+                <AlertCircle className="w-4 h-4 text-red-500 flex-shrink-0" />
+                <span className="text-sm text-red-700">{error}</span>
+              </div>
+            )}
+
+            <button
+              type="submit"
+              disabled={!fullName.trim() || !email.trim()}
+              className="w-full bg-gradient-to-r from-amber-600 to-orange-600 text-white py-3 px-4 rounded-lg font-semibold hover:shadow-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+            >
+              Continue to Verification
+              <Check className="w-4 h-4" />
+            </button>
+          </form>
+        )}
 
         {step === 'phone' && (
           <form onSubmit={handlePhoneSubmit}>
