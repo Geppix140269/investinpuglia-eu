@@ -304,20 +304,56 @@ export default function OTPVerification({
               <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
                 Phone Number
               </label>
-              <div className="relative">
-                <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
-                <input
-                  type="tel"
-                  id="phone"
-                  value={phoneNumber}
-                  onChange={(e) => setPhoneNumber(formatPhoneNumber(e.target.value))}
-                  placeholder="+39 333 123 4567"
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
-                  required
-                />
+              <div className="flex gap-2">
+                <select
+                  value={phoneNumber.startsWith('+') ? phoneNumber.split(' ')[0] : '+39'}
+                  onChange={(e) => {
+                    const newCode = e.target.value
+                    const numberWithoutCode = phoneNumber.replace(/^\+\d+\s*/, '')
+                    setPhoneNumber(newCode + (numberWithoutCode ? ' ' + numberWithoutCode : ''))
+                  }}
+                  className="w-32 px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
+                >
+                  <option value="+39">🇮🇹 +39</option>
+                  <option value="+31">🇳🇱 +31</option>
+                  <option value="+44">🇬🇧 +44</option>
+                  <option value="+49">🇩🇪 +49</option>
+                  <option value="+33">🇫🇷 +33</option>
+                  <option value="+34">🇪🇸 +34</option>
+                  <option value="+1">🇺🇸 +1</option>
+                  <option value="+41">🇨🇭 +41</option>
+                  <option value="+43">🇦🇹 +43</option>
+                  <option value="+32">🇧🇪 +32</option>
+                  <option value="+45">🇩🇰 +45</option>
+                  <option value="+46">🇸🇪 +46</option>
+                  <option value="+47">🇳🇴 +47</option>
+                  <option value="+351">🇵🇹 +351</option>
+                  <option value="+30">🇬🇷 +30</option>
+                  <option value="+971">🇦🇪 +971</option>
+                  <option value="+966">🇸🇦 +966</option>
+                  <option value="+86">🇨🇳 +86</option>
+                  <option value="+81">🇯🇵 +81</option>
+                  <option value="+61">🇦🇺 +61</option>
+                </select>
+                <div className="relative flex-1">
+                  <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                  <input
+                    type="tel"
+                    id="phone"
+                    value={phoneNumber.replace(/^\+\d+\s*/, '')}
+                    onChange={(e) => {
+                      const code = phoneNumber.startsWith('+') ? phoneNumber.split(' ')[0] : '+39'
+                      const numbers = e.target.value.replace(/\D/g, '')
+                      setPhoneNumber(code + (numbers ? ' ' + numbers : ''))
+                    }}
+                    placeholder="333 123 4567"
+                    className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
+                    required
+                  />
+                </div>
               </div>
               <p className="text-xs text-gray-500 mt-1">
-                Enter your phone number with country code
+                Select your country code and enter your phone number
               </p>
             </div>
 
