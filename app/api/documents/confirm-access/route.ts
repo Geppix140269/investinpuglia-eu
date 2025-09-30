@@ -122,7 +122,7 @@ export async function POST(request: NextRequest) {
     // Send notification to admin
     const adminEmail = await resend.emails.send({
       from: 'InvestInPuglia <noreply@investinpuglia.eu>',
-      to: 'giuseppe@investinpuglia.eu', // Change to your admin email
+      to: 'g.funaro@investinpuglia.eu',
       subject: `🔒 Document Access: ${documentTitle}`,
       html: `
 <!DOCTYPE html>

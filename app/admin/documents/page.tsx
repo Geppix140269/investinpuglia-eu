@@ -8,6 +8,7 @@ interface Document {
   title: string
   description: string
   url: string
+  contentType: 'pdf' | 'gamma' | 'iframe'
   enabled: boolean
   createdAt: string
 }
@@ -23,6 +24,7 @@ export default function AdminDocumentsPage() {
     title: '',
     description: '',
     url: '',
+    contentType: 'pdf' as 'pdf' | 'gamma' | 'iframe',
     enabled: true
   })
 
@@ -39,6 +41,7 @@ export default function AdminDocumentsPage() {
           title: 'Investment Agreement Template',
           description: 'Standard investment agreement template for property investments in Puglia',
           url: 'https://res.cloudinary.com/dusubfxgo/raw/upload/v1/documents/investment-agreement.pdf',
+          contentType: 'pdf',
           enabled: true,
           createdAt: new Date().toISOString()
         }
@@ -70,6 +73,7 @@ export default function AdminDocumentsPage() {
       title: newDoc.title,
       description: newDoc.description,
       url: newDoc.url,
+      contentType: newDoc.contentType,
       enabled: newDoc.enabled,
       createdAt: new Date().toISOString()
     }
@@ -82,6 +86,7 @@ export default function AdminDocumentsPage() {
       title: '',
       description: '',
       url: '',
+      contentType: 'pdf',
       enabled: true
     })
   }
@@ -206,28 +211,61 @@ export default function AdminDocumentsPage() {
 
           <div className="mb-4">
             <label className="block text-sm font-medium text-slate-300 mb-2">
-              Upload PDF or Enter URL *
+              Content Type *
             </label>
-            <div className="flex gap-4">
-              <input
-                type="file"
-                accept=".pdf"
-                onChange={handleFileUpload}
-                disabled={uploading}
-                className="flex-1 px-4 py-2 bg-slate-900/50 border border-slate-600 rounded-lg text-white file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-emerald-600 file:text-white hover:file:bg-emerald-700 disabled:opacity-50"
-              />
-              <span className="text-slate-400 self-center">OR</span>
+            <select
+              value={newDoc.contentType}
+              onChange={(e) => setNewDoc({ ...newDoc, contentType: e.target.value as 'pdf' | 'gamma' | 'iframe' })}
+              className="w-full px-4 py-2 bg-slate-900/50 border border-slate-600 rounded-lg text-white focus:outline-none focus:border-emerald-500"
+            >
+              <option value="pdf">PDF Document</option>
+              <option value="gamma">Gamma Presentation</option>
+              <option value="iframe">Generic Iframe Content</option>
+            </select>
+            <p className="text-xs text-slate-400 mt-1">
+              Select the type of content you're adding
+            </p>
+          </div>
+
+          <div className="mb-4">
+            <label className="block text-sm font-medium text-slate-300 mb-2">
+              {newDoc.contentType === 'pdf' ? 'Upload PDF or Enter URL *' : 'Content URL *'}
+            </label>
+            {newDoc.contentType === 'pdf' ? (
+              <div className="flex gap-4">
+                <input
+                  type="file"
+                  accept=".pdf"
+                  onChange={handleFileUpload}
+                  disabled={uploading}
+                  className="flex-1 px-4 py-2 bg-slate-900/50 border border-slate-600 rounded-lg text-white file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-emerald-600 file:text-white hover:file:bg-emerald-700 disabled:opacity-50"
+                />
+                <span className="text-slate-400 self-center">OR</span>
+                <input
+                  type="url"
+                  value={newDoc.url}
+                  onChange={(e) => setNewDoc({ ...newDoc, url: e.target.value })}
+                  className="flex-1 px-4 py-2 bg-slate-900/50 border border-slate-600 rounded-lg text-white focus:outline-none focus:border-emerald-500"
+                  placeholder="https://res.cloudinary.com/..."
+                  disabled={uploading}
+                />
+              </div>
+            ) : (
               <input
                 type="url"
                 value={newDoc.url}
                 onChange={(e) => setNewDoc({ ...newDoc, url: e.target.value })}
-                className="flex-1 px-4 py-2 bg-slate-900/50 border border-slate-600 rounded-lg text-white focus:outline-none focus:border-emerald-500"
-                placeholder="https://res.cloudinary.com/..."
-                disabled={uploading}
+                className="w-full px-4 py-2 bg-slate-900/50 border border-slate-600 rounded-lg text-white focus:outline-none focus:border-emerald-500"
+                placeholder={newDoc.contentType === 'gamma' ? 'https://gamma.app/docs/...' : 'https://...'}
               />
-            </div>
+            )}
             {uploading && (
               <p className="text-emerald-400 text-sm mt-2">Uploading to Cloudinary...</p>
+            )}
+            {newDoc.contentType === 'gamma' && (
+              <p className="text-xs text-slate-400 mt-1">
+                Enter your Gamma presentation share URL (must allow embedding)
+              </p>
             )}
           </div>
 
@@ -270,7 +308,7 @@ export default function AdminDocumentsPage() {
                 >
                   <div className="flex items-start justify-between gap-4">
                     <div className="flex-1">
-                      <div className="flex items-center gap-3 mb-2">
+                      <div className="flex items-center gap-3 mb-2 flex-wrap">
                         <FileText className="w-5 h-5 text-emerald-400" />
                         <h3 className="text-lg font-semibold text-white">{doc.title}</h3>
                         {doc.enabled ? (
@@ -282,6 +320,13 @@ export default function AdminDocumentsPage() {
                             Disabled
                           </span>
                         )}
+                        <span className={`px-2 py-1 rounded-full text-xs font-semibold ${
+                          doc.contentType === 'gamma' ? 'bg-purple-500/20 text-purple-300' :
+                          doc.contentType === 'pdf' ? 'bg-blue-500/20 text-blue-300' :
+                          'bg-gray-500/20 text-gray-300'
+                        }`}>
+                          {doc.contentType === 'gamma' ? '📊 Gamma' : doc.contentType === 'pdf' ? '📄 PDF' : '🌐 Iframe'}
+                        </span>
                       </div>
                       <p className="text-slate-300 text-sm mb-2">{doc.description}</p>
                       <p className="text-slate-500 text-xs">ID: {doc.id}</p>

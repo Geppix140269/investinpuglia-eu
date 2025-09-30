@@ -12,6 +12,7 @@ const DOCUMENTS: Record<string, {
   title: string
   description: string
   url: string
+  contentType: 'pdf' | 'gamma' | 'iframe'
   enabled: boolean
 }> = {
   'investment-agreement-template': {
@@ -19,6 +20,7 @@ const DOCUMENTS: Record<string, {
     title: 'Investment Agreement Template',
     description: 'Standard investment agreement template for property investments in Puglia',
     url: 'https://res.cloudinary.com/dusubfxgo/raw/upload/v1/documents/investment-agreement.pdf',
+    contentType: 'pdf',
     enabled: true
   },
   'mini-pia-guide': {
@@ -26,13 +28,15 @@ const DOCUMENTS: Record<string, {
     title: 'Mini PIA Complete Guide',
     description: 'Comprehensive guide to Mini PIA grants and application process',
     url: 'https://res.cloudinary.com/dusubfxgo/raw/upload/v1/documents/mini-pia-guide.pdf',
+    contentType: 'pdf',
     enabled: true
   },
-  'palazzo-robertini-full-report': {
-    id: 'palazzo-robertini-full-report',
-    title: 'Palazzo Robertini - Full Investment Report',
-    description: 'Detailed investment analysis and property report for Palazzo Robertini',
-    url: 'https://res.cloudinary.com/dusubfxgo/raw/upload/v1/documents/palazzo-robertini-report.pdf',
+  'palazzo-robertini-presentation': {
+    id: 'palazzo-robertini-presentation',
+    title: 'Palazzo Robertini - Investment Presentation',
+    description: 'Interactive presentation with investment analysis for Palazzo Robertini',
+    url: 'https://gamma.app/docs/your-presentation-id',
+    contentType: 'gamma',
     enabled: true
   }
 }
@@ -165,6 +169,7 @@ export default function ExclusiveDocumentPage() {
       documentUrl={document.url}
       documentTitle={document.title}
       documentDescription={document.description}
+      contentType={document.contentType}
     />
   )
 }

@@ -7,12 +7,14 @@ interface SecureDocumentViewerProps {
   documentUrl: string
   documentTitle: string
   documentDescription?: string
+  contentType?: 'pdf' | 'gamma' | 'iframe'
 }
 
 export default function SecureDocumentViewer({
   documentUrl,
   documentTitle,
-  documentDescription
+  documentDescription,
+  contentType = 'pdf'
 }: SecureDocumentViewerProps) {
   const [showWarning, setShowWarning] = useState(true)
 
@@ -161,21 +163,55 @@ export default function SecureDocumentViewer({
               </div>
             </div>
 
-            {/* PDF Viewer using iframe with enhanced security */}
-            <iframe
-              src={`${documentUrl}#toolbar=0&navpanes=0&scrollbar=1&view=FitH`}
-              className="w-full h-[800px]"
-              title={documentTitle}
-              style={{
-                border: 'none',
-                userSelect: 'none',
-                pointerEvents: 'auto'
-              }}
-              // Security attributes
-              sandbox="allow-same-origin allow-scripts"
-              // Prevent download attempts
-              onContextMenu={(e) => e.preventDefault()}
-            />
+            {/* Content Viewer based on type */}
+            {contentType === 'gamma' ? (
+              /* Gamma Presentation Viewer */
+              <iframe
+                src={documentUrl}
+                className="w-full h-[800px]"
+                title={documentTitle}
+                style={{
+                  border: 'none',
+                  userSelect: 'none',
+                  pointerEvents: 'auto'
+                }}
+                // Security attributes
+                sandbox="allow-same-origin allow-scripts allow-forms allow-popups"
+                allow="fullscreen"
+                // Prevent download attempts
+                onContextMenu={(e) => e.preventDefault()}
+              />
+            ) : contentType === 'iframe' ? (
+              /* Generic iframe content */
+              <iframe
+                src={documentUrl}
+                className="w-full h-[800px]"
+                title={documentTitle}
+                style={{
+                  border: 'none',
+                  userSelect: 'none',
+                  pointerEvents: 'auto'
+                }}
+                sandbox="allow-same-origin allow-scripts"
+                onContextMenu={(e) => e.preventDefault()}
+              />
+            ) : (
+              /* PDF Viewer using iframe with enhanced security */
+              <iframe
+                src={`${documentUrl}#toolbar=0&navpanes=0&scrollbar=1&view=FitH`}
+                className="w-full h-[800px]"
+                title={documentTitle}
+                style={{
+                  border: 'none',
+                  userSelect: 'none',
+                  pointerEvents: 'auto'
+                }}
+                // Security attributes
+                sandbox="allow-same-origin allow-scripts"
+                // Prevent download attempts
+                onContextMenu={(e) => e.preventDefault()}
+              />
+            )}
           </div>
         </div>
 
