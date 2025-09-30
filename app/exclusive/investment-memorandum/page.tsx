@@ -1,79 +1,35 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { useParams } from 'next/navigation'
 import OTPVerification from '@/components/auth/OTPVerification'
 import SecureDocumentViewer from '@/components/documents/SecureDocumentViewer'
-import { Shield, FileText, Lock } from 'lucide-react'
 
-// Default document configuration (fallback if localStorage is empty)
-const DEFAULT_DOCUMENTS: Record<string, {
-  id: string
-  title: string
-  description: string
-  url: string
-  contentType: 'pdf' | 'gamma' | 'iframe'
-  enabled: boolean
-}> = {
-  'investment-memorandum': {
+export default function InvestmentMemorandumPage() {
+  const [isVerified, setIsVerified] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
+  const [sendingEmail, setSendingEmail] = useState(false)
+
+  const document = {
     id: 'investment-memorandum',
     title: 'Investment Memorandum',
     description: 'Confidential investment memorandum and opportunity overview',
     url: 'https://investment-memorandum-hovxs08.gamma.site/',
-    contentType: 'gamma',
-    enabled: true
+    contentType: 'gamma' as const
   }
-}
-
-export default function ExclusiveDocumentPage() {
-  const params = useParams()
-  const documentId = params?.documentId as string
-  const [isVerified, setIsVerified] = useState(false)
-  const [isLoading, setIsLoading] = useState(true)
-  const [sendingEmail, setSendingEmail] = useState(false)
-  const [document, setDocument] = useState<any>(null)
-
-  // Load document from localStorage or fallback
-  useEffect(() => {
-    const stored = localStorage.getItem('exclusive-documents')
-    let allDocuments = DEFAULT_DOCUMENTS
-
-    if (stored) {
-      try {
-        const parsedDocs = JSON.parse(stored)
-        // Convert array to record
-        const docsRecord: any = {}
-        parsedDocs.forEach((doc: any) => {
-          docsRecord[doc.id] = doc
-        })
-        allDocuments = { ...DEFAULT_DOCUMENTS, ...docsRecord }
-      } catch (error) {
-        console.error('Error loading documents:', error)
-      }
-    }
-
-    setDocument(allDocuments[documentId])
-  }, [documentId])
 
   useEffect(() => {
-    // Wait for document to be loaded before checking access
-    if (!document) {
-      setIsLoading(true)
-      return
-    }
-
     // Check if user has already verified (session storage)
-    const hasAccess = sessionStorage.getItem(`document-access-${documentId}`)
+    const hasAccess = sessionStorage.getItem(`document-access-${document.id}`)
     if (hasAccess) {
       const accessData = JSON.parse(hasAccess)
       if (accessData.expiresAt > Date.now()) {
         setIsVerified(true)
       } else {
-        sessionStorage.removeItem(`document-access-${documentId}`)
+        sessionStorage.removeItem(`document-access-${document.id}`)
       }
     }
     setIsLoading(false)
-  }, [documentId, document])
+  }, [])
 
   const handleVerificationSuccess = async (userData?: { fullName: string; email: string; phoneNumber: string }) => {
     // Store access in session storage (24 hour expiry)
@@ -81,13 +37,13 @@ export default function ExclusiveDocumentPage() {
       verified: true,
       verifiedAt: Date.now(),
       expiresAt: Date.now() + (24 * 60 * 60 * 1000),
-      documentId,
+      documentId: document.id,
       userData
     }
-    sessionStorage.setItem(`document-access-${documentId}`, JSON.stringify(accessData))
+    sessionStorage.setItem(`document-access-${document.id}`, JSON.stringify(accessData))
 
     // Send confirmation email if user data provided
-    if (userData && document) {
+    if (userData) {
       setSendingEmail(true)
       try {
         await fetch('/api/documents/confirm-access', {
@@ -125,38 +81,13 @@ export default function ExclusiveDocumentPage() {
     )
   }
 
-  // Document not found or disabled
-  if (!document || !document.enabled) {
-    return (
-      <section className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center p-4">
-        <div className="max-w-md mx-auto text-center">
-          <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-2xl p-8">
-            <div className="w-20 h-20 bg-red-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
-              <Lock className="w-10 h-10 text-red-400" />
-            </div>
-            <h1 className="text-3xl font-bold text-white mb-4">Document Not Found</h1>
-            <p className="text-slate-300 mb-6">
-              The document you're looking for is not available or has been removed.
-            </p>
-            <a
-              href="/"
-              className="inline-flex items-center gap-2 bg-emerald-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-emerald-700 transition-all"
-            >
-              Return to Homepage
-            </a>
-          </div>
-        </div>
-      </section>
-    )
-  }
-
   // Show OTP verification if not verified
   if (!isVerified) {
     return (
       <OTPVerification
         onVerificationSuccess={handleVerificationSuccess}
-        title="Access Confidential Document"
-        subtitle={`Verification required to view: ${document.title}`}
+        title="Access Investment Memorandum"
+        subtitle="Verification required to view confidential investment information"
         requireUserInfo={true}
       />
     )
