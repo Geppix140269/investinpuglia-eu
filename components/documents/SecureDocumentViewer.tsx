@@ -17,6 +17,7 @@ export default function SecureDocumentViewer({
   contentType = 'pdf'
 }: SecureDocumentViewerProps) {
   const [showWarning, setShowWarning] = useState(true)
+  const [showInstructions, setShowInstructions] = useState(false)
 
   // Disable right-click context menu
   useEffect(() => {
@@ -216,12 +217,100 @@ export default function SecureDocumentViewer({
         </div>
 
         {/* Footer Notice */}
-        <div className="mt-6 text-center text-slate-400 text-sm">
-          <p className="flex items-center justify-center gap-2">
+        <div className="mt-6 text-center">
+          <p className="flex items-center justify-center gap-2 text-slate-400 text-sm mb-4">
             <Shield className="w-4 h-4" />
             This document is confidential and protected. Unauthorized sharing or distribution is prohibited.
           </p>
+
+          {/* Help Button */}
+          <button
+            onClick={() => setShowInstructions(!showInstructions)}
+            className="text-emerald-400 hover:text-emerald-300 text-sm font-medium underline"
+          >
+            {showInstructions ? 'Hide Instructions' : 'Need Help? Click Here'}
+          </button>
         </div>
+
+        {/* Instructions Panel - Only shown when requested */}
+        {showInstructions && (
+          <div className="mt-6 bg-slate-800/30 border border-slate-700/50 rounded-xl p-6">
+            <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
+              <AlertCircle className="w-5 h-5 text-emerald-400" />
+              How to Use This Viewer
+            </h3>
+
+            <div className="space-y-4 text-sm text-slate-300">
+              <div>
+                <h4 className="font-semibold text-white mb-2">📄 Viewing the Document</h4>
+                <ul className="space-y-1 ml-4">
+                  <li>• Scroll up/down to navigate through the content</li>
+                  {contentType === 'gamma' && <li>• Click arrows or use keyboard to navigate slides</li>}
+                  {contentType === 'pdf' && <li>• Use your mouse wheel to scroll through pages</li>}
+                  <li>• Zoom in/out using browser zoom (Ctrl/Cmd + or -)</li>
+                  <li>• You can view for as long as needed during this session</li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 className="font-semibold text-white mb-2">🔒 Security Features</h4>
+                <ul className="space-y-1 ml-4">
+                  <li>• This is a <strong>view-only</strong> document</li>
+                  <li>• Downloading is disabled for confidentiality</li>
+                  <li>• Copying/printing are blocked</li>
+                  <li>• Right-click and keyboard shortcuts are disabled</li>
+                  <li>• Your access is logged for security purposes</li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 className="font-semibold text-white mb-2">⏰ Session Information</h4>
+                <ul className="space-y-1 ml-4">
+                  <li>• Your access is valid for 24 hours</li>
+                  <li>• After 24 hours, you'll need to re-verify</li>
+                  <li>• Close this window when finished</li>
+                  <li>• You can return anytime within 24 hours</li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 className="font-semibold text-white mb-2">💡 Tips</h4>
+                <ul className="space-y-1 ml-4">
+                  <li>• Use fullscreen mode (F11) for better viewing</li>
+                  <li>• Adjust your screen brightness if needed</li>
+                  <li>• Take notes separately - copying is disabled</li>
+                  <li>• Contact us if you have questions about the content</li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 className="font-semibold text-white mb-2">📧 Need More Information?</h4>
+                <p className="ml-4">
+                  If you have questions about this document or need additional details, please contact:{' '}
+                  <a href="mailto:g.funaro@investinpuglia.eu" className="text-emerald-400 hover:text-emerald-300 underline">
+                    g.funaro@investinpuglia.eu
+                  </a>
+                </p>
+              </div>
+
+              <div className="bg-amber-500/10 border border-amber-500/30 rounded-lg p-4 mt-4">
+                <p className="text-amber-200 text-xs">
+                  <strong>⚠️ Confidentiality Reminder:</strong> By accessing this document, you agreed to maintain confidentiality.
+                  Do not share, reproduce, or discuss this content with unauthorized parties. Violation may result in legal action.
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-6 text-center">
+              <button
+                onClick={() => setShowInstructions(false)}
+                className="bg-slate-700 hover:bg-slate-600 text-white px-6 py-2 rounded-lg font-medium transition-all"
+              >
+                Close Instructions
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   )
