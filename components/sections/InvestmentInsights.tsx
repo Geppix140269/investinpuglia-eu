@@ -87,8 +87,15 @@ export default function InvestmentInsights() {
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                         />
                       ) : (
-                        <div className="w-full h-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
-                          <FileText className="h-16 w-16 text-white opacity-50" />
+                        <div className="relative w-full h-full overflow-hidden">
+                          <img
+                            src="https://res.cloudinary.com/dusubfxgo/image/upload/v1756572217/investinpuglia/investinpuglia/hero_bg.jpg"
+                            alt="Investment insights background"
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-br from-blue-600/80 to-purple-600/80 flex items-center justify-center">
+                            <FileText className="h-16 w-16 text-white opacity-70" />
+                          </div>
                         </div>
                       )}
 
