@@ -633,17 +633,6 @@ export default function AboutPage() {
                         <Mail className="h-4 w-4" />
                         Contact
                       </a>
-                      {partner.website && (
-                        <a
-                          href={partner.website}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 text-indigo-600 hover:text-indigo-800 font-semibold text-sm"
-                        >
-                          <Globe className="h-4 w-4" />
-                          Website
-                        </a>
-                      )}
                     </div>
                     {partner.location && (
                       <div className="mt-2 text-center">
