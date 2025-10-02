@@ -37,19 +37,6 @@
   status = 200
   force = true
 
-# inpuglia.eu - Local Expertise & Network Focus
-[[redirects]]
-  from = "https://inpuglia.eu/*"
-  to = "/local/:splat"
-  status = 200
-  force = true
-
-[[redirects]]
-  from = "https://www.inpuglia.eu/*"
-  to = "/local/:splat"
-  status = 200
-  force = true
-
 # Main domain uses new trust-centered positioning
 [[redirects]]
   from = "https://investinpuglia.eu/*"
