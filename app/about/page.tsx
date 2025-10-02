@@ -214,24 +214,16 @@ export default function AboutPage() {
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-4xl font-bold mb-8 text-center">Our Story</h2>
+            <h2 className="text-4xl font-bold mb-8 text-center">How This Started</h2>
             <div className="prose prose-lg max-w-none text-gray-600">
               <p className="mb-6">
-                InvestInPuglia emerged from a deep understanding of the untapped potential in Southern Italy's most 
-                dynamic region. Our core team combines Giuseppe Funaro's 35+ years of international business experience 
-                with Dott. Ing. Cataldo Russo's 29 years of technical engineering excellence, creating a unique partnership 
-                focused on serving foreign investors in the Italian property market.
+                After 35+ years managing international business operations across Europe, I moved to Puglia and saw a recurring pattern: foreign investors making expensive mistakes because nobody coordinated their interests from start to finish.
               </p>
               <p className="mb-6">
-                Giuseppe handles all client relations and project coordination, ensuring clear communication and smooth 
-                project management from initial consultation to completion. Cataldo manages all technical aspects - from 
-                architectural design through construction completion - having successfully delivered 50+ hotel and resort 
-                projects valued at more than €95 million with €20M+ in grants secured.
+                Real estate agents worked for sellers. Grant consultants handled only paperwork. Architects focused on design. Contractors cared about their margin. <strong>Nobody orchestrated the entire investment for the investor.</strong>
               </p>
               <p>
-                Today, InvestInPuglia serves as the trusted advisor for international investors seeking to capitalize 
-                on Puglia's economic renaissance, with our core team ensuring every project receives both expert client 
-                representation and world-class technical execution.
+                So I built this service to do exactly that. I coordinate property acquisition, EU grant applications (€350K-€2.25M), and construction oversight using my vetted network of professionals - all with zero commission conflicts because I work exclusively for you.
               </p>
             </div>
           </div>
@@ -410,7 +402,7 @@ export default function AboutPage() {
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">Our Core Team</h2>
+            <h2 className="text-4xl font-bold mb-4">Core Team</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Giuseppe and Cataldo work together as the core team - Giuseppe handles all client relations and project coordination, 
               while Cataldo manages the technical and engineering aspects of every project.
@@ -529,7 +521,7 @@ export default function AboutPage() {
           {/* Professional Partners */}
           <div className="text-center">
             <h3 className="text-2xl font-bold text-gray-900 mb-6">
-              Our Professional Partners
+              Professional Network
             </h3>
             <p className="text-gray-600 mb-8 max-w-4xl mx-auto">
               Specialized professionals organized by expertise area. These English-speaking professionals are available when specialized services are needed.
@@ -699,7 +691,7 @@ export default function AboutPage() {
       <section className="py-20 bg-gradient-to-br from-indigo-50 to-purple-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-4">Our Core Values</h2>
+            <h2 className="text-4xl font-bold mb-4">How I Work</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               The principles that guide every project and relationship
             </p>
@@ -712,7 +704,7 @@ export default function AboutPage() {
               </div>
               <h3 className="text-xl font-bold mb-3">Integrity & Trust</h3>
               <p className="text-gray-600">
-                Building lasting relationships through transparency, honesty, and unwavering commitment to our clients' success.
+                Building lasting relationships through transparency, honesty, and unwavering commitment to your success.
               </p>
             </div>
 
@@ -743,7 +735,7 @@ export default function AboutPage() {
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-4">Our Services</h2>
+            <h2 className="text-4xl font-bold mb-4">My Services</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Comprehensive solutions for property investment and tourism development
             </p>
@@ -811,7 +803,7 @@ export default function AboutPage() {
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-4xl font-bold mb-4">Ready to Start Your Puglia Investment Journey?</h2>
           <p className="text-xl mb-8 text-gray-300 max-w-3xl mx-auto">
-            Work directly with Giuseppe and Cataldo - our core team with 35+ years of combined expertise
+            Work directly with Giuseppe and Cataldo - 35+ years of combined expertise coordinating your investment
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link

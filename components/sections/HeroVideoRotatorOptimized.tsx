@@ -197,13 +197,13 @@ const HeroVideoRotatorOptimized = () => {
               </div>
               
               <h1 className="text-4xl sm:text-5xl font-bold">
-                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-green-400 via-white to-red-500">
-                  Transform Your Italian Investment Vision Into Reality
+                <span className="block text-white drop-shadow-lg">
+                  Your Puglia Investment, Professionally Orchestrated
                 </span>
               </h1>
 
-              <p className="text-lg text-gray-100 max-w-lg">
-                Access up to 55% EU grant funding with our local Italian team. We specialize in tourism development, industrial projects, and commercial ventures with comprehensive grant applications and project management.
+              <p className="text-lg text-gray-100 max-w-lg drop-shadow-lg">
+                I coordinate property acquisition, EU grants (€350K-€2.25M), and construction - with zero commission conflicts. 30+ years international experience, based in Puglia, working exclusively for your success.
               </p>
               
               <div className="grid grid-cols-2 gap-3 max-w-lg">
@@ -316,12 +316,12 @@ const HeroVideoRotatorOptimized = () => {
               
               <div>
                 <h1 className="text-5xl lg:text-6xl font-bold mb-4">
-                  <span className="block text-transparent bg-clip-text bg-gradient-to-r from-green-400 via-white to-red-500">
-                    Your Gateway to Italian Property Investment
+                  <span className="block text-white drop-shadow-lg">
+                    Your Puglia Investment, Professionally Orchestrated
                   </span>
                 </h1>
-                <p className="text-xl text-gray-100">
-                  We're your complete Italian investment team - from finding the perfect property to securing EU grants and managing renovations. All with local expertise and international professionalism.
+                <p className="text-xl text-gray-100 drop-shadow-lg">
+                  I coordinate property acquisition, EU grants (€350K-€2.25M), and construction - with zero commission conflicts. 30+ years international experience, based in Puglia, working exclusively for your success.
                 </p>
               </div>
               
@@ -354,7 +354,7 @@ const HeroVideoRotatorOptimized = () => {
             
             {/* Right Content */}
             <div className="space-y-6">
-              <h3 className="text-white text-lg font-semibold">Our Holistic Services</h3>
+              <h3 className="text-white text-lg font-semibold">My Services</h3>
               
               <div className="space-y-3">
                 <Link href="/industries" className="block bg-white/10 backdrop-blur-sm rounded-lg p-4 hover:bg-white/20 transition-colors">
