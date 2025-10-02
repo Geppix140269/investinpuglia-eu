@@ -344,7 +344,7 @@ const HeroVideoRotatorOptimized = () => {
             
             {/* Right Content */}
             <div className="space-y-6">
-              <h3 className="text-white text-lg font-semibold">Our Holistic Services</h3>
+              <h3 className="text-white text-lg font-semibold">My Services</h3>
               
               <div className="space-y-3">
                 <Link href="/industries" className="block bg-white/10 backdrop-blur-sm rounded-lg p-4 hover:bg-white/20 transition-colors">

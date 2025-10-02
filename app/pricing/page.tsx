@@ -354,7 +354,7 @@ export default function PricingPage() {
                 </li>
                 <li className="flex items-start gap-2">
                   <TrendingUp className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
-                  <span><strong>Milestone-based payments:</strong> You pay as we progress, not upfront</span>
+                  <span><strong>Milestone-based payments:</strong> You pay as the project progresses, not upfront</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <TrendingUp className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
@@ -460,7 +460,7 @@ export default function PricingPage() {
                   href="/tools/mini-pia-calculator"
                   className="inline-flex items-center gap-2 text-indigo-600 hover:text-indigo-700 font-semibold"
                 >
-                  Use our Mini PIA Calculator <ArrowRight className="h-4 w-4" />
+                  Use the Mini PIA Calculator <ArrowRight className="h-4 w-4" />
                 </a>
               </div>
             </div>
@@ -485,14 +485,14 @@ export default function PricingPage() {
               <div className="bg-white rounded-xl p-6 shadow-sm">
                 <h3 className="text-xl font-bold mb-3">What if the grant is rejected?</h3>
                 <p className="text-gray-700">
-                  With a 95% approval rate, rejection is rare. If it happens, you only pay for work completed up to that milestone. No penalty for grant rejection beyond our control.
+                  With a 95% approval rate, rejection is rare. If it happens, you only pay for work completed up to that milestone. No penalty for grant rejection beyond my control.
                 </p>
               </div>
 
               <div className="bg-white rounded-xl p-6 shadow-sm">
                 <h3 className="text-xl font-bold mb-3">Do you take commission from property sellers?</h3>
                 <p className="text-gray-700">
-                  <strong>Never.</strong> I represent you exclusively. I negotiate on your behalf to get the best price, not to inflate it for commission. This is a core principle of our zero-conflict model.
+                  <strong>Never.</strong> I represent you exclusively. I negotiate on your behalf to get the best price, not to inflate it for commission. This is a core principle of my zero-conflict model.
                 </p>
               </div>
 
@@ -513,7 +513,7 @@ export default function PricingPage() {
               <div className="bg-white rounded-xl p-6 shadow-sm">
                 <h3 className="text-xl font-bold mb-3">What payment methods do you accept?</h3>
                 <p className="text-gray-700">
-                  Bank transfer (SEPA or international wire), PayPal for Tier 0, and structured payment plans for Tier 2. We provide Italian tax receipts (fattura) for all payments.
+                  Bank transfer (SEPA or international wire), PayPal for Tier 0, and structured payment plans for Tier 2. I provide Italian tax receipts (fattura) for all payments.
                 </p>
               </div>
             </div>
