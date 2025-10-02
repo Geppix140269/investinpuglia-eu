@@ -31,18 +31,9 @@ export async function middleware(request: NextRequest) {
     }
   }
   
-  // Local Expertise Focus - inpuglia.eu
-  if (hostname.includes('inpuglia.eu') && !hostname.includes('investinpuglia.eu')) {
-    if (!url.pathname.startsWith('/local') && !url.pathname.startsWith('/admin')) {
-      if (url.pathname === '/') {
-        url.pathname = '/local'
-      } else {
-        url.pathname = `/local${url.pathname}`
-      }
-      return NextResponse.rewrite(url)
-    }
-  }
-  
+  // inpuglia.eu - Removed /local rewrite for A/B testing
+  // Now serves normal homepage content
+
   // Check if the request is for an admin route (excluding login)
   if (request.nextUrl.pathname.startsWith('/admin') && 
       !request.nextUrl.pathname.startsWith('/admin/login')) {
