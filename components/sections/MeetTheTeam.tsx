@@ -139,7 +139,7 @@ export default function MeetTheTeam() {
             100+ YEARS COMBINED EXPERTISE
           </div>
           <h2 className="text-3xl md:text-5xl font-light text-gray-900 mb-4">
-            Meet Our <strong className="font-bold bg-gradient-to-r from-purple-600 to-emerald-600 bg-clip-text text-transparent">Core Team</strong>
+            Meet the <strong className="font-bold bg-gradient-to-r from-purple-600 to-emerald-600 bg-clip-text text-transparent">Core Team</strong>
           </h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
             Giuseppe and Cataldo work together as the core team - Giuseppe handles all client relations and project coordination, 
@@ -237,7 +237,7 @@ export default function MeetTheTeam() {
         <div className="text-center mt-12">
           <div className="mb-12">
             <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">
-              Our <strong className="bg-gradient-to-r from-purple-600 to-emerald-600 bg-clip-text text-transparent">Professional Partners</strong>
+              <strong className="bg-gradient-to-r from-purple-600 to-emerald-600 bg-clip-text text-transparent">Professional Network</strong>
             </h3>
             <p className="text-gray-600 mb-8 text-center max-w-4xl mx-auto">
               Specialized professionals organized by expertise area. These English-speaking professionals are available when specialized services are needed.
@@ -361,8 +361,8 @@ export default function MeetTheTeam() {
                 Recommended Banking Institutions
               </h4>
               <p className="text-center text-gray-600 mb-4 text-sm max-w-2xl mx-auto">
-                Based on our experience, we recommend the following banking institutions for international investors in Italy.
-                We are not affiliated with or partners of these institutions.
+                Based on my experience, I recommend the following banking institutions for international investors in Italy.
+                I am not affiliated with or a partner of these institutions.
               </p>
               <div className="grid grid-cols-1 gap-6 max-w-2xl mx-auto">
                 {partnerCategories.recommendedBanks.map((partner, index) => (
