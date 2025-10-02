@@ -81,13 +81,13 @@ export default function Navbar() {
           </div>
 
           {/* Desktop Navigation - Centered */}
-          <div className="hidden md:flex items-center gap-8 absolute left-1/2 transform -translate-x-1/2">
+          <div className="hidden md:flex items-center gap-6 absolute left-1/2 transform -translate-x-1/2">
             <a href="/about" className="text-gray-700 hover:text-gray-900 transition-colors font-medium">
-              About Us
+              About
             </a>
-            
+
             {/* Services Dropdown */}
-            <div 
+            <div
               className="relative"
               onMouseEnter={() => setServicesDropdownOpen(true)}
               onMouseLeave={() => setServicesDropdownOpen(false)}
@@ -99,71 +99,62 @@ export default function Navbar() {
                 Services
                 <ChevronDown className={`h-4 w-4 transition-transform ${servicesDropdownOpen ? 'rotate-180' : ''}`} />
               </button>
-              
+
               {servicesDropdownOpen && (
-                <div 
-                  className="absolute top-full left-0 mt-0 pt-2 w-56"
+                <div
+                  className="absolute top-full left-0 mt-0 pt-2 w-64"
                 >
                   <div className="bg-white rounded-lg shadow-lg border border-gray-200 overflow-hidden">
-                    <Link href="/services" className="block px-4 py-3 text-gray-700 hover:bg-purple-50 hover:text-purple-700 transition-colors">
+                    <Link href="/services" className="block px-4 py-3 text-gray-700 hover:bg-purple-50 hover:text-purple-700 transition-colors font-semibold">
                       📋 All Services
                     </Link>
                     <div className="border-t border-gray-100">
                       <div className="px-4 py-2 text-xs font-semibold text-gray-500 uppercase tracking-wider bg-gray-50">
-                        Tools
+                        Service Tiers
                       </div>
-                      <Link href="/property-calculator" className="block px-4 py-3 text-gray-700 hover:bg-purple-50 hover:text-purple-700 transition-colors">
+                      <Link href="/property-snapshot" className="block px-4 py-3 text-gray-700 hover:bg-purple-50 hover:text-purple-700 transition-colors text-sm">
+                        💎 Property Snapshot (€500)
+                      </Link>
+                      <Link href="/foundation-package" className="block px-4 py-3 text-gray-700 hover:bg-purple-50 hover:text-purple-700 transition-colors text-sm">
+                        🏗️ Foundation Package (€2.5K)
+                      </Link>
+                      <Link href="/full-orchestration" className="block px-4 py-3 text-gray-700 hover:bg-purple-50 hover:text-purple-700 transition-colors text-sm">
+                        🎯 Full Orchestration (2.5-3.5%)
+                      </Link>
+                      <Link href="/project-oversight" className="block px-4 py-3 text-gray-700 hover:bg-purple-50 hover:text-purple-700 transition-colors text-sm">
+                        👁️ Project Oversight (€3K/mo)
+                      </Link>
+                    </div>
+                    <div className="border-t border-gray-100">
+                      <div className="px-4 py-2 text-xs font-semibold text-gray-500 uppercase tracking-wider bg-gray-50">
+                        Tools & Resources
+                      </div>
+                      <Link href="/property-calculator" className="block px-4 py-3 text-gray-700 hover:bg-purple-50 hover:text-purple-700 transition-colors text-sm">
                         🏠 Property Calculator
                       </Link>
-                      <a href="https://apulink.com" target="_blank" rel="noopener noreferrer" className="block px-4 py-3 text-gray-700 hover:bg-purple-50 hover:text-purple-700 transition-colors">
-                        🔗 Apulink Platform
-                      </a>
+                      <Link href="/mini-pia-guide" className="block px-4 py-3 text-gray-700 hover:bg-purple-50 hover:text-purple-700 transition-colors text-sm">
+                        📚 Mini PIA Guide
+                      </Link>
                     </div>
                   </div>
                 </div>
               )}
             </div>
-            
+
+            <a href="/pricing" className="text-gray-700 hover:text-gray-900 transition-colors font-medium">
+              Pricing
+            </a>
+
+            <a href="/how-it-works" className="text-gray-700 hover:text-gray-900 transition-colors font-medium">
+              How It Works
+            </a>
+
             <a href="/portfolio" className="text-gray-700 hover:text-gray-900 transition-colors font-medium">
               Portfolio
             </a>
 
-            <a href="/insights" className="text-gray-700 hover:text-gray-900 transition-colors font-medium">
-              Investment Insights
-            </a>
-
-            {/* Mini PIA Dropdown */}
-            <div 
-              className="relative"
-              onMouseEnter={() => setMiniPiaDropdownOpen(true)}
-              onMouseLeave={() => setMiniPiaDropdownOpen(false)}
-            >
-              <button
-                onClick={() => setMiniPiaDropdownOpen(!miniPiaDropdownOpen)}
-                className="text-gray-700 hover:text-gray-900 transition-colors font-medium flex items-center gap-1"
-              >
-                Mini PIA
-                <ChevronDown className={`h-4 w-4 transition-transform ${miniPiaDropdownOpen ? 'rotate-180' : ''}`} />
-              </button>
-              
-              {miniPiaDropdownOpen && (
-                <div 
-                  className="absolute top-full left-0 mt-0 pt-2 w-48"
-                >
-                  <div className="bg-white rounded-lg shadow-lg border border-gray-200 overflow-hidden">
-                    <Link href="/mini-pia-guide" className="block px-4 py-3 text-gray-700 hover:bg-purple-50 hover:text-purple-700 transition-colors">
-                      📚 Guide
-                    </Link>
-                    <Link href="/tools" className="block px-4 py-3 text-gray-700 hover:bg-purple-50 hover:text-purple-700 transition-colors border-t border-gray-100">
-                      🧮 Calculator
-                    </Link>
-                  </div>
-                </div>
-              )}
-            </div>
-            
-            <a href="/join-network" className="text-gray-700 hover:text-gray-900 transition-colors font-medium">
-              Join Our Network
+            <a href="/contact" className="text-gray-700 hover:text-gray-900 transition-colors font-medium">
+              Contact
             </a>
           </div>
 
@@ -197,50 +188,55 @@ export default function Navbar() {
           <div className="md:hidden py-4 border-t border-gray-200">
             <div className="flex flex-col gap-4">
               <a href="/about" className="text-gray-700 hover:text-gray-900 transition-colors font-medium py-2">
-                About Us
+                About
               </a>
-              
+
               <div>
                 <div className="text-gray-700 font-medium py-2">Services</div>
                 <div className="ml-4 space-y-2 mt-2">
-                  <a href="/services" className="block text-gray-600 hover:text-gray-900 transition-colors py-1">
+                  <a href="/services" className="block text-gray-600 hover:text-gray-900 transition-colors py-1 font-semibold">
                     📋 All Services
                   </a>
-                  <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider mt-2">Tools</div>
-                  <a href="/property-calculator" className="block text-gray-600 hover:text-gray-900 transition-colors py-1">
+                  <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider mt-2">Service Tiers</div>
+                  <a href="/property-snapshot" className="block text-gray-600 hover:text-gray-900 transition-colors py-1 text-sm">
+                    💎 Property Snapshot (€500)
+                  </a>
+                  <a href="/foundation-package" className="block text-gray-600 hover:text-gray-900 transition-colors py-1 text-sm">
+                    🏗️ Foundation Package (€2.5K)
+                  </a>
+                  <a href="/full-orchestration" className="block text-gray-600 hover:text-gray-900 transition-colors py-1 text-sm">
+                    🎯 Full Orchestration (2.5-3.5%)
+                  </a>
+                  <a href="/project-oversight" className="block text-gray-600 hover:text-gray-900 transition-colors py-1 text-sm">
+                    👁️ Project Oversight (€3K/mo)
+                  </a>
+                  <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider mt-2">Tools & Resources</div>
+                  <a href="/property-calculator" className="block text-gray-600 hover:text-gray-900 transition-colors py-1 text-sm">
                     🏠 Property Calculator
                   </a>
-                  <a href="https://apulink.com" target="_blank" rel="noopener noreferrer" className="block text-gray-600 hover:text-gray-900 transition-colors py-1">
-                    🔗 Apulink Platform
+                  <a href="/mini-pia-guide" className="block text-gray-600 hover:text-gray-900 transition-colors py-1 text-sm">
+                    📚 Mini PIA Guide
                   </a>
                 </div>
               </div>
-              
+
+              <a href="/pricing" className="text-gray-700 hover:text-gray-900 transition-colors font-medium py-2">
+                Pricing
+              </a>
+
+              <a href="/how-it-works" className="text-gray-700 hover:text-gray-900 transition-colors font-medium py-2">
+                How It Works
+              </a>
+
               <a href="/portfolio" className="text-gray-700 hover:text-gray-900 transition-colors font-medium py-2">
                 Portfolio
               </a>
 
-              <a href="/insights" className="text-gray-700 hover:text-gray-900 transition-colors font-medium py-2">
-                Investment Insights
+              <a href="/contact" className="text-gray-700 hover:text-gray-900 transition-colors font-medium py-2">
+                Contact
               </a>
 
-              <div>
-                <div className="text-gray-700 font-medium py-2">Mini PIA</div>
-                <div className="ml-4 space-y-2 mt-2">
-                  <a href="/mini-pia-guide" className="block text-gray-600 hover:text-gray-900 transition-colors py-1">
-                    📚 Guide
-                  </a>
-                  <a href="/tools" className="block text-gray-600 hover:text-gray-900 transition-colors py-1">
-                    🧮 Calculator
-                  </a>
-                </div>
-              </div>
-              
-              <a href="/join-network" className="text-gray-700 hover:text-gray-900 transition-colors font-medium py-2">
-                Join Our Network
-              </a>
-              
-              <Link 
+              <Link
                 href="/consultation"
                 className="bg-gradient-to-r from-purple-600 to-emerald-600 text-white px-5 py-3 rounded-full font-semibold text-center"
               >

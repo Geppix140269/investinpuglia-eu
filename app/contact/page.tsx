@@ -34,18 +34,18 @@ export default function ContactPage() {
             {/* Glass morphism box */}
             <div className="inline-block bg-gradient-to-r from-emerald-400/20 to-green-500/10 backdrop-blur-md border border-emerald-400/30 px-8 py-5 rounded-full mb-10 animate-fadeIn animation-delay-300">
               <p className="text-white text-lg font-semibold">
-                ðŸ“ž Average response time: Within 24 hours
+                📞 Average response time: Within 24 hours
               </p>
             </div>
             
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-5 justify-center animate-fadeIn animation-delay-400">
-              <Link 
+              <Link
                 href="/consultation"
                 className="inline-flex items-center gap-3 bg-gradient-to-r from-green-600 to-green-700 text-white px-10 py-5 rounded-full text-lg font-bold hover:-translate-y-1 hover:shadow-2xl transition-all duration-300"
               >
                 FREE Expert Consultation
-                <span className="text-2xl">â†'</span>
+                <span className="text-2xl">→</span>
               </Link>
               <a 
                 href="mailto:info@investinpuglia.eu" 
@@ -99,11 +99,11 @@ export default function ContactPage() {
                 Book a free 30-minute strategy call to discuss your property investment goals and grant opportunities.
               </p>
               
-              <Link 
+              <Link
                 href="/consultation"
                 className="inline-block bg-gradient-to-r from-green-600 to-green-700 text-white px-8 py-4 rounded-xl font-bold hover:shadow-2xl hover:-translate-y-1 transition-all w-full text-center"
               >
-                FREE Expert Consultation â†'
+                FREE Expert Consultation →
               </Link>
               
               <p className="text-sm text-gray-600 mt-4">

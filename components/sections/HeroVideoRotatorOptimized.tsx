@@ -132,10 +132,10 @@ const HeroVideoRotatorOptimized = () => {
   };
 
   const stats = [
-    { value: '100+', label: 'Years Combined Expertise' },
-    { value: '€150M+', label: 'Projects Managed' },
-    { value: '€1M+', label: 'Minimum Investment' },
-    { value: '30+', label: 'Years International Experience' }
+    { value: '€50M+', label: 'Grants Secured for Clients' },
+    { value: '€100K+', label: 'Average Client Savings vs. DIY' },
+    { value: '30+', label: 'Years International Experience' },
+    { value: '0', label: 'Failed Projects' }
   ];
 
   // Show loading state or fallback if no videos
@@ -197,47 +197,37 @@ const HeroVideoRotatorOptimized = () => {
               </div>
               
               <h1 className="text-4xl sm:text-5xl font-bold">
-                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-green-400 via-white to-red-500">
-                  Transform Your Italian Investment Vision Into Reality
+                <span className="block text-white drop-shadow-lg">
+                  Your Puglia Investment, Professionally Orchestrated
                 </span>
               </h1>
 
-              <p className="text-lg text-gray-100 max-w-lg">
-                Access up to 55% EU grant funding with our local Italian team. We specialize in tourism development, industrial projects, and commercial ventures with comprehensive grant applications and project management.
+              <p className="text-lg text-gray-100 max-w-lg drop-shadow-lg">
+                I'm your boots-on-the-ground coordinator in Puglia, orchestrating property acquisition, EU grant applications (€350K-€2.25M), and construction oversight. 30+ years international business experience, based permanently in Italy, zero commission conflicts - working exclusively for your success.
               </p>
               
               <div className="grid grid-cols-2 gap-3 max-w-lg">
-                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3">
-                  <div className="text-2xl font-bold text-green-400">55%</div>
-                  <div className="text-xs text-gray-200">Grant Funding</div>
-                </div>
-                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3">
-                  <div className="text-2xl font-bold text-green-400">€150M+</div>
-                  <div className="text-xs text-gray-200">Projects Managed</div>
-                </div>
-                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3">
-                  <div className="text-2xl font-bold text-green-400">100%</div>
-                  <div className="text-xs text-gray-200">Italian Team</div>
-                </div>
-                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3">
-                  <div className="text-2xl font-bold text-green-400">30+</div>
-                  <div className="text-xs text-gray-200">Years Experience</div>
-                </div>
+                {stats.map((stat, idx) => (
+                  <div key={idx} className="bg-white/10 backdrop-blur-sm rounded-lg p-3">
+                    <div className="text-2xl font-bold text-yellow-400">{stat.value}</div>
+                    <div className="text-xs text-gray-200">{stat.label}</div>
+                  </div>
+                ))}
               </div>
-              
+
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link
-                  href="/consultation"
-                  className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-green-500 to-green-600 text-white px-8 py-4 rounded-full font-bold hover:from-green-600 hover:to-green-700 transition-all transform hover:scale-105 shadow-xl text-lg"
+                  href="#services"
+                  className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-8 py-4 rounded-full font-bold hover:from-indigo-700 hover:to-purple-700 transition-all transform hover:scale-105 shadow-xl text-lg"
                 >
-                  FREE Expert Consultation
+                  See My Services
                   <ArrowRight className="w-5 h-5" />
                 </Link>
                 <Link
-                  href="/how-it-works"
-                  className="inline-flex items-center justify-center gap-2 bg-white text-purple-900 px-6 py-3 rounded-full font-semibold hover:bg-purple-50 transition-colors"
+                  href="/property-snapshot"
+                  className="inline-flex items-center justify-center gap-2 bg-white text-indigo-900 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors"
                 >
-                  Qualify Your Project
+                  Start with €500 Property Analysis
                   <ArrowRight className="w-5 h-5" />
                 </Link>
               </div>
@@ -316,12 +306,12 @@ const HeroVideoRotatorOptimized = () => {
               
               <div>
                 <h1 className="text-5xl lg:text-6xl font-bold mb-4">
-                  <span className="block text-transparent bg-clip-text bg-gradient-to-r from-green-400 via-white to-red-500">
-                    Your Gateway to Italian Property Investment
+                  <span className="block text-white drop-shadow-lg">
+                    Your Puglia Investment, Professionally Orchestrated
                   </span>
                 </h1>
-                <p className="text-xl text-gray-100">
-                  We're your complete Italian investment team - from finding the perfect property to securing EU grants and managing renovations. All with local expertise and international professionalism.
+                <p className="text-xl text-gray-100 drop-shadow-lg">
+                  I'm your boots-on-the-ground coordinator in Puglia, orchestrating property acquisition, EU grant applications (€350K-€2.25M), and construction oversight. 30+ years international business experience, based permanently in Italy, zero commission conflicts - working exclusively for your success.
                 </p>
               </div>
               
@@ -336,17 +326,17 @@ const HeroVideoRotatorOptimized = () => {
               
               <div className="flex gap-4">
                 <Link
-                  href="/consultation"
-                  className="inline-flex items-center gap-2 bg-gradient-to-r from-green-500 to-green-600 text-white px-8 py-4 rounded-full font-bold hover:from-green-600 hover:to-green-700 transition-all transform hover:scale-105 shadow-xl text-lg"
+                  href="#services"
+                  className="inline-flex items-center gap-2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-8 py-4 rounded-full font-bold hover:from-indigo-700 hover:to-purple-700 transition-all transform hover:scale-105 shadow-xl text-lg"
                 >
-                  FREE Expert Consultation
+                  See My Services
                   <ArrowRight className="w-5 h-5" />
                 </Link>
                 <Link
-                  href="/how-it-works"
-                  className="inline-flex items-center gap-2 bg-white text-purple-900 px-6 py-3 rounded-full font-semibold hover:bg-purple-50 transition-colors"
+                  href="/property-snapshot"
+                  className="inline-flex items-center gap-2 bg-white text-indigo-900 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors"
                 >
-                  See How It Works
+                  Start with €500 Property Analysis
                   <ArrowRight className="w-5 h-5" />
                 </Link>
               </div>
