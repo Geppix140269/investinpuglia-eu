@@ -43,11 +43,41 @@
     opacity: 0;
   }
 
+  /* Subtle bounce animation for timeline numbers */
+  @keyframes bounce-subtle {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-5px);
+    }
+  }
+
+  .animate-bounce-subtle {
+    animation: bounce-subtle 2s ease-in-out infinite;
+  }
+
+  /* Slow pulse for timeline connector */
+  @keyframes pulse-slow {
+    0%, 100% {
+      opacity: 0.6;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+
+  .animate-pulse-slow {
+    animation: pulse-slow 3s ease-in-out infinite;
+  }
+
   /* Reduce motion for accessibility */
   @media (prefers-reduced-motion: reduce) {
     .animate-fade-in,
     .animate-fade-in-delay,
-    .animate-fade-in-up {
+    .animate-fade-in-up,
+    .animate-bounce-subtle,
+    .animate-pulse-slow {
       animation: none;
       opacity: 1;
     }

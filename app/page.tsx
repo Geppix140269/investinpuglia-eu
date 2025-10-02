@@ -16,6 +16,15 @@ const LoadingSkeleton = () => (
   <div className="h-96 bg-gradient-to-br from-gray-100 to-gray-200 animate-pulse" />
 )
 
+// Dynamic import for InvestmentInsights
+const InvestmentInsights = dynamic(
+  () => import('@/components/sections/InvestmentInsights'),
+  {
+    loading: () => <LoadingSkeleton />,
+    ssr: false
+  }
+)
+
 export default function HomePage() {
   return (
     <>
@@ -353,100 +362,36 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Latest Insights/Blog */}
-      <section className="py-20 bg-white">
+      {/* Latest Insights/Blog - Real data from Sanity */}
+      <InvestmentInsights />
+
+      {/* Infographic Section - Investment Process with Animations */}
+      <section className="py-20 bg-gradient-to-br from-gray-50 to-gray-100 overflow-hidden">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-12">
-              <h2 className="text-4xl md:text-5xl font-bold mb-4">
-                Latest Investment Insights
-              </h2>
-              <p className="text-xl text-gray-600">
-                Expert guidance on investing in Puglia's real estate market
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-3 gap-8 mb-8">
-              {/* These will be dynamically loaded from your blog - for now showing placeholders */}
-              <Link href="/insights" className="group">
-                <div className="bg-gray-50 rounded-xl overflow-hidden hover:shadow-xl transition-all">
-                  <div className="aspect-video bg-gradient-to-br from-indigo-100 to-purple-100"></div>
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold mb-2 group-hover:text-indigo-600 transition-colors">
-                      Understanding Mini PIA Grants
-                    </h3>
-                    <p className="text-gray-600 text-sm">
-                      Everything you need to know about accessing EU grant funding for your investment...
-                    </p>
-                  </div>
-                </div>
-              </Link>
-
-              <Link href="/insights" className="group">
-                <div className="bg-gray-50 rounded-xl overflow-hidden hover:shadow-xl transition-all">
-                  <div className="aspect-video bg-gradient-to-br from-green-100 to-emerald-100"></div>
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold mb-2 group-hover:text-indigo-600 transition-colors">
-                      Property Investment in Puglia
-                    </h3>
-                    <p className="text-gray-600 text-sm">
-                      Key considerations for foreign investors looking at Puglia real estate...
-                    </p>
-                  </div>
-                </div>
-              </Link>
-
-              <Link href="/insights" className="group">
-                <div className="bg-gray-50 rounded-xl overflow-hidden hover:shadow-xl transition-all">
-                  <div className="aspect-video bg-gradient-to-br from-blue-100 to-indigo-100"></div>
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold mb-2 group-hover:text-indigo-600 transition-colors">
-                      Renovation Cost Breakdown
-                    </h3>
-                    <p className="text-gray-600 text-sm">
-                      Real examples of renovation budgets and how to avoid cost overruns...
-                    </p>
-                  </div>
-                </div>
-              </Link>
-            </div>
-
-            <div className="text-center">
-              <Link
-                href="/insights"
-                className="inline-flex items-center gap-2 text-indigo-600 hover:text-indigo-700 font-semibold text-lg"
-              >
-                View All Insights <ArrowRight className="h-5 w-5" />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Infographic Section - Investment Process */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 to-gray-100">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <h2 className="text-4xl md:text-5xl font-bold text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold text-center mb-4 animate-fade-in">
               Your Investment Journey
             </h2>
+            <p className="text-xl text-gray-600 text-center mb-12 animate-fade-in-delay">
+              From discovery to completion - a clear path to your Puglia investment success
+            </p>
 
             <div className="relative">
-              {/* Timeline connector */}
-              <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-1 bg-indigo-200 transform -translate-x-1/2"></div>
+              {/* Animated Timeline connector */}
+              <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-indigo-400 via-purple-400 to-green-400 transform -translate-x-1/2 animate-pulse-slow"></div>
 
               {/* Timeline steps */}
               <div className="space-y-12">
                 {/* Step 1 */}
-                <div className="flex flex-col md:flex-row items-center gap-8">
-                  <div className="flex-1 md:text-right">
-                    <div className="bg-white rounded-xl p-6 shadow-lg">
-                      <h3 className="text-2xl font-bold mb-2 text-indigo-600">1. Discovery</h3>
+                <div className="flex flex-col md:flex-row items-center gap-8 group">
+                  <div className="flex-1 md:text-right transform transition-all duration-500 hover:scale-105">
+                    <div className="bg-white rounded-xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300">
+                      <h3 className="text-2xl font-bold mb-2 text-indigo-600 group-hover:text-indigo-700 transition-colors">1. Discovery</h3>
                       <p className="text-gray-700 mb-3">Foundation Package kicks off with understanding your goals and criteria</p>
                       <div className="text-sm font-semibold text-green-600">Week 1-2 | €2,500</div>
                     </div>
                   </div>
-                  <div className="flex-shrink-0 w-16 h-16 rounded-full bg-indigo-600 flex items-center justify-center text-white text-2xl font-bold z-10 shadow-lg">
+                  <div className="flex-shrink-0 w-16 h-16 rounded-full bg-indigo-600 flex items-center justify-center text-white text-2xl font-bold z-10 shadow-lg transform transition-all duration-300 group-hover:scale-110 group-hover:rotate-12 animate-bounce-subtle">
                     1
                   </div>
                   <div className="flex-1 hidden md:block"></div>
