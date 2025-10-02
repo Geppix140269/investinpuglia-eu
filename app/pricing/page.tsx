@@ -446,6 +446,7 @@ export default function PricingPage() {
                 To maintain transparency, these costs are separate and paid directly by you:
               </p>
               <ul className="space-y-2 text-gray-700">
+                <li>• Business consultant/accountant fees (typically 1.5% of project value for grant applications)</li>
                 <li>• Notary fees (typically €2K-€5K)</li>
                 <li>• Legal fees for contract review (typically €1.5K-€3K)</li>
                 <li>• Architect fees (typically 8-12% of renovation budget)</li>
@@ -453,6 +454,15 @@ export default function PricingPage() {
                 <li>• Building permits and municipality fees (varies by location)</li>
                 <li>• Property taxes and utilities</li>
               </ul>
+              <div className="mt-6 bg-white rounded-lg p-4 border-l-4 border-indigo-500">
+                <p className="text-sm font-semibold text-gray-900 mb-2">Want to calculate your total costs?</p>
+                <a
+                  href="/tools/mini-pia-calculator"
+                  className="inline-flex items-center gap-2 text-indigo-600 hover:text-indigo-700 font-semibold"
+                >
+                  Use our Mini PIA Calculator <ArrowRight className="h-4 w-4" />
+                </a>
+              </div>
             </div>
           </div>
         </div>

@@ -333,6 +333,190 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Mini PIA Calculator CTA */}
+      <section className="py-16 bg-gradient-to-r from-green-600 to-emerald-600">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center text-white">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Calculate Your Grant Eligibility in 5 Minutes
+            </h2>
+            <p className="text-xl mb-8 text-green-100">
+              See exactly how much funding you could receive for your Puglia investment project
+            </p>
+            <Link
+              href="/tools/mini-pia-calculator"
+              className="inline-flex items-center gap-2 bg-white text-green-600 px-8 py-4 rounded-lg font-bold text-lg hover:shadow-2xl hover:scale-105 transition-all"
+            >
+              Launch Mini PIA Calculator <ArrowRight className="h-5 w-5" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Latest Insights/Blog */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl md:text-5xl font-bold mb-4">
+                Latest Investment Insights
+              </h2>
+              <p className="text-xl text-gray-600">
+                Expert guidance on investing in Puglia's real estate market
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-8 mb-8">
+              {/* These will be dynamically loaded from your blog - for now showing placeholders */}
+              <Link href="/insights" className="group">
+                <div className="bg-gray-50 rounded-xl overflow-hidden hover:shadow-xl transition-all">
+                  <div className="aspect-video bg-gradient-to-br from-indigo-100 to-purple-100"></div>
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold mb-2 group-hover:text-indigo-600 transition-colors">
+                      Understanding Mini PIA Grants
+                    </h3>
+                    <p className="text-gray-600 text-sm">
+                      Everything you need to know about accessing EU grant funding for your investment...
+                    </p>
+                  </div>
+                </div>
+              </Link>
+
+              <Link href="/insights" className="group">
+                <div className="bg-gray-50 rounded-xl overflow-hidden hover:shadow-xl transition-all">
+                  <div className="aspect-video bg-gradient-to-br from-green-100 to-emerald-100"></div>
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold mb-2 group-hover:text-indigo-600 transition-colors">
+                      Property Investment in Puglia
+                    </h3>
+                    <p className="text-gray-600 text-sm">
+                      Key considerations for foreign investors looking at Puglia real estate...
+                    </p>
+                  </div>
+                </div>
+              </Link>
+
+              <Link href="/insights" className="group">
+                <div className="bg-gray-50 rounded-xl overflow-hidden hover:shadow-xl transition-all">
+                  <div className="aspect-video bg-gradient-to-br from-blue-100 to-indigo-100"></div>
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold mb-2 group-hover:text-indigo-600 transition-colors">
+                      Renovation Cost Breakdown
+                    </h3>
+                    <p className="text-gray-600 text-sm">
+                      Real examples of renovation budgets and how to avoid cost overruns...
+                    </p>
+                  </div>
+                </div>
+              </Link>
+            </div>
+
+            <div className="text-center">
+              <Link
+                href="/insights"
+                className="inline-flex items-center gap-2 text-indigo-600 hover:text-indigo-700 font-semibold text-lg"
+              >
+                View All Insights <ArrowRight className="h-5 w-5" />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Infographic Section - Investment Process */}
+      <section className="py-20 bg-gradient-to-br from-gray-50 to-gray-100">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-4xl md:text-5xl font-bold text-center mb-12">
+              Your Investment Journey
+            </h2>
+
+            <div className="relative">
+              {/* Timeline connector */}
+              <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-1 bg-indigo-200 transform -translate-x-1/2"></div>
+
+              {/* Timeline steps */}
+              <div className="space-y-12">
+                {/* Step 1 */}
+                <div className="flex flex-col md:flex-row items-center gap-8">
+                  <div className="flex-1 md:text-right">
+                    <div className="bg-white rounded-xl p-6 shadow-lg">
+                      <h3 className="text-2xl font-bold mb-2 text-indigo-600">1. Discovery</h3>
+                      <p className="text-gray-700 mb-3">Foundation Package kicks off with understanding your goals and criteria</p>
+                      <div className="text-sm font-semibold text-green-600">Week 1-2 | €2,500</div>
+                    </div>
+                  </div>
+                  <div className="flex-shrink-0 w-16 h-16 rounded-full bg-indigo-600 flex items-center justify-center text-white text-2xl font-bold z-10 shadow-lg">
+                    1
+                  </div>
+                  <div className="flex-1 hidden md:block"></div>
+                </div>
+
+                {/* Step 2 */}
+                <div className="flex flex-col md:flex-row items-center gap-8">
+                  <div className="flex-1 hidden md:block"></div>
+                  <div className="flex-shrink-0 w-16 h-16 rounded-full bg-indigo-600 flex items-center justify-center text-white text-2xl font-bold z-10 shadow-lg">
+                    2
+                  </div>
+                  <div className="flex-1">
+                    <div className="bg-white rounded-xl p-6 shadow-lg">
+                      <h3 className="text-2xl font-bold mb-2 text-indigo-600">2. Property Search</h3>
+                      <p className="text-gray-700 mb-3">5-8 vetted property options matching your investment criteria</p>
+                      <div className="text-sm font-semibold text-green-600">Week 3-4 | Included</div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Step 3 */}
+                <div className="flex flex-col md:flex-row items-center gap-8">
+                  <div className="flex-1 md:text-right">
+                    <div className="bg-white rounded-xl p-6 shadow-lg">
+                      <h3 className="text-2xl font-bold mb-2 text-indigo-600">3. Acquisition & Grants</h3>
+                      <p className="text-gray-700 mb-3">Full Orchestration: negotiation, purchase, and EU grant applications</p>
+                      <div className="text-sm font-semibold text-green-600">Month 2-3 | 2.5-3.5%</div>
+                    </div>
+                  </div>
+                  <div className="flex-shrink-0 w-16 h-16 rounded-full bg-indigo-600 flex items-center justify-center text-white text-2xl font-bold z-10 shadow-lg">
+                    3
+                  </div>
+                  <div className="flex-1 hidden md:block"></div>
+                </div>
+
+                {/* Step 4 */}
+                <div className="flex flex-col md:flex-row items-center gap-8">
+                  <div className="flex-1 hidden md:block"></div>
+                  <div className="flex-shrink-0 w-16 h-16 rounded-full bg-indigo-600 flex items-center justify-center text-white text-2xl font-bold z-10 shadow-lg">
+                    4
+                  </div>
+                  <div className="flex-1">
+                    <div className="bg-white rounded-xl p-6 shadow-lg">
+                      <h3 className="text-2xl font-bold mb-2 text-indigo-600">4. Construction Oversight</h3>
+                      <p className="text-gray-700 mb-3">Project Oversight: weekly visits, quality control, financial tracking</p>
+                      <div className="text-sm font-semibold text-green-600">Month 4-12 | €3K/month</div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Step 5 */}
+                <div className="flex flex-col md:flex-row items-center gap-8">
+                  <div className="flex-1 md:text-right">
+                    <div className="bg-white rounded-xl p-6 shadow-lg border-2 border-green-500">
+                      <h3 className="text-2xl font-bold mb-2 text-green-600">5. Completion</h3>
+                      <p className="text-gray-700 mb-3">Your investment property ready for operation or enjoyment</p>
+                      <div className="text-sm font-semibold text-green-600">Month 12-18 | Success!</div>
+                    </div>
+                  </div>
+                  <div className="flex-shrink-0 w-16 h-16 rounded-full bg-green-600 flex items-center justify-center text-white text-2xl font-bold z-10 shadow-lg">
+                    ✓
+                  </div>
+                  <div className="flex-1 hidden md:block"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section (Bottom) */}
       <section className="py-20 bg-gradient-to-br from-indigo-600 to-purple-600 text-white">
         <div className="container mx-auto px-4 text-center">
