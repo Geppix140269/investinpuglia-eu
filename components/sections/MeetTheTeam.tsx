@@ -33,22 +33,24 @@ export default function MeetTheTeam() {
           logo: "https://res.cloudinary.com/dusubfxgo/image/upload/v1759139412/ITC_zb3kum.png"
         }
       ]
-    },
-    {
-      name: "Dott. Ing. Cataldo Russo",
-      role: "Technical Partner & Chief Engineer",
-      description: "Licensed Italian Engineer-Architect with 29 years of demonstrable experience. Cataldo creates and manages all technical aspects of projects - from initial design through construction completion. Successfully delivered 50+ hotel and resort projects worth €95M+.",
-      image: "/russo-photo.jpg",
-      expertise: [
-        "Architectural & Engineering Design",
-        "Technical Project Management",
-        "Heritage Restoration",
-        "Grant Applications (€20M+ secured)"
-      ]
     }
   ]
 
   const partnerCategories = {
+    engineers: [
+      {
+        name: "Dott. Ing. Cataldo Russo",
+        role: "Professional Partner - Engineering & Architecture",
+        description: "Licensed Italian Engineer-Architect with 29 years of demonstrable experience. Cataldo creates and manages all technical aspects of projects - from initial design through construction completion. Successfully delivered 50+ hotel and resort projects worth €95M+.",
+        image: "/russo-photo.jpg",
+        expertise: [
+          "Architectural & Engineering Design",
+          "Technical Project Management",
+          "Heritage Restoration",
+          "Grant Applications (€20M+ secured)"
+        ]
+      }
+    ],
     charteredAccountants: [
       {
         name: "Antonio Quarta",
@@ -136,18 +138,17 @@ export default function MeetTheTeam() {
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-600 to-emerald-600 text-white px-5 py-2 rounded-full text-sm font-semibold mb-6 shadow-lg">
             <Icon name="Users" size={20} />
-            100+ YEARS COMBINED EXPERTISE
+            35+ YEARS EXPERTISE
           </div>
           <h2 className="text-3xl md:text-5xl font-light text-gray-900 mb-4">
-            Meet the <strong className="font-bold bg-gradient-to-r from-purple-600 to-emerald-600 bg-clip-text text-transparent">Core Team</strong>
+            Meet the <strong className="font-bold bg-gradient-to-r from-purple-600 to-emerald-600 bg-clip-text text-transparent">Founder</strong>
           </h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            Giuseppe and Cataldo work together as the core team - Giuseppe handles all client relations and project coordination, 
-            while Cataldo manages the technical and engineering aspects of every project.
+            Giuseppe coordinates all aspects of client investment projects, working with a trusted network of specialized professionals.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto mb-16">
+        <div className="grid grid-cols-1 gap-8 max-w-3xl mx-auto mb-16">
           {coreTeam.map((member, index) => (
             <div key={index} className="bg-gradient-to-br from-white to-gray-50 rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all border border-gray-100">
               <div className="p-6">
@@ -243,6 +244,44 @@ export default function MeetTheTeam() {
               Specialized professionals organized by expertise area. These English-speaking professionals are available when specialized services are needed.
               They work independently and charge their own fees based on project requirements.
             </p>
+
+            {/* Engineering & Architecture Section */}
+            <div className="mb-10">
+              <h4 className="text-xl font-bold text-gray-800 mb-4 flex items-center justify-center gap-2">
+                <Icon name="Ruler" size={20} className="text-orange-600" />
+                Engineering & Architecture
+              </h4>
+              <div className="grid grid-cols-1 gap-6 max-w-2xl mx-auto">
+                {partnerCategories.engineers.map((partner, index) => (
+                  <div key={index} className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-xl p-6 border border-orange-200">
+                    {partner.image && (
+                      <div className="flex justify-center mb-4">
+                        <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-white shadow-lg">
+                          <CloudinaryImage
+                            src={partner.image}
+                            alt={partner.name}
+                            width={80}
+                            height={80}
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                      </div>
+                    )}
+                    <h5 className="text-lg font-bold text-gray-900 mb-2">{partner.name}</h5>
+                    <p className="text-orange-600 font-semibold text-sm mb-2">{partner.role}</p>
+                    <p className="text-gray-600 text-sm mb-4">{partner.description}</p>
+                    <div className="space-y-1 mb-4">
+                      {partner.expertise.map((item, i) => (
+                        <div key={i} className="flex items-center gap-2">
+                          <Icon name="CheckCircle" size={14} className="text-emerald-600 flex-shrink-0" />
+                          <span className="text-xs text-gray-700">{item}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
 
             {/* Chartered Accountants Section */}
             <div className="mb-10">
@@ -486,7 +525,7 @@ export default function MeetTheTeam() {
           </div>
           
           <p className="text-gray-600 mb-6 text-center">
-            <strong>35+ years of combined core team experience</strong> - Giuseppe coordinates your project while Cataldo handles all technical execution.
+            <strong>35+ years of international business experience</strong> - Giuseppe coordinates your entire investment project with a network of specialized professionals.
           </p>
           <Link 
             href="/consultation"
