@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     title: '€2,500 Foundation Package | Complete Investment Setup',
     description: '30-45 days: 5-8 property options, market intelligence, fiscal setup, bank coordination, decision framework.',
     url: 'https://investinpuglia.eu/foundation-package',
-    type: 'product',
+    type: 'website',
     images: [
       {
         url: 'https://res.cloudinary.com/duqkyfnmr/image/upload/v1735936000/InvestInPuglia/og-foundation-package.jpg',

@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     title: '€500 Property Snapshot | 7-Day Expert Analysis',
     description: 'Comprehensive property analysis: hidden costs, grant eligibility, red flags. Test our expertise before larger commitment.',
     url: 'https://investinpuglia.eu/property-snapshot',
-    type: 'product',
+    type: 'website',
     images: [
       {
         url: 'https://res.cloudinary.com/duqkyfnmr/image/upload/v1735936000/InvestInPuglia/og-property-snapshot.jpg',

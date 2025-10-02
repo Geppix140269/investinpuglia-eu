@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     title: 'Full Orchestration | Complete Investment Service 2.5-3.5%',
     description: 'Complete 6-9 month service: acquisition, grants, team assembly, permits. Milestone-based payments, zero commission conflicts.',
     url: 'https://investinpuglia.eu/full-orchestration',
-    type: 'product',
+    type: 'website',
     images: [
       {
         url: 'https://res.cloudinary.com/duqkyfnmr/image/upload/v1735936000/InvestInPuglia/og-full-orchestration.jpg',

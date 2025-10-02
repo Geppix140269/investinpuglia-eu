@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     title: 'Project Oversight €3K/Month | Professional Construction Management',
     description: 'Weekly site visits, contractor oversight, quality control, financial tracking. Protect your investment during construction.',
     url: 'https://investinpuglia.eu/project-oversight',
-    type: 'product',
+    type: 'website',
     images: [
       {
         url: 'https://res.cloudinary.com/duqkyfnmr/image/upload/v1735936000/InvestInPuglia/og-project-oversight.jpg',
