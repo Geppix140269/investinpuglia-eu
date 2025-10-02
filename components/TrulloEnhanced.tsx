@@ -186,9 +186,14 @@ export default function TrulloEnhanced() {
 
   const handleSignIn = async () => {
     try {
-      await signInWithPopup(auth, googleProvider);
-    } catch (error) {
+      console.log('Attempting Google sign-in...');
+      const result = await signInWithPopup(auth, googleProvider);
+      console.log('Sign-in successful:', result.user);
+    } catch (error: any) {
       console.error('Sign in error:', error);
+      console.error('Error code:', error.code);
+      console.error('Error message:', error.message);
+      alert(`Sign-in failed: ${error.message}`);
     }
   };
 
@@ -266,8 +271,19 @@ export default function TrulloEnhanced() {
   };
 
   const openWhatsApp = () => {
-    const message = encodeURIComponent(`Hi, I'd like to continue our conversation about investing in Puglia.`);
-    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${message}`, '_blank');
+    try {
+      const message = encodeURIComponent(`Hi, I'd like to continue our conversation about investing in Puglia.`);
+      const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`;
+      console.log('Opening WhatsApp URL:', whatsappUrl);
+      const opened = window.open(whatsappUrl, '_blank');
+      if (!opened) {
+        console.error('Pop-up blocked - trying direct navigation');
+        window.location.href = whatsappUrl;
+      }
+    } catch (error) {
+      console.error('WhatsApp error:', error);
+      alert('Could not open WhatsApp. Please try again.');
+    }
   };
 
   return (
