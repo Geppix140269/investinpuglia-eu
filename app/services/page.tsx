@@ -16,7 +16,7 @@ export default function ServicesPage() {
         "Analysis of the specific property you're considering - not just generic advice, but detailed assessment of THIS property",
         "Grant eligibility assessment (€250k-€2.25M potential)",
         "7-Day turnaround",
-        "Should you proceed or walk away?" recommendation"
+        "'Should you proceed or walk away?' recommendation"
       ],
       idealFor: [
         "You've identified a property",
