@@ -6,15 +6,15 @@ import { Building2, FileText, Briefcase, TrendingUp, Shield, Users, CheckCircle,
 export default function ServicesPage() {
   const serviceTiers = [
     {
-      tier: "TIER 0",
-      badge: "ENTRY LEVEL SERVICE",
+      tier: "TIER 1",
+      badge: "ENTRY LEVEL",
       title: "Property Snapshot",
-      price: "€500",
+      price: "Pricing based on project complexity",
       duration: "7-10 days",
-      description: "Test my expertise with a detailed analysis of a specific property - hidden costs, grant eligibility, red flags. Expert validation before you commit.",
+      description: "Detailed analysis of a specific property - hidden costs, grant eligibility, red flags. Expert validation before you commit.",
       features: [
         "Analysis of the specific property you're considering - not just generic advice, but detailed assessment of THIS property",
-        "Grant eligibility assessment (€250k-€2.25M potential)",
+        "Grant eligibility assessment",
         "7-Day turnaround",
         "'Should you proceed or walk away?' recommendation"
       ],
@@ -23,14 +23,14 @@ export default function ServicesPage() {
         "Need expert validation",
         "Want to avoid costly mistakes"
       ],
-      stripeLink: "https://buy.stripe.com/28E14p94w0lq81Ucx408g0a",
+      stripeLink: null,
       highlight: false
     },
     {
-      tier: "TIER 1",
+      tier: "TIER 2",
       badge: "MOST POPULAR",
       title: "Investment Foundation",
-      price: "Contact for Pricing",
+      price: "Pricing based on project complexity",
       duration: "30-45 days",
       description: "Comprehensive market research, property options, local setup, and complete grant mapping. Your strategic foundation for a successful Puglia investment.",
       features: [
@@ -46,14 +46,14 @@ export default function ServicesPage() {
         "Seeking grant opportunities",
         "Need structured decision-making"
       ],
-      stripeLink: "https://buy.stripe.com/28E14p94w0lq81Ucx408g0a",
+      stripeLink: null,
       highlight: true
     },
     {
-      tier: "TIER 2",
+      tier: "TIER 3",
       badge: "",
       title: "Full Orchestration",
-      price: "Contact for Pricing",
+      price: "Pricing based on project complexity",
       duration: "6-14 months",
       description: "Complete investment orchestration - property acquisition, grant maximization, project execution, and expert coordination from start to finish.",
       features: [
@@ -72,10 +72,10 @@ export default function ServicesPage() {
       highlight: false
     },
     {
-      tier: "TIER 3",
+      tier: "TIER 4",
       badge: "",
       title: "Project Oversight",
-      price: "Contact for Pricing",
+      price: "Pricing based on project complexity",
       duration: "12+ months",
       description: "Ongoing construction management with weekly site visits, contractor oversight, quality control, and detailed reporting throughout your project.",
       features: [
@@ -109,34 +109,30 @@ export default function ServicesPage() {
 
         <div className="relative container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-block bg-yellow-400 text-purple-900 px-6 py-2 rounded-full text-sm font-bold mb-6">
-              TIER 0 - Entry Level Service
-            </div>
-
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
-              Property Snapshot Analysis
+              Investment Services
             </h1>
 
             <p className="text-2xl md:text-3xl font-bold text-yellow-400 mb-4">
-              Test My Expertise for Just €500
+              Tailored Solutions for Your Puglia Investment
             </p>
 
             <p className="text-xl text-purple-100 mb-8 max-w-3xl mx-auto">
-              Have a specific property in mind? I'll analyze it thoroughly in 7 days - hidden costs, grant eligibility, red flags. If I save you from one bad decision, this pays for itself 100X.
+              From property analysis to full investment orchestration - we provide expert guidance at every stage of your journey. Pricing customized to your project complexity and objectives.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-              <a
-                href="https://buy.stripe.com/28E14p94w0lq81Ucx408g0a"
-                className="inline-block bg-yellow-400 text-purple-900 py-4 px-8 rounded-lg font-bold hover:bg-yellow-300 transition-all text-lg shadow-xl"
-              >
-                Pay Now - €500 →
-              </a>
               <Link
                 href="/contact"
+                className="inline-block bg-yellow-400 text-purple-900 py-4 px-8 rounded-lg font-bold hover:bg-yellow-300 transition-all text-lg shadow-xl"
+              >
+                Get Custom Quote →
+              </Link>
+              <Link
+                href="#services"
                 className="inline-block bg-transparent border-2 border-white text-white py-4 px-8 rounded-lg font-semibold hover:bg-white hover:text-purple-900 transition-all text-lg"
               >
-                Ask a Question First
+                View Services
               </Link>
             </div>
 
@@ -154,7 +150,7 @@ export default function ServicesPage() {
                   </li>
                   <li className="flex items-start">
                     <CheckCircle className="h-5 w-5 text-green-400 mr-2 flex-shrink-0 mt-0.5" />
-                    <span>Grant eligibility assessment (€250k-€2.25M potential)</span>
+                    <span>Grant eligibility assessment</span>
                   </li>
                   <li className="flex items-start">
                     <CheckCircle className="h-5 w-5 text-green-400 mr-2 flex-shrink-0 mt-0.5" />
@@ -197,12 +193,13 @@ export default function ServicesPage() {
       </section>
 
       {/* Service Tiers */}
-      <section className="py-20 bg-gray-50">
+      <section id="services" className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-4">Start Small, Scale Smart - Proven Value at Every Step</h2>
+            <h2 className="text-4xl font-bold mb-4">Our Service Tiers</h2>
             <p className="text-xl text-gray-600">
-              Four service tiers designed to meet you where you are in your investment journey
+              Comprehensive solutions designed to meet you at every stage of your investment journey.<br/>
+              <span className="text-sm text-gray-500 mt-2 block">Pricing based on project complexity and objectives - contact us for a custom quote</span>
             </p>
           </div>
 
@@ -401,14 +398,14 @@ export default function ServicesPage() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="https://buy.stripe.com/28E14p94w0lq81Ucx408g0a"
-              className="inline-block bg-yellow-400 text-purple-900 py-4 px-8 rounded-lg font-bold hover:bg-yellow-300 transition-all text-lg shadow-xl"
-            >
-              Property Snapshot - €500
-            </a>
             <Link
               href="/contact"
+              className="inline-block bg-yellow-400 text-purple-900 py-4 px-8 rounded-lg font-bold hover:bg-yellow-300 transition-all text-lg shadow-xl"
+            >
+              Get Custom Quote
+            </Link>
+            <Link
+              href="/consultation"
               className="inline-block bg-transparent border-2 border-white text-white py-4 px-8 rounded-lg font-semibold hover:bg-white hover:text-purple-900 transition-all text-lg"
             >
               Schedule Free Consultation
