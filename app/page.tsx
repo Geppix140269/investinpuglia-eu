@@ -105,6 +105,14 @@ const PageSEOSection = dynamic(
   }
 )
 
+const VideoIntroModal = dynamic(
+  () => import(/* webpackChunkName: "video-intro" */ '@/components/VideoIntroModal'),
+  {
+    ssr: false,
+    loading: () => null
+  }
+)
+
 export default function HomePage() {
   return (
     <>
@@ -182,6 +190,11 @@ export default function HomePage() {
       {/* SEO Section - Lowest priority */}
       <Suspense fallback={null}>
         <PageSEOSection pageKey="home" />
+      </Suspense>
+
+      {/* Video Intro Modal - First-time visitors */}
+      <Suspense fallback={null}>
+        <VideoIntroModal />
       </Suspense>
 
       {/* Defer non-critical scripts */}
