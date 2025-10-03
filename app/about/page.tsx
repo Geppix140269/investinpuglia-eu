@@ -96,16 +96,6 @@ export default function AboutPage() {
         keyFactor: "Fluent in English"
       },
       {
-        name: "Maurizio Deta",
-        role: "Chartered Accountant - Financial & Tax Advisor",
-        bio: "Seasoned financial consultant and chartered accountant with nearly 30 years of experience in corporate finance, taxation, and banking strategy. Based in Lecce, he specializes in debt restructuring, incentive funding, and insolvency procedures for both private and public sector clients.",
-        expertise: ["Corporate Finance & Taxation", "Debt Restructuring", "Incentive Funding", "Banking Strategy", "Credit Securitisation", "Project Planning"],
-        email: "info@investinpuglia.eu",
-        image: "https://res.cloudinary.com/dusubfxgo/image/upload/v1759136664/Screenshot_2025-09-29_110324_mvumlf.png",
-        location: "Lecce",
-        keyFactor: "Tax Expert"
-      },
-      {
         name: "Giorgio Caracciolo",
         role: "Chartered Accountant - Business & Financial Advisor",
         bio: "Experienced chartered accountant with 40+ years specializing in business consulting, financial advisory, and industrial projects. Provides comprehensive financial guidance and regulatory compliance support for international businesses investing in Italy.",
