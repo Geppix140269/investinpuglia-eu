@@ -11,7 +11,7 @@ export default function ServicesPage() {
       title: "Property Snapshot",
       price: "€500",
       duration: "7-10 days",
-      description: "Test my expertise. If it saves one property or 7 days - hidden costs, grant eligibility, red flags. If I save you from one bad decision, this pays for itself 100X.",
+      description: "Test my expertise with a detailed analysis of a specific property - hidden costs, grant eligibility, red flags. Expert validation before you commit.",
       features: [
         "Analysis of the specific property you're considering - not just generic advice, but detailed assessment of THIS property",
         "Grant eligibility assessment (€250k-€2.25M potential)",
@@ -30,9 +30,9 @@ export default function ServicesPage() {
       tier: "TIER 1",
       badge: "MOST POPULAR",
       title: "Investment Foundation",
-      price: "€2,500",
+      price: "Contact for Pricing",
       duration: "30-45 days",
-      description: "30-45 days of market research, property options, local setup, and grant mapping. We'll either get you €250k in grants and €50k in savings... or refund €2,500.",
+      description: "Comprehensive market research, property options, local setup, and complete grant mapping. Your strategic foundation for a successful Puglia investment.",
       features: [
         "Custom property research (5-8 properties)",
         "Grant mapping (all applicable programs)",
@@ -42,7 +42,7 @@ export default function ServicesPage() {
         "Investment decision framework"
       ],
       idealFor: [
-        "Ready buyers ready to invest €250k+",
+        "Serious investors ready to commit",
         "Seeking grant opportunities",
         "Need structured decision-making"
       ],
@@ -53,9 +53,9 @@ export default function ServicesPage() {
       tier: "TIER 2",
       badge: "",
       title: "Full Orchestration",
-      price: "2.5-3.5%",
+      price: "Contact for Pricing",
       duration: "6-14 months",
-      description: "I orchestrate your entire investment - secure your property, maximize grants (€250k-€2.25M), execute project, and ensure 6-8 months of expert coordination. ROI average: 3-4x.",
+      description: "Complete investment orchestration - property acquisition, grant maximization, project execution, and expert coordination from start to finish.",
       features: [
         "Property negotiation & acquisition",
         "Complete PIA grant application",
@@ -75,9 +75,9 @@ export default function ServicesPage() {
       tier: "TIER 3",
       badge: "",
       title: "Project Oversight",
-      price: "€3,000/month",
+      price: "Contact for Pricing",
       duration: "12+ months",
-      description: "You source the ground project - construction, weekly reports, contractor oversight, quality control. Think of it as having an investment.",
+      description: "Ongoing construction management with weekly site visits, contractor oversight, quality control, and detailed reporting throughout your project.",
       features: [
         "Weekly site visits with reporting",
         "Contractor performance assessment",
