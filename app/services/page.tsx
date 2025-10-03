@@ -23,7 +23,7 @@ export default function ServicesPage() {
         "Need expert validation",
         "Want to avoid costly mistakes"
       ],
-      stripeLink: "https://buy.stripe.com/your-property-snapshot-link",
+      stripeLink: "https://buy.stripe.com/28E14p94w0lq81Ucx408g0a",
       highlight: false
     },
     {
@@ -46,7 +46,7 @@ export default function ServicesPage() {
         "Seeking grant opportunities",
         "Need structured decision-making"
       ],
-      stripeLink: "https://buy.stripe.com/your-investment-foundation-link",
+      stripeLink: "https://buy.stripe.com/28E14p94w0lq81Ucx408g0a",
       highlight: true
     },
     {
@@ -127,7 +127,7 @@ export default function ServicesPage() {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
               <a
-                href="https://buy.stripe.com/your-property-snapshot-link"
+                href="https://buy.stripe.com/28E14p94w0lq81Ucx408g0a"
                 className="inline-block bg-yellow-400 text-purple-900 py-4 px-8 rounded-lg font-bold hover:bg-yellow-300 transition-all text-lg shadow-xl"
               >
                 Pay Now - €500 →
@@ -402,7 +402,7 @@ export default function ServicesPage() {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="https://buy.stripe.com/your-property-snapshot-link"
+              href="https://buy.stripe.com/28E14p94w0lq81Ucx408g0a"
               className="inline-block bg-yellow-400 text-purple-900 py-4 px-8 rounded-lg font-bold hover:bg-yellow-300 transition-all text-lg shadow-xl"
             >
               Property Snapshot - €500
