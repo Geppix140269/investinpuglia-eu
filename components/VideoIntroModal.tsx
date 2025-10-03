@@ -95,7 +95,7 @@ export default function VideoIntroModal() {
             playsInline
           >
             <source
-              src="https://res.cloudinary.com/dusubfxgo/video/upload/v1759471543/Invest_Puglia_Seamlessly_nbhzle.mp4"
+              src="https://res.cloudinary.com/dusubfxgo/video/upload/v1759473124/Invest_Puglia_Property_evoahj.mp4"
               type="video/mp4"
             />
             <p>Video temporarily unavailable. Please visit our Services page to learn more.</p>
