@@ -140,6 +140,7 @@ export default function VideoIntroModal() {
           z-index: 9999;
           animation: fadeIn 0.3s ease;
           padding: 1rem;
+          overflow-y: auto;
         }
 
         @keyframes fadeIn {
@@ -155,6 +156,8 @@ export default function VideoIntroModal() {
           position: relative;
           width: 100%;
           max-width: 900px;
+          max-height: 90vh;
+          margin: auto;
         }
 
         .video-modal-close {
@@ -192,8 +195,10 @@ export default function VideoIntroModal() {
         .video-element {
           width: 100%;
           height: auto;
+          max-height: 90vh;
           display: block;
           border-radius: 8px;
+          object-fit: contain;
         }
 
         .play-button-overlay {
