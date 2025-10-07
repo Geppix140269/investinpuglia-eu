@@ -139,6 +139,53 @@ export default function ExclusiveOpportunitiesCarousel() {
       isConfidential: true
     },
     {
+      id: 'villaggio-in-salento',
+      title: 'Villaggio in Salento',
+      subtitle: 'Turnkey Tourist Resort',
+      description: 'Comprehensive tourist village resort featuring 100+ guest rooms, restaurant & bar, wellness center, conference facilities, swimming pools, and sports amenities. Fully operational with multiple revenue streams.',
+      image: 'https://res.cloudinary.com/dusubfxgo/image/upload/v1758822064/strada_vista_hhbya2.png',
+      price: 'Upon Request',
+      priceLabel: 'Investment',
+      stats: [
+        {
+          icon: Building,
+          value: '25,100',
+          label: 'Sqm Plot'
+        },
+        {
+          icon: TrendingUp,
+          value: '100+',
+          label: 'Guest Rooms'
+        },
+        {
+          icon: Euro,
+          value: 'Multiple',
+          label: 'Revenue Streams'
+        }
+      ],
+      highlights: [
+        'Turnkey operational resort in prime Salento location',
+        'Energy-efficient infrastructure with solar panels',
+        'Restaurant, wellness center, pools, and event facilities',
+        'Fully compliant with all building permits'
+      ],
+      cta: {
+        primary: {
+          text: 'View Full Details',
+          href: '/projects/villaggio-in-salento'
+        },
+        secondary: {
+          text: 'Request Information',
+          href: '/consultation'
+        }
+      },
+      badges: [
+        { text: 'Turnkey Resort', color: 'blue' },
+        { text: 'OPERATIONAL', color: 'emerald' }
+      ],
+      isConfidential: false
+    },
+    {
       id: 'project-estate-19',
       title: 'Project Estate-19',
       subtitle: 'Exclusive Historic Estate',
