@@ -433,6 +433,81 @@ export const mockProperties: Property[] = [
     updatedAt: new Date('2024-12-30'),
     featured: true,
     status: 'available'
+  },
+  {
+    id: '6',
+    title: 'Salento Wellbeing Resort - Large-Scale Development Opportunity',
+    slug: 'salento-wellbeing-resort',
+    type: 'hotel',
+    price: 0, // Price on request
+    currency: 'EUR',
+    location: {
+      city: 'Salento',
+      province: 'Lecce',
+      region: 'Puglia',
+      coordinates: {
+        lat: 40.1667,
+        lng: 18.0000
+      }
+    },
+    details: {
+      squareMeters: 26000,
+      landSquareMeters: 169000,
+      floors: 2,
+      condition: 'new'
+    },
+    description: {
+      short: 'Exceptional opportunity to develop a pioneering eco-integrated wellbeing resort in Salento with 169,000 m² tourism-zoned land, approved buildable volume of 95,000 m³, and direct beach club access.',
+      full: 'An exceptional opportunity to develop a pioneering eco-integrated wellbeing resort in Italy\'s most sought-after emerging destination. Located in the heart of Salento between Nardò, Porto Cesareo, and Gallipoli, this strategically positioned development offers unparalleled access to the region\'s cultural and natural assets. Just 20 minutes from Lecce and within reach of Brindisi and Bari airports, the site delivers institutional-grade connectivity whilst retaining authentic Mediterranean character.',
+      features: [
+        '169,000 m² tourism-zoned land with approved buildable volume',
+        '26,000 m² gross floor area for luxury hotel suites',
+        'Destination wellness centre with thermal facilities',
+        '~1,000 m² beach club with direct sea access',
+        'Multiple F&B venues showcasing Puglian cuisine',
+        'Cultural spaces and religious area',
+        '470,000 m² additional land available for expansion',
+        'Approved zoning eliminates planning risk',
+        'ESG and EU green finance alignment'
+      ],
+      investmentPotential: 'A unique opportunity to develop a sustainable, high-margin hospitality asset in Europe\'s fastest-growing coastal destination. Puglia welcomes 15M+ annual tourist stays with 60% foreign growth (2015-2019). Lecce province captures 31% of regional tourism. Positioned at the epicentre of wellness tourism demand with post-pandemic format focused on flexibility and environmental balance. Adjacent 470,000 m² land bank provides phased development upside.'
+    },
+    images: [
+      {
+        url: 'https://res.cloudinary.com/dusubfxgo/image/upload/v1756236780/investinpuglia/properties/generic/salento-coast.jpg',
+        alt: 'Salento coastal landscape',
+        isPrimary: true
+      }
+    ],
+    investment: {
+      potentialReturn: 'Institutional-grade returns with diversified revenue architecture and expansion optionality',
+      suggestedUse: ['Luxury Wellness Resort', 'Boutique Hotel', 'Spa Destination', 'Beach Club', 'Cultural Tourism Hub'],
+      grants: ['EU Green Investment Incentives', 'Sustainability-Linked Financing', 'Tourism Development Grants', 'ESG-Mandated Capital'],
+      zoning: 'Tourism-zoned with confirmed buildable volume (95,000 m³)'
+    },
+    amenities: [
+      'Beach club with sea access',
+      'Wellness centre',
+      'Thermal facilities',
+      'Multiple restaurants',
+      'Cultural programming',
+      'Landscaped parks',
+      'Structured parking',
+      'Expansion land'
+    ],
+    distanceToSea: 0,
+    distanceToAirport: 45,
+    documents: [
+      {
+        url: '/Confidential-Investment-Brief-Salento-Wellbeing-Resort.pdf',
+        title: 'Confidential Investment Brief - Salento Wellbeing Resort',
+        type: 'investment-brief'
+      }
+    ],
+    createdAt: new Date('2025-10-07'),
+    updatedAt: new Date('2025-10-07'),
+    featured: true,
+    status: 'available'
   }
 ]
 

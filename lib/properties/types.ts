@@ -43,6 +43,11 @@ export interface Property {
   amenities?: string[]
   distanceToSea?: number
   distanceToAirport?: number
+  documents?: {
+    url: string
+    title: string
+    type: 'brochure' | 'investment-brief' | 'floorplan' | 'other'
+  }[]
   createdAt: Date
   updatedAt: Date
   featured?: boolean
