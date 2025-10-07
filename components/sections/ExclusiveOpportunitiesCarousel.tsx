@@ -139,6 +139,53 @@ export default function ExclusiveOpportunitiesCarousel() {
       isConfidential: true
     },
     {
+      id: 'salento-wellbeing-resort',
+      title: 'Salento Wellbeing Resort',
+      subtitle: 'Eco-Integrated Development',
+      description: 'Pioneering eco-integrated wellbeing resort development. 169,000 sqm tourism-zoned land with approved buildable volume. Wellness center, beach club, and 470,000 sqm expansion land available.',
+      image: 'https://res.cloudinary.com/dusubfxgo/image/upload/v1758822064/strada_vista_hhbya2.png',
+      price: 'Confidential',
+      priceLabel: 'Investment Opportunity',
+      stats: [
+        {
+          icon: Building,
+          value: '169,000',
+          label: 'Sqm Tourism-Zoned'
+        },
+        {
+          icon: TrendingUp,
+          value: '26,000',
+          label: 'Sqm GFA'
+        },
+        {
+          icon: Star,
+          value: '470,000',
+          label: 'Sqm Expansion Land'
+        }
+      ],
+      highlights: [
+        'Strategic Salento location with approved zoning',
+        'Eco-integrated sustainable design with ESG alignment',
+        'Beach club access and destination wellness center',
+        'Massive expansion potential with adjacent land bank'
+      ],
+      cta: {
+        primary: {
+          text: 'View Investment Brief',
+          href: '/projects/salento-wellbeing-resort'
+        },
+        secondary: {
+          text: 'Request Information',
+          href: '/consultation'
+        }
+      },
+      badges: [
+        { text: 'Eco-Integrated', color: 'emerald' },
+        { text: 'CONFIDENTIAL', color: 'red' }
+      ],
+      isConfidential: true
+    },
+    {
       id: 'villaggio-in-salento',
       title: 'Villaggio in Salento',
       subtitle: 'Turnkey Tourist Resort',
