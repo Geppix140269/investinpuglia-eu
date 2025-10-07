@@ -567,7 +567,7 @@ export default function AboutPage() {
                       <div className="mt-2 text-center">
                         <span className="inline-flex items-center gap-1 text-gray-500 text-xs">
                           <Globe className="h-3 w-3" />
-                          {partner.location}
+                          {partner.location as string}
                         </span>
                       </div>
                     )}
@@ -620,7 +620,7 @@ export default function AboutPage() {
                       <div className="mt-2 text-center">
                         <span className="inline-flex items-center gap-1 text-gray-500 text-xs">
                           <Globe className="h-3 w-3" />
-                          {partner.location}
+                          {partner.location as string}
                         </span>
                       </div>
                     )}
