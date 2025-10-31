@@ -97,14 +97,6 @@ const LocationsIndustries = dynamic(
   }
 )
 
-const ExitIntentPopup = dynamic(
-  () => import(/* webpackChunkName: "exit-intent" */ '@/components/ExitIntentPopup'),
-  { 
-    ssr: false,
-    loading: () => null 
-  }
-)
-
 const PageSEOSection = dynamic(
   () => import(/* webpackChunkName: "seo" */ '@/components/PageSEOSection'),
   {
@@ -192,14 +184,7 @@ export default function HomePage() {
       <Suspense fallback={<LoadingSkeleton />}>
         <LocationsIndustries />
       </Suspense>
-      
-      {/* Exit Intent - Only on desktop, non-critical */}
-      <div className="hidden md:block">
-        <Suspense fallback={null}>
-          <ExitIntentPopup />
-        </Suspense>
-      </div>
-      
+
       {/* SEO Section - Lowest priority */}
       <Suspense fallback={null}>
         <PageSEOSection pageKey="home" />
