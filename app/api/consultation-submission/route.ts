@@ -42,6 +42,8 @@ export async function POST(request: NextRequest) {
       campaign: campaign || 'direct',
       status: 'new',
       qualified: determineQualification(budget, timeline),
+      completedQuestionnaire: !!(budget && timeline && propertyType), // Track if they filled the form
+      skipedDirectToCalendly: false, // Will be true if they skip
       createdAt: timestamp,
       updatedAt: timestamp
     };

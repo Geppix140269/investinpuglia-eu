@@ -42,6 +42,15 @@ const MetadataProvider = dynamic(
   }
 )
 
+// Lazy load the FloatingCalendlyButton
+const FloatingCalendlyButton = dynamic(
+  () => import('@/components/FloatingCalendlyButton'),
+  {
+    ssr: false,
+    loading: () => null
+  }
+)
+
 const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
@@ -401,6 +410,7 @@ export default function RootLayout({
           <main className="pt-16">{children}</main>
           <Footer />
           <TrulloEnhanced />
+          <FloatingCalendlyButton />
           <Toaster position="top-right" />
           <VisitorTracker />
         </AuthProvider>

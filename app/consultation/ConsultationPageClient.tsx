@@ -104,22 +104,43 @@ export default function ConsultationPageClient() {
             30-Minute Strategic Session with Our Grant Experts
           </p>
           
-          {/* Main CTA */}
+          {/* Main CTA with Two Options */}
           <div className="flex flex-col items-center">
-            <button
-              onClick={() => setShowQuestionnaire(true)}
-              className="bg-gradient-to-r from-green-600 to-green-700 text-white px-10 py-5 rounded-full font-bold text-xl hover:shadow-xl transition-all flex items-center justify-center gap-3"
-            >
-              <Calendar className="h-7 w-7" />
-              Start Booking Process
-              <ArrowRight className="h-6 w-6" />
-            </button>
-            
-            <p className="mt-3 text-sm text-gray-600">
-              Quick 2-minute questionnaire required before scheduling
+            <div className="flex flex-col sm:flex-row gap-4 mb-4">
+              {/* Quick Book Button - PRIMARY */}
+              <a
+                href="https://calendly.com/investinpuglia/30min"
+                onClick={() => {
+                  if (typeof window !== 'undefined' && (window as any).gtag) {
+                    (window as any).gtag('event', 'quick_book_click', {
+                      event_category: 'consultation',
+                      event_label: 'hero_quick_book'
+                    });
+                  }
+                }}
+                className="bg-gradient-to-r from-green-600 to-green-700 text-white px-10 py-5 rounded-full font-bold text-xl hover:shadow-xl transition-all flex items-center justify-center gap-3"
+              >
+                <Calendar className="h-7 w-7" />
+                Quick Book (30 sec)
+                <ArrowRight className="h-6 w-6" />
+              </a>
+
+              {/* Optional: Detailed Questionnaire */}
+              <button
+                onClick={() => setShowQuestionnaire(true)}
+                className="bg-white border-2 border-blue-600 text-blue-600 px-8 py-5 rounded-full font-bold text-xl hover:shadow-xl hover:bg-blue-50 transition-all flex items-center justify-center gap-3"
+              >
+                <MessageSquare className="h-7 w-7" />
+                Help Us Prepare
+              </button>
+            </div>
+
+            <p className="text-sm text-gray-600 max-w-2xl text-center">
+              <span className="font-semibold text-green-600">Quick Book:</span> Go directly to our calendar |
+              <span className="font-semibold text-blue-600 ml-2">Help Us Prepare:</span> Optional 2-min questionnaire for personalized consultation
             </p>
           </div>
-          
+
           <p className="mt-6 text-gray-600">
             <span className="font-bold text-green-600">100% FREE</span> • No payment required • Limited slots available
           </p>
@@ -263,15 +284,25 @@ export default function ConsultationPageClient() {
             Get expert advice that could transform your Italian property investment.
           </p>
           
-          <button
-            onClick={() => setShowQuestionnaire(true)}
-            className="inline-flex items-center bg-white text-blue-600 px-10 py-4 rounded-full font-bold text-lg hover:shadow-xl transition-all gap-3"
-          >
-            <MessageSquare className="h-7 w-7" />
-            Start Booking Process
-            <ChevronRight className="h-6 w-6" />
-          </button>
-          
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a
+              href="https://calendly.com/investinpuglia/30min"
+              className="inline-flex items-center bg-white text-blue-600 px-10 py-4 rounded-full font-bold text-lg hover:shadow-xl transition-all gap-3"
+            >
+              <Calendar className="h-7 w-7" />
+              Quick Book Now
+              <ChevronRight className="h-6 w-6" />
+            </a>
+
+            <button
+              onClick={() => setShowQuestionnaire(true)}
+              className="inline-flex items-center bg-blue-500 text-white px-10 py-4 rounded-full font-bold text-lg hover:shadow-xl hover:bg-blue-400 transition-all gap-3"
+            >
+              <MessageSquare className="h-7 w-7" />
+              Help Us Prepare
+            </button>
+          </div>
+
           <p className="mt-6 text-blue-100">
             ⚡ Limited slots available • 100% FREE • No payment required
           </p>
@@ -333,14 +364,23 @@ export default function ConsultationPageClient() {
       </section>
 
       {/* Sticky Bottom CTA for Mobile */}
-      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4 shadow-lg lg:hidden z-50">
-        <button
-          onClick={() => setShowQuestionnaire(true)}
-          className="w-full bg-gradient-to-r from-green-600 to-green-700 text-white py-4 rounded-full font-bold text-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
-        >
-          <MessageSquare className="h-6 w-6" />
-          Start Booking Process
-        </button>
+      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-3 shadow-lg lg:hidden z-50">
+        <div className="flex gap-2">
+          <a
+            href="https://calendly.com/investinpuglia/30min"
+            className="flex-1 bg-gradient-to-r from-green-600 to-green-700 text-white py-3 rounded-full font-bold text-base hover:shadow-xl transition-all flex items-center justify-center gap-2"
+          >
+            <Calendar className="h-5 w-5" />
+            Quick Book
+          </a>
+          <button
+            onClick={() => setShowQuestionnaire(true)}
+            className="flex-1 bg-blue-600 text-white py-3 rounded-full font-bold text-base hover:shadow-xl transition-all flex items-center justify-center gap-2"
+          >
+            <MessageSquare className="h-5 w-5" />
+            Prepare
+          </button>
+        </div>
       </div>
     </div>
   );

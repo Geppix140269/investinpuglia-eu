@@ -49,6 +49,14 @@ const MeetTheTeam = dynamic(
   }
 )
 
+const ConsultationCTA = dynamic(
+  () => import(/* webpackChunkName: "consultation-cta" */ '@/components/sections/ConsultationCTA'),
+  {
+    loading: () => <LoadingSkeleton />,
+    ssr: false
+  }
+)
+
 const InvestmentInsights = dynamic(
   () => import(/* webpackChunkName: "insights" */ '@/components/sections/InvestmentInsights'),
   {
@@ -148,6 +156,11 @@ export default function HomePage() {
       {/* Team Section - Medium priority */}
       <Suspense fallback={<LoadingSkeleton />}>
         <MeetTheTeam />
+      </Suspense>
+
+      {/* Consultation CTA - HIGH PRIORITY for conversions */}
+      <Suspense fallback={<LoadingSkeleton />}>
+        <ConsultationCTA />
       </Suspense>
 
       {/* Investment Insights - Latest blog posts */}

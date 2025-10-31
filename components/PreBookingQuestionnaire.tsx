@@ -22,12 +22,13 @@ interface PreBookingQuestionnaireProps {
   calendlyUrl?: string
 }
 
-export default function PreBookingQuestionnaire({ 
+export default function PreBookingQuestionnaire({
   onComplete,
   calendlyUrl = 'https://calendly.com/investinpuglia/30min'
 }: PreBookingQuestionnaireProps) {
   const [step, setStep] = useState(1)
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [showSkipOption, setShowSkipOption] = useState(true)
   const [formData, setFormData] = useState<QuestionnaireData>({
     name: '',
     email: '',
@@ -40,6 +41,18 @@ export default function PreBookingQuestionnaire({
     experience: '',
     referralSource: ''
   })
+
+  const handleSkipToCalendly = () => {
+    // Track that user skipped questionnaire
+    if (typeof window !== 'undefined' && (window as any).gtag) {
+      (window as any).gtag('event', 'skip_questionnaire', {
+        event_category: 'consultation',
+        event_label: 'direct_to_calendly'
+      });
+    }
+    // Redirect directly to Calendly
+    window.location.href = calendlyUrl;
+  }
 
   const handleInputChange = (field: keyof QuestionnaireData, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }))
@@ -351,42 +364,121 @@ export default function PreBookingQuestionnaire({
   }
 
   return (
-    <div className="max-w-md mx-auto bg-white rounded-xl shadow-lg p-8">
-      {/* Progress Indicator */}
-      <div className="mb-8">
-        <div className="flex justify-between items-center mb-2">
-          {[1, 2, 3].map((num) => (
-            <div
-              key={num}
-              className={`flex items-center justify-center w-10 h-10 rounded-full font-semibold ${
-                step >= num 
-                  ? 'bg-blue-600 text-white' 
-                  : 'bg-gray-200 text-gray-500'
-              }`}
+    <div className="max-w-2xl mx-auto">
+      {/* Choice Header - Show on Step 1 */}
+      {step === 1 && showSkipOption && (
+        <div className="mb-8 bg-gradient-to-r from-blue-50 to-green-50 rounded-xl p-6 border border-blue-200">
+          <h3 className="text-xl font-bold text-gray-900 mb-4 text-center">
+            Choose Your Booking Method
+          </h3>
+          <div className="grid md:grid-cols-2 gap-4">
+            {/* Quick Book Option */}
+            <button
+              onClick={handleSkipToCalendly}
+              className="bg-white p-6 rounded-lg border-2 border-green-500 hover:border-green-600 hover:shadow-lg transition-all text-left group"
             >
-              {step > num ? <CheckCircle className="h-6 w-6" /> : num}
+              <div className="flex items-center justify-between mb-3">
+                <Calendar className="h-8 w-8 text-green-600" />
+                <span className="text-xs font-semibold text-green-600 bg-green-100 px-3 py-1 rounded-full">
+                  FASTEST
+                </span>
+              </div>
+              <h4 className="font-bold text-lg mb-2 text-gray-900 group-hover:text-green-600">
+                Quick Book (30 seconds)
+              </h4>
+              <p className="text-sm text-gray-600 mb-3">
+                Go directly to our calendar and choose your preferred time slot. Perfect if you're ready to book now!
+              </p>
+              <div className="flex items-center text-green-600 font-semibold text-sm">
+                Book Now <ArrowRight className="ml-2 h-4 w-4" />
+              </div>
+            </button>
+
+            {/* Detailed Option */}
+            <button
+              onClick={() => setShowSkipOption(false)}
+              className="bg-white p-6 rounded-lg border-2 border-blue-500 hover:border-blue-600 hover:shadow-lg transition-all text-left group"
+            >
+              <div className="flex items-center justify-between mb-3">
+                <Mail className="h-8 w-8 text-blue-600" />
+                <span className="text-xs font-semibold text-blue-600 bg-blue-100 px-3 py-1 rounded-full">
+                  RECOMMENDED
+                </span>
+              </div>
+              <h4 className="font-bold text-lg mb-2 text-gray-900 group-hover:text-blue-600">
+                Help Us Prepare (2 minutes)
+              </h4>
+              <p className="text-sm text-gray-600 mb-3">
+                Share details about your investment goals so we can provide more personalized guidance during your call.
+              </p>
+              <div className="flex items-center text-blue-600 font-semibold text-sm">
+                Continue <ArrowRight className="ml-2 h-4 w-4" />
+              </div>
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Questionnaire Form */}
+      {(!showSkipOption || step > 1) && (
+        <div className="bg-white rounded-xl shadow-lg p-8">
+          {/* Progress Indicator */}
+          <div className="mb-8">
+            <div className="flex justify-between items-center mb-4">
+              <button
+                onClick={() => {
+                  if (step === 1) {
+                    setShowSkipOption(true);
+                  } else {
+                    setStep(step - 1);
+                  }
+                }}
+                className="text-sm text-gray-600 hover:text-gray-900 flex items-center"
+              >
+                ← {step === 1 ? 'Back to options' : 'Previous'}
+              </button>
+              <button
+                onClick={handleSkipToCalendly}
+                className="text-sm text-blue-600 hover:text-blue-800 underline"
+              >
+                Skip to booking →
+              </button>
             </div>
-          ))}
+            <div className="flex justify-between items-center mb-2">
+              {[1, 2, 3].map((num) => (
+                <div
+                  key={num}
+                  className={`flex items-center justify-center w-10 h-10 rounded-full font-semibold ${
+                    step >= num
+                      ? 'bg-blue-600 text-white'
+                      : 'bg-gray-200 text-gray-500'
+                  }`}
+                >
+                  {step > num ? <CheckCircle className="h-6 w-6" /> : num}
+                </div>
+              ))}
+            </div>
+            <div className="relative">
+              <div className="absolute inset-0 h-2 bg-gray-200 rounded-full" />
+              <div
+                className="absolute h-2 bg-blue-600 rounded-full transition-all duration-300"
+                style={{ width: `${((step - 1) / 2) * 100}%` }}
+              />
+            </div>
+          </div>
+
+          {/* Form Content */}
+          {renderStep()}
+
+          {/* Trust Indicators */}
+          <div className="mt-8 pt-6 border-t border-gray-200">
+            <div className="flex items-center justify-center text-sm text-gray-500">
+              <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
+              100% FREE - No payment required
+            </div>
+          </div>
         </div>
-        <div className="relative">
-          <div className="absolute inset-0 h-2 bg-gray-200 rounded-full" />
-          <div 
-            className="absolute h-2 bg-blue-600 rounded-full transition-all duration-300"
-            style={{ width: `${((step - 1) / 2) * 100}%` }}
-          />
-        </div>
-      </div>
-      
-      {/* Form Content */}
-      {renderStep()}
-      
-      {/* Trust Indicators */}
-      <div className="mt-8 pt-6 border-t border-gray-200">
-        <div className="flex items-center justify-center text-sm text-gray-500">
-          <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
-          100% FREE - No payment required
-        </div>
-      </div>
+      )}
     </div>
   )
 }
