@@ -124,13 +124,14 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-              <li>
                 <a href="/portfolio" className="text-gray-400 hover:text-white transition-colors">
                   Portfolio
                 </a>
               </li>
+              <li>
                 <a href="/contact" className="text-gray-400 hover:text-white transition-colors">
                   Contact Us
+              </li>
                 </a>
               </li>
             </ul>
@@ -189,13 +190,10 @@ export default function Footer() {
                   </a>
                 </li>
                 <li>
-                <li>
-                <li>
                   <a href="/locations/invest-in-ostuni-brindisi" className="text-gray-400 hover:text-white transition-colors text-sm">
                     Ostuni
                   </a>
                 </li>
-                <li>
               </ul>
             </div>
             
