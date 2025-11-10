@@ -124,14 +124,8 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href="/portfolio" className="text-gray-400 hover:text-white transition-colors">
-                  Portfolio
-                </a>
-              </li>
-              <li>
                 <a href="/contact" className="text-gray-400 hover:text-white transition-colors">
                   Contact Us
-              </li>
                 </a>
               </li>
             </ul>
@@ -190,8 +184,23 @@ export default function Footer() {
                   </a>
                 </li>
                 <li>
+                  <a href="/locations/invest-in-taranto-taranto" className="text-gray-400 hover:text-white transition-colors text-sm">
+                    Taranto
+                  </a>
+                </li>
+                <li>
+                  <a href="/locations/invest-in-brindisi-brindisi" className="text-gray-400 hover:text-white transition-colors text-sm">
+                    Brindisi
+                  </a>
+                </li>
+                <li>
                   <a href="/locations/invest-in-ostuni-brindisi" className="text-gray-400 hover:text-white transition-colors text-sm">
                     Ostuni
+                  </a>
+                </li>
+                <li>
+                  <a href="/locations/invest-in-polignano-a-mare-bari" className="text-gray-400 hover:text-white transition-colors text-sm">
+                    Polignano a Mare
                   </a>
                 </li>
               </ul>
@@ -220,7 +229,8 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Bottom Bar */}
+
+                {/* Bottom Bar */}
         <div className="mt-8 pt-8 border-t border-gray-800">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-400 text-sm">
