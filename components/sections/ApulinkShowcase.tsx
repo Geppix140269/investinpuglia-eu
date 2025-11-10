@@ -51,7 +51,7 @@ const ApulinkShowcase = () => {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-br from-blue-50 via-white to-teal-50">
+    <section className="py-20 bg-gradient-to-br from-emerald-50 via-white to-amber-50/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Announcement Badge */}
         <div className="text-center mb-12">
@@ -64,7 +64,7 @@ const ApulinkShowcase = () => {
           {/* Main Heading */}
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
             Introducing{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-teal-600">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-amber-500">
               Apulink.com
             </span>
           </h2>
@@ -87,7 +87,7 @@ const ApulinkShowcase = () => {
               key={index}
               className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
             >
-              <div className="text-teal-600 mb-4">{feature.icon}</div>
+              <div className="text-amber-600 mb-4">{feature.icon}</div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
                 {feature.title}
               </h3>
@@ -120,7 +120,7 @@ const ApulinkShowcase = () => {
             </div>
             
             <div className="relative">
-              <div className="bg-gradient-to-br from-blue-600 to-teal-600 rounded-xl p-8 text-white">
+              <div className="bg-gradient-to-br from-emerald-600 to-amber-500 rounded-xl p-8 text-white">
                 <h4 className="text-2xl font-bold mb-4">Why Choose Apulink?</h4>
                 <ul className="space-y-3">
                   <li className="flex items-start gap-2">
@@ -155,11 +155,11 @@ const ApulinkShowcase = () => {
         {/* Platform Goals */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
           <div className="text-center">
-            <div className="text-3xl font-bold text-blue-600 mb-2">Growing</div>
+            <div className="text-3xl font-bold text-emerald-600 mb-2">Growing</div>
             <div className="text-sm text-gray-600">Professional Network</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold text-teal-600 mb-2">6+</div>
+            <div className="text-3xl font-bold text-amber-600 mb-2">6+</div>
             <div className="text-sm text-gray-600">Languages Planned</div>
           </div>
           <div className="text-center">
@@ -173,7 +173,7 @@ const ApulinkShowcase = () => {
         </div>
 
         {/* CTA Section */}
-        <div className="bg-gradient-to-r from-blue-600 to-teal-600 rounded-2xl p-8 md:p-12 text-center text-white">
+        <div className="bg-gradient-to-r from-emerald-600 to-amber-500 rounded-2xl p-8 md:p-12 text-center text-white">
           <h3 className="text-3xl font-bold mb-4">
             Start Your Puglia Investment Journey Today
           </h3>
@@ -186,14 +186,14 @@ const ApulinkShowcase = () => {
               href="https://apulink.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-white text-blue-600 px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transition-colors"
+              className="inline-flex items-center gap-2 bg-white text-emerald-600 px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transition-colors"
             >
               Visit Apulink.com
               <ExternalLink className="w-5 h-5" />
             </a>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 bg-transparent border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-blue-600 transition-all"
+              className="inline-flex items-center gap-2 bg-transparent border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-emerald-600 transition-all"
             >
               Schedule Consultation
             </Link>

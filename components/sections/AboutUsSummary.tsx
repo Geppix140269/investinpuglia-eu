@@ -3,9 +3,9 @@ import Icon from '@/lib/iconMappings'
 
 export default function AboutUsSummary() {
   return (
-    <section id="about-summary" className="py-20 bg-gradient-to-br from-purple-900 via-indigo-900 to-emerald-900 text-white relative overflow-hidden">
+    <section id="about-summary" className="py-20 bg-gradient-to-br from-emerald-900 via-emerald-800 to-gray-900 text-white relative overflow-hidden">
       <div className="absolute inset-0 opacity-30">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl"></div>
+        <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-600/20 rounded-full blur-3xl"></div>
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-emerald-600/20 rounded-full blur-3xl"></div>
       </div>
       
@@ -26,7 +26,7 @@ export default function AboutUsSummary() {
         
         <div className="grid md:grid-cols-3 gap-8 mb-12">
           <div className="bg-white/10 backdrop-blur-lg rounded-3xl p-8 border border-white/20 text-center">
-            <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-gradient-to-br from-purple-600 to-emerald-600 flex items-center justify-center text-white text-3xl font-bold">
+            <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-gradient-to-br from-emerald-600 to-amber-500 flex items-center justify-center text-white text-3xl font-bold">
               GF
             </div>
             <h3 className="text-xl font-bold mb-2">Giuseppe Funaro</h3>
@@ -38,7 +38,7 @@ export default function AboutUsSummary() {
           </div>
           
           <div className="bg-white/10 backdrop-blur-lg rounded-3xl p-8 border border-white/20 text-center">
-            <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-gradient-to-br from-purple-600 to-emerald-600 flex items-center justify-center text-white text-3xl font-bold">
+            <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-gradient-to-br from-emerald-600 to-amber-500 flex items-center justify-center text-white text-3xl font-bold">
               CR
             </div>
             <h3 className="text-xl font-bold mb-2">Ing. Arch. Cataldo Russo</h3>
@@ -50,7 +50,7 @@ export default function AboutUsSummary() {
           </div>
           
           <div className="bg-white/10 backdrop-blur-lg rounded-3xl p-8 border border-white/20 text-center">
-            <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-gradient-to-br from-purple-600 to-emerald-600 flex items-center justify-center text-white text-3xl font-bold">
+            <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-gradient-to-br from-emerald-600 to-amber-500 flex items-center justify-center text-white text-3xl font-bold">
               AQ
             </div>
             <h3 className="text-xl font-bold mb-2">Dott. Antonio Quarta</h3>
@@ -65,7 +65,7 @@ export default function AboutUsSummary() {
         <div className="text-center">
           <Link 
             href="/about"
-            className="inline-flex items-center gap-2 bg-white text-purple-900 px-8 py-4 rounded-full font-bold hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
+            className="inline-flex items-center gap-2 bg-white text-emerald-900 px-8 py-4 rounded-full font-bold hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
           >
             Learn More About Our Team
             <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

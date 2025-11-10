@@ -36,7 +36,7 @@ export default function Footer() {
   }, [])
 
   // Show only first 10 industries by default
-  const displayedIndustries = showAllIndustries ? industries : industries.slice(0, 10)
+  const displayedIndustries = showAllIndustries ? industries : industries.slice(0, 6)
 
   return (
     <footer className="bg-gray-900 text-white">
@@ -101,7 +101,7 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
+            <h3 className="text-lg font-semibold mb-4">About & Services</h3>
             <ul className="space-y-2">
               <li>
                 <a href="/about" className="text-gray-400 hover:text-white transition-colors">
@@ -124,6 +124,11 @@ export default function Footer() {
                 </a>
               </li>
               <li>
+              <li>
+                <a href="/portfolio" className="text-gray-400 hover:text-white transition-colors">
+                  Portfolio
+                </a>
+              </li>
                 <a href="/contact" className="text-gray-400 hover:text-white transition-colors">
                   Contact Us
                 </a>
@@ -133,7 +138,7 @@ export default function Footer() {
 
           {/* Industries */}
           <div className="col-span-1 md:col-span-2">
-            <h3 className="text-lg font-semibold mb-4">Industries</h3>
+            <h3 className="text-lg font-semibold mb-4">Investment Categories</h3>
             <ul className="space-y-2">
               <li>
                 <a href="/industries" className="text-gray-400 hover:text-white transition-colors font-medium">
@@ -184,25 +189,13 @@ export default function Footer() {
                   </a>
                 </li>
                 <li>
-                  <a href="/locations/invest-in-taranto-taranto" className="text-gray-400 hover:text-white transition-colors text-sm">
-                    Taranto
-                  </a>
-                </li>
                 <li>
-                  <a href="/locations/invest-in-brindisi-brindisi" className="text-gray-400 hover:text-white transition-colors text-sm">
-                    Brindisi
-                  </a>
-                </li>
                 <li>
                   <a href="/locations/invest-in-ostuni-brindisi" className="text-gray-400 hover:text-white transition-colors text-sm">
                     Ostuni
                   </a>
                 </li>
                 <li>
-                  <a href="/locations/invest-in-polignano-a-mare-bari" className="text-gray-400 hover:text-white transition-colors text-sm">
-                    Polignano a Mare
-                  </a>
-                </li>
               </ul>
             </div>
             
@@ -222,193 +215,6 @@ export default function Footer() {
                 <li>
                   <a href="/cookies" className="text-gray-400 hover:text-white transition-colors text-sm">
                     Cookie Policy
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        {/* SEO Links Section */}
-        <div className="mt-12 pt-8 border-t border-gray-800">
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
-            {/* Investment Resources */}
-            <div>
-              <h4 className="text-sm font-semibold mb-3 text-gray-300">Investment Resources</h4>
-              <ul className="space-y-2 text-sm">
-                <li>
-                  <a href="/tools" className="text-gray-500 hover:text-gray-300 transition-colors">
-                    Investment Tools
-                  </a>
-                </li>
-                <li>
-                  <a href="/investment-process" className="text-gray-500 hover:text-gray-300 transition-colors">
-                    Investment Process
-                  </a>
-                </li>
-              </ul>
-            </div>
-
-            {/* Property Types */}
-            <div>
-              <h4 className="text-sm font-semibold mb-3 text-gray-300">Property Types</h4>
-              <ul className="space-y-2 text-sm">
-                <li>
-                  <a href="/blog" className="text-gray-500 hover:text-gray-300 transition-colors">
-                    Masseria Restoration
-                  </a>
-                </li>
-                <li>
-                  <a href="/blog" className="text-gray-500 hover:text-gray-300 transition-colors">
-                    Trulli Properties
-                  </a>
-                </li>
-                <li>
-                  <a href="/blog" className="text-gray-500 hover:text-gray-300 transition-colors">
-                    Coastal Villas
-                  </a>
-                </li>
-                <li>
-                  <a href="/blog" className="text-gray-500 hover:text-gray-300 transition-colors">
-                    Historic Palazzi
-                  </a>
-                </li>
-              </ul>
-            </div>
-
-            {/* Services */}
-            <div>
-              <h4 className="text-sm font-semibold mb-3 text-gray-300">Our Services</h4>
-              <ul className="space-y-2 text-sm">
-                <li>
-                  <a href="/services" className="text-gray-500 hover:text-gray-300 transition-colors">
-                    Grant Application Support
-                  </a>
-                </li>
-                <li>
-                  <a href="/services" className="text-gray-500 hover:text-gray-300 transition-colors">
-                    Property Due Diligence
-                  </a>
-                </li>
-                <li>
-                  <a href="/services" className="text-gray-500 hover:text-gray-300 transition-colors">
-                    Legal Representation
-                  </a>
-                </li>
-                <li>
-                  <a href="/services" className="text-gray-500 hover:text-gray-300 transition-colors">
-                    Tax Planning Advisory
-                  </a>
-                </li>
-              </ul>
-            </div>
-
-            {/* Popular Searches */}
-            <div>
-              <h4 className="text-sm font-semibold mb-3 text-gray-300">Popular Topics</h4>
-              <ul className="space-y-2 text-sm">
-                <li>
-                  <a href="/blog" className="text-gray-500 hover:text-gray-300 transition-colors">
-                    Mini PIA Turismo Grants
-                  </a>
-                </li>
-                <li>
-                  <a href="/blog" className="text-gray-500 hover:text-gray-300 transition-colors">
-                    Property Investment Puglia
-                  </a>
-                </li>
-                <li>
-                  <a href="/contact" className="text-gray-500 hover:text-gray-300 transition-colors">
-                    Italian Property Advisor
-                  </a>
-                </li>
-                <li>
-                  <a href="/blog" className="text-gray-500 hover:text-gray-300 transition-colors">
-                    EU Funding Italy 2025
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        {/* Institutional Partners */}
-        <div className="mt-12 pt-8 border-t border-gray-800">
-          <h3 className="text-lg font-semibold mb-6 text-center">Institutional Partners & Resources</h3>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
-            {/* Regional Agencies */}
-            <div>
-              <h4 className="text-sm font-semibold mb-3 text-gray-300">Regional Agencies</h4>
-              <ul className="space-y-2 text-sm">
-                <li>
-                  <a href="https://www.pugliasviluppo.eu" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-gray-300 transition-colors">
-                    Puglia Sviluppo S.p.A.
-                  </a>
-                </li>
-                <li>
-                  <a href="https://www.sistema.puglia.it" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-gray-300 transition-colors">
-                    Sistema Puglia
-                  </a>
-                </li>
-                <li>
-                  <a href="https://www.investinbari.it" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-gray-300 transition-colors">
-                    Invest in Bari
-                  </a>
-                </li>
-              </ul>
-            </div>
-
-            {/* National & EU */}
-            <div>
-              <h4 className="text-sm font-semibold mb-3 text-gray-300">National & EU Institutions</h4>
-              <ul className="space-y-2 text-sm">
-                <li>
-                  <a href="https://www.investinitaly.com" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-gray-300 transition-colors">
-                    Invest in Italy (ICE)
-                  </a>
-                </li>
-                <li>
-                  <a href="https://www.mimit.gov.it" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-gray-300 transition-colors">
-                    Ministry of Economic Development
-                  </a>
-                </li>
-                <li>
-                  <a href="https://www.eib.org" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-gray-300 transition-colors">
-                    European Investment Bank
-                  </a>
-                </li>
-              </ul>
-            </div>
-
-            {/* Special Zones */}
-            <div>
-              <h4 className="text-sm font-semibold mb-3 text-gray-300">Special Economic Zones</h4>
-              <ul className="space-y-2 text-sm">
-                <li>
-                  <a href="https://www.agenziacoesione.gov.it/zes-zone-economiche-speciali/zes-ionica-interregionale-puglia-basilicata/?lang=en" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-gray-300 transition-colors">
-                    SEZ Puglia-Basilicata
-                  </a>
-                </li>
-                <li>
-                  <a href="https://por.regione.puglia.it/en/fesr" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-gray-300 transition-colors">
-                    POR Puglia FESR
-                  </a>
-                </li>
-              </ul>
-            </div>
-
-            {/* Support & Info */}
-            <div>
-              <h4 className="text-sm font-semibold mb-3 text-gray-300">Support & Information</h4>
-              <ul className="space-y-2 text-sm">
-                <li>
-                  <a href="https://www.eif.org" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-gray-300 transition-colors">
-                    European Investment Fund
-                  </a>
-                </li>
-                <li>
-                  <a href="https://europa.eu/european-union/contact/europe-direct_en" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-gray-300 transition-colors">
-                    Europe Direct Puglia
                   </a>
                 </li>
               </ul>
