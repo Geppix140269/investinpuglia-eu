@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { CloudinaryImage } from '@/components/CloudinaryImage'
-import { ChevronDown, Building2, Calculator, FileText, Briefcase, TrendingUp, Network, ExternalLink } from 'lucide-react'
+import { ChevronDown, Building2, Calculator, FileText, Briefcase, TrendingUp, Network, ExternalLink, Users } from 'lucide-react'
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
@@ -166,6 +166,14 @@ export default function Navbar() {
             </Link>
 
             <Link
+              href="/advisory"
+              className="relative px-4 py-2 text-sm font-medium text-gray-700 hover:text-purple-700 transition-colors group"
+            >
+              Advisory
+              <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-purple-600 to-emerald-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+            </Link>
+
+            <Link
               href="/insights"
               className="relative px-4 py-2 text-sm font-medium text-gray-700 hover:text-purple-700 transition-colors group"
             >
@@ -300,6 +308,14 @@ export default function Navbar() {
                 onClick={() => setIsOpen(false)}
               >
                 Portfolio
+              </Link>
+
+              <Link
+                href="/advisory"
+                className="px-4 py-3 text-gray-700 hover:text-purple-700 hover:bg-purple-50 rounded-xl transition-all font-medium"
+                onClick={() => setIsOpen(false)}
+              >
+                Advisory
               </Link>
 
               <Link
