@@ -1,12 +1,20 @@
 // app/sitemap-locations.xml/route.ts
-import { client } from '@/sanity/lib/client'
+import { sanity } from '@/lib/sanity'
 import { groq } from 'next-sanity'
 
 export async function GET() {
   const baseUrl = 'https://investinpuglia.eu'
-  
+
   // Fetch ALL locations from Sanity
-  const locations = await client.fetch<{ 
+  let locations: {
+    slug: { current: string },
+    name: string,
+    _updatedAt: string
+  }[] = []
+
+  if (sanity) {
+    try {
+      locations = await sanity.fetch<{ 
     slug: { current: string },
     name: string,
     _updatedAt: string
@@ -16,7 +24,11 @@ export async function GET() {
       name,
       _updatedAt
     }`
-  )
+      )
+    } catch (error) {
+      console.error('Failed to fetch locations for sitemap:', error)
+    }
+  }
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"

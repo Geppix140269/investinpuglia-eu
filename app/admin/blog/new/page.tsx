@@ -2,7 +2,7 @@
 'use client'
 
 import { useState } from 'react'
-import { client } from '@/sanity/lib/client'
+import { sanity as client } from '@/lib/sanity'
 import { writeClient } from '@/sanity/lib/writeClient'
 import { useRouter } from 'next/navigation'
 import slugify from 'slugify'

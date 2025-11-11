@@ -3,7 +3,7 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import twilio from 'twilio';
-import OpenAI from 'openai';
+import { getOpenAIClient } from '@/lib/openai-client';
 
 // Initialize Twilio client with environment variables
 const twilioClient = twilio(
@@ -14,9 +14,6 @@ const twilioClient = twilio(
 const TWILIO_WHATSAPP_NUMBER = process.env.TWILIO_WHATSAPP_NUMBER || 'whatsapp:+447862140269';
 
 // Initialize OpenAI
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY!,
-});
 
 // Language detection patterns
 const languagePatterns = {
@@ -127,6 +124,7 @@ export async function POST(req: NextRequest) {
     const language = detectLanguage(messageBody);
 
     // Get AI response from OpenAI
+    const openai = getOpenAIClient()
     const completion = await openai.chat.completions.create({
       model: 'gpt-4-turbo-preview',
       messages: [

@@ -1,22 +1,30 @@
 // app/sitemap-industries.xml/route.ts
-import { client } from '@/sanity/lib/client'
 import { groq } from 'next-sanity'
+import { sanity } from '@/lib/sanity'
 
 export async function GET() {
   const baseUrl = 'https://investinpuglia.eu'
-  
-  // Fetch ALL industries from Sanity
-  const industries = await client.fetch<{ 
+
+  // Fetch ALL industries from Sanity (return empty if not configured)
+  let industries: {
     slug: { current: string },
     name: string,
     _updatedAt: string
-  }[]>(
-    groq`*[_type == "industry"] { 
-      slug, 
-      name,
-      _updatedAt
-    }`
-  )
+  }[] = []
+
+  if (sanity) {
+    try {
+      industries = await sanity.fetch<typeof industries>(
+        groq`*[_type == "industry"] {
+          slug,
+          name,
+          _updatedAt
+        }`
+      )
+    } catch (error) {
+      console.error('Failed to fetch industries for sitemap:', error)
+    }
+  }
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"

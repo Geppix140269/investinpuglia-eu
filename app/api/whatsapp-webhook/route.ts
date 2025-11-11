@@ -1,13 +1,10 @@
 // app/api/whatsapp-webhook/route.ts
 import { NextRequest, NextResponse } from 'next/server';
-import OpenAI from 'openai';
+import { getOpenAIClient } from '@/lib/openai-client';
 import twilio from 'twilio';
 import { db } from '@/lib/firebase';
 import { collection, addDoc, query, where, orderBy, limit, getDocs, serverTimestamp } from 'firebase/firestore';
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
 
 const twilioClient = twilio(
   process.env.TWILIO_ACCOUNT_SID,
@@ -76,6 +73,7 @@ Be concise but informative. If asked about specific properties or investment opp
       }
     ];
 
+    const openai = getOpenAIClient()
     const completion = await openai.chat.completions.create({
       model: 'gpt-3.5-turbo',
       messages,

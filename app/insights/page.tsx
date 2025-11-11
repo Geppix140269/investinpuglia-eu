@@ -1,5 +1,5 @@
 import { generateMetadata, pageMetadata } from '@/lib/metadata'
-import { client } from '@/sanity/lib/client'
+import { sanity as client } from '@/lib/sanity'
 import Link from 'next/link'
 import { urlFor } from '@/sanity/lib/image'
 
@@ -10,6 +10,8 @@ export const metadata = {
 }
 
 async function getPosts() {
+  if (!client) return []
+
   const posts = await client.fetch(`
     *[_type == "post" && publishedAt < now()] | order(publishedAt desc) {
       _id,

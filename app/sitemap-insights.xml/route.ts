@@ -1,12 +1,21 @@
 // app/sitemap-insights.xml/route.ts
-import { client } from '@/sanity/lib/client'
+import { sanity } from '@/lib/sanity'
 import { groq } from 'next-sanity'
 
 export async function GET() {
   const baseUrl = 'https://investinpuglia.eu'
-  
+
   // Fetch ALL insights/blog posts from Sanity
-  const insights = await client.fetch<{ 
+  let insights: {
+    slug: { current: string },
+    publishedAt: string,
+    _updatedAt: string,
+    title: string
+  }[] = []
+
+  if (sanity) {
+    try {
+      insights = await sanity.fetch<{ 
     slug: { current: string }, 
     publishedAt: string,
     _updatedAt: string,
@@ -16,9 +25,13 @@ export async function GET() {
       slug, 
       publishedAt, 
       _updatedAt,
-      title 
+      title
     } | order(publishedAt desc)`
-  )
+      )
+    } catch (error) {
+      console.error('Failed to fetch insights for sitemap:', error)
+    }
+  }
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"

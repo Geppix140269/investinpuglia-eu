@@ -2,7 +2,7 @@
 // Intelligent WhatsApp Bot with Correct Business Understanding & Sanity CMS Integration
 
 import { NextRequest, NextResponse } from 'next/server';
-import OpenAI from 'openai';
+import { getOpenAIClient } from '@/lib/openai-client';
 import twilio from 'twilio';
 import { db } from '@/lib/firebase';
 import { sanity } from '@/lib/sanity';
@@ -26,9 +26,6 @@ import {
   updateDoc
 } from 'firebase/firestore';
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
 
 const twilioClient = twilio(
   process.env.TWILIO_ACCOUNT_SID,
@@ -202,6 +199,7 @@ Remember: Professional yet approachable. You represent Giuseppe directly.`;
       { role: 'user' as const, content: message }
     ];
 
+    const openai = getOpenAIClient()
     const completion = await openai.chat.completions.create({
       model: 'gpt-4-turbo-preview',
       messages,

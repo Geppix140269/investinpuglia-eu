@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { client } from '@/sanity/lib/client'
+import { sanity as client } from '@/lib/sanity'
 import { writeClient } from '@/sanity/lib/writeClient'
 import Link from 'next/link'
 import { urlFor } from '@/sanity/lib/image'
@@ -26,6 +26,11 @@ export default function AdminBlogList() {
   }, [])
 
   const fetchPosts = async () => {
+    if (!client) {
+      setLoading(false)
+      return
+    }
+
     try {
       const data = await client.fetch(`
         *[_type == "post"] | order(publishedAt desc) {

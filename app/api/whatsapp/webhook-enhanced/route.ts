@@ -1,7 +1,7 @@
 // Enhanced WhatsApp Webhook for Comprehensive Data Collection
 import { NextRequest, NextResponse } from 'next/server';
 import twilio from 'twilio';
-import OpenAI from 'openai';
+import { getOpenAIClient } from '@/lib/openai-client';
 import { createClient } from '@supabase/supabase-js';
 
 // Initialize services
@@ -12,9 +12,6 @@ const twilioClient = twilio(
 
 const TWILIO_WHATSAPP_NUMBER = process.env.TWILIO_WHATSAPP_NUMBER || 'whatsapp:+447862140269';
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY!,
-});
 
 // Initialize Supabase for data storage
 const supabase = process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.SUPABASE_SERVICE_KEY
@@ -351,6 +348,7 @@ export async function POST(req: NextRequest) {
     const language = detectLanguage(messageBody);
     
     // Get AI response with full context
+    const openai = getOpenAIClient()
     const completion = await openai.chat.completions.create({
       model: 'gpt-4-turbo-preview',
       messages: [

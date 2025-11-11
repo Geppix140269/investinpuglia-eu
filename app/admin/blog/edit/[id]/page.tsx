@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { client } from '@/sanity/lib/client'
+import { sanity as client } from '@/lib/sanity'
 import { useRouter } from 'next/navigation'
 import { urlFor } from '@/sanity/lib/image'
 
@@ -22,6 +22,12 @@ export default function EditBlogPost({ params }: { params: { id: string } }) {
   }, [params.id])
 
   const fetchPost = async () => {
+    if (!client) {
+      alert('Sanity is not configured')
+      setLoading(false)
+      return
+    }
+
     try {
       const post = await client.fetch(`*[_type == "post" && _id == $id][0]`, { id: params.id })
       if (post) {

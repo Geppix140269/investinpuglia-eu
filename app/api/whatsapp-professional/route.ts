@@ -1,7 +1,7 @@
 // app/api/whatsapp-professional/route.ts
 // Professional WhatsApp Integration with Proper Context Management
 import { NextRequest, NextResponse } from 'next/server';
-import OpenAI from 'openai';
+import { getOpenAIClient } from '@/lib/openai-client';
 import twilio from 'twilio';
 import { db } from '@/lib/firebase';
 import { 
@@ -18,9 +18,6 @@ import {
   updateDoc
 } from 'firebase/firestore';
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
 
 const twilioClient = twilio(
   process.env.TWILIO_ACCOUNT_SID,
@@ -190,6 +187,7 @@ Remember: You represent Giuseppe personally. Be professional but approachable.`;
       { role: 'user' as const, content: message }
     ];
 
+    const openai = getOpenAIClient()
     const completion = await openai.chat.completions.create({
       model: 'gpt-4-turbo-preview', // Better model for context understanding
       messages,

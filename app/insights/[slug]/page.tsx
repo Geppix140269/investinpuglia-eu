@@ -1,7 +1,7 @@
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { PortableText } from '@portabletext/react'
-import { client } from '@/sanity/lib/client'
+import { sanity as client } from '@/lib/sanity'
 import { urlFor } from '@/sanity/lib/image'
 import ShareButtons from '@/components/ShareButtons'
 
@@ -29,8 +29,10 @@ interface ArticlePageProps {
 
 // Generate metadata for each article
 export async function generateMetadata({ params }: ArticlePageProps): Promise<Metadata> {
+  if (!client) return { title: 'Article Not Found' }
+
   const article = await client.fetch(ARTICLE_QUERY, { slug: params.slug })
-  
+
   if (!article) {
     return {
       title: 'Article Not Found',
@@ -69,6 +71,8 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
 }
 
 export default async function ArticlePage({ params }: ArticlePageProps) {
+  if (!client) return <div>Sanity not configured</div>
+
   const article = await client.fetch(ARTICLE_QUERY, { slug: params.slug })
 
   if (!article) {
@@ -195,8 +199,10 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
 // Generate static params for all articles
 export async function generateStaticParams() {
+  if (!client) return []
+
   const slugs = await client.fetch(ARTICLES_SLUGS_QUERY)
-  
+
   return slugs.map((slug: string) => ({
     slug: slug,
   }))

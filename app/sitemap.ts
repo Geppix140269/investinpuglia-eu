@@ -1,34 +1,36 @@
 // app/sitemap.ts
 import { MetadataRoute } from 'next'
+import { sanity } from '@/lib/sanity'
+import { groq } from 'next-sanity'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://investinpuglia.eu'
-  
+
   // Try to fetch from Sanity but handle errors gracefully
   let locations: any[] = []
   let industries: any[] = []
   let insights: any[] = []
-  
-  try {
-    const { client } = await import('@/sanity/lib/client')
-    const { groq } = await import('next-sanity')
-    
-    // Fetch ALL locations from Sanity
-    locations = await client.fetch<{ slug: { current: string } }[]>(
-      groq`*[_type == "locationPage"] { slug }`
-    ).catch(() => [])
-    
-    // Fetch ALL industries from Sanity
-    industries = await client.fetch<{ slug: { current: string } }[]>(
-      groq`*[_type == "industry"] { slug }`
-    ).catch(() => [])
-    
-    // Fetch ALL insights/blog posts from Sanity
-    insights = await client.fetch<{ slug: { current: string }, publishedAt: string }[]>(
-      groq`*[_type == "post" && publishedAt < now()] { slug, publishedAt } | order(publishedAt desc)`
-    ).catch(() => [])
-  } catch (error) {
-    console.error('Error fetching Sanity data for sitemap:', error)
+
+  if (sanity) {
+    try {
+
+      // Fetch ALL locations from Sanity
+      locations = await sanity.fetch<{ slug: { current: string } }[]>(
+        groq`*[_type == "locationPage"] { slug }`
+      ).catch(() => [])
+
+      // Fetch ALL industries from Sanity
+      industries = await sanity.fetch<{ slug: { current: string } }[]>(
+        groq`*[_type == "industry"] { slug }`
+      ).catch(() => [])
+
+      // Fetch ALL insights/blog posts from Sanity
+      insights = await sanity.fetch<{ slug: { current: string }, publishedAt: string }[]>(
+        groq`*[_type == "post" && publishedAt < now()] { slug, publishedAt } | order(publishedAt desc)`
+      ).catch(() => [])
+    } catch (error) {
+      console.error('Error fetching Sanity data for sitemap:', error)
+    }
   }
   
   // Static pages - UPDATED WITH CORRECT URLS (no /en prefix)
