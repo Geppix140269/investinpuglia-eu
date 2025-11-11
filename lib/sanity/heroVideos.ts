@@ -31,6 +31,12 @@ export async function getHeroVideos(): Promise<HeroVideo[]> {
 }
 
 export async function getVideosBySection(section: string): Promise<HeroVideo[]> {
+  // Return empty array if Sanity is not configured
+  if (!sanity) {
+    console.warn('Sanity is not configured. Returning empty video list.')
+    return []
+  }
+
   const query = `*[_type == "heroVideo" && isActive == true && section == $section] | order(order asc) {
     _id,
     title,
@@ -58,6 +64,12 @@ export async function getVideosBySection(section: string): Promise<HeroVideo[]> 
 }
 
 export async function getAllVideos(): Promise<HeroVideo[]> {
+  // Return empty array if Sanity is not configured
+  if (!sanity) {
+    console.warn('Sanity is not configured. Returning empty video list.')
+    return []
+  }
+
   const query = `*[_type == "heroVideo" && isActive == true] | order(section asc, order asc) {
     _id,
     title,
@@ -85,6 +97,12 @@ export async function getAllVideos(): Promise<HeroVideo[]> {
 }
 
 export async function getHeroVideoById(id: string): Promise<HeroVideo | null> {
+  // Return null if Sanity is not configured
+  if (!sanity) {
+    console.warn('Sanity is not configured. Returning null.')
+    return null
+  }
+
   const query = `*[_type == "heroVideo" && _id == $id][0] {
     _id,
     title,

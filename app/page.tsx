@@ -39,7 +39,13 @@ const ExclusiveOpportunitiesCarousel = dynamic(
   }
 )
 
-
+const AdvisoryFlowPreview = dynamic(
+  () => import(/* webpackChunkName: "advisory-preview" */ '@/components/sections/AdvisoryFlowPreview'),
+  {
+    loading: () => <LoadingSkeleton />,
+    ssr: true
+  }
+)
 
 const MeetTheTeam = dynamic(
   () => import(/* webpackChunkName: "team" */ '@/components/sections/MeetTheTeam'),
@@ -144,6 +150,10 @@ export default function HomePage() {
         <ExclusiveOpportunitiesCarousel />
       </Suspense>
 
+      {/* Advisory Flow Preview - Interactive circular diagram */}
+      <Suspense fallback={<LoadingSkeleton />}>
+        <AdvisoryFlowPreview />
+      </Suspense>
 
       {/* Team Section - Medium priority */}
       <Suspense fallback={<LoadingSkeleton />}>
