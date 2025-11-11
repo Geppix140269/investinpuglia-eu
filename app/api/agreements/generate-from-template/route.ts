@@ -4,9 +4,8 @@ import { db, storage } from '@/lib/firebase';
 import { doc, getDoc, setDoc, collection } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { PDFDocument, rgb, StandardFonts } from 'pdf-lib';
-import { Resend } from 'resend';
+import { getResendClient } from '@/lib/resend-client';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(request: NextRequest) {
   try {
@@ -55,7 +54,7 @@ export async function POST(request: NextRequest) {
     });
     
     // Send confirmation email to client
-    await resend.emails.send({
+    const resend = getResendClient(); await resend.emails.send({
       from: 'Giuseppe Funaro <g.funaro@investinpuglia.eu>',
       to: clientData.representativeEmail,
       cc: 'g.funaro@investinpuglia.eu',

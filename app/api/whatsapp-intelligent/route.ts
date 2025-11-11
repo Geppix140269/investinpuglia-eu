@@ -38,6 +38,11 @@ const twilioClient = twilio(
 // Fetch real-time content from Sanity
 async function fetchSanityContent(contentType: string) {
   try {
+    if (!sanity) {
+      console.warn('Sanity client not configured');
+      return null;
+    }
+
     switch(contentType) {
       case 'insights':
         return await sanity.fetch(SANITY_QUERIES.latestInsights);

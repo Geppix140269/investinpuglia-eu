@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { Resend } from 'resend'
+import { getResendClient } from '@/lib/resend-client'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
 
 export async function POST(request: NextRequest) {
   try {
@@ -21,7 +20,7 @@ export async function POST(request: NextRequest) {
     })
 
     // Send confirmation email to the user
-    const userEmail = await resend.emails.send({
+    const resend = getResendClient(); const userEmail = await resend.emails.send({
       from: 'InvestInPuglia <noreply@investinpuglia.eu>',
       to: email,
       subject: `Confidential Document Access Confirmed - ${documentTitle}`,

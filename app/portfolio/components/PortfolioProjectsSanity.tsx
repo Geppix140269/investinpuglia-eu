@@ -56,6 +56,12 @@ export default function PortfolioProjectsSanity() {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
+        if (!sanity) {
+          setProjects([])
+          setLoading(false)
+          return
+        }
+
         const query = `*[_type == "renovationProject"] | order(order asc, _createdAt desc) {
           _id,
           title,

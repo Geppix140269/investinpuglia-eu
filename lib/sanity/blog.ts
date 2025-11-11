@@ -34,6 +34,8 @@ export interface BlogPost {
 
 // Get all blog posts (for listing page)
 export async function getAllBlogPosts(): Promise<BlogPost[]> {
+  if (!sanity) return []
+
   try {
     const posts = await sanity.fetch(`
       *[_type == "post" && defined(slug.current)] | order(publishedAt desc) {
@@ -68,6 +70,8 @@ export async function getAllBlogPosts(): Promise<BlogPost[]> {
 
 // Get latest blog posts (for homepage)
 export async function getLatestBlogPosts(count: number = 3): Promise<BlogPost[]> {
+  if (!sanity) return []
+
   try {
     const posts = await sanity.fetch(`
       *[_type == "post" && defined(slug.current)] | order(publishedAt desc) [0...${count}] {
@@ -102,6 +106,8 @@ export async function getLatestBlogPosts(count: number = 3): Promise<BlogPost[]>
 
 // Get single blog post by slug
 export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> {
+  if (!sanity) return null
+
   try {
     const post = await sanity.fetch(`
       *[_type == "post" && slug.current == $slug][0] {
@@ -137,6 +143,8 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
 
 // Get related blog posts (by category)
 export async function getRelatedBlogPosts(currentPostId: string, categoryIds: string[], count: number = 3): Promise<BlogPost[]> {
+  if (!sanity) return []
+
   try {
     if (!categoryIds || categoryIds.length === 0) {
       // If no categories, get latest posts excluding current
@@ -200,6 +208,8 @@ export async function getRelatedBlogPosts(currentPostId: string, categoryIds: st
 
 // Get blog posts by category
 export async function getBlogPostsByCategory(categorySlug: string): Promise<BlogPost[]> {
+  if (!sanity) return []
+
   try {
     const posts = await sanity.fetch(`
       *[_type == "post" && defined(slug.current) && $categorySlug in categories[]->slug.current] | order(publishedAt desc) {
@@ -234,6 +244,8 @@ export async function getBlogPostsByCategory(categorySlug: string): Promise<Blog
 
 // Get all categories
 export async function getAllCategories() {
+  if (!sanity) return []
+
   try {
     const categories = await sanity.fetch(`
       *[_type == "category"] | order(title asc) {

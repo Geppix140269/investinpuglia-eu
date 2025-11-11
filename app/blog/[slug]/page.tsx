@@ -18,6 +18,8 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     }
   }`
 
+  if (!sanity) return {}
+
   const post = await sanity.fetch(query, { slug: params.slug })
   if (!post) return {}
 
@@ -52,6 +54,8 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 
 // ⚙️ Static path generation
 export async function generateStaticParams() {
+  if (!sanity) return []
+
   const query = groq`*[_type == "post"]{ "slug": slug.current }`
   const slugs = await sanity.fetch(query)
   return slugs.map((s: any) => ({ slug: s.slug }))
@@ -78,6 +82,8 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
       title
     }
   }`
+
+  if (!sanity) notFound()
 
   const post = await sanity.fetch(query, { slug: params.slug })
   if (!post) notFound()

@@ -644,7 +644,7 @@ interface ResultsBreakdownProps {
 function ResultsBreakdown({ results, values }: ResultsBreakdownProps) {
   const shouldReduceMotion = useReducedMotion()
 
-  const categories = [
+  const categories: ResultRowProps[] = [
     {
       label: 'Purchase Saving',
       value: results.purchaseSaving,

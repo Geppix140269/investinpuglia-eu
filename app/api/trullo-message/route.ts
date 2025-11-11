@@ -1,11 +1,10 @@
 // app/api/trullo-message/route.ts
 import { NextRequest, NextResponse } from 'next/server';
-import { Resend } from 'resend';
+import { getResendClient } from '@/lib/resend-client';
 import { EXPERT_DIRECTORY } from '@/components/trullo/knowledge/core/expert-directory';
 import { db } from '@/lib/firebase';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
 
 // Giuseppe's email - CRITICAL
 const GIUSEPPE_EMAIL = 'g.funaro@investinpuglia.eu';
@@ -122,7 +121,7 @@ export async function POST(request: NextRequest) {
     `;
 
     // Send email to Giuseppe
-    const emailResponse = await resend.emails.send({
+    const resend = getResendClient(); const emailResponse = await resend.emails.send({
       from: 'Trullo AI <info@1402celsius.com>',
       to: GIUSEPPE_EMAIL,
       subject: `New ${language?.toUpperCase() || 'EN'} Inquiry: ${name} - ${propertyType || 'Investment Opportunity'}`,

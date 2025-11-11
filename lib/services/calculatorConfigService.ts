@@ -91,10 +91,12 @@ export class CalculatorConfigService {
    * Get the currently active calculator configuration
    */
   static async getActiveConfig(): Promise<CalculatorConfig | null> {
+    if (!sanity) return this.getDefaultConfig()
+
     const query = groq`
       *[_type == "calculatorConfig" && active == true] | order(validFrom desc) [0]
     `
-    
+
     try {
       const config = await sanity.fetch(query)
       return config
@@ -109,13 +111,15 @@ export class CalculatorConfigService {
    * Get configuration valid for a specific date
    */
   static async getConfigForDate(date: Date): Promise<CalculatorConfig | null> {
+    if (!sanity) return null
+
     const query = groq`
-      *[_type == "calculatorConfig" 
-        && validFrom <= $date 
+      *[_type == "calculatorConfig"
+        && validFrom <= $date
         && (validUntil == null || validUntil >= $date)
       ] | order(validFrom desc) [0]
     `
-    
+
     return await sanity.fetch(query, { date: date.toISOString() })
   }
 
@@ -129,6 +133,8 @@ export class CalculatorConfigService {
     results: CalculationResult['results'],
     userEmail?: string
   ): Promise<string> {
+    if (!sanity) throw new Error('Sanity client not configured')
+
     const doc = {
       _type: 'calculationResult',
       sessionId,
@@ -141,7 +147,7 @@ export class CalculatorConfigService {
       inputs,
       results
     }
-    
+
     try {
       const result = await sanity.create(doc)
       return result._id
@@ -155,13 +161,15 @@ export class CalculatorConfigService {
    * Get calculation history for a user
    */
   static async getUserCalculations(email: string): Promise<CalculationResult[]> {
+    if (!sanity) return []
+
     const query = groq`
       *[_type == "calculationResult" && userEmail == $email] | order(calculatedAt desc) {
         ...,
         "configName": configUsed->name
       }
     `
-    
+
     return await sanity.fetch(query, { email })
   }
 
@@ -169,6 +177,8 @@ export class CalculatorConfigService {
    * Update calculation with report download status
    */
   static async markReportDownloaded(calculationId: string): Promise<void> {
+    if (!sanity) throw new Error('Sanity client not configured')
+
     await sanity
       .patch(calculationId)
       .set({ reportDownloaded: true })
@@ -179,9 +189,11 @@ export class CalculatorConfigService {
    * Get calculation statistics for admin dashboard
    */
   static async getCalculationStats(days: number = 30): Promise<any> {
+    if (!sanity) return null
+
     const startDate = new Date()
     startDate.setDate(startDate.getDate() - days)
-    
+
     const query = groq`{
       "total": count(*[_type == "calculationResult" && calculatedAt >= $startDate]),
       "withEmail": count(*[_type == "calculationResult" && calculatedAt >= $startDate && defined(userEmail)]),
@@ -192,7 +204,7 @@ export class CalculatorConfigService {
         "count": count(*[_type == "calculationResult" && configUsed._ref == ^._id && calculatedAt >= $startDate])
       }
     }`
-    
+
     return await sanity.fetch(query, { startDate: startDate.toISOString() })
   }
 

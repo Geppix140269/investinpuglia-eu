@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { Resend } from 'resend';
+import { getResendClient } from '@/lib/resend-client';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
 
 const LANGUAGE_NAMES = {
   en: 'English',
@@ -92,6 +91,7 @@ export async function POST(req: NextRequest) {
     `;
 
     // Send email via Resend
+    const resend = getResendClient()
     await resend.emails.send({
       from: 'Trullo AI <trullo@investinpuglia.eu>',
       to: [userEmail],

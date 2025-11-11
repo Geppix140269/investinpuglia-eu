@@ -435,6 +435,7 @@ function CircleView({
           </div>
         </div>
       ) : (
+      <>
       <div className="aspect-square relative">
         <svg className="w-full h-full" viewBox="0 0 100 100">
         {/* Pie chart segments */}
@@ -655,6 +656,7 @@ function CircleView({
           )
         })}
         </div>
+      </>
       )}
     </div>
   )

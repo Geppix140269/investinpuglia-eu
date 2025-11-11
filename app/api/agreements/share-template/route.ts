@@ -5,9 +5,7 @@ import { doc, setDoc, collection } from 'firebase/firestore';
 import { ref, getDownloadURL } from 'firebase/storage';
 import crypto from 'crypto';
 import bcrypt from 'bcryptjs';
-import { Resend } from 'resend';
-
-const resend = new Resend(process.env.RESEND_API_KEY);
+import { getResendClient } from '@/lib/resend-client';
 
 export async function POST(request: NextRequest) {
   try {
@@ -41,6 +39,7 @@ export async function POST(request: NextRequest) {
     const templateUrl = `${baseUrl}/api/agreements/get-template`;
     
     // Send email to client
+    const resend = getResendClient()
     await resend.emails.send({
       from: 'Giuseppe Funaro <g.funaro@investinpuglia.eu>',
       to: clientEmail,

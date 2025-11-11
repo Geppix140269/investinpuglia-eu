@@ -5,9 +5,8 @@ import { doc, getDoc, deleteDoc, setDoc, collection, serverTimestamp, updateDoc 
 import { ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage';
 import crypto from 'crypto';
 import bcrypt from 'bcryptjs';
-import { Resend } from 'resend';
+import { getResendClient } from '@/lib/resend-client';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(request: NextRequest) {
   try {
@@ -79,8 +78,9 @@ export async function POST(request: NextRequest) {
     
     // Create access link
     const accessLink = `https://investinpuglia.eu/agreement/firebase/${token}`;
-    
+
     // Send email to client
+    const resend = getResendClient()
     const emailData = await resend.emails.send({
       from: 'Giuseppe Funaro <g.funaro@investinpuglia.eu>',
       to: draftData.clientEmail,

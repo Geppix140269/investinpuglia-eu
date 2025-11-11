@@ -28,7 +28,7 @@ const query = groq`
 `
 
 export default async function BlogPage() {
-  const posts = await sanity.fetch(query)
+  const posts = sanity ? await sanity.fetch(query) : []
   
   // Add static SEO blog posts
   const seoPosts = [

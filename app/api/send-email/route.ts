@@ -1,10 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { Resend } from 'resend';
+import { getResendClient } from '@/lib/resend-client';
 import { coldOutreachTemplates } from '@/lib/email-campaigns/cold-outreach-templates';
 import { getPersonalizedGreeting } from '@/lib/email-utils/name-extractor';
 
 // Initialize Resend with your API key
-const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(request: NextRequest) {
   try {
@@ -27,7 +26,7 @@ export async function POST(request: NextRequest) {
       const finalHtml = html.replace(/\[UnsubscribeLink\]/g, 
         `https://investinpuglia.eu/unsubscribe?email=${encodeURIComponent(to)}`);
       
-      const data = await resend.emails.send({
+      const resend = getResendClient(); const data = await resend.emails.send({
         from: test ? 'InvestInPuglia Test <test@investinpuglia.eu>' : 'Giuseppe Funaro <giuseppe@investinpuglia.eu>',
         to: test ? 'g.funaro@1402celsius.com' : to, // Send tests to Giuseppe
         subject: test ? `[TEST] ${subject}` : subject,
@@ -58,7 +57,7 @@ export async function POST(request: NextRequest) {
       .replace(/\[UnsubscribeLink\]/g, `https://investinpuglia.eu/unsubscribe?email=${encodeURIComponent(recipientEmail)}`);
     
     // Send email using Resend
-    const data = await resend.emails.send({
+    const resend = getResendClient(); const data = await resend.emails.send({
       from: 'Giuseppe Funaro <giuseppe@investinpuglia.eu>',
       to: recipientEmail,
       subject: template.subject.replace(/\[Name\]/g, recipientName),

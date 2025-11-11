@@ -1,9 +1,8 @@
 // app/api/consultation-submission/route.ts
 import { NextRequest, NextResponse } from 'next/server';
-import { Resend } from 'resend';
+import { getResendClient } from '@/lib/resend-client';
 import { db } from '@/lib/firebase-admin';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(request: NextRequest) {
   try {
@@ -54,7 +53,7 @@ export async function POST(request: NextRequest) {
     const isQualified = determineQualification(budget, timeline);
     
     // Send detailed notification email to admin
-    await resend.emails.send({
+    const resend = getResendClient(); await resend.emails.send({
       from: 'InvestInPuglia <info@1402celsius.com>',
       to: ['info@investinpuglia.eu', 'g.funaro@investinpuglia.eu'],
       cc: ['info@1402celsius.com'],
@@ -203,7 +202,7 @@ export async function POST(request: NextRequest) {
 
     // Send confirmation email to user
     if (isQualified) {
-      await resend.emails.send({
+      const resend = getResendClient(); await resend.emails.send({
         from: 'Giuseppe Funaro <info@1402celsius.com>',
         to: [email],
         subject: 'Your FREE Consultation is Confirmed - InvestInPuglia',
@@ -250,7 +249,7 @@ export async function POST(request: NextRequest) {
       });
     } else {
       // Send nurture email
-      await resend.emails.send({
+      const resend = getResendClient(); await resend.emails.send({
         from: 'Giuseppe Funaro <info@1402celsius.com>',
         to: [email],
         subject: 'Your Puglia Investment Journey Starts Here',
