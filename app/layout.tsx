@@ -410,7 +410,7 @@ export default function RootLayout({
           <main className="pt-16">{children}</main>
           <Footer />
           <TrulloEnhanced />
-          <FloatingCalendlyButton />
+          {/* <FloatingCalendlyButton /> */}
           <Toaster position="top-right" />
           <VisitorTracker />
         </AuthProvider>

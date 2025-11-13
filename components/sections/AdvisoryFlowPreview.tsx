@@ -85,7 +85,8 @@ export default function AdvisoryFlowPreview() {
           className="text-center mb-8"
         >
           <p className="text-sm text-stone-600 mb-6">
-            Hover over each phase to see key deliverables
+            <span className="hidden md:inline">Hover over</span>
+            <span className="md:hidden">Tap</span> each phase to see key deliverables
           </p>
 
           {/* CTA Button */}

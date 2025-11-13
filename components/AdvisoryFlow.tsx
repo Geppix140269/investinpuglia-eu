@@ -376,10 +376,13 @@ function CircleView({
   onPhaseClick: (id: string) => void
 }) {
   const [isClient, setIsClient] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
   const shouldReduceMotion = useReducedMotion()
 
   useEffect(() => {
     setIsClient(true)
+    // Detect if device is mobile/touch-enabled
+    setIsMobile('ontouchstart' in window || navigator.maxTouchPoints > 0)
   }, [])
 
   // Create pie chart path for each segment
@@ -436,7 +439,15 @@ function CircleView({
         </div>
       ) : (
       <>
-      <div className="aspect-square relative">
+      <div
+        className="aspect-square relative"
+        onClick={(e) => {
+          // Close tooltip when clicking the background on mobile
+          if (isMobile && e.target === e.currentTarget && hoveredPhase) {
+            onPhaseHover(null)
+          }
+        }}
+      >
         <svg className="w-full h-full" viewBox="0 0 100 100">
         {/* Pie chart segments */}
         {phases.map((phase, index) => {
@@ -461,9 +472,17 @@ function CircleView({
                   transformOrigin: '50% 50%',
                   transform: isHovered ? 'scale(1.05)' : 'scale(1)'
                 }}
-                onMouseEnter={() => onPhaseHover(phase.id)}
-                onMouseLeave={() => onPhaseHover(null)}
-                onClick={() => onPhaseClick(phase.id)}
+                onMouseEnter={() => !isMobile && onPhaseHover(phase.id)}
+                onMouseLeave={() => !isMobile && onPhaseHover(null)}
+                onClick={() => {
+                  if (isMobile) {
+                    // On mobile: toggle hover state with tap
+                    onPhaseHover(hoveredPhase === phase.id ? null : phase.id)
+                  } else {
+                    // On desktop: navigate to advisory page
+                    onPhaseClick(phase.id)
+                  }
+                }}
                 role="button"
                 aria-label={`${phase.title}. Click for details.`}
               />
@@ -562,6 +581,16 @@ function CircleView({
               transition={{ duration: 0.2 }}
               className="absolute top-full left-1/2 -translate-x-1/2 mt-6 p-6 bg-stone-900 text-white rounded-xl shadow-2xl w-96 max-w-[95vw] z-50"
             >
+              {/* Close button for mobile */}
+              {isMobile && (
+                <button
+                  onClick={() => onPhaseHover(null)}
+                  className="absolute top-2 right-2 p-1 hover:bg-stone-800 rounded-lg transition-colors"
+                  aria-label="Close"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              )}
             {(() => {
               const phase = phases.find(p => p.id === hoveredPhase)
               if (!phase) return null
@@ -635,9 +664,17 @@ function CircleView({
           return (
             <button
               key={phase.id}
-              onClick={() => onPhaseClick(phase.id)}
-              onMouseEnter={() => onPhaseHover(phase.id)}
-              onMouseLeave={() => onPhaseHover(null)}
+              onClick={() => {
+                if (isMobile) {
+                  // On mobile: toggle hover state with tap
+                  onPhaseHover(hoveredPhase === phase.id ? null : phase.id)
+                } else {
+                  // On desktop: navigate to advisory page
+                  onPhaseClick(phase.id)
+                }
+              }}
+              onMouseEnter={() => !isMobile && onPhaseHover(phase.id)}
+              onMouseLeave={() => !isMobile && onPhaseHover(null)}
               className="flex items-center gap-2 p-3 rounded-lg bg-white border-2 border-stone-200 hover:border-stone-400 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-stone-400"
             >
               <div

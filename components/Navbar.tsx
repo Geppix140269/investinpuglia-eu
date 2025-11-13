@@ -112,7 +112,7 @@ export default function Navbar() {
               </button>
 
               {servicesDropdownOpen && (
-                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 pt-2 w-[420px]">
+                <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 w-[420px]">
                   <div className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-gray-100 overflow-hidden">
                     <div className="p-6">
                       <Link
@@ -197,7 +197,7 @@ export default function Navbar() {
               </button>
 
               {miniPiaDropdownOpen && (
-                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 pt-2 w-64">
+                <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 w-64">
                   <div className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-gray-100 overflow-hidden">
                     <div className="p-4 space-y-1">
                       <Link
