@@ -3,6 +3,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { CloudinaryImage } from '@/components/CloudinaryImage'
 import Icon from '@/lib/iconMappings'
 
@@ -16,8 +17,14 @@ interface Industry {
 }
 
 export default function Footer() {
+  const pathname = usePathname()
   const [industries, setIndustries] = useState<Industry[]>([])
   const [showAllIndustries, setShowAllIndustries] = useState(false)
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   // Fetch industries from Sanity
   useEffect(() => {
@@ -35,6 +42,11 @@ export default function Footer() {
     fetchIndustries()
   }, [])
 
+  // Hide footer on specific routes - AFTER all hooks
+  if (!mounted || pathname === '/zara-theme') {
+    return null
+  }
+
   // Show only first 10 industries by default
   const displayedIndustries = showAllIndustries ? industries : industries.slice(0, 6)
 
@@ -50,7 +62,7 @@ export default function Footer() {
               className="h-12 w-auto mb-4 opacity-90"
             />
             <p className="text-gray-400 mb-4">
-              EU PROPERTY GRANTS â€¢ INVESTMENT ADVISORY â€¢ PUGLIA EXPERTISE
+              EU PROPERTY GRANTS • INVESTMENT ADVISORY • PUGLIA EXPERTISE
             </p>
             <div className="flex gap-4">
               {/* Facebook */}
@@ -137,7 +149,7 @@ export default function Footer() {
             <ul className="space-y-2">
               <li>
                 <a href="/industries" className="text-gray-400 hover:text-white transition-colors font-medium">
-                  All Industries â†’
+                  All Industries →
                 </a>
               </li>
               {displayedIndustries.map((industry) => (
@@ -156,7 +168,7 @@ export default function Footer() {
                     onClick={() => setShowAllIndustries(!showAllIndustries)}
                     className="text-blue-400 hover:text-blue-300 transition-colors text-sm font-medium"
                   >
-                    {showAllIndustries ? 'â† Show Less' : `View All ${industries.length} Industries â†’`}
+                    {showAllIndustries ? '← Show Less' : `View All ${industries.length} Industries →`}
                   </button>
                 </li>
               )}

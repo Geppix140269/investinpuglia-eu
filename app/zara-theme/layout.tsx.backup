@@ -1,0 +1,12 @@
+// app/zara-theme/layout.tsx
+import '../globals.css'
+
+export default function ZaraThemeLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  // This layout is a route group layout that removes Navbar/Footer
+  // The root layout still provides html/body tags
+  return <>{children}</>
+}

@@ -3,19 +3,18 @@ import type { Metadata } from 'next'
 import { Inter, Playfair_Display } from 'next/font/google'
 import './globals.css'
 
-import Footer from '@/components/Footer'
-import Navbar from '@/components/Navbar'
 import Script from 'next/script'
 import dynamic from 'next/dynamic'
 import { AuthProvider } from '@/contexts/AuthContext'
 import { Toaster } from 'react-hot-toast'
 import { PAGE_OG_IMAGES, generateOGImageUrl } from '@/lib/og-images'
 import { generatePageMetadata } from './layout-metadata'
+import Navbar from '@/components/Navbar'
+import Footer from '@/components/Footer'
 
 // Lazy load the Enhanced TrulloChatbot with WhatsApp integration
 const TrulloEnhanced = dynamic(
   () => import('@/components/TrulloEnhanced').catch(() => {
-    // Return empty component if file doesn't exist
     return { default: () => null }
   }),
   {
@@ -33,18 +32,9 @@ const VisitorTracker = dynamic(
   }
 )
 
-// Lazy load the MetadataProvider for client-side metadata updates
+// Lazy load the MetadataProvider
 const MetadataProvider = dynamic(
   () => import('@/components/MetadataProvider'),
-  {
-    ssr: false,
-    loading: () => null
-  }
-)
-
-// Lazy load the FloatingCalendlyButton
-const FloatingCalendlyButton = dynamic(
-  () => import('@/components/FloatingCalendlyButton'),
   {
     ssr: false,
     loading: () => null
@@ -406,11 +396,9 @@ export default function RootLayout({
         <AuthProvider>
           <MetadataProvider />
           <Navbar />
-
           <main className="pt-16">{children}</main>
           <Footer />
           <TrulloEnhanced />
-          {/* <FloatingCalendlyButton /> */}
           <Toaster position="top-right" />
           <VisitorTracker />
         </AuthProvider>
