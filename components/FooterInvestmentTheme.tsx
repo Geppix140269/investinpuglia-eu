@@ -62,7 +62,7 @@ export default function FooterInvestmentTheme() {
                 </Link>
               </li>
               <li>
-                <Link href="/services" className="text-sm text-gray-400 hover:text-white transition-colors font-sans">
+                <Link href="/#services" className="text-sm text-gray-400 hover:text-white transition-colors font-sans">
                   Services
                 </Link>
               </li>
