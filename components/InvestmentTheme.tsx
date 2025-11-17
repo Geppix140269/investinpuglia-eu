@@ -139,7 +139,7 @@ export default function InvestmentTheme() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-neutral-50 via-white to-primary-50/20">
       {/* Hero Section - Investment Focus */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-32">
         {/* Hero Background Image - Rotating */}
         <div className="absolute inset-0">
           {heroImages.map((image, index) => (

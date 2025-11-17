@@ -10,7 +10,7 @@ export default function ThreePhaseValueSection() {
   const shouldReduceMotion = useReducedMotion()
 
   return (
-    <section className="py-24 px-6 bg-gradient-to-br from-neutral-50 via-white to-blue-50/20 relative overflow-hidden">
+    <section id="services" className="py-24 px-6 bg-gradient-to-br from-neutral-50 via-white to-blue-50/20 relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5 bg-[linear-gradient(rgba(0,0,0,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.1)_1px,transparent_1px)] bg-[size:40px_40px]" />
 

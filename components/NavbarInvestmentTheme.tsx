@@ -81,7 +81,7 @@ export default function NavbarInvestmentTheme() {
               </div>
 
               <Link
-                href="/services"
+                href="/#services"
                 className="font-sans text-sm font-normal text-gray-800 hover:text-[#4A90E2] transition-colors"
               >
                 Services
@@ -180,7 +180,7 @@ export default function NavbarInvestmentTheme() {
                 </div>
 
                 <Link
-                  href="/services"
+                  href="/#services"
                   className="px-4 py-3 font-sans text-sm text-gray-800 hover:bg-gray-100 transition-colors"
                   onClick={() => setMobileMenuOpen(false)}
                 >
