@@ -5,6 +5,7 @@ import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { MapPin, Euro, Calendar, Play, ChevronLeft, ChevronRight, TrendingUp, Calculator, FileText, ArrowRight, Check, Award } from 'lucide-react'
 import ThreePhaseValueSection from './ThreePhaseValueSection'
+import InvestReasons from './InvestReasons'
 
 // Portfolio data
 const portfolioProjects = [
@@ -595,6 +596,9 @@ export default function InvestmentTheme() {
           </div>
         </div>
       </section>
+
+      {/* 10 Reasons to Invest Section */}
+      <InvestReasons />
 
       {/* Three Phase Value Section */}
       <ThreePhaseValueSection />
