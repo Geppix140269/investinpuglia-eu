@@ -9,8 +9,8 @@ import { AuthProvider } from '@/contexts/AuthContext'
 import { Toaster } from 'react-hot-toast'
 import { PAGE_OG_IMAGES, generateOGImageUrl } from '@/lib/og-images'
 import { generatePageMetadata } from './layout-metadata'
-import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
+import NavbarInvestmentTheme from '@/components/NavbarInvestmentTheme'
+import FooterInvestmentTheme from '@/components/FooterInvestmentTheme'
 
 // Lazy load the Enhanced TrulloChatbot with WhatsApp integration
 const TrulloEnhanced = dynamic(
@@ -395,9 +395,9 @@ export default function RootLayout({
       <body className={`${inter.className} font-sans antialiased`}>
         <AuthProvider>
           <MetadataProvider />
-          <Navbar />
-          <main className="pt-16">{children}</main>
-          <Footer />
+          <NavbarInvestmentTheme />
+          <main>{children}</main>
+          <FooterInvestmentTheme />
           <TrulloEnhanced />
           <Toaster position="top-right" />
           <VisitorTracker />
