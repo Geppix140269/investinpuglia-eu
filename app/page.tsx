@@ -2,6 +2,7 @@
 // Main homepage - Investment Theme
 
 import InvestmentTheme from '@/components/InvestmentTheme'
+import { getLatestBlogPosts } from '@/lib/sanity/blog'
 
 export const metadata = {
   title: 'Invest in Puglia | EU Grants, Tax Benefits & Strategic Investment Opportunities',
@@ -9,6 +10,9 @@ export const metadata = {
   keywords: 'Puglia investment, EU grants Italy, Italian tax benefits, Puglia real estate, tourism investment, renewable energy Italy, foreign investment Italy',
 }
 
-export default function HomePage() {
-  return <InvestmentTheme />
+export default async function HomePage() {
+  // Fetch most recent blog post for Insights section
+  const latestPosts = await getLatestBlogPosts(1)
+
+  return <InvestmentTheme latestPosts={latestPosts} />
 }

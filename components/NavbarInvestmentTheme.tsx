@@ -93,6 +93,13 @@ export default function NavbarInvestmentTheme() {
               >
                 Portfolio
               </Link>
+
+              <Link
+                href="/blog"
+                className="font-sans text-sm font-normal text-gray-800 hover:text-[#4A90E2] transition-colors"
+              >
+                Blog
+              </Link>
             </div>
 
             {/* Center Logo */}
@@ -193,6 +200,14 @@ export default function NavbarInvestmentTheme() {
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Portfolio
+                </Link>
+
+                <Link
+                  href="/blog"
+                  className="px-4 py-3 font-sans text-sm text-gray-800 hover:bg-gray-100 transition-colors"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Blog
                 </Link>
 
                 <Link

@@ -6,6 +6,8 @@ import Link from 'next/link'
 import { MapPin, Euro, Calendar, Play, ChevronLeft, ChevronRight, TrendingUp, Calculator, FileText, ArrowRight, Check, Award } from 'lucide-react'
 import ThreePhaseValueSection from './ThreePhaseValueSection'
 import InvestReasons from './InvestReasons'
+import InsightsSection from './InsightsSection'
+import type { BlogPost } from '@/lib/sanity/blog'
 
 // Portfolio data
 const portfolioProjects = [
@@ -93,7 +95,11 @@ const heroImages = [
   '/images/industries/manufacturing-puglia.jpg'
 ]
 
-export default function InvestmentTheme() {
+interface InvestmentThemeProps {
+  latestPosts?: BlogPost[]
+}
+
+export default function InvestmentTheme({ latestPosts = [] }: InvestmentThemeProps) {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [investmentAmount, setInvestmentAmount] = useState(1000000)
   const [grantType, setGrantType] = useState('miniPIA')
@@ -596,6 +602,11 @@ export default function InvestmentTheme() {
           </div>
         </div>
       </section>
+
+      {/* Insights Section - Most Recent Blog Post */}
+      {latestPosts && latestPosts.length > 0 && (
+        <InsightsSection post={latestPosts[0]} />
+      )}
 
       {/* 10 Reasons to Invest Section */}
       <InvestReasons />
