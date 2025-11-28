@@ -14,5 +14,13 @@ export default async function HomePage() {
   // Fetch most recent blog post for Insights section
   const latestPosts = await getLatestBlogPosts(1)
 
-  return <InvestmentTheme latestPosts={latestPosts} />
+  // Extra safety: filter out any posts with null or undefined slugs
+  const validPosts = latestPosts.filter(post =>
+    post &&
+    post.slug &&
+    post.slug.current &&
+    typeof post.slug.current === 'string'
+  )
+
+  return <InvestmentTheme latestPosts={validPosts} />
 }

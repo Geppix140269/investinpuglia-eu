@@ -604,7 +604,7 @@ export default function InvestmentTheme({ latestPosts = [] }: InvestmentThemePro
       </section>
 
       {/* Insights Section - Most Recent Blog Post */}
-      {latestPosts && latestPosts.length > 0 && (
+      {latestPosts && latestPosts.length > 0 && latestPosts[0]?.slug?.current && (
         <InsightsSection post={latestPosts[0]} />
       )}
 
