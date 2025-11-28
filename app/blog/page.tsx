@@ -13,7 +13,7 @@ export const metadata = generateMetadata({
 })
 
 const query = groq`
-  *[_type == "post"] | order(publishedAt desc) {
+  *[_type == "post" && defined(slug.current)] | order(publishedAt desc) {
     _id,
     title,
     slug,
@@ -29,7 +29,10 @@ const query = groq`
 
 export default async function BlogPage() {
   const posts = sanity ? await sanity.fetch(query) : []
-  
+
+  // Filter out any posts with invalid slugs as an extra safety measure
+  const validPosts = posts.filter((post: any) => post && post.slug && post.slug.current)
+
   // Add static SEO blog posts
   const seoPosts = [
     {
@@ -49,8 +52,8 @@ export default async function BlogPage() {
       mainImage: { asset: { url: 'https://images.unsplash.com/photo-1554224154-26032ffc0d07?w=800' } }
     }
   ]
-  
-  const allPosts = [...seoPosts, ...posts]
+
+  const allPosts = [...seoPosts, ...validPosts]
 
   return (
     <main className="max-w-7xl mx-auto px-6 py-12">

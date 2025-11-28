@@ -9,6 +9,11 @@ interface InsightsSectionProps {
 }
 
 export default function InsightsSection({ post }: InsightsSectionProps) {
+  // Safety check: ensure post has a valid slug
+  if (!post || !post.slug || !post.slug.current) {
+    return null
+  }
+
   return (
     <section className="py-24 px-6 bg-gradient-to-br from-white via-secondary-50/30 to-accent-50/20 relative overflow-hidden">
       {/* Background Pattern */}

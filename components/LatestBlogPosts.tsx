@@ -13,6 +13,13 @@ export default function LatestBlogPosts({ posts }: LatestBlogPostsProps) {
     return null
   }
 
+  // Filter out posts with invalid slugs
+  const validPosts = posts.filter(post => post && post.slug && post.slug.current)
+
+  if (validPosts.length === 0) {
+    return null
+  }
+
   return (
     <section className="py-24 px-6 bg-gradient-to-br from-neutral-50 via-white to-primary-50/10 relative overflow-hidden">
       {/* Background Pattern */}
@@ -34,7 +41,7 @@ export default function LatestBlogPosts({ posts }: LatestBlogPostsProps) {
 
         {/* Blog Posts Grid */}
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 mb-12">
-          {posts.slice(0, 3).map((post) => (
+          {validPosts.slice(0, 3).map((post) => (
             <Link
               href={`/blog/${post.slug.current}`}
               key={post._id}
